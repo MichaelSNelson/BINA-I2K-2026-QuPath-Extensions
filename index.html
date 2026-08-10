@@ -66,7 +66,7 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
     <span class="chip"><b>Hour 1</b> presentation &amp; live demos</span>
     <span class="chip"><b>Hour 2</b> optional hands-on</span>
     <span class="chip">Requires <b>QuPath 0.7.0+</b></span>
-    <span class="chip">14 hands-on extensions</span>
+    <span class="chip">13 hands-on extensions</span>
   </div>
 </header>
 
@@ -94,17 +94,22 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
 
 <section>
   <h2>Presented only &mdash; no hands-on</h2>
-  <p class="note">These drive real microscope hardware. We are not connecting a room full of laptops to a microscope, so they are live demos.</p>
+  <p class="note">Shown live, but not practised &mdash; each has a hard barrier to installing it in a conference room. The reason is stated on every page.</p>
   <div class="grid">
     <a class="card demo" href="docs/presented/qpsc.html">
       <div class="k">Demo</div>
       <h3>QPSC &mdash; QuPath Scope Control</h3>
       <p>Draw a region in QuPath; the stage moves, tiles are acquired and stitched, and the image lands back in your project.</p>
     </a>
-    <a class="card demo" href="docs/presented/ppm.html">
+    <a class="card demo" href="docs/presented/fiber-analysis.html">
       <div class="k">Demo</div>
-      <h3>PPM &mdash; Polychromatic Polarization</h3>
-      <p>Fibre orientation encoded as colour, calibrated back into quantitative angles for fibrosis and tumour-stroma work.</p>
+      <h3>Collagen fibre &amp; texture analysis</h3>
+      <p>Straightness, morphometrics and texture over a boundary zone, plus CT-FIRE fibre tracing with TACS classification.</p>
+    </a>
+    <a class="card demo" href="docs/presented/confusion-matrix.html">
+      <div class="k">Demo</div>
+      <h3>Confusion Matrix</h3>
+      <p>Precision, recall and F1 with bootstrap confidence intervals, plus calibration analysis. Private repo, so demo only.</p>
     </a>
   </div>
 </section>
@@ -113,15 +118,15 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
   <h2>Acquisition &amp; data wrangling</h2>
   <p class="note">Everything between "the scanner produced files" and "I have a project I can analyse."</p>
   <div class="grid">
-    <a class="card" href="docs/14-tiles-to-pyramid.html">
+    <a class="card" href="docs/13-tiles-to-pyramid.html">
       <div class="k">Stitching</div><h3>Tiles to Pyramid</h3>
       <p>Tile directories into pyramidal OME-TIFF or OME-ZARR, with optional content-based registration for drifting stages.</p>
     </a>
-    <a class="card" href="docs/09-ocr4labels.html">
+    <a class="card" href="docs/08-ocr4labels.html">
       <div class="k">Metadata</div><h3>OCR for Labels</h3>
       <p>Read the slide label &mdash; text via Tesseract, barcodes via ZXing &mdash; straight into project metadata, in batch.</p>
     </a>
-    <a class="card" href="docs/10-project-metadata-browser.html">
+    <a class="card" href="docs/09-project-metadata-browser.html">
       <div class="k">Metadata</div><h3>Project Metadata Browser</h3>
       <p>Every image a row, every key a column. Buffered editing with full undo, paste, templates, regex extraction.</p>
     </a>
@@ -132,29 +137,25 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
   <h2>Annotation &amp; classification</h2>
   <p class="note">Where most QuPath time actually goes.</p>
   <div class="grid">
-    <a class="card" href="docs/06-wizard-wand.html">
+    <a class="card" href="docs/05-wizard-wand.html">
       <div class="k">Annotation</div><h3>Wizard Wand</h3>
       <p>A faster, more forgiving wand &mdash; hold-to-grow, hole filling, smoothing, and settings auto-tuned from one example.</p>
     </a>
-    <a class="card" href="docs/07-polyline-wand.html">
+    <a class="card" href="docs/06-polyline-wand.html">
       <div class="k">Annotation</div><h3>Polyline Wand &amp; Brush</h3>
       <p>Brush editing for lines, not just areas. Push, smooth, erase from an endpoint, or cut a polyline in two.</p>
     </a>
-    <a class="card" href="docs/08-classify-object-subset.html">
+    <a class="card" href="docs/07-classify-object-subset.html">
       <div class="k">Classification</div><h3>Classify Object Subset</h3>
       <p>Run a saved classifier on a chosen subset &mdash; by class, measurement, or selection &mdash; with a live count before you commit.</p>
     </a>
-    <a class="card" href="docs/11-class-distribution.html">
+    <a class="card" href="docs/10-class-distribution.html">
       <div class="k">QC</div><h3>Class Distribution</h3>
       <p>Live pie charts of annotation balance and implied training balance. Spot class imbalance before you train, not after.</p>
     </a>
     <a class="card" href="docs/02-dl-pixel-classifier.html">
       <div class="k">Deep learning</div><h3>DL Pixel Classifier</h3>
       <p>Retrainable deep pixel classification from sparse annotations, with foundation-model encoders and domain adaptation.</p>
-    </a>
-    <a class="card" href="docs/05-confusion-matrix.html">
-      <div class="k">Validation</div><h3>Confusion Matrix</h3>
-      <p>Precision, recall and F1 with bootstrap confidence intervals, plus calibration analysis &mdash; numbers you can cite.</p>
     </a>
   </div>
 </section>
@@ -170,7 +171,7 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
       <div class="k">Navigation</div><h3>Cluster 3D Navigator</h3>
       <p>A rotatable 3D point cloud of clustered cells. Click a point in cluster space, land on that cell on the slide.</p>
     </a>
-    <a class="card" href="docs/12-channel-names-viewer.html">
+    <a class="card" href="docs/11-channel-names-viewer.html">
       <div class="k">Utility</div><h3>Channel Names Viewer</h3>
       <p>An always-visible, colour-coded legend of the selected fluorescence channels. Five minutes, permanently useful.</p>
     </a>
@@ -184,7 +185,7 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
       <div class="k">Export</div><h3>QuIET &mdash; Image Export Toolkit</h3>
       <p>Figures, masks, ML tile pairs, object crops and montages in batch &mdash; with QUAREP-LiMi guidance and a generated Groovy script every time.</p>
     </a>
-    <a class="card" href="docs/13-dialog-position-manager.html">
+    <a class="card" href="docs/12-dialog-position-manager.html">
       <div class="k">Utility</div><h3>Dialog Position Manager</h3>
       <p>Remembers where your dialogs were and rescues the ones that went off-screen with the second monitor.</p>
     </a>

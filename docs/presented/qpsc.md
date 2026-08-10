@@ -44,7 +44,7 @@ stops being where your data has to change hands:
   driven by annotations, not by re-finding the spot by eye.
 - Acquisition metadata arrives in the QuPath project rather than in a separate folder that
   gets separated from the images by Christmas.
-- [Tiles to Pyramid](../14-tiles-to-pyramid.md) is the stitching stage of this pipeline —
+- [Tiles to Pyramid](../13-tiles-to-pyramid.md) is the stitching stage of this pipeline —
   and it is fully usable on its own, which is why *it* is in the hands-on session.
 
 ## Core capabilities

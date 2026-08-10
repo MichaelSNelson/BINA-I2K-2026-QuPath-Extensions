@@ -45,7 +45,7 @@ you assign the detected content to QuPath metadata keys.
   labels.
 
 Once the metadata is in the project, the
-[Project Metadata Browser](10-project-metadata-browser.md) is how you review, correct, and
+[Project Metadata Browser](09-project-metadata-browser.md) is how you review, correct, and
 export it in bulk.
 
 ## Setup — do this before the workshop

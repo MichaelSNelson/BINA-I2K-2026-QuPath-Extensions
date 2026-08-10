@@ -43,13 +43,18 @@ suite of open-source QuPath extensions developed at
 
 ## Presented only (live demo, no hands-on)
 
-These control real microscope hardware, so there is no interactive component — we are not
-connecting a room full of laptops to a microscope.
+Shown during the first hour but not practised. Each has a hard barrier to installing it in a
+conference room, stated on its page.
 
 - **[QPSC — QuPath Scope Control](docs/presented/qpsc.md)** — microscope control and automated
-  acquisition driven from QuPath
-- **[PPM — Polychromatic Polarization Microscopy](docs/presented/ppm.md)** — fibre orientation
-  from colour-encoded polarised light
+  acquisition driven from QuPath. *Needs a microscope.*
+- **[Confusion Matrix](docs/presented/confusion-matrix.md)** — classifier validation with
+  bootstrap confidence intervals and calibration analysis. *Repository is currently private, so
+  there is no jar for attendees to install.*
+- **[Collagen fibre and texture analysis](docs/presented/fiber-analysis.md)** — Fiber Analysis
+  (straightness, morphometrics, texture over a boundary zone) and TME-Quant (CT-FIRE fibre
+  tracing with TACS classification). *Long environment build, or a Windows-only server plus a
+  non-redistributable pipeline.*
 
 ## Hands-on extensions
 
@@ -59,16 +64,15 @@ connecting a room full of laptops to a microscope.
 | 02 | **[DL Pixel Classifier](docs/02-dl-pixel-classifier.md)** | Retrainable deep-learning pixel classification from sparse annotations | Apache-2.0 |
 | 03 | **[QP-CAT — Cell Analysis Tools](docs/03-qp-cat-cell-analysis-tools.md)** | Clustering, phenotyping and spatial statistics for multiplexed data, with embedded Python | Apache-2.0 |
 | 04 | **[Cluster 3D Navigator](docs/04-cluster-3d-navigator.md)** | Rotatable 3D point cloud of clustered cells; click a point, land on the cell | GPL-3.0 |
-| 05 | **[Confusion Matrix](docs/05-confusion-matrix.md)** | Classifier validation with bootstrap confidence intervals and calibration analysis | Apache-2.0 |
-| 06 | **[Wizard Wand](docs/06-wizard-wand.md)** | A faster, more forgiving wand with settings auto-tuned from your own example | GPL-3.0 |
-| 07 | **[Polyline Wand & Brush](docs/07-polyline-wand.md)** | Brush editing for lines and polylines, not just areas | GPL-3.0 |
-| 08 | **[Classify Object Subset](docs/08-classify-object-subset.md)** | Run a saved classifier on a chosen subset, with a live count before you commit | Apache-2.0 |
-| 09 | **[OCR for Labels](docs/09-ocr4labels.md)** | Slide-label OCR and barcode scanning into project metadata, in batch | Apache-2.0 |
-| 10 | **[Project Metadata Browser](docs/10-project-metadata-browser.md)** | Whole-project metadata table with buffered editing and full undo | GPL-3.0 |
-| 11 | **[Class Distribution](docs/11-class-distribution.md)** | Live charts of annotation and training-class balance | Apache-2.0 |
-| 12 | **[Channel Names Viewer](docs/12-channel-names-viewer.md)** | Always-visible colour-coded channel legend | Apache-2.0 |
-| 13 | **[Dialog Position Manager](docs/13-dialog-position-manager.md)** | Remembers dialog positions; rescues off-screen windows | Apache-2.0 |
-| 14 | **[Tiles to Pyramid](docs/14-tiles-to-pyramid.md)** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | Apache-2.0 |
+| 05 | **[Wizard Wand](docs/05-wizard-wand.md)** | A faster, more forgiving wand with settings auto-tuned from your own example | GPL-3.0 |
+| 06 | **[Polyline Wand & Brush](docs/06-polyline-wand.md)** | Brush editing for lines and polylines, not just areas | GPL-3.0 |
+| 07 | **[Classify Object Subset](docs/07-classify-object-subset.md)** | Run a saved classifier on a chosen subset, with a live count before you commit | Apache-2.0 |
+| 08 | **[OCR for Labels](docs/08-ocr4labels.md)** | Slide-label OCR and barcode scanning into project metadata, in batch | Apache-2.0 |
+| 09 | **[Project Metadata Browser](docs/09-project-metadata-browser.md)** | Whole-project metadata table with buffered editing and full undo | GPL-3.0 |
+| 10 | **[Class Distribution](docs/10-class-distribution.md)** | Live charts of annotation and training-class balance | Apache-2.0 |
+| 11 | **[Channel Names Viewer](docs/11-channel-names-viewer.md)** | Always-visible colour-coded channel legend | Apache-2.0 |
+| 12 | **[Dialog Position Manager](docs/12-dialog-position-manager.md)** | Remembers dialog positions; rescues off-screen windows | Apache-2.0 |
+| 13 | **[Tiles to Pyramid](docs/13-tiles-to-pyramid.md)** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | Apache-2.0 |
 
 ## Install everything
 
@@ -77,9 +81,6 @@ Add these two catalogs in QuPath (`Extensions > Manage extensions > Manage exten
 
 - **LOCI QuPath Extensions** — `https://github.com/uw-loci/qupath-catalog-mikenelson`
 - **QPSC Microscope Extensions** — `https://github.com/uw-loci/qupath-catalog-qpsc`
-
-Confusion Matrix is not currently in a catalog; install its jar from
-[Releases](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension/releases).
 
 Full instructions, including the dataset list, are in the **[setup guide](docs/setup.md)**.
 

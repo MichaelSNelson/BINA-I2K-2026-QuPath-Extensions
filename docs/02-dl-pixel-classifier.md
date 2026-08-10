@@ -125,7 +125,7 @@ workshop**, it is a substantial download.
   — when to use AdaBN, when to use domain-adaptive MAE, and when you really do need to retrain.
 - Training data for this extension pairs naturally with [QuIET](01-quiet-image-export.md)'s
   Tiled export, and results pair with the
-  [Confusion Matrix](05-confusion-matrix.md) extension for a defensible accuracy number.
+  [Confusion Matrix](presented/confusion-matrix.md) extension for a defensible accuracy number.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier#readme)

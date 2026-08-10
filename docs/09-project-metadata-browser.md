@@ -27,7 +27,7 @@ Modelled on QuPath's built-in TMA Results Viewer, but for whole projects. One ro
 image; built-in columns (Name, ID, URI, Description, Tags) plus **one column per user-metadata
 key used anywhere in the project**.
 
-If you have just run [OCR for Labels](09-ocr4labels.md) across 467 slides, this is where you
+If you have just run [OCR for Labels](08-ocr4labels.md) across 467 slides, this is where you
 find out whether it worked.
 
 **Viewing**
@@ -74,7 +74,7 @@ Via the **LOCI QuPath Extensions** catalog, or the release jar. Restart QuPath.
 ## Hands-on exercise (~12 min)
 
 **Data:** `DATA-03_labeled_slides` after you have run the
-[OCR exercise](09-ocr4labels.md), or the pre-populated version from the Drive folder.
+[OCR exercise](08-ocr4labels.md), or the pre-populated version from the Drive folder.
 
 1. `Extensions > Project Metadata Browser > Browse Metadata...`
 2. Click **Fit Columns**. Use the **Columns** menu to hide everything except Name and your

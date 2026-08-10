@@ -51,12 +51,6 @@ From the catalogs, install:
 - OCR for Labels
 - Tiles to Pyramid
 
-**Not in a catalog — install the jar by hand:**
-
-- **Confusion Matrix** — download the latest `-all.jar` from
-  [Releases](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension/releases), drag it
-  onto QuPath, accept the copy.
-
 **Large downloads — only if you plan to do these tracks:**
 
 - **QP-CAT — Cell Analysis Tools** — after installing, run
@@ -80,16 +74,15 @@ Set **Tessdata Path** to the folder containing them, click OK. Barcode scanning 
 
 **Google Drive folder:** %%DRIVE_DATA_URL%%
 
-Download the datasets for the track(s) you plan to do. Total for all five is roughly 3–4 GB;
+Download the datasets for the track(s) you plan to do. Total for all four is roughly 3–4 GB;
 each individual set is much smaller.
 
 | ID | Contents | Used by |
 |---|---|---|
-| `DATA-01_HE_WSI` | Annotated brightfield H&E project | QuIET, DL Pixel Classifier, Wizard Wand, Polyline Wand, Class Distribution |
+| `DATA-01_HE_WSI` | Annotated brightfield H&E project | QuIET, DL Pixel Classifier, Wizard Wand, Polyline Wand, Class Distribution — **Tracks A and C** |
 | `DATA-02_multiplex_IF` | Multiplexed IF project with detected cells, per-marker measurements, and a saved object classifier | QP-CAT, Cluster 3D Navigator, Channel Names Viewer, Classify Object Subset |
 | `DATA-03_labeled_slides` | WSIs with slide label images — some barcoded, at least one rotated | OCR for Labels, Project Metadata Browser |
 | `DATA-04_tiles` | A tile directory with `TileConfiguration.txt`, plus a drift-affected copy | Tiles to Pyramid |
-| `DATA-05_classified_project` | Classified cells with ground-truth point annotations, and an OpenCV ML classifier | Confusion Matrix |
 
 **You are also very welcome to bring your own data.** The second hour is optional exploration,
 and working on a problem you actually have is a better use of the time than working on ours.
@@ -104,7 +97,7 @@ Open QuPath and confirm:
 - [ ] Help → About shows **0.7.0** or later
 - [ ] `Extensions >` contains **QuIET**, **Class Distribution**, **Classify Object Subset**,
       **Cluster 3D Navigator**, **Project Metadata Browser**, **Channel Names Viewer**,
-      **OCR for Labels**, **Tiles to Pyramid**, **Confusion Matrix**
+      **OCR for Labels**, **Tiles to Pyramid**
 - [ ] `Window >` contains **Dialog Position Manager...**
 - [ ] The toolbar has a **sparkle wand** (Shift+W) and a **polyline wand** (Shift+P) button
 - [ ] If doing the multiplex track: `Extensions > QP-CAT` reports its environment as ready
@@ -118,3 +111,18 @@ Open QuPath and confirm:
   `-all` jar.
 - **Anything else.** Come find us at the start of the session — we will have people circulating
   during the hands-on hour specifically for this.
+
+---
+
+## Not installable today
+
+Three tools are demonstrated in the first hour but cannot be installed by attendees, so they are
+not in the list above:
+
+- **QPSC** needs a microscope.
+- **Confusion Matrix** is in a private repository. If that changes before the workshop we will
+  say so on the day.
+- **Fiber Analysis / TME-Quant** need a long environment build, or a Windows-only server plus a
+  pipeline that cannot be redistributed.
+
+See the [schedule](schedule.md) for where they appear.

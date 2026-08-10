@@ -90,7 +90,7 @@ or the release jar. Restart QuPath.
 
 ## Going further
 
-The natural companion is the [Confusion Matrix](05-confusion-matrix.md) extension: class
+The natural companion is the [Confusion Matrix](presented/confusion-matrix.md) extension: class
 imbalance visible here is usually the explanation for a wide confidence interval there.
 
 **Full documentation:** the
