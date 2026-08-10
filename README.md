@@ -1,4 +1,17 @@
-# QuPath, end to end — I2K / BINA Congress 2026
+# New Extensions for QuPath
+
+**From simple (dialog manager, wizard wand, image export) to complex (DL cell and pixel
+classifiers, microscope control)**
+
+An I2K workshop at the BioImaging North America Congress 2026.
+
+| | |
+|---|---|
+| **Date** | Tuesday 29 September 2026 |
+| **Time** | 10:30 – 12:30 |
+| **Location** | Morgridge Hall, WARF Seminar Hub — Rm. 7560 |
+| **Format** | Hour 1 presentation and demos · Hour 2 optional hands-on |
+| **Requires** | QuPath **0.7.0 or later** |
 
 **Live site → https://michaelsnelson.github.io/BINA-I2K-2026-QuPath-Extensions/**
 
@@ -19,9 +32,6 @@ suite of open-source QuPath extensions developed at
 > environment from acquisition through publication. The first hour will be dedicated to
 > introducing the tools, with the second hour being optional exploration of the extensions with
 > provided or user-provided data sets.
-
-**Format:** 1 hour presentation + 1 hour optional hands-on.
-**Requires:** QuPath **0.7.0 or later**.
 
 ---
 

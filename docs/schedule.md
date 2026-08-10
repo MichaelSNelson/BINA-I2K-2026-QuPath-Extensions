@@ -5,25 +5,41 @@ title: Workshop schedule
 
 # Workshop schedule
 
-**Two hours.** The first is presentation and live demos; the second is optional, self-directed
-hands-on exploration. You are welcome to leave after the first hour, and equally welcome to
+**Tuesday 29 September 2026, 10:30 – 12:30. Morgridge Hall, WARF Seminar Hub — Rm. 7560.** The first hour is presentation
+and live demos; the second is optional, self-directed hands-on exploration. You are welcome to leave after the first hour, and equally welcome to
 spend the second hour on your own data instead of ours.
 
 ---
 
-## Hour 1 — Presentation and demos (60 min)
+## Session details
+
+| | |
+|---|---|
+| **Title** | New Extensions for QuPath: From simple (dialog manager, wizard wand, image export) to complex (DL cell and pixel classifiers, microscope control) |
+| **Date** | Tuesday 29 September 2026 |
+| **Time** | 10:30 – 12:30 |
+| **Location** | Morgridge Hall, WARF Seminar Hub — Rm. 7560 |
+| **Format** | Hour 1 presentation and demos · Hour 2 optional hands-on |
+
+---
+
+## Hour 1 — Presentation and demos (10:30 – 11:30)
+
+The order follows the session title: start with tools you can install in two minutes and use
+this afternoon, end with the ones that need a Python server and a microscope.
 
 | Time | Topic | Pages |
 |---|---|---|
-| 0:00 | **Welcome and framing** — QuPath as one environment from acquisition to publication | — |
-| 0:05 | **Extensions, catalogs, and how this suite was built** — including where AI-assisted development helped and where it did not | [intro](00-extensions-catalogs-and-ai.md) |
-| 0:12 | **QPSC — microscope control from QuPath.** Live demo: draw a box, acquire, stitch, land back in the project | [QPSC](presented/qpsc.md) |
-| 0:22 | **From tiles to a real project** — stitching, slide-label OCR, and project metadata at scale | [Tiles to Pyramid](13-tiles-to-pyramid.md) · [OCR](08-ocr4labels.md) · [Metadata Browser](09-project-metadata-browser.md) |
-| 0:29 | **Annotating and classifying** — better wands, subset classification, class balance, and deep-learning pixel classification | [Wizard Wand](05-wizard-wand.md) · [Polyline Wand](06-polyline-wand.md) · [Classify Subset](07-classify-object-subset.md) · [Class Distribution](10-class-distribution.md) · [DL Classifier](02-dl-pixel-classifier.md) |
-| 0:39 | **Did it actually work?** — confusion matrices with bootstrap confidence intervals *(demo)* | [Confusion Matrix](presented/confusion-matrix.md) |
-| 0:44 | **Multiplexed data** — clustering, spatial statistics, and navigating cluster space back to the slide | [QP-CAT](03-qp-cat-cell-analysis-tools.md) · [Cluster 3D](04-cluster-3d-navigator.md) |
-| 0:49 | **Collagen fibre and texture analysis** — straightness, morphometrics, texture, and TACS *(demo)* | [Fibre analysis](presented/fiber-analysis.md) |
-| 0:55 | **Getting it out** — publication-quality export with QUAREP-LiMi guidance, and where to get everything | [QuIET](01-quiet-image-export.md) |
+| 10:30 | **Welcome and framing** — QuPath as one environment from acquisition to publication | — |
+| 10:35 | **Extensions, catalogs, and how this suite was built** — including where AI-assisted development helped and where it did not | [intro](00-extensions-catalogs-and-ai.md) |
+| 10:41 | **Simple wins** — small extensions that pay for themselves the first day: dialog positions that survive an undocked laptop, a channel legend for presenting, and two better wands | [Dialog Manager](12-dialog-position-manager.md) · [Channel Names](11-channel-names-viewer.md) · [Wizard Wand](05-wizard-wand.md) · [Polyline Wand](06-polyline-wand.md) |
+| 10:49 | **Image export** — publication figures, masks and ML datasets in batch, with QUAREP-LiMi guidance and a generated Groovy script every time | [QuIET](01-quiet-image-export.md) |
+| 10:55 | **Project-scale housekeeping** — slide-label OCR into metadata, whole-project metadata editing, class balance, and subset classification | [OCR](08-ocr4labels.md) · [Metadata Browser](09-project-metadata-browser.md) · [Class Distribution](10-class-distribution.md) · [Classify Subset](07-classify-object-subset.md) |
+| 11:02 | **Did it actually work?** — confusion matrices with bootstrap confidence intervals *(demo)* | [Confusion Matrix](presented/confusion-matrix.md) |
+| 11:07 | **DL cell and pixel classifiers** — deep pixel classification from sparse annotations; clustering, autoencoder cell classification and spatial statistics on multiplexed data; navigating cluster space back to the slide | [DL Classifier](02-dl-pixel-classifier.md) · [QP-CAT](03-qp-cat-cell-analysis-tools.md) · [Cluster 3D](04-cluster-3d-navigator.md) |
+| 11:15 | **Collagen fibre and texture analysis** — straightness, morphometrics, texture, and TACS *(demo)* | [Fibre analysis](presented/fiber-analysis.md) |
+| 11:20 | **Microscope control** — draw a box in QuPath, acquire, stitch, land back in the project *(live demo)* | [QPSC](presented/qpsc.md) · [Tiles to Pyramid](13-tiles-to-pyramid.md) |
+| 11:29 | **Where to get everything**, and what to do in the second hour | [setup](setup.md) |
 
 **Slides:** %%DRIVE_SLIDES_URL%%
 
@@ -42,16 +58,16 @@ Three things are shown but not practised, for reasons that are worth stating pla
 
 ---
 
-## Hour 2 — Hands-on, optional (60 min)
+## Hour 2 — Hands-on, optional (11:30 – 12:30)
 
 There are thirteen hands-on extensions and sixty minutes. **Do not try to do all of them.**
 Pick one track, or bring your own data and pick the tools that fit it.
 
 | Time | |
 |---|---|
-| 1:00 | Setup triage — if anything from the [setup guide](setup.md) did not work, grab us now |
-| 1:05 | Work through a track (or your own data) |
-| 1:55 | Wrap-up, questions, and how to get help afterwards |
+| 11:30 | Setup triage — if anything from the [setup guide](setup.md) did not work, grab us now |
+| 11:35 | Work through a track (or your own data) |
+| 12:25 | Wrap-up, questions, and how to get help afterwards |
 
 ### Track A — Annotation and classification
 
