@@ -65,7 +65,7 @@ Pick one track, or bring your own data and pick the tools that fit it.
 
 | Time | |
 |---|---|
-| 11:30 | Setup triage — if anything from the [setup guide](setup.md) did not work, grab us now |
+| 11:30 | Setup triage — if anything from the [setup guide](setup.md) or the [extension index](extensions.md) did not work, grab us now |
 | 11:35 | Work through a track (or your own data) |
 | 12:25 | Wrap-up, questions, and how to get help afterwards |
 

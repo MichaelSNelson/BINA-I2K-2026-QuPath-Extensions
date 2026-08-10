@@ -101,7 +101,8 @@ is available.
 | **QPSC Microscope Extensions** | `https://github.com/uw-loci/qupath-catalog-qpsc` | Microscope control and acquisition-adjacent tools: QPSC, PPM, OCR for Labels, Tiles to Pyramid |
 
 Add both. You do not have to install everything in them — see the
-[setup guide](setup.md) for exactly what today's exercises need.
+[extension index](extensions.md) to pick individual tools, or the [setup guide](setup.md) for
+exactly what each hands-on track needs.
 
 ### What a catalog entry looks like
 
@@ -220,6 +221,7 @@ still yours.
 
 ## Where to go next
 
+- [Extension index](extensions.md) — every extension, its install source, and its guide.
 - [Setup guide](setup.md) — what to install before the hands-on hour.
 - [Workshop schedule](schedule.md) — what happens when.
 - The per-extension pages, linked from the [workshop home page](../).
