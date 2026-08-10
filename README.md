@@ -43,6 +43,11 @@ suite of open-source QuPath extensions developed at
 | **[Setup guide](docs/setup.md)** | **Do this before you travel.** Several extensions download large Python environments on first run |
 | **[Schedule & hands-on tracks](docs/schedule.md)** | Hour-by-hour running order, plus four self-directed tracks |
 
+## For organisers
+
+**[I2K form responses](I2K_FORM_RESPONSES.md)** — paste-ready answers for the I2K
+"Additional Details and Information for Participants" form. **Due 1 September 2026.**
+
 ## Files on Google Drive
 
 | | |
