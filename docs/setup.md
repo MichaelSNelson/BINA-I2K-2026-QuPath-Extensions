@@ -10,6 +10,10 @@ environments at 9:05 am. Fifteen minutes at home saves you the whole hands-on ho
 
 If you can only do one thing: **install QuPath 0.7 and add the two catalogs.**
 
+> **Want to vote on what we demonstrate live?** See
+> [walkthroughs and videos](walkthroughs.md) — we will not get through all sixteen tools, so the
+> live time follows the room's interest. Every tool has a walkthrough and a video regardless.
+
 > **Only interested in one or two extensions?** You do not need any of the tracks. Go to the
 > **[extension index](extensions.md)**, find the ones you care about, and install just those.
 

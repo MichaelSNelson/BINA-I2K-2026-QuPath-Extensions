@@ -23,6 +23,9 @@ title: Tiles to Pyramid
 > no microscope, no Python server, and no acquisition running. If you have a folder of tiles,
 > this stitches them.
 
+> **Walkthrough video:** %%VIDEO_TILES_TO_PYRAMID%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## What it does

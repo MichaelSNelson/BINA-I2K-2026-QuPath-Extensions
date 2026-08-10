@@ -19,6 +19,9 @@ title: Channel Names Viewer
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
+> **Walkthrough video:** %%VIDEO_CHANNEL_NAMES_VIEWER%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## What it does

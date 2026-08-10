@@ -19,6 +19,9 @@ title: QuIET - QuPath Image Export Toolkit
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
+> **Walkthrough video:** %%VIDEO_QUIET_IMAGE_EXPORT%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## What it does

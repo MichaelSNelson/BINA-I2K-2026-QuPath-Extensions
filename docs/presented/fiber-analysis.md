@@ -19,6 +19,9 @@ title: Collagen fibre and texture analysis (presented only)
 | **Backend** | Embedded Python via Appose | Separate Python FIRE server over a local socket |
 | **Session** | Presented only | Presented only |
 
+> **Walkthrough video:** %%VIDEO_FIBER_ANALYSIS%%
+> This tool is demonstrated rather than practised, but the walkthrough below is complete — you can follow it yourself once you have access to the tool.
+
 ---
 
 ## Why fibre architecture, and why it is hard

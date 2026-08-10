@@ -10,7 +10,8 @@ coming, install those and ignore the rest — every one works on its own.
 
 Each row links to a full guide (what it does, and a step-by-step exercise) and to the source
 repository. If you would rather be told exactly what to install for a particular hands-on
-track, use the [setup guide](setup.md) instead.
+track, use the [setup guide](setup.md) instead. Every tool also has a
+[written walkthrough and a video](walkthroughs.md), whether or not we reach it live.
 
 ---
 

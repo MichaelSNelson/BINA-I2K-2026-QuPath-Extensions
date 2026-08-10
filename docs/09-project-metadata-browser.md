@@ -19,6 +19,9 @@ title: Project Metadata Browser
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
+> **Walkthrough video:** %%VIDEO_PROJECT_METADATA_BROWSER%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## What it does

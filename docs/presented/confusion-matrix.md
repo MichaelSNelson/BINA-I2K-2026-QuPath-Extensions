@@ -23,6 +23,9 @@ title: Confusion Matrix
 | **Availability** | Repository currently **private** — not installable by attendees |
 | **Session** | Presented only |
 
+> **Walkthrough video:** %%VIDEO_CONFUSION_MATRIX%%
+> This tool is demonstrated rather than practised, but the walkthrough below is complete — you can follow it yourself once you have access to the tool.
+
 ---
 
 ## What it does

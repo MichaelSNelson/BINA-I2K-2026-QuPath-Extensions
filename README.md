@@ -40,6 +40,7 @@ suite of open-source QuPath extensions developed at
 | | |
 |---|---|
 | **[Extensions, catalogs & AI-assisted development](docs/00-extensions-catalogs-and-ai.md)** | Read this first — what an extension is, how catalogs work, and how this suite was built |
+| **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough and a video for every tool, plus the vote for what we demo live |
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide — for picking just the ones you want |
 | **[Setup guide](docs/setup.md)** | **Do this before you travel.** Several extensions download large Python environments on first run |
 | **[Schedule & hands-on tracks](docs/schedule.md)** | Hour-by-hour running order, plus four self-directed tracks |

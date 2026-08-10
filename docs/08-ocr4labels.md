@@ -18,6 +18,9 @@ title: OCR for Labels
 | **Catalog** | QPSC Microscope Extensions |
 | **Session** | Hands-on |
 
+> **Walkthrough video:** %%VIDEO_OCR4LABELS%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## What it does

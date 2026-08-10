@@ -53,9 +53,24 @@ Draft answers ready to paste: [I2K_FORM_RESPONSES.md](I2K_FORM_RESPONSES.md)
 - [ ] Copy the final submitted text back into `I2K_FORM_RESPONSES.md` so we know what
       participants were told
 
+## Walkthrough videos and Padlet
+
+- [ ] Create the Padlet and replace `%%PADLET_URL%%` (appears on the walkthroughs page and on
+      slide 6 of the deck). Set it to allow multiple votes plus comments
+- [ ] Record one video per tool, following the written walkthrough step for step so viewers can
+      switch between them without losing their place. 16 videos, 5–20 min each
+- [ ] Upload to YouTube (unlisted is fine) and replace the `%%VIDEO_*%%` tokens — each appears
+      twice, once in the tool's own page and once in the walkthroughs table
+- [ ] Record the QPSC acquisition demo as the live-demo fallback while you are at it
+- [ ] Priority order if time runs short: record the tools most likely to win the vote first —
+      the wands, image export, and the DL pixel classifier
+
 ## Slides
 
-- [ ] Build the hour-1 deck against the [schedule](docs/schedule.md) running order
+- [x] Build the hour-1 deck — `I2K_2026_QuPath_Extensions.pptx`, 49 slides, rebuild with
+      `build_deck.js` (see `SLIDE_OUTLINE.md`)
+- [ ] Open it and check the layout — no LibreOffice here, so it has never been rendered
+- [ ] Add screenshots. The deck is currently text-only and needs them more than the docs do
 - [ ] Upload to Drive, add the link
 - [ ] Add a slide pointing at the live site so attendees can follow along
 

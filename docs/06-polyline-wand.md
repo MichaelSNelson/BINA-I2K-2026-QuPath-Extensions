@@ -19,6 +19,9 @@ title: Polyline Wand and Brush
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
+> **Walkthrough video:** %%VIDEO_POLYLINE_WAND%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## Why this exists

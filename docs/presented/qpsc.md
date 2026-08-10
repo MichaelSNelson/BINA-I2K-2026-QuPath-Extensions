@@ -18,6 +18,9 @@ title: QPSC - QuPath Scope Control (presented only)
 | **Catalog** | QPSC Microscope Extensions |
 | **Session** | Presented only |
 
+> **Walkthrough video:** %%VIDEO_QPSC%%
+> This tool is demonstrated rather than practised, but the walkthrough below is complete — you can follow it yourself once you have access to the tool.
+
 ---
 
 ## What it is

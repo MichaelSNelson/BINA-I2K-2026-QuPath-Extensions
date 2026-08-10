@@ -43,6 +43,10 @@ this afternoon, end with the ones that need a Python server and a microscope.
 
 **Slides:** %%DRIVE_SLIDES_URL%%
 
+> **We cannot demo everything.** There is time for a handful of tools done properly, not sixteen
+> done badly. Which ones we spend the live time on is driven by
+> [your vote](walkthroughs.md) — and every tool, demoed or not, has a full walkthrough and video.
+
 ### Demo-only segments
 
 Three things are shown but not practised, for reasons that are worth stating plainly:
@@ -62,6 +66,10 @@ Three things are shown but not practised, for reasons that are worth stating pla
 
 There are thirteen hands-on extensions and sixty minutes. **Do not try to do all of them.**
 Pick one track, or bring your own data and pick the tools that fit it.
+
+Whatever you do not get to, you lose nothing: every tool has a
+[written walkthrough and a recorded video](walkthroughs.md), so you can work through the rest at
+your own pace afterwards.
 
 | Time | |
 |---|---|

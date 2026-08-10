@@ -22,6 +22,9 @@ title: Deep Learning Pixel Classifier
 > **Research use only.** Not a diagnostic device, not cleared for clinical use, not validated
 > for patient care. Models trained or loaded here must not drive clinical decisions.
 
+> **Walkthrough video:** %%VIDEO_DL_PIXEL_CLASSIFIER%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## What it does

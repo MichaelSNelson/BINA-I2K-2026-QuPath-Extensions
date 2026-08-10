@@ -19,6 +19,9 @@ title: Classify Object Subset
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
+> **Walkthrough video:** %%VIDEO_CLASSIFY_OBJECT_SUBSET%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## What it does

@@ -24,6 +24,9 @@ title: QP-CAT - Cell Analysis Tools
 > QuBaLab). Many features are **lightly tested or entirely untested**. Treat results as a
 > starting point for investigation, not as findings.
 
+> **Walkthrough video:** %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## What it does

@@ -21,6 +21,9 @@ title: Dialog Position Manager
 
 > Note the menu: this one lives under **Window**, not **Extensions**.
 
+> **Walkthrough video:** %%VIDEO_DIALOG_POSITION_MANAGER%%
+> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
 ---
 
 ## What it does

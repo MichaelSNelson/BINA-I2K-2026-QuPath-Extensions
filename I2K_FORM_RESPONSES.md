@@ -63,6 +63,8 @@ Please do the following BEFORE you travel. Conference wifi will not cope with th
 
 If you only have time for one thing, do steps 1 and 2.
 
+Note: we will not demonstrate all sixteen tools live — there is time to do a handful properly rather than all of them badly. Every tool has a written walkthrough and a recorded video on the site, so you can work through anything we do not reach, at your own pace. There will be a vote at the start on which ones to prioritise.
+
 Note: the first hour is a presentation and requires no preparation at all. The second hour is optional hands-on exploration. You are very welcome to come to the first hour only, and equally welcome to spend the second hour on your own data rather than ours - if you bring your own images, tell us what you are trying to do and we will point you at the right tool.
 ```
 
@@ -121,6 +123,10 @@ Add the two catalog URLs in QuPath under Extensions > Manage extensions > Manage
 
 FILES TO DOWNLOAD
 There will be sample datasets and the presentation slides to download. They will be posted on the workshop page above, labelled by which exercise uses them, so you only need to take the ones relevant to you. None of them are needed for the first hour. You are also very welcome to bring your own images instead and work on those in the second hour.
+
+WALKTHROUGHS AND VIDEOS
+We will not get through all sixteen tools in two hours, and we would rather say so now than rush at the end. Every tool has a complete written walkthrough on the site, and a video of it being carried out, so nothing depends on being in the room when a particular tool comes up. During the session there will be a quick vote on which tools you would most like to see demonstrated live, and we will follow it.
+  https://michaelsnelson.github.io/BINA-I2K-2026-QuPath-Extensions/docs/walkthroughs.html
 
 WHAT WE COVER
 Thirteen QuPath extensions with hands-on exercises - publication-quality image export with QUAREP-LiMi reporting guidance, retrainable deep-learning pixel classification, clustering and spatial statistics for multiplexed imaging, slide-label OCR into project metadata, enhanced annotation tools, tile stitching, and several small quality-of-life tools. Three further tools are demonstrated live but not practised, because they need a microscope, a Windows-only analysis server, or a repository that is not yet public: microscope control and automated acquisition (QPSC), classifier validation with bootstrap confidence intervals, and collagen fibre/texture analysis. Each page says plainly which category it is in and why.
