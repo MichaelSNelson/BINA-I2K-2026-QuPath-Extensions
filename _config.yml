@@ -1,0 +1,21 @@
+title: "QuPath Extensions Workshop"
+description: "I2K / BINA Congress 2026 - the LOCI suite of open-source QuPath extensions, acquisition through publication."
+url: "https://michaelsnelson.github.io"
+baseurl: "/BINA-I2K-2026-QuPath-Extensions"
+
+# Plain Jekyll, no plugins beyond the GitHub Pages defaults.
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - README.md
+  - LICENSE
+  - .gitignore
+
+defaults:
+  - scope:
+      path: "docs"
+    values:
+      layout: "default"

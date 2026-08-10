@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuPath Extensions Workshop &middot; I2K / BINA Congress 2026</title>
+<meta name="description" content="I2K / BINA Congress 2026 workshop: the LOCI suite of open-source QuPath extensions, from acquisition through publication.">
+<style>
+:root{
+  --bg:#0B1020; --panel:#151B30; --ink:#FFFFFF; --mut:#9AA6C4;
+  --cy:#22D3EE; --mag:#F472B6; --am:#FBBF24; --green:#3CE0A6; --hair:#27304F;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; line-height:1.6}
+a{color:var(--cy); text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:64rem; margin:0 auto; padding:0 1.25rem}
+header{padding:3.5rem 0 2rem; border-bottom:1px solid var(--hair)}
+.eyebrow{color:var(--am); font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700}
+h1{font-size:2.6rem; line-height:1.15; margin:.5rem 0 .6rem; letter-spacing:-.02em}
+h1 .sub{display:block; color:var(--mut); font-size:1.15rem; font-weight:400; letter-spacing:0; margin-top:.5rem}
+.lede{color:#D7E1FF; font-size:1.08rem; max-width:46rem}
+.meta{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.4rem}
+.chip{background:var(--panel); border:1px solid var(--hair); border-radius:999px;
+  padding:.32rem .85rem; font-size:.83rem; color:var(--mut)}
+.chip b{color:var(--ink); font-weight:600}
+section{padding:2.6rem 0}
+h2{font-size:1.25rem; color:var(--cy); margin:0 0 .35rem; letter-spacing:.01em}
+.note{color:var(--mut); font-size:.93rem; margin:0 0 1.3rem; max-width:46rem}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(16.5rem,1fr)); gap:1rem}
+.card{display:block; background:var(--panel); border:1px solid var(--hair); border-radius:16px;
+  padding:1.1rem 1.15rem; color:inherit; transition:border-color .15s, transform .15s}
+.card:hover{border-color:var(--cy); text-decoration:none; transform:translateY(-2px)}
+.card .k{font-size:.72rem; letter-spacing:.11em; text-transform:uppercase; color:var(--mut); font-weight:700}
+.card h3{margin:.3rem 0 .35rem; font-size:1.05rem; color:var(--ink)}
+.card p{margin:0; font-size:.9rem; color:var(--mut); line-height:1.5}
+.card.wide{grid-column:1/-1}
+.card.hero{border-color:var(--cy)}
+.card.hero .k{color:var(--cy)}
+.card.demo{border-style:dashed}
+.card.demo .k{color:var(--mag)}
+.links{display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); gap:1rem}
+.todo{color:var(--am); font-weight:600}
+footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem; color:var(--mut); font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">I2K &middot; BioImaging North America Congress 2026</div>
+  <h1>QuPath, end to end
+    <span class="sub">Open-source extensions from LOCI &mdash; microscope control, analysis, validation, and publication, in one environment.</span>
+  </h1>
+  <p class="lede">
+    QuPath is widely used for analysis of large 2D images, and its extension mechanism enables
+    capabilities far beyond post-acquisition analysis. This workshop demonstrates a suite of
+    open-source QuPath extensions developed at LOCI: microscope hardware control and automated
+    acquisition, publication-quality export with integrated QUAREP-LiMi guidance, retrainable
+    deep-learning pixel classification, slide-label OCR for automated metadata, enhanced
+    annotation tools, classifier validation with bootstrap statistics, and polychromatic
+    polarization microscopy.
+  </p>
+  <div class="meta">
+    <span class="chip"><b>Hour 1</b> presentation &amp; live demos</span>
+    <span class="chip"><b>Hour 2</b> optional hands-on</span>
+    <span class="chip">Requires <b>QuPath 0.7.0+</b></span>
+    <span class="chip">14 hands-on extensions</span>
+  </div>
+</header>
+
+<section>
+  <h2>Start here</h2>
+  <p class="note">Read the intro before the session, and do the setup before you travel &mdash; several extensions download large Python environments on first run.</p>
+  <div class="grid">
+    <a class="card hero" href="docs/00-extensions-catalogs-and-ai.html">
+      <div class="k">Read first</div>
+      <h3>Extensions, catalogs &amp; AI-assisted development</h3>
+      <p>What an extension actually is, how catalogs distribute them, and an honest account of how this suite was built.</p>
+    </a>
+    <a class="card hero" href="docs/setup.html">
+      <div class="k">Before you travel</div>
+      <h3>Setup guide</h3>
+      <p>QuPath 0.7, the two LOCI catalogs, which extensions to install, and the workshop datasets.</p>
+    </a>
+    <a class="card hero" href="docs/schedule.html">
+      <div class="k">Plan</div>
+      <h3>Schedule &amp; hands-on tracks</h3>
+      <p>Hour-by-hour running order, plus four self-directed tracks for the second hour.</p>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Presented only &mdash; no hands-on</h2>
+  <p class="note">These drive real microscope hardware. We are not connecting a room full of laptops to a microscope, so they are live demos.</p>
+  <div class="grid">
+    <a class="card demo" href="docs/presented/qpsc.html">
+      <div class="k">Demo</div>
+      <h3>QPSC &mdash; QuPath Scope Control</h3>
+      <p>Draw a region in QuPath; the stage moves, tiles are acquired and stitched, and the image lands back in your project.</p>
+    </a>
+    <a class="card demo" href="docs/presented/ppm.html">
+      <div class="k">Demo</div>
+      <h3>PPM &mdash; Polychromatic Polarization</h3>
+      <p>Fibre orientation encoded as colour, calibrated back into quantitative angles for fibrosis and tumour-stroma work.</p>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Acquisition &amp; data wrangling</h2>
+  <p class="note">Everything between "the scanner produced files" and "I have a project I can analyse."</p>
+  <div class="grid">
+    <a class="card" href="docs/14-tiles-to-pyramid.html">
+      <div class="k">Stitching</div><h3>Tiles to Pyramid</h3>
+      <p>Tile directories into pyramidal OME-TIFF or OME-ZARR, with optional content-based registration for drifting stages.</p>
+    </a>
+    <a class="card" href="docs/09-ocr4labels.html">
+      <div class="k">Metadata</div><h3>OCR for Labels</h3>
+      <p>Read the slide label &mdash; text via Tesseract, barcodes via ZXing &mdash; straight into project metadata, in batch.</p>
+    </a>
+    <a class="card" href="docs/10-project-metadata-browser.html">
+      <div class="k">Metadata</div><h3>Project Metadata Browser</h3>
+      <p>Every image a row, every key a column. Buffered editing with full undo, paste, templates, regex extraction.</p>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Annotation &amp; classification</h2>
+  <p class="note">Where most QuPath time actually goes.</p>
+  <div class="grid">
+    <a class="card" href="docs/06-wizard-wand.html">
+      <div class="k">Annotation</div><h3>Wizard Wand</h3>
+      <p>A faster, more forgiving wand &mdash; hold-to-grow, hole filling, smoothing, and settings auto-tuned from one example.</p>
+    </a>
+    <a class="card" href="docs/07-polyline-wand.html">
+      <div class="k">Annotation</div><h3>Polyline Wand &amp; Brush</h3>
+      <p>Brush editing for lines, not just areas. Push, smooth, erase from an endpoint, or cut a polyline in two.</p>
+    </a>
+    <a class="card" href="docs/08-classify-object-subset.html">
+      <div class="k">Classification</div><h3>Classify Object Subset</h3>
+      <p>Run a saved classifier on a chosen subset &mdash; by class, measurement, or selection &mdash; with a live count before you commit.</p>
+    </a>
+    <a class="card" href="docs/11-class-distribution.html">
+      <div class="k">QC</div><h3>Class Distribution</h3>
+      <p>Live pie charts of annotation balance and implied training balance. Spot class imbalance before you train, not after.</p>
+    </a>
+    <a class="card" href="docs/02-dl-pixel-classifier.html">
+      <div class="k">Deep learning</div><h3>DL Pixel Classifier</h3>
+      <p>Retrainable deep pixel classification from sparse annotations, with foundation-model encoders and domain adaptation.</p>
+    </a>
+    <a class="card" href="docs/05-confusion-matrix.html">
+      <div class="k">Validation</div><h3>Confusion Matrix</h3>
+      <p>Precision, recall and F1 with bootstrap confidence intervals, plus calibration analysis &mdash; numbers you can cite.</p>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Multiplexed imaging</h2>
+  <div class="grid">
+    <a class="card" href="docs/03-qp-cat-cell-analysis-tools.html">
+      <div class="k">Analysis</div><h3>QP-CAT &mdash; Cell Analysis Tools</h3>
+      <p>Clustering, phenotyping and spatial statistics with embedded Python. Brush the UMAP, highlight the cells on the slide.</p>
+    </a>
+    <a class="card" href="docs/04-cluster-3d-navigator.html">
+      <div class="k">Navigation</div><h3>Cluster 3D Navigator</h3>
+      <p>A rotatable 3D point cloud of clustered cells. Click a point in cluster space, land on that cell on the slide.</p>
+    </a>
+    <a class="card" href="docs/12-channel-names-viewer.html">
+      <div class="k">Utility</div><h3>Channel Names Viewer</h3>
+      <p>An always-visible, colour-coded legend of the selected fluorescence channels. Five minutes, permanently useful.</p>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Publication &amp; workspace</h2>
+  <div class="grid">
+    <a class="card" href="docs/01-quiet-image-export.html">
+      <div class="k">Export</div><h3>QuIET &mdash; Image Export Toolkit</h3>
+      <p>Figures, masks, ML tile pairs, object crops and montages in batch &mdash; with QUAREP-LiMi guidance and a generated Groovy script every time.</p>
+    </a>
+    <a class="card" href="docs/13-dialog-position-manager.html">
+      <div class="k">Utility</div><h3>Dialog Position Manager</h3>
+      <p>Remembers where your dialogs were and rescues the ones that went off-screen with the second monitor.</p>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Files &amp; links</h2>
+  <div class="links">
+    <a class="card" href="%%DRIVE_FOLDER_URL%%">
+      <div class="k">Google Drive</div><h3>Workshop folder</h3>
+      <p><span class="todo">Link pending</span> &mdash; slides, datasets, and handouts.</p>
+    </a>
+    <a class="card" href="%%DRIVE_SLIDES_URL%%">
+      <div class="k">Google Drive</div><h3>Presentation slides</h3>
+      <p><span class="todo">Link pending</span> &mdash; the hour-1 deck.</p>
+    </a>
+    <a class="card" href="%%DRIVE_DATA_URL%%">
+      <div class="k">Google Drive</div><h3>Workshop datasets</h3>
+      <p><span class="todo">Link pending</span> &mdash; <code>DATA-01</code> through <code>DATA-05</code>.</p>
+    </a>
+    <a class="card" href="https://github.com/uw-loci/qupath-catalog-mikenelson">
+      <div class="k">Catalog</div><h3>LOCI QuPath Extensions</h3>
+      <p>Add this URL in QuPath's extension manager to install and auto-update most of the suite.</p>
+    </a>
+    <a class="card" href="https://github.com/uw-loci/qupath-catalog-qpsc">
+      <div class="k">Catalog</div><h3>QPSC Microscope Extensions</h3>
+      <p>QPSC, PPM, OCR for Labels, and Tiles to Pyramid.</p>
+    </a>
+    <a class="card" href="https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions">
+      <div class="k">GitHub</div><h3>This repository</h3>
+      <p>Source for every page here. Corrections and issues welcome.</p>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Laboratory for Optical and Computational Instrumentation (LOCI), University of Wisconsin&ndash;Madison.<br>
+  Workshop materials CC BY 4.0. Each extension carries its own licence &mdash; see its page.</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title | default: site.title }} &middot; QuPath Extensions Workshop</title>
+<style>
+:root{
+  --bg:#0B1020; --panel:#151B30; --ink:#FFFFFF; --mut:#9AA6C4;
+  --cy:#22D3EE; --mag:#F472B6; --am:#FBBF24; --green:#3CE0A6; --hair:#27304F;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.65;
+}
+a{color:var(--cy); text-decoration:none}
+a:hover{text-decoration:underline}
+.topbar{
+  position:sticky; top:0; z-index:10;
+  background:rgba(11,16,32,.92); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--hair); padding:.7rem 1.25rem;
+  display:flex; gap:1rem; align-items:center; flex-wrap:wrap;
+}
+.topbar .home{font-weight:700; color:var(--ink)}
+.topbar .eyebrow{color:var(--mut); font-size:.8rem; letter-spacing:.09em; text-transform:uppercase}
+main{max-width:56rem; margin:0 auto; padding:2rem 1.25rem 5rem}
+h1,h2,h3,h4{line-height:1.25; font-weight:700; margin:2.2rem 0 .7rem}
+h1{font-size:2.05rem; margin-top:.6rem; letter-spacing:-.01em}
+h2{font-size:1.4rem; color:var(--cy); border-bottom:1px solid var(--hair); padding-bottom:.35rem}
+h3{font-size:1.12rem; color:var(--am)}
+h4{font-size:1rem; color:var(--mut)}
+p,ul,ol,table,blockquote,pre{margin:0 0 1.05rem}
+ul,ol{padding-left:1.4rem}
+li{margin:.3rem 0}
+hr{border:0; border-top:1px solid var(--hair); margin:2.5rem 0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:.88em; background:#0F1526; border:1px solid var(--hair);
+  border-radius:6px; padding:.12em .38em; color:var(--green);
+}
+pre{
+  background:#0F1526; border:1px solid var(--hair); border-radius:12px;
+  padding:1rem 1.1rem; overflow-x:auto;
+}
+pre code{background:none; border:0; padding:0; color:#D7E1FF}
+blockquote{
+  border-left:3px solid var(--mag); background:var(--panel);
+  border-radius:0 12px 12px 0; padding:.8rem 1.1rem; color:#E3E9FB;
+}
+blockquote p:last-child{margin-bottom:0}
+table{border-collapse:collapse; width:100%; display:block; overflow-x:auto}
+th,td{border:1px solid var(--hair); padding:.5rem .7rem; text-align:left; vertical-align:top}
+th{background:var(--panel); color:var(--mut); font-size:.86rem; text-transform:uppercase; letter-spacing:.05em}
+img{max-width:100%; height:auto; border-radius:12px; border:1px solid var(--hair)}
+.footer{
+  max-width:56rem; margin:0 auto; padding:0 1.25rem 4rem;
+  color:var(--mut); font-size:.87rem; border-top:1px solid var(--hair); padding-top:1.25rem;
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a class="home" href="{{ site.baseurl }}/">&#8592; Workshop home</a>
+  <span class="eyebrow">I2K &middot; BINA Congress 2026 &middot; LOCI</span>
+</div>
+<main>
+{{ content }}
+</main>
+<div class="footer">
+  <p>Laboratory for Optical and Computational Instrumentation (LOCI), University of Wisconsin&ndash;Madison.
+  Source: <a href="https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions">MichaelSNelson/BINA-I2K-2026-QuPath-Extensions</a>.</p>
+</div>
+<script>
+// Docs are authored as Markdown so they render correctly on GitHub.
+// On the published site Jekyll emits .html, so rewrite *relative* .md links.
+document.querySelectorAll('main a[href]').forEach(function (a) {
+  var h = a.getAttribute('href');
+  if (!h || /^[a-z]+:/i.test(h) || h.charAt(0) === '#' || h.charAt(0) === '/') return;
+  a.setAttribute('href', h.replace(/\.md(?=$|[?#])/, '.html'));
+});
+</script>
+</body>
+</html>
