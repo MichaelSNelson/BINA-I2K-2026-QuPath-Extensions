@@ -15,6 +15,7 @@ title: Confusion Matrix
 
 | | |
 |---|---|
+| **Author** | Kristin Gallick |
 | **Repository** | [kgallik/QuPath_Confusion_Matrix_Extension](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
 | **Version at workshop** | 0.2.2 |
 | **License** | Apache-2.0 |
@@ -74,7 +75,7 @@ jar are not reachable without access. That is the only reason this is a demo rat
 exercise — the extension itself has no hardware or server requirement and would otherwise sit
 comfortably in the hands-on hour.
 
-If you want to use it, ask us during the session and we will put you in touch.
+If you want to use it, ask us during the session and we will put you in touch with Kristin.
 
 ---
 

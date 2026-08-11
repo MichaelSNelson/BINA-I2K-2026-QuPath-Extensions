@@ -55,10 +55,18 @@ cite the method, not just the extension.
 | [QP-CAT](03-qp-cat-cell-analysis-tools.md) | **CytoMAP** and **QuBaLab**, whose approaches to bringing clustering into QuPath this continues · **scanpy**, **squidpy**, **Harmony**, **Leiden**, **HDBSCAN**, **BANKSY** |
 | [QuIET](01-quiet-image-export.md) | **QUAREP-LiMi** — the community reporting standards embedded in its guidance panels |
 | [DL Pixel Classifier](02-dl-pixel-classifier.md) | Histology-pretrained and pathology foundation-model encoders released by their respective authors · integration approach inspired by **LazySlide** (Zheng *et al.* 2026, *Nature Methods*) |
-| [Confusion Matrix](presented/confusion-matrix.md) | Written by **kgallik** — [QuPath_Confusion_Matrix_Extension](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
+| [Confusion Matrix](presented/confusion-matrix.md) | Written by **Kristin Gallick** — [QuPath_Confusion_Matrix_Extension](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
 | Several tools | **Appose**, which makes the embedded Python environments possible without conda |
 
 Full per-method references are in each extension's own repository.
+
+---
+
+## Contributed extensions
+
+**Kristin Gallick** wrote the [Confusion Matrix](presented/confusion-matrix.md) extension, which
+is the tool in this workshop that turns "the classifier looks good" into a number with a
+confidence interval attached.
 
 ---
 

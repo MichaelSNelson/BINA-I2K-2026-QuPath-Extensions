@@ -33,7 +33,7 @@ the maintainer section of the [README](README.md).
       Immunology
 - [ ] Get the title and link for their I2K session and cross-link it from the acknowledgements
       page — attendees at one will plausibly want the other
-- [ ] Confirm the real name behind `kgallik` for the Confusion Matrix credit
+- [x] Confusion Matrix author confirmed: **Kristin Gallick** (GitHub `kgallik`)
 - [ ] Label each dataset on Drive with its LJI provenance, so credit travels with the files
 
 ## Datasets to assemble
@@ -92,7 +92,7 @@ Draft answers ready to paste: [I2K_FORM_RESPONSES.md](I2K_FORM_RESPONSES.md)
 - [ ] Dry-run every exercise on a clean QuPath 0.7 install, on Windows and macOS
 - [ ] Confirm every catalog entry offers a release compatible with the QuPath version attendees
       will have by then
-- [ ] **Confusion Matrix repo is private** — ask kgallik whether it can go public before the
+- [ ] **Confusion Matrix repo is private** — ask Kristin Gallick whether it can go public before the
       workshop. If it does, promote it back to hands-on (Tracks A and C had room for it) and
       restore `DATA-05` to the attendee dataset list
 - [ ] Time each track for real; the estimates in the docs are estimates
