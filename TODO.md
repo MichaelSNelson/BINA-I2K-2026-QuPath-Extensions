@@ -24,6 +24,16 @@ the maintainer section of the [README](README.md).
 - [ ] `%%DRIVE_SLIDES_URL%%` — the hour-1 PowerPoint deck
 - [ ] `%%DRIVE_DATA_URL%%` — datasets folder
 
+## Acknowledgements — confirm with LJI
+
+- [ ] **Confirm with Sara McArdle and Zbigniew Mikulski** that they are happy for their data to
+      be redistributed on a public link, and ask how they would like to be credited. The Drive
+      folder will be world-readable and the repository is public
+- [ ] Ask whether any dataset needs a specific citation, consent statement, or an embargo
+- [ ] Check their affiliations and name spellings before the deck is shown
+      (currently: Sara McArdle, Zbigniew Mikulski, La Jolla Institute for Immunology)
+- [ ] Confirm the real name behind `kgallik` for the Confusion Matrix credit
+
 ## Datasets to assemble
 
 Referenced by ID throughout the exercises. Each should be a self-contained QuPath project or
@@ -41,6 +51,7 @@ directory, zipped.
       but attendees do not download it
 - [ ] Pre-trained model for the DL Pixel Classifier inference exercise
 - [ ] Check every dataset is redistributable (consent / licence) before it goes on a public link
+- [ ] Label each dataset on Drive with its LJI provenance, so credit travels with the files
 
 ## I2K organiser form — DUE 1 SEPTEMBER 2026
 

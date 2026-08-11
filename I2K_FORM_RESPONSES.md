@@ -128,6 +128,9 @@ WALKTHROUGHS AND VIDEOS
 We will not get through all sixteen tools in two hours, and we would rather say so now than rush at the end. Every tool has a complete written walkthrough on the site, and a video of it being carried out, so nothing depends on being in the room when a particular tool comes up. During the session there will be a quick vote on which tools you would most like to see demonstrated live, and we will follow it.
   https://michaelsnelson.github.io/BINA-I2K-2026-QuPath-Extensions/docs/walkthroughs.html
 
+ACKNOWLEDGEMENT
+The majority of the sample data used in this workshop was provided by Sara McArdle and Zbigniew Mikulski at the La Jolla Institute for Immunology. Please credit LJI if you make further use of these datasets.
+
 WHAT WE COVER
 Thirteen QuPath extensions with hands-on exercises - publication-quality image export with QUAREP-LiMi reporting guidance, retrainable deep-learning pixel classification, clustering and spatial statistics for multiplexed imaging, slide-label OCR into project metadata, enhanced annotation tools, tile stitching, and several small quality-of-life tools. Three further tools are demonstrated live but not practised, because they need a microscope, a Windows-only analysis server, or a repository that is not yet public: microscope control and automated acquisition (QPSC), classifier validation with bootstrap confidence intervals, and collagen fibre/texture analysis. Each page says plainly which category it is in and why.
 ```

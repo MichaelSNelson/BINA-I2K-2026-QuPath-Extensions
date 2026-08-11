@@ -548,6 +548,44 @@ demo('Acquisition, live', '▶  LIVE',
   ],
   'About five minutes. Recorded fallback ready if the network or the hardware disagrees.');
 
+/* ================= 9b · Acknowledgements ================= */
+
+{
+  const s = pptx.addSlide();
+  s.background = bg;
+  s.addText('Acknowledgements', {
+    x: M, y: 0.45, w: W - 2 * M, h: 0.75,
+    fontFace: HEAD, fontSize: 32, bold: true, color: BLUE_DK, valign: 'middle',
+  });
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.26, w: 2.1, h: 0.055, fill: { color: BLUE } });
+
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.72, w: W - 2 * M, h: 2.45, fill: { color: BLUE_TINT } });
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.72, w: 0.16, h: 2.45, fill: { color: BLUE } });
+  s.addText('Sample data', {
+    x: M + 0.45, y: 1.9, w: W - 2 * M - 0.9, h: 0.4,
+    fontFace: BODY, fontSize: 16, bold: true, color: BLUE, charSpacing: 1.5,
+  });
+  s.addText('Sara McArdle  ·  Zbigniew Mikulski', {
+    x: M + 0.45, y: 2.3, w: W - 2 * M - 0.9, h: 0.62,
+    fontFace: HEAD, fontSize: 32, bold: true, color: BLUE_DK, valign: 'middle',
+  });
+  s.addText('La Jolla Institute for Immunology', {
+    x: M + 0.45, y: 2.92, w: W - 2 * M - 0.9, h: 0.42,
+    fontFace: BODY, fontSize: 21, color: INK,
+  });
+  s.addText('They provided the majority of the test and demonstration data behind almost every exercise you will see today.\nThese tools could not have been built, tested, or taught without it.', {
+    x: M + 0.45, y: 3.34, w: W - 2 * M - 0.9, h: 0.8,
+    fontFace: BODY, fontSize: 17, italic: true, color: MUT, lineSpacingMultiple: 1.1,
+  });
+
+  s.addText([
+    { text: 'Sara McArdle also shaped the software directly — two of these extensions began as her Groovy scripts, and her FS2K course was the model for how the workshop pages are written.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
+    { text: 'Pete Bankhead and the QuPath team.  ·  CT-FIRE, CurveAlign, TACS and TWOMBLI for the fibre work.  ·  CytoMAP and QuBaLab for bringing clustering into QuPath.  ·  QUAREP-LiMi for the reporting standards.  ·  The image.sc community, where several of these features were first requested.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
+    { text: 'Full credits: ' + URL + '/docs/acknowledgements.html', options: { fontSize: 17, bold: true, color: BLUE_DK } },
+  ], { x: M, y: 4.35, w: W - 2 * M, h: 2.3, fontFace: BODY, valign: 'top' });
+  pageNum(s);
+}
+
 /* ================= 10 · Close ================= */
 
 {
@@ -570,6 +608,10 @@ demo('Acquisition, live', '▶  LIVE',
     { text: 'github.com/uw-loci/qupath-catalog-qpsc\n', options: { fontSize: 18, bold: true, color: BLUE_DK, paraSpaceAfter: 14 } },
     { text: 'Whatever we did not reach today, the walkthrough and the video are waiting for you.', options: { fontSize: 19, bold: true, color: BLUE_DK } },
   ], { x: 1.05, y: 2.95, w: W - 2.6, h: 2.8, fontFace: BODY, valign: 'top' });
+  s.addText('Sample data courtesy of Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology.', {
+    x: 1.05, y: 5.72, w: W - 2.6, h: 0.4,
+    fontFace: BODY, fontSize: 16, bold: true, color: BLUE_DK,
+  });
   s.addText('Questions welcome now, during the hands-on hour, or by email afterwards.', {
     x: 1.05, y: 6.05, w: W - 2.6, h: 0.5,
     fontFace: BODY, fontSize: 18, italic: true, color: MUT,

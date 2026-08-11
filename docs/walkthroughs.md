@@ -79,6 +79,14 @@ exactly what they do and decide whether they are worth the setup.
 
 ---
 
+## A note on the data
+
+Every walkthrough and video on this page was built against images provided by **Sara McArdle**
+and **Zbigniew Mikulski** at the **La Jolla Institute for Immunology**. See
+[acknowledgements](acknowledgements.md).
+
+---
+
 ## If a walkthrough does not work for you
 
 Tell us. A step that reads clearly to the person who wrote the tool and makes no sense to

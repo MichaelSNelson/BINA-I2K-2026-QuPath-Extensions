@@ -81,6 +81,9 @@ Set **Tessdata Path** to the folder containing them, click OK. Barcode scanning 
 
 **Google Drive folder:** %%DRIVE_DATA_URL%%
 
+> Sample data provided by **Sara McArdle** and **Zbigniew Mikulski**, La Jolla Institute for Immunology (LJI). The majority of the workshop's test data comes from them — please credit LJI if you
+> use these datasets in your own work. See [acknowledgements](acknowledgements.md).
+
 Download the datasets for the track(s) you plan to do. Total for all four is roughly 3–4 GB;
 each individual set is much smaller.
 

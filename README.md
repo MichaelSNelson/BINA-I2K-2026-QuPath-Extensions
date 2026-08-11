@@ -40,6 +40,7 @@ suite of open-source QuPath extensions developed at
 | | |
 |---|---|
 | **[Extensions, catalogs & AI-assisted development](docs/00-extensions-catalogs-and-ai.md)** | Read this first — what an extension is, how catalogs work, and how this suite was built |
+| **[Acknowledgements](docs/acknowledgements.md)** | Data providers, the QuPath team, and the methods these tools build on |
 | **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough and a video for every tool, plus the vote for what we demo live |
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide — for picking just the ones you want |
 | **[Setup guide](docs/setup.md)** | **Do this before you travel.** Several extensions download large Python environments on first run |
@@ -124,6 +125,20 @@ sed -i 's|%%DRIVE_FOLDER_URL%%|https://…|g' $(grep -rl '%%DRIVE_FOLDER_URL%%' 
 ```
 
 Repeat for `%%DRIVE_SLIDES_URL%%` and `%%DRIVE_DATA_URL%%`.
+
+## Acknowledgements
+
+**The majority of the test and demonstration data used throughout this workshop was provided by
+Sara McArdle and Zbigniew Mikulski at the La Jolla Institute for Immunology (LJI).** Almost every
+exercise here was developed against their images. Please credit LJI if you use the workshop
+datasets in your own work.
+
+Sara McArdle also shaped the software directly — two extensions in this workshop began as her
+Groovy scripts, and her [FS2K](https://github.com/saramcardle/FS2K) course was the model for how
+these pages are structured.
+
+Full credits, including the methods these tools wrap and the QuPath team:
+**[docs/acknowledgements.md](docs/acknowledgements.md)**.
 
 ## Licence
 
