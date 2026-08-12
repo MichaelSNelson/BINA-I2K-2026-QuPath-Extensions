@@ -15,7 +15,7 @@ title: Confusion Matrix
 
 | | |
 |---|---|
-| **Author** | Kristin Gallick |
+| **Origin** | Concept and half of the initial scripts by Kristin Gallick; built out into the extension at LOCI |
 | **Repository** | [kgallik/QuPath_Confusion_Matrix_Extension](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
 | **Version at workshop** | 0.2.2 |
 | **License** | Apache-2.0 |
@@ -26,6 +26,15 @@ title: Confusion Matrix
 
 > **Walkthrough video:** %%VIDEO_CONFUSION_MATRIX%%
 > This tool is demonstrated rather than practised, but the walkthrough below is complete — you can follow it yourself once you have access to the tool.
+
+---
+
+## Where it came from
+
+**Kristin Gallick** originated this one — the initial concept, and half of the scripts it grew
+from. We built it out into the extension you see here, which is why the repository sits under
+her account while the development history is ours. Good tools often start as somebody's script
+plus a clear idea of what the number should mean.
 
 ---
 
@@ -75,7 +84,7 @@ jar are not reachable without access. That is the only reason this is a demo rat
 exercise — the extension itself has no hardware or server requirement and would otherwise sit
 comfortably in the hands-on hour.
 
-If you want to use it, ask us during the session and we will put you in touch with Kristin.
+If you want to use it, ask us during the session and we will sort out access.
 
 ---
 

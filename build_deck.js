@@ -425,7 +425,7 @@ demo('Confusion Matrix', '▶  DEMO ONLY',
     'Across a project: per-image breakdown, with divergent images flagged automatically',
     'Flagged images usually mean a staining or scanning problem, not a classifier problem',
   ],
-  'Written by Kristin Gallick.  ·  Demo only: the repository is currently private, so there is no version for you to install.');
+  'Originated by Kristin Gallick — concept and initial scripts; built out at LOCI.  ·  Demo only: the repository is currently private.');
 
 /* ================= 7 · DL cell and pixel classifiers ================= */
 
@@ -580,7 +580,7 @@ demo('Acquisition, live', '▶  LIVE',
 
   s.addText([
     { text: 'Sara McArdle also shaped the software directly — two of these extensions began as her Groovy scripts, and her FS2K course was the model for how the workshop pages are written.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
-    { text: 'Kristin Gallick, who wrote the Confusion Matrix extension.  ·  Pete Bankhead and the QuPath team.  ·  CT-FIRE, CurveAlign, TACS and TWOMBLI for the fibre work.  ·  CytoMAP and QuBaLab for bringing clustering into QuPath.  ·  QUAREP-LiMi for the reporting standards.  ·  The image.sc community, where several of these features were first requested.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
+    { text: 'Kristin Gallick, whose concept and scripts the Confusion Matrix grew from.  ·  Pete Bankhead and the QuPath team.  ·  CT-FIRE, CurveAlign, TACS and TWOMBLI for the fibre work.  ·  CytoMAP and QuBaLab for bringing clustering into QuPath.  ·  QUAREP-LiMi for the reporting standards.  ·  The image.sc community, where several of these features were first requested.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
     { text: 'Full credits: ' + URL + '/docs/acknowledgements.html', options: { fontSize: 17, bold: true, color: BLUE_DK } },
   ], { x: M, y: 4.35, w: W - 2 * M, h: 2.3, fontFace: BODY, valign: 'top' });
   pageNum(s);

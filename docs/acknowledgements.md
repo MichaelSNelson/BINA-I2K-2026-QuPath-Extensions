@@ -55,18 +55,22 @@ cite the method, not just the extension.
 | [QP-CAT](03-qp-cat-cell-analysis-tools.md) | **CytoMAP** and **QuBaLab**, whose approaches to bringing clustering into QuPath this continues · **scanpy**, **squidpy**, **Harmony**, **Leiden**, **HDBSCAN**, **BANKSY** |
 | [QuIET](01-quiet-image-export.md) | **QUAREP-LiMi** — the community reporting standards embedded in its guidance panels |
 | [DL Pixel Classifier](02-dl-pixel-classifier.md) | Histology-pretrained and pathology foundation-model encoders released by their respective authors · integration approach inspired by **LazySlide** (Zheng *et al.* 2026, *Nature Methods*) |
-| [Confusion Matrix](presented/confusion-matrix.md) | Written by **Kristin Gallick** — [QuPath_Confusion_Matrix_Extension](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
+| [Confusion Matrix](presented/confusion-matrix.md) | Originated by **Kristin Gallick** — concept and initial scripts; built out at LOCI. [Repository](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
 | Several tools | **Appose**, which makes the embedded Python environments possible without conda |
 
 Full per-method references are in each extension's own repository.
 
 ---
 
-## Contributed extensions
+## Where tools came from
 
-**Kristin Gallick** wrote the [Confusion Matrix](presented/confusion-matrix.md) extension, which
-is the tool in this workshop that turns "the classifier looks good" into a number with a
-confidence interval attached.
+**Kristin Gallick** originated the [Confusion Matrix](presented/confusion-matrix.md) extension —
+the initial concept and half of the scripts it grew from. We developed it from there into the
+tool that turns "the classifier looks good" into a number with a confidence interval attached.
+
+That pattern repeats across this suite: [Channel Names Viewer](11-channel-names-viewer.md) and
+[Classify Object Subset](07-classify-object-subset.md) both began as Sara McArdle's scripts.
+Most of what is here started as somebody else's good idea, working, in a script.
 
 ---
 
