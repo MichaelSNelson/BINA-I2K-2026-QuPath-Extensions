@@ -59,7 +59,7 @@ Please do the following BEFORE you travel. Conference wifi will not cope with th
 
 4. If you want the multiplexed-imaging (QP-CAT) or deep-learning pixel classifier exercises, run their one-click environment setup AT HOME. Each downloads roughly 1.5-2.5 GB of embedded Python on first use. This is the step that will ruin your morning if you leave it until the day. Everything else installs in seconds.
 
-5. Download the sample data for whatever you plan to try. The files will be posted on the workshop page, labelled by which exercise uses them, so you only need the ones you will actually use.
+5. Download the sample data for whatever you plan to try. If the multiplexed-imaging track interests you, that data is already available and is only about 20 MB - grab it any time from https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest The files will be posted on the workshop page, labelled by which exercise uses them, so you only need the ones you will actually use.
 
 If you only have time for one thing, do steps 1 and 2.
 
@@ -121,8 +121,13 @@ SOFTWARE TO INSTALL
 - QPSC Microscope Extensions catalog: https://github.com/uw-loci/qupath-catalog-qpsc
 Add the two catalog URLs in QuPath under Extensions > Manage extensions > Manage extension catalogs > Add catalog, install the extensions you want, then restart QuPath. The extension index above tells you which catalog each one is in.
 
+SAMPLE DATA YOU CAN GET RIGHT NOW
+The multiplexed-imaging exercises use a synthetic tumour-microenvironment dataset that is already public, about 20 MB, and released into the public domain (CC0). Eight images, eight channels, six cell types, and a per-cell ground truth, so you can run an analysis and check that it recovered the right answer:
+  https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest
+Reuse it in your own teaching if it is useful - no attribution required.
+
 FILES TO DOWNLOAD
-There will be sample datasets and the presentation slides to download. They will be posted on the workshop page above, labelled by which exercise uses them, so you only need to take the ones relevant to you. None of them are needed for the first hour. You are also very welcome to bring your own images instead and work on those in the second hour.
+There will be further sample datasets and the presentation slides to download. They will be posted on the workshop page above, labelled by which exercise uses them, so you only need to take the ones relevant to you. None of them are needed for the first hour. You are also very welcome to bring your own images instead and work on those in the second hour.
 
 WALKTHROUGHS AND VIDEOS
 We will not get through all sixteen tools in two hours, and we would rather say so now than rush at the end. Every tool has a complete written walkthrough on the site, and a video of it being carried out, so nothing depends on being in the room when a particular tool comes up. During the session there will be a quick vote on which tools you would most like to see demonstrated live, and we will follow it.

@@ -30,6 +30,11 @@ instructional pages are structured.
 
 If you use the workshop datasets in your own work, please credit LJI and the contributors above.
 
+**One exception:** the multiplexed exercises use the
+[TME-QUANT synthetic dataset](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest), produced at LOCI and released under **CC0** — entirely
+synthetic, no patient or animal tissue, no attribution required. Reuse it in your own teaching
+freely.
+
 ---
 
 ## QuPath

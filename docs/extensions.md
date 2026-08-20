@@ -87,5 +87,9 @@ Sample datasets and the presentation slides are linked from the
 **[setup guide](setup.md)**, which also says which dataset each exercise uses — so you only need
 to download what you will actually use.
 
+The multiplexed-imaging exercises use the
+[TME-QUANT synthetic dataset](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest) — ~20 MB, public domain, fully ground-truthed, and
+downloadable straight from GitHub without waiting on us.
+
 You are also very welcome to **bring your own data**. Tell us what you are trying to do and we
 will point you at the right tool.

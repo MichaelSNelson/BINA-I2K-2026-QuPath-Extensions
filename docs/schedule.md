@@ -91,14 +91,18 @@ what a training set built from them looks like.
 
 ### Track B — Multiplexed imaging
 
-*Best if you work with highly multiplexed IF.* **Data:** `DATA-02`
+*Best if you work with highly multiplexed IF.* **Data:** `TME-SYNTH` (~20 MB, straight from
+[GitHub](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest); `DATA-02` only for step 4)
 
 1. [Channel Names Viewer](11-channel-names-viewer.md) — 5 min
-2. [QP-CAT — Cell Analysis Tools](03-qp-cat-cell-analysis-tools.md) — 20 min
+2. [QP-CAT — Cell Analysis Tools](03-qp-cat-cell-analysis-tools.md) — 20 min (parts A and B alone are ~10)
 3. [Cluster 3D Navigator](04-cluster-3d-navigator.md) — 10 min
 4. [Classify Object Subset](07-classify-object-subset.md) — 10 min
 
 *Requires the QP-CAT Python environment — install it before you arrive.*
+
+The synthetic data is fully ground-truthed, so every step of the QP-CAT exercise can be checked
+against the right answer — a luxury real multiplexed tissue never gives you.
 
 ### Track C — Publication and deep learning
 

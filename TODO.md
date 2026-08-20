@@ -43,8 +43,12 @@ Referenced by ID throughout the exercises. Each should be a self-contained QuPat
 directory, zipped.
 
 - [ ] `DATA-01_HE_WSI` — annotated brightfield H&E project
-- [ ] `DATA-02_multiplex_IF` — multiplex IF, cells detected, per-marker measurements, one saved
-      object classifier, and UMAP components saved as measurements (for Cluster 3D Navigator)
+- [x] Multiplexed data solved by the **TME-QUANT synthetic dataset** (CC0, ~20 MB, public on
+      GitHub). No hosting, no consent question, and fully ground-truthed. Covers QP-CAT,
+      Cluster 3D Navigator and Channel Names Viewer
+- [ ] `DATA-02_multiplex_IF` — now only needed for Classify Object Subset, which wants a saved
+      object classifier. Building one on the synthetic data instead would remove the last
+      multiplex dependency on Drive
 - [ ] `DATA-03_labeled_slides` — WSIs with label images; include barcodes and at least one
       rotated label
 - [ ] `DATA-04_tiles` — tile directory with `TileConfiguration.txt`, plus a drift-affected copy

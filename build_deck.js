@@ -464,8 +464,18 @@ content('QP-CAT — multiplexed cell analysis', [
   'Clustering, marker gating with suggested thresholds, spatial statistics, batch correction',
   'Label a small subset by hand and have the rest of the project labelled for you',
   'Brush a region of the embedding and those cells highlight on the slide',
+  'Separate tissue stays separate — no spatial graph edge ever crosses two TMA cores',
 ], { kicker: 'The usual workflow loses the link back to the tissue. This keeps it.',
      note: 'Author’s own warning: many features are lightly tested. Treat results as a starting point.' });
+
+content('You can check the answer', [
+  'Real multiplexed tissue has no ground truth — you never know which cell is really which type',
+  'So the exercise uses a synthetic tumour microenvironment where every cell is labelled',
+  'Six cell types, tumour nests, an immune-infiltrated boundary, B-cell follicles, a proliferation gradient',
+  'Inflamed versus desert: one image is 55% lymphoid, another 14% with no follicles at all',
+  '20 MB, public domain, and it downloads straight from GitHub',
+], { kicker: 'Learn what a correct result looks like, so you can recognise a wrong one later.',
+     note: 'Cluster it, then click a boundary cell and find out whether the cluster was telling the truth.' });
 
 content('Cluster 3D Navigator', [
   'A rotatable point cloud of your cells, one point per detection, coloured by class',

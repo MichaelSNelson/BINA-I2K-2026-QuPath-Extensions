@@ -84,13 +84,17 @@ Set **Tessdata Path** to the folder containing them, click OK. Barcode scanning 
 > Sample data provided by **Sara McArdle** and **Zbigniew Mikulski**, La Jolla Institute for Immunology (LJI). The majority of the workshop's test data comes from them — please credit LJI if you
 > use these datasets in your own work. See [acknowledgements](acknowledgements.md).
 
-Download the datasets for the track(s) you plan to do. Total for all four is roughly 3–4 GB;
-each individual set is much smaller.
+Download the datasets for the track(s) you plan to do. Each is much smaller than the total.
+
+> **Track B needs nothing from Drive.** The synthetic dataset is ~20 MB, public domain, and
+> downloads directly from GitHub. If you are doing the multiplexed track, that one link is all
+> you need for data.
 
 | ID | Contents | Used by |
 |---|---|---|
 | `DATA-01_HE_WSI` | Annotated brightfield H&E project | QuIET, DL Pixel Classifier, Wizard Wand, Polyline Wand, Class Distribution — **Tracks A and C** |
-| `DATA-02_multiplex_IF` | Multiplexed IF project with detected cells, per-marker measurements, and a saved object classifier | QP-CAT, Cluster 3D Navigator, Channel Names Viewer, Classify Object Subset |
+| **`TME-SYNTH`** | **Synthetic tumour-microenvironment dataset — 8 images, 8 channels, 6 cell types, full per-cell ground truth. ~20 MB, CC0.** Download straight from [its GitHub release](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest) — not on Drive | QP-CAT, Cluster 3D Navigator, Channel Names Viewer — **Track B** |
+| `DATA-02_multiplex_IF` | Multiplexed IF project with a saved object classifier | Classify Object Subset |
 | `DATA-03_labeled_slides` | WSIs with slide label images — some barcoded, at least one rotated | OCR for Labels, Project Metadata Browser |
 | `DATA-04_tiles` | A tile directory with `TileConfiguration.txt`, plus a drift-affected copy | Tiles to Pyramid |
 

@@ -70,7 +70,10 @@ QuPath. **Restart** — the toolbar button, menu entry, and shortcut do not appe
 
 ## Hands-on exercise (~5 min)
 
-**Data:** `DATA-02_multiplex_IF`.
+**Data:** any 8-channel image from the synthetic tumour-microenvironment dataset
+(~20 MB from [GitHub](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest)), or `DATA-02_multiplex_IF`. The synthetic images carry
+real channel names — DAPI, PanCK, Ki67, aSMA, CD3, CD8, CD20, CD68 — so the legend has
+something meaningful to show.
 
 1. Open the multiplex image. Press **Ctrl+Shift+C** (or click the channel-bars toolbar button
    next to brightness/contrast).

@@ -71,8 +71,14 @@ folder and restart.
 ## Hands-on exercise (~10 min)
 
 **Data:** the clustered project you produced in the
-[QP-CAT exercise](03-qp-cat-cell-analysis-tools.md), or the pre-clustered
-`DATA-02_multiplex_IF` project from the Drive folder.
+[QP-CAT exercise](03-qp-cat-cell-analysis-tools.md) — the synthetic tumour-microenvironment
+dataset, ~20 MB from [GitHub](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest). Save UMAP components as measurements when you
+cluster and they become your X, Y and Z here.
+
+This pairing is worth doing in order: because every cell in that data has a known type, when you
+click a point in cluster space you can check whether the cell you land on really is what the
+cluster claims. Do that a few times on **boundary** points — the cells sitting between two
+clusters — and you will learn more about your clustering than any metric will tell you.
 
 1. `Extensions > Cluster 3D Navigator > Open 3D navigator...`
 2. Assign three measurement columns to X, Y, Z (e.g. `UMAP1`, `UMAP2`, `UMAP3`).
