@@ -46,9 +46,12 @@ directory, zipped.
 - [x] Multiplexed data solved by the **TME-QUANT synthetic dataset** (CC0, ~20 MB, public on
       GitHub). No hosting, no consent question, and fully ground-truthed. Covers QP-CAT,
       Cluster 3D Navigator and Channel Names Viewer
-- [ ] `DATA-02_multiplex_IF` — now only needed for Classify Object Subset, which wants a saved
-      object classifier. Building one on the synthetic data instead would remove the last
-      multiplex dependency on Drive
+- [ ] `DATA-02_multiplex_IF` — now only needed for Classify Object Subset, which Sara McArdle is
+      presenting, so nobody has to download it for a demo. Still wanted for the walkthrough:
+      building a saved object classifier on the synthetic data instead would remove the last
+      multiplex dependency on Drive entirely. **Low priority.**
+      Candidate on disk: `Scripting Demo/LuCa-7color_[13860,52919]_1x1component_data.tif` —
+      8-channel Akoya sample (PDL1 · CD8 · FoxP3 · CD68 · PD1 · CK · DAPI · AF), public data
 - [ ] `DATA-03_labeled_slides` — WSIs with label images; include barcodes and at least one
       rotated label
 - [ ] `DATA-04_tiles` — tile directory with `TileConfiguration.txt`, plus a drift-affected copy
@@ -81,6 +84,13 @@ Draft answers ready to paste: [I2K_FORM_RESPONSES.md](I2K_FORM_RESPONSES.md)
 - [ ] Record the QPSC acquisition demo as the live-demo fallback while you are at it
 - [ ] Priority order if time runs short: record the tools most likely to win the vote first —
       the wands, image export, and the DL pixel classifier
+- [ ] Lowest video priority: Channel Names Viewer and Classify Object Subset. Sara McArdle is
+      presenting both, so her session covers them live; ours are for people working alone
+
+- [ ] Ask Sara for her I2K session title, time and URL so the two shared tools can point at it
+      from the schedule, the extension index and the acknowledgements. Confirm at the same time
+      whether she presents these as *Channel Name Display* and *Gated Object Classifier* (her
+      names) or as the LOCI extension names, so the pages match what the room hears
 
 ## Slides
 

@@ -228,7 +228,8 @@ content('Sixteen tools, two hours', [
   'There is time for a handful of tools done properly, not sixteen done badly',
   'So: every tool has a full written walkthrough, and a video of me doing it',
   'Nothing depends on being in the room when your tool comes up',
-  'Which ones we demo live is up to you — vote on the next slide',
+  'A few slots are fixed; Sara McArdle presents two of them in her session',
+  'The rest is up to you — vote on the next slide',
 ], { kicker: 'Being up front about this now, rather than rushing at 11:20.',
      note: 'Walkthroughs and videos for all sixteen: ' + URL + '/docs/walkthroughs.html' });
 
@@ -247,6 +248,7 @@ content('Sixteen tools, two hours', [
   });
   s.addText([
     { text: 'Vote for as many as you like. Add a comment if you have a specific question, or a dataset you are stuck on.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
+    { text: 'Already fixed: QPSC, the Confusion Matrix and the fibre tools are shown regardless — and Channel Names Viewer and Classify Object Subset belong to Sara McArdle’s session.\n', options: { fontSize: 18, italic: true, color: MUT, paraSpaceAfter: 12 } },
     { text: 'I will read it now and adjust the running order.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
     { text: 'If your tool does not make the cut, its walkthrough and video are on the site — and I am happy to sit down with you in the second hour.', options: { fontSize: 20, color: INK } },
   ], { x: M, y: 4.1, w: W - 2 * M, h: 2.2, fontFace: BODY, valign: 'top' });
@@ -320,12 +322,13 @@ content('Dialog Position Manager', [
 ], { kicker: 'The least glamorous tool here, and the one that saves the most support time.',
      note: 'It also exists because this class of bug is invisible to automated testing.' });
 
-content('Channel Names Viewer', [
-  '"Which one is the green one?" — answered, permanently',
-  'A floating legend of the selected channels, each drawn in its display colour',
-  'Updates live as you toggle channels; text scales as you resize the window',
-  'Shrink it away on a laptop, or make it large enough to read from the back of a room',
-], { note: 'Five minutes to install. Useful every time you present a multiplex image.' });
+content('Two you will see properly elsewhere', [
+  'Channel Names Viewer — a floating, colour-coded legend of the selected channels. "Which one is the green one?", answered permanently',
+  'Classify Object Subset — run a saved classifier on a chosen subset, by class, measurement or selection, with a live count before you commit',
+  'Both began as Sara McArdle’s Groovy scripts, and Sara is presenting them in her session',
+  'So: a mention here rather than the same demo twice — but both install in seconds and both have a full walkthrough on the site',
+], { kicker: 'Sara McArdle is covering these two — go and see them done by the person whose scripts they are.',
+     note: 'Nothing stops you installing them today. This is a division of labour, not a barrier.' });
 
 content('Wizard Wand', [
   'Works like the built-in wand, with holes filled and edges smoothed by default',
@@ -342,13 +345,15 @@ content('Polyline Wand and Brush', [
   'Scissors mode splits one polyline into two, both keeping class, name and colour',
 ], { note: 'One stroke is one undo step, even on a ten-thousand-vertex boundary.' });
 
-demo('Annotation, live', '▶  LIVE',
+demo('Both wands, live', '▶  LIVE  ·  10 MIN',
   [
-    'Wand a structure, then auto-tune from a hand-drawn example and do it again',
-    'Reshape a polyline: push a section out, smooth a noisy stretch, cut it in two',
-    'Compare the boundary against the built-in tools',
+    'Wizard Wand: wand a structure, then auto-tune from a hand-drawn example and do it again',
+    'Watch a selection grow on its own instead of dragging to cover it',
+    'Polyline Wand: push a traced boundary outward, smooth a noisy stretch, erase back from an endpoint',
+    'Scissors mode — cut one polyline in two, both halves keeping class, name and colour',
+    'Compare the result against the built-in tools',
   ],
-  'About three minutes. Static screenshots follow if the live version misbehaves.');
+  'The two wands in one sitting — ten minutes. Static screenshots follow if the live version misbehaves.');
 
 /* ================= 4 · Image export ================= */
 
@@ -398,14 +403,6 @@ content('Class Distribution', [
   'Charts update while you annotate, so the feedback arrives while you can still act',
   'Classes badly over- or under-represented are flagged',
 ], { note: 'Annotation count, annotation area, and implied training detections are three different numbers. Only the third predicts classifier behaviour.' });
-
-content('Classify Object Subset', [
-  'Run a saved classifier on a chosen subset instead of every object in the image',
-  'Pick by class, by measurement value, by what you have selected — or all three',
-  'Stack classifiers: run the second one only on what the first left unclassified',
-  'Every apply is recorded, so the session converts into a batch script',
-], { kicker: 'A live count tells you how many objects you are about to change.',
-     note: 'That count is the guard against silently reclassifying work you already did.' });
 
 /* ================= 6 · Validation ================= */
 
@@ -477,12 +474,13 @@ content('You can check the answer', [
 ], { kicker: 'Learn what a correct result looks like, so you can recognise a wrong one later.',
      note: 'Cluster it, then click a boundary cell and find out whether the cluster was telling the truth.' });
 
-content('Cluster 3D Navigator', [
-  'A rotatable point cloud of your cells, one point per detection, coloured by class',
-  'Click a point and land on that cell in the viewer',
-  'Structure that two dimensions hide is often obvious the moment you rotate',
-  'Works with any clustering tool’s output, not just ours. It only reads — it writes nothing',
-], { note: 'Boundary cells are where classification errors live. This makes them one click away.' });
+content('And getting back to the tissue', [
+  'Clustering answers "which cells group together". It does not answer "which cell is that"',
+  'Cluster 3D Navigator: a rotatable point cloud, one point per cell, coloured by class',
+  'Click a point in cluster space and land on that cell in the viewer',
+  'Boundary cells are where classification errors live — this makes them one click away',
+], { kicker: 'A mention rather than a demo — it is the navigation half of the clustering you just saw.',
+     note: 'Works with any clustering tool’s output, not just QP-CAT’s. It only reads; it writes nothing.' });
 
 /* ================= 8 · Fibre and texture ================= */
 
@@ -549,14 +547,15 @@ content('How it is put together', [
   'Micro-Manager remains the device layer. We did not reinvent it',
 ], { kicker: 'The easy part is the QuPath extension. Budget your time for the microscope side.' });
 
-demo('Acquisition, live', '▶  LIVE',
+demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',
   [
     'Draw a bounding box on a slide overview',
     'Watch the stage move and the tiles come in',
     'Stitched pyramidal image lands back in the project, with its metadata',
     'Then open it and annotate it — the loop closes',
+    'The stitching half — Tiles to Pyramid — you can install and use today, no microscope needed',
   ],
-  'About five minutes. Recorded fallback ready if the network or the hardware disagrees.');
+  'You watch this one: it needs a microscope, so nobody in the room runs it. About five minutes, with a recorded fallback if the network or the hardware disagrees.');
 
 /* ================= 9b · Acknowledgements ================= */
 

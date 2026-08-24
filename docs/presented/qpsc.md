@@ -5,9 +5,10 @@ title: QPSC - QuPath Scope Control (presented only)
 
 # QPSC — QuPath Scope Control
 
-> **Presentation only — no hands-on component.**
+> **Shown, not run — by anyone in the room, including you.**
 > QPSC drives real microscope hardware. We are not connecting thirty laptops to a microscope
-> from a conference room, so this one is a live demo (network permitting) plus this page.
+> from a conference room, so you watch this one: a live demo from our instrument (network
+> permitting), plus this page to take away.
 
 | | |
 |---|---|
@@ -16,10 +17,10 @@ title: QPSC - QuPath Scope Control (presented only)
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, plus Micro-Manager, Pycro-Manager, a Python command server, and a microscope |
 | **Catalog** | QPSC Microscope Extensions |
-| **Session** | Presented only |
+| **Session** | Shown only — no attendee hands-on |
 
 > **Walkthrough video:** %%VIDEO_QPSC%%
-> This tool is demonstrated rather than practised, but the walkthrough below is complete — you can follow it yourself once you have access to the tool.
+> This tool is shown rather than practised. The page below is a complete overview, so you can judge whether QPSC is worth setting up on your own instrument later.
 
 ---
 

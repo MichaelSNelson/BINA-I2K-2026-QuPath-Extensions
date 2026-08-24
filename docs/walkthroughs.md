@@ -23,7 +23,9 @@ session:
 ### %%PADLET_URL%%
 
 Vote for as many as you like, and add a comment if you have a specific question or a dataset
-you are stuck on. We will read it at the start and adjust the order. If your tool does not make
+you are stuck on. A few slots are already fixed — QPSC, the Confusion Matrix and the fibre tools
+are shown regardless, and **Sara McArdle** presents Channel Names Viewer and Classify Object
+Subset in her session — so the vote decides the rest. We will read it at the start and adjust the order. If your tool does not make
 the cut, its walkthrough and video are below and we are happy to sit with you in the second
 hour.
 
@@ -40,6 +42,11 @@ hour.
 The written walkthrough is the source of truth. The video follows it step for step, so you can
 switch between them without losing your place.
 
+**"Shown" and "hands-on" are different axes.** A tool can be shown live and still be yours to
+install (both wands), or never demonstrated and still perfectly easy to run alone
+(Tiles to Pyramid). Only QPSC, the Confusion Matrix and the fibre tools have a barrier that
+actually stops you.
+
 ---
 
 ## Hands-on tools
@@ -54,11 +61,11 @@ Each of these you can install and run yourself — see the [extension index](ext
 | Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md) | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | 10 min |
 | Wizard Wand | [Guide](05-wizard-wand.md) | %%VIDEO_WIZARD_WAND%% | 10 min |
 | Polyline Wand & Brush | [Guide](06-polyline-wand.md) | %%VIDEO_POLYLINE_WAND%% | 10 min |
-| Classify Object Subset | [Guide](07-classify-object-subset.md) | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | 10 min |
+| Classify Object Subset *(Sara McArdle presents)* | [Guide](07-classify-object-subset.md) | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | 10 min |
 | OCR for Labels | [Guide](08-ocr4labels.md) | %%VIDEO_OCR4LABELS%% | 15 min |
 | Project Metadata Browser | [Guide](09-project-metadata-browser.md) | %%VIDEO_PROJECT_METADATA_BROWSER%% | 12 min |
 | Class Distribution | [Guide](10-class-distribution.md) | %%VIDEO_CLASS_DISTRIBUTION%% | 8 min |
-| Channel Names Viewer | [Guide](11-channel-names-viewer.md) | %%VIDEO_CHANNEL_NAMES_VIEWER%% | 5 min |
+| Channel Names Viewer *(Sara McArdle presents)* | [Guide](11-channel-names-viewer.md) | %%VIDEO_CHANNEL_NAMES_VIEWER%% | 5 min |
 | Dialog Position Manager | [Guide](12-dialog-position-manager.md) | %%VIDEO_DIALOG_POSITION_MANAGER%% | 5 min |
 | Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md) | %%VIDEO_TILES_TO_PYRAMID%% | 12 min |
 
@@ -66,14 +73,14 @@ Total if you did every one: roughly **2 hours 30 minutes** — which is why the 
 menu rather than a queue. The [schedule](schedule.md) groups them into four coherent tracks of
 about fifty minutes each.
 
-## Demonstrated tools
+## Shown, not practised
 
-You cannot install these today, but the walkthroughs and videos are complete, so you can see
-exactly what they do and decide whether they are worth the setup.
+You cannot install these today, but the pages and videos are complete, so you can see exactly
+what they do and decide whether they are worth the setup.
 
 | Tool | Walkthrough | Video | Why not hands-on |
 |---|---|---|---|
-| QPSC — QuPath Scope Control | [Guide](presented/qpsc.md) | %%VIDEO_QPSC%% | Needs a microscope |
+| QPSC — QuPath Scope Control | [Overview](presented/qpsc.md) | %%VIDEO_QPSC%% | Needs a microscope — shown, never run |
 | Confusion Matrix | [Guide](presented/confusion-matrix.md) | %%VIDEO_CONFUSION_MATRIX%% | Repository currently private |
 | Collagen fibre and texture analysis | [Guide](presented/fiber-analysis.md) | %%VIDEO_FIBER_ANALYSIS%% | Long environment build, or a Windows-only server plus a pipeline that cannot be redistributed |
 
