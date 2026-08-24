@@ -12,8 +12,10 @@ spend the second hour on your own data instead of ours.
 > **Sara McArdle's session runs before ours** — *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*. She demonstrates two of the extensions
 > documented here, and her material on keeping a hi-plex classification honest is the natural
 > lead-in to our QP-CAT segment. If you are choosing between sessions, they are complementary
-> rather than overlapping: hers is how to keep the classification sane, ours is what you do with
-> it afterwards.
+> rather than overlapping. Worth stating plainly: **we do not cover QuPath's object classifiers**
+> — that is core QuPath. What we introduce are alternative mechanisms for getting a class onto a
+> cell: unsupervised clustering, rule-based marker gating, propagation from a small hand-labelled
+> subset, and applying an existing classifier to a chosen subset rather than to everything.
 
 ---
 

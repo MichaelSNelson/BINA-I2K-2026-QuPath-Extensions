@@ -456,18 +456,19 @@ content('When the model stops working', [
 ], { kicker: 'Domain shift is the practical problem, far more often than model architecture.',
      note: 'Try recalibration before you consider retraining. It usually recovers most of the loss.' });
 
-content('Where Sara’s session leads next', [
-  'Hi-plex classification, kept sane — that was this morning’s other QuPath session',
-  'The next question is what the classified cells are actually telling you',
-  'Which populations group together, which sit next to which, and whether that differs between images',
-  'That is clustering, phenotyping and spatial statistics — and it is the rest of this section',
-], { kicker: 'Sara’s session and this one are two halves of the same workflow, in the right order.',
+content('What we are not covering', [
+  'QuPath already has object classification — train on measurements, or threshold a single one',
+  'We are not re-teaching it. Sara’s session this morning was the hi-plex classification half',
+  'What follows are alternative mechanisms for getting a class onto a cell:',
+  'Unsupervised clustering · rule-based marker gating · propagation from a small hand-labelled subset · applying an existing classifier to a chosen subset instead of everything',
+  'Then: what those classified cells are actually telling you — which sit next to which, and whether that differs between images',
+], { kicker: 'Two halves of the same workflow, in the right order — hers first, then this.',
      note: 'If you missed hers, the two extensions she demonstrated are documented on our site too.' });
 
 content('QP-CAT — multiplexed cell analysis', [
   'The full scientific Python stack embedded in QuPath. No environments to manage',
   'Clustering, marker gating with suggested thresholds, spatial statistics, batch correction',
-  'Label a small subset by hand and have the rest of the project labelled for you',
+  'Label a small subset by hand and have the rest of the project labelled for you — no object classifier involved',
   'Brush a region of the embedding and those cells highlight on the slide',
   'Separate tissue stays separate — no spatial graph edge ever crosses two TMA cores',
 ], { kicker: 'The usual workflow loses the link back to the tissue. This keeps it.',

@@ -12,7 +12,7 @@ title: QP-CAT - Cell Analysis Tools
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-cell-analysis-tools](https://github.com/uw-loci/qupath-extension-cell-analysis-tools) |
-| **Version at workshop** | 0.10.0 |
+| **Version at workshop** | 0.11.0 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+. ~1.5–2.5 GB download, ~2.5 GB on disk for the Python environment |
 | **Where to find it** | `Extensions > QP-CAT` |
@@ -37,12 +37,17 @@ QP-CAT collapses that loop by embedding the Python environment (via
 [Appose](https://github.com/apposed/appose)) inside QuPath, so cluster space and slide space
 stay linked.
 
-**Find cell types**
+**Find cell types.** Note what this is *not*: QuPath already has object classification — train
+on measurements, or threshold a single one — and this workshop does not re-teach it. What QP-CAT
+adds are other routes to a class on a cell, for when you have thirty markers and no training set
+worth the name:
 
 - **Unsupervised clustering** — Leiden or KMeans to start, HDBSCAN for rare populations,
   BANKSY when tissue architecture matters, plus several others.
 - **Rule-based phenotyping** — classic flow-cytometry-style marker gating, with a threshold
-  *suggested* per marker (Triangle, GMM, Gamma).
+  *suggested* per marker (Triangle, GMM, Gamma). Since 0.11.0, `anypos` / `anyneg` conditions
+  express "Macrophage = CD68 **or** CD163 **or** CD206" as one rule instead of three sharing a
+  name.
 - **Spatial feature smoothing** — blend each cell with its neighbours before clustering
   (graph convolution), so niches come out as coherent regions instead of salt-and-pepper.
 - **Autoencoder cell classifier** — label a small subset by hand and have the rest of the
@@ -57,6 +62,18 @@ stay linked.
   and at what distance?
 - **Cellular neighbourhoods** — recurring tissue niches derived from the cell-type
   composition around each cell.
+
+**Tell you when the run was useless** *(new in 0.11.0)*
+
+A clustering run could previously finish, draw every plot, and still be worthless — one cluster
+holding nearly every cell, with the only clue being a viewer showing a single colour. QP-CAT now
+checks the result and says so, at the top of the Results window and in `*_RUN_INFO.txt`, with
+advice specific to the algorithm you chose. In the same release, cells an algorithm could not
+place are reported as **noise** rather than counted as a cluster: a run finding one population no
+longer claims "3 clusters", and the per-area tables no longer carry a `Cluster -1` column.
+
+> If you clustered a TMA or annotation subregions on 0.10.0, re-run it. The areas themselves were
+> right; how the results were reported was not.
 
 **Keep separate tissue separate** *(new in 0.10.0)*
 
@@ -154,7 +171,9 @@ should detect close to 2,860 cells.
 2. Run **clustering**. Choose **KMeans with k = 6**, on the seven marker means
    (`Cell: PanCK mean`, `Nucleus: Ki67 mean`, `Cell: aSMA mean`, `Cell: CD3 mean`,
    `Cell: CD8 mean`, `Cell: CD20 mean`, `Cell: CD68 mean`), z-scored. Seconds on 2,860 cells.
-3. Open the **cluster-defining markers** plot. Each cluster should be driven by one marker —
+3. Check the top of the Results window first. On a healthy run it says nothing interesting —
+   which is the point: since 0.11.0 a degenerate result announces itself instead of looking like
+   a finding. Then open the **cluster-defining markers** plot. Each cluster should be driven by one marker —
    name them: PanCK → tumour, aSMA → fibroblast, CD20 → B cell, CD68 → macrophage, and two
    CD3⁺ clusters.
 4. **The interesting pair.** CD8 T cells and helper T cells differ by *one* marker — both are
@@ -245,6 +264,12 @@ Best done at home; clustering all eight images is ~22,400 cells.
   algorithm. Try it.
 - A statistical test that says two populations co-localise, over a slide where they visibly do
   not, means the test answered a different question than you asked. Look at both.
+- **A single cluster is a result about your measurements, not about the tissue.** If you try
+  HDBSCAN here and it collapses, that is expected: HDBSCAN separates groups only where there is
+  a gap in density between them, and cell morphometry usually forms one connected cloud with no
+  such gap. On a 304,083-cell TMA it returned one population plus 22% noise, while KMeans over
+  the identical measurements separated the cores 91–99% cleanly. Evenly-spread noise is the tell.
+  Try Leiden or KMeans on the same measurements before concluding your data lack structure.
 - Ground truth is a luxury you will not have again. Use this dataset to learn what a *correct*
   result looks like, so you can recognise a wrong one on data where nobody can tell you.
 

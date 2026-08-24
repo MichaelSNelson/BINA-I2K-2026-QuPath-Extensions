@@ -94,9 +94,12 @@ Draft answers ready to paste: [I2K_FORM_RESPONSES.md](I2K_FORM_RESPONSES.md)
 - [ ] Confirm whether she demonstrates these as *Channel Name Display* and *Gated Object
       Classifier* (her names) or as the LOCI extension names, so our callback matches what the
       room actually heard an hour earlier
-- [ ] Compare notes with Sara before the day: her session is hi-plex classification, ours moves
-      straight into clustering and spatial stats on classified cells. Agree who covers object
-      classifiers, and confirm nothing important falls between the two
+- [ ] Compare notes with Sara before the day. Note the division is cleaner than it first looks:
+      **we do not cover QuPath object classifiers at all** — that is core QuPath, and Sara's
+      ground. What this workshop adds are *alternative mechanisms for getting a class onto a
+      cell*: unsupervised clustering, rule-based marker gating, autoencoder propagation from a
+      hand-labelled subset, and targeted application of a classifier to a chosen subset. Confirm
+      with Sara that nothing falls between the two sessions
 
 ## Slides
 

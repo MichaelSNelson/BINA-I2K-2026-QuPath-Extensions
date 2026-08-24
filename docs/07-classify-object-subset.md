@@ -12,7 +12,7 @@ title: Classify Object Subset
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-classify-object-subset](https://github.com/uw-loci/qupath-extension-classify-object-subset) |
-| **Version at workshop** | 0.1.0 |
+| **Version at workshop** | 0.1.1 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Classify Object Subset` |

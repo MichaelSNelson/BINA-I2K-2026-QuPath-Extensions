@@ -11,7 +11,7 @@ title: OCR for Labels
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-ocr4labels](https://github.com/uw-loci/qupath-extension-ocr4labels) |
-| **Version at workshop** | 0.3.0 |
+| **Version at workshop** | 0.4.2 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+, Tesseract language data (see Setup) |
 | **Where to find it** | `Extensions > OCR for Labels` |
@@ -42,6 +42,9 @@ you assign the detected content to QuPath metadata keys.
 - **Project navigation** — browse every project image without closing the dialog.
 - **Batch processing** — apply a template across the whole project.
 - **Text filtering** — one-click character filters to clean up OCR noise.
+- **Literal transcription** *(on by default since 0.4.0)* — OCR reports the characters it saw
+  instead of correcting them toward English words. Labels are overwhelmingly codes, dates and
+  accession numbers, and dictionary correction damages those more than it repairs.
 - **Vocabulary matching** — correct OCR errors by matching against a list of known valid
   values. If you know the only legal stains are `H&E`, `CD3`, `CD8`, then `CD９` resolves.
 - **Rotated label support** — automatic orientation detection for sideways or upside-down
@@ -65,6 +68,10 @@ Tesseract needs language data files, which are not bundled:
 
 Barcode scanning works immediately with no setup.
 
+> **Leave Enhance unticked.** As of 0.4.2 it is off by default, and it should stay that way
+> unless you have measured it helping on your own labels. See
+> [what to notice](#what-to-notice) below for what it was doing.
+
 ## Install
 
 Via the **QPSC Microscope Extensions** catalog, or the release jar. Restart QuPath.
@@ -83,8 +90,9 @@ least one rotated.
 
 1. Open an image with a label. `Extensions > OCR for Labels > Run OCR on Label`.
 2. The dialog lists all project images on the left; select one.
-3. Set **Scope** to *Full Image*, **Type** to *Auto* (barcode first, then OCR), and leave
-   **Min Conf** at its default.
+3. Set **Scope** to *Full Image*, **Decode As** to *Try Both* (barcode first, then OCR), and
+   leave **Min Conf** at its default. **Check that Enhance is unticked** — it is off by default
+   in 0.4.2, and step 12 is about why.
 4. **Scan.** Review the table: correct the **Text** column where OCR guessed wrong, and set
    sensible **Metadata Key** names.
 5. **Apply.** Confirm the metadata landed on the image (right-click the image in the project
@@ -92,13 +100,24 @@ least one rotated.
 
 ### Part B — a template, then the whole project
 
-6. Draw a rectangle over just the region of the label that holds the case ID. Set **Scope** to
-   *Selection*, **Type** to *Text*, and scan only that.
-7. Do the same for the barcode region with **Type** = *Barcode*.
-8. **Save this as a template** with the field positions, types, and metadata key assignments.
-9. Run **batch processing** with that template across the project.
-10. Try a **vocabulary list** for a field with a small known set of valid values, and re-run.
-11. Find the rotated label and confirm orientation detection handled it.
+6. Draw a rectangle over just the region of the label that holds the case ID, set **Decode As**
+   to *Text*, and click **Add Region** — this adds the row without reading it, which is what you
+   want while laying out a template.
+7. Now work the other way round for the barcode: set **Decode As** to *Barcode*, click
+   **Add Field**, and drag its rectangle. This one decodes the moment you finish drawing.
+8. Before saving anything, set **Scope** to *Drawn Regions* and click **Rescan Regions**. Every
+   row is re-read in place, each using its own **Decode As** value, so you find out what your
+   template will actually produce while it is still cheap to fix.
+9. **Save this as a template** with the field positions, types, and metadata key assignments.
+10. Run **batch processing** with that template across the project.
+11. Try a **vocabulary list** for a field with a small known set of valid values, and re-run.
+12. Find the rotated label and confirm orientation detection handled it.
+
+### Part C — the two-minute experiment worth doing (~2 min)
+
+13. Go back to a label with an e-mail address, a code, or any dense punctuation on it. Tick
+    **Enhance**, set **Scope** to *Drawn Regions*, and **Rescan Regions**. Compare against the
+    unenhanced read.
 
 ### What to notice
 
@@ -106,6 +125,21 @@ least one rotated.
   — which, within one institution, they nearly always are.
 - Vocabulary matching converts OCR from "usually right" to "right or obviously wrong," which
   is the difference between usable and not for automated metadata.
+- **"Enhance image contrast" made OCR worse, and it took measurement to find out.** Its adaptive
+  threshold forces every pixel to pure black or white before Tesseract sees it, discarding the
+  smooth edges the classifier depends on. Dense glyphs suffer first — `histology@lji.org` came
+  back as `histoloawalli.org`, because `@` is the densest glyph in ASCII and hard thresholding
+  closes the gap between the `a` and its ring. Across a blur series the untouched image read
+  correctly at every level while the enhanced one degraded steadily. Tesseract already
+  thresholds internally, and does it better. It is now off by default.
+- **The generalisable lesson:** the option was called *Enhance*, it was recommended for faded
+  labels, and it was wrong. A pre-processing step that sounds helpful is a hypothesis, not a
+  fix — and OCR is one of the few places where you can actually test it, because you know what
+  the answer should be.
+- **If a read is still wrong, suspect the image before the settings.** A label image cropped
+  through the descenders turns `g` into `a`, `y` into `v`, and `j` into `i` — the reason a real
+  label kept coming back ending in `.ora`. No amount of processing recovers pixels that were
+  never captured.
 - The review step is not optional. OCR on a photographed label is *good*, not *correct*.
 
 ---
