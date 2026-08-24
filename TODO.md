@@ -103,13 +103,21 @@ Draft answers ready to paste: [I2K_FORM_RESPONSES.md](I2K_FORM_RESPONSES.md)
 
 ## Blocking before the workshop (found in the 2026-08-24 audit)
 
-- [ ] **Cut a Classify Object Subset release.** The newest published release, v0.1.1, is a
-      diagnostic re-release of v0.1.0. Eleven commits sit unreleased, including the rename from
-      *Gated Object Classifier*, the multiple-measurement-thresholds and class-checkbox feature,
-      and the bump to require QuPath 0.7.0. Attendees installing today get a jar named
-      `qupath-extension-gated-object-classifier-0.1.1-all.jar`, the old menu name, none of the
-      documented features, and a 0.6.0 build. The guide describes the unreleased state, with a
-      warning box on it until this ships
+- [ ] **Cut a Classify Object Subset release** — the merge is already done in source (one repo,
+      no "gated" string left anywhere at HEAD, both the `+` add-threshold rows and the in-GUI
+      documentation hyperlink present). What is missing is a release that reflects it: both
+      published jars are still named `qupath-extension-gated-object-classifier-*`. Bump
+      `version` in `build.gradle.kts` (currently still `0.1.0`) before tagging.
+      **The catalog will not auto-update:** this repo's `notify-catalog` workflow has never run,
+      and the same dispatch step fails on `class-distribution` and `polyline-wand` (missing or
+      expired catalog PAT), so plan on a hand-bump or fix the token first.
+      Until it ships, attendees installing get the old menu name **Gated Object Classifier**,
+      a 0.6.0 build, and none of the documented multi-threshold or class-checkbox features —
+      the guide carries a warning box saying exactly that.
+- [x] Update-check owner fixed in `class-distribution` and `classify-object-subset`: both declared
+      `MichaelSNelson/...`, which does not exist — they live under `uw-loci`, so QuPath's
+      "check for updates" could only ever 404. `confusion-matrix` has the same bug but is in
+      Kristin's repo, so it is hers to fix
 - [ ] **Decide on DL Pixel Classifier 0.8.6.** The repo is on a 0.8.6-dev cycle; the newest
       release is 0.8.5, which is now what the guide claims. Bump the guide if 0.8.6 ships
 - [x] **Catalog:** OCR for Labels and Tiles to Pyramid added to the LOCI catalog, so the QPSC
