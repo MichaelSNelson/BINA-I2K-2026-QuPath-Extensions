@@ -17,16 +17,16 @@ title: Classify Object Subset
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Classify Object Subset` |
 | **Catalog** | LOCI QuPath Extensions |
-| **Session** | Mentioned — presented by Sara McArdle |
+| **Session** | Mentioned — presented in Sara McArdle’s earlier session |
 
 > **Walkthrough video:** %%VIDEO_CLASSIFY_OBJECT_SUBSET%%
 > The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
 
 ---
 
-> **Sara McArdle is covering this tool.** It gets a mention and a slide in our session, but no
-> demo — she is presenting it properly in hers, and this extension began as her Groovy script.
-> You can still install it and work through the walkthrough below in the hands-on hour.
+> **You saw this in Sara McArdle's session earlier today** — *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
+> Both this extension and its sibling grew out of her Groovy scripts, so we point back to her
+> demo rather than repeating it. The walkthrough below is here for the hands-on hour.
 
 ## What it does
 

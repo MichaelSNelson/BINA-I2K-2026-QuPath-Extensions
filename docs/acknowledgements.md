@@ -16,8 +16,9 @@ export examples — was developed against their images. Tools like these cannot 
 or taught without real data from people willing to share it, and far more of this workshop rests
 on that generosity than on any single piece of software here.
 
-Sara McArdle is also presenting two of these tools herself — Channel Names Viewer and Classify
-Object Subset — which is fitting, because both began as her scripts.
+Sara McArdle also demonstrates two of these tools herself, in the session before ours —
+*Tips and tricks for maintaining sanity during hi-plex classification in QuPath* — which is fitting,
+because Channel Names Viewer and Classify Object Subset both began as her scripts.
 
 Sara McArdle has also shaped the software directly. Two of the extensions in this workshop began
 as her Groovy scripts:

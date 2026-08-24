@@ -228,7 +228,7 @@ content('Sixteen tools, two hours', [
   'There is time for a handful of tools done properly, not sixteen done badly',
   'So: every tool has a full written walkthrough, and a video of me doing it',
   'Nothing depends on being in the room when your tool comes up',
-  'A few slots are fixed; Sara McArdle presents two of them in her session',
+  'A few slots are fixed; two more were covered in Sara McArdle’s session this morning',
   'The rest is up to you — vote on the next slide',
 ], { kicker: 'Being up front about this now, rather than rushing at 11:20.',
      note: 'Walkthroughs and videos for all sixteen: ' + URL + '/docs/walkthroughs.html' });
@@ -248,7 +248,7 @@ content('Sixteen tools, two hours', [
   });
   s.addText([
     { text: 'Vote for as many as you like. Add a comment if you have a specific question, or a dataset you are stuck on.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
-    { text: 'Already fixed: QPSC, the Confusion Matrix and the fibre tools are shown regardless — and Channel Names Viewer and Classify Object Subset belong to Sara McArdle’s session.\n', options: { fontSize: 18, italic: true, color: MUT, paraSpaceAfter: 12 } },
+    { text: 'Already fixed: QPSC, the Confusion Matrix and the fibre tools are shown regardless — and Channel Names Viewer and Classify Object Subset were covered in Sara McArdle’s session this morning.\n', options: { fontSize: 18, italic: true, color: MUT, paraSpaceAfter: 12 } },
     { text: 'I will read it now and adjust the running order.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
     { text: 'If your tool does not make the cut, its walkthrough and video are on the site — and I am happy to sit down with you in the second hour.', options: { fontSize: 20, color: INK } },
   ], { x: M, y: 4.1, w: W - 2 * M, h: 2.2, fontFace: BODY, valign: 'top' });
@@ -322,13 +322,13 @@ content('Dialog Position Manager', [
 ], { kicker: 'The least glamorous tool here, and the one that saves the most support time.',
      note: 'It also exists because this class of bug is invisible to automated testing.' });
 
-content('Two you will see properly elsewhere', [
+content('Two you already saw this morning', [
   'Channel Names Viewer — a floating, colour-coded legend of the selected channels. "Which one is the green one?", answered permanently',
   'Classify Object Subset — run a saved classifier on a chosen subset, by class, measurement or selection, with a live count before you commit',
-  'Both began as Sara McArdle’s Groovy scripts, and Sara is presenting them in her session',
-  'So: a mention here rather than the same demo twice — but both install in seconds and both have a full walkthrough on the site',
-], { kicker: 'Sara McArdle is covering these two — go and see them done by the person whose scripts they are.',
-     note: 'Nothing stops you installing them today. This is a division of labour, not a barrier.' });
+  'Both began as Sara McArdle’s Groovy scripts, and Sara demonstrated both in the session before this one',
+  'So: a pointer rather than the same demo twice — both install in seconds, and both have a full walkthrough on the site',
+], { kicker: 'From “Tips and tricks for maintaining sanity during hi-plex classification in QuPath”, earlier today.',
+     note: 'Nothing stops you installing them. This is a division of labour, not a barrier.' });
 
 content('Wizard Wand', [
   'Works like the built-in wand, with holes filled and edges smoothed by default',
@@ -455,6 +455,14 @@ content('When the model stops working', [
   'Or adapt the model to your own unlabelled data before committing to a full retrain',
 ], { kicker: 'Domain shift is the practical problem, far more often than model architecture.',
      note: 'Try recalibration before you consider retraining. It usually recovers most of the loss.' });
+
+content('Where Sara’s session leads next', [
+  'Hi-plex classification, kept sane — that was this morning’s other QuPath session',
+  'The next question is what the classified cells are actually telling you',
+  'Which populations group together, which sit next to which, and whether that differs between images',
+  'That is clustering, phenotyping and spatial statistics — and it is the rest of this section',
+], { kicker: 'Sara’s session and this one are two halves of the same workflow, in the right order.',
+     note: 'If you missed hers, the two extensions she demonstrated are documented on our site too.' });
 
 content('QP-CAT — multiplexed cell analysis', [
   'The full scientific Python stack embedded in QuPath. No environments to manage',

@@ -24,8 +24,8 @@ session:
 
 Vote for as many as you like, and add a comment if you have a specific question or a dataset
 you are stuck on. A few slots are already fixed — QPSC, the Confusion Matrix and the fibre tools
-are shown regardless, and **Sara McArdle** presents Channel Names Viewer and Classify Object
-Subset in her session — so the vote decides the rest. We will read it at the start and adjust the order. If your tool does not make
+are shown regardless, and Channel Names Viewer and Classify Object Subset are
+demonstrated in **Sara McArdle's** earlier session — so the vote decides the rest. We will read it at the start and adjust the order. If your tool does not make
 the cut, its walkthrough and video are below and we are happy to sit with you in the second
 hour.
 
@@ -61,11 +61,11 @@ Each of these you can install and run yourself — see the [extension index](ext
 | Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md) | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | 10 min |
 | Wizard Wand | [Guide](05-wizard-wand.md) | %%VIDEO_WIZARD_WAND%% | 10 min |
 | Polyline Wand & Brush | [Guide](06-polyline-wand.md) | %%VIDEO_POLYLINE_WAND%% | 10 min |
-| Classify Object Subset *(Sara McArdle presents)* | [Guide](07-classify-object-subset.md) | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | 10 min |
+| Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md) | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | 10 min |
 | OCR for Labels | [Guide](08-ocr4labels.md) | %%VIDEO_OCR4LABELS%% | 15 min |
 | Project Metadata Browser | [Guide](09-project-metadata-browser.md) | %%VIDEO_PROJECT_METADATA_BROWSER%% | 12 min |
 | Class Distribution | [Guide](10-class-distribution.md) | %%VIDEO_CLASS_DISTRIBUTION%% | 8 min |
-| Channel Names Viewer *(Sara McArdle presents)* | [Guide](11-channel-names-viewer.md) | %%VIDEO_CHANNEL_NAMES_VIEWER%% | 5 min |
+| Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md) | %%VIDEO_CHANNEL_NAMES_VIEWER%% | 5 min |
 | Dialog Position Manager | [Guide](12-dialog-position-manager.md) | %%VIDEO_DIALOG_POSITION_MANAGER%% | 5 min |
 | Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md) | %%VIDEO_TILES_TO_PYRAMID%% | 12 min |
 
