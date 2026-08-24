@@ -93,13 +93,15 @@ the room connects to a microscope.
 | 12 | **[Dialog Position Manager](docs/12-dialog-position-manager.md)** | Remembers dialog positions; rescues off-screen windows | Apache-2.0 |
 | 13 | **[Tiles to Pyramid](docs/13-tiles-to-pyramid.md)** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | Apache-2.0 |
 
-## Install everything
+## Installing
 
-Add these two catalogs in QuPath (`Extensions > Manage extensions > Manage extension catalogs
+Add one catalog in QuPath (`Extensions > Manage extensions > Manage extension catalogs
 > Add catalog`):
 
 - **LOCI QuPath Extensions** — `https://github.com/uw-loci/qupath-catalog-mikenelson`
-- **QPSC Microscope Extensions** — `https://github.com/uw-loci/qupath-catalog-qpsc`
+
+Then install **only the extensions you want** — adding a catalog installs nothing by itself, and
+QP-CAT and the DL Pixel Classifier each fetch a 1.5–2.5 GB Python environment on first use.
 
 Full instructions, including the dataset list, are in the **[setup guide](docs/setup.md)**.
 

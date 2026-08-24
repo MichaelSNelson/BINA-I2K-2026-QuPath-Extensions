@@ -34,7 +34,7 @@ not slides. The deck's job is to frame each segment and then get out of the way.
 5. **What an extension is.** A jar QuPath loads at startup. It adds menus, tools, dialogs.
 6. **The three things that bite everyone.** You must restart. Extensions are per QuPath version.
    They are compiled against a specific API — hence 0.7+.
-7. **Catalogs.** One URL, QuPath handles install and updates. The two LOCI catalogs. *This is
+7. **Catalogs.** One URL, QuPath handles install and updates. One catalog covers the workshop, and adding it installs nothing until you pick. *This is
    the practical takeaway of the whole segment — if attendees remember one slide, this one.*
 8. **Sixteen extensions, one person.** Honest framing: a large fraction was written by an LLM
    agent under close direction.

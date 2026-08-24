@@ -49,11 +49,11 @@ Please do the following BEFORE you travel. Conference wifi will not cope with th
 
 1. Install QuPath 0.7.0 or later from https://qupath.github.io/ . Nothing in this workshop runs on QuPath 0.6. If you already use 0.6 for other work, installing 0.7 alongside it is safe - QuPath keeps a separate extensions folder per version, so your existing setup is untouched.
 
-2. Add the two extension catalogs. In QuPath: Extensions > Manage extensions > Manage extension catalogs > Add catalog, then add both of these URLs:
+2. Add the extension catalog. In QuPath: Extensions > Manage extensions > Manage extension catalogs > Add catalog, then add this URL:
    https://github.com/uw-loci/qupath-catalog-mikenelson
-   https://github.com/uw-loci/qupath-catalog-qpsc
+   That is the only catalog you need - everything hands-on in the workshop is in it.
 
-3. Install the extensions you actually want, and RESTART QuPath. You do NOT have to install all of them. If one or two extensions are the reason you are coming, install just those - every one of them works on its own. The extension index lists all of them with a one-line description, where to install each from, and a full guide:
+3. Install the extensions you actually want, and RESTART QuPath. Adding a catalog installs nothing by itself; it shows you a list. You do NOT have to install all of them, and you should not: two of them (QP-CAT and the Deep Learning Pixel Classifier) each download a 1.5-2.5 GB Python environment on first use. If one or two extensions are the reason you are coming, install just those - every one of them works on its own. The extension index lists all of them with a one-line description, where to install each from, and a full guide:
    https://michaelsnelson.github.io/BINA-I2K-2026-QuPath-Extensions/docs/extensions.html
    Please do not skip the restart. QuPath copies a new extension into place but does not load it until you restart, so the menu item will not appear until you do. This is the single most common problem we see.
 
@@ -74,7 +74,7 @@ Note: the first hour is a presentation and requires no preparation at all. The s
 Software:
 - QuPath 0.7.0 or later (free, open source): https://qupath.github.io/
 - Java is bundled with QuPath; no separate install needed.
-- All extensions used in the workshop are free and open source (Apache-2.0 or GPL-3.0) and install through QuPath's built-in extension manager from the two catalogs listed above.
+- All extensions used in the workshop are free and open source (Apache-2.0 or GPL-3.0) and install through QuPath's built-in extension manager from the catalog listed above.
 
 Hardware:
 - A laptop capable of running QuPath on whole-slide images. 16 GB RAM recommended.

@@ -93,16 +93,29 @@ is available.
 4. Pick extensions from the list and click **Install**.
 5. **Restart QuPath.**
 
-### The two LOCI catalogs
+### The catalog you need
 
-| Catalog | URL | What is in it |
-|---|---|---|
-| **LOCI QuPath Extensions** | `https://github.com/uw-loci/qupath-catalog-mikenelson` | The general-purpose analysis, export, and workflow tools — most of today's hands-on session |
-| **QPSC Microscope Extensions** | `https://github.com/uw-loci/qupath-catalog-qpsc` | Microscope control and acquisition-adjacent tools: QPSC, PPM, OCR for Labels, Tiles to Pyramid |
+**One catalog covers every hands-on tool in this workshop:**
 
-Add both. You do not have to install everything in them — see the
-[extension index](extensions.md) to pick individual tools, or the [setup guide](setup.md) for
-exactly what each hands-on track needs.
+| Catalog | URL |
+|---|---|
+| **LOCI QuPath Extensions** | `https://github.com/uw-loci/qupath-catalog-mikenelson` |
+
+> ## ⚠️ Do **not** install everything in it
+>
+> Adding a catalog does **not** install anything. It shows you a list. **Install only the
+> extensions you actually want** — two of them (QP-CAT and the DL Pixel Classifier) each pull
+> down a **1.5–2.5 GB** Python environment on first use, and installing them by accident is the
+> single fastest way to ruin your morning on conference wifi.
+>
+> Pick individual tools from the **[extension index](extensions.md)**, or follow the
+> **[setup guide](setup.md)** for exactly what each hands-on track needs.
+
+There is a second LOCI catalog — **QPSC Microscope Extensions**
+(`https://github.com/uw-loci/qupath-catalog-qpsc`) — carrying the microscope-control stack.
+**You do not need it for this workshop.** The two tools from it that need no hardware, OCR for
+Labels and Tiles to Pyramid, are now in the main catalog as well, so there is no reason to add a
+whole acquisition catalog to reach them.
 
 ### What a catalog entry looks like
 

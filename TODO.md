@@ -101,6 +101,23 @@ Draft answers ready to paste: [I2K_FORM_RESPONSES.md](I2K_FORM_RESPONSES.md)
       hand-labelled subset, and targeted application of a classifier to a chosen subset. Confirm
       with Sara that nothing falls between the two sessions
 
+## Blocking before the workshop (found in the 2026-08-24 audit)
+
+- [ ] **Cut a Classify Object Subset release.** The newest published release, v0.1.1, is a
+      diagnostic re-release of v0.1.0. Eleven commits sit unreleased, including the rename from
+      *Gated Object Classifier*, the multiple-measurement-thresholds and class-checkbox feature,
+      and the bump to require QuPath 0.7.0. Attendees installing today get a jar named
+      `qupath-extension-gated-object-classifier-0.1.1-all.jar`, the old menu name, none of the
+      documented features, and a 0.6.0 build. The guide describes the unreleased state, with a
+      warning box on it until this ships
+- [ ] **Decide on DL Pixel Classifier 0.8.6.** The repo is on a 0.8.6-dev cycle; the newest
+      release is 0.8.5, which is now what the guide claims. Bump the guide if 0.8.6 ships
+- [x] **Catalog:** OCR for Labels and Tiles to Pyramid added to the LOCI catalog, so the QPSC
+      catalog is no longer needed for anything hands-on. Every setup instruction now names one
+      catalog and says plainly that adding it installs nothing
+- [x] **OCR extension README** no longer recommends Enhance for faded labels (0.4.2 measured it
+      making text worse). Fixed in `uw-loci/qupath-extension-ocr4labels`
+
 ## Slides
 
 - [x] Build the hour-1 deck — `I2K_2026_QuPath_Extensions.pptx`, 49 slides, rebuild with

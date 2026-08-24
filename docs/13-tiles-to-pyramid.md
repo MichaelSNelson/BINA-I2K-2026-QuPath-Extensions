@@ -16,7 +16,7 @@ title: Tiles to Pyramid
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Tiles to Pyramid` |
-| **Catalog** | QPSC Microscope Extensions |
+| **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
 > Part of the [QPSC](presented/qpsc.md) system, but **usable entirely on its own** — it needs
@@ -91,7 +91,10 @@ There is no maximum-intensity projection and no flattening — planes are writte
 
 ## Install
 
-Via the **QPSC Microscope Extensions** catalog, or the release jar. Restart QuPath.
+Via the **LOCI QuPath Extensions** catalog, or the release jar. Restart QuPath.
+
+> Also listed in the QPSC microscope catalog, since it is the stitching half of an acquisition —
+> but it needs no microscope, so you do not need that catalog to get it.
 
 ---
 

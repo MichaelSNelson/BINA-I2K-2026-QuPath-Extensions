@@ -8,7 +8,7 @@ title: Setup - do this before the workshop
 Conference wifi will not survive thirty people downloading multi-gigabyte Python
 environments at 9:05 am. Fifteen minutes at home saves you the whole hands-on hour.
 
-If you can only do one thing: **install QuPath 0.7 and add the two catalogs.**
+If you can only do one thing: **install QuPath 0.7 and add the one catalog.**
 
 > **Want to vote on what we demonstrate live?** See
 > [walkthroughs and videos](walkthroughs.md) — we will not get through all sixteen tools, so the
@@ -27,22 +27,24 @@ Everything in this workshop requires **0.7.0+**. If you already run 0.6 for othe
 that 0.7 uses a **separate extensions folder**, so installing today's extensions will not
 disturb your existing setup.
 
-## 2. Add the two LOCI catalogs
+## 2. Add the LOCI catalog
 
-In QuPath: `Extensions > Manage extensions > Manage extension catalogs > Add catalog`, then
-add both of these:
+In QuPath: `Extensions > Manage extensions > Manage extension catalogs > Add catalog`, then add
+this one:
 
 | Catalog | URL |
 |---|---|
 | LOCI QuPath Extensions | `https://github.com/uw-loci/qupath-catalog-mikenelson` |
-| QPSC Microscope Extensions | `https://github.com/uw-loci/qupath-catalog-qpsc` |
+
+That is the only catalog you need. Everything hands-on in this workshop is in it.
 
 Background on what a catalog is and why we use them:
 [How extensions, catalogs, and AI-assisted development work](00-extensions-catalogs-and-ai.md).
 
 ## 3. Install the extensions
 
-From the catalogs, install:
+**Adding the catalog installs nothing** — it just shows you a list. Now install what you
+actually want, and **only** what you actually want:
 
 **Everything (small, fast, no extra downloads):**
 
@@ -109,9 +111,11 @@ If you bring your own, tell us what you are trying to do — we will point you a
 Open QuPath and confirm:
 
 - [ ] Help → About shows **0.7.0** or later
-- [ ] `Extensions >` contains **QuIET**, **Class Distribution**, **Classify Object Subset**,
-      **Cluster 3D Navigator**, **Project Metadata Browser**, **Channel Names Viewer**,
-      **OCR for Labels**, **Tiles to Pyramid**
+- [ ] `Extensions >` contains the tools **you chose to install** — this list is what you would
+      see having installed all of them: **QuIET**, **Class Distribution**, **Classify Object
+      Subset**, **Cluster 3D Navigator**, **Project Metadata Browser**, **Channel Names Viewer**,
+      **OCR for Labels**, **Tiles to Pyramid**. Missing entries you never installed are not a
+      problem
 - [ ] `Window >` contains **Dialog Position Manager...**
 - [ ] The toolbar has a **sparkle wand** (Shift+W) and a **polyline wand** (Shift+P) button
 - [ ] If doing the multiplex track: `Extensions > QP-CAT` reports its environment as ready

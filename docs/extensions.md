@@ -25,10 +25,10 @@ you. You only have to do this once:
 
 1. Install **QuPath 0.7.0 or later** — [qupath.github.io](https://qupath.github.io/).
 2. `Extensions > Manage extensions > Manage extension catalogs > Add catalog`
-3. Add both:
-   - `https://github.com/uw-loci/qupath-catalog-mikenelson` — **LOCI** catalog
-   - `https://github.com/uw-loci/qupath-catalog-qpsc` — **QPSC** catalog
+3. Add the one catalog: `https://github.com/uw-loci/qupath-catalog-mikenelson`
 4. Find the extensions you want in the list and click **Install**.
+   **Adding a catalog installs nothing by itself, and you should not install everything in it** —
+   QP-CAT and the DL Pixel Classifier each fetch a 1.5–2.5 GB Python environment.
 5. **Restart QuPath.** Extensions are not loaded on the fly — the menu items will not appear
    until you do. This is the most common problem we see.
 
@@ -49,12 +49,12 @@ lives on each OS.
 | **Wizard Wand** | A faster, more forgiving wand, with settings auto-tuned from your own example | LOCI catalog | [Guide](05-wizard-wand.md) · [repo](https://github.com/uw-loci/qupath-extension-wizard-wand) |
 | **Polyline Wand & Brush** | Brush editing for lines and polylines, not just areas | LOCI catalog | [Guide](06-polyline-wand.md) · [repo](https://github.com/uw-loci/qupath-extension-polyline-wand) |
 | **Classify Object Subset** | Run a saved classifier on a chosen subset, with a live count first · *shown in Sara McArdle’s session* | LOCI catalog | [Guide](07-classify-object-subset.md) · [repo](https://github.com/uw-loci/qupath-extension-classify-object-subset) |
-| **OCR for Labels** | Slide-label OCR and barcode scanning into project metadata | QPSC catalog · [extra setup](08-ocr4labels.md#setup--do-this-before-the-workshop) | [Guide](08-ocr4labels.md) · [repo](https://github.com/uw-loci/qupath-extension-ocr4labels) |
+| **OCR for Labels** | Slide-label OCR and barcode scanning into project metadata | LOCI catalog · [extra setup](08-ocr4labels.md#setup--do-this-before-the-workshop) | [Guide](08-ocr4labels.md) · [repo](https://github.com/uw-loci/qupath-extension-ocr4labels) |
 | **Project Metadata Browser** | Whole-project metadata table with buffered editing and full undo | LOCI catalog | [Guide](09-project-metadata-browser.md) · [repo](https://github.com/uw-loci/qupath-extension-project-metadata-browser) |
 | **Class Distribution** | Live charts of annotation balance and implied training balance | LOCI catalog | [Guide](10-class-distribution.md) · [repo](https://github.com/uw-loci/qupath-extension-class-distribution) |
 | **Channel Names Viewer** | Always-visible, colour-coded legend of selected fluorescence channels · *shown in Sara McArdle’s session* | LOCI catalog | [Guide](11-channel-names-viewer.md) · [repo](https://github.com/uw-loci/qupath-extension-channel-names-viewer) |
 | **Dialog Position Manager** | Remembers dialog positions; rescues windows lost with a disconnected monitor | LOCI catalog | [Guide](12-dialog-position-manager.md) · [repo](https://github.com/uw-loci/qupath-extension-dialog-manager) |
-| **Tiles to Pyramid** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | QPSC catalog | [Guide](13-tiles-to-pyramid.md) · [repo](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
+| **Tiles to Pyramid** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | LOCI catalog | [Guide](13-tiles-to-pyramid.md) · [repo](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
 
 ### The two that need a large download
 

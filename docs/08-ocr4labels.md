@@ -15,7 +15,7 @@ title: OCR for Labels
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+, Tesseract language data (see Setup) |
 | **Where to find it** | `Extensions > OCR for Labels` |
-| **Catalog** | QPSC Microscope Extensions |
+| **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
 > **Walkthrough video:** %%VIDEO_OCR4LABELS%%
@@ -74,10 +74,13 @@ Barcode scanning works immediately with no setup.
 
 ## Install
 
-Via the **QPSC Microscope Extensions** catalog, or the release jar. Restart QuPath.
+Via the **LOCI QuPath Extensions** catalog, or the release jar. Restart QuPath.
 
-> This extension lives in the QPSC catalog because it grew out of the acquisition workflow —
-> but it needs no microscope and no server. It is entirely a post-acquisition metadata tool.
+> This extension grew out of the acquisition workflow and is also listed in the QPSC microscope
+> catalog — but it needs no microscope and no server, so it is in the main LOCI catalog too. You
+> do not need the QPSC catalog for it. If you would rather not use a catalog at all, download
+> [the latest jar](https://github.com/uw-loci/qupath-extension-ocr4labels/releases/latest)
+> (the one with `-all` in the name) and drag it onto the QuPath window.
 
 ---
 

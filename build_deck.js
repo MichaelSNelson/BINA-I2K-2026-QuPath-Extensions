@@ -276,9 +276,9 @@ content('Three things that bite everyone', [
 content('Catalogs', [
   'One URL. QuPath then handles installing, listing, and updating for you',
   'Extensions > Manage extensions > Manage extension catalogs > Add catalog',
-  'LOCI catalog  —  github.com/uw-loci/qupath-catalog-mikenelson',
-  'QPSC catalog  —  github.com/uw-loci/qupath-catalog-qpsc',
-  'You pick what you want from the list. You do not have to install everything',
+  'LOCI catalog  —  github.com/uw-loci/qupath-catalog-mikenelson  (the only one you need today)',
+  'Adding a catalog installs NOTHING. It shows you a list',
+  'Install only what you want — QP-CAT and the DL classifier each pull 1.5–2.5 GB on first use',
 ], { kicker: 'If you remember one slide from this section, make it this one.',
      note: 'Publishing your own catalog takes about twenty minutes and removes a support burden.' });
 
@@ -621,9 +621,9 @@ demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',
   });
   s.addText([
     { text: 'A written walkthrough and a video for every tool  ·  setup instructions  ·  sample data  ·  these slides\n', options: { fontSize: 19, color: INK, paraSpaceAfter: 10 } },
-    { text: 'Add the two catalogs in QuPath, install only what interests you, and restart:\n', options: { fontSize: 19, color: INK, paraSpaceAfter: 6 } },
+    { text: 'Add one catalog in QuPath, install only what interests you, and restart:\n', options: { fontSize: 19, color: INK, paraSpaceAfter: 6 } },
     { text: 'github.com/uw-loci/qupath-catalog-mikenelson\n', options: { fontSize: 18, bold: true, color: BLUE_DK, paraSpaceAfter: 4 } },
-    { text: 'github.com/uw-loci/qupath-catalog-qpsc\n', options: { fontSize: 18, bold: true, color: BLUE_DK, paraSpaceAfter: 14 } },
+    { text: 'Adding it installs nothing — you pick from the list. Two entries download 1.5–2.5 GB.\n', options: { fontSize: 17, italic: true, color: MUT, paraSpaceAfter: 14 } },
     { text: 'Whatever we did not reach today, the walkthrough and the video are waiting for you.', options: { fontSize: 19, bold: true, color: BLUE_DK } },
   ], { x: 1.05, y: 2.95, w: W - 2.6, h: 2.8, fontFace: BODY, valign: 'top' });
   s.addText('Sample data courtesy of Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology.', {

@@ -14,7 +14,7 @@ title: Collagen fibre and texture analysis (presented only)
 |---|---|---|
 | **Repository** | [uw-loci/qupath-extension-fiber-analysis](https://github.com/uw-loci/qupath-extension-fiber-analysis) | [MichaelSNelson/qupath-extension-TME-Quant](https://github.com/MichaelSNelson/qupath-extension-TME-Quant) |
 | **Version** | 0.1.1 | 0.1.0 |
-| **License** | Apache-2.0 | Apache-2.0 |
+| **License** | Apache-2.0 |
 | **Menu** | `Extensions > Fiber Analysis` | `Extensions > TME Quant` |
 | **Backend** | Embedded Python via Appose | Separate Python FIRE server over a local socket |
 | **Session** | Presented only | Presented only |

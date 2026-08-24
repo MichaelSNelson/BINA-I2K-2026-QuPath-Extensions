@@ -12,7 +12,7 @@ title: Classify Object Subset
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-classify-object-subset](https://github.com/uw-loci/qupath-extension-classify-object-subset) |
-| **Version at workshop** | 0.1.1 |
+| **Version at workshop** | 0.1.1 — **see the release warning below** |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Classify Object Subset` |
@@ -23,6 +23,16 @@ title: Classify Object Subset
 > The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
 
 ---
+
+> ### ⚠️ Check what you actually installed
+>
+> The newest published release, **v0.1.1**, is a diagnostic re-release of v0.1.0. Everything on
+> this page describing **multiple measurement thresholds** and **class checkboxes** is in the
+> repository but **not yet in a release**, and v0.1.1 still carries the extension's former name —
+> if your menu says **Gated Object Classifier**, that is this tool, one release behind. A newer
+> build is expected before the workshop; check the
+> [releases page](https://github.com/uw-loci/qupath-extension-classify-object-subset/releases)
+> on the day.
 
 > **You saw this in Sara McArdle's session earlier today** — *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
 > Both this extension and its sibling grew out of her Groovy scripts, so we point back to her
