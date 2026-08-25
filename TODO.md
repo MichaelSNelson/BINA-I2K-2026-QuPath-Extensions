@@ -103,21 +103,14 @@ Draft answers ready to paste: [I2K_FORM_RESPONSES.md](I2K_FORM_RESPONSES.md)
 
 ## Blocking before the workshop (found in the 2026-08-24 audit)
 
-- [ ] **Cut a Classify Object Subset release** — the merge is already done in source (one repo,
-      no "gated" string left anywhere at HEAD, both the `+` add-threshold rows and the in-GUI
-      documentation hyperlink present). What is missing is a release that reflects it: both
-      published jars are still named `qupath-extension-gated-object-classifier-*`. Bump
-      `version` in `build.gradle.kts` (currently still `0.1.0`) before tagging.
-      **The catalog will not auto-update:** this repo's `notify-catalog` workflow has never run,
-      and the same dispatch step fails on `class-distribution` and `polyline-wand` (missing or
-      expired catalog PAT), so plan on a hand-bump or fix the token first.
-      Until it ships, attendees installing get the old menu name **Gated Object Classifier**,
-      a 0.6.0 build, and none of the documented multi-threshold or class-checkbox features —
-      the guide carries a warning box saying exactly that.
-- [x] Update-check owner fixed in `class-distribution` and `classify-object-subset`: both declared
-      `MichaelSNelson/...`, which does not exist — they live under `uw-loci`, so QuPath's
-      "check for updates" could only ever 404. `confusion-matrix` has the same bug but is in
-      Kristin's repo, so it is hers to fix
+- [x] **Classify Object Subset 0.2.0 released** (2026-08-25) — first release since the rename,
+      first jar named `qupath-extension-classify-object-subset-*`, and the first carrying the
+      multi-threshold and class-checkbox work. The catalog auto-bumped; its compatibility floor
+      was hand-corrected to v0.7.0, which the auto-bump had carried forward as v0.6.0
+- [ ] **Catalog dispatch is broken on two repos** — `class-distribution` (failing since v0.1.6 in
+      May) and `polyline-wand`. Their entries are current only because someone hand-bumped. The
+      token works elsewhere, so it is per-repo. **Any release from those two needs a hand-bump**
+      until the secret is fixed
 - [ ] **Decide on DL Pixel Classifier 0.8.6.** The repo is on a 0.8.6-dev cycle; the newest
       release is 0.8.5, which is now what the guide claims. Bump the guide if 0.8.6 ships
 - [x] **Catalog:** OCR for Labels and Tiles to Pyramid added to the LOCI catalog, so the QPSC

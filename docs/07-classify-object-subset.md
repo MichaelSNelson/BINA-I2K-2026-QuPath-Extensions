@@ -12,7 +12,7 @@ title: Classify Object Subset
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-classify-object-subset](https://github.com/uw-loci/qupath-extension-classify-object-subset) |
-| **Version at workshop** | 0.1.1 — **see the release warning below** |
+| **Version at workshop** | 0.2.0 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Classify Object Subset` |
@@ -24,15 +24,10 @@ title: Classify Object Subset
 
 ---
 
-> ### ⚠️ Check what you actually installed
->
-> The newest published release, **v0.1.1**, is a diagnostic re-release of v0.1.0. Everything on
-> this page describing **multiple measurement thresholds** and **class checkboxes** is in the
-> repository but **not yet in a release**, and v0.1.1 still carries the extension's former name —
-> if your menu says **Gated Object Classifier**, that is this tool, one release behind. A newer
-> build is expected before the workshop; check the
-> [releases page](https://github.com/uw-loci/qupath-extension-classify-object-subset/releases)
-> on the day.
+> **On 0.1.x already?** Replace it. Releases before 0.2.0 shipped a jar named
+> `qupath-extension-gated-object-classifier-*.jar` and show as **Gated Object Classifier** in the
+> menu — the extension's former name. 0.2.0 is the first release carrying the current name, and
+> it is the one with multiple measurement thresholds and class checkboxes.
 
 > **You saw this in Sara McArdle's session earlier today** — *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
 > Both this extension and its sibling grew out of her Groovy scripts, so we point back to her
@@ -52,7 +47,8 @@ and discussed in [this image.sc thread](https://forum.image.sc/t/feature-request
 **Pick the subset by:**
 
 - **class** (one or several),
-- **measurement value** (e.g. `Cell: Autofluorescence max` greater than 11.0),
+- **measurement value** (e.g. `Cell: Autofluorescence max` greater than 11.0) — **as many
+  conditions as you need**, added a row at a time, not just one,
 - **current viewer selection**,
 - or any combination of the above.
 
