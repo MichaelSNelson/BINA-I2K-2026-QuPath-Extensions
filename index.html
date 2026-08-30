@@ -24,7 +24,9 @@ h1 .sub{display:block; color:var(--mut); font-size:1.15rem; font-weight:400; let
 .when{color:var(--am); margin:.2rem 0 1.1rem; font-size:.98rem; line-height:1.45}
 .meta{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.4rem}
 .chip{background:var(--panel); border:1px solid var(--hair); border-radius:999px;
-  padding:.32rem .85rem; font-size:.83rem; color:var(--mut)}
+  padding:.32rem .85rem; font-size:.83rem; color:var(--mut); transition:border-color .12s, color .12s}
+a.chip:hover{border-color:var(--cy); color:var(--ink); text-decoration:none}
+a.chip:hover b{color:var(--cy)}
 .chip b{color:var(--ink); font-weight:600}
 section{padding:2.6rem 0}
 h2{font-size:1.25rem; color:var(--cy); margin:0 0 .35rem; letter-spacing:.01em}
@@ -94,10 +96,10 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
     polarization microscopy.
   </p>
   <div class="meta">
-    <span class="chip"><b>Hour 1</b> simple &rarr; complex, with demos</span>
-    <span class="chip"><b>Hour 2</b> optional hands-on</span>
-    <span class="chip">Requires <b>QuPath 0.7.0+</b></span>
-    <span class="chip">13 hands-on extensions</span>
+    <a class="chip" href="docs/schedule.html#hour-1--presentation-and-demos-1030--1130"><b>Hour 1</b> simple &rarr; complex, with demos</a>
+    <a class="chip" href="docs/schedule.html#hour-2--hands-on-optional-1130--1230"><b>Hour 2</b> optional hands-on</a>
+    <a class="chip" href="docs/setup.html#1-qupath-070-or-later">Requires <b>QuPath 0.7.0+</b></a>
+    <a class="chip" href="docs/extensions.html">13 hands-on extensions</a>
   </div>
 </header>
 
