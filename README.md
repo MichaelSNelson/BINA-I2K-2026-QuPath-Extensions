@@ -35,6 +35,34 @@ suite of open-source QuPath extensions developed at
 
 ---
 
+## Setup — do this before you travel
+
+**1. Install QuPath 0.7.0 or later** — [qupath.github.io](https://qupath.github.io/). Nothing
+here runs on 0.6. QuPath 0.7 keeps its own extensions folder, so an existing 0.6 setup is
+untouched.
+
+**2. Add one catalog** — `Extensions > Manage extensions > Manage extension catalogs >
+Add catalog`, then paste:
+
+```
+https://github.com/uw-loci/qupath-catalog-mikenelson
+```
+
+That is the only catalog you need. Everything hands-on in this workshop is in it.
+
+**3. Install only the extensions you want, then restart QuPath.**
+
+> **Adding the catalog installs nothing** — it shows you a list. **Do not install everything in
+> it.** QP-CAT and the DL Pixel Classifier each fetch a **1.5–2.5 GB** Python environment on
+> first use. If one or two extensions are why you are coming, install just those.
+
+**4. Download the data** for the track you plan to do. The multiplexed track needs only a
+[20 MB public dataset](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest).
+
+**Full instructions, including the per-track dataset list: [setup guide](docs/setup.md).**
+
+---
+
 ## Start here
 
 | | |
@@ -43,13 +71,7 @@ suite of open-source QuPath extensions developed at
 | **[Acknowledgements](docs/acknowledgements.md)** | Data providers, the QuPath team, and the methods these tools build on |
 | **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough and a video for every tool, plus the vote for what we demo live |
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide — for picking just the ones you want |
-| **[Setup guide](docs/setup.md)** | **Do this before you travel.** Several extensions download large Python environments on first run |
-| **[Schedule & hands-on tracks](docs/schedule.md)** | Hour-by-hour running order, plus four self-directed tracks |
-
-## For organisers
-
-**[I2K form responses](I2K_FORM_RESPONSES.md)** — paste-ready answers for the I2K
-"Additional Details and Information for Participants" form. **Due 1 September 2026.**
+| **[Schedule](docs/schedule.md)** | Hour-by-hour running order, plus suggested tracks for the second hour |
 
 ## Files on Google Drive
 
@@ -92,18 +114,6 @@ the room connects to a microscope.
 | 11 | **[Channel Names Viewer](docs/11-channel-names-viewer.md)** | Always-visible colour-coded channel legend. *Shown in Sara McArdle’s earlier session* | Apache-2.0 |
 | 12 | **[Dialog Position Manager](docs/12-dialog-position-manager.md)** | Remembers dialog positions; rescues off-screen windows | Apache-2.0 |
 | 13 | **[Tiles to Pyramid](docs/13-tiles-to-pyramid.md)** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | Apache-2.0 |
-
-## Installing
-
-Add one catalog in QuPath (`Extensions > Manage extensions > Manage extension catalogs
-> Add catalog`):
-
-- **LOCI QuPath Extensions** — `https://github.com/uw-loci/qupath-catalog-mikenelson`
-
-Then install **only the extensions you want** — adding a catalog installs nothing by itself, and
-QP-CAT and the DL Pixel Classifier each fetch a 1.5–2.5 GB Python environment on first use.
-
-Full instructions, including the dataset list, are in the **[setup guide](docs/setup.md)**.
 
 ---
 

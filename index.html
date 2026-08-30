@@ -43,6 +43,22 @@ h2{font-size:1.25rem; color:var(--cy); margin:0 0 .35rem; letter-spacing:.01em}
 .card.demo .k{color:var(--mag)}
 .links{display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); gap:1rem}
 .todo{color:var(--am); font-weight:600}
+.setup{background:var(--panel); border:1px solid var(--green); border-left:5px solid var(--green);
+  border-radius:16px; padding:1.5rem 1.6rem 1.6rem; margin:2.2rem 0 2.6rem}
+.setup h2{color:var(--green); font-size:1.45rem; margin-bottom:.15rem}
+.setup .k{font-size:.72rem; letter-spacing:.11em; text-transform:uppercase; color:var(--am); font-weight:700}
+.setup ol{margin:1.1rem 0 0; padding-left:1.3rem; line-height:1.65}
+.setup li{margin-bottom:.75rem}
+.setup li b{color:var(--ink)}
+.url{display:block; background:#0B1020; border:1px solid var(--hair); border-radius:8px;
+  padding:.55rem .8rem; margin:.45rem 0 .1rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.86rem; color:var(--cy); overflow-x:auto; white-space:nowrap}
+.warn{background:rgba(251,191,36,.09); border:1px solid var(--am); border-radius:10px;
+  padding:.75rem .9rem; margin:1.1rem 0 0; color:var(--ink); font-size:.92rem; line-height:1.55}
+.warn b{color:var(--am)}
+.setup .more{display:inline-block; margin-top:1.15rem; background:var(--green); color:#0B1020;
+  font-weight:700; padding:.6rem 1.1rem; border-radius:999px; font-size:.92rem}
+.setup .more:hover{text-decoration:none; filter:brightness(1.08)}
 footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem; color:var(--mut); font-size:.88rem}
 </style>
 </head>
@@ -74,9 +90,27 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
   </div>
 </header>
 
+<section class="setup">
+  <div class="k">Do this before you travel</div>
+  <h2>Setup &mdash; 15 minutes at home</h2>
+  <p class="note">Conference wifi will not survive thirty people downloading Python environments at 10:30 on the day. This is the whole of what you need.</p>
+  <ol>
+    <li><b>Install QuPath 0.7.0 or later</b> &mdash; <a href="https://qupath.github.io/">qupath.github.io</a>. Nothing here runs on 0.6, and 0.7 keeps its own extensions folder, so an existing 0.6 setup is untouched.</li>
+    <li><b>Add one catalog.</b> <code>Extensions &gt; Manage extensions &gt; Manage extension catalogs &gt; Add catalog</code>, then paste:
+      <code class="url">https://github.com/uw-loci/qupath-catalog-mikenelson</code>
+      That is the only catalog you need &mdash; everything hands-on is in it.</li>
+    <li><b>Install only the extensions you want</b>, then <b>restart QuPath</b>. Not restarting is the single most common problem we see.</li>
+    <li><b>Download the data</b> for whichever track you plan to do &mdash; the multiplexed track needs only a <a href="https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest">20&nbsp;MB public dataset</a>.</li>
+  </ol>
+  <div class="warn">
+    <b>Adding the catalog installs nothing.</b> It shows you a list. <b>Do not install everything in it</b> &mdash; QP-CAT and the DL Pixel Classifier each pull down a <b>1.5&ndash;2.5&nbsp;GB</b> Python environment on first use. If one or two extensions are why you are coming, install just those.
+  </div>
+  <a class="more" href="docs/setup.html">Full setup guide, with the per-track data list &rarr;</a>
+</section>
+
 <section>
   <h2>Start here</h2>
-  <p class="note">Read the intro before the session, and do the setup before you travel &mdash; several extensions download large Python environments on first run.</p>
+  <p class="note">Once you are set up, these are the four pages worth reading before the session.</p>
   <div class="grid">
     <a class="card hero" href="docs/00-extensions-catalogs-and-ai.html">
       <div class="k">Read first</div>
@@ -93,15 +127,10 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
       <h3>Extension index</h3>
       <p>All sixteen extensions with install source and guide. Only want one or two? Install just those.</p>
     </a>
-    <a class="card hero" href="docs/setup.html">
-      <div class="k">Before you travel</div>
-      <h3>Setup guide</h3>
-      <p>QuPath 0.7, one catalog, which extensions to install (not all of them), and the workshop datasets.</p>
-    </a>
     <a class="card hero" href="docs/schedule.html">
       <div class="k">Plan</div>
-      <h3>Schedule &amp; hands-on tracks</h3>
-      <p>Hour-by-hour running order, plus four self-directed tracks for the second hour.</p>
+      <h3>Schedule</h3>
+      <p>Hour-by-hour running order, plus suggested tracks for the optional second hour.</p>
     </a>
   </div>
 </section>

@@ -62,17 +62,6 @@ directory, zipped.
 - [ ] Pre-trained model for the DL Pixel Classifier inference exercise
 - [ ] Check every dataset is redistributable (consent / licence) before it goes on a public link
 
-## I2K organiser form — DUE 1 SEPTEMBER 2026
-
-Draft answers ready to paste: [I2K_FORM_RESPONSES.md](I2K_FORM_RESPONSES.md)
-
-- [ ] Confirm presenter email (`msnelson8@wisc.edu` assumed) and whether co-presenters need listing
-- [ ] Resolve the Drive link before submitting, OR drop the Drive paragraph and submit the
-      workshop page URL only (that page can be updated after the form cannot)
-- [ ] Submit the form
-- [ ] Copy the final submitted text back into `I2K_FORM_RESPONSES.md` so we know what
-      participants were told
-
 ## Walkthrough videos and Padlet
 
 - [ ] Create the Padlet and replace `%%PADLET_URL%%` (appears on the walkthroughs page and on

@@ -104,58 +104,24 @@ your own pace afterwards.
 | 11:35 | Work through a track (or your own data) |
 | 12:25 | Wrap-up, questions, and how to get help afterwards |
 
-### Track A — Annotation and classification
+### Suggested tracks for exploration
 
-*Best if you do brightfield/H&E work and spend a lot of time annotating.* **Data:** `DATA-01`
+Four coherent routes through the material, each about fifty minutes. They are suggestions, not a
+timetable — take one, take half of one, or ignore them and bring your own data.
 
-1. [Wizard Wand](05-wizard-wand.md) — 10 min
-2. [Polyline Wand](06-polyline-wand.md) — 10 min
-3. [Class Distribution](10-class-distribution.md) — 8 min
-4. [Classify Object Subset](07-classify-object-subset.md) — 10 min *(demonstrated in Sara
-   McArdle’s earlier session; the walkthrough here is complete if you want to try it yourself)*
+| Track | Best if | Data | Route |
+|---|---|---|---|
+| **A · Annotation and classification** | You do brightfield/H&E work and spend a lot of time annotating | `DATA-01` | [Wizard Wand](05-wizard-wand.md) 10 → [Polyline Wand](06-polyline-wand.md) 10 → [Class Distribution](10-class-distribution.md) 8 → [Classify Object Subset](07-classify-object-subset.md) 10. Finish early? Export those annotations as masks with [QuIET](01-quiet-image-export.md) and see what a training set built from them looks like |
+| **B · Multiplexed imaging** | You work with highly multiplexed IF | `TME-SYNTH` — [20 MB, straight from GitHub](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest) | [QP-CAT](03-qp-cat-cell-analysis-tools.md) 20 (parts A and B alone are ~10) → [Cluster 3D Navigator](04-cluster-3d-navigator.md) 10, on the same cells, since it is the navigation half of the clustering you just ran. Optional: [Channel Names Viewer](11-channel-names-viewer.md) 5. **Needs the QP-CAT Python environment installed beforehand** |
+| **C · Publication and deep learning** | Your bottleneck is getting figures and datasets *out* of QuPath | `DATA-01` | [QuIET](01-quiet-image-export.md) 15 → [DL Pixel Classifier](02-dl-pixel-classifier.md) 15, inference only → **join them up** 15: QuIET's *Tiled export (ML)* writes image/label pairs from your annotations, then run the classifier over the same region and compare. **Needs its Python environment installed beforehand** |
+| **D · Data wrangling at scale** | You manage a lot of slides, or run a core facility | `DATA-03`, `DATA-04` | [OCR for Labels](08-ocr4labels.md) 15 → [Project Metadata Browser](09-project-metadata-browser.md) 12 → [Tiles to Pyramid](13-tiles-to-pyramid.md) 12 → [Dialog Position Manager](12-dialog-position-manager.md) 5. **No large downloads, no GPU — the safest choice on a laptop** |
 
-Finish early? Export your annotations as masks with [QuIET](01-quiet-image-export.md) and see
-what a training set built from them looks like.
-
-### Track B — Multiplexed imaging
-
-*Best if you work with highly multiplexed IF.* **Data:** `TME-SYNTH` (~20 MB, straight from
-[GitHub](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest); `DATA-02` only for step 4)
-
-1. [QP-CAT — Cell Analysis Tools](03-qp-cat-cell-analysis-tools.md) — 20 min (parts A and B alone are ~10)
-2. [Cluster 3D Navigator](04-cluster-3d-navigator.md) — 10 min. Do this **straight after** QP-CAT
-   and on the same cells: it is the navigation half of the clustering you just ran
-3. Optional, and both demonstrated in Sara McArdle’s earlier session:
-   [Channel Names Viewer](11-channel-names-viewer.md) — 5 min ·
-   [Classify Object Subset](07-classify-object-subset.md) — 10 min
-
-*Requires the QP-CAT Python environment — install it before you arrive.*
-
-The synthetic data is fully ground-truthed, so every step of the QP-CAT exercise can be checked
+Track B's synthetic data is fully ground-truthed, so every step of that exercise can be checked
 against the right answer — a luxury real multiplexed tissue never gives you.
 
-### Track C — Publication and deep learning
-
-*Best if your bottleneck is getting figures and datasets out of QuPath.* **Data:** `DATA-01`
-
-1. [QuIET — Image Export Toolkit](01-quiet-image-export.md) — 15 min
-2. [DL Pixel Classifier](02-dl-pixel-classifier.md), inference only — 15 min
-3. **Join them up** — 15 min. Use QuIET's **Tiled export (ML)** to write image/label pairs from
-   your annotations, then run the DL classifier over the same region and compare its output
-   with the labels you exported. This is the round trip the two tools were built for.
-
-*The DL extension requires its embedded Python environment — install it before you arrive.*
-
-### Track D — Data wrangling at scale
-
-*Best if you manage a lot of slides, or run a core facility.* **Data:** `DATA-03`, `DATA-04`
-
-1. [OCR for Labels](08-ocr4labels.md) — 15 min
-2. [Project Metadata Browser](09-project-metadata-browser.md) — 12 min
-3. [Tiles to Pyramid](13-tiles-to-pyramid.md) — 12 min
-4. [Dialog Position Manager](12-dialog-position-manager.md) — 5 min
-
-*This track needs no large downloads and no GPU. It is the safest choice on a laptop.*
+Two of the tools above — Classify Object Subset and Channel Names Viewer — are demonstrated in
+Sara McArdle's earlier session. Their walkthroughs here are complete if you want to work through
+them yourself.
 
 ### Bring your own data
 
