@@ -35,6 +35,14 @@ suite of open-source QuPath extensions developed at
 
 ---
 
+
+> ### ⚠️ This site is still being built
+>
+> Everything about the extensions — setup, guides, exercises — is current and usable now.
+> **Still to come:** the slides and the workshop datasets, which are not yet hosted, and the
+> walkthrough videos. Anywhere you see a `%%PLACEHOLDER%%` instead of a link, that is why.
+> It will all be in place before 29 September.
+
 ## Setup — do this before you travel
 
 **1. Install QuPath 0.7.0 or later** — [qupath.github.io](https://qupath.github.io/). Nothing

@@ -26,6 +26,10 @@ a:hover{text-decoration:underline}
 }
 .topbar .home{font-weight:700; color:var(--ink)}
 .topbar .eyebrow{color:var(--mut); font-size:.8rem; letter-spacing:.09em; text-transform:uppercase}
+.wip{background:rgba(251,191,36,.10); border-bottom:1px solid var(--am);
+  padding:.7rem 1.25rem; color:var(--ink); font-size:.9rem; line-height:1.5}
+.wip .wrapinner{max-width:56rem; margin:0 auto}
+.wip b{color:var(--am)}
 main{max-width:56rem; margin:0 auto; padding:2rem 1.25rem 5rem}
 h1,h2,h3,h4{line-height:1.25; font-weight:700; margin:2.2rem 0 .7rem}
 h1{font-size:2.05rem; margin-top:.6rem; letter-spacing:-.01em}
@@ -66,6 +70,13 @@ img{max-width:100%; height:auto; border-radius:12px; border:1px solid var(--hair
   <a class="home" href="{{ site.baseurl }}/">&#8592; Workshop home</a>
   <span class="eyebrow">I2K &middot; BINA 2026 &middot; 29 Sep &middot; Rm. 7560</span>
 </div>
+<div class="wip"><div class="wrapinner">
+  <b>This site is still being built.</b> Everything about the extensions &mdash; setup, guides,
+  exercises &mdash; is current and usable now. Still to come: the <b>slides</b> and the
+  <b>workshop datasets</b>, which are not yet hosted, and the walkthrough <b>videos</b>. Anywhere
+  you see a placeholder instead of a link, that is why. It will all be in place before
+  29&nbsp;September.
+</div></div>
 <main>
 {{ content }}
 </main>
