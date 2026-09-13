@@ -76,7 +76,7 @@ Via the **LOCI QuPath Extensions** catalog, or the release jar. Restart QuPath.
 
 ## Hands-on exercise (~12 min)
 
-**Data:** `DATA-03_labeled_slides` after you have run the
+**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) (**over 500 MB**) after you have run the
 [OCR exercise](08-ocr4labels.md), or the pre-populated version from the Drive folder.
 
 1. `Extensions > Project Metadata Browser > Browse Metadata...`

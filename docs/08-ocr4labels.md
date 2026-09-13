@@ -86,15 +86,35 @@ Via the **LOCI QuPath Extensions** catalog, or the release jar. Restart QuPath.
 
 ## Hands-on exercise (~15 min)
 
-**Data:** `DATA-03_labeled_slides` — several WSIs with label images, some with barcodes, at
-least one rotated.
+**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) — six CZI whole-slide images from LJI, each carrying an
+embedded slide label. **Over 500 MB, so download it before you travel.**
+
+> **Why it is not a folder of small PNGs.** The label lives *inside* the slide file, as an
+> attachment alongside the pixel data. The extension pulls it out of the WSI — hand it a
+> screenshot of a label and there is nothing for it to read, because the thing it reads is the
+> slide. That is the whole point of the tool: the information is already in the file you were
+> given.
+
+One of these labels is worth finding first. It reads:
+
+```
+histology@lji.org
+610 TOMO
+2020-11-14
+H&E
+```
+
+— printed text, a date, **and** a 2D barcode, on one label. It exercises OCR, barcode scanning and
+a mixed template in a single image. It is also the label behind the `@` investigation in
+[what to notice](#what-to-notice) below.
 
 ### Part A — one slide
 
 1. Open an image with a label. `Extensions > OCR for Labels > Run OCR on Label`.
 2. The dialog lists all project images on the left; select one.
 3. Set **Scope** to *Full Image*, **Decode As** to *Try Both* (barcode first, then OCR), and
-   leave **Min Conf** at its default. **Check that Enhance is unticked** — it is off by default
+   leave **Min Conf** at its default. *Try Both* matters here — these labels carry text and a
+   barcode, and you want whichever is more reliable per region. **Check that Enhance is unticked** — it is off by default
    in 0.4.2, and step 12 is about why.
 4. **Scan.** Review the table: correct the **Text** column where OCR guessed wrong, and set
    sensible **Metadata Key** names.
@@ -118,7 +138,7 @@ least one rotated.
 
 ### Part C — the two-minute experiment worth doing (~2 min)
 
-13. Go back to a label with an e-mail address, a code, or any dense punctuation on it. Tick
+13. Go back to the `histology@lji.org` label. Tick
     **Enhance**, set **Scope** to *Drawn Regions*, and **Rescan Regions**. Compare against the
     unenhanced read.
 
@@ -131,7 +151,7 @@ least one rotated.
 - **"Enhance image contrast" made OCR worse, and it took measurement to find out.** Its adaptive
   threshold forces every pixel to pure black or white before Tesseract sees it, discarding the
   smooth edges the classifier depends on. Dense glyphs suffer first — `histology@lji.org` came
-  back as `histoloawalli.org`, because `@` is the densest glyph in ASCII and hard thresholding
+  back as `histoloawalli.org` — on this very slide — because `@` is the densest glyph in ASCII and hard thresholding
   closes the gap between the `a` and its ring. Across a blur series the untouched image read
   correctly at every level while the enhanced one degraded steadily. Tesseract already
   thresholds internally, and does it better. It is now off by default.

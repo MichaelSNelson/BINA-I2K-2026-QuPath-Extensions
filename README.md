@@ -39,7 +39,7 @@ suite of open-source QuPath extensions developed at
 > ### ⚠️ This site is still being built
 >
 > Everything about the extensions — setup, guides, exercises — is current and usable now.
-> **Still to come:** the slides and the workshop datasets, which are not yet hosted, and the
+> The **datasets are now linked** and ready to download. **Still to come:** the slides and the
 > walkthrough videos. Anywhere you see a `%%PLACEHOLDER%%` instead of a link, that is why.
 > It will all be in place before 29 September.
 
@@ -85,9 +85,12 @@ That is the only catalog you need. Everything hands-on in this workshop is in it
 
 | | |
 |---|---|
-| Workshop folder | %%DRIVE_FOLDER_URL%% |
-| Presentation slides | %%DRIVE_SLIDES_URL%% |
-| Datasets (`DATA-01`–`DATA-05`) | %%DRIVE_DATA_URL%% |
+| **QuPath intro project** (`DATA-01` + `DATA-02`) | [Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) — ~500 MB. CMU-1 H&E and LuCa-7color, cells detected, classifiers saved. From [imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro) |
+| **Synthetic TME** (`TME-SYNTH`) | [GitHub release](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest) — ~20 MB, CC0 |
+| **Slides with labels** (`DATA-03`) | [LabelImageExamples_from_LJI.zip](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) — **over 500 MB** |
+| `DATA-04_tiles` | Not yet assembled |
+| Workshop folder | %DRIVE_FOLDER_URL% |
+| Presentation slides | %DRIVE_SLIDES_URL% |
 
 ## Shown, not practised
 
@@ -145,7 +148,7 @@ grep -rl '%%DRIVE_' . --exclude-dir=.git
 sed -i 's|%%DRIVE_FOLDER_URL%%|https://…|g' $(grep -rl '%%DRIVE_FOLDER_URL%%' . --exclude-dir=.git)
 ```
 
-Repeat for `%%DRIVE_SLIDES_URL%%` and `%%DRIVE_DATA_URL%%`.
+Repeat for `%%DRIVE_SLIDES_URL%%`. (`%%DRIVE_DATA_URL%%` is retired — datasets now link directly to where they are hosted.)
 
 ## Acknowledgements
 

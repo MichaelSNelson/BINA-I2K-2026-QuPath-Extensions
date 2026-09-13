@@ -81,24 +81,37 @@ Set **Tessdata Path** to the folder containing them, click OK. Barcode scanning 
 
 ## 5. Download the workshop data
 
-**Google Drive folder:** %%DRIVE_DATA_URL%%
+**Only download what your track needs.** There is no single bundle — each dataset comes from
+wherever it already lives, and the sizes differ by more than an order of magnitude.
 
-> Sample data provided by **Sara McArdle** and **Zbigniew Mikulski**, La Jolla Institute for Immunology (LJI). The majority of the workshop's test data comes from them — please credit LJI if you
+| Dataset | Where to get it | Size | Used by |
+|---|---|---|---|
+| **QuPath intro project**<br>`DATA-01_HE_WSI` + `DATA-02_multiplex_IF` | [Project folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) — download the whole folder and open it as a QuPath project | ~500 MB | QuIET, DL Pixel Classifier, Wizard Wand, Polyline Wand, Class Distribution, Classify Object Subset — **Tracks A and C** |
+| **`TME-SYNTH`**<br>synthetic tumour microenvironment | [GitHub release](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest) — 8 images, 8 channels, 6 cell types, full per-cell ground truth, CC0 | **~20 MB** | QP-CAT, Cluster 3D Navigator, Channel Names Viewer — **Track B** |
+| **`DATA-03_labeled_slides`**<br>slides with label images | [LabelImageExamples_from_LJI.zip](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) — 6 CZI whole-slide images, each carrying an embedded slide label | **over 500 MB** ⚠️ | OCR for Labels, Project Metadata Browser — **Track D** |
+| `DATA-04_tiles` | Coming — a tile directory with `TileConfiguration.txt` | small | Tiles to Pyramid — **Track D** |
+
+**The intro project** is the demo project from
+[imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro), already public and
+already assembled. It holds **CMU-1** (brightfield H&E) and **LuCa-7color** (8-channel multiplexed
+IF: PDL1 · CD8 · FoxP3 · CD68 · PD1 · CK · DAPI · autofluorescence), with cells detected and
+several saved object classifiers. Download the project folder and open it — that is the whole
+setup for Tracks A and C.
+
+> Prefer the individual images? That page links them at source: CMU-1 from the
+> [OpenSlide test data](http://openslide.cs.cmu.edu/download/openslide-testdata/Aperio/) and
+> LuCa-7color from the
+> [OME image repository](https://downloads.openmicroscopy.org/images/Vectra-QPTIFF/perkinelmer/).
+> You will have to build the project and detect cells yourself, so the folder is the faster route.
+
+> ### ⚠️ The label-slide zip is over 500 MB
+> It is six whole-slide CZI files, and the label image only exists *inside* the slide file — this
+> is why it cannot be a folder of small PNGs. **Download it at home**, and only if you are doing
+> the OCR / metadata track. Everything else in this workshop is far smaller.
+
+> **Sample slides provided by Sara McArdle and Zbigniew Mikulski**, La Jolla Institute for
+> Immunology. The majority of the workshop's test data comes from them — please credit LJI if you
 > use these datasets in your own work. See [acknowledgements](acknowledgements.md).
-
-Download the datasets for the track(s) you plan to do. Each is much smaller than the total.
-
-> **Track B needs nothing from Drive.** The synthetic dataset is ~20 MB, public domain, and
-> downloads directly from GitHub. If you are doing the multiplexed track, that one link is all
-> you need for data.
-
-| ID | Contents | Used by |
-|---|---|---|
-| `DATA-01_HE_WSI` | Annotated brightfield H&E project | QuIET, DL Pixel Classifier, Wizard Wand, Polyline Wand, Class Distribution — **Tracks A and C** |
-| **`TME-SYNTH`** | **Synthetic tumour-microenvironment dataset — 8 images, 8 channels, 6 cell types, full per-cell ground truth. ~20 MB, CC0.** Download straight from [its GitHub release](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest) — not on Drive | QP-CAT, Cluster 3D Navigator, Channel Names Viewer — **Track B** |
-| `DATA-02_multiplex_IF` | Multiplexed IF project with a saved object classifier | Classify Object Subset |
-| `DATA-03_labeled_slides` | WSIs with slide label images — some barcoded, at least one rotated | OCR for Labels, Project Metadata Browser |
-| `DATA-04_tiles` | A tile directory with `TileConfiguration.txt`, plus a drift-affected copy | Tiles to Pyramid |
 
 **You are also very welcome to bring your own data.** The second hour is optional exploration,
 and working on a problem you actually have is a better use of the time than working on ours.

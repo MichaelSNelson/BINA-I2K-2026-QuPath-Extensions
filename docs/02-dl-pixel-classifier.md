@@ -95,7 +95,7 @@ workshop**, it is a substantial download.
 
 ## Hands-on exercise (~15 min)
 
-**Data:** `DATA-01_HE_WSI` plus the pre-trained model from the workshop Drive folder.
+**Data:** `DATA-01_HE_WSI` — the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)), plus the pre-trained model (link to follow).
 
 1. `Extensions > DL Pixel Classifier` — open the extension and confirm the Python environment
    reports as ready.

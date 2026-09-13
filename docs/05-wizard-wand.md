@@ -73,7 +73,7 @@ Right-click the toolbar button for presets, auto-tuning, and reset.
 
 ## Hands-on exercise (~10 min)
 
-**Data:** `DATA-01_HE_WSI`.
+**Data:** `DATA-01_HE_WSI` — the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
 1. Press **Shift+W**. Click and drag on some tissue. Note that it already behaves like the
    built-in wand, with holes filled and edges smoothed.

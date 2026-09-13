@@ -39,28 +39,34 @@ the maintainer section of the [README](README.md).
 
 ## Datasets to assemble
 
-Referenced by ID throughout the exercises. Each should be a self-contained QuPath project or
-directory, zipped.
-
-- [ ] `DATA-01_HE_WSI` — annotated brightfield H&E project
-- [x] Multiplexed data solved by the **TME-QUANT synthetic dataset** (CC0, ~20 MB, public on
-      GitHub). No hosting, no consent question, and fully ground-truthed. Covers QP-CAT,
-      Cluster 3D Navigator and Channel Names Viewer
-- [ ] `DATA-02_multiplex_IF` — now only needed for Classify Object Subset, which Sara McArdle is
-      presenting, so nobody has to download it for a demo. Still wanted for the walkthrough:
-      building a saved object classifier on the synthetic data instead would remove the last
-      multiplex dependency on Drive entirely. **Low priority.**
-      Candidate on disk: `Scripting Demo/LuCa-7color_[13860,52919]_1x1component_data.tif` —
-      8-channel Akoya sample (PDL1 · CD8 · FoxP3 · CD68 · PD1 · CK · DAPI · AF), public data
-- [ ] `DATA-03_labeled_slides` — WSIs with label images; include barcodes and at least one
-      rotated label
-- [ ] `DATA-04_tiles` — tile directory with `TileConfiguration.txt`, plus a drift-affected copy
-      so content-based registration has something to fix. **Michael to source real tiles**
+- [x] **`DATA-01_HE_WSI` + `DATA-02_multiplex_IF`** — both already exist in the public
+      [QuPath intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), the demo project from
+      imagescientist.com/qupath-intro. CMU-1 (H&E) and LuCa-7color (8-channel IF), cells detected,
+      with ten saved object classifiers including `LUCA composite` and `LUCA without PDL1` — which
+      are exactly the classifier-stacking scenario Classify Object Subset teaches. ~500 MB.
+      Individual images are linked at source from that page (OpenSlide test data; OME repository)
+- [x] **`TME-SYNTH`** — CC0, ~20 MB, straight from GitHub. All of track B
+- [x] **`DATA-03_labeled_slides`** — [LabelImageExamples_from_LJI.zip](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing), **536 MB**, six CZI
+      whole-slide images from **Sara McArdle and Zbigniew Mikulski (LJI)**. Every one carries an
+      embedded `Label` attachment (verified). One label reads `histology@lji.org` / `610 TOMO` /
+      `2020-11-14` / `H&E` plus a 2D barcode — text, date and barcode on a single label, and the
+      slide behind the documented `@` / Enhance finding
+- [ ] `DATA-04_tiles` — the last missing dataset. Needs a tile directory with
+      `TileConfiguration.txt`, plus a drift-affected copy so content-based registration has
+      something to fix. Only real candidate on disk is the PPM acquisition folder
+      `OtherDocuments/JN209_amyloid2/ppm_20x_1/39518_36918` (8 tiles, 6 TileConfiguration
+      variants); `OtherDocuments/tiles` and `zstack_tiles` have no config at all.
+      **Michael to source real tiles**
 - [ ] `DATA-05_classified_project` — classified cells, ground-truth points, OpenCV ML classifier.
-      **Presenter-only** now that Confusion Matrix is demo-only; still needed to run the demo,
-      but attendees do not download it
-- [ ] Pre-trained model for the DL Pixel Classifier inference exercise
-- [ ] Check every dataset is redistributable (consent / licence) before it goes on a public link
+      **Presenter-only** (Confusion Matrix is demo-only), so attendees never download it. Nothing
+      on disk has ground-truth point sets yet
+- [ ] Pre-trained model for the DL Pixel Classifier inference exercise — step 2 says "load the
+      provided pre-trained model" and there is no saved model anywhere. Foundation encoders pull
+      from HuggingFace on demand, but a *trained classifier* for CMU-1 has to be made and saved
+- [x] Redistribution checked for what is published: CMU-1 is OpenSlide/Aperio public test data,
+      LuCa-7color is a public Akoya sample, TME-SYNTH is CC0, and the LJI slides are shared by
+      their owners. **Do not publish the loose label PNGs in `OtherDocuments/labelimages/`** —
+      they carry real accession numbers and were only ever working material
 
 ## Walkthrough videos and Padlet
 

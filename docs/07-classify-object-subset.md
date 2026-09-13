@@ -78,7 +78,7 @@ Restart QuPath.
 
 ## Try it yourself (~10 min)
 
-**Data:** `DATA-02_multiplex_IF` — cells detected, with at least one saved object classifier.
+**Data:** `DATA-02_multiplex_IF` — the LuCa-7color image in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), which already has cells detected and several saved object classifiers, including `LUCA composite` and `LUCA without PDL1`. Those two are the stacking scenario below, ready made.
 
 1. `Extensions > Classify Object Subset`.
 2. Choose a saved classifier. Set **Object source** to *Custom filter*.

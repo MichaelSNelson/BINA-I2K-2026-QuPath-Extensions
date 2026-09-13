@@ -69,7 +69,7 @@ or the release jar. Restart QuPath.
 
 ## Hands-on exercise (~8 min)
 
-**Data:** `DATA-01_HE_WSI`.
+**Data:** `DATA-01_HE_WSI` — the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
 1. `Extensions > Class Distribution`. Open the **annotation** distribution dialog.
 2. Look at the **Project** tab, then the **All images** grid. Which slide is the outlier?

@@ -79,7 +79,7 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 ## Hands-on exercise (~15 min)
 
-**Data:** `DATA-01_HE_WSI` (annotated H&E project) from the workshop Drive folder.
+**Data:** `DATA-01_HE_WSI` — the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
 ### Part A — a figure you could publish
 
