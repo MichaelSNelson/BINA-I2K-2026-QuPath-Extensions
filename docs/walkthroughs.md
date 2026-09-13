@@ -7,7 +7,7 @@ title: Walkthroughs and videos - every tool, whether or not we reach it
 
 **We will not get through all sixteen tools in two hours, and we are not going to pretend
 otherwise.** There are roughly forty minutes of live demonstration in the first hour and sixty
-optional minutes in the second — that is enough for a handful of tools done properly, not all of
+optional minutes in the second. That is enough for a handful of tools done properly, not all of
 them done badly.
 
 So every tool has a **complete written walkthrough** and a **recorded video** of it being done.
@@ -23,9 +23,9 @@ session:
 ### %%PADLET_URL%%
 
 Vote for as many as you like, and add a comment if you have a specific question or a dataset
-you are stuck on. A few slots are already fixed — QPSC, the Confusion Matrix and the fibre tools
+you are stuck on. A few slots are already fixed: QPSC, the Confusion Matrix and the fibre tools
 are shown regardless, and Channel Names Viewer and Classify Object Subset are
-demonstrated in **Sara McArdle's** earlier session — so the vote decides the rest. We will read it at the start and adjust the order. If your tool does not make
+demonstrated in **Sara McArdle's** earlier session, so the vote decides the rest. We will read it at the start and adjust the order. If your tool does not make
 the cut, its walkthrough and video are below and we are happy to sit with you in the second
 hour.
 
@@ -51,7 +51,7 @@ actually stops you.
 
 ## Hands-on tools
 
-Each of these you can install and run yourself — see the [extension index](extensions.md).
+Each of these you can install and run yourself; see the [extension index](extensions.md).
 
 | Tool | Walkthrough | Video | Approx. time |
 |---|---|---|---|
@@ -69,7 +69,7 @@ Each of these you can install and run yourself — see the [extension index](ext
 | Dialog Position Manager | [Guide](12-dialog-position-manager.md) | %%VIDEO_DIALOG_POSITION_MANAGER%% | 5 min |
 | Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md) | %%VIDEO_TILES_TO_PYRAMID%% | 12 min |
 
-Total if you did every one: roughly **2 hours 30 minutes** — which is why the second hour is a
+Total if you did every one: roughly **2 hours 30 minutes**, which is why the second hour is a
 menu rather than a queue. The [schedule](schedule.md) suggests four routes through them, of
 about fifty minutes each.
 
@@ -80,7 +80,7 @@ what they do and decide whether they are worth the setup.
 
 | Tool | Walkthrough | Video | Why not hands-on |
 |---|---|---|---|
-| QPSC — QuPath Scope Control | [Overview](presented/qpsc.md) | %%VIDEO_QPSC%% | Needs a microscope — shown, never run |
+| QPSC — QuPath Scope Control | [Overview](presented/qpsc.md) | %%VIDEO_QPSC%% | Needs a microscope; shown, never run |
 | Confusion Matrix | [Guide](presented/confusion-matrix.md) | %%VIDEO_CONFUSION_MATRIX%% | Repository currently private |
 | Collagen fibre and texture analysis | [Guide](presented/fiber-analysis.md) | %%VIDEO_FIBER_ANALYSIS%% | Long environment build, or a Windows-only server plus a pipeline that cannot be redistributed |
 
@@ -99,7 +99,7 @@ and **Zbigniew Mikulski** at the **La Jolla Institute for Immunology**. See
 Tell us. A step that reads clearly to the person who wrote the tool and makes no sense to
 anyone else is a documentation bug, and we would rather hear about it than not.
 
-- During the session: grab us — we will be circulating for the whole second hour.
+- During the session: grab us. We will be circulating for the whole second hour.
 - Afterwards: open an issue on the
   [workshop repository](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/issues),
   or on the individual extension's repository if the problem is with the tool rather than the

@@ -5,7 +5,7 @@ title: Class Distribution
 
 # Class Distribution
 
-> Live pie charts of class distribution across your project — and the classifier training
+> Live pie charts of class distribution across your project, plus the classifier training
 > balance those annotations imply. Spot class imbalance *before* you export training data,
 > not after the classifier disappoints you.
 
@@ -28,9 +28,9 @@ title: Class Distribution
 
 Two dialogs:
 
-- **Annotation class distribution** — how your annotation classes are distributed. Closed
+- **Annotation class distribution**: how your annotation classes are distributed. Closed
   annotations count by **area**; polylines count by **length**.
-- **Detection-classifier training balance** — how many *detections* each class would label,
+- **Detection-classifier training balance**: how many *detections* each class would label,
   given your current training annotations. This is the number that actually determines
   whether a classifier can learn a class, and it is not the same as the number of annotations
   you drew.
@@ -69,7 +69,7 @@ or the release jar. Restart QuPath.
 
 ## Hands-on exercise (~8 min)
 
-**Data:** `DATA-01_HE_WSI` — the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
 1. `Extensions > Class Distribution`. Open the **annotation** distribution dialog.
 2. Look at the **Project** tab, then the **All images** grid. Which slide is the outlier?
@@ -77,7 +77,7 @@ or the release jar. Restart QuPath.
 4. Draw a few more annotations of your least-represented class. Watch the chart move in real
    time.
 5. Now open the **detection-classifier training balance** dialog. Compare it to the annotation
-   chart — they will not agree, and the gap is the point.
+   chart. They will not agree, and the gap is the point.
 6. Find a class marked `[under]`. Annotate until it is no longer marked.
 7. Filter to a single **ImageType** and see whether the imbalance is type-specific.
 

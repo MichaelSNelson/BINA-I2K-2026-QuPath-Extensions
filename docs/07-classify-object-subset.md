@@ -6,8 +6,8 @@ title: Classify Object Subset
 # Classify Object Subset
 
 > Run a saved object classifier on a *chosen subset* of objects instead of every object in
-> the image. Pick the subset by class, by measurement value, by what you have selected — or
-> any combination — with a live count before you commit.
+> the image. Pick the subset by class, by measurement value, by what you have selected, or
+> any combination, with a live count before you commit.
 
 | | |
 |---|---|
@@ -17,7 +17,7 @@ title: Classify Object Subset
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Classify Object Subset` |
 | **Catalog** | LOCI QuPath Extensions |
-| **Session** | Mentioned — presented in Sara McArdle’s earlier session |
+| **Session** | Mentioned; presented in Sara McArdle’s earlier session |
 
 > **Walkthrough video:** %%VIDEO_CLASSIFY_OBJECT_SUBSET%%
 > The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
@@ -26,10 +26,10 @@ title: Classify Object Subset
 
 > **On 0.1.x already?** Replace it. Releases before 0.2.0 shipped a jar named
 > `qupath-extension-gated-object-classifier-*.jar` and show as **Gated Object Classifier** in the
-> menu — the extension's former name. 0.2.0 is the first release carrying the current name, and
+> menu, the extension's former name. 0.2.0 is the first release carrying the current name, and
 > it is the one with multiple measurement thresholds and class checkboxes.
 
-> **You saw this in Sara McArdle's session earlier today** — *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
+> **You saw this in Sara McArdle's session earlier today**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
 > Both this extension and its sibling grew out of her Groovy scripts, so we point back to her
 > demo rather than repeating it. The walkthrough below is here for the hands-on hour.
 
@@ -39,20 +39,20 @@ QuPath's built-in `Classify > Object classification > Apply classifier` always r
 **every** compatible object in the image. There is no built-in GUI for "apply this classifier
 only to cells that are Tumor," or "only to cells the previous classifier left unclassified."
 
-You can do it in Groovy — this pattern was originally explored in
+You can do it in Groovy. This pattern was originally explored in
 [Sara McArdle's `B_Helper_Cyto.groovy`](https://github.com/saramcardle/Image-Analysis-Scripts/blob/master/QuPath%20Groovy%20Scripts/Workshop%20Examples/B_Helper_Cyto.groovy)
 and discussed in [this image.sc thread](https://forum.image.sc/t/feature-request-apply-classifiers-to-only-some-selected-objects/86383)
-— but only if you are comfortable writing scripts. This extension is the GUI for it.
+but only if you are comfortable writing scripts. This extension is the GUI for it.
 
 **Pick the subset by:**
 
 - **class** (one or several),
-- **measurement value** (e.g. `Cell: Autofluorescence max` greater than 11.0) — **as many
-  conditions as you need**, added a row at a time, not just one,
+- **measurement value** (e.g. `Cell: Autofluorescence max` greater than 11.0), **as many
+  conditions as you need**, added a row at a time,
 - **current viewer selection**,
 - or any combination of the above.
 
-The dialog shows a **live count** — "337 of 5,353 objects will be classified" — before you
+The dialog shows a **live count**, "337 of 5,353 objects will be classified", before you
 click Apply. That number is the whole point: you find out you targeted the wrong 5,000
 objects *before* you overwrite them.
 
@@ -66,7 +66,7 @@ objects *before* you overwrite them.
   touching the rest of the image.
 
 **Every Apply is recorded as a workflow step**, so the same subset operation can be re-run
-across a whole project as a script — the GUI is exploratory, the script is reproducible.
+across a whole project as a script: the GUI is exploratory, the script is reproducible.
 
 ## Install
 
@@ -78,13 +78,13 @@ Restart QuPath.
 
 ## Try it yourself (~10 min)
 
-**Data:** `DATA-02_multiplex_IF` — the LuCa-7color image in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), which already has cells detected and several saved object classifiers, including `LUCA composite` and `LUCA without PDL1`. Those two are the stacking scenario below, ready made.
+**Data:** `DATA-02_multiplex_IF`, the LuCa-7color image in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), which already has cells detected and several saved object classifiers, including `LUCA composite` and `LUCA without PDL1`. Those two are the stacking scenario below, ready made.
 
 1. `Extensions > Classify Object Subset`.
 2. Choose a saved classifier. Set **Object source** to *Custom filter*.
 3. Add a **class filter**. Watch the live count change.
 4. Add a **measurement filter** on top of it. Watch it change again.
-5. Before clicking Apply, predict what the count *should* be. Check whether you were right —
+5. Before clicking Apply, predict what the count *should* be. Check whether you were right.
    this is the habit the tool is trying to build.
 6. Apply.
 7. Now do the stacked-classifier trick: filter to **unclassified** cells only, and run a
@@ -97,7 +97,7 @@ Restart QuPath.
 - The live count is a guard against the most expensive mistake in object classification:
   silently reclassifying work you already did.
 - Stacked classifiers are often much easier to build and validate than one big multi-class
-  classifier — each one only has to be good at one distinction.
+  classifier, and each one only has to be good at one distinction.
 - Because every Apply becomes a workflow step, the exploratory session you just did converts
   directly into a batch script.
 

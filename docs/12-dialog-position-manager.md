@@ -6,7 +6,7 @@ title: Dialog Position Manager
 # Dialog Position Manager
 
 > Remembers and restores dialog window positions across QuPath sessions, and recovers windows
-> that have become unreachable — the classic "I unplugged the second monitor and now the
+> that have become unreachable: the classic "I unplugged the second monitor and now the
 > dialog is gone" problem.
 
 | | |
@@ -32,12 +32,12 @@ title: Dialog Position Manager
   restored when reopened.
 - **Off-screen recovery.** Detects dialogs positioned on a disconnected monitor and brings
   them back.
-- **HiDPI awareness.** Handles display scaling changes and mixed-DPI multi-monitor setups —
+- **HiDPI awareness.** Handles display scaling changes and mixed-DPI multi-monitor setups,
   the case where a window is technically on-screen but drawn at the wrong scale or position.
 - **Tracks all dialogs by default.** Works out of the box with any QuPath dialog, including
   ones from other extensions.
 - **Shared storage (0.4.0+).** Point several workstations at one JSON file on a network drive
-  and share dialog layouts across a core facility — everyone sits down to the same arrangement.
+  and share dialog layouts across a core facility, so everyone sits down to the same arrangement.
 
 ## Why it exists
 
@@ -52,7 +52,7 @@ human unplugs a monitor.
 
 ## Recovering a lost dialog
 
-**All at once:** `Window > Recover Off-Screen Dialogs` — every off-screen dialog is instantly
+**All at once:** `Window > Recover Off-Screen Dialogs`. Every off-screen dialog is instantly
 centred on your primary monitor.
 
 **One specific dialog:** `Window > Dialog Position Manager...`, find it in the list

@@ -8,16 +8,16 @@ title: How QuPath extensions, catalogs, and AI-assisted development work
 *Read this one first. Everything else in this workshop assumes it.*
 
 QuPath is a desktop application for analysing large 2D images, but almost none of what
-we are showing you today lives inside QuPath itself. It lives in **extensions** —
-separate, independently released pieces of software that QuPath loads at startup and
-that can add menus, toolbar buttons, dialogs, viewers, and entire analysis pipelines.
+we are showing you today lives inside QuPath itself. It lives in **extensions**: separate,
+independently released pieces of software that QuPath loads at startup and that can add
+menus, toolbar buttons, dialogs, viewers, and entire analysis pipelines.
 
 This page covers three things:
 
 1. What an extension actually *is*, and how you install and update one.
 2. What a **catalog** is, and why it is the only sane way to distribute more than one extension.
-3. How this suite was built — including, honestly, where a large language model helped and
-   where it did not.
+3. How this suite was built, including where a large language model helped and where it
+   did not.
 
 ---
 
@@ -29,8 +29,8 @@ calls into it so the extension can install its menu items and tools.
 
 Concretely, an extension is a class implementing `QuPathExtension`, declared in the jar's
 `META-INF/services/` directory so Java's service loader finds it. Everything you see in
-QuPath's UI from one of our extensions — a new item under `Extensions >`, a toolbar
-button, a preferences category — was registered by that class during startup.
+QuPath's UI from one of our extensions (a new item under `Extensions >`, a toolbar
+button, a preferences category) was registered by that class during startup.
 
 Three consequences follow, and all three will bite you at some point:
 
@@ -51,23 +51,23 @@ and change the folder in QuPath at `Extensions > Installed extensions`. If you e
 to clean house, deleting the jars in that folder is safe and reversible.
 
 **Extensions are compiled against a specific QuPath API.** QuPath's internal API changes
-between minor versions. A jar built for 0.5 may throw `NoSuchMethodError` on 0.7 — often
-not at startup, but at the moment you click the one menu item that touches the changed
+between minor versions. A jar built for 0.5 may throw `NoSuchMethodError` on 0.7, often
+not at startup but at the moment you click the one menu item that touches the changed
 method. This is why every extension declares a *minimum QuPath version*, and why almost
 everything in this workshop requires **QuPath 0.7.0 or later**.
 
 > **Workshop requirement:** QuPath **0.7.0+**. Two extensions (Wizard Wand, Polyline
-> Wand) also run on 0.6, but do not mix — install 0.7 and use it for everything today.
+> Wand) also run on 0.6, but do not mix them. Install 0.7 and use it for everything today.
 
 ### Installing one extension, three ways
 
-- **Catalog** (preferred — see below). Updates arrive automatically.
+- **Catalog** (preferred; see below). Updates arrive automatically.
 - **Drag and drop.** Drag the `.jar` onto a running QuPath window; accept the offer to
   copy it into your extensions folder; restart.
 - **By hand.** Copy the `.jar` into the extensions folder yourself; restart.
 
-Note that our release jars are named `...-all.jar`. That "all" means a **shadow jar** —
-the extension plus all of its own dependencies bundled into one file, with conflicting
+Note that our release jars are named `...-all.jar`. That "all" means a **shadow jar**: the
+extension plus all of its own dependencies bundled into one file, with conflicting
 packages relocated so they cannot collide with QuPath's own copies of the same libraries.
 If you download a jar *without* `-all` in the name, it will load and then fail with
 `ClassNotFoundException` the moment it needs a dependency. Always take the `-all` jar.
@@ -104,15 +104,15 @@ is available.
 > ## ⚠️ Do **not** install everything in it
 >
 > Adding a catalog does **not** install anything. It shows you a list. **Install only the
-> extensions you actually want** — two of them (QP-CAT and the DL Pixel Classifier) each pull
+> extensions you actually want.** Two of them (QP-CAT and the DL Pixel Classifier) each pull
 > down a **1.5–2.5 GB** Python environment on first use, and installing them by accident is the
 > single fastest way to ruin your morning on conference wifi.
 >
 > Pick individual tools from the **[extension index](extensions.md)**, or follow the
 > **[setup guide](setup.md)** for exactly what each hands-on track needs.
 
-There is a second LOCI catalog — **QPSC Microscope Extensions**
-(`https://github.com/uw-loci/qupath-catalog-qpsc`) — carrying the microscope-control stack.
+There is a second LOCI catalog, **QPSC Microscope Extensions**
+(`https://github.com/uw-loci/qupath-catalog-qpsc`), carrying the microscope-control stack.
 **You do not need it for this workshop.** The two tools from it that need no hardware, OCR for
 Labels and Tiles to Pyramid, are now in the main catalog as well, so there is no reason to add a
 whole acquisition catalog to reach them.
@@ -149,8 +149,8 @@ Three fields carry all the weight:
 - **`version_range.min`** is the compatibility contract. QuPath uses it to hide or warn
   about extensions that will not work with the version you are running.
 - The **`releases` array is a history**, newest first. Users can roll back to an older
-  release without hunting through GitHub — which matters enormously when a new release
-  breaks something in the middle of someone's analysis.
+  release without hunting through GitHub, which matters when a new release breaks
+  something in the middle of someone's analysis.
 
 ### Why you might want your own catalog
 
@@ -166,7 +166,7 @@ You are welcome to fork `qupath-catalog-mikenelson` as a starting point.
 Fourteen extensions is not a normal output for one person. It is fair to ask how, and the
 honest answer is that a large fraction of the code was written by an LLM coding agent
 (Claude Code) under close human direction. Since several of you will go home and try this,
-here is what genuinely worked and what did not.
+this section covers what worked and what did not.
 
 ### What works
 
@@ -193,7 +193,7 @@ by hand against a changed API was not realistic. The
 [`qupath-update-extension-validator`](https://github.com/MichaelSNelson/qupath-update-extension-validator)
 points at N extension repos and two QuPath versions and produces a per-repo
 BROKEN / DEPRECATED / OPPORTUNITY worklist by inspecting bytecode with `javap`. This is
-the kind of tedious, mechanical, high-value work that agents are genuinely good at — and
+the kind of tedious, mechanical, high-value work that agents are genuinely good at, and
 it is checkable, because the compiler agrees or does not.
 
 **Small, reviewable, releasable increments.** Every extension here ships as versioned
@@ -218,7 +218,7 @@ human opening the application. Notably, the Dialog Position Manager extension ex
 *because* of this class of bug.
 
 **Licensing by vibes.** QuPath's core is GPL-3.0. Linking it generally makes your extension
-GPL-3.0 too — which is why some tools here are GPL and others (which avoid that linkage)
+GPL-3.0 too, which is why some tools here are GPL and others, which avoid that linkage,
 are Apache-2.0. Get this wrong and you cannot legally distribute your work. It is worth
 twenty minutes of a human's attention per project.
 
@@ -234,7 +234,7 @@ still yours.
 
 ## Where to go next
 
-- [Extension index](extensions.md) — every extension, its install source, and its guide.
-- [Setup guide](setup.md) — what to install before the hands-on hour.
-- [Workshop schedule](schedule.md) — what happens when.
+- [Extension index](extensions.md): every extension, its install source, and its guide.
+- [Setup guide](setup.md): what to install before the hands-on hour.
+- [Workshop schedule](schedule.md): what happens when.
 - The per-extension pages, linked from the [workshop home page](../).

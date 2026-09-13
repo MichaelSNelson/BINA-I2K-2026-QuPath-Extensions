@@ -15,7 +15,7 @@ title: Wizard Wand
 | **Version at workshop** | 0.4.3 |
 | **License** | GPL-3.0 |
 | **Requires** | QuPath 0.6.0+ (use 0.7 today) |
-| **Where to find it** | Toolbar (sparkle-wand icon) — **Shift+W** |
+| **Where to find it** | Toolbar (sparkle-wand icon) · **Shift+W** |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
@@ -29,7 +29,7 @@ title: Wizard Wand
 Annotation is where most people spend most of their QuPath time, so a wand that needs fewer
 corrections is worth more than it sounds.
 
-Wizard Wand installs as a **separate toolbar button**. QuPath's built-in wand is untouched —
+Wizard Wand installs as a **separate toolbar button**. QuPath's built-in wand is untouched:
 you can ignore this one entirely until you want it.
 
 Out of the box it behaves like the built-in wand with two upgrades already on:
@@ -39,8 +39,8 @@ Out of the box it behaves like the built-in wand with two upgrades already on:
 
 Everything else is off until you turn it on in Preferences:
 
-**Hold-to-grow.** Keep the cursor still and the selection expands on its own — a region-growing
-behaviour rather than a drag-to-cover one. Good for structures with a well-defined edge and a
+**Hold-to-grow.** Keep the cursor still and the selection expands on its own, growing
+from the region rather than following a drag. Good for structures with a well-defined edge and a
 messy interior.
 
 **Colour-space modes.** How the wand decides "this is the same colour as where I clicked":
@@ -48,15 +48,15 @@ messy interior.
 | Mode | When to use |
 |---|---|
 | **RGB** (default) | General-purpose |
-| **GRAY** | Ignores colour, brightness only — grayscale, or H&E where you want stain intensity |
-| **LAB_DISTANCE** | Perceptual colour distance — better than RGB for subtle stain differences |
-| **HSV** | Select by hue regardless of brightness — e.g. all blue nuclei, including dark ones |
+| **GRAY** | Ignores colour, brightness only. Grayscale, or H&E where you want stain intensity |
+| **LAB_DISTANCE** | Perceptual colour distance, better than RGB for subtle stain differences |
+| **HSV** | Select by hue regardless of brightness, e.g. all blue nuclei, including dark ones |
 
 **Sensitivity.** How greedy the wand is. Lower stays tight against obvious edges; higher
 swallows bigger uniform regions per click. (Internally `threshold = stddev × sensitivity`.)
 
 **Auto-tuning.** Draw one annotation the way you want it, then let the wand derive its own
-settings from your example. This is the feature to try first — it converts "fiddle with four
+settings from your example. This is the feature to try first, because it converts "fiddle with four
 sliders" into "show me once."
 
 **Edge stops** and **simplification** are also available in Preferences.
@@ -73,7 +73,7 @@ Right-click the toolbar button for presets, auto-tuning, and reset.
 
 ## Hands-on exercise (~10 min)
 
-**Data:** `DATA-01_HE_WSI` — the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
 1. Press **Shift+W**. Click and drag on some tissue. Note that it already behaves like the
    built-in wand, with holes filled and edges smoothed.
@@ -91,7 +91,7 @@ Right-click the toolbar button for presets, auto-tuning, and reset.
 
 - Auto-tuning is the headline. Settings derived from your own example beat settings you
   guessed.
-- Hole filling and smoothing sound cosmetic but change downstream numbers — area
+- Hole filling and smoothing sound cosmetic but change downstream numbers: area
   measurements, mask exports, and training data all inherit boundary noise.
 - If it ever gets weird, `Reset Wizard Wand preferences` from the right-click menu puts
   everything back.

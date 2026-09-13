@@ -6,7 +6,7 @@ title: Polyline Wand and Brush
 # Polyline Wand and Brush
 
 > QuPath's brush and wand work on areas. This adds the same fluid editing to **lines and
-> polylines** — push a section of a traced boundary outward, erase backwards from an
+> polylines**: push a section of a traced boundary outward, erase backwards from an
 > overshot endpoint, smooth a noisy trace, or cut a polyline in two.
 
 | | |
@@ -15,7 +15,7 @@ title: Polyline Wand and Brush
 | **Version at workshop** | 0.3.6 |
 | **License** | GPL-3.0 |
 | **Requires** | QuPath 0.6.0+ (use 0.7 today) |
-| **Where to find it** | Toolbar (wand-pushing-a-polyline icon) — **Shift+P** |
+| **Where to find it** | Toolbar (wand-pushing-a-polyline icon) · **Shift+P** |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
@@ -40,13 +40,13 @@ Four situations, all of which currently mean "delete it and start over":
 The toolbar exposes a single **Polyline Wand** tool. Right-click the button to switch engines
 at runtime; each solves "push the line around" differently.
 
-**Direct vertex push** (default) — a per-frame brush displaces affected vertices with a
+**Direct vertex push** (default) uses a per-frame brush to displace affected vertices with a
 configurable falloff (cosine / linear / gaussian). Local densification keeps sparse segments
 responsive; end-of-stroke runs a vertex compactor and a self-intersection loop remover, so
 the line collapses cleanly when pushed over itself. The most reactive of the two: the brush
 can start anywhere and pulls the line toward it whenever the line enters the brush footprint.
 
-**Arc-length displacement field** — locks an active arc-length window of 2× brush radius at
+**Arc-length displacement field** locks an active arc-length window of 2× brush radius at
 press, and per frame touches only the K vertices in that window. Each vertex moves by
 `kernel_weight × strength × (brush_motion · local_normal)`, so **only the perpendicular
 component of cursor motion shifts the curve**. Holding still, or dragging along the line,
@@ -60,14 +60,14 @@ accidentally drag your line sideways, use the second.
 
 - **Local region editing.** At mouse-press only the section within ~3× brush radius is
   editable; head and tail are spliced back bit-exact at commit, so untouched segments are
-  never re-shaped. This also keeps long polylines fast — the engine sees ~50 vertices, not
+  never re-shaped. This also keeps long polylines fast, because the engine sees ~50 vertices, not
   10,000.
 - **Scissors / cut-at-click.** Right-click → **Mode** → *Scissors*. The icon swaps to
   scissors; a click on the selected polyline splits it into two annotations at the closest
   point, removes the original, and selects the first half. Both pieces inherit the original's
   class, name, and colour.
 - **Zoom-aware brush.** By default the radius is in *screen* pixels, so the on-screen size
-  stays constant and zooming out covers more image — matching QuPath's built-in brush. Turn
+  stays constant and zooming out covers more image, matching QuPath's built-in brush. Turn
   it off to lock the brush to image pixels.
 - **Cursor matches felt effect.** The solid circle is drawn where the falloff still has
   significant strength (75% of radius by default); the faint dashed ring is the true maximum
@@ -100,11 +100,11 @@ Via the **LOCI QuPath Extensions** catalog, or the `-all.jar` from
 
 ## Hands-on exercise (~10 min)
 
-**Data:** `DATA-01_HE_WSI` — the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
 1. Draw a long polyline along a tissue boundary with QuPath's normal polyline tool. Deliberately
    overshoot the end.
-2. Press **Shift+P**. Start a stroke *near the overshot endpoint* — the line erases backwards.
+2. Press **Shift+P**. Start a stroke *near the overshot endpoint* and the line erases backwards.
 3. Find a section where your trace cuts a corner. Push it outward with the default engine.
 4. Right-click → **Engine** → *Displacement field*. Push the same kind of section. Notice that
    dragging **along** the line now does nothing, and only perpendicular motion moves it.

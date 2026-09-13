@@ -10,14 +10,14 @@ title: Acknowledgements
 **The majority of the test and demonstration data used throughout this workshop was provided by
 Sara McArdle and Zbigniew Mikulski at the La Jolla Institute for Immunology (LJI).**
 
-This is not a small contribution and it is not a footnote. Almost every exercise on this site —
+This is not a small contribution and it is not a footnote. Almost every exercise on this site,
 the annotation work, the classifier training and validation, the multiplexed analysis, the
-export examples — was developed against their images. Tools like these cannot be built, tested,
+export examples, was developed against their images. Tools like these cannot be built, tested,
 or taught without real data from people willing to share it, and far more of this workshop rests
 on that generosity than on any single piece of software here.
 
-Sara McArdle also demonstrates two of these tools herself, in the session before ours —
-*Tips and tricks for maintaining sanity during hi-plex classification in QuPath* — which is fitting,
+Sara McArdle also demonstrates two of these tools herself, in the session before ours,
+*Tips and tricks for maintaining sanity during hi-plex classification in QuPath*, which is fitting,
 because Channel Names Viewer and Classify Object Subset both began as her scripts.
 
 Sara McArdle has also shaped the software directly. Two of the extensions in this workshop began
@@ -35,7 +35,7 @@ instructional pages are structured.
 If you use the workshop datasets in your own work, please credit LJI and the contributors above.
 
 **One exception:** the multiplexed exercises use the
-[TME-QUANT synthetic dataset](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest), produced at LOCI and released under **CC0** — entirely
+[TME-QUANT synthetic dataset](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest), produced at LOCI and released under **CC0**, entirely
 synthetic, no patient or animal tissue, no attribution required. Reuse it in your own teaching
 freely.
 
@@ -58,13 +58,13 @@ cite the method, not just the extension.
 
 | Tool | Builds on |
 |---|---|
-| [Collagen fibre analysis](presented/fiber-analysis.md) | **CT-FIRE** — Bredfeldt J S, Liu Y, Pehlke C A, *et al.* (2014). **J Biomed Opt** 19(1):016007 · **CurveAlign** (LOCI, UW–Madison) |
-| [Collagen fibre analysis](presented/fiber-analysis.md) | **TACS** — Conklin M W, Eickhoff J C, Riching K M, *et al.* (2011). **Am J Pathol** 178(3):1221–1232 · Provenzano P P, Inman D R, Eliceiri K W, *et al.* (2008). **BMC Medicine** 6:11 |
-| [Collagen fibre analysis](presented/fiber-analysis.md) | **TWOMBLI** — Wershof E, Park D, Barry D J, *et al.* (2021). **Life Sci Alliance** 4(3):e202000880 |
+| [Collagen fibre analysis](presented/fiber-analysis.md) | **CT-FIRE**: Bredfeldt J S, Liu Y, Pehlke C A, *et al.* (2014). **J Biomed Opt** 19(1):016007 · **CurveAlign** (LOCI, UW–Madison) |
+| [Collagen fibre analysis](presented/fiber-analysis.md) | **TACS**: Conklin M W, Eickhoff J C, Riching K M, *et al.* (2011). **Am J Pathol** 178(3):1221–1232 · Provenzano P P, Inman D R, Eliceiri K W, *et al.* (2008). **BMC Medicine** 6:11 |
+| [Collagen fibre analysis](presented/fiber-analysis.md) | **TWOMBLI**: Wershof E, Park D, Barry D J, *et al.* (2021). **Life Sci Alliance** 4(3):e202000880 |
 | [QP-CAT](03-qp-cat-cell-analysis-tools.md) | **CytoMAP** and **QuBaLab**, whose approaches to bringing clustering into QuPath this continues · **scanpy**, **squidpy**, **Harmony**, **Leiden**, **HDBSCAN**, **BANKSY** |
-| [QuIET](01-quiet-image-export.md) | **QUAREP-LiMi** — the community reporting standards embedded in its guidance panels |
+| [QuIET](01-quiet-image-export.md) | **QUAREP-LiMi**: the community reporting standards embedded in its guidance panels |
 | [DL Pixel Classifier](02-dl-pixel-classifier.md) | Histology-pretrained and pathology foundation-model encoders released by their respective authors · integration approach inspired by **LazySlide** (Zheng *et al.* 2026, *Nature Methods*) |
-| [Confusion Matrix](presented/confusion-matrix.md) | Originated by **Kristin Gallick** — concept and initial scripts; built out at LOCI. [Repository](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
+| [Confusion Matrix](presented/confusion-matrix.md) | Originated by **Kristin Gallick**: concept and initial scripts; built out at LOCI. [Repository](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
 | Several tools | **Appose**, which makes the embedded Python environments possible without conda |
 
 Full per-method references are in each extension's own repository.
@@ -73,7 +73,7 @@ Full per-method references are in each extension's own repository.
 
 ## Where tools came from
 
-**Kristin Gallick** originated the [Confusion Matrix](presented/confusion-matrix.md) extension —
+**Kristin Gallick** originated the [Confusion Matrix](presented/confusion-matrix.md) extension:
 the initial concept and half of the scripts it grew from. We developed it from there into the
 tool that turns "the classifier looks good" into a number with a confidence interval attached.
 

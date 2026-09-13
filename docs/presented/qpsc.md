@@ -5,7 +5,7 @@ title: QPSC - QuPath Scope Control (presented only)
 
 # QPSC — QuPath Scope Control
 
-> **Shown, not run — by anyone in the room, including you.**
+> **Shown, not run by anyone in the room, including you.**
 > QPSC drives real microscope hardware. We are not connecting thirty laptops to a microscope
 > from a conference room, so you watch this one: a live demo from our instrument (network
 > permitting), plus this page to take away.
@@ -17,7 +17,7 @@ title: QPSC - QuPath Scope Control (presented only)
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, plus Micro-Manager, Pycro-Manager, a Python command server, and a microscope |
 | **Catalog** | QPSC Microscope Extensions |
-| **Session** | Shown only — no attendee hands-on |
+| **Session** | Shown only; no attendee hands-on |
 
 > **Walkthrough video:** %%VIDEO_QPSC%%
 > This tool is shown rather than practised. The page below is a complete overview, so you can judge whether QPSC is worth setting up on your own instrument later.
@@ -31,7 +31,7 @@ high-resolution images of regions you select.
 
 In plain terms: draw a box around a region in QuPath, and QPSC moves the stage, captures every
 tile needed to cover that region, stitches them, and adds the resulting image back into your
-QuPath project — with metadata intact.
+QuPath project, with metadata intact.
 
 The extension talks to the microscope through
 [Pycro-Manager](https://pycro-manager.readthedocs.io/) and
@@ -44,11 +44,11 @@ QPSC is the reason the rest of this suite exists in the shape it does. Once acqu
 driven from QuPath, the boundary between "acquisition software" and "analysis software"
 stops being where your data has to change hands:
 
-- The region you *analysed* is the region you *acquire at high resolution* — targeting is
+- The region you *analysed* is the region you *acquire at high resolution*, so targeting is
   driven by annotations, not by re-finding the spot by eye.
 - Acquisition metadata arrives in the QuPath project rather than in a separate folder that
   gets separated from the images by Christmas.
-- [Tiles to Pyramid](../13-tiles-to-pyramid.md) is the stitching stage of this pipeline —
+- [Tiles to Pyramid](../13-tiles-to-pyramid.md) is the stitching stage of this pipeline,
   and it is fully usable on its own, which is why *it* is in the hands-on session.
 
 ## Core capabilities
@@ -61,18 +61,18 @@ stops being where your data has to change hands:
 | **Acquisition wizard** | Checks prerequisites and walks new users through configuration |
 | **Automated stage control** | XY, Z and rotation stages, with safety bounds checking |
 | **Multi-angle imaging (PPM)** | Polarised-light acquisition with automatic rotation sequences |
-| **Multi-channel widefield IF** | Vendor-agnostic channel library driven by YAML presets and device property writes — works with any Micro-Manager-driven illuminator |
+| **Multi-channel widefield IF** | Vendor-agnostic channel library driven by YAML presets and device property writes; works with any Micro-Manager-driven illuminator |
 | **BF + IF** | Combined brightfield and immunofluorescence in a single acquisition pass on single-camera scopes |
 | **Micro-Manager MDA export** | Auto-exports MM-compatible MDA files (`.txt` settings, `.pos` positions) alongside every acquisition |
 
 ### Live imaging and stage control
 
-- **Live camera viewer** — real-time feed with a dockable histogram, per-channel saturation %,
+- **Live camera viewer**: real-time feed with a dockable histogram, per-channel saturation %,
   RGB readouts, an optional on-image XYZ(R) position overlay, display scale controls, and
   snapshot capture with optional background correction.
-- **Integrated stage control** — virtual joystick, FOV-based step sizes, saved stage
+- **Integrated stage control**: virtual joystick, FOV-based step sizes, saved stage
   positions, double-step arrows, all inside the live viewer.
-- **Stage map** — a visual map of the stage insert with configurable macro-image overlay and
+- **Stage map**: a visual map of the stage insert with configurable macro-image overlay and
   real-time position tracking.
 
 ### Calibration and camera tools
@@ -101,7 +101,7 @@ Start with the [QPSC system overview](https://github.com/uw-loci/QPSC) and its
 [installation guide](https://github.com/uw-loci/qupath-extension-qpsc/blob/main/documentation/INSTALLATION.md).
 Budget real time for the Micro-Manager side; the QuPath extension is the easy part.
 
-We are happy to talk through what it would take on your instrument — find us after the
+We are happy to talk through what it would take on your instrument. Find us after the
 session.
 
 ---

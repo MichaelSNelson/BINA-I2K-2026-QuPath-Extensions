@@ -6,7 +6,7 @@ title: Tiles to Pyramid
 # Tiles to Pyramid
 
 > Stitch a directory of acquisition tiles into a seamless pyramidal OME-TIFF or OME-ZARR,
-> from inside QuPath — with optional content-based tile registration for stages that lie
+> from inside QuPath, with optional content-based tile registration for stages that lie
 > about where they were.
 
 | | |
@@ -19,7 +19,7 @@ title: Tiles to Pyramid
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
-> Part of the [QPSC](presented/qpsc.md) system, but **usable entirely on its own** — it needs
+> Part of the [QPSC](presented/qpsc.md) system, but **usable entirely on its own**. It needs
 > no microscope, no Python server, and no acquisition running. If you have a folder of tiles,
 > this stitches them.
 
@@ -43,7 +43,7 @@ title: Tiles to Pyramid
 content in their overlap, rather than trusting nominal stage coordinates. It corrects
 backlash, encoder error, and thermal drift. One solve is measured on a reference subdirectory
 and **reused by every angle and channel**, so co-captured images stay registered *to each
-other* — which is the property that matters for multi-angle or multi-channel acquisitions.
+other*, which is the property that matters for multi-angle or multi-channel acquisitions.
 
 **Output**
 
@@ -54,7 +54,7 @@ other* — which is the property that matters for multi-angle or multi-channel a
   `UNCOMPRESSED`); for OME-ZARR these map to Blosc codecs internally.
 - **Batch processing** across multiple slides with matching criteria, creating separate outputs
   per matched subdirectory.
-- **Multichannel merge** — combine N same-shape single-channel pyramids into one multichannel
+- **Multichannel merge**: combine N same-shape single-channel pyramids into one multichannel
   image via a separate `ChannelMerger` step.
 
 **Memory behaviour** is worth calling out: the direct tile stitcher holds roughly **40 MB
@@ -87,27 +87,27 @@ Directory names must be exactly `z00`, `z01`, `t00`, … (a number after `z`/`t`
 case-insensitive). The two levels match independently, so both `z{nn}/t{nn}/` and
 `t{nn}/z{nn}/` nesting work.
 
-There is no maximum-intensity projection and no flattening — planes are written through as-is.
+There is no maximum-intensity projection and no flattening; planes are written through as-is.
 
 ## Install
 
 Via the **LOCI QuPath Extensions** catalog, or the release jar. Restart QuPath.
 
-> Also listed in the QPSC microscope catalog, since it is the stitching half of an acquisition —
+> Also listed in the QPSC microscope catalog, since it is the stitching half of an acquisition,
 > but it needs no microscope, so you do not need that catalog to get it.
 
 ---
 
 ## Hands-on exercise (~12 min)
 
-**Data:** `DATA-04_tiles` — a directory of tiles with a `TileConfiguration.txt`, plus a
+**Data:** `DATA-04_tiles`, a directory of tiles with a `TileConfiguration.txt`, plus a
 deliberately drift-affected copy.
 
 1. `Extensions > Tiles to Pyramid`.
 2. Point it at the tile directory, choose the **TileConfiguration.txt** strategy, output
    **OME-TIFF** with `LZW`, and stitch.
 3. Open the result in QuPath. Zoom to a seam between tiles and look for a visible offset.
-4. Now stitch the drift-affected copy the same way. Find the seams — they should be obviously
+4. Now stitch the drift-affected copy the same way. Find the seams. They should be obviously
    wrong.
 5. Re-stitch that copy with **content-based tile registration** enabled. Compare the same seam.
 6. Stitch once more to **OME-ZARR** and compare the on-disk result (a directory, not a file)
@@ -119,7 +119,7 @@ deliberately drift-affected copy.
 - Nominal stage coordinates are a hypothesis. Content-based registration tests it, and on a
   drifting stage the difference is unmistakable at a seam.
 - Reusing one solve across angles and channels is what keeps co-captured images aligned with
-  each other — re-solving per channel would not.
+  each other, where re-solving per channel would not.
 - Pyramid output is not cosmetic; it is the difference between an image that opens and one
   that does not.
 

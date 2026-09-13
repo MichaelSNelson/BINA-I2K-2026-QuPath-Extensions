@@ -30,8 +30,8 @@ title: Deep Learning Pixel Classifier
 ## What it does
 
 QuPath's built-in pixel classifier is a shallow model over hand-chosen features. It is fast,
-interpretable, and often enough. When it is not — subtle textures, tissue classes that differ
-by architecture rather than colour, images where stain normalisation keeps failing — this
+interpretable, and often enough. When it is not (subtle textures, tissue classes that differ
+by architecture rather than colour, images where stain normalisation keeps failing), this
 extension gives you the same *interaction model* (draw a few sparse annotations per class)
 backed by a real segmentation network.
 
@@ -43,19 +43,19 @@ backed by a real segmentation network.
 - Works on **brightfield RGB and multi-channel fluorescence/spectral** images, with
   per-channel normalisation.
 - Normalisation statistics can be computed over the **whole image** rather than per tile,
-  which removes tile-boundary artefacts — a visible and common failure of naive tiled
+  which removes tile-boundary artefacts, a visible and common failure of naive tiled
   inference.
 - Choose your encoder: ResNet / EfficientNet / MobileNet (U-Net), **MuViT** (a multi-scale
   vision transformer with multi-resolution feature fusion), or bring your own ONNX model.
 - Start from **histology-pretrained weights** (TCGA, Lunit, Kather100K) instead of ImageNet.
-- Or from **pathology foundation-model encoders** — h-optimus-0, virchow, hibou-l/b,
-  midnight, dinov2-large — downloaded on demand, all under permissive licences.
+- Or from **pathology foundation-model encoders** (h-optimus-0, virchow, hibou-l/b,
+  midnight, dinov2-large), downloaded on demand, all under permissive licences.
 
 **Adapt:**
 
-- **MAE pretraining** — masked-autoencoder self-supervised pretraining on your own unlabelled
+- **MAE pretraining**: masked-autoencoder self-supervised pretraining on your own unlabelled
   tiles.
-- **AdaBN / "Calibrate model to current image"** — recompute BatchNorm statistics on a new
+- **AdaBN / "Calibrate model to current image"**: recompute BatchNorm statistics on a new
   acquisition in seconds, with *zero retraining*. This is the cheap first thing to try when a
   model that worked last month stops working on this month's scanner.
 
@@ -63,10 +63,10 @@ backed by a real segmentation network.
 
 - Output as per-pixel measurements, detection objects, or a classification overlay.
 - Full per-pixel **probability maps**, not just argmax labels.
-- Fast embedded Python inference via Appose with zero-copy tile transfer — no conda
+- Fast embedded Python inference via Appose with zero-copy tile transfer, with no conda
   environment to manage, no external server.
 - An **out-of-distribution check** warns before inference when the image's pixel statistics
-  differ markedly from the training data — catching stain, exposure, and sensor shifts that
+  differ markedly from the training data, catching stain, exposure and sensor shifts that
   would silently degrade predictions.
 
 ## Hardware reality check
@@ -88,22 +88,22 @@ hour.
 
 Via the **LOCI QuPath Extensions** catalog, or the `-all.jar` from
 [Releases](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/releases). Restart
-QuPath. The first run downloads the embedded Python environment — **do this before the
+QuPath. The first run downloads the embedded Python environment, so **do this before the
 workshop**, it is a substantial download.
 
 ---
 
 ## Hands-on exercise (~15 min)
 
-**Data:** `DATA-01_HE_WSI` — the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)), plus the pre-trained model (link to follow).
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)), plus the pre-trained model (link to follow).
 
-1. `Extensions > DL Pixel Classifier` — open the extension and confirm the Python environment
+1. `Extensions > DL Pixel Classifier`. Open the extension and confirm the Python environment
    reports as ready.
 2. **Load the provided pre-trained model** rather than training one.
 3. Run inference on a modest annotated region. Choose **overlay** output first so you can see
    the prediction on the slide.
 4. Look at the **probability map**, not just the class assignment. Find a region where the
-   model is genuinely uncertain — the boundaries between classes are usually the honest ones.
+   model is genuinely uncertain. The boundaries between classes are usually the honest ones.
 5. Re-run with **detection objects** as the output so the result becomes QuPath objects you
    can measure and classify downstream.
 6. Now open a *different* image with a visibly different stain. Run inference again and watch
@@ -112,7 +112,7 @@ workshop**, it is a substantial download.
 
 ### What to notice
 
-- Sparse annotation is a genuinely different workflow from exhaustive labelling — you are
+- Sparse annotation is a genuinely different workflow from exhaustive labelling: you are
   steering a sampler, not building a dataset by hand.
 - The OOD warning and the probability map are the two things that tell you when *not* to
   trust the output. They are the most important features in the extension, and the easiest to
@@ -125,7 +125,7 @@ workshop**, it is a substantial download.
 ## Going further
 
 - [Domain Adaptation Guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/DOMAIN_ADAPTATION_GUIDE.md)
-  — when to use AdaBN, when to use domain-adaptive MAE, and when you really do need to retrain.
+  covers when to use AdaBN, when to use domain-adaptive MAE, and when you really do need to retrain.
 - Training data for this extension pairs naturally with [QuIET](01-quiet-image-export.md)'s
   Tiled export, and results pair with the
   [Confusion Matrix](presented/confusion-matrix.md) extension for a defensible accuracy number.

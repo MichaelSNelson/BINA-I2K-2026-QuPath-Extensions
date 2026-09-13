@@ -6,7 +6,7 @@ title: QuIET - QuPath Image Export Toolkit
 # QuIET — QuPath Image Export Toolkit
 
 > Turn an annotated project into publication-ready figures, collaborator review images, or
-> machine-learning training sets — in batch, without writing an export script. With
+> machine-learning training sets, in batch, without writing an export script. With
 > QUAREP-LiMi reporting guidance built into the dialog.
 
 | | |
@@ -28,7 +28,7 @@ title: QuIET - QuPath Image Export Toolkit
 
 Exporting an image out of QuPath is easy. Exporting *the right image, the same way, from
 forty slides, with a scale bar, at a stated resolution, with a record of how you did it* is
-not — it is normally a Groovy scripting job.
+not. That is normally a Groovy scripting job.
 
 QuIET is a three-step wizard over that job. You pick a category, configure it, pick your
 images, and export.
@@ -45,7 +45,7 @@ images, and export.
 
 A sixth workflow, **Panel / Montage Export**, is a separate menu item with its own wizard:
 select several project images, choose a *recipe* (saved settings for how a single image is
-exported), and lay them out into one grid figure — captions, spacing, background colour.
+exported), and lay them out into one grid figure, with captions, spacing and background colour.
 QuPath renders every panel identically, so you do not assemble the figure by hand in
 another program.
 
@@ -54,7 +54,7 @@ another program.
 **Every export writes a Groovy script.** Whatever you clicked in the wizard is emitted as a
 self-contained script you can save, version-control, re-run next year, or send to a
 collaborator who does not have QuIET installed. The wizard is a script *generator*, not a
-black box — which is the difference between a convenience and a reproducibility tool.
+black box, which is the difference between a convenience and a reproducibility tool.
 
 **QUAREP-LiMi guidance is in the dialog.** [QUAREP-LiMi](https://quarep.org/) is the
 community effort to define minimum reporting standards for light microscopy. Step 2 shows a
@@ -79,27 +79,27 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 ## Hands-on exercise (~15 min)
 
-**Data:** `DATA-01_HE_WSI` — the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
-### Part A — a figure you could publish
+### Part A: a figure you could publish
 
 1. Open the project. Confirm at least one annotation exists.
 2. `Extensions > QuIET > Image Export...`
 3. **Step 1:** choose **Rendered Image**.
 4. **Step 2:** turn on a **scale bar**. Set the downsample so the exported image is roughly
-   2000 px on its long edge. Read the QUAREP panel on the right — note what it says is
+   2000 px on its long edge. Read the QUAREP panel on the right and note what it says is
    missing from your project's metadata.
 5. **Step 3:** select one image, choose an output folder, read the Publication Advice, export.
 6. Open the result. Check that the scale bar is legible at the size you would print it.
 
-### Part B — the reproducibility half
+### Part B: the reproducibility half
 
 7. Find the Groovy script QuIET wrote alongside your export.
 8. Open QuPath's script editor (`Automate > Script editor`), paste it in, and run it against
    a *different* image in the project.
 9. Confirm you get the same treatment applied to new data with zero clicks.
 
-### Part C — a multi-panel figure
+### Part C: a multi-panel figure
 
 10. `Extensions > QuIET > Panel / Montage Export...`
 11. Select 4 images, apply one recipe to all of them, and lay them out 2×2 with captions.
@@ -107,7 +107,7 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 ### What to notice
 
-- The recipe concept is what makes panels *comparable* — every panel got the same rendering,
+- The recipe concept is what makes panels *comparable*: every panel got the same rendering,
   downsample, and overlay treatment, which is exactly the claim a figure implicitly makes.
 - The QUAREP panel is advisory, not blocking. It is telling you what a reviewer may ask.
 - Exporting masks (Step 1 → **Label / Mask**) from the same annotations gives you ML training
@@ -119,7 +119,7 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 - Object Crops is the fastest route from "I have classified cells" to "I have a labelled
   image dataset for a cell-type classifier."
-- Tiled export writes image/label pairs in the layout deep-learning frameworks expect — this
+- Tiled export writes image/label pairs in the layout deep-learning frameworks expect. This
   is the natural handoff to the [DL Pixel Classifier](02-dl-pixel-classifier.md) or to
   training outside QuPath.
 
