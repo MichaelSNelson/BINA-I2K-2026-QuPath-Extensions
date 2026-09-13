@@ -9,7 +9,7 @@ An I2K workshop at the BioImaging North America Congress 2026.
 |---|---|
 | **Date** | Tuesday 29 September 2026 |
 | **Time** | 10:30 – 12:30 |
-| **Location** | Morgridge Hall, WARF Seminar Hub — Rm. 7560 |
+| **Location** | Morgridge Hall, WARF Seminar Hub, Rm. 7560 |
 | **Format** | Hour 1 presentation and demos · Hour 2 optional hands-on |
 | **Requires** | QuPath **0.7.0 or later** |
 
@@ -38,18 +38,17 @@ suite of open-source QuPath extensions developed at
 
 > ### ⚠️ This site is still being built
 >
-> Everything about the extensions — setup, guides, exercises — is current and usable now.
-> The **datasets are now linked** and ready to download. **Still to come:** the slides and the
-> walkthrough videos. Anywhere you see a `%%PLACEHOLDER%%` instead of a link, that is why.
+> Setup, guides and exercises are all current and usable now, and the **datasets are now linked**
+> and ready to download. Still to come: the slides and the walkthrough videos. Anywhere you see a `%%PLACEHOLDER%%` instead of a link, that is why.
 > It will all be in place before 29 September.
 
-## Setup — do this before you travel
+## Setup: do this before you travel
 
-**1. Install QuPath 0.7.0 or later** — [qupath.github.io](https://qupath.github.io/). Nothing
+**1. Install QuPath 0.7.0 or later** from [qupath.github.io](https://qupath.github.io/). Nothing
 here runs on 0.6. QuPath 0.7 keeps its own extensions folder, so an existing 0.6 setup is
 untouched.
 
-**2. Add one catalog** — `Extensions > Manage extensions > Manage extension catalogs >
+**2. Add one catalog.** Go to `Extensions > Manage extensions > Manage extension catalogs >
 Add catalog`, then paste:
 
 ```
@@ -60,7 +59,7 @@ That is the only catalog you need. Everything hands-on in this workshop is in it
 
 **3. Install only the extensions you want, then restart QuPath.**
 
-> **Adding the catalog installs nothing** — it shows you a list. **Do not install everything in
+> **Adding the catalog installs nothing.** It shows you a list. **Do not install everything in
 > it.** QP-CAT and the DL Pixel Classifier each fetch a **1.5–2.5 GB** Python environment on
 > first use. If one or two extensions are why you are coming, install just those.
 
@@ -75,35 +74,35 @@ That is the only catalog you need. Everything hands-on in this workshop is in it
 
 | | |
 |---|---|
-| **[Extensions, catalogs & AI-assisted development](docs/00-extensions-catalogs-and-ai.md)** | Read this first — what an extension is, how catalogs work, and how this suite was built |
+| **[Extensions, catalogs & AI-assisted development](docs/00-extensions-catalogs-and-ai.md)** | Read this first: what an extension is, how catalogs work, and how this suite was built |
 | **[Acknowledgements](docs/acknowledgements.md)** | Data providers, the QuPath team, and the methods these tools build on |
 | **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough and a video for every tool, plus the vote for what we demo live |
-| **[Extension index](docs/extensions.md)** | Every extension with its install source and guide — for picking just the ones you want |
+| **[Extension index](docs/extensions.md)** | Every extension with its install source and guide, for picking just the ones you want |
 | **[Schedule](docs/schedule.md)** | Hour-by-hour running order, plus suggested tracks for the second hour |
 
 ## Files on Google Drive
 
 | | |
 |---|---|
-| **QuPath intro project** (`DATA-01` + `DATA-02`) | [Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) — ~500 MB. CMU-1 H&E and LuCa-7color, cells detected, classifiers saved. From [imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro) |
-| **Synthetic TME** (`TME-SYNTH`) | [GitHub release](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest) — ~20 MB, CC0 |
-| **Slides with labels** (`DATA-03`) | [LabelImageExamples_from_LJI.zip](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) — **over 500 MB** |
+| **QuPath intro project** (`DATA-01` + `DATA-02`) | [Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), ~500 MB. CMU-1 H&E and LuCa-7color, cells detected, classifiers saved. From [imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro) |
+| **Synthetic TME** (`TME-SYNTH`) | [GitHub release](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest), ~20 MB, CC0 |
+| **Slides with labels** (`DATA-03`) | [LabelImageExamples_from_LJI.zip](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing), **over 500 MB** |
 | `DATA-04_tiles` | Not yet assembled |
 | Workshop folder | %DRIVE_FOLDER_URL% |
 | Presentation slides | %DRIVE_SLIDES_URL% |
 
 ## Shown, not practised
 
-Shown during the first hour but not run by attendees. Each has a hard barrier to installing it in
-a conference room, stated on its page. **QPSC in particular is watched, never driven** — nobody in
-the room connects to a microscope.
+These three appear in the first hour, but attendees do not run them. Each has a hard barrier to
+installing it in a conference room, stated on its page. **QPSC in particular is watched, never driven**: nobody in the room connects to
+a microscope.
 
-- **[QPSC — QuPath Scope Control](docs/presented/qpsc.md)** — microscope control and automated
-  acquisition driven from QuPath. *Needs a microscope.*
-- **[Confusion Matrix](docs/presented/confusion-matrix.md)** — classifier validation with
+- **[QPSC — QuPath Scope Control](docs/presented/qpsc.md)** does microscope control and automated
+  acquisition from QuPath. *Needs a microscope.*
+- **[Confusion Matrix](docs/presented/confusion-matrix.md)** does classifier validation with
   bootstrap confidence intervals and calibration analysis. *Repository is currently private, so
   there is no jar for attendees to install.*
-- **[Collagen fibre and texture analysis](docs/presented/fiber-analysis.md)** — Fiber Analysis
+- **[Collagen fibre and texture analysis](docs/presented/fiber-analysis.md)** covers Fiber Analysis
   (straightness, morphometrics, texture over a boundary zone) and TME-Quant (CT-FIRE fibre
   tracing with TACS classification). *Long environment build, or a Windows-only server plus a
   non-redistributable pipeline.*
@@ -132,14 +131,14 @@ the room connects to a microscope.
 
 The site is plain Jekyll on GitHub Pages, served from the root of `main`.
 
-- `index.html` — the landing page. No front matter, so Jekyll copies it verbatim. Links point
-  at `.html`.
-- `docs/*.md` — one page per extension. Front matter sets the layout; `_config.yml` applies it
-  to everything under `docs/`.
-- `_layouts/default.html` — the dark house style, plus a small script that rewrites *relative*
-  `.md` links to `.html` at runtime, so the same markdown reads correctly both on GitHub and on
+- `index.html` is the landing page. It has no front matter, so Jekyll copies it verbatim. Its
+  links point at `.html`.
+- `docs/*.md` holds one page per extension. Front matter sets the layout, and `_config.yml`
+  applies it to everything under `docs/`.
+- `_layouts/default.html` holds the dark house style, plus a small script that rewrites
+  *relative* `.md` links to `.html` at runtime, so the same markdown reads correctly both on GitHub and on
   the published site.
-- `images/`, `assets/` — screenshots and any media.
+- `images/` and `assets/` hold screenshots and any media.
 
 **Drive links are placeholders.** Fill them in everywhere with:
 
@@ -148,7 +147,7 @@ grep -rl '%%DRIVE_' . --exclude-dir=.git
 sed -i 's|%%DRIVE_FOLDER_URL%%|https://…|g' $(grep -rl '%%DRIVE_FOLDER_URL%%' . --exclude-dir=.git)
 ```
 
-Repeat for `%%DRIVE_SLIDES_URL%%`. (`%%DRIVE_DATA_URL%%` is retired — datasets now link directly to where they are hosted.)
+Repeat for `%%DRIVE_SLIDES_URL%%`. (`%%DRIVE_DATA_URL%%` is retired: datasets now link directly to where they are hosted.)
 
 ## Acknowledgements
 
@@ -157,7 +156,7 @@ Sara McArdle and Zbigniew Mikulski at the La Jolla Institute for Immunology (LJI
 exercise here was developed against their images. Please credit LJI if you use the workshop
 datasets in your own work.
 
-Sara McArdle also shaped the software directly — two extensions in this workshop began as her
+Sara McArdle also shaped the software directly. Two extensions in this workshop began as her
 Groovy scripts, and her [FS2K](https://github.com/saramcardle/FS2K) course was the model for how
 these pages are structured.
 
@@ -166,5 +165,5 @@ Full credits, including the methods these tools wrap and the QuPath team:
 
 ## Licence
 
-Workshop materials in this repository are **CC BY 4.0**. Each extension is licensed
-separately — see the table above and the individual repositories.
+Workshop materials in this repository are **CC BY 4.0**. Each extension is licensed separately;
+see the table above and the individual repositories.
