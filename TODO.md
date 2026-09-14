@@ -51,12 +51,28 @@ the maintainer section of the [README](README.md).
       embedded `Label` attachment (verified). One label reads `histology@lji.org` / `610 TOMO` /
       `2020-11-14` / `H&E` plus a 2D barcode — text, date and barcode on a single label, and the
       slide behind the documented `@` / Enhance finding
-- [ ] `DATA-04_tiles` — the last missing dataset. Needs a tile directory with
-      `TileConfiguration.txt`, plus a drift-affected copy so content-based registration has
-      something to fix. Only real candidate on disk is the PPM acquisition folder
-      `OtherDocuments/JN209_amyloid2/ppm_20x_1/39518_36918` (8 tiles, 6 TileConfiguration
-      variants); `OtherDocuments/tiles` and `zstack_tiles` have no config at all.
-      **Michael to source real tiles**
+- [ ] `DATA-04_tiles`, **must be a real acquisition** (decided 2026-09-14): the point of the
+      exercise is showing that overlap resolution works on a real stage, so no synthetic tiles
+      and no fake "drift-affected copy". The exercise becomes nominal vs registered on the same
+      tiles. **Nothing on disk qualifies** (checked 2026-09-14, seam error measured by NCC):
+      - `OtherDocuments/JN209_amyloid2/...` has configs and metadata but **no tile images**
+      - PPM sets on F:\ (`PonikCollagen/...`, `ExampleForYuming/...`): real stage error
+        (15-21 px at some seams) but acquired at **0% nominal overlap**, which registration
+        treats as degenerate. PPM is also out of scope, and redistribution is unconfirmed
+      - `stitchtest/` (= `helencollagen/`): `tile0ovlp` is 3x3 at 0% overlap; `2mgml_06zoom`
+        is a single position
+      - `PDAC142_1`: 5x5 at 5% overlap, but 256 px tiles leave a 13 px band; only 6/40 seams
+        match, and inconsistently. The name suggests human PDAC tissue (unverified)
+
+      **Acquisition spec.** Brightfield H&E or another textured sample that can be published.
+      **10-15% overlap** (in QPSC: Preferences > **Tile Overlap Percent**, default 10; the PPM
+      runs above had it set to 0), tiles 1024 px or larger, a grid of about 5x4 or more. Long rows help,
+      because drift accumulates along them. Registration only corrects up to 2% of tile width per
+      seam (24 px floor) and rejects matches below NCC 0.30, so the error must be visible but
+      not huge. Before publishing, stitch once at nominal and confirm the seams are visibly
+      wrong. If it has several channels or angles, the "solve once, reuse" feature can be shown
+      too. Then rewrite steps 4-5 of `docs/13-tiles-to-pyramid.md`, which still describe the
+      drift-affected copy. **Michael to acquire**
 - [ ] `DATA-05_classified_project` — classified cells, ground-truth points, OpenCV ML classifier.
       **Presenter-only** (Confusion Matrix is demo-only), so attendees never download it. Nothing
       on disk has ground-truth point sets yet
