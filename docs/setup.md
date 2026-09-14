@@ -87,7 +87,7 @@ wherever it already lives, and the sizes differ by more than an order of magnitu
 | Dataset | Where to get it | Size | Used by |
 |---|---|---|---|
 | **QuPath intro project**<br>`DATA-01_HE_WSI` + `DATA-02_multiplex_IF` | [Project folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Download the whole folder and open it as a QuPath project | ~500 MB | QuIET, DL Pixel Classifier, Wizard Wand, Polyline Wand, Class Distribution, Classify Object Subset. **Tracks A and C** |
-| **`TME-SYNTH`**<br>synthetic tumour microenvironment | [GitHub release](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest). 8 images, 8 channels, 6 cell types, full per-cell ground truth, CC0 | **~20 MB** | QP-CAT, Cluster 3D Navigator, Channel Names Viewer. **Track B** |
+| **`TME-SYNTH`**<br>synthetic tumour microenvironment | [GitHub release](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest). 8 images, 8 channels, 6 cell types, full per-cell ground truth, CC0 | **~20 MB** | QP-CAT, Cluster 3D Navigator, Channel Names Viewer. **Track B** |
 | **`DATA-03_labeled_slides`**<br>slides with label images | [LabelImageExamples_from_LJI.zip](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing). 6 CZI whole-slide images, each carrying an embedded slide label | **over 500 MB** ⚠️ | OCR for Labels, Project Metadata Browser. **Track D** |
 | `DATA-04_tiles` | Coming: a tile directory with `TileConfiguration.txt` | small | Tiles to Pyramid. **Track D** |
 

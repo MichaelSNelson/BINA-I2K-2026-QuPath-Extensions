@@ -115,10 +115,10 @@ Via the **LOCI QuPath Extensions** catalog. Then run
 ## The data: a synthetic tumour microenvironment
 
 This exercise uses the
-**[TME-QUANT synthetic dataset](https://github.com/uw-loci/tme-quant-synthetic-data)** is a
+**[TME-QUANT synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data)** is a
 small, fully ground-truthed synthetic tumour microenvironment. Download the zip
 (**~20 MB**) from its
-[latest release](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest).
+[latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest).
 It is **CC0**: public domain, no attribution required, yours to reuse in your own teaching.
 
 Why synthetic, for a workshop:
@@ -281,7 +281,7 @@ Best done at home; clustering all eight images is ~22,400 cells.
 - **[Best Practices](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/BEST_PRACTICES.md)**: measurement selection, normalisation, algorithm choice, phenotyping strategy.
 - **[Scripting (Groovy)](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/SCRIPTING.md)** and the **[YAML headless-batch runner](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/YAML_SCHEMA.md)**: for running this across a whole cohort, including `area_levels` for TMA cores.
 - **[References](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/REFERENCES.md)**: papers and DOIs for every algorithm used.
-- **[Dataset instructions](https://github.com/uw-loci/tme-quant-synthetic-data/blob/main/INSTRUCTIONS.md)**: channel tables, the full detection recipe, what every analysis should recover, and the ground-truth CSV reference.
+- **[Dataset instructions](https://github.com/uw-loci/multiplex-synthetic-data/blob/master/INSTRUCTIONS.md)**: channel tables, the full detection recipe, what every analysis should recover, and the ground-truth CSV reference.
 - Once you have clusters, [Cluster 3D Navigator](04-cluster-3d-navigator.md) gives you a
   rotatable 3D point cloud with click-to-navigate.
 

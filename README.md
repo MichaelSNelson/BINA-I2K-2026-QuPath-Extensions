@@ -64,7 +64,7 @@ That is the only catalog you need. Everything hands-on in this workshop is in it
 > first use. If one or two extensions are why you are coming, install just those.
 
 **4. Download the data** for the track you plan to do. The multiplexed track needs only a
-[20 MB public dataset](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest).
+[20 MB public dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest).
 
 **Full instructions, including the per-track dataset list: [setup guide](docs/setup.md).**
 
@@ -85,7 +85,7 @@ That is the only catalog you need. Everything hands-on in this workshop is in it
 | | |
 |---|---|
 | **QuPath intro project** (`DATA-01` + `DATA-02`) | [Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), ~500 MB. CMU-1 H&E and LuCa-7color, cells detected, classifiers saved. From [imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro) |
-| **Synthetic TME** (`TME-SYNTH`) | [GitHub release](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest), ~20 MB, CC0 |
+| **Synthetic TME** (`TME-SYNTH`) | [GitHub release](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest), ~20 MB, CC0 |
 | **Slides with labels** (`DATA-03`) | [LabelImageExamples_from_LJI.zip](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing), **over 500 MB** |
 | `DATA-04_tiles` | Not yet assembled |
 | Workshop folder | %DRIVE_FOLDER_URL% |

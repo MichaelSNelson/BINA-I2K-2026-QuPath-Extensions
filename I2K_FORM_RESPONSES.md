@@ -59,7 +59,7 @@ Please do the following BEFORE you travel. Conference wifi will not cope with th
 
 4. If you want the multiplexed-imaging (QP-CAT) or deep-learning pixel classifier exercises, run their one-click environment setup AT HOME. Each downloads roughly 1.5-2.5 GB of embedded Python on first use. This is the step that will ruin your morning if you leave it until the day. Everything else installs in seconds.
 
-5. Download the sample data for whatever you plan to try. If the multiplexed-imaging track interests you, that data is already available and is only about 20 MB - grab it any time from https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest The files will be posted on the workshop page, labelled by which exercise uses them, so you only need the ones you will actually use.
+5. Download the sample data for whatever you plan to try. If the multiplexed-imaging track interests you, that data is already available and is only about 20 MB - grab it any time from https://github.com/uw-loci/multiplex-synthetic-data/releases/latest The files will be posted on the workshop page, labelled by which exercise uses them, so you only need the ones you will actually use.
 
 If you only have time for one thing, do steps 1 and 2.
 
@@ -123,7 +123,7 @@ Add the two catalog URLs in QuPath under Extensions > Manage extensions > Manage
 
 SAMPLE DATA YOU CAN GET RIGHT NOW
 The multiplexed-imaging exercises use a synthetic tumour-microenvironment dataset that is already public, about 20 MB, and released into the public domain (CC0). Eight images, eight channels, six cell types, and a per-cell ground truth, so you can run an analysis and check that it recovered the right answer:
-  https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest
+  https://github.com/uw-loci/multiplex-synthetic-data/releases/latest
 Reuse it in your own teaching if it is useful - no attribution required.
 
 FILES TO DOWNLOAD

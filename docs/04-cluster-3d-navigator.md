@@ -72,7 +72,7 @@ folder and restart.
 
 **Data:** the clustered project you produced in the
 [QP-CAT exercise](03-qp-cat-cell-analysis-tools.md): the synthetic tumour-microenvironment
-dataset, ~20 MB from [GitHub](https://github.com/uw-loci/tme-quant-synthetic-data/releases/latest). Save UMAP components as measurements when you
+dataset, ~20 MB from [GitHub](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest). Save UMAP components as measurements when you
 cluster and they become your X, Y and Z here.
 
 This pairing is worth doing in order: because every cell in that data has a known type, when you
