@@ -51,28 +51,22 @@ the maintainer section of the [README](README.md).
       embedded `Label` attachment (verified). One label reads `histology@lji.org` / `610 TOMO` /
       `2020-11-14` / `H&E` plus a 2D barcode — text, date and barcode on a single label, and the
       slide behind the documented `@` / Enhance finding
-- [ ] `DATA-04_tiles`, **must be a real acquisition** (decided 2026-09-14): the point of the
-      exercise is showing that overlap resolution works on a real stage, so no synthetic tiles
-      and no fake "drift-affected copy". The exercise becomes nominal vs registered on the same
-      tiles. **Nothing on disk qualifies** (checked 2026-09-14, seam error measured by NCC):
-      - `OtherDocuments/JN209_amyloid2/...` has configs and metadata but **no tile images**
-      - PPM sets on F:\ (`PonikCollagen/...`, `ExampleForYuming/...`): real stage error
-        (15-21 px at some seams) but acquired at **0% nominal overlap**, which registration
-        treats as degenerate. PPM is also out of scope, and redistribution is unconfirmed
-      - `stitchtest/` (= `helencollagen/`): `tile0ovlp` is 3x3 at 0% overlap; `2mgml_06zoom`
-        is a single position
-      - `PDAC142_1`: 5x5 at 5% overlap, but 256 px tiles leave a 13 px band; only 6/40 seams
-        match, and inconsistently. The name suggests human PDAC tissue (unverified)
-
-      **Acquisition spec.** Brightfield H&E or another textured sample that can be published.
-      **10-15% overlap** (in QPSC: Preferences > **Tile Overlap Percent**, default 10; the PPM
-      runs above had it set to 0), tiles 1024 px or larger, a grid of about 5x4 or more. Long rows help,
-      because drift accumulates along them. Registration only corrects up to 2% of tile width per
-      seam (24 px floor) and rejects matches below NCC 0.30, so the error must be visible but
-      not huge. Before publishing, stitch once at nominal and confirm the seams are visibly
-      wrong. If it has several channels or angles, the "solve once, reuse" feature can be shown
-      too. Then rewrite steps 4-5 of `docs/13-tiles-to-pyramid.md`, which still describe the
-      drift-affected copy. **Michael to acquire**
+- [ ] `DATA-04_tiles`, **real acquisition found** (2026-09-17): 3 × 4 PPM grid of pancreatic cancer,
+      2064 × 1544 tiles at 0.1732 µm/px, true 10% overlap, cleared for public release. Angles
+      chosen: **`-7.0`** (colour) and **`7.0.biref`** (16-bit), from `F:\BINA2026`. Measured over
+      all 17 seams: 2.2 px median and 5-6 px worst at recorded positions, 0.2-1.0 px median after
+      registration, and a solve reused across angles holds. Worst seams to zoom into: `1→2`, `7→8`
+      (horizontal), `3→8`, `4→7` (vertical); feathered blending shows the error as a double image
+      far better than a hard edge. Figures for both angles are in the deck (`images/stitch_*`).
+      Still to do: package and host the two angles, then rewrite steps 4-5 of
+      `docs/13-tiles-to-pyramid.md`, which still describe a synthetic drift-affected copy
+- [ ] **Multichannel fluorescence stitching test** (Michael acquiring 2026-09-17). Hypothesis: a
+      high-information channel or a normalised merge registers better than the nuclear channel.
+      What the code allows today (checked in `TileRegistrationEngine` / `OverlapBandReader`): one
+      reference subdirectory, chosen by hand or by "Auto (most texture)" (MAD ÷ median of centre
+      crops), and channels within a file averaged with raw, equal weights. **A normalised merge
+      is not an option.** It needs a merged reference folder built outside, or a new feature.
+      Watch whether auto-pick chooses a sparse nuclear channel
 - [ ] `DATA-05_classified_project` — classified cells, ground-truth points, OpenCV ML classifier.
       **Presenter-only** (Confusion Matrix is demo-only), so attendees never download it. Nothing
       on disk has ground-truth point sets yet
@@ -132,7 +126,7 @@ the maintainer section of the [README](README.md).
 
 ## Slides
 
-- [x] Build the hour-1 deck — `I2K_2026_QuPath_Extensions.pptx`, 49 slides, rebuild with
+- [x] Build the hour-1 deck — `I2K_2026_QuPath_Extensions.pptx`, 53 slides, rebuild with
       `build_deck.js` (see `SLIDE_OUTLINE.md`)
 - [ ] Open it and check the layout — no LibreOffice here, so it has never been rendered
 - [ ] Add screenshots. The deck is currently text-only and needs them more than the docs do

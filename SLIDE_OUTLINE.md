@@ -71,6 +71,12 @@ not slides. The deck's job is to frame each segment and then get out of the way.
     is the fastest QC pass there is.
 23. **Class Distribution.** Annotation count ≠ area ≠ implied training detections. Only the third
     predicts classifier behaviour.
+23a. **Tiles to Pyramid: stitching two tiles.** Figure: two real tiles as acquired, overlap strip
+     shaded, then stitched. The stage recorded one tile 5 px (0.9 µm) out of place; registration
+     found it from the overlap. PPM at −7°, pancreatic cancer.
+23b. **Measure once, on the image with the most contrast.** The same two tiles as birefringence,
+     stitched with positions measured once and reused. Registration belongs on the angle or
+     channel carrying the most information; everything else reuses it.
 24. **Classify Object Subset.** Stacked classifiers, and the live count that stops you
     overwriting 5,000 objects.
 

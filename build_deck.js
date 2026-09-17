@@ -79,6 +79,26 @@ function content(title, bullets, opts = {}) {
   return s;
 }
 
+// before/after figure: two image panels stacked, each with a label, plus a caption.
+// Images are pre-rendered at a shared scale, so a narrower lower panel is meaningful.
+function figurePair(title, labelA, imgA, labelB, imgB, caption) {
+  const s = pptx.addSlide();
+  s.background = bg;
+  s.addText(title, {
+    x: M, y: 0.42, w: W - 2 * M, h: 0.72,
+    fontFace: HEAD, fontSize: 30, bold: true, color: BLUE_DK, valign: 'middle',
+  });
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.2, w: 2.1, h: 0.055, fill: { color: BLUE } });
+  const fw = 11.0, fh = fw * imgA.h / imgA.w;
+  s.addText(labelA, { x: M, y: 1.34, w: W - 2 * M, h: 0.42, fontFace: BODY, fontSize: 17, bold: true, color: BLUE_DK, valign: 'middle' });
+  s.addImage({ path: imgA.path, x: M, y: 1.8, w: fw, h: fh });
+  s.addText(labelB, { x: M, y: 1.8 + fh + 0.1, w: W - 2 * M, h: 0.42, fontFace: BODY, fontSize: 17, bold: true, color: BLUE_DK, valign: 'middle' });
+  s.addImage({ path: imgB.path, x: M, y: 1.8 + fh + 0.56, w: fw * imgB.w / imgA.w, h: fh });
+  s.addText(caption, { x: M, y: H - 0.94, w: W - 2 * M - 1.0, h: 0.56, fontFace: BODY, fontSize: 15, italic: true, color: MUT, valign: 'middle' });
+  pageNum(s);
+  return s;
+}
+
 // section divider: tinted panel, big number
 function section(num, title, sub) {
   const s = pptx.addSlide();
@@ -403,6 +423,20 @@ content('Class Distribution', [
   'Charts update while you annotate, so the feedback arrives while you can still act',
   'Classes badly over- or under-represented are flagged',
 ], { note: 'Annotation count, annotation area, and implied training detections are three different numbers. Only the third predicts classifier behaviour.' });
+
+figurePair('Tiles to Pyramid: stitching two tiles',
+  'As acquired: neighbouring tiles share a strip of the same tissue (shaded)',
+  { path: 'images/stitch_ppm_unstitched.jpg', w: 3000, h: 565 },
+  'Stitched: the join is placed by matching the image content in that strip',
+  { path: 'images/stitch_ppm_stitched.jpg', w: 2766, h: 565 },
+  'Pancreatic cancer, polarised light. The stage recorded this tile 5 px (0.9 µm) away from where it really was; registration measured that from the overlap and corrected it.');
+
+figurePair('Measure once, on the image with the most contrast',
+  'The same two tiles, imaged for birefringence',
+  { path: 'images/stitch_biref_unstitched.jpg', w: 3000, h: 565 },
+  'Stitched with the positions measured once and reused unchanged',
+  { path: 'images/stitch_biref_stitched.jpg', w: 2766, h: 565 },
+  'Measure the positions on whichever angle or channel carries the most information. Every other image of the same tiles reuses that measurement, so they stay aligned with each other.');
 
 /* ================= 6 · Validation ================= */
 
