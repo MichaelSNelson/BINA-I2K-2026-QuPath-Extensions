@@ -60,13 +60,25 @@ the maintainer section of the [README](README.md).
       far better than a hard edge. Figures for both angles are in the deck (`images/stitch_*`).
       Still to do: package and host the two angles, then rewrite steps 4-5 of
       `docs/13-tiles-to-pyramid.md`, which still describe a synthetic drift-affected copy
-- [ ] **Multichannel fluorescence stitching test** (Michael acquiring 2026-09-17). Hypothesis: a
-      high-information channel or a normalised merge registers better than the nuclear channel.
-      What the code allows today (checked in `TileRegistrationEngine` / `OverlapBandReader`): one
-      reference subdirectory, chosen by hand or by "Auto (most texture)" (MAD ÷ median of centre
-      crops), and channels within a file averaged with raw, equal weights. **A normalised merge
-      is not an option.** It needs a merged reference folder built outside, or a new feature.
-      Watch whether auto-pick chooses a sparse nuclear channel
+- [x] **Multichannel fluorescence stitching test** (2026-09-17 set, `F:\BINA2026\IFStitching`:
+      2x2 grid, 2048 px tiles, 0.653 um/px, 10% overlap, DAPI/FITC/TRITC). **The hypothesis was
+      wrong**: a high-information channel or a normalised merge did *not* beat the nuclear
+      channel. Scoring each of the 4 seams by how far the correlation peak beats its best rival
+      12+ px away: DAPI 0.47, TRITC 0.43, FITC 0.29, normalised merge 0.23, raw sum 0.23. All
+      five agree within ~2 px, so every choice stitches; what differs is confidence. Merging
+      *broadened* the peak, because each channel's background and noise is added to the others.
+      Crisp, well-separated nuclei are close to ideal for correlation
+- [ ] **Auto-pick chooses the wrong channel on that set.** The extension's texture score (robust
+      spread / median, centre crop) gives FITC 0.407, TRITC 0.293, DAPI 0.121, so "Auto (most
+      texture)" picks the channel that scored *last* on peak decisiveness. DAPI scores lowest
+      precisely because its background is uniform, which is what makes it register well.
+      Candidate improvement to `TileRegistrationEngine.chooseReference`: rank candidates by peak
+      decisiveness on one sampled seam rather than by texture. Caveat before acting: 4 seams,
+      one prepared cell slide, all channels with healthy signal. Confirm on tissue first
+- [ ] Convert the fluorescence tiles to Micro-Manager layout (per-position folders with
+      `metadata.txt`, or MMStack plus sidecars) if the real MM acquisition does not pan out, so
+      the MicroManager strategy has something to read. The current `IFStitching` folder holds the
+      QPSC layout plus an MDA export for *acquiring* in MM, and its OME-TIFF is a stitched result
 - [ ] `DATA-05_classified_project` — classified cells, ground-truth points, OpenCV ML classifier.
       **Presenter-only** (Confusion Matrix is demo-only), so attendees never download it. Nothing
       on disk has ground-truth point sets yet

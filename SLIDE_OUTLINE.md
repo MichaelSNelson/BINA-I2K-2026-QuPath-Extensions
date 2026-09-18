@@ -74,9 +74,10 @@ not slides. The deck's job is to frame each segment and then get out of the way.
 23a. **Tiles to Pyramid: stitching two tiles.** Figure: two real tiles as acquired, overlap strip
      shaded, then stitched. The stage recorded one tile 5 px (0.9 µm) out of place; registration
      found it from the overlap. PPM at −7°, pancreatic cancer.
-23b. **Measure once, on the image with the most contrast.** The same two tiles as birefringence,
-     stitched with positions measured once and reused. Registration belongs on the angle or
-     channel carrying the most information; everything else reuses it.
+23b. **Measure once, on the image with the clearest structure.** The same two tiles as
+     birefringence, stitched with positions measured once and reused. Measured on the 2026-09-17
+     fluorescence set: crisp separated nuclei (DAPI) registered most decisively, ahead of busier
+     channels and ahead of a merge. Brightest and busiest is not the same as best.
 24. **Classify Object Subset.** Stacked classifiers, and the live count that stops you
     overwriting 5,000 objects.
 

@@ -431,12 +431,12 @@ figurePair('Tiles to Pyramid: stitching two tiles',
   { path: 'images/stitch_ppm_stitched.jpg', w: 2766, h: 565 },
   'Pancreatic cancer, polarised light. The stage recorded this tile 5 px (0.9 µm) away from where it really was; registration measured that from the overlap and corrected it.');
 
-figurePair('Measure once, on the image with the most contrast',
+figurePair('Measure once, on the image with the clearest structure',
   'The same two tiles, imaged for birefringence',
   { path: 'images/stitch_biref_unstitched.jpg', w: 3000, h: 565 },
   'Stitched with the positions measured once and reused unchanged',
   { path: 'images/stitch_biref_stitched.jpg', w: 2766, h: 565 },
-  'Measure the positions on whichever angle or channel carries the most information. Every other image of the same tiles reuses that measurement, so they stay aligned with each other.');
+  'Measure the positions on the image with the most distinct, best separated structure, which is not always the brightest or the busiest one. Every other image of the same tiles reuses that measurement, so they stay aligned with each other.');
 
 /* ================= 6 · Validation ================= */
 
