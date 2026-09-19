@@ -624,7 +624,7 @@ demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',
     x: M + 0.45, y: 2.92, w: W - 2 * M - 0.9, h: 0.42,
     fontFace: BODY, fontSize: 21, color: INK,
   });
-  s.addText('They provided the slide-label images behind the OCR and metadata exercises. Label images are the kind of data nobody publishes, so those exercises could not exist without them.\nOther data today: public images, a CC0 synthetic set, and tiles acquired at LOCI.', {
+  s.addText('They provided the slide-label images behind the OCR and metadata exercises.\nOther data today: public images, a CC0 synthetic set, and tiles acquired at LOCI.', {
     x: M + 0.45, y: 3.34, w: W - 2 * M - 0.9, h: 0.8,
     fontFace: BODY, fontSize: 17, italic: true, color: MUT, lineSpacingMultiple: 1.1,
   });

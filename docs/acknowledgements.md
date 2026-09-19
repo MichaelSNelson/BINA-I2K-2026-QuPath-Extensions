@@ -10,8 +10,7 @@ title: Acknowledgements
 The workshop's datasets come from several sources. **The slide-label images were provided by
 Sara McArdle and Zbigniew Mikulski at the La Jolla Institute for Immunology (LJI)**: six
 whole-slide images carrying real labels, which is what the OCR for Labels and Project Metadata
-Browser exercises are built on. Label images are exactly the kind of data nobody publishes, so
-without that contribution those exercises could not exist in a form anyone can practise on.
+Browser exercises are built on.
 
 The rest:
 

@@ -56,38 +56,9 @@ this afternoon, end with the ones that need a Python server and a microscope.
 > done badly. Which ones we spend the live time on is driven by
 > [your vote](walkthroughs.md), and every tool, demoed or not, has a full walkthrough and video.
 
-### Shown, not practised
-
-Some tools you watch rather than run. The reasons differ, and the difference matters:
-
-**A barrier you cannot get around today:**
-
-- **[QPSC](presented/qpsc.md)** drives real microscope hardware. We are not connecting a room
-  full of laptops to a microscope, so you watch this one.
-- **[Confusion Matrix](presented/confusion-matrix.md)** is in a private repository, so there is
-  no jar for attendees to install. It has no other barrier: if the repo goes public before the
-  workshop we will say so on the day.
-- **[Fibre and texture analysis](presented/fiber-analysis.md)** needs either a long Appose
-  environment build (Fiber Analysis) or a Windows-only Python server plus a pipeline that cannot
-  be redistributed (TME-Quant).
-
-**No barrier at all, just a division of labour:**
-
-- **[Channel Names Viewer](11-channel-names-viewer.md)** and
-  **[Classify Object Subset](07-classify-object-subset.md)** are presented by **Sara McArdle**,
-  whose Groovy scripts both extensions grew from, in her session earlier the same day,
-  *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*. We point back to
-  her demo rather than covering the same ground twice. Both install in seconds and both have a
-  full walkthrough here, so they are good choices for the hands-on hour.
-
-**Not demonstrated, but yours to use:**
-
-- **[Tiles to Pyramid](13-tiles-to-pyramid.md)** appears as part of the acquisition story rather
-  than as its own demo. It needs no hardware and is one of the easier walkthroughs to do alone.
-- **[Cluster 3D Navigator](04-cluster-3d-navigator.md)** is mentioned inside the QP-CAT segment,
-  since navigating from cluster space back to the tissue is the same job QP-CAT is doing.
-
----
+Three tools are demonstrated rather than run: QPSC needs a microscope, the Confusion Matrix is in
+a private repository, and the fibre tools need a long environment build or a Windows-only server.
+Everything else is yours to install.
 
 ## Hour 2: Hands-on, optional
 

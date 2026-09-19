@@ -73,10 +73,9 @@ Total if you did every one: roughly **2 hours 30 minutes**, which is why the sec
 menu rather than a queue. The [schedule](schedule.md) suggests four routes through them, of
 about fifty minutes each.
 
-## Shown, not practised
+## Presented tools
 
-You cannot install these today, but the pages and videos are complete, so you can see exactly
-what they do and decide whether they are worth the setup.
+You cannot install these today, but their pages and videos are complete.
 
 | Tool | Walkthrough | Video | Why not hands-on |
 |---|---|---|---|
