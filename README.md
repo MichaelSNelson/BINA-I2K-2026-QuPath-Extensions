@@ -20,18 +20,12 @@ Workshop materials for an [I2K](https://www.i2kconference.org/) workshop at the
 suite of open-source QuPath extensions developed at
 [LOCI](https://loci.wisc.edu/), University of Wisconsin–Madison.
 
-> QuPath is widely used for analysis of large 2D images, and its extension mechanism enables
-> capabilities far beyond post-acquisition analysis. At LOCI, we have developed a suite of
-> open-source QuPath extensions that add microscope hardware control and automated acquisition
-> (QPSC), publication-quality image export with integrated QUAREP-LiMi guidance (QuIET),
-> retrainable deep learning pixel classification, slide label OCR for automated metadata
-> extraction, enhanced annotation tools, classifier validation with bootstrap statistics, and
-> specialized imaging analysis including polychromatic polarization microscopy. In this
-> workshop we will demonstrate these extensions through a mix of live microscope demos,
-> interactive exercises, and hands-on exploration, showing how QuPath can serve as a unified
-> environment from acquisition through publication. The first hour will be dedicated to
-> introducing the tools, with the second hour being optional exploration of the extensions with
-> provided or user-provided data sets.
+> QuPath is widely used for analysis of large 2D images, and its extension mechanism reaches much
+> further than post-acquisition analysis. This workshop covers a suite of open-source QuPath
+> extensions developed at LOCI, through live demos and hands-on exploration: the first hour
+> introduces the tools, and the second is optional exploration with our data or your own.
+> **Most of these are under active development, written in bursts as time allows. Treat them as
+> useful rather than stable.**
 
 ---
 
