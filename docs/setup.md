@@ -132,8 +132,12 @@ Open QuPath and confirm:
       **OCR for Labels**, **Tiles to Pyramid**. Missing entries you never installed are not a
       problem
 - [ ] `Window >` contains **Dialog Position Manager...**
-- [ ] Two new wand buttons sit in the toolbar, next to QuPath's own wand. Pressing **Shift+W**
-      or **Shift+P** selects them, so if the shortcuts work, they are installed
+- [ ] Two new wand buttons sit in the toolbar, to the right of QuPath's own wand:
+
+      <img src="../images/wand-toolbar.png" alt="Three toolbar buttons: QuPath's wand, Wizard Wand, Polyline Wand" height="48">
+
+      Left to right: **QuPath's own wand** (already there), **Wizard Wand** (**Shift+W**), and
+      **Polyline Wand** (**Shift+P**). If the two shortcuts work, both are installed
 - [ ] If doing the multiplex track: `Extensions > QP-CAT` reports its environment as ready
 - [ ] The download for your track is unzipped and on disk (see the table above)
 
