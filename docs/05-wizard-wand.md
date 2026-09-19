@@ -63,11 +63,9 @@ sliders" into "show me once."
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog, or drag the `-all.jar` from
-[Releases](https://github.com/uw-loci/qupath-extension-wizard-wand/releases) onto QuPath.
-Restart. The sparkle-wand button appears in the toolbar and responds to **Shift+W**.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-Right-click the toolbar button for presets, auto-tuning, and reset.
+The sparkle-wand button appears in the toolbar and responds to **Shift+W**. Right-click it for presets, auto-tuning, and reset.
 
 ---
 

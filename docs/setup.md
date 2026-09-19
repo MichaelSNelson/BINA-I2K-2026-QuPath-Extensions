@@ -109,9 +109,9 @@ setup for Tracks A and C.
 > is why it cannot be a folder of small PNGs. **Download it at home**, and only if you are doing
 > the OCR / metadata track. Everything else in this workshop is far smaller.
 
-> **Sample slides provided by Sara McArdle and Zbigniew Mikulski**, La Jolla Institute for
-> Immunology. The majority of the workshop's test data comes from them, so please credit LJI if you
-> use these datasets in your own work. See [acknowledgements](acknowledgements.md).
+> **These slides were provided by Sara McArdle and Zbigniew Mikulski**, La Jolla Institute for
+> Immunology. Please credit LJI if you use them in your own work. See
+> [acknowledgements](acknowledgements.md).
 
 **You are also very welcome to bring your own data.** The second hour is optional exploration,
 and working on a problem you actually have is a better use of the time than working on ours.

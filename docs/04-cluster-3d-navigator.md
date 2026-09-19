@@ -63,8 +63,7 @@ satisfy both.
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog, or drop the `-all.jar` into your extensions
-folder and restart.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
 ---
 

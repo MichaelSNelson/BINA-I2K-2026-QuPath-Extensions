@@ -660,7 +660,7 @@ demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',
     { text: 'Adding it installs nothing — you pick from the list. Two entries download 1.5–2.5 GB.\n', options: { fontSize: 17, italic: true, color: MUT, paraSpaceAfter: 14 } },
     { text: 'Whatever we did not reach today, the walkthrough and the video are waiting for you.', options: { fontSize: 19, bold: true, color: BLUE_DK } },
   ], { x: 1.05, y: 2.95, w: W - 2.6, h: 2.8, fontFace: BODY, valign: 'top' });
-  s.addText('Sample data courtesy of Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology.', {
+  s.addText('Slide-label images courtesy of Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology. Other data: public images, a CC0 synthetic set, and tiles acquired at LOCI.', {
     x: 1.05, y: 5.72, w: W - 2.6, h: 0.4,
     fontFace: BODY, fontSize: 16, bold: true, color: BLUE_DK,
   });

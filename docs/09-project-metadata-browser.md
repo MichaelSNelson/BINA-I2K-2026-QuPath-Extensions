@@ -70,7 +70,7 @@ this is the difference between a tool you will use and one you will be afraid of
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog, or the release jar. Restart QuPath.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
 ---
 

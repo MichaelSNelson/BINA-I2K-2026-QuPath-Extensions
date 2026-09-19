@@ -104,11 +104,11 @@ logs its prompt and response. Read it as a hypothesis generator.
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog. Then run
-`Extensions > QP-CAT > Setup environment`. One click configures the full Python environment.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-> **Do this before the workshop.** It is a 1.5–2.5 GB download. Conference wifi will not
-> enjoy thirty people doing it simultaneously.
+Then run `Extensions > QP-CAT > Setup environment`. One click configures the full Python environment.
+
+> **Do this before the workshop.** It is a 1.5–2.5 GB download. Conference wifi will not enjoy thirty people doing it simultaneously.
 
 ---
 

@@ -74,13 +74,9 @@ Barcode scanning works immediately with no setup.
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog, or the release jar. Restart QuPath.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-> This extension grew out of the acquisition workflow and is also listed in the QPSC microscope
-> catalog, but it needs no microscope and no server, so it is in the main LOCI catalog too. You
-> do not need the QPSC catalog for it. If you would rather not use a catalog at all, download
-> [the latest jar](https://github.com/uw-loci/qupath-extension-ocr4labels/releases/latest)
-> (the one with `-all` in the name) and drag it onto the QuPath window.
+It is also listed in the QPSC microscope catalog, but it needs no microscope, so the main catalog is all you need. It does need its language data: see [setup](#setup-do-this-before-the-workshop) below.
 
 ---
 

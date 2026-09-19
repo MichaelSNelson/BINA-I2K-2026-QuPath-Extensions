@@ -91,10 +91,9 @@ There is no maximum-intensity projection and no flattening; planes are written t
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog, or the release jar. Restart QuPath.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-> Also listed in the QPSC microscope catalog, since it is the stitching half of an acquisition,
-> but it needs no microscope, so you do not need that catalog to get it.
+Also listed in the QPSC microscope catalog, but it needs no microscope, so the main catalog is all you need.
 
 ---
 

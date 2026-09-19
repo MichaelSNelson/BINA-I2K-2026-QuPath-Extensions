@@ -65,10 +65,9 @@ shortcut.
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog, or drag
-`qupath-extension-channel-names-viewer-{version}-all.jar` from
-[Releases](https://github.com/uw-loci/qupath-extension-channel-names-viewer/releases) onto
-QuPath. **Restart.** The toolbar button, menu entry and shortcut do not appear until you do.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
+
+The toolbar button, menu entry and shortcut do not appear until you restart.
 
 ---
 

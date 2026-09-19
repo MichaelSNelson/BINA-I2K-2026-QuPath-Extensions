@@ -18,23 +18,14 @@ track, use the [setup guide](setup.md) instead. Every tool also has a
 
 ---
 
-## The two-minute install
+## Installing
 
-Almost everything below comes from a **catalog**, which means QuPath installs and updates it for
-you. You only have to do this once:
+All of these install the same way: add the **LOCI QuPath Extensions** catalog once, tick the ones
+you want, restart QuPath. The [setup guide](setup.md) has the catalog URL and the exact steps, and
+says what each hands-on track needs.
 
-1. Install **QuPath 0.7.0 or later** from [qupath.github.io](https://qupath.github.io/).
-2. `Extensions > Manage extensions > Manage extension catalogs > Add catalog`
-3. Add the one catalog: `https://github.com/uw-loci/qupath-catalog-mikenelson`
-4. Find the extensions you want in the list and click **Install**.
-   **Adding a catalog installs nothing by itself, and you should not install everything in it.**
-   QP-CAT and the DL Pixel Classifier each fetch a 1.5–2.5 GB Python environment.
-5. **Restart QuPath.** Extensions are not loaded on the fly, so the menu items will not appear
-   until you do. This is the most common problem we see.
-
-New to any of this? [How extensions and catalogs work](00-extensions-catalogs-and-ai.md)
-explains what a catalog is, why jars are named `-all.jar`, and where the extensions folder
-lives on each OS.
+**Adding a catalog installs nothing by itself, and you should not install everything in it.**
+QP-CAT and the DL Pixel Classifier each fetch a 1.5–2.5 GB Python environment.
 
 ---
 

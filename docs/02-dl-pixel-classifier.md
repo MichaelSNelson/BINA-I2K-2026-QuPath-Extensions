@@ -86,10 +86,9 @@ hour.
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog, or the `-all.jar` from
-[Releases](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/releases). Restart
-QuPath. The first run downloads the embedded Python environment, so **do this before the
-workshop**, it is a substantial download.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
+
+> **Do this before the workshop.** The first run downloads an embedded Python environment, and it is a substantial download.
 
 ---
 

@@ -88,8 +88,10 @@ what they do and decide whether they are worth the setup.
 
 ## A note on the data
 
-Every walkthrough and video on this page was built against images provided by **Sara McArdle**
-and **Zbigniew Mikulski** at the **La Jolla Institute for Immunology**. See
+Each walkthrough names the dataset it uses, and they come from different places: public images,
+a CC0 synthetic dataset, tiles acquired at LOCI, and the slide-label images provided by
+**Sara McArdle** and **Zbigniew Mikulski** at the **La Jolla Institute for Immunology**. The
+[setup guide](setup.md) lists what to download for each; see also
 [acknowledgements](acknowledgements.md).
 
 ---

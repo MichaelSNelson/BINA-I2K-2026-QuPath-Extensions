@@ -7,14 +7,20 @@ title: Acknowledgements
 
 ## Sample data
 
-**The majority of the test and demonstration data used throughout this workshop was provided by
-Sara McArdle and Zbigniew Mikulski at the La Jolla Institute for Immunology (LJI).**
+The workshop's datasets come from several sources. **The slide-label images were provided by
+Sara McArdle and Zbigniew Mikulski at the La Jolla Institute for Immunology (LJI)**: six
+whole-slide images carrying real labels, which is what the OCR for Labels and Project Metadata
+Browser exercises are built on. Label images are exactly the kind of data nobody publishes, so
+without that contribution those exercises could not exist in a form anyone can practise on.
 
-This is not a small contribution and it is not a footnote. Almost every exercise on this site,
-the annotation work, the classifier training and validation, the multiplexed analysis, the
-export examples, was developed against their images. Tools like these cannot be built, tested,
-or taught without real data from people willing to share it, and far more of this workshop rests
-on that generosity than on any single piece of software here.
+The rest:
+
+- **Brightfield and multiplexed exercises** use public images: CMU-1 (Aperio, from the OpenSlide
+  test data) and LuCa-7color (Akoya, from the OME image repository).
+- **The multiplexed clustering exercises** use the TME-QUANT synthetic dataset, produced at LOCI
+  and released **CC0**: entirely synthetic, no patient or animal tissue, no attribution required.
+- **The stitching exercise** uses polarised-light tiles of pancreatic cancer tissue acquired at
+  LOCI.
 
 Sara McArdle also demonstrates two of these tools herself, in the session before ours,
 *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*, which is fitting,
@@ -32,12 +38,9 @@ as her Groovy scripts:
 Her [FS2K](https://github.com/saramcardle/FS2K) QuPath course was also the model for how these
 instructional pages are structured.
 
-If you use the workshop datasets in your own work, please credit LJI and the contributors above.
-
-**One exception:** the multiplexed exercises use the
-[TME-QUANT synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest), produced at LOCI and released under **CC0**, entirely
-synthetic, no patient or animal tissue, no attribution required. Reuse it in your own teaching
-freely.
+If you use the **slide-label images** in your own work, please credit LJI. The
+[TME-QUANT synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest)
+is CC0, so reuse it freely; the public images carry their own original terms.
 
 ---
 

@@ -93,8 +93,7 @@ sub-categories.
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog, or the `-all.jar` from
-[Releases](https://github.com/uw-loci/qupath-extension-polyline-wand/releases). Restart.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
 ---
 

@@ -153,10 +153,10 @@ Repeat for `%%DRIVE_SLIDES_URL%%`. (`%%DRIVE_DATA_URL%%` is retired: datasets no
 
 ## Acknowledgements
 
-**The majority of the test and demonstration data used throughout this workshop was provided by
-Sara McArdle and Zbigniew Mikulski at the La Jolla Institute for Immunology (LJI).** Almost every
-exercise here was developed against their images. Please credit LJI if you use the workshop
-datasets in your own work.
+**The slide-label images were provided by Sara McArdle and Zbigniew Mikulski at the La Jolla
+Institute for Immunology (LJI)**: six whole-slide images with real labels, which the OCR and
+metadata exercises depend on. Please credit LJI if you use them. The other datasets are public
+images (CMU-1, LuCa-7color), a CC0 synthetic dataset made at LOCI, and tiles acquired at LOCI.
 
 Sara McArdle also shaped the software directly. Two extensions in this workshop began as her
 Groovy scripts, and her [FS2K](https://github.com/saramcardle/FS2K) course was the model for how

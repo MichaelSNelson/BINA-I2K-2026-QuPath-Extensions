@@ -70,9 +70,7 @@ across a whole project as a script: the GUI is exploratory, the script is reprod
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog, or the jar from
-[Releases](https://github.com/uw-loci/qupath-extension-classify-object-subset/releases).
-Restart QuPath.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
 ---
 

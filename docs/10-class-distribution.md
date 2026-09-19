@@ -61,9 +61,7 @@ is annotated consistently across slides.
 
 ## Install
 
-Via the **LOCI QuPath Extensions** catalog (`Extensions > Manage extensions >
-Manage extension catalogs > Add catalog` → `https://github.com/uw-loci/qupath-catalog-mikenelson`),
-or the release jar. Restart QuPath.
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
 ---
 

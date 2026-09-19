@@ -26,25 +26,17 @@ Three things catch everyone out:
 - **Extensions are per QuPath version.** `0.7` has its own extensions folder, so installing
   today will not disturb a 0.6 you already use. Everything here needs **QuPath 0.7.0+**.
 
-## Adding the catalog
+## What a catalog is
 
-A catalog is a list of extensions that QuPath can install and update for you. One catalog
-covers every hands-on tool in this workshop:
+A catalog is a list of extensions that QuPath can install and update for you, so you never hunt
+for jars again. One catalog covers every hands-on tool in this workshop, and adding it installs
+**nothing** by itself; it only shows you a list.
 
-| Catalog | URL |
-|---|---|
-| **LOCI QuPath Extensions** | `https://github.com/uw-loci/qupath-catalog-mikenelson` |
+**[The setup guide](setup.md) has the catalog URL and the four steps.** Do that before you travel.
 
-In QuPath: `Extensions > Manage extensions > Manage extension catalogs > Add catalog`, paste
-the URL, then pick what you want and restart.
-
-> ## ⚠️ Do **not** install everything in it
->
-> Adding a catalog installs **nothing**; it only shows you a list. Two entries (QP-CAT and the
-> DL Pixel Classifier) each download a **1.5–2.5 GB** Python environment on first use.
-> Installing those by accident on conference wifi will ruin your morning.
->
-> The [setup guide](setup.md) says exactly what each track needs.
+> ⚠️ **Do not install everything in the catalog.** Two entries (QP-CAT and the DL Pixel
+> Classifier) each download a **1.5–2.5 GB** Python environment on first use. Installing those by
+> accident on conference wifi will ruin your morning.
 
 ## Where to go next
 
