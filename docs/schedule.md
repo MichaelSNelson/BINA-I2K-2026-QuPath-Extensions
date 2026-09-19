@@ -39,7 +39,7 @@ this afternoon, end with the ones that need a Python server and a microscope.
 | Time | Topic | Pages |
 |---|---|---|
 | 10:30 | **Welcome and framing.** QuPath as one environment from acquisition to publication | — |
-| 10:34 | **Extensions, catalogs, and how this suite was built**, including where AI-assisted development helped and where it did not | [intro](00-extensions-catalogs-and-ai.md) |
+| 10:34 | **Extensions, catalogs, and how this suite was built**, including where AI-assisted development helped and where it did not | [catalogs](00-extensions-catalogs-and-ai.md) · [how it was built](how-this-was-built.md) |
 | 10:40 | **Simple wins.** Dialog positions that survive an undocked laptop, plus a callback to two tools you saw in **Sara McArdle’s** earlier session: a channel legend and subset classification | [Dialog Manager](12-dialog-position-manager.md) · [Channel Names](11-channel-names-viewer.md) · [Classify Subset](07-classify-object-subset.md) |
 | 10:45 | **Annotation, live (10 min).** Both wands in one sitting: wand a structure, auto-tune from your own example, then reshape and split a polyline boundary | [Wizard Wand](05-wizard-wand.md) · [Polyline Wand](06-polyline-wand.md) |
 | 10:55 | **Image export.** Publication figures, masks and ML datasets in batch, with QUAREP-LiMi guidance and a generated Groovy script every time | [QuIET](01-quiet-image-export.md) |

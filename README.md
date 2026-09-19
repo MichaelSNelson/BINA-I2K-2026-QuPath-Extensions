@@ -38,8 +38,10 @@ suite of open-source QuPath extensions developed at
 
 > ### ⚠️ This site is still being built
 >
-> Setup, guides and exercises are all current and usable now, and the **datasets are now linked**
-> and ready to download. Still to come: the slides and the walkthrough videos. Anywhere you see a `%%PLACEHOLDER%%` instead of a link, that is why.
+> Setup, guides and exercises are current and usable now. **Most datasets are linked and ready to
+> download**; the tile set for the stitching exercise is still being prepared. Still to come: the
+> slides and the walkthrough videos. Anywhere you see a `%%PLACEHOLDER%%` instead of a link, that
+> is why.
 > It will all be in place before 29 September.
 
 ## Setup: do this before you travel
@@ -74,7 +76,7 @@ That is the only catalog you need. Everything hands-on in this workshop is in it
 
 | | |
 |---|---|
-| **[Extensions, catalogs & AI-assisted development](docs/00-extensions-catalogs-and-ai.md)** | Read this first: what an extension is, how catalogs work, and how this suite was built |
+| **[Extensions and catalogs in five minutes](docs/00-extensions-catalogs-and-ai.md)** | The whole background you need: installing an extension, and adding the one catalog |
 | **[Acknowledgements](docs/acknowledgements.md)** | Data providers, the QuPath team, and the methods these tools build on |
 | **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough and a video for every tool, plus the vote for what we demo live |
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide, for picking just the ones you want |

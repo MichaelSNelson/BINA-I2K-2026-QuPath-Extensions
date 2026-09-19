@@ -39,7 +39,7 @@ this one:
 That is the only catalog you need. Everything hands-on in this workshop is in it.
 
 Background on what a catalog is and why we use them:
-[How extensions, catalogs, and AI-assisted development work](00-extensions-catalogs-and-ai.md).
+[Extensions and catalogs in five minutes](00-extensions-catalogs-and-ai.md).
 
 ## 3. Install the extensions
 

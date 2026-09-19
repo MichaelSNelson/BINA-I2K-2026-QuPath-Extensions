@@ -46,7 +46,7 @@ time. Undock a laptop, present on a projector, come back, and QuPath dutifully r
 dialog at coordinates that no longer exist on any attached display. Without a recovery path,
 the fix is editing preferences by hand or reinstalling.
 
-It is also, honestly, an example from the [intro doc](00-extensions-catalogs-and-ai.md): this
+It is also an example from [how this suite was built](how-this-was-built.md): this
 class of bug is invisible to automated testing and to an AI agent. It only shows up when a
 human unplugs a monitor.
 
