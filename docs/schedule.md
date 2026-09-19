@@ -31,24 +31,24 @@ spend the second hour on your own data instead of ours.
 
 ---
 
-## Hour 1: Presentation and demos (10:30 – 11:30)
+## Hour 1: Presentation and demos
 
 The order follows the session title: start with tools you can install in two minutes and use
 this afternoon, end with the ones that need a Python server and a microscope.
 
-| Time | Topic | Pages |
-|---|---|---|
-| 10:30 | **Welcome and framing.** QuPath as one environment from acquisition to publication | — |
-| 10:34 | **Extensions, catalogs, and how this suite was built**, including where AI-assisted development helped and where it did not | [catalogs](00-extensions-catalogs-and-ai.md) · [how it was built](how-this-was-built.md) |
-| 10:40 | **Simple wins.** Dialog positions that survive an undocked laptop, plus a callback to two tools you saw in **Sara McArdle’s** earlier session: a channel legend and subset classification | [Dialog Manager](12-dialog-position-manager.md) · [Channel Names](11-channel-names-viewer.md) · [Classify Subset](07-classify-object-subset.md) |
-| 10:45 | **Annotation, live (10 min).** Both wands in one sitting: wand a structure, auto-tune from your own example, then reshape and split a polyline boundary | [Wizard Wand](05-wizard-wand.md) · [Polyline Wand](06-polyline-wand.md) |
-| 10:55 | **Image export.** Publication figures, masks and ML datasets in batch, with QUAREP-LiMi guidance and a generated Groovy script every time | [QuIET](01-quiet-image-export.md) |
-| 11:01 | **Project-scale housekeeping.** Slide-label OCR into metadata, whole-project metadata editing, and class balance | [OCR](08-ocr4labels.md) · [Metadata Browser](09-project-metadata-browser.md) · [Class Distribution](10-class-distribution.md) |
-| 11:07 | **Did it actually work?** Confusion matrices with bootstrap confidence intervals *(shown)* | [Confusion Matrix](presented/confusion-matrix.md) |
-| 11:11 | **DL cell and pixel classifiers.** Deep pixel classification from sparse annotations; clustering, cell classification and spatial statistics on multiplexed data, checked against ground truth. Picks up where Sara's hi-plex classification session left off. [Cluster 3D Navigator](04-cluster-3d-navigator.md) gets a mention here, as the navigation half of the same job | [DL Classifier](02-dl-pixel-classifier.md) · [QP-CAT](03-qp-cat-cell-analysis-tools.md) |
-| 11:19 | **Collagen fibre and texture analysis.** Straightness, morphometrics, texture, and TACS *(shown)* | [Fibre analysis](presented/fiber-analysis.md) |
-| 11:24 | **Microscope control.** Draw a box in QuPath, acquire, stitch, land back in the project *(shown; nobody in the room drives a microscope).* The stitching half, [Tiles to Pyramid](13-tiles-to-pyramid.md), you can install and use today | [QPSC](presented/qpsc.md) |
-| 11:29 | **Where to get everything**, and what to do in the second hour | [setup](setup.md) |
+| Topic | Pages |
+|---|---|
+| **Welcome and framing.** QuPath as one environment from acquisition to publication | — |
+| **Extensions, catalogs, and how this suite was built**, including where AI-assisted development helped and where it did not | [catalogs](00-extensions-catalogs-and-ai.md) · [how it was built](how-this-was-built.md) |
+| **Simple wins.** Dialog positions that survive an undocked laptop, plus a callback to two tools you saw in **Sara McArdle’s** earlier session: a channel legend and subset classification | [Dialog Manager](12-dialog-position-manager.md) · [Channel Names](11-channel-names-viewer.md) · [Classify Subset](07-classify-object-subset.md) |
+| **Annotation, live (10 min).** Both wands in one sitting: wand a structure, auto-tune from your own example, then reshape and split a polyline boundary | [Wizard Wand](05-wizard-wand.md) · [Polyline Wand](06-polyline-wand.md) |
+| **Image export.** Publication figures, masks and ML datasets in batch, with QUAREP-LiMi guidance and a generated Groovy script every time | [QuIET](01-quiet-image-export.md) |
+| **Project-scale housekeeping.** Slide-label OCR into metadata, whole-project metadata editing, and class balance | [OCR](08-ocr4labels.md) · [Metadata Browser](09-project-metadata-browser.md) · [Class Distribution](10-class-distribution.md) |
+| **Did it actually work?** Confusion matrices with bootstrap confidence intervals *(shown)* | [Confusion Matrix](presented/confusion-matrix.md) |
+| **DL cell and pixel classifiers.** Deep pixel classification from sparse annotations; clustering, cell classification and spatial statistics on multiplexed data, checked against ground truth. Picks up where Sara's hi-plex classification session left off. [Cluster 3D Navigator](04-cluster-3d-navigator.md) gets a mention here, as the navigation half of the same job | [DL Classifier](02-dl-pixel-classifier.md) · [QP-CAT](03-qp-cat-cell-analysis-tools.md) |
+| **Collagen fibre and texture analysis.** Straightness, morphometrics, texture, and TACS *(shown)* | [Fibre analysis](presented/fiber-analysis.md) |
+| **Microscope control.** Draw a box in QuPath, acquire, stitch, land back in the project *(shown; nobody in the room drives a microscope).* The stitching half, [Tiles to Pyramid](13-tiles-to-pyramid.md), you can install and use today | [QPSC](presented/qpsc.md) |
+| **Where to get everything**, and what to do in the second hour | [setup](setup.md) |
 
 **Slides:** %%DRIVE_SLIDES_URL%%
 
@@ -89,7 +89,7 @@ Some tools you watch rather than run. The reasons differ, and the difference mat
 
 ---
 
-## Hour 2: Hands-on, optional (11:30 – 12:30)
+## Hour 2: Hands-on, optional
 
 There are thirteen hands-on extensions and sixty minutes. **Do not try to do all of them.**
 Pick one track, or bring your own data and pick the tools that fit it.
@@ -98,11 +98,9 @@ Whatever you do not get to, you lose nothing: every tool has a
 [written walkthrough and a recorded video](walkthroughs.md), so you can work through the rest at
 your own pace afterwards.
 
-| Time | |
-|---|---|
-| 11:30 | Setup triage. If anything from the [setup guide](setup.md) or the [extension index](extensions.md) did not work, grab us now |
-| 11:35 | Work through a track (or your own data) |
-| 12:25 | Wrap-up, questions, and how to get help afterwards |
+We start with setup triage: if anything from the [setup guide](setup.md) or the
+[extension index](extensions.md) did not work, grab us then. After that it is your hour, and we
+will be circulating throughout.
 
 ### Suggested tracks for exploration
 

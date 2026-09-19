@@ -235,7 +235,7 @@ content('The claim', [
   'Acquisition → analysis → validation → publication, in one environment',
   { t: 'One project. One place your metadata lives. One place your figures come from' },
   'Sixteen extensions built at LOCI — thirteen you can install this afternoon',
-]);
+], { note: 'Most of these are under active development, written in bursts as I have time. Useful, not stable — treat them accordingly.' });
 
 content('How the hour runs', [
   'Simple first, complex last — exactly as the session title promises',
@@ -288,7 +288,7 @@ content('What an extension actually is', [
 
 content('Three things that bite everyone', [
   'You must restart QuPath. It copies the extension into place but will not load it until you do',
-  { t: 'This is roughly half of all "the menu item is not there" reports' },
+  { t: 'Extensions are only loaded at startup, so nothing appears until you restart' },
   'Extensions live per QuPath version — installing 0.7 will not disturb your 0.6 setup',
   'They are compiled against a specific QuPath API, which is why today needs 0.7 or later',
 ], { note: 'Workshop requirement: QuPath 0.7.0 or later. Nothing here runs on 0.6.' });
@@ -299,8 +299,7 @@ content('Catalogs', [
   'LOCI catalog  —  github.com/uw-loci/qupath-catalog-mikenelson  (the only one you need today)',
   'Adding a catalog installs NOTHING. It shows you a list',
   'Install only what you want — QP-CAT and the DL classifier each pull 1.5–2.5 GB on first use',
-], { kicker: 'If you remember one slide from this section, make it this one.',
-     note: 'Publishing your own catalog takes about twenty minutes and removes a support burden.' });
+], { kicker: 'If you remember one slide from this section, make it this one.' });
 
 content('Sixteen extensions, one person', [
   'That is not a normal output, and it is fair to ask how',
@@ -625,7 +624,7 @@ demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',
     x: M + 0.45, y: 2.92, w: W - 2 * M - 0.9, h: 0.42,
     fontFace: BODY, fontSize: 21, color: INK,
   });
-  s.addText('They provided the majority of the test and demonstration data behind almost every exercise you will see today.\nThese tools could not have been built, tested, or taught without it.', {
+  s.addText('They provided the slide-label images behind the OCR and metadata exercises. Label images are the kind of data nobody publishes, so those exercises could not exist without them.\nOther data today: public images, a CC0 synthetic set, and tiles acquired at LOCI.', {
     x: M + 0.45, y: 3.34, w: W - 2 * M - 0.9, h: 0.8,
     fontFace: BODY, fontSize: 17, italic: true, color: MUT, lineSpacingMultiple: 1.1,
   });

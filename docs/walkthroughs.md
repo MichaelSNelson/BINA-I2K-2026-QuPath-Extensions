@@ -37,15 +37,15 @@ hour.
 |---|---|---|
 | **Live demo** | A handful of tools, driven by the vote, in the first hour | Being in the room |
 | **Written walkthrough** | Every tool. Step-by-step, with a "what to notice" section | Following along, or working alone in the second hour |
-| **Video** | Every tool. The same walkthrough, recorded | Afterwards, at your own pace, or when a step does not behave |
+| **Video** | Every tool. Short, and the same steps as the walkthrough | When a step does not behave, or you would rather watch than read |
 
 The written walkthrough is the source of truth. The video follows it step for step, so you can
 switch between them without losing your place.
 
-**"Shown" and "hands-on" are different axes.** A tool can be shown live and still be yours to
-install (both wands), or never demonstrated and still perfectly easy to run alone
-(Tiles to Pyramid). Only QPSC, the Confusion Matrix and the fibre tools have a barrier that
-actually stops you.
+**Everything in the extension index is yours to install and keep**, whether or not we demo it
+live. Demoing is just about what fits in the first hour. Three tools are the exception, and only
+because you cannot run them here: QPSC needs a microscope, the Confusion Matrix repository is
+private, and the fibre tools need a long environment build or a Windows-only server.
 
 ---
 
@@ -53,7 +53,7 @@ actually stops you.
 
 Each of these you can install and run yourself; see the [extension index](extensions.md).
 
-| Tool | Walkthrough | Video | Approx. time |
+| Tool | Walkthrough | Video | Exercise takes |
 |---|---|---|---|
 | QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md) | %%VIDEO_QUIET_IMAGE_EXPORT%% | 15 min |
 | DL Pixel Classifier | [Guide](02-dl-pixel-classifier.md) | %%VIDEO_DL_PIXEL_CLASSIFIER%% | 15 min |
@@ -101,8 +101,4 @@ a CC0 synthetic dataset, tiles acquired at LOCI, and the slide-label images prov
 Tell us. A step that reads clearly to the person who wrote the tool and makes no sense to
 anyone else is a documentation bug, and we would rather hear about it than not.
 
-- During the session: grab us. We will be circulating for the whole second hour.
-- Afterwards: open an issue on the
-  [workshop repository](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/issues),
-  or on the individual extension's repository if the problem is with the tool rather than the
-  instructions.
+Grab us during the session. We will be circulating for the whole second hour.

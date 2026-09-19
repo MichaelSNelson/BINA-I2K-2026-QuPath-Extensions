@@ -65,10 +65,21 @@ That is the only catalog you need. Everything hands-on in this workshop is in it
 > it.** QP-CAT and the DL Pixel Classifier each fetch a **1.5–2.5 GB** Python environment on
 > first use. If one or two extensions are why you are coming, install just those.
 
-**4. Download the data** for the track you plan to do. The multiplexed track needs only a
-[20 MB public dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest).
+**4. Download the data for the track you plan to do.** Download exactly the file named here;
+each link goes straight to it.
 
-**Full instructions, including the per-track dataset list: [setup guide](docs/setup.md).**
+| If you are doing | Download exactly this | Size |
+|---|---|---|
+| **Track A or C** — QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset | **`Scripting Demo.zip`** from [this Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Unzip, then `File > Project > Open project` on the unzipped folder | ~500 MB |
+| **Track B** — QP-CAT, Cluster 3D Navigator, Channel Names Viewer | **`multiplex-synthetic-data-v1.0.zip`** from [this release](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest), the first file under Assets. Not "Source code" | **20 MB** |
+| **Track D** — OCR for Labels, Project Metadata Browser | **[`LabelImageExamples_from_LJI.zip`](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing)** | **over 500 MB** ⚠️ |
+| **Track D** — Tiles to Pyramid | Still being prepared; nothing to download yet | — |
+
+The Drive folder holds four zips. **`Scripting Demo.zip` is the QuPath project**; the others are
+individual images and the label slides.
+
+**Which extensions are in which track: [extension index](docs/extensions.md).** Per-track detail
+and troubleshooting: [setup guide](docs/setup.md).
 
 ---
 
@@ -82,16 +93,12 @@ That is the only catalog you need. Everything hands-on in this workshop is in it
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide, for picking just the ones you want |
 | **[Schedule](docs/schedule.md)** | Hour-by-hour running order, plus suggested tracks for the second hour |
 
-## Files on Google Drive
+## Still to come
 
 | | |
 |---|---|
-| **QuPath intro project** (`DATA-01` + `DATA-02`) | [Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), ~500 MB. CMU-1 H&E and LuCa-7color, cells detected, classifiers saved. From [imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro) |
-| **Synthetic TME** (`TME-SYNTH`) | [GitHub release](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest), ~20 MB, CC0 |
-| **Slides with labels** (`DATA-03`) | [LabelImageExamples_from_LJI.zip](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing), **over 500 MB** |
-| `DATA-04_tiles` | Not yet assembled |
-| Workshop folder | %DRIVE_FOLDER_URL% |
-| Presentation slides | %DRIVE_SLIDES_URL% |
+| Tiles for the stitching exercise | Being prepared |
+| Presentation slides | %%DRIVE_SLIDES_URL%% |
 
 ## Shown, not practised
 

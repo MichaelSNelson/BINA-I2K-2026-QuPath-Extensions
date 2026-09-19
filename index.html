@@ -58,6 +58,11 @@ h2{font-size:1.25rem; color:var(--cy); margin:0 0 .35rem; letter-spacing:.01em}
 .url{display:block; background:#0B1020; border:1px solid var(--hair); border-radius:8px;
   padding:.55rem .8rem; margin:.45rem 0 .1rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
   font-size:.86rem; color:var(--cy); overflow-x:auto; white-space:nowrap}
+table.data{width:100%; border-collapse:collapse; margin:.7rem 0 .2rem; font-size:.93rem}
+table.data th{text-align:left; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em;
+  color:var(--mut); border-bottom:1px solid var(--hair); padding:.35rem .5rem}
+table.data td{border-bottom:1px solid var(--hair); padding:.45rem .5rem; vertical-align:top}
+table.data td:last-child{white-space:nowrap}
 .warn{background:rgba(251,191,36,.09); border:1px solid var(--am); border-radius:10px;
   padding:.75rem .9rem; margin:1.1rem 0 0; color:var(--ink); font-size:.92rem; line-height:1.55}
 .warn b{color:var(--am)}
@@ -97,8 +102,8 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
     polarization microscopy.
   </p>
   <div class="meta">
-    <a class="chip" href="docs/schedule.html#hour-1-presentation-and-demos-1030--1130"><b>Hour 1</b> simple &rarr; complex, with demos</a>
-    <a class="chip" href="docs/schedule.html#hour-2-hands-on-optional-1130--1230"><b>Hour 2</b> optional hands-on</a>
+    <a class="chip" href="docs/schedule.html#hour-1-presentation-and-demos"><b>Hour 1</b> simple &rarr; complex, with demos</a>
+    <a class="chip" href="docs/schedule.html#hour-2-hands-on-optional"><b>Hour 2</b> optional hands-on</a>
     <a class="chip" href="docs/setup.html#1-qupath-070-or-later">Requires <b>QuPath 0.7.0+</b></a>
     <a class="chip" href="docs/extensions.html">13 hands-on extensions</a>
   </div>
@@ -114,7 +119,19 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
       <code class="url">https://github.com/uw-loci/qupath-catalog-mikenelson</code>
       That is the only catalog you need &mdash; everything hands-on is in it.</li>
     <li><b>Install only the extensions you want</b>, then <b>restart QuPath</b>. Extensions are only loaded at startup, so nothing appears until you do.</li>
-    <li><b>Download the data</b> for whichever track you plan to do &mdash; the multiplexed track needs only a <a href="https://github.com/uw-loci/multiplex-synthetic-data/releases/latest">20&nbsp;MB public dataset</a>.</li>
+    <li><b>Download the data</b> for whichever track you plan to do. Download exactly the file named here:
+      <table class="data">
+        <tr><th>If you are doing</th><th>Download exactly this</th><th>Size</th></tr>
+        <tr><td><b>Track A or C</b><br>QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset</td>
+            <td><a href="https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing"><b>Scripting Demo.zip</b></a> &mdash; unzip, then <code>File &gt; Project &gt; Open project</code> on the unzipped folder. That Drive folder holds four zips; this is the one that is a QuPath project</td><td>~500&nbsp;MB</td></tr>
+        <tr><td><b>Track B</b><br>QP-CAT, Cluster 3D Navigator, Channel Names Viewer</td>
+            <td><a href="https://github.com/uw-loci/multiplex-synthetic-data/releases/latest"><b>multiplex-synthetic-data-v1.0.zip</b></a> &mdash; the first file under Assets, not "Source code"</td><td><b>20&nbsp;MB</b></td></tr>
+        <tr><td><b>Track D</b><br>OCR for Labels, Project Metadata Browser</td>
+            <td><a href="https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing"><b>LabelImageExamples_from_LJI.zip</b></a></td><td><b>over 500&nbsp;MB</b> &#9888;</td></tr>
+        <tr><td><b>Track D</b><br>Tiles to Pyramid</td><td>Still being prepared; nothing to download yet</td><td>&mdash;</td></tr>
+      </table>
+      Which extensions are in which track: <a href="docs/extensions.html">extension index</a>.
+    </li>
   </ol>
   <div class="warn">
     <b>Adding the catalog installs nothing.</b> It shows you a list. <b>Do not install everything in it</b> &mdash; QP-CAT and the DL Pixel Classifier each pull down a <b>1.5&ndash;2.5&nbsp;GB</b> Python environment on first use. If one or two extensions are why you are coming, install just those.

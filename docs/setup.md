@@ -84,19 +84,21 @@ Set **Tessdata Path** to the folder containing them, click OK. Barcode scanning 
 **Only download what your track needs.** There is no single bundle; each dataset comes from
 wherever it already lives, and the sizes differ by more than an order of magnitude.
 
-| Dataset | Where to get it | Size | Used by |
-|---|---|---|---|
-| **QuPath intro project**<br>`DATA-01_HE_WSI` + `DATA-02_multiplex_IF` | [Project folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Download the whole folder and open it as a QuPath project | ~500 MB | QuIET, DL Pixel Classifier, Wizard Wand, Polyline Wand, Class Distribution, Classify Object Subset. **Tracks A and C** |
-| **`TME-SYNTH`**<br>synthetic tumour microenvironment | [GitHub release](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest). 8 images, 8 channels, 6 cell types, full per-cell ground truth, CC0 | **~20 MB** | QP-CAT, Cluster 3D Navigator, Channel Names Viewer. **Track B** |
-| **`DATA-03_labeled_slides`**<br>slides with label images | [LabelImageExamples_from_LJI.zip](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing). 6 CZI whole-slide images, each carrying an embedded slide label | **over 500 MB** ⚠️ | OCR for Labels, Project Metadata Browser. **Track D** |
-| `DATA-04_tiles` | Coming: a tile directory with `TileConfiguration.txt` | small | Tiles to Pyramid. **Track D** |
+| If you are doing | Download exactly this | Size |
+|---|---|---|
+| **Track A or C** (QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset) | **`Scripting Demo.zip`**, from [this Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Unzip it, then in QuPath use `File > Project > Open project` and pick the unzipped folder | ~500 MB |
+| **Track B** (QP-CAT, Cluster 3D Navigator, Channel Names Viewer) | **`multiplex-synthetic-data-v1.0.zip`**, from [this release page](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest). It is the first file under Assets. Ignore "Source code (zip)" and "(tar.gz)" | **20 MB** |
+| **Track D** (OCR for Labels, Project Metadata Browser) | **`LabelImageExamples_from_LJI.zip`**, [direct link](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) or the same Drive folder | **over 500 MB** ⚠️ |
+| **Track D** (Tiles to Pyramid) | Still being prepared. Nothing to download yet | — |
 
-**The intro project** is the demo project from
-[imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro), already public and
-already assembled. It holds **CMU-1** (brightfield H&E) and **LuCa-7color** (8-channel multiplexed
-IF: PDL1 · CD8 · FoxP3 · CD68 · PD1 · CK · DAPI · autofluorescence), with cells detected and
-several saved object classifiers. Download the project folder and open it. That is the whole
-setup for Tracks A and C.
+That Drive folder holds four zips. **`Scripting Demo.zip` is the one that is a QuPath project**;
+the others are individual images and the label slides.
+
+**`Scripting Demo.zip`** is the demo project from
+[imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro), already assembled:
+**CMU-1** (brightfield H&E) and **LuCa-7color** (8-channel multiplexed IF), with cells already
+detected and several saved object classifiers. Unzip, open as a project, and Tracks A and C are
+ready.
 
 > Prefer the individual images? That page links them at source: CMU-1 from the
 > [OpenSlide test data](http://openslide.cs.cmu.edu/download/openslide-testdata/Aperio/) and
@@ -130,9 +132,10 @@ Open QuPath and confirm:
       **OCR for Labels**, **Tiles to Pyramid**. Missing entries you never installed are not a
       problem
 - [ ] `Window >` contains **Dialog Position Manager...**
-- [ ] The toolbar has a **sparkle wand** (Shift+W) and a **polyline wand** (Shift+P) button
+- [ ] Two new wand buttons sit in the toolbar, next to QuPath's own wand. Pressing **Shift+W**
+      or **Shift+P** selects them, so if the shortcuts work, they are installed
 - [ ] If doing the multiplex track: `Extensions > QP-CAT` reports its environment as ready
-- [ ] The datasets for your track are on disk
+- [ ] The download for your track is unzipped and on disk (see the table above)
 
 ## If something goes wrong
 
