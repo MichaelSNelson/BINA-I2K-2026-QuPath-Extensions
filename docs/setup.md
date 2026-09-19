@@ -136,7 +136,7 @@ Open QuPath and confirm:
 
 ## If something goes wrong
 
-- **A menu item is missing.** Did you restart QuPath? This is the answer roughly half the time.
+- **A menu item is missing.** Did you restart QuPath? Extensions are only loaded at startup.
 - **The extension loads but throws `NoSuchMethodError`.** You are probably on QuPath 0.6.
 - **`ClassNotFoundException`.** You downloaded a jar without `-all` in the name. Get the
   `-all` jar.

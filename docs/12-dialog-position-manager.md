@@ -41,8 +41,7 @@ title: Dialog Position Manager
 
 ## Why it exists
 
-This is the least glamorous extension in the suite and the one that saves the most support
-time. Undock a laptop, present on a projector, come back, and QuPath dutifully reopens a
+This is the least glamorous extension in the suite. Undock a laptop, present on a projector, come back, and QuPath dutifully reopens a
 dialog at coordinates that no longer exist on any attached display. Without a recovery path,
 the fix is editing preferences by hand or reinstalling.
 

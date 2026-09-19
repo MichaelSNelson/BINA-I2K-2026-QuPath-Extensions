@@ -67,8 +67,8 @@ not slides. The deck's job is to frame each segment and then get out of the way.
 
 20. **Section divider: at scale.**
 21. **OCR for Labels.** The case ID is already in your file. Templates + vocabulary matching.
-22. **Project Metadata Browser.** 467 rows, buffered editing, full undo. Sorting an OCR column
-    is the fastest QC pass there is.
+22. **Project Metadata Browser.** Whole-project table, buffered editing, full undo. Sorting an
+    OCR column makes bad reads stand out as outliers.
 23. **Class Distribution.** Annotation count ≠ area ≠ implied training detections. Only the third
     predicts classifier behaviour.
 23a. **Tiles to Pyramid: stitching two tiles.** Figure: two real tiles as acquired, overlap strip

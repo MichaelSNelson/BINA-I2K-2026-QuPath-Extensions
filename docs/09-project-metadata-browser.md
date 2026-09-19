@@ -30,7 +30,7 @@ Modelled on QuPath's built-in TMA Results Viewer, but for whole projects. One ro
 image; built-in columns (Name, ID, URI, Description, Tags) plus **one column per user-metadata
 key used anywhere in the project**.
 
-If you have just run [OCR for Labels](08-ocr4labels.md) across 467 slides, this is where you
+If you have just run [OCR for Labels](08-ocr4labels.md) across a few hundred slides, this is where you
 find out whether it worked.
 
 **Viewing**
@@ -52,7 +52,7 @@ paste, import, regex extraction) is **undoable with Ctrl+Z** (and redoable with
 Ctrl+Shift+Z). Discard reverts to the last save, and closing with unsaved work prompts you.
 **The on-disk project is untouched until Save.**
 
-Given that the alternative is a script that rewrites metadata across 467 images with no undo,
+Given that the alternative is a script that rewrites metadata across every image with no undo,
 this is the difference between a tool you will use and one you will be afraid of.
 
 **Bulk workflows**

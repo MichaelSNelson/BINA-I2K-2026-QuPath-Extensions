@@ -339,7 +339,7 @@ content('Dialog Position Manager', [
   'Recovers windows stranded on a monitor you have since unplugged',
   'Handles mixed-DPI and display scaling changes',
   'A core facility can share one layout across every workstation',
-], { kicker: 'The least glamorous tool here, and the one that saves the most support time.',
+], { kicker: 'The least glamorous tool here.',
      note: 'It also exists because this class of bug is invisible to automated testing.' });
 
 content('Two you already saw this morning', [
@@ -414,8 +414,8 @@ content('Project Metadata Browser', [
   'Edits stay in memory until you save, and everything is undoable',
   'Paste a column from a spreadsheet; pull values out of structured filenames',
   'Rename or remove a key across every image in one operation',
-], { kicker: 'If you just ran label recognition across 467 slides, this is where you find out whether it worked.',
-     note: 'Sorting by a recognised column is the fastest quality check available — bad reads are outliers.' });
+], { kicker: 'If you just ran label recognition across a few hundred slides, this is where you find out whether it worked.',
+     note: 'Sorting by a recognised column makes the bad reads stand out as outliers.' });
 
 content('Class Distribution', [
   'Live charts of how your annotation classes are distributed across the project',

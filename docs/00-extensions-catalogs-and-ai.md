@@ -19,8 +19,8 @@ An extension is one `.jar` file in a folder. You can add one three ways:
 
 Three things catch everyone out:
 
-- **Restart QuPath afterwards.** Extensions are not loaded on the fly. This is about half of
-  all "the menu item isn't there" reports.
+- **Restart QuPath afterwards.** Extensions are only loaded at startup, so a jar you just
+  installed does nothing until you restart.
 - **Take the jar with `-all` in the name.** That one bundles the dependencies. Without it you
   get a `ClassNotFoundException` the first time you use the tool.
 - **Extensions are per QuPath version.** `0.7` has its own extensions folder, so installing
