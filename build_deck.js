@@ -324,7 +324,7 @@ function twoCol(title, leftHead, left, rightHead, right) {
   });
 
   s.addText([
-    { text: 'Sara McArdle also shaped the software directly — two of these extensions began as her Groovy scripts, and her FS2K course was the model for how the workshop pages are written.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
+    { text: 'Sara McArdle also shaped the software directly: the channel legend packages a Groovy script of hers (originally Pete Bankhead’s, from the 2022 QuPath Hackathon), and the subset classifier follows a pattern from another. Her FS2K course was the model for how the workshop pages are written.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
     { text: 'Kristin Gallik, whose concept and scripts the Confusion Matrix grew from.  ·  Pete Bankhead and the QuPath team.  ·  CT-FIRE, CurveAlign, TACS and TWOMBLI for the fibre work.  ·  CytoMAP and QuBaLab for bringing clustering into QuPath.  ·  QUAREP-LiMi for the reporting standards.  ·  The image.sc community, where several of these features were first requested.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
     { text: 'Much of this code was written with Claude (Anthropic) under close direction. It changed what one person could build; it did not change what still had to be checked.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
     { text: 'Full credits: ' + URL + '/docs/acknowledgements.html', options: { fontSize: 17, bold: true, color: BLUE_DK } },
