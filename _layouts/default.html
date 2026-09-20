@@ -81,7 +81,7 @@ img{max-width:100%; height:auto; border-radius:12px; border:1px solid var(--hair
 {{ content }}
 </main>
 <div class="footer">
-  <p>Sample data courtesy of Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology &mdash;
+  <p>Slide-label images courtesy of Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology &mdash;
   see <a href="{{ site.baseurl }}/docs/acknowledgements.html">acknowledgements</a>.<br>
   Laboratory for Optical and Computational Instrumentation (LOCI), University of Wisconsin&ndash;Madison.
   Source: <a href="https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions">MichaelSNelson/BINA-I2K-2026-QuPath-Extensions</a>.</p>
@@ -93,6 +93,15 @@ document.querySelectorAll('main a[href]').forEach(function (a) {
   var h = a.getAttribute('href');
   if (!h || /^[a-z]+:/i.test(h) || h.charAt(0) === '#' || h.charAt(0) === '/') return;
   a.setAttribute('href', h.replace(/\.md(?=$|[?#])/, '.html'));
+});
+
+// External links open in a new tab, so nobody loses their place on the page
+// they were following. Same-site links are left alone.
+document.querySelectorAll('a[href^="http"]').forEach(function (a) {
+  if (a.hostname && a.hostname !== location.hostname) {
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener noreferrer');
+  }
 });
 </script>
 </body>

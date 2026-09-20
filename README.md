@@ -77,7 +77,7 @@ and troubleshooting: [setup guide](docs/setup.md).
 
 ---
 
-## Start here
+## Additional information and resources
 
 | | |
 |---|---|
