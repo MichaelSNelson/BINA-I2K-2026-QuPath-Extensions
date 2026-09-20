@@ -23,7 +23,7 @@ session:
 ### %%PADLET_URL%%
 
 Vote for as many as you like, and add a comment if you have a specific question or a dataset
-you are stuck on. A few slots are already fixed: QPSC, the Confusion Matrix and the fibre tools
+you are stuck on. A few slots are already fixed: QPSC, the Confusion Matrix and the fiber tools
 are shown regardless, and Channel Names Viewer and Classify Object Subset are
 demonstrated in **Sara McArdle's** Monday session, so the vote decides the rest. We will read it at the start and adjust the order. If your tool does not make
 the cut, its walkthrough and video are below and we are happy to sit with you in the second
@@ -45,7 +45,7 @@ switch between them without losing your place.
 **Everything in the extension index is yours to install and keep**, whether or not we demo it
 live. Demoing is just about what fits in the first hour. Three tools are the exception, and only
 because you cannot run them here: QPSC needs a microscope, the Confusion Matrix repository is
-private, and the fibre tools need a long environment build or a Windows-only server.
+private, and the fiber tools need a long environment build or a Windows-only server.
 
 ---
 
@@ -81,7 +81,7 @@ You cannot install these today, but their pages and videos are complete.
 |---|---|---|---|
 | QPSC — QuPath Scope Control | [Overview](presented/qpsc.md) | %%VIDEO_QPSC%% | Needs a microscope; shown, never run |
 | Confusion Matrix | [Guide](presented/confusion-matrix.md) | %%VIDEO_CONFUSION_MATRIX%% | Repository currently private |
-| Collagen fibre and texture analysis | [Guide](presented/fiber-analysis.md) | %%VIDEO_FIBER_ANALYSIS%% | Long environment build, or a Windows-only server plus a pipeline that cannot be redistributed |
+| Collagen fiber and texture analysis | [Guide](presented/fiber-analysis.md) | %%VIDEO_FIBER_ANALYSIS%% | Long environment build, or a Windows-only server plus a pipeline that cannot be redistributed |
 
 ---
 
