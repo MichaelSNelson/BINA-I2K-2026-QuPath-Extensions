@@ -511,7 +511,7 @@ content('You can check the answer', [
   'Real multiplexed tissue has no ground truth — you never know which cell is really which type',
   'So the exercise uses a synthetic tumour microenvironment where every cell is labelled',
   'Six cell types, tumour nests, an immune-infiltrated boundary, B-cell follicles, a proliferation gradient',
-  'Inflamed versus desert: one image is 55% lymphoid, another 14% with no follicles at all',
+  'Inflamed versus desert: one image is 52% lymphoid, another 9% with no B cells at all',
   '20 MB, public domain, and it downloads straight from GitHub',
 ], { kicker: 'Learn what a correct result looks like, so you can recognise a wrong one later.',
      note: 'Cluster it, then click a boundary cell and find out whether the cluster was telling the truth.' });
