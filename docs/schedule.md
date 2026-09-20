@@ -9,7 +9,7 @@ title: Workshop schedule
 and live demos; the second is optional, self-directed hands-on exploration. You are welcome to leave after the first hour, and equally welcome to
 spend the second hour on your own data instead of ours.
 
-> **Sara McArdle's session runs before ours**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*. She demonstrates two of the extensions
+> **Sara McArdle runs a session earlier in the conference**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*. She demonstrates two of the extensions
 > documented here, and her material on keeping a hi-plex classification honest is the natural
 > lead-in to our QP-CAT segment. If you are choosing between sessions, they are complementary
 > rather than overlapping. Worth stating plainly: **we do not cover QuPath's object classifiers**
