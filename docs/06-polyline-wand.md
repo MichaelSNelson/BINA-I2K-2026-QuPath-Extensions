@@ -15,12 +15,21 @@ title: Polyline Wand and Brush
 | **Version at workshop** | 0.3.6 |
 | **License** | GPL-3.0 |
 | **Requires** | QuPath 0.6.0+ (use 0.7 today) |
-| **Where to find it** | Toolbar (wand-pushing-a-polyline icon) · **Shift+P** |
+| **Where to find it** | Toolbar <img src="../images/icon-polyline-wand.png" alt="Polyline Wand toolbar icon" height="26"> · **Shift+P** |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
 > **Walkthrough video:** %%VIDEO_POLYLINE_WAND%%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
+---
+
+## Finding the button
+
+The Polyline Wand adds its own toolbar button, to the right of QuPath's wand and the
+[Wizard Wand](05-wizard-wand.md):
+
+<img src="../images/wand-toolbar.png" alt="Three toolbar buttons: QuPath's wand, Wizard Wand, Polyline Wand" height="48">
 
 ---
 

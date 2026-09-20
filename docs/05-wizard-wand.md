@@ -15,12 +15,21 @@ title: Wizard Wand
 | **Version at workshop** | 0.4.3 |
 | **License** | GPL-3.0 |
 | **Requires** | QuPath 0.6.0+ (use 0.7 today) |
-| **Where to find it** | Toolbar (sparkle-wand icon) · **Shift+W** |
+| **Where to find it** | Toolbar <img src="../images/icon-wizard-wand.png" alt="Wizard Wand toolbar icon" height="26"> · **Shift+W** |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
 > **Walkthrough video:** %%VIDEO_WIZARD_WAND%%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
+
+---
+
+## Finding the button
+
+The Wizard Wand adds its own toolbar button, and leaves QuPath's wand alone. Left to right:
+QuPath's own wand, **Wizard Wand**, and the [Polyline Wand](06-polyline-wand.md):
+
+<img src="../images/wand-toolbar.png" alt="Three toolbar buttons: QuPath's wand, Wizard Wand, Polyline Wand" height="48">
 
 ---
 
