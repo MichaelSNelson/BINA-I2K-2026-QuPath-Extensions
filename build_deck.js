@@ -246,7 +246,7 @@ content('How the hour runs', [
 
 content('Sixteen tools, two hours', [
   'There is time for a handful of tools done properly, not sixteen done badly',
-  'So: every tool has a full written walkthrough, and a video of me doing it',
+  'So: every tool has a full written walkthrough, and will have a video of me doing it',
   'Nothing depends on being in the room when your tool comes up',
   'A few slots are fixed; two more were covered in Sara McArdle’s session yesterday',
   'The rest is up to you — vote on the next slide',
@@ -288,7 +288,7 @@ content('What an extension actually is', [
 
 content('Three things that bite everyone', [
   'You must restart QuPath. It copies the extension into place but will not load it until you do',
-  { t: 'Extensions are only loaded at startup, so nothing appears until you restart' },
+  'Take the jar with -all in the name — without it the extension throws ClassNotFoundException the first time you use it',
   'Extensions live per QuPath version — installing 0.7 will not disturb your 0.6 setup',
   'They are compiled against a specific QuPath API, which is why today needs 0.7 or later',
 ], { note: 'Workshop requirement: QuPath 0.7.0 or later. Nothing here runs on 0.6.' });
@@ -298,7 +298,7 @@ content('Catalogs', [
   'Extensions > Manage extensions > Manage extension catalogs > Add catalog',
   'LOCI catalog  —  github.com/uw-loci/qupath-catalog-mikenelson  (the only one you need today)',
   'Adding a catalog installs NOTHING. It shows you a list',
-  'Install only what you want — QP-CAT and the DL classifier each pull 1.5–2.5 GB on first use',
+  'Install only what you want — QP-CAT pulls 1.5–2.5 GB on first use, the DL classifier 2–4 GB',
 ], { kicker: 'If you remember one slide from this section, make it this one.' });
 
 content('Sixteen extensions, one person', [
@@ -444,7 +444,7 @@ section('05', 'Did it actually work?', 'Classifier validation you can put in a p
 content('The interval, not the estimate', [
   '"F1 = 0.87, 95% CI [0.82, 0.91]" instead of "87% accurate"',
   '95% from forty cells and 95% from four thousand cells are not the same claim',
-  'Bootstrap confidence intervals on every per-class metric',
+  'Bootstrap confidence intervals on the overall and macro-averaged metrics',
   'For probability-producing classifiers: is the confidence itself trustworthy, or just the top class?',
 ], { note: 'A model that is 95% confident and 70% correct is a different problem, needing a different fix.' });
 
@@ -562,7 +562,7 @@ content('Please cite the methods', [
   'Both tools are thin wrappers over other people’s science',
   'CT-FIRE — Bredfeldt et al. 2014, Journal of Biomedical Optics 19(1):016007',
   'CurveAlign — LOCI, University of Wisconsin–Madison',
-  'TACS — Conklin et al. 2011; Provenzano et al. 2008, BMC Medicine 6:11',
+  'TACS — Provenzano et al. 2006, BMC Medicine 4:38; Conklin et al. 2011',
   'TWOMBLI — Wershof et al. 2021, Life Science Alliance 4(3)',
 ]);
 
@@ -653,10 +653,10 @@ demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',
     fontFace: BODY, fontSize: 22, bold: true, color: BLUE_DK, valign: 'middle',
   });
   s.addText([
-    { text: 'A written walkthrough and a video for every tool  ·  setup instructions  ·  sample data  ·  these slides\n', options: { fontSize: 19, color: INK, paraSpaceAfter: 10 } },
+    { text: 'A written walkthrough for every tool, videos to follow  ·  setup instructions  ·  sample data  ·  these slides\n', options: { fontSize: 19, color: INK, paraSpaceAfter: 10 } },
     { text: 'Add one catalog in QuPath, install only what interests you, and restart:\n', options: { fontSize: 19, color: INK, paraSpaceAfter: 6 } },
     { text: 'github.com/uw-loci/qupath-catalog-mikenelson\n', options: { fontSize: 18, bold: true, color: BLUE_DK, paraSpaceAfter: 4 } },
-    { text: 'Adding it installs nothing — you pick from the list. Two entries download 1.5–2.5 GB.\n', options: { fontSize: 17, italic: true, color: MUT, paraSpaceAfter: 14 } },
+    { text: 'Adding it installs nothing — you pick from the list. Two entries download 1.5–4 GB.\n', options: { fontSize: 17, italic: true, color: MUT, paraSpaceAfter: 14 } },
     { text: 'Whatever we did not reach today, the walkthrough and the video are waiting for you.', options: { fontSize: 19, bold: true, color: BLUE_DK } },
   ], { x: 1.05, y: 2.95, w: W - 2.6, h: 2.8, fontFace: BODY, valign: 'top' });
   s.addText('Slide-label images courtesy of Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology. Other data: public images, a CC0 synthetic set, and tiles acquired at LOCI.', {

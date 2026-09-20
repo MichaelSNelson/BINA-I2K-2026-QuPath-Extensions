@@ -61,7 +61,7 @@ cite the method, not just the extension.
 | Tool | Builds on |
 |---|---|
 | [Collagen fibre analysis](presented/fiber-analysis.md) | **CT-FIRE**: Bredfeldt J S, Liu Y, Pehlke C A, *et al.* (2014). **J Biomed Opt** 19(1):016007 · **CurveAlign** (LOCI, UW–Madison) |
-| [Collagen fibre analysis](presented/fiber-analysis.md) | **TACS**: Conklin M W, Eickhoff J C, Riching K M, *et al.* (2011). **Am J Pathol** 178(3):1221–1232 · Provenzano P P, Inman D R, Eliceiri K W, *et al.* (2008). **BMC Medicine** 6:11 |
+| [Collagen fibre analysis](presented/fiber-analysis.md) | **TACS**: Provenzano P P, Eliceiri K W, Campbell J M, *et al.* (2006). **BMC Medicine** 4:38 · Conklin M W, Eickhoff J C, Riching K M, *et al.* (2011). **Am J Pathol** 178(3):1221–1232 |
 | [Collagen fibre analysis](presented/fiber-analysis.md) | **TWOMBLI**: Wershof E, Park D, Barry D J, *et al.* (2021). **Life Sci Alliance** 4(3):e202000880 |
 | [QP-CAT](03-qp-cat-cell-analysis-tools.md) | **CytoMAP** and **QuBaLab**, whose approaches to bringing clustering into QuPath this continues · **scanpy**, **squidpy**, **Harmony**, **Leiden**, **HDBSCAN**, **BANKSY** |
 | [QuIET](01-quiet-image-export.md) | **QUAREP-LiMi**: the community reporting standards embedded in its guidance panels |

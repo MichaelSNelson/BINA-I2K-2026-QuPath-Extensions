@@ -56,8 +56,8 @@ That is the only catalog you need. Everything hands-on in this workshop is in it
 **3. Install only the extensions you want, then restart QuPath.**
 
 > **Adding the catalog installs nothing.** It shows you a list. **Do not install everything in
-> it.** QP-CAT and the DL Pixel Classifier each fetch a **1.5–2.5 GB** Python environment on
-> first use. If one or two extensions are why you are coming, install just those.
+> it.** QP-CAT fetches a **1.5–2.5 GB** Python environment on first use, and the DL Pixel
+> Classifier **2–4 GB**. If one or two extensions are why you are coming, install just those.
 
 **4. Download the data for the track you plan to do.** Download exactly the file named here;
 each link goes straight to it.

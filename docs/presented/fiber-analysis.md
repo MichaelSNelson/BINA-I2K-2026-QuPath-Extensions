@@ -145,10 +145,11 @@ Both tools are thin wrappers over other people's science. If you publish with ei
   fibers from second-harmonic generation images of breast cancer.* **J Biomed Opt** 19(1):016007.
 - **CurveAlign**: [LOCI, UW–Madison](https://loci.wisc.edu/software/curvealign/); `tme-quant`
   is a Python translation of it.
-- **TACS**: Conklin M W, Eickhoff J C, Riching K M, *et al.* (2011). *Aligned collagen is a
-  prognostic signature for survival in human breast carcinoma.* **Am J Pathol** 178(3):1221–1232.
-  Provenzano P P, Inman D R, Eliceiri K W, *et al.* (2008). *Collagen density promotes mammary
-  tumor initiation and progression.* **BMC Medicine** 6:11.
+- **TACS**: Provenzano P P, Eliceiri K W, Campbell J M, *et al.* (2006). *Collagen reorganization
+  at the tumor-stromal interface facilitates local invasion.* **BMC Medicine** 4:38 — the paper
+  that defines the three signatures. Conklin M W, Eickhoff J C, Riching K M, *et al.* (2011).
+  *Aligned collagen is a prognostic signature for survival in human breast carcinoma.*
+  **Am J Pathol** 178(3):1221–1232.
 - **TWOMBLI**: Wershof E, Park D, Barry D J, *et al.* (2021). *A FIJI macro for quantifying
   pattern in extracellular matrix.* **Life Sci Alliance** 4(3):e202000880.
 - **QuPath**: Bankhead P, Loughrey M B, Fernández J A, *et al.* (2017). **Sci Rep** 7:16878.

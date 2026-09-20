@@ -34,8 +34,8 @@ for jars again. One catalog covers every hands-on tool in this workshop, and add
 
 **[The setup guide](setup.md) has the catalog URL and the four steps.** Do that before you travel.
 
-> ⚠️ **Do not install everything in the catalog.** Two entries (QP-CAT and the DL Pixel
-> Classifier) each download a **1.5–2.5 GB** Python environment on first use. Installing those by
+> ⚠️ **Do not install everything in the catalog.** Two entries download a Python environment on
+> first use: **QP-CAT, 1.5–2.5 GB**, and the **DL Pixel Classifier, 2–4 GB**. Installing those by
 > accident on conference wifi will ruin your morning.
 
 ## Where to go next

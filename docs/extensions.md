@@ -25,7 +25,7 @@ you want, restart QuPath. The [setup guide](setup.md) has the catalog URL and th
 says what each hands-on track needs.
 
 **Adding a catalog installs nothing by itself, and you should not install everything in it.**
-QP-CAT and the DL Pixel Classifier each fetch a 1.5–2.5 GB Python environment.
+QP-CAT fetches a 1.5–2.5 GB Python environment; the DL Pixel Classifier fetches 2–4 GB.
 
 ---
 
@@ -50,7 +50,8 @@ QP-CAT and the DL Pixel Classifier each fetch a 1.5–2.5 GB Python environment.
 ### The two that need a large download
 
 **QP-CAT** and the **DL Pixel Classifier** each install an embedded Python environment on first
-run, roughly **1.5–2.5 GB** apiece. If you want either, trigger that download **at home**:
+run — **1.5–2.5 GB** for QP-CAT, **2–4 GB** for the DL Pixel Classifier. If you want either,
+trigger that download **at home**:
 
 - QP-CAT: `Extensions > QP-CAT > Setup environment`
 - DL Pixel Classifier: open the extension once and let it prepare its environment
