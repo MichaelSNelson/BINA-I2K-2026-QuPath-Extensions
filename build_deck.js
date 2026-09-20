@@ -376,14 +376,13 @@ content('If you are not set up yet', [
 ], { kicker: 'I am not going to walk through setup — the site has it, and I am here in the second hour.',
      note: 'Bring QuPath 0.7.0 or later. Four of the thirteen require it, and everything here is built and tested on it.' });
 
-section('01', 'Dialog Manager, Wizard Wand, Polyline Wand', 'Quality-of-life fixes for things QuPath leaves to you');
+section('01', 'Five small tools', 'Dialog Manager · Channel Names · Classify Subset · Wizard Wand · Polyline Wand');
 
-content('Three that install in seconds', [
+content('Dialog Manager, Channel Names, Classify Subset', [
   'Dialog Position Manager — remembers where your titled dialogs were and puts them back next session',
-  { t: 'Recovers windows stranded on a monitor you have since unplugged; notices when display scaling has changed and falls back to a sane on-screen position' },
+  { t: 'Recovers windows stranded on a monitor you have since unplugged, and points several workstations at one shared file so a facility opens with the same layout' },
   'Channel Names Viewer — a floating, colour-coded legend of the selected channels, so you are not re-reading the brightness dialog to find out which is which',
   'Classify Object Subset — run a saved classifier on a chosen subset, with a live count before you commit',
-  'Point several workstations at one shared file and a facility gets the same dialog layout everywhere',
 ], { kicker: 'The least glamorous tools here.',
      note: 'The last two grew out of Groovy scripts from Sara McArdle — the channel legend from one originally written by Pete Bankhead at the 2022 QuPath Hackathon. She demonstrated both on Monday.' });
 content('The two wands', [
@@ -392,13 +391,13 @@ content('The two wands', [
   'Tune from selection: draw one area annotation the way you want it, and the wand derives its own settings',
   'Polyline Wand — QuPath’s brush and wand work on areas; this brings the same editing to lines',
   { t: 'Push a traced boundary outward, erase backwards from an endpoint, or cut one polyline in two — both halves keep class, name and colour' },
-], { kicker: 'The built-in wands are untouched — both install as separate tools you can ignore.',
+], { kicker: 'QuPath’s own wand is untouched — both of these install as separate tools you can ignore.',
      note: 'One stroke is one undo step, however long the boundary.' });
 demo('Both wands, live', '▶  LIVE  ·  10 MIN',
   [
-    'Wizard Wand: wand a structure, then auto-tune from a hand-drawn example and do it again',
+    'Wizard Wand: wand a structure, then tune from a hand-drawn area annotation and do it again',
     'Watch a selection grow on its own instead of dragging to cover it',
-    'Polyline Wand: push a traced boundary outward, smooth a noisy stretch, erase back from an endpoint',
+    'Polyline Wand: push a traced boundary outward, erase back from an endpoint, then switch mode to smooth a noisy stretch',
     'Scissors mode — cut one polyline in two, both halves keeping class, name and colour',
     'Compare the result against the built-in tools',
   ],
@@ -408,7 +407,7 @@ demo('Both wands, live', '▶  LIVE  ·  10 MIN',
 
 section('02', 'QuIET — Image Export Toolkit', 'Publication figures, review images, and machine-learning datasets');
 
-content('QuIET — Image Export Toolkit', [
+content('Five export categories, one wizard', [
   'Five export categories, one three-step wizard',
   { t: 'Rendered figures  ·  label masks  ·  raw pixel data  ·  image and label tile pairs  ·  per-object crops' },
   'A separate wizard builds multi-panel montage figures from several project images',
@@ -460,19 +459,19 @@ tileStep('Where the stage said they were', 2, false,
 tileStep('Where the stage said they were', 4, false,
   'All four, placed on the recorded coordinates alone. Every neighbouring pair now shares a strip.', true);
 
-figurePair('Tiles to Pyramid: stitching two tiles',
-  'As acquired: neighbouring tiles share a strip of the same tissue (shaded)',
-  { path: 'images/stitch_ppm_unstitched.jpg', w: 3000, h: 565 },
-  'Stitched: the join is placed by matching the image content in that strip',
-  { path: 'images/stitch_ppm_stitched.jpg', w: 2766, h: 565 },
-  'Pancreatic cancer, polarised light. The stage recorded this tile about 5 px (0.9 µm) away from where it really was — the worst of 17 seams in this grid, which ran to a 2.2 px median. Registration measured that from the overlap and closed every seam to under a pixel. It is a tick-box: left off, tiles go where the stage said.');
-
 figureDuo('Measure on the clearest channel, reuse on the rest',
   'Placed where the stage said it was',
   { path: 'images/stitch_if_nominal.jpg', w: 1380, h: 1110 },
   'Placed where the image content says it is',
   { path: 'images/stitch_if_registered.jpg', w: 1380, h: 1110 },
   'The same join through the same cells; only the tile positions differ. Positions were measured on DAPI, the channel with the clearest, best separated structure in this sample, and reused unchanged for the other two channels \u2014 so every channel stays aligned with every other. Nuclei blue, actin green, mitochondria red; the correction here is 7 px, about 4.6 \u00b5m.');
+
+figurePair('Tiles to Pyramid: stitching two tiles',
+  'As acquired: neighbouring tiles share a strip of the same tissue (shaded)',
+  { path: 'images/stitch_ppm_unstitched.jpg', w: 3000, h: 565 },
+  'Stitched: the join is placed by matching the image content in that strip',
+  { path: 'images/stitch_ppm_stitched.jpg', w: 2766, h: 565 },
+  'Pancreatic cancer, polarised light. The stage recorded this tile about 5 px (0.9 µm) away from where it really was — the worst of 17 seams in this grid, which ran to a 2.2 px median. Registration measured that from the overlap and closed every seam to under a pixel. It is a tick-box: left off, tiles go where the stage said.');
 
 content('Tiles to Pyramid — how the mosaic is assembled', [
   'Every overlapping pair is measured against the image content, then all tiles are placed at once by least squares',
@@ -487,7 +486,7 @@ content('Tiles to Pyramid — how the mosaic is assembled', [
 
 section('04', 'Confusion Matrix', 'Classifier validation you can put in a paper');
 
-demo('Confusion Matrix', '▶  DEMO ONLY',
+demo('Reading the matrix', '▶  DEMO ONLY  ·  5 MIN',
   [
     'Click the largest off-diagonal cell — those cells highlight on the slide',
     '"The classifier is 87% accurate" becomes "it confuses these two things, for this reason"',
@@ -564,10 +563,10 @@ content('Please cite the methods', [
 
 section('07', 'QPSC — QuPath Scope Control', 'The most complex thing here, and the reason for the rest');
 
-content('QPSC — QuPath Scope Control', [
+content('Draw a box, the microscope acquires it', [
   'Draw a box around a region in QuPath. The stage moves, the tiles are captured and stitched, and the image appears back in your project',
   'Target specific annotations on a slide you already scanned',
-  'Live camera view, stage map, saved positions, and a virtual joystick',
+  'Live camera view, stage map, saved points, and a virtual joystick',
   'Brightfield, multi-channel fluorescence, and combined passes on a single-camera scope',
 ]);
 
