@@ -17,7 +17,7 @@ title: Classify Object Subset
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Classify Object Subset` |
 | **Catalog** | LOCI QuPath Extensions |
-| **Session** | Mentioned; presented in Sara McArdle’s earlier session |
+| **Session** | Mentioned; presented in Sara McArdle’s Monday session |
 
 > **Walkthrough video:** %%VIDEO_CLASSIFY_OBJECT_SUBSET%%
 > The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
@@ -29,7 +29,7 @@ title: Classify Object Subset
 > menu, the extension's former name. 0.2.0 is the first release carrying the current name, and
 > it is the one with multiple measurement thresholds and class checkboxes.
 
-> **You saw this in Sara McArdle's session earlier in the conference**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
+> **You saw this in Sara McArdle's session on **Monday 28 September**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
 > Both this extension and its sibling grew out of her Groovy scripts, so we point back to her
 > demo rather than repeating it. The walkthrough below is here for the hands-on hour.
 

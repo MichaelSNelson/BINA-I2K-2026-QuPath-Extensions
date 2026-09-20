@@ -10,7 +10,7 @@ coming, install those and ignore the rest. Every one works on its own.
 
 Each row links to a full guide (what it does, and a step-by-step exercise) and to the source
 repository. Two of them, Channel Names Viewer and Classify Object Subset, are demonstrated in
-**Sara McArdle's** earlier session, *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*;
+**Sara McArdle's** Monday session, *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*;
 her scripts are where both extensions came from. They are still fully installable, we simply do
 not demo them twice in one morning. If you would rather be told exactly what to install for a particular hands-on
 track, use the [setup guide](setup.md) instead. Every tool also has a

@@ -9,11 +9,13 @@ title: Workshop schedule
 and live demos; the second is optional, self-directed hands-on exploration. You are welcome to leave after the first hour, and equally welcome to
 spend the second hour on your own data instead of ours.
 
-> **Sara McArdle runs a session earlier in the conference**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*. She demonstrates two of the extensions
-> documented here, and her material on keeping a hi-plex classification honest is the natural
-> lead-in to our QP-CAT segment. If you are choosing between sessions, they are complementary
-> rather than overlapping. Worth stating plainly: **we do not cover QuPath's object classifiers**
-> because that is core QuPath. What we introduce are alternative mechanisms for getting a class onto a
+> **Sara McArdle's session is the day before ours**: *Tips and tricks for maintaining sanity
+> during hi-plex classification in QuPath*, **Monday 28 September, 11:00–12:00, Discovery
+> Building, H.F. DeLuca Forum, Rm. 1255**. It does not clash with this one, so you can attend
+> both, and they are designed to fit together. She demonstrates two of the extensions documented
+> here, and her material on keeping a hi-plex classification honest is the natural lead-in to our
+> QP-CAT segment. Worth stating plainly: **we do not cover QuPath's object classifiers** because
+> that is core QuPath. What we introduce are alternative mechanisms for getting a class onto a
 > cell: unsupervised clustering, rule-based marker gating, propagation from a small hand-labelled
 > subset, and applying an existing classifier to a chosen subset rather than to everything.
 
@@ -89,7 +91,7 @@ Track B's synthetic data is fully ground-truthed, so every step of that exercise
 against the right answer, a luxury real multiplexed tissue never gives you.
 
 Two of the tools above, Classify Object Subset and Channel Names Viewer, are demonstrated in
-Sara McArdle's earlier session. Their walkthroughs here are complete if you want to work through
+Sara McArdle's Monday session. Their walkthroughs here are complete if you want to work through
 them yourself.
 
 ### Bring your own data

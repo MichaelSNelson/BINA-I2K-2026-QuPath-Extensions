@@ -17,14 +17,14 @@ title: Channel Names Viewer
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | Toolbar button beside brightness/contrast · `Extensions > Channel Names Viewer...` · **Ctrl+Shift+C** (**Cmd+Shift+C** on macOS) |
 | **Catalog** | LOCI QuPath Extensions |
-| **Session** | Mentioned; presented in Sara McArdle’s earlier session |
+| **Session** | Mentioned; presented in Sara McArdle’s Monday session |
 
 > **Walkthrough video:** %%VIDEO_CHANNEL_NAMES_VIEWER%%
 > The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
 
 ---
 
-> **You saw this in Sara McArdle's session earlier in the conference**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
+> **You saw this in Sara McArdle's session on **Monday 28 September**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
 > Both this extension and its sibling grew out of her Groovy scripts, so we point back to her
 > demo rather than repeating it. The walkthrough below is here for the hands-on hour.
 

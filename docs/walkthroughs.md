@@ -25,7 +25,7 @@ session:
 Vote for as many as you like, and add a comment if you have a specific question or a dataset
 you are stuck on. A few slots are already fixed: QPSC, the Confusion Matrix and the fibre tools
 are shown regardless, and Channel Names Viewer and Classify Object Subset are
-demonstrated in **Sara McArdle's** earlier session, so the vote decides the rest. We will read it at the start and adjust the order. If your tool does not make
+demonstrated in **Sara McArdle's** Monday session, so the vote decides the rest. We will read it at the start and adjust the order. If your tool does not make
 the cut, its walkthrough and video are below and we are happy to sit with you in the second
 hour.
 

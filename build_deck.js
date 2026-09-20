@@ -248,7 +248,7 @@ content('Sixteen tools, two hours', [
   'There is time for a handful of tools done properly, not sixteen done badly',
   'So: every tool has a full written walkthrough, and a video of me doing it',
   'Nothing depends on being in the room when your tool comes up',
-  'A few slots are fixed; two more were covered in Sara McArdle’s session earlier in the conference',
+  'A few slots are fixed; two more were covered in Sara McArdle’s session yesterday',
   'The rest is up to you — vote on the next slide',
 ], { kicker: 'Being up front about this now, rather than rushing at 11:20.',
      note: 'Walkthroughs and videos for all sixteen: ' + URL + '/docs/walkthroughs.html' });
@@ -268,7 +268,7 @@ content('Sixteen tools, two hours', [
   });
   s.addText([
     { text: 'Vote for as many as you like. Add a comment if you have a specific question, or a dataset you are stuck on.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
-    { text: 'Already fixed: QPSC, the Confusion Matrix and the fibre tools are shown regardless — and Channel Names Viewer and Classify Object Subset were covered in Sara McArdle’s session earlier in the conference.\n', options: { fontSize: 18, italic: true, color: MUT, paraSpaceAfter: 12 } },
+    { text: 'Already fixed: QPSC, the Confusion Matrix and the fibre tools are shown regardless — and Channel Names Viewer and Classify Object Subset were covered in Sara McArdle’s session yesterday.\n', options: { fontSize: 18, italic: true, color: MUT, paraSpaceAfter: 12 } },
     { text: 'I will read it now and adjust the running order.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
     { text: 'If your tool does not make the cut, its walkthrough and video are on the site — and I am happy to sit down with you in the second hour.', options: { fontSize: 20, color: INK } },
   ], { x: M, y: 4.1, w: W - 2 * M, h: 2.2, fontFace: BODY, valign: 'top' });
@@ -344,9 +344,9 @@ content('Dialog Position Manager', [
 content('Two you may already have seen', [
   'Channel Names Viewer — a floating, colour-coded legend of the selected channels. "Which one is the green one?", answered permanently',
   'Classify Object Subset — run a saved classifier on a chosen subset, by class, measurement or selection, with a live count before you commit',
-  'Both began as Sara McArdle’s Groovy scripts, and Sara demonstrated both in her session earlier in the conference',
+  'Both began as Sara McArdle’s Groovy scripts, and Sara demonstrated both in her session yesterday',
   'So: a pointer rather than the same demo twice — both install in seconds, and both have a full walkthrough on the site',
-], { kicker: 'From “Tips and tricks for maintaining sanity during hi-plex classification in QuPath”, earlier in the conference.',
+], { kicker: 'From “Tips and tricks for maintaining sanity during hi-plex classification in QuPath”, Monday 11:00.',
      note: 'Nothing stops you installing them. This is a division of labour, not a barrier.' });
 
 content('Wizard Wand', [
@@ -491,7 +491,7 @@ content('When the model stops working', [
 
 content('What we are not covering', [
   'QuPath already has object classification — train on measurements, or threshold a single one',
-  'We are not re-teaching it. Sara’s earlier session was the hi-plex classification half',
+  'We are not re-teaching it. Sara’s Monday session was the hi-plex classification half',
   'What follows are alternative mechanisms for getting a class onto a cell:',
   'Unsupervised clustering · rule-based marker gating · propagation from a small hand-labelled subset · applying an existing classifier to a chosen subset instead of everything',
   'Then: what those classified cells are actually telling you — which sit next to which, and whether that differs between images',

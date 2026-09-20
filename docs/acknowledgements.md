@@ -21,7 +21,7 @@ The rest:
 - **The stitching exercise** uses polarised-light tiles of pancreatic cancer tissue acquired at
   LOCI.
 
-Sara McArdle also demonstrates two of these tools herself, in her session earlier in the conference,
+Sara McArdle also demonstrates two of these tools herself, in her session the day before ours (Monday 28 September, 11:00–12:00, Discovery Building, H.F. DeLuca Forum),
 *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*, which is fitting,
 because Channel Names Viewer and Classify Object Subset both began as her scripts.
 

@@ -107,7 +107,10 @@ the maintainer section of the [README](README.md).
 - [x] Sara's session title received: *Tips and tricks for maintaining sanity during hi-plex
       classification in QuPath*, and it runs **before** ours. Every reference across the site and
       the deck now points backwards to it rather than forwards
-- [ ] Get the URL and exact time for Sara's session so the schedule can link it, not just name it
+- [x] Sara's session time and place received (2026-09-19): **Monday 28 September, 11:00–12:00,
+      Discovery Building, H.F. DeLuca Forum, Rm. 1255** — the day before ours, different venue.
+      Named across the site and the deck
+- [ ] Still needed: the URL for Sara's session, so the schedule can link it rather than name it
 - [ ] Confirm whether she demonstrates these as *Channel Name Display* and *Gated Object
       Classifier* (her names) or as the LOCI extension names, so our callback matches what the
       room actually heard an hour earlier
