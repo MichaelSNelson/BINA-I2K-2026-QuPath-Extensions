@@ -747,5 +747,9 @@ content('How it is put together', [
   pageNum(s);
 }
 
-pptx.writeFile({ fileName: 'I2K_2026_QuPath_Extensions.pptx' })
+// NEVER write to *_manual.pptx -- that file is hand-edited and is the source of truth
+// for anything not generated here (Morph transitions, QR images, manual layout).
+const OUT = 'I2K_2026_QuPath_Extensions.pptx';
+if (/_manual\.pptx$/i.test(OUT)) throw new Error('refusing to overwrite the manual deck');
+pptx.writeFile({ fileName: OUT })
   .then(f => console.log('WROTE', f, '| slides:', n));

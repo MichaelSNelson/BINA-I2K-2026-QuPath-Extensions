@@ -3,3 +3,7 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 *.zip
+
+# Hand-edited deck: generated builds must never touch this
+I2K_2026_QuPath_Extensions_manual.pptx
+~$*.pptx
