@@ -15,7 +15,7 @@ title: Confusion Matrix
 
 | | |
 |---|---|
-| **Origin** | Concept and half of the initial scripts by Kristin Gallick; built out into the extension at LOCI |
+| **Origin** | Concept and half of the initial scripts by Kristin Gallik; built out into the extension at LOCI |
 | **Repository** | [kgallik/QuPath_Confusion_Matrix_Extension](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
 | **Version at workshop** | 0.2.2 |
 | **License** | Apache-2.0 |
@@ -31,7 +31,7 @@ title: Confusion Matrix
 
 ## Where it came from
 
-**Kristin Gallick** originated this one: the initial concept, and half of the scripts it grew
+**Kristin Gallik** originated this one: the initial concept, and half of the scripts it grew
 from. We built it out into the extension you see here, which is why the repository sits under
 her account while the development history is ours. Good tools often start as somebody's script
 plus a clear idea of what the number should mean.

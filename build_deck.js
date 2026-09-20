@@ -250,395 +250,6 @@ function twoCol(title, leftHead, left, rightHead, right) {
   pageNum(s);
 }
 
-content('Who this is for', [
-  'Anyone who already uses QuPath and has run into its edges',
-  'Biologists, pathologists, core facility staff, graduate students',
-  'No programming required — nothing today asks you to write a script',
-  { t: 'A few tools generate scripts for you; you never have to write one' },
-  'Helpful if you have opened a project, drawn an annotation, run cell detection',
-], { note: 'Everything shown today is free, open source, and installable from inside QuPath.' });
-
-content('The claim', [
-  'QuPath is usually treated as post-acquisition analysis software',
-  'Its extension mechanism reaches much further than that',
-  'Acquisition → analysis → validation → publication, in one environment',
-  { t: 'One project. One place your metadata lives. One place your figures come from' },
-  'Sixteen extensions built at LOCI — thirteen you can install this afternoon',
-], { note: 'Most of these are under active development, written in bursts as I have time. Useful, not stable — treat them accordingly.' });
-
-content('How the hour runs', [
-  'Simple first, complex last — exactly as the session title promises',
-  'Small quality-of-life tools → export → project-scale work → deep learning → microscope control',
-  'Three things are demonstrated but not practised. I will say why each time',
-  'Second hour is optional, hands-on, and self-directed — four tracks, or bring your own data',
-], { note: 'Slides, guides, exercises and sample data all live at the address above.' });
-
-content('Sixteen tools, two hours', [
-  'There is time for a handful of tools done properly, not sixteen done badly',
-  'So: every tool has a full written walkthrough, and will have a video of me doing it',
-  'Nothing depends on being in the room when your tool comes up',
-  'A few slots are fixed; two more were covered in Sara McArdle’s session yesterday',
-  'The rest is up to you — vote on the next slide',
-], { kicker: 'Being up front about this now, rather than rushing at 11:20.',
-     note: 'Walkthroughs and videos for all sixteen: ' + URL + '/docs/walkthroughs.html' });
-
-{
-  const s = pptx.addSlide();
-  s.background = bg;
-  s.addText('Vote for what you want to see', {
-    x: M, y: 0.9, w: W - 2 * M, h: 0.9,
-    fontFace: HEAD, fontSize: 36, bold: true, color: BLUE_DK, valign: 'middle',
-  });
-  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.85, w: 2.1, h: 0.055, fill: { color: BLUE } });
-  s.addShape(pptx.ShapeType.rect, { x: M, y: 2.35, w: W - 2 * M, h: 1.5, fill: { color: BLUE_TINT } });
-  s.addText(PADLET, {
-    x: M + 0.3, y: 2.35, w: W - 2 * M - 0.6, h: 1.5,
-    fontFace: BODY, fontSize: 30, bold: true, color: BLUE_DK, align: 'center', valign: 'middle',
-  });
-  s.addText([
-    { text: 'Vote for as many as you like. Add a comment if you have a specific question, or a dataset you are stuck on.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
-    { text: 'Already fixed: QPSC, the Confusion Matrix and the fibre tools are shown regardless — and Channel Names Viewer and Classify Object Subset were covered in Sara McArdle’s session yesterday.\n', options: { fontSize: 18, italic: true, color: MUT, paraSpaceAfter: 12 } },
-    { text: 'I will read it now and adjust the running order.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
-    { text: 'If your tool does not make the cut, its walkthrough and video are on the site — and I am happy to sit down with you in the second hour.', options: { fontSize: 20, color: INK } },
-  ], { x: M, y: 4.1, w: W - 2 * M, h: 2.2, fontFace: BODY, valign: 'top' });
-  pageNum(s);
-}
-
-/* ================= 2 · Extensions, catalogs, and how this was built ================= */
-
-section('01', 'Extensions and catalogs', 'What they are, how you install them, and how this suite got built');
-
-content('What an extension actually is', [
-  'A single Java component that QuPath loads when it starts',
-  'It can add menu items, toolbar buttons, dialogs, viewers, whole pipelines',
-  'Everything you see today was registered by an extension during startup',
-  'You install one by dropping it in, or — much better — from a catalog',
-]);
-
-content('Three things that bite everyone', [
-  'You must restart QuPath. It copies the extension into place but will not load it until you do',
-  'Take the jar with -all in the name — without it the extension throws ClassNotFoundException the first time you use it',
-  'Extensions live per QuPath version — installing 0.7 will not disturb your 0.6 setup',
-  'They are compiled against a specific QuPath API, which is why today needs 0.7 or later',
-], { note: 'Workshop requirement: QuPath 0.7.0 or later. Nothing here runs on 0.6.' });
-
-content('Catalogs', [
-  'One URL. QuPath then handles installing, listing, and updating for you',
-  'Extensions > Manage extensions > Manage extension catalogs > Add catalog',
-  'LOCI catalog  —  github.com/uw-loci/qupath-catalog-mikenelson  (the only one you need today)',
-  'Adding a catalog installs NOTHING. It shows you a list',
-  'Install only what you want — QP-CAT pulls 1.5–2.5 GB on first use, the DL classifier 2–4 GB',
-], { kicker: 'If you remember one slide from this section, make it this one.' });
-
-content('Sixteen extensions, one person', [
-  'That is not a normal output, and it is fair to ask how',
-  'A large fraction of the code was written by an LLM coding agent under close direction',
-  'Several of you will go home and try this, so here is the honest version',
-], { kicker: 'The part of this talk most likely to be useful outside QuPath.' });
-
-twoCol('What worked, and what did not',
-  'Worked',
-  [
-    'Give the model the real API, and require it to compile — a failing build is a free, correct signal',
-    'Write the documentation first and treat it as the specification',
-    'Keep a persistent map of the codebase so each session does not re-derive it badly',
-    'Automate the tedious checks — API compatibility across sixteen repositories',
-  ],
-  'Did not',
-  [
-    '"Build me an extension that does X" — compiles, and is wrong in ways you find in front of an audience',
-    'Scientific correctness — a bootstrap that runs, looks plausible, and resamples the wrong axis',
-    'GUI behaviour — nothing catches a dialog opening off-screen except a human',
-    'Licensing — get it wrong and you cannot distribute your work',
-  ]);
-
-content('The honest summary', [
-  'AI assistance changed the cost of building an extension by about an order of magnitude',
-  'It changed the correctness of one not at all',
-  'The bottleneck moved from "can I write this Java" to "do I know what this should do, and can I tell when it is lying to me"',
-], { note: 'A better bottleneck to have. Still a bottleneck, and still yours.' });
-
-/* ================= 3 · Simple wins ================= */
-
-section('02', 'Simple wins', 'Small extensions that pay for themselves on the first day');
-
-content('Dialog Position Manager', [
-  'Remembers where every dialog was, and puts it back next session',
-  'Recovers windows stranded on a monitor you have since unplugged',
-  'Handles mixed-DPI and display scaling changes',
-  'A core facility can share one layout across every workstation',
-], { kicker: 'The least glamorous tool here.',
-     note: 'It also exists because this class of bug is invisible to automated testing.' });
-
-content('Two you may already have seen', [
-  'Channel Names Viewer — a floating, colour-coded legend of the selected channels. "Which one is the green one?", answered permanently',
-  'Classify Object Subset — run a saved classifier on a chosen subset, by class, measurement or selection, with a live count before you commit',
-  'Both began as Sara McArdle’s Groovy scripts, and Sara demonstrated both in her session yesterday',
-  'So: a pointer rather than the same demo twice — both install in seconds, and both have a full walkthrough on the site',
-], { kicker: 'From “Tips and tricks for maintaining sanity during hi-plex classification in QuPath”, Monday 11:00.',
-     note: 'Nothing stops you installing them. This is a division of labour, not a barrier.' });
-
-content('Wizard Wand', [
-  'Works like the built-in wand, with holes filled and edges smoothed by default',
-  'Hold still and the selection grows on its own, instead of dragging to cover',
-  'Colour-space modes for grayscale, subtle stain differences, or selecting by hue',
-  'Auto-tuning: draw one annotation the way you want it, and it derives its own settings',
-], { kicker: 'The built-in wand is untouched — this installs as a separate tool you can ignore.',
-     note: 'Auto-tuning is the headline: settings taken from your example beat settings you guessed.' });
-
-content('Polyline Wand and Brush', [
-  'QuPath’s brush and wand work on areas. This brings the same editing to lines',
-  'Push a section of a traced boundary outward without redrawing it',
-  'Overshot the end of a vessel trace? Erase backwards from the endpoint',
-  'Scissors mode splits one polyline into two, both keeping class, name and colour',
-], { note: 'One stroke is one undo step, even on a ten-thousand-vertex boundary.' });
-
-demo('Both wands, live', '▶  LIVE  ·  10 MIN',
-  [
-    'Wizard Wand: wand a structure, then auto-tune from a hand-drawn example and do it again',
-    'Watch a selection grow on its own instead of dragging to cover it',
-    'Polyline Wand: push a traced boundary outward, smooth a noisy stretch, erase back from an endpoint',
-    'Scissors mode — cut one polyline in two, both halves keeping class, name and colour',
-    'Compare the result against the built-in tools',
-  ],
-  'The two wands in one sitting — ten minutes. Static screenshots follow if the live version misbehaves.');
-
-/* ================= 4 · Image export ================= */
-
-section('03', 'Getting things out', 'Publication figures, review images, and machine-learning datasets');
-
-content('QuIET — Image Export Toolkit', [
-  'Five export categories, one three-step wizard',
-  { t: 'Rendered figures  ·  label masks  ·  raw pixel data  ·  image and label tile pairs  ·  per-object crops' },
-  'A separate wizard builds multi-panel montage figures from several project images',
-  'Batch across a project, without writing an export script',
-], { kicker: 'Exporting one image is easy. Exporting forty the same way, with a scale bar, at a stated resolution, is not.' });
-
-content('Every export writes a script', [
-  'Whatever you clicked in the wizard comes back out as a self-contained script',
-  'Save it, version it, re-run it next year, send it to a collaborator without the extension',
-  'The wizard is a script generator, not a black box',
-], { note: 'That is the difference between a convenience and a reproducibility tool.' });
-
-content('Reporting guidance, in the dialog', [
-  'QUAREP-LiMi is the community effort on minimum reporting standards for light microscopy',
-  'Guidance appears beside the settings, driven by your project’s actual images',
-  'Publication advice is shown before you export, not after review',
-], { kicker: 'Catch "what magnification was that, and is there a scale bar?" while you can still fix it.' });
-
-/* ================= 5 · Project-scale housekeeping ================= */
-
-section('04', 'At scale', 'When it is four hundred slides rather than four');
-
-content('OCR for Labels', [
-  'The case ID, stain and block number are already in your slide file, on the label image',
-  'Text recognition and barcode scanning, straight into project metadata',
-  'Save a template of field positions, then run it across the whole project',
-  'Vocabulary matching turns "usually right" into "right, or obviously wrong"',
-], { note: 'Review before applying. Recognition on a photographed label is good, not correct.' });
-
-content('Project Metadata Browser', [
-  'Every image a row, every metadata key a column — sortable and filterable',
-  'Edits stay in memory until you save, and everything is undoable',
-  'Paste a column from a spreadsheet; pull values out of structured filenames',
-  'Rename or remove a key across every image in one operation',
-], { kicker: 'If you just ran label recognition across a few hundred slides, this is where you find out whether it worked.',
-     note: 'Sorting by a recognised column makes the bad reads stand out as outliers.' });
-
-content('Class Distribution', [
-  'Live charts of how your annotation classes are distributed across the project',
-  'And, separately, the training balance those annotations actually imply',
-  'Charts update while you annotate, so the feedback arrives while you can still act',
-  'Classes badly over- or under-represented are flagged',
-], { note: 'Annotation count, annotation area, and implied training detections are three different numbers. Only the third predicts classifier behaviour.' });
-
-figurePair('Tiles to Pyramid: stitching two tiles',
-  'As acquired: neighbouring tiles share a strip of the same tissue (shaded)',
-  { path: 'images/stitch_ppm_unstitched.jpg', w: 3000, h: 565 },
-  'Stitched: the join is placed by matching the image content in that strip',
-  { path: 'images/stitch_ppm_stitched.jpg', w: 2766, h: 565 },
-  'Pancreatic cancer, polarised light. The stage recorded this tile 5 px (0.9 µm) away from where it really was; registration measured that from the overlap and corrected it.');
-
-figureDuo('Measure on the clearest channel, reuse on the rest',
-  'Placed where the stage said it was',
-  { path: 'images/stitch_if_nominal.jpg', w: 1380, h: 1110 },
-  'Placed where the image content says it is',
-  { path: 'images/stitch_if_registered.jpg', w: 1380, h: 1110 },
-  'The same join through the same cells; only the tile positions differ. Positions were measured on DAPI, the channel with the most distinct, best separated structure, and reused unchanged for the other two channels \u2014 so every channel stays aligned with every other. Nuclei blue, actin green, mitochondria red; the correction here is 7 px, about 4.6 \u00b5m.');
-
-content('Tiles to Pyramid — how the mosaic is assembled', [
-  'Every overlapping pair is measured against the image content, then all tiles are placed at once by least squares',
-  { t: 'A spanning tree would keep 99 of the 180 neighbour edges on a 10×10 grid and throw away 81, so nothing is ever asked to close a loop' },
-  'Each tile is also pulled toward its recorded stage position, so a tile with no accepted edges stays exactly where the stage put it',
-  'The output is written chunk by chunk, and only the one to four tiles overlapping the current chunk are ever in memory',
-  'Measured: 144 tiles (125 MP) stitch in the same 227 MB as 64 tiles (56 MP)',
-], { kicker: 'Memory stops tracking the size of the mosaic, which is what lets thousands of tiles stitch on an ordinary machine.',
-     note: 'Measured with the extension\u2019s own benchmark: 1024 px 16-bit tiles, 10% overlap. The older load-everything path needed 2\u20134 GB and ran out of memory past about 1600 tiles.' });
-
-/* ================= 6 · Validation ================= */
-
-section('05', 'Did it actually work?', 'Classifier validation you can put in a paper');
-
-content('The interval, not the estimate', [
-  '"F1 = 0.87, 95% CI [0.82, 0.91]" instead of "87% accurate"',
-  '95% from forty cells and 95% from four thousand cells are not the same claim',
-  'Bootstrap confidence intervals on the overall and macro-averaged metrics',
-  'For probability-producing classifiers: is the confidence itself trustworthy, or just the top class?',
-], { note: 'A model that is 95% confident and 70% correct is a different problem, needing a different fix.' });
-
-demo('Confusion Matrix', '▶  DEMO ONLY',
-  [
-    'Click the largest off-diagonal cell — those cells highlight on the slide',
-    '"The classifier is 87% accurate" becomes "it confuses these two things, for this reason"',
-    'Across a project: per-image breakdown, with divergent images flagged automatically',
-    'A flagged image points at the ground truth, the staining, or the classifier\u2019s generalisation \u2014 the breakdown tells you which',
-  ],
-  'Originated by Kristin Gallick — concept and initial scripts; built out at LOCI.  ·  Demo only: the repository is currently private.');
-
-/* ================= 7 · DL cell and pixel classifiers ================= */
-
-section('06', 'Deep learning', 'Pixel classifiers, cell classifiers, and knowing when not to trust them');
-
-content('Deep learning pixel classification', [
-  'Same interaction as the built-in classifier: draw a few sparse regions per class',
-  'The extension samples training tiles from what you marked — you are steering a sampler',
-  'Brightfield and multi-channel fluorescence, with per-channel normalisation',
-  'Train across several project images at once for representative sampling',
-], { kicker: 'For when the built-in classifier is not enough: subtle textures, classes that differ by architecture rather than colour.' });
-
-content('What is underneath', [
-  'Your choice of encoder, from lightweight convolutional networks to vision transformers',
-  'Start from weights pretrained on histology rather than on everyday photographs',
-  'Or from pathology foundation models, downloaded on demand',
-  'Normalisation computed over the whole image, which removes tile-boundary artefacts',
-], { note: 'Training needs a dedicated GPU. That is why training is a demonstration and inference is the exercise.' });
-
-content('The two most important features', [
-  'Full per-pixel probability maps, not just the winning class',
-  { t: 'The honest uncertainty is at the boundaries between classes — go and look at it' },
-  'An out-of-distribution warning before inference, when an image no longer resembles the training data',
-  { t: 'Catches stain, exposure and sensor changes that would quietly degrade predictions' },
-], { note: 'These are the features that tell you when not to trust the output, and the easiest to ignore.' });
-
-content('When the model stops working', [
-  'A new scanner, a new stain, a new batch — and last month’s model degrades',
-  'Recalibrating to the current image takes seconds and no retraining at all',
-  'Or adapt the model to your own unlabelled data before committing to a full retrain',
-], { kicker: 'Domain shift is the practical problem, far more often than model architecture.',
-     note: 'Try recalibration before you consider retraining. It usually recovers most of the loss.' });
-
-content('What we are not covering', [
-  'QuPath already has object classification — train on measurements, or threshold a single one',
-  'We are not re-teaching it. Sara’s Monday session was the hi-plex classification half',
-  'What follows are alternative mechanisms for getting a class onto a cell:',
-  'Unsupervised clustering · rule-based marker gating · propagation from a small hand-labelled subset · applying an existing classifier to a chosen subset instead of everything',
-  'Then: what those classified cells are actually telling you — which sit next to which, and whether that differs between images',
-], { kicker: 'Two halves of the same workflow, in the right order — hers first, then this.',
-     note: 'If you missed hers, the two extensions she demonstrated are documented on our site too.' });
-
-content('QP-CAT — multiplexed cell analysis', [
-  'The full scientific Python stack embedded in QuPath. No environments to manage',
-  'Clustering, marker gating with suggested thresholds, spatial statistics, batch correction',
-  'Label a small subset by hand and have the rest of the project labelled for you — no object classifier involved',
-  'Brush a region of the embedding and those cells highlight on the slide',
-  'Configure independent areas and no spatial graph edge crosses two TMA cores, so separate tissue stays separate',
-], { kicker: 'The usual workflow loses the link back to the tissue. This keeps it.',
-     note: 'Author’s own warning: many features are lightly tested. Treat results as a starting point.' });
-
-content('You can check the answer', [
-  'Real multiplexed tissue has no ground truth — you never know which cell is really which type',
-  'So the exercise uses a synthetic tumour microenvironment where every cell is labelled',
-  'Six cell types, tumour nests, an immune-infiltrated boundary, B-cell follicles, a proliferation gradient',
-  'Inflamed versus desert: one image is 52% lymphoid, another 9% with no B cells at all',
-  '20 MB, public domain, and it downloads straight from GitHub',
-], { kicker: 'Learn what a correct result looks like, so you can recognise a wrong one later.',
-     note: 'Cluster it, then click a boundary cell and find out whether the cluster was telling the truth.' });
-
-content('And getting back to the tissue', [
-  'Clustering answers "which cells group together". It does not answer "which cell is that"',
-  'Cluster 3D Navigator: a rotatable point cloud, one point per cell, coloured by class',
-  'Click a point in cluster space and land on that cell in the viewer',
-  'Boundary cells are where classification errors live — this makes them one click away',
-], { kicker: 'A mention rather than a demo — it is the navigation half of the clustering you just saw.',
-     note: 'Works with any clustering tool’s output, not just QP-CAT’s. It only reads; it writes nothing.' });
-
-/* ================= 8 · Fibre and texture ================= */
-
-section('07', 'Collagen fibre and texture', 'Architecture, not just presence');
-
-content('Why fibre architecture', [
-  'Collagen is not simply present or absent — the arrangement carries the biology',
-  'Wavy versus straightened; aligned versus isotropic; and how that changes at a boundary',
-  'In breast pathology, straightened fibres running perpendicular to the tumour boundary act as tracks for invading cells',
-  'Hazard ratio 3.0–3.9 for disease-free survival, independent of grade, size and receptor status',
-], { kicker: 'Conklin et al. 2011, American Journal of Pathology 178:1221.',
-     note: 'The same wavy-to-straight axis recurs in arterial adventitia, sclera, alveolar wall, and cardiac fibrosis.' });
-
-twoCol('Two complementary tools',
-  'Fiber Analysis — measure a zone',
-  [
-    'A band of chosen width inside, outside, or across an annotation boundary',
-    'Straightness and persistence: wavy versus straightened fibres',
-    'Morphometrics: coverage, length, branching, fractal dimension, gaps',
-    'Texture: the information fibre-tracing misses entirely',
-  ],
-  'TME-Quant — trace the fibres',
-  [
-    'Individual fibres extracted and committed back as objects',
-    'Set the threshold by eye, with the mask shown before you commit',
-    'Trace a few real fibres yourself, and it tunes its own parameters to match',
-    'Fibres classified by orientation relative to a tumour boundary',
-  ]);
-
-content('A dense mat and a sparse clump', [
-  'Two fields can share the same mean fibre alignment and be completely different tissue',
-  'Texture measures the spatial heterogeneity that alignment averages away',
-  'Which is why both tools are worth running, on the same region',
-], { note: 'Demo only today: one needs a long environment build, the other a dedicated analysis server.' });
-
-content('Please cite the methods', [
-  'Both tools implement other people\u2019s methods \u2014 cite the methods, not just the tools',
-  'CT-FIRE — Bredfeldt et al. 2014, Journal of Biomedical Optics 19(1):016007',
-  'CurveAlign — LOCI, University of Wisconsin–Madison',
-  'TACS — Provenzano et al. 2006, BMC Medicine 4:38; Conklin et al. 2011',
-  'TWOMBLI — Wershof et al. 2021, Life Science Alliance 4(3)',
-], { note: 'Fiber Analysis re-implements TWOMBLI\u2019s cheap metrics natively rather than bundling its FIJI plugins, so its fractal dimension and lacunarity diverge from TWOMBLI\u2019s by roughly 20\u201340%. Do not compare them with published TWOMBLI numbers.' });
-
-/* ================= 9 · Microscope control ================= */
-
-section('08', 'Microscope control', 'The most complex thing here, and the reason for the rest');
-
-content('QPSC — QuPath Scope Control', [
-  'Draw a box around a region in QuPath. The stage moves, the tiles are captured and stitched, and the image appears back in your project',
-  'Target specific annotations on a slide you already scanned',
-  'Live camera view, stage map, saved positions, and a virtual joystick',
-  'Brightfield, multi-channel fluorescence, and combined passes on a single-camera scope',
-]);
-
-content('Why this changes the rest', [
-  'The region you analysed is the region you acquire at high resolution',
-  'Acquisition metadata arrives in the project, not in a folder that gets separated from the images',
-  'Stitching is a step in this pipeline — and it works perfectly well on its own, which is why it is in your hands-on hour',
-], { note: 'Once acquisition is driven from QuPath, "acquisition software" and "analysis software" stop being separate places your data lives.' });
-
-content('How it is put together', [
-  'QuPath talks to a small command server, which drives Micro-Manager, which drives the hardware',
-  'Each instrument is described by its own configuration — the QuPath side does not know what kind of microscope it is',
-  'Micro-Manager remains the device layer. We did not reinvent it',
-], { kicker: 'The easy part is the QuPath extension. Budget your time for the microscope side.' });
-
-demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',
-  [
-    'Draw a bounding box on a slide overview',
-    'Watch the stage move and the tiles come in',
-    'Stitched pyramidal image lands back in the project, with its metadata',
-    'Then open it and annotate it — the loop closes',
-    'The stitching half — Tiles to Pyramid — you can install and use today, no microscope needed',
-  ],
-  'You watch this one: it needs a microscope, so nobody in the room runs it. About five minutes, with a recorded fallback if the network or the hardware disagrees.');
-
-/* ================= 9b · Acknowledgements ================= */
-
 {
   const s = pptx.addSlide();
   s.background = bg;
@@ -669,11 +280,346 @@ demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',
 
   s.addText([
     { text: 'Sara McArdle also shaped the software directly — two of these extensions began as her Groovy scripts, and her FS2K course was the model for how the workshop pages are written.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
-    { text: 'Kristin Gallick, whose concept and scripts the Confusion Matrix grew from.  ·  Pete Bankhead and the QuPath team.  ·  CT-FIRE, CurveAlign, TACS and TWOMBLI for the fibre work.  ·  CytoMAP and QuBaLab for bringing clustering into QuPath.  ·  QUAREP-LiMi for the reporting standards.  ·  The image.sc community, where several of these features were first requested.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
+    { text: 'Kristin Gallik, whose concept and scripts the Confusion Matrix grew from.  ·  Pete Bankhead and the QuPath team.  ·  CT-FIRE, CurveAlign, TACS and TWOMBLI for the fibre work.  ·  CytoMAP and QuBaLab for bringing clustering into QuPath.  ·  QUAREP-LiMi for the reporting standards.  ·  The image.sc community, where several of these features were first requested.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
+    { text: 'Much of this code was written with Claude (Anthropic) under close direction. It changed what one person could build; it did not change what still had to be checked.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
     { text: 'Full credits: ' + URL + '/docs/acknowledgements.html', options: { fontSize: 17, bold: true, color: BLUE_DK } },
   ], { x: M, y: 4.35, w: W - 2 * M, h: 2.3, fontFace: BODY, valign: 'top' });
   pageNum(s);
 }
+
+content('What this hour covers', [
+  'Simple first, complex last: quality-of-life tools, export, project-scale work, deep learning, microscope control',
+  'There is time for a handful done properly, not sixteen done badly',
+  'So every tool has a full written walkthrough, and a video to follow',
+  'Three are demonstrated but not practised \u2014 I will say why each time; two more were Sara McArdle\u2019s session yesterday',
+  'The second hour is optional, hands-on and self-directed \u2014 four tracks, or bring your own data',
+], { kicker: 'For anyone who already uses QuPath and has run into its edges.',
+     note: 'Most of these are under active development, written in bursts as I have time. Useful, not stable \u2014 treat them accordingly.' });
+
+{
+  const s = pptx.addSlide();
+  s.background = bg;
+  s.addText('Vote for what you want to see', {
+    x: M, y: 0.9, w: W - 2 * M, h: 0.9,
+    fontFace: HEAD, fontSize: 36, bold: true, color: BLUE_DK, valign: 'middle',
+  });
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.85, w: 2.1, h: 0.055, fill: { color: BLUE } });
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 2.35, w: W - 2 * M, h: 1.5, fill: { color: BLUE_TINT } });
+  s.addText(PADLET, {
+    x: M + 0.3, y: 2.35, w: W - 2 * M - 0.6, h: 1.5,
+    fontFace: BODY, fontSize: 30, bold: true, color: BLUE_DK, align: 'center', valign: 'middle',
+  });
+  s.addText([
+    { text: 'Vote for as many as you like. Add a comment if you have a specific question, or a dataset you are stuck on.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
+    { text: 'Already fixed: QPSC, the Confusion Matrix and the fibre tools are shown regardless — and Channel Names Viewer and Classify Object Subset were covered in Sara McArdle’s session yesterday.\n', options: { fontSize: 18, italic: true, color: MUT, paraSpaceAfter: 12 } },
+    { text: 'I will read it now and adjust the running order.\n', options: { fontSize: 20, color: INK, paraSpaceAfter: 12 } },
+    { text: 'If your tool does not make the cut, its walkthrough and video are on the site — and I am happy to sit down with you in the second hour.', options: { fontSize: 20, color: INK } },
+  ], { x: M, y: 4.1, w: W - 2 * M, h: 2.2, fontFace: BODY, valign: 'top' });
+  pageNum(s);
+}
+
+/* ================= 2 · Extensions, catalogs, and how this was built ================= */
+
+/* ================= 3 · Simple wins ================= */
+
+content('Installing: add the LOCI catalog, then pick', [
+  'One URL. QuPath then handles installing, listing and updating for you',
+  'Extensions > Manage extensions > Manage extension catalogs > Add catalog',
+  'LOCI catalog  \u2014  github.com/uw-loci/qupath-catalog-mikenelson  (the only one you need today)',
+  'Adding a catalog installs NOTHING. It shows you a list \u2014 install only what you want',
+  'Restart QuPath afterwards. Nothing appears until you do',
+], { kicker: 'If you remember one slide from this section, make it this one.',
+     note: 'Two entries are large: QP-CAT pulls 1.5\u20132.5 GB on first use, the DL Pixel Classifier 2\u20134 GB. Not on conference wifi.' });
+
+content('Two things that catch everyone out', [
+  'Extensions live per QuPath version \u2014 installing 0.7 will not disturb the 0.6 you already use',
+  'Installing by hand instead? Take the jar with -all in the name; it bundles the dependencies',
+  { t: 'Without it you get a ClassNotFoundException the first time you use the tool. The catalog picks the right jar for you' },
+], { note: 'Workshop requirement: QuPath 0.7.0 or later. Nothing here runs on 0.6.' });
+
+section('01', 'Dialog Manager, Wizard Wand, Polyline Wand', 'Small tools that pay for themselves on the first day');
+
+content('Three that install in seconds', [
+  'Dialog Position Manager — remembers where your titled dialogs were and puts them back next session',
+  { t: 'Recovers windows stranded on a monitor you have since unplugged; notices when display scaling has changed and falls back to a sane on-screen position' },
+  'Channel Names Viewer — a floating, colour-coded legend of the selected channels. “Which one is the green one?”, answered permanently',
+  'Classify Object Subset — run a saved classifier on a chosen subset, with a live count before you commit',
+  'Point several workstations at one shared file and a facility gets the same dialog layout everywhere',
+], { kicker: 'The least glamorous tools here, and the ones you notice every day.',
+     note: 'The last two grew out of Groovy scripts from Sara McArdle — the channel legend from one originally written by Pete Bankhead at the 2022 QuPath Hackathon. She demonstrated both on Monday.' });
+content('The two wands', [
+  'Wizard Wand — like the built-in wand, with small holes filled and the boundary smoothed by default; hold still and the selection grows on its own',
+  { t: 'Four colour-space modes: grayscale, RGB, subtle stain differences, or selecting by hue' },
+  'Tune from selection: draw one area annotation the way you want it, and the wand derives its own settings',
+  'Polyline Wand — QuPath’s brush and wand work on areas; this brings the same editing to lines',
+  { t: 'Push a traced boundary outward, erase backwards from an endpoint, or cut one polyline in two — both halves keep class, name and colour' },
+], { kicker: 'The built-in wands are untouched — both install as separate tools you can ignore.',
+     note: 'One stroke is one undo step, however long the boundary.' });
+demo('Both wands, live', '▶  LIVE  ·  10 MIN',
+  [
+    'Wizard Wand: wand a structure, then auto-tune from a hand-drawn example and do it again',
+    'Watch a selection grow on its own instead of dragging to cover it',
+    'Polyline Wand: push a traced boundary outward, smooth a noisy stretch, erase back from an endpoint',
+    'Scissors mode — cut one polyline in two, both halves keeping class, name and colour',
+    'Compare the result against the built-in tools',
+  ],
+  'The two wands in one sitting — ten minutes. Static screenshots follow if the live version misbehaves.');
+
+/* ================= 4 · Image export ================= */
+
+section('02', 'QuIET — Image Export Toolkit', 'Publication figures, review images, and machine-learning datasets');
+
+content('QuIET — Image Export Toolkit', [
+  'Five export categories, one three-step wizard',
+  { t: 'Rendered figures  ·  label masks  ·  raw pixel data  ·  image and label tile pairs  ·  per-object crops' },
+  'A separate wizard builds multi-panel montage figures from several project images',
+  'Batch across a project, without writing an export script',
+], { kicker: 'Exporting one image is easy. Exporting forty the same way, with a scale bar, at a stated resolution, is not.' });
+
+content('Why it is a reproducibility tool, not a convenience', [
+  'Whatever you clicked in the wizard comes back out as a Groovy script that uses only the QuPath API',
+  'Save it, version it, re-run it next year, send it to a collaborator who does not have QuIET',
+  'QUAREP-LiMi reporting guidance appears beside the settings, driven by your project’s actual images',
+  'Publication advice is shown before you export, not after review',
+], { kicker: 'Catch “what magnification was that, and is there a scale bar?” while you can still fix it.',
+     note: 'Montage figures are the exception: they record their settings, but the figure is rebuilt through the wizard.' });
+/* ================= 5 · Project-scale housekeeping ================= */
+
+section('03', 'OCR, Metadata Browser, Class Distribution, Tiles to Pyramid', 'Working on four hundred slides rather than four');
+
+content('OCR for Labels', [
+  'The case ID, stain and block number are already in your slide file, on the label image',
+  'Text recognition and barcode scanning, straight into project metadata',
+  'Save a template of field positions, then run it across the whole project',
+  'Match against a vocabulary of the IDs you actually use, and OCR slips like 0-for-O get corrected',
+], { note: 'Review before applying. Recognition on a photographed label is good, not correct.' });
+
+content('Project Metadata Browser', [
+  'Every image a row, every metadata key a column — sortable and filterable',
+  'Edits stay in memory until you save, and everything is undoable',
+  'Paste a column from a spreadsheet; pull values out of structured filenames',
+  'Rename or remove a key across every image in one operation',
+], { kicker: 'If you just ran label recognition across a few hundred slides, this is where you find out whether it worked.',
+     note: 'Sorting by a recognised column makes the bad reads stand out as outliers.' });
+
+content('Class Distribution', [
+  'Live charts of how your annotation classes are distributed across the project',
+  'And, separately, the training balance those annotations actually imply',
+  'Charts update while you annotate, so the feedback arrives while you can still act',
+  'Classes badly over- or under-represented are flagged',
+], { note: 'Annotation count, annotation area, and implied training detections are three different numbers. For an object classifier it is the third that drives training. Flagged at twice, or half, the median class share.' });
+
+figurePair('Tiles to Pyramid: stitching two tiles',
+  'As acquired: neighbouring tiles share a strip of the same tissue (shaded)',
+  { path: 'images/stitch_ppm_unstitched.jpg', w: 3000, h: 565 },
+  'Stitched: the join is placed by matching the image content in that strip',
+  { path: 'images/stitch_ppm_stitched.jpg', w: 2766, h: 565 },
+  'Pancreatic cancer, polarised light. The stage recorded this tile about 5 px (0.9 µm) away from where it really was — the worst of 17 seams in this grid, which ran to a 2.2 px median. Registration measured that from the overlap and closed every seam to under a pixel. It is a tick-box: left off, tiles go where the stage said.');
+
+figureDuo('Measure on the clearest channel, reuse on the rest',
+  'Placed where the stage said it was',
+  { path: 'images/stitch_if_nominal.jpg', w: 1380, h: 1110 },
+  'Placed where the image content says it is',
+  { path: 'images/stitch_if_registered.jpg', w: 1380, h: 1110 },
+  'The same join through the same cells; only the tile positions differ. Positions were measured on DAPI, the channel with the most distinct, best separated structure, and reused unchanged for the other two channels \u2014 so every channel stays aligned with every other. Nuclei blue, actin green, mitochondria red; the correction here is 7 px, about 4.6 \u00b5m.');
+
+content('Tiles to Pyramid — how the mosaic is assembled', [
+  'Every overlapping pair is measured against the image content, then all tiles are placed at once by least squares',
+  { t: 'A spanning tree would keep 99 of the 180 neighbour edges on a 10×10 grid and throw away 81, so nothing is ever asked to close a loop' },
+  'Each tile is also pulled toward its recorded stage position, so a tile with no accepted edges stays exactly where the stage put it',
+  'The output is written chunk by chunk, and only the one to four tiles overlapping the current chunk are ever in memory',
+  'Measured: 144 tiles (125 MP) stitch in the same 227 MB as 64 tiles (56 MP)',
+], { kicker: 'Memory stops tracking the size of the mosaic, which is what lets thousands of tiles stitch on an ordinary machine.',
+     note: 'Measured with the extension\u2019s own benchmark: 1024 px 16-bit tiles, 10% overlap. The older load-everything path needed 2\u20134 GB and ran out of memory past about 1600 tiles.' });
+
+/* ================= 6 · Validation ================= */
+
+section('04', 'Confusion Matrix', 'Classifier validation you can put in a paper');
+
+demo('Confusion Matrix', '▶  DEMO ONLY',
+  [
+    'Click the largest off-diagonal cell — those cells highlight on the slide',
+    '"The classifier is 87% accurate" becomes "it confuses these two things, for this reason"',
+    'Across a project: per-image breakdown, with divergent images flagged automatically',
+    'A flagged image points at the ground truth, the staining, or the classifier\u2019s generalisation \u2014 the breakdown tells you which',
+  ],
+  'Originated by Kristin Gallik — concept and initial scripts; built out at LOCI.  ·  Demo only: the repository is currently private.');
+
+/* ================= 7 · DL cell and pixel classifiers ================= */
+
+section('05', 'DL Pixel Classifier and QP-CAT', 'Pixel classification, cell phenotyping, and knowing when not to trust them');
+
+content('Deep learning pixel classification', [
+  'Same interaction as the built-in classifier: draw a few sparse regions per class',
+  'The extension samples training tiles from what you marked — you are steering a sampler',
+  'Brightfield and multi-channel fluorescence, with channel selection and intensity normalisation',
+  'Train across several project images at once for representative sampling',
+], { kicker: 'For when the built-in classifier is not enough: subtle textures, classes that differ by architecture rather than colour.' });
+
+content('The two features that tell you when not to trust it', [
+  'Full per-pixel confidence, not just the winning class — the model’s certainty rendered pixel by pixel',
+  { t: 'The honest uncertainty is at the boundaries between classes — go and look at it' },
+  'An out-of-distribution warning before inference, when an image no longer resembles the training data',
+  { t: 'Catches the stain, exposure and sensor changes that would quietly degrade predictions; it will not catch subtle texture drift' },
+  'When it fires, recalibrating to the current image needs no retraining at all',
+], { kicker: 'Domain shift — a new scanner, a new stain, a new batch — is the practical problem, far more often than model architecture.',
+     note: 'Try recalibration before you commit to retraining. It is cheap, and it costs you nothing to find out.' });
+content('QP-CAT — multiplexed cell analysis', [
+  'The full scientific Python stack embedded in QuPath. No conda, no command line — one click, 1.5–2.5 GB, 5–15 minutes, once',
+  'Clustering, marker gating with suggested thresholds, spatial statistics, batch correction',
+  'Label a small subset by hand and have the rest of the project labelled for you — no object classifier involved',
+  'Draw a polygon around a region of the embedding and those cells are selected in the viewer',
+  'Configure independent areas and no spatial graph edge crosses two TMA cores, so separate tissue stays separate',
+], { kicker: 'The usual workflow loses the link back to the tissue. This keeps it.',
+     note: 'Author’s own README, first line: many of the features are lightly tested or entirely untested. Treat results as a starting point.' });
+
+/* ================= 8 · Fibre and texture ================= */
+
+section('06', 'Fiber Analysis and TME-Quant', 'Collagen architecture, not just presence');
+
+content('Why fibre architecture', [
+  'Collagen is not simply present or absent — the arrangement carries the biology',
+  'Wavy versus straightened; aligned versus isotropic; and how that changes at a boundary',
+  'In breast pathology, straightened fibres running perpendicular to the tumour boundary act as tracks for invading cells',
+  'Hazard ratios of 3.0–3.9 for disease-specific and disease-free survival, independent of grade, size, receptor and node status',
+], { kicker: 'Conklin et al. 2011, American Journal of Pathology 178:1221.',
+     note: 'The same wavy-to-straight axis turns up wherever collagen bears load, which is why the measures travel beyond breast.' });
+
+twoCol('Two complementary tools',
+  'Fiber Analysis — measure a zone',
+  [
+    'A band of chosen width inside, outside, or across an annotation boundary',
+    'Straightness: wavy versus straightened fibres, per window and per ROI',
+    'Morphometrics: coverage, length, branching, fractal dimension, gaps',
+    'Texture: the information fibre-tracing misses entirely',
+  ],
+  'TME-Quant — trace the fibres',
+  [
+    'Individual fibres extracted and committed back as objects',
+    'Set the threshold by eye, with the mask shown before you commit',
+    'Trace a few real fibres yourself, and it tunes its own parameters to match',
+    'Fibres classified by orientation relative to a tumour boundary',
+  ]);
+
+content('Please cite the methods', [
+  'Both tools implement other people\u2019s methods \u2014 cite the methods, not just the tools',
+  'CT-FIRE — Bredfeldt et al. 2014, Journal of Biomedical Optics 19(1):016007',
+  'CurveAlign — LOCI, University of Wisconsin–Madison',
+  'TACS — Provenzano et al. 2006, BMC Medicine 4:38; Conklin et al. 2011',
+  'TWOMBLI — Wershof et al. 2021, Life Science Alliance 4(3):e202000880',
+], { note: 'Fiber Analysis re-implements TWOMBLI\u2019s cheap metrics natively rather than bundling its FIJI plugins, so its fractal dimension and lacunarity diverge from TWOMBLI\u2019s by roughly 20\u201340%. Do not compare them with published TWOMBLI numbers.' });
+
+/* ================= 9 · Microscope control ================= */
+
+section('07', 'QPSC — QuPath Scope Control', 'The most complex thing here, and the reason for the rest');
+
+content('QPSC — QuPath Scope Control', [
+  'Draw a box around a region in QuPath. The stage moves, the tiles are captured and stitched, and the image appears back in your project',
+  'Target specific annotations on a slide you already scanned',
+  'Live camera view, stage map, saved positions, and a virtual joystick',
+  'Brightfield, multi-channel fluorescence, and combined passes on a single-camera scope',
+]);
+
+content('Why this changes the rest', [
+  'The region you analysed is the region you acquire at high resolution',
+  'Acquisition metadata arrives in the project, not in a folder that gets separated from the images',
+  'Stitching is a step in this pipeline — and it works perfectly well on its own, which is why it is in your hands-on hour',
+], { note: 'Once acquisition is driven from QuPath, "acquisition software" and "analysis software" stop being separate places your data lives.' });
+
+demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',
+  [
+    'Draw a bounding box on a slide overview',
+    'Watch the stage move and the tiles come in',
+    'Stitched pyramidal image lands back in the project, with its metadata',
+    'Then open it and annotate it — the loop closes',
+    'The stitching half — Tiles to Pyramid — you can install and use today, no microscope needed',
+  ],
+  'You watch this one: it needs a microscope, so nobody in the room runs it. About five minutes, with a recorded fallback if the network or the hardware disagrees.');
+
+/* ================= 9b · Acknowledgements ================= */
+
+/* ================= Questions ================= */
+
+{
+  const s = pptx.addSlide();
+  s.background = bg;
+  s.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: 0.3, h: H, fill: { color: BLUE } });
+  s.addText('Questions?', {
+    x: 1.05, y: 2.4, w: W - 2.1, h: 1.4,
+    fontFace: HEAD, fontSize: 54, bold: true, color: BLUE_DK, valign: 'middle',
+  });
+  s.addText(URL, {
+    x: 1.05, y: 3.9, w: W - 2.1, h: 0.6,
+    fontFace: BODY, fontSize: 22, bold: true, color: BLUE, valign: 'middle',
+  });
+  s.addText('Everything after this slide is backup, kept for the questions it answers.', {
+    x: 1.05, y: 4.6, w: W - 2.6, h: 0.5,
+    fontFace: BODY, fontSize: 17, italic: true, color: MUT,
+  });
+  pageNum(s);
+}
+
+/* ================= Backup: not presented unless asked ================= */
+
+section('B', 'Backup', 'Cut for time. Here if a question needs them');
+
+content('The claim', [
+  'QuPath is usually treated as post-acquisition analysis software',
+  'Its extension mechanism reaches much further than that',
+  'Acquisition → analysis → validation → publication, in one environment',
+  { t: 'One project. One place your metadata lives. One place your figures come from' },
+  'Sixteen extensions built at LOCI — thirteen you can install this afternoon',
+], { note: 'Most of these are under active development, written in bursts as I have time. Useful, not stable — treat them accordingly.' });
+
+content('Sixteen extensions, one person', [
+  'That is not a normal output, and it is fair to ask how',
+  'A large fraction of the code was written by an LLM coding agent under close direction',
+  'Several of you will go home and try this, so here is the honest version',
+], { kicker: 'The part of this talk most likely to be useful outside QuPath.' });
+
+twoCol('What worked, and what did not',
+  'Worked',
+  [
+    'Give the model the real API, and require it to compile — a failing build is a free, correct signal',
+    'Write the documentation first and treat it as the specification',
+    'Keep a persistent map of the codebase so each session does not re-derive it badly',
+    'Automate the tedious checks — API compatibility across sixteen repositories',
+  ],
+  'Did not',
+  [
+    '"Build me an extension that does X" — compiles, and is wrong in ways you find in front of an audience',
+    'Scientific correctness — a bootstrap that runs, looks plausible, and resamples the wrong axis',
+    'GUI behaviour — nothing catches a dialog opening off-screen except a human',
+    'Licensing — get it wrong and you cannot distribute your work',
+  ]);
+
+content('The honest summary', [
+  'AI assistance changed the cost of building an extension by about an order of magnitude',
+  'It changed the correctness of one not at all',
+  'The bottleneck moved from "can I write this Java" to "do I know what this should do, and can I tell when it is lying to me"',
+], { note: 'A better bottleneck to have. Still a bottleneck, and still yours.' });
+
+content('What is underneath', [
+  'Your choice of encoder, from lightweight convolutional networks to vision transformers',
+  'Start from weights pretrained on histology rather than on everyday photographs',
+  'Or from pathology foundation models, downloaded on demand',
+  'Normalisation statistics sampled across the image, or reused from training, so every tile is scaled the same way',
+], { note: 'Training really wants a GPU \u2014 on CPU it is hours instead of minutes, and CPU is the default install. That is why training is a demonstration and inference is the exercise.' });
+
+content('What we are not covering', [
+  'QuPath already has object classification — train on measurements, or threshold a single one',
+  'We are not re-teaching it. Sara’s Monday session was the hi-plex classification half',
+  'What follows are alternative mechanisms for getting a class onto a cell:',
+  'Unsupervised clustering · rule-based marker gating · propagation from a small hand-labelled subset · applying an existing classifier to a chosen subset instead of everything',
+  'Then: what those classified cells are actually telling you — which sit next to which, and whether that differs between images',
+], { kicker: 'Two halves of the same workflow, in the right order — hers first, then this.',
+     note: 'If you missed hers, the two extensions she demonstrated are documented on our site too.' });
+
+content('How it is put together', [
+  'QuPath talks to a small command server, which drives Micro-Manager, which drives the hardware',
+  'Each instrument is described by its own YAML — the QuPath side carries no per-instrument code, only per-modality handlers',
+  'Micro-Manager remains the device layer. We did not reinvent it',
+], { kicker: 'The easy part is the QuPath extension. Budget your time for the microscope side.' });
 
 /* ================= 10 · Close ================= */
 
