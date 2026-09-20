@@ -93,6 +93,17 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 8. Now **Save**, and confirm the changes are on disk.
 9. Export to CSV.
 
+### Why this matters for finding images again
+
+QuPath's own project pane has a **Sort by...** menu that takes a metadata key: pick one and the
+image list groups under it, with a heading row per value. The pane's filter box searches name and
+type only, so metadata is what gives you an axis worth sorting on. A project of four hundred files
+named by scanner ID becomes a list grouped by stain, by case, or by block.
+
+That is the payoff for filling metadata in at all, and it is why label recognition, this browser
+and the project pane form a chain: recover the fields, check them here, then navigate the project
+by what is written on the slide.
+
 ### What to notice
 
 - The buffered editor changes how you work: you can be aggressive, because nothing is real

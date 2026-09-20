@@ -473,6 +473,15 @@ content('Project Metadata Browser', [
 ], { kicker: 'If you just ran label recognition across a few hundred slides, this is where you find out whether it worked.',
      note: 'Sorting by a recognised column makes the bad reads stand out as outliers.', repos: [{ name: 'Metadata Browser', slug: 'uw-loci/qupath-extension-project-metadata-browser' }] });
 
+content('Why the metadata is worth filling in', [
+  'QuPath’s own project pane has a “Sort by...” menu: choose a metadata key and the image list groups under it',
+  { t: 'Four hundred files named by scanner ID become a list grouped by stain, by case, or by block' },
+  'The pane’s filter box searches name and type only — metadata is what gives you the axis you actually care about',
+  'So the chain is: read the label, check the reads here, then navigate the project by what is on the slide',
+  'Sorting by a recovered column is also the quickest quality check, because bad reads land at the extremes',
+], { kicker: 'Metadata is not bookkeeping for its own sake. It is how you find an image again.',
+     note: 'Nothing here is specific to OCR: paste a column from a spreadsheet, or pull fields out of structured filenames with a regex, and the same sorting applies.' });
+
 content('Class Distribution', [
   'Live charts of how your annotation classes are distributed across the project',
   'And, separately, the training balance those annotations actually imply',
