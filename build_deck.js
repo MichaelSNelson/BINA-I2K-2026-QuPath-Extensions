@@ -42,6 +42,39 @@ function pageNum(s) {
   });
 }
 
+// Right-hand column of repo links with a reserved QR square per repo.
+// Drop the generated QR image over each square; the slug beneath it is the target.
+function repoColumn(s, repos, topY) {
+  if (!repos || !repos.length) return 0;
+  const n = repos.length;
+  const qr = n >= 3 ? 0.88 : (n === 2 ? 1.15 : 1.35);
+  const gap = n >= 3 ? 0.28 : 0.36;
+  const colW = 1.62, x = W - M - colW;
+  let y = topY;
+  repos.forEach(r => {
+    s.addText(r.name, {
+      x, y, w: colW, h: 0.22,
+      fontFace: BODY, fontSize: 10, bold: true, color: BLUE_DK, align: 'center',
+    });
+    // reserved square -- replace with the QR image
+    s.addShape(pptx.ShapeType.rect, {
+      x: x + (colW - qr) / 2, y: y + 0.24, w: qr, h: qr,
+      fill: { color: WHITE }, line: { color: BLUE, width: 0.75, dashType: 'dash' },
+    });
+    s.addText('QR', {
+      x: x + (colW - qr) / 2, y: y + 0.24, w: qr, h: qr,
+      fontFace: BODY, fontSize: 11, color: BLUE, align: 'center', valign: 'middle',
+    });
+    s.addText('github.com/' + r.slug, {
+      x, y: y + 0.28 + qr, w: colW, h: 0.34,
+      fontFace: BODY, fontSize: 7.5, color: MUT, align: 'center',
+      hyperlink: { url: 'https://github.com/' + r.slug },
+    });
+    y += 0.30 + qr + gap;
+  });
+  return colW;
+}
+
 // standard content slide: title, blue rule, bullet list
 function content(title, bullets, opts = {}) {
   const s = pptx.addSlide();
@@ -60,13 +93,14 @@ function content(title, bullets, opts = {}) {
     });
   }
   const top = opts.kicker ? 1.92 : 1.62;
+  const reserved = repoColumn(s, opts.repos, opts.kicker ? 1.44 : 1.40);
   s.addText(
     bullets.map(b =>
       typeof b === 'string'
         ? { text: b, options: { bullet: { code: '2022' }, fontSize: 20, color: INK, paraSpaceAfter: 12 } }
         : { text: b.t, options: { bullet: { code: '25AA' }, indentLevel: 1, fontSize: 17, color: MUT, paraSpaceAfter: 8 } }
     ),
-    { x: M + 0.08, y: top, w: W - 2 * M - 0.1, h: H - top - 0.9, fontFace: BODY, valign: 'top', lineSpacingMultiple: 1.05 }
+    { x: M + 0.08, y: top, w: W - 2 * M - 0.1 - (reserved ? reserved + 0.28 : 0), h: H - top - 0.9, fontFace: BODY, valign: 'top', lineSpacingMultiple: 1.05 }
   );
   if (opts.note) {
     s.addShape(pptx.ShapeType.rect, { x: M, y: H - 1.32, w: W - 2 * M, h: 0.62, fill: { color: BLUE_PALE }, line: { color: BLUE, width: 0.75 } });
@@ -234,7 +268,7 @@ function demo(title, tag, steps, footer) {
 }
 
 // two-column comparison
-function twoCol(title, leftHead, left, rightHead, right) {
+function twoCol(title, leftHead, left, rightHead, right, opts = {}) {
   const s = pptx.addSlide();
   s.background = bg;
   s.addText(title, {
@@ -242,7 +276,8 @@ function twoCol(title, leftHead, left, rightHead, right) {
     fontFace: HEAD, fontSize: 30, bold: true, color: BLUE_DK, valign: 'middle',
   });
   s.addShape(pptx.ShapeType.rect, { x: M, y: 1.2, w: 2.1, h: 0.055, fill: { color: BLUE } });
-  const cw = (W - 2 * M - 0.5) / 2;
+  const reserved = repoColumn(s, opts.repos, 1.40);
+  const cw = (W - 2 * M - 0.5 - (reserved ? reserved + 0.28 : 0)) / 2;
   [[leftHead, left, M, BLUE_DK], [rightHead, right, M + cw + 0.5, AMBER]].forEach(([hd, items, x, col]) => {
     s.addShape(pptx.ShapeType.rect, { x, y: 1.7, w: cw, h: 0.58, fill: { color: BLUE_TINT } });
     s.addText(hd, {
@@ -304,31 +339,29 @@ function twoCol(title, leftHead, left, rightHead, right) {
   });
   s.addShape(pptx.ShapeType.rect, { x: M, y: 1.26, w: 2.1, h: 0.055, fill: { color: BLUE } });
 
-  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.72, w: W - 2 * M, h: 2.45, fill: { color: BLUE_TINT } });
-  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.72, w: 0.16, h: 2.45, fill: { color: BLUE } });
-  s.addText('Sample data', {
-    x: M + 0.45, y: 1.9, w: W - 2 * M - 0.9, h: 0.4,
-    fontFace: BODY, fontSize: 16, bold: true, color: BLUE, charSpacing: 1.5,
+  // Primary: the lab and Kevin, then the data, then everyone else.
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.66, w: W - 2 * M, h: 1.92, fill: { color: BLUE_TINT } });
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.66, w: 0.16, h: 1.92, fill: { color: BLUE } });
+  s.addText('LOCI', {
+    x: M + 0.45, y: 1.80, w: W - 2 * M - 0.9, h: 0.34,
+    fontFace: BODY, fontSize: 15, bold: true, color: BLUE, charSpacing: 1.5,
   });
-  s.addText('Sara McArdle  ·  Zbigniew Mikulski', {
-    x: M + 0.45, y: 2.3, w: W - 2 * M - 0.9, h: 0.62,
-    fontFace: HEAD, fontSize: 32, bold: true, color: BLUE_DK, valign: 'middle',
+  s.addText('The lab, and Kevin Eliceiri', {
+    x: M + 0.45, y: 2.12, w: W - 2 * M - 0.9, h: 0.58,
+    fontFace: HEAD, fontSize: 30, bold: true, color: BLUE_DK, valign: 'middle',
   });
-  s.addText('La Jolla Institute for Immunology', {
-    x: M + 0.45, y: 2.92, w: W - 2 * M - 0.9, h: 0.42,
-    fontFace: BODY, fontSize: 21, color: INK,
-  });
-  s.addText('They provided the slide-label images behind the OCR and metadata exercises.\nOther data today: public images, a CC0 synthetic set, and tiles acquired at LOCI.', {
-    x: M + 0.45, y: 3.34, w: W - 2 * M - 0.9, h: 0.8,
+  s.addText('For a genuinely collaborative lab, and for backing work on QuPath that sits well outside my job description.', {
+    x: M + 0.45, y: 2.72, w: W - 2 * M - 0.9, h: 0.76,
     fontFace: BODY, fontSize: 17, italic: true, color: MUT, lineSpacingMultiple: 1.1,
   });
 
   s.addText([
-    { text: 'Sara McArdle also shaped the software directly: the channel legend packages a Groovy script of hers (originally Pete Bankhead’s, from the 2022 QuPath Hackathon), and the subset classifier follows a pattern from another. Her FS2K course was the model for how the workshop pages are written.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
-    { text: 'Kristin Gallik, whose concept and scripts the Confusion Matrix grew from.  ·  Pete Bankhead and the QuPath team.  ·  CT-FIRE, CurveAlign, TACS and TWOMBLI for the fibre work.  ·  CytoMAP and QuBaLab for bringing clustering into QuPath.  ·  QUAREP-LiMi for the reporting standards.  ·  The image.sc community, where several of these features were first requested.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
-    { text: 'Much of this code was written with Claude (Anthropic) under close direction. It changed what one person could build; it did not change what still had to be checked.\n', options: { fontSize: 17, color: INK, paraSpaceAfter: 10 } },
-    { text: 'Full credits: ' + URL + '/docs/acknowledgements.html', options: { fontSize: 17, bold: true, color: BLUE_DK } },
-  ], { x: M, y: 4.35, w: W - 2 * M, h: 2.3, fontFace: BODY, valign: 'top' });
+    { text: 'Sample data: Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology, who provided the slide-label images behind the OCR and metadata exercises. Other data today: public images, a CC0 synthetic set, and tiles acquired at LOCI.\n', options: { fontSize: 16, color: INK, paraSpaceAfter: 9 } },
+    { text: 'Sara McArdle also shaped the software directly: the channel legend packages a Groovy script of hers (originally Pete Bankhead’s, from the 2022 QuPath Hackathon), and the subset classifier follows a pattern from another. Her FS2K course was the model for how the workshop pages are written.\n', options: { fontSize: 16, color: INK, paraSpaceAfter: 9 } },
+    { text: 'Kristin Gallik, whose concept and scripts the Confusion Matrix grew from.  ·  Pete Bankhead and the QuPath team.  ·  CT-FIRE, CurveAlign, TACS and TWOMBLI for the fibre work.  ·  CytoMAP and QuBaLab for bringing clustering into QuPath.  ·  QUAREP-LiMi for the reporting standards.  ·  The image.sc community, where several of these features were first requested.\n', options: { fontSize: 16, color: INK, paraSpaceAfter: 9 } },
+    { text: 'Much of this code was written with Claude (Anthropic) under close direction. It changed what one person could build; it did not change what still had to be checked.\n', options: { fontSize: 16, color: INK, paraSpaceAfter: 9 } },
+    { text: 'Full credits: ' + URL + '/docs/acknowledgements.html', options: { fontSize: 16, bold: true, color: BLUE_DK } },
+  ], { x: M, y: 3.74, w: W - 2 * M, h: 3.0, fontFace: BODY, valign: 'top' });
   pageNum(s);
 }
 
@@ -384,7 +417,7 @@ content('Dialog Manager, Channel Names, Classify Subset', [
   'Channel Names Viewer — a floating, colour-coded legend of the selected channels, so you are not re-reading the brightness dialog to find out which is which',
   'Classify Object Subset — run a saved classifier on a chosen subset, with a live count before you commit',
 ], { kicker: 'The least glamorous tools here.',
-     note: 'The last two grew out of Groovy scripts from Sara McArdle — the channel legend from one originally written by Pete Bankhead at the 2022 QuPath Hackathon. She demonstrated both on Monday.' });
+     note: 'The last two grew out of Groovy scripts from Sara McArdle — the channel legend from one originally written by Pete Bankhead at the 2022 QuPath Hackathon. She demonstrated both on Monday.', repos: [{ name: 'Dialog Manager', slug: 'uw-loci/qupath-extension-dialog-manager' }, { name: 'Channel Names', slug: 'uw-loci/qupath-extension-channel-names-viewer' }, { name: 'Classify Subset', slug: 'uw-loci/qupath-extension-classify-object-subset' }] });
 content('The two wands', [
   'Wizard Wand — like the built-in wand, with small holes filled and the boundary smoothed by default; hold still and the selection grows on its own',
   { t: 'Four colour-space modes: grayscale, RGB, subtle stain differences, or selecting by hue' },
@@ -392,7 +425,7 @@ content('The two wands', [
   'Polyline Wand — QuPath’s brush and wand work on areas; this brings the same editing to lines',
   { t: 'Push a traced boundary outward, erase backwards from an endpoint, or cut one polyline in two — both halves keep class, name and colour' },
 ], { kicker: 'QuPath’s own wand is untouched — both of these install as separate tools you can ignore.',
-     note: 'One stroke is one undo step, however long the boundary.' });
+     note: 'One stroke is one undo step, however long the boundary.', repos: [{ name: 'Wizard Wand', slug: 'uw-loci/qupath-extension-wizard-wand' }, { name: 'Polyline Wand', slug: 'uw-loci/qupath-extension-polyline-wand' }] });
 demo('Both wands, live', '▶  LIVE  ·  10 MIN',
   [
     'Wizard Wand: wand a structure, then tune from a hand-drawn area annotation and do it again',
@@ -412,7 +445,7 @@ content('Five export categories, one wizard', [
   { t: 'Rendered figures  ·  label masks  ·  raw pixel data  ·  image and label tile pairs  ·  per-object crops' },
   'A separate wizard builds multi-panel montage figures from several project images',
   'Batch across a project, without writing an export script',
-], { kicker: 'Exporting one image is easy. Exporting forty the same way, with a scale bar, at a stated resolution, is not.' });
+], { kicker: 'Exporting one image is easy. Exporting forty the same way, with a scale bar, at a stated resolution, is not.', repos: [{ name: 'QuIET', slug: 'uw-loci/qupath-extension-image-export-toolkit' }] });
 
 content('Why it is a reproducibility tool, not a convenience', [
   'Whatever you clicked in the wizard comes back out as a Groovy script that uses only the QuPath API',
@@ -430,7 +463,7 @@ content('OCR for Labels', [
   'Text recognition and barcode scanning, straight into project metadata',
   'Save a template of field positions, then run it across the whole project',
   'Match against a vocabulary of the IDs you actually use, and OCR slips like 0-for-O get corrected',
-], { note: 'Review before applying. Recognition on a photographed label is good, not correct.' });
+], { note: 'Review before applying. Recognition on a photographed label is good, not correct.', repos: [{ name: 'OCR for Labels', slug: 'uw-loci/qupath-extension-ocr4labels' }] });
 
 content('Project Metadata Browser', [
   'Every image a row, every metadata key a column — sortable and filterable',
@@ -438,14 +471,14 @@ content('Project Metadata Browser', [
   'Paste a column from a spreadsheet; pull values out of structured filenames',
   'Rename or remove a key across every image in one operation',
 ], { kicker: 'If you just ran label recognition across a few hundred slides, this is where you find out whether it worked.',
-     note: 'Sorting by a recognised column makes the bad reads stand out as outliers.' });
+     note: 'Sorting by a recognised column makes the bad reads stand out as outliers.', repos: [{ name: 'Metadata Browser', slug: 'uw-loci/qupath-extension-project-metadata-browser' }] });
 
 content('Class Distribution', [
   'Live charts of how your annotation classes are distributed across the project',
   'And, separately, the training balance those annotations actually imply',
   'Charts update while you annotate, so the feedback arrives while you can still act',
   'Classes badly over- or under-represented are flagged',
-], { note: 'Annotation count, annotation area, and implied training detections are three different numbers. For an object classifier it is the third that drives training. Flagged at twice, or half, the median class share.' });
+], { note: 'Annotation count, annotation area, and implied training detections are three different numbers. For an object classifier it is the third that drives training. Flagged at twice, or half, the median class share.', repos: [{ name: 'Class Distribution', slug: 'uw-loci/qupath-extension-class-distribution' }] });
 
 tileStep('Four captures, one field of view', 4, true,
   'Each tile is a separate exposure. The stage moved between them, and every neighbouring pair was told to share about 10% of its width so there is common tissue to match on.', false);
@@ -460,11 +493,11 @@ tileStep('Where the stage said they were', 4, false,
   'All four, placed on the recorded coordinates alone. Every neighbouring pair now shares a strip.', true);
 
 figureDuo('Measure on the clearest channel, reuse on the rest',
-  'Placed where the stage said it was',
-  { path: 'images/stitch_if_nominal.jpg', w: 1380, h: 1110 },
-  'Placed where the image content says it is',
-  { path: 'images/stitch_if_registered.jpg', w: 1380, h: 1110 },
-  'The same join through the same cells; only the tile positions differ. Positions were measured on DAPI, the channel with the clearest, best separated structure in this sample, and reused unchanged for the other two channels \u2014 so every channel stays aligned with every other. Nuclei blue, actin green, mitochondria red; the correction here is 7 px, about 4.6 \u00b5m.');
+  'Stitched on the stage’s own coordinates',
+  { path: 'images/stitch_if_nominal.jpg', w: 1350, h: 1035 },
+  'Stitched on positions measured from the image',
+  { path: 'images/stitch_if_registered.jpg', w: 1350, h: 1035 },
+  'Both panels are Tiles to Pyramid’s own output, at the same place in the same overlap. The stage was about 5 px out; because the tiles are feathered together, that error does not show up as a seam, it shows up as blur — smeared puncta and soft filaments on the left, crisp on the right. Positions were solved once on DAPI and reused unchanged for green and red.');
 
 figurePair('Tiles to Pyramid: stitching two tiles',
   'As acquired: neighbouring tiles share a strip of the same tissue (shaded)',
@@ -480,7 +513,7 @@ content('Tiles to Pyramid — how the mosaic is assembled', [
   'The output is written chunk by chunk, and only the one to four tiles overlapping the current chunk are ever in memory',
   'Measured: 144 tiles (125 MP) stitch in the same 227 MB as 64 tiles (56 MP)',
 ], { kicker: 'Memory stops tracking the size of the mosaic, which is what lets thousands of tiles stitch on an ordinary machine.',
-     note: 'Measured with the extension\u2019s own benchmark: 1024 px 16-bit tiles, 10% overlap. The older load-everything path needed 2\u20134 GB and ran out of memory past about 1600 tiles.' });
+     note: 'Measured with the extension\u2019s own benchmark: 1024 px 16-bit tiles, 10% overlap. The older load-everything path needed 2\u20134 GB and ran out of memory past about 1600 tiles.', repos: [{ name: 'Tiles to Pyramid', slug: 'uw-loci/qupath-extension-tiles-to-pyramid' }] });
 
 /* ================= 6 · Validation ================= */
 
@@ -504,7 +537,7 @@ content('Deep learning pixel classification', [
   'The extension samples training tiles from what you marked — you are steering a sampler',
   'Brightfield and multi-channel fluorescence, with channel selection and intensity normalisation',
   'Train across several project images at once for representative sampling',
-], { kicker: 'For when the built-in classifier is not enough: subtle textures, classes that differ by architecture rather than colour.' });
+], { kicker: 'For when the built-in classifier is not enough: subtle textures, classes that differ by architecture rather than colour.', repos: [{ name: 'DL Pixel Classifier', slug: 'uw-loci/qupath-extension-dl-pixel-classifier' }] });
 
 content('The two features that tell you when not to trust it', [
   'Full per-pixel confidence, not just the winning class — the model’s certainty rendered pixel by pixel',
@@ -521,7 +554,7 @@ content('QP-CAT — multiplexed cell analysis', [
   'Draw a polygon around a region of the embedding and those cells are selected in the viewer',
   'Configure independent areas and no spatial graph edge crosses two TMA cores, so separate tissue stays separate',
 ], { kicker: 'The usual workflow loses the link back to the tissue. This keeps it.',
-     note: 'Author’s own README, first line: many of the features are lightly tested or entirely untested. Treat results as a starting point.' });
+     note: 'Author’s own README, first line: many of the features are lightly tested or entirely untested. Treat results as a starting point.', repos: [{ name: 'QP-CAT', slug: 'uw-loci/qupath-extension-cell-analysis-tools' }, { name: 'Cluster 3D Nav', slug: 'uw-loci/qupath-extension-cluster-3d-navigator' }] });
 
 /* ================= 8 · Fibre and texture ================= */
 
@@ -549,7 +582,8 @@ twoCol('Two complementary tools',
     'Set the threshold by eye, with the mask shown before you commit',
     'Trace a few real fibres yourself, and it tunes its own parameters to match',
     'Fibres classified by orientation relative to a tumour boundary',
-  ]);
+  ],
+  { repos: [{ name: 'Fiber Analysis', slug: 'uw-loci/qupath-extension-fiber-analysis' }, { name: 'TME-Quant', slug: 'MichaelSNelson/qupath-extension-TME-Quant' }] });
 
 content('Please cite the methods', [
   'Both tools implement other people\u2019s methods \u2014 cite the methods, not just the tools',
@@ -568,7 +602,7 @@ content('Draw a box, the microscope acquires it', [
   'Target specific annotations on a slide you already scanned',
   'Live camera view, stage map, saved points, and a virtual joystick',
   'Brightfield, multi-channel fluorescence, and combined passes on a single-camera scope',
-]);
+], { repos: [{ name: 'QPSC', slug: 'uw-loci/qupath-extension-qpsc' }] });
 
 content('Why this changes the rest', [
   'The region you analysed is the region you acquire at high resolution',
