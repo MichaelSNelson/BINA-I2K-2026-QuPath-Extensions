@@ -99,6 +99,35 @@ function figurePair(title, labelA, imgA, labelB, imgB, caption) {
   return s;
 }
 
+// side-by-side figure: two panels of equal size, each labelled, plus a caption.
+// For zoomed comparisons, where left/right reads better than stacked.
+function figureDuo(title, labelA, imgA, labelB, imgB, caption) {
+  const s = pptx.addSlide();
+  s.background = bg;
+  s.addText(title, {
+    x: M, y: 0.42, w: W - 2 * M, h: 0.72,
+    fontFace: HEAD, fontSize: 30, bold: true, color: BLUE_DK, valign: 'middle',
+  });
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.2, w: 2.1, h: 0.055, fill: { color: BLUE } });
+  const pw = 5.6, gap = 0.45;
+  const ph = pw * imgA.h / imgA.w;
+  const x0 = (W - (2 * pw + gap)) / 2;
+  const top = 1.95;
+  [[labelA, imgA, x0], [labelB, imgB, x0 + pw + gap]].forEach(([lbl, img, x]) => {
+    s.addText(lbl, {
+      x, y: 1.44, w: pw, h: 0.44,
+      fontFace: BODY, fontSize: 17, bold: true, color: BLUE_DK, valign: 'middle',
+    });
+    s.addImage({ path: img.path, x, y: top, w: pw, h: ph });
+  });
+  s.addText(caption, {
+    x: M, y: top + ph + 0.12, w: W - 2 * M, h: 0.62,
+    fontFace: BODY, fontSize: 15, italic: true, color: MUT, valign: 'top',
+  });
+  pageNum(s);
+  return s;
+}
+
 // section divider: tinted panel, big number
 function section(num, title, sub) {
   const s = pptx.addSlide();
@@ -430,12 +459,21 @@ figurePair('Tiles to Pyramid: stitching two tiles',
   { path: 'images/stitch_ppm_stitched.jpg', w: 2766, h: 565 },
   'Pancreatic cancer, polarised light. The stage recorded this tile 5 px (0.9 µm) away from where it really was; registration measured that from the overlap and corrected it.');
 
-figurePair('Measure once, on the image with the clearest structure',
-  'The same two tiles, imaged for birefringence',
-  { path: 'images/stitch_biref_unstitched.jpg', w: 3000, h: 565 },
-  'Stitched with the positions measured once and reused unchanged',
-  { path: 'images/stitch_biref_stitched.jpg', w: 2766, h: 565 },
-  'Measure the positions on the image with the most distinct, best separated structure, which is not always the brightest or the busiest one. Every other image of the same tiles reuses that measurement, so they stay aligned with each other.');
+figureDuo('Measure on the clearest channel, reuse on the rest',
+  'Placed where the stage said it was',
+  { path: 'images/stitch_if_nominal.jpg', w: 1380, h: 1110 },
+  'Placed where the image content says it is',
+  { path: 'images/stitch_if_registered.jpg', w: 1380, h: 1110 },
+  'The same join through the same cells; only the tile positions differ. Positions were measured on DAPI, the channel with the most distinct, best separated structure, and reused unchanged for the other two channels \u2014 so every channel stays aligned with every other. Nuclei blue, actin green, mitochondria red; the correction here is 7 px, about 4.6 \u00b5m.');
+
+content('Tiles to Pyramid — how the mosaic is assembled', [
+  'Every overlapping pair is measured against the image content, then all tiles are placed at once by least squares',
+  { t: 'A spanning tree would keep 99 of the 180 neighbour edges on a 10×10 grid and throw away 81, so nothing is ever asked to close a loop' },
+  'Each tile is also pulled toward its recorded stage position, so a tile with no accepted edges stays exactly where the stage put it',
+  'The output is written chunk by chunk, and only the one to four tiles overlapping the current chunk are ever in memory',
+  'Measured: 144 tiles (125 MP) stitch in the same 227 MB as 64 tiles (56 MP)',
+], { kicker: 'Memory stops tracking the size of the mosaic, which is what lets thousands of tiles stitch on an ordinary machine.',
+     note: 'Measured with the extension\u2019s own benchmark: 1024 px 16-bit tiles, 10% overlap. The older load-everything path needed 2\u20134 GB and ran out of memory past about 1600 tiles.' });
 
 /* ================= 6 · Validation ================= */
 
