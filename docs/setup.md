@@ -46,7 +46,8 @@ Background on what a catalog is and why we use them:
 **Adding the catalog installs nothing**; it just shows you a list. Now install what you
 actually want, and **only** what you actually want:
 
-**Everything (small, fast, no extra downloads):**
+**These eleven are small and install in seconds**, with nothing extra to download. Pick the ones
+you want; the [extension index](extensions.md) says which track each belongs to:
 
 - QuIET — Image Export Toolkit
 - Wizard Wand
