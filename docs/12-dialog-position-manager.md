@@ -37,7 +37,7 @@ title: Dialog Position Manager
 - **Tracks all dialogs by default.** Works out of the box with any QuPath dialog, including
   ones from other extensions.
 - **Shared storage (0.4.0+).** Point several workstations at one JSON file on a network drive
-  and share dialog layouts across a core facility, so everyone sits down to the same arrangement.
+  and share dialog layouts across a core facility, so each workstation opens with the same arrangement.
 
 ## Why it exists
 

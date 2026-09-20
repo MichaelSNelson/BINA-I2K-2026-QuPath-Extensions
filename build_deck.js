@@ -367,30 +367,24 @@ content('What this hour covers', [
 
 /* ================= 3 · Simple wins ================= */
 
-content('Installing: add the LOCI catalog, then pick', [
-  'One URL. QuPath then handles installing, listing and updating for you',
-  'Extensions > Manage extensions > Manage extension catalogs > Add catalog',
-  'LOCI catalog  \u2014  github.com/uw-loci/qupath-catalog-mikenelson  (the only one you need today)',
-  'Adding a catalog installs NOTHING. It shows you a list \u2014 install only what you want',
-  'Restart QuPath afterwards. Nothing appears until you do',
-], { kicker: 'If you remember one slide from this section, make it this one.',
-     note: 'Two entries are large: QP-CAT pulls 1.5\u20132.5 GB on first use, the DL Pixel Classifier 2\u20134 GB. Not on conference wifi.' });
+content('If you are not set up yet', [
+  'Everything below is on the site, and you can do it during this hour if you need to',
+  'Add one catalog: Extensions > Manage extensions > Manage extension catalogs > Add catalog',
+  { t: 'github.com/uw-loci/qupath-catalog-mikenelson — adding it installs nothing, it shows you a list' },
+  'Pick what you want, then restart QuPath. Nothing appears until you restart',
+  'Two entries are large first-use downloads: QP-CAT 1.5–2.5 GB, DL Pixel Classifier 2–4 GB',
+], { kicker: 'I am not going to walk through setup — the site has it, and I am here in the second hour.',
+     note: 'Bring QuPath 0.7.0 or later. Four of the thirteen require it, and everything here is built and tested on it.' });
 
-content('Two things that catch everyone out', [
-  'Extensions live per QuPath version \u2014 installing 0.7 will not disturb the 0.6 you already use',
-  'Installing by hand instead? Take the jar with -all in the name; it bundles the dependencies',
-  { t: 'Without it you get a ClassNotFoundException the first time you use the tool. The catalog picks the right jar for you' },
-], { note: 'Bring QuPath 0.7.0 or later. Four of the thirteen require it, and the workshop is built and tested on it; the rest still declare 0.6.0 as their minimum.' });
-
-section('01', 'Dialog Manager, Wizard Wand, Polyline Wand', 'Small tools that pay for themselves on the first day');
+section('01', 'Dialog Manager, Wizard Wand, Polyline Wand', 'Quality-of-life fixes for things QuPath leaves to you');
 
 content('Three that install in seconds', [
   'Dialog Position Manager — remembers where your titled dialogs were and puts them back next session',
   { t: 'Recovers windows stranded on a monitor you have since unplugged; notices when display scaling has changed and falls back to a sane on-screen position' },
-  'Channel Names Viewer — a floating, colour-coded legend of the selected channels. “Which one is the green one?”, answered permanently',
+  'Channel Names Viewer — a floating, colour-coded legend of the selected channels, so you are not re-reading the brightness dialog to find out which is which',
   'Classify Object Subset — run a saved classifier on a chosen subset, with a live count before you commit',
   'Point several workstations at one shared file and a facility gets the same dialog layout everywhere',
-], { kicker: 'The least glamorous tools here, and the ones you notice every day.',
+], { kicker: 'The least glamorous tools here.',
      note: 'The last two grew out of Groovy scripts from Sara McArdle — the channel legend from one originally written by Pete Bankhead at the 2022 QuPath Hackathon. She demonstrated both on Monday.' });
 content('The two wands', [
   'Wizard Wand — like the built-in wand, with small holes filled and the boundary smoothed by default; hold still and the selection grows on its own',
@@ -478,7 +472,7 @@ figureDuo('Measure on the clearest channel, reuse on the rest',
   { path: 'images/stitch_if_nominal.jpg', w: 1380, h: 1110 },
   'Placed where the image content says it is',
   { path: 'images/stitch_if_registered.jpg', w: 1380, h: 1110 },
-  'The same join through the same cells; only the tile positions differ. Positions were measured on DAPI, the channel with the most distinct, best separated structure, and reused unchanged for the other two channels \u2014 so every channel stays aligned with every other. Nuclei blue, actin green, mitochondria red; the correction here is 7 px, about 4.6 \u00b5m.');
+  'The same join through the same cells; only the tile positions differ. Positions were measured on DAPI, the channel with the clearest, best separated structure in this sample, and reused unchanged for the other two channels \u2014 so every channel stays aligned with every other. Nuclei blue, actin green, mitochondria red; the correction here is 7 px, about 4.6 \u00b5m.');
 
 content('Tiles to Pyramid — how the mosaic is assembled', [
   'Every overlapping pair is measured against the image content, then all tiles are placed at once by least squares',
@@ -580,7 +574,7 @@ content('QPSC — QuPath Scope Control', [
 content('Why this changes the rest', [
   'The region you analysed is the region you acquire at high resolution',
   'Acquisition metadata arrives in the project, not in a folder that gets separated from the images',
-  'Stitching is a step in this pipeline — and it works perfectly well on its own, which is why it is in your hands-on hour',
+  'Stitching is a step in this pipeline, and it works on its own, which is why it is in your hands-on hour',
 ], { note: 'Once acquisition is driven from QuPath, "acquisition software" and "analysis software" stop being separate places your data lives.' });
 
 demo('Acquisition, live', '▶  SHOWN  ·  NOT YOURS TO RUN',

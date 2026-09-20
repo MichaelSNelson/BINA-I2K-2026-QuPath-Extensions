@@ -109,7 +109,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 Then run `Extensions > QP-CAT > Setup environment`. One click configures the full Python environment.
 
-> **Do this before the workshop.** It is a 1.5–2.5 GB download. Conference wifi will not enjoy thirty people doing it simultaneously.
+> **Do this before the workshop.** It is a 1.5–2.5 GB download, and conference wifi will be slow with several people fetching it at once.
 
 ---
 

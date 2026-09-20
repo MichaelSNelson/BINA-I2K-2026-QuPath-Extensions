@@ -17,7 +17,7 @@ An extension is one `.jar` file in a folder. You can add one three ways:
 - **Drag and drop** the `.jar` onto a running QuPath window, and accept the offer to copy it.
 - **By hand**, into the extensions folder shown at `Extensions > Installed extensions`.
 
-Three things catch everyone out:
+Three things worth knowing before you install:
 
 - **Restart QuPath afterwards.** Extensions are only loaded at startup, so a jar you just
   installed does nothing until you restart.
@@ -36,7 +36,7 @@ for jars again. One catalog covers every hands-on tool in this workshop, and add
 
 > ⚠️ **Do not install everything in the catalog.** Two entries download a Python environment on
 > first use: **QP-CAT, 1.5–2.5 GB**, and the **DL Pixel Classifier, 2–4 GB**. Installing those by
-> accident on conference wifi will ruin your morning.
+> accident on conference wifi will cost you a long wait.
 
 ## Where to go next
 
