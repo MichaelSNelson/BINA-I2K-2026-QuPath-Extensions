@@ -64,8 +64,9 @@ ground truth, and it compares those labels against the classifier's predictions.
 **Single image or whole project**
 
 - Project-wide analysis with a **per-image breakdown** showing each image's contribution.
-- **Statistical outlier detection** flags images whose accuracy diverges from the project,
-  usually a staining or scanning problem, not a classifier problem.
+- **Statistical outlier detection** flags images whose accuracy diverges from the project.
+  The usual causes are the ground-truth labelling, unusual tissue or staining, or the
+  classifier failing to generalise.
 - Automatic class discovery from both detections and ground-truth annotations, with warnings
   when the two sets disagree.
 
@@ -103,8 +104,8 @@ subset:
    these two things, for this visible reason", which is the sentence that actually gets a
    classifier fixed. It is also where you find out how often the *ground truth* was wrong.
 4. **`Analyze Project...`**, aggregated across images, with a per-image breakdown and
-   automatically flagged **outliers**. We open a flagged image and look for the cause; it is
-   usually a staining or scanning problem upstream, not a classifier problem.
+   automatically flagged **outliers**. We open a flagged image and look for the cause: the
+   ground-truth labelling, the tissue or staining, or the classifier's generalisation.
 5. **Probability metrics tab**: for an OpenCV ML classifier, the calibration curve. A model
    that is 95% confident and 70% correct is a different problem from one that is simply
    inaccurate, and it needs a different fix.

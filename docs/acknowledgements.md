@@ -55,7 +55,7 @@ mechanism is what makes a suite like this possible at all.
 
 ## Methods these tools build on
 
-Several extensions here are thin wrappers over other people's science. If you publish with them,
+Several extensions here implement other people's methods. If you publish with them,
 cite the method, not just the extension.
 
 | Tool | Builds on |

@@ -80,8 +80,9 @@ longer claims "3 clusters", and the per-area tables no longer carry a `Cluster -
 - **Independent areas.** Cells in physically separate pieces of tissue (different TMA cores,
   different sections, different images) must never share a spatial graph. A neighbour
   relationship across two cores is an artefact of how the slide was laid out, not biology.
-  QP-CAT now resolves areas by geometry and guarantees no graph edge joins two of them,
-  across every spatial statistic and cellular-neighbourhood run.
+  Configure them in the **Independent areas** section and QP-CAT resolves areas by geometry,
+  guaranteeing no graph edge joins two of them, across every spatial statistic and
+  cellular-neighbourhood run. Left unconfigured, the graph is global.
 - **Composition by area**: one row per independent area. The core-to-core comparison: how
   does cluster makeup vary across physically separate regions?
 - **Composition by class**: clusters grouped by annotation *class* (Tumor, Stroma, …), pooled

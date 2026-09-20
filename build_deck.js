@@ -491,7 +491,7 @@ demo('Confusion Matrix', '▶  DEMO ONLY',
     'Click the largest off-diagonal cell — those cells highlight on the slide',
     '"The classifier is 87% accurate" becomes "it confuses these two things, for this reason"',
     'Across a project: per-image breakdown, with divergent images flagged automatically',
-    'Flagged images usually mean a staining or scanning problem, not a classifier problem',
+    'A flagged image points at the ground truth, the staining, or the classifier\u2019s generalisation \u2014 the breakdown tells you which',
   ],
   'Originated by Kristin Gallick — concept and initial scripts; built out at LOCI.  ·  Demo only: the repository is currently private.');
 
@@ -541,7 +541,7 @@ content('QP-CAT — multiplexed cell analysis', [
   'Clustering, marker gating with suggested thresholds, spatial statistics, batch correction',
   'Label a small subset by hand and have the rest of the project labelled for you — no object classifier involved',
   'Brush a region of the embedding and those cells highlight on the slide',
-  'Separate tissue stays separate — no spatial graph edge ever crosses two TMA cores',
+  'Configure independent areas and no spatial graph edge crosses two TMA cores, so separate tissue stays separate',
 ], { kicker: 'The usual workflow loses the link back to the tissue. This keeps it.',
      note: 'Author’s own warning: many features are lightly tested. Treat results as a starting point.' });
 
@@ -597,12 +597,12 @@ content('A dense mat and a sparse clump', [
 ], { note: 'Demo only today: one needs a long environment build, the other a dedicated analysis server.' });
 
 content('Please cite the methods', [
-  'Both tools are thin wrappers over other people’s science',
+  'Both tools implement other people\u2019s methods \u2014 cite the methods, not just the tools',
   'CT-FIRE — Bredfeldt et al. 2014, Journal of Biomedical Optics 19(1):016007',
   'CurveAlign — LOCI, University of Wisconsin–Madison',
   'TACS — Provenzano et al. 2006, BMC Medicine 4:38; Conklin et al. 2011',
   'TWOMBLI — Wershof et al. 2021, Life Science Alliance 4(3)',
-]);
+], { note: 'Fiber Analysis re-implements TWOMBLI\u2019s cheap metrics natively rather than bundling its FIJI plugins, so its fractal dimension and lacunarity diverge from TWOMBLI\u2019s by roughly 20\u201340%. Do not compare them with published TWOMBLI numbers.' });
 
 /* ================= 9 · Microscope control ================= */
 

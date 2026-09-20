@@ -138,7 +138,12 @@ TME-Quant.
 
 ## Please cite the methods
 
-Both tools are thin wrappers over other people's science. If you publish with either:
+Both tools implement other people's methods. Cite the methods, not just the tools:
+
+> **Fiber Analysis re-implements TWOMBLI's cheap metrics natively** (scikit-image + numpy)
+> rather than bundling TWOMBLI's FIJI plugins, which are GPL. Its **fractal dimension and
+> lacunarity diverge from TWOMBLI's by roughly 20–40%**, because the two skeletonise
+> different upstreams. Do not compare these numbers with published TWOMBLI values.
 
 - **CT-FIRE / FIRE**: Bredfeldt J S, Liu Y, Pehlke C A, Conklin M W, Szulczewski J M, Inman D R,
   Keely P J, Nowak R D, Mackie T R, Eliceiri K W (2014). *Computational segmentation of collagen
