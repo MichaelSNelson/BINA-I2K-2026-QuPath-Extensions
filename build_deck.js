@@ -380,7 +380,7 @@ content('Two things that catch everyone out', [
   'Extensions live per QuPath version \u2014 installing 0.7 will not disturb the 0.6 you already use',
   'Installing by hand instead? Take the jar with -all in the name; it bundles the dependencies',
   { t: 'Without it you get a ClassNotFoundException the first time you use the tool. The catalog picks the right jar for you' },
-], { note: 'Workshop requirement: QuPath 0.7.0 or later. Nothing here runs on 0.6.' });
+], { note: 'Bring QuPath 0.7.0 or later. Four of the thirteen require it, and the workshop is built and tested on it; the rest still declare 0.6.0 as their minimum.' });
 
 section('01', 'Dialog Manager, Wizard Wand, Polyline Wand', 'Small tools that pay for themselves on the first day');
 

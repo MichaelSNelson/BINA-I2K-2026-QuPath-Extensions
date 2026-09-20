@@ -40,9 +40,10 @@ suite of open-source QuPath extensions developed at
 
 ## Setup: do this before you travel
 
-**1. Install QuPath 0.7.0 or later** from [qupath.github.io](https://qupath.github.io/). Nothing
-here runs on 0.6. QuPath 0.7 keeps its own extensions folder, so an existing 0.6 setup is
-untouched.
+**1. Install QuPath 0.7.0 or later** from [qupath.github.io](https://qupath.github.io/). Four of
+the thirteen require 0.7, and everything here is built and tested on it; the rest still declare
+0.6.0 as their minimum, so on 0.6 you would get a partial set. QuPath 0.7 keeps its own
+extensions folder, so an existing 0.6 setup is untouched.
 
 **2. Add one catalog.** Go to `Extensions > Manage extensions > Manage extension catalogs >
 Add catalog`, then paste:

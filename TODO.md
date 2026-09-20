@@ -68,13 +68,37 @@ the maintainer section of the [README](README.md).
       five agree within ~2 px, so every choice stitches; what differs is confidence. Merging
       *broadened* the peak, because each channel's background and noise is added to the others.
       Crisp, well-separated nuclei are close to ideal for correlation
-- [ ] **Auto-pick chooses the wrong channel on that set.** The extension's texture score (robust
-      spread / median, centre crop) gives FITC 0.407, TRITC 0.293, DAPI 0.121, so "Auto (most
-      texture)" picks the channel that scored *last* on peak decisiveness. DAPI scores lowest
-      precisely because its background is uniform, which is what makes it register well.
-      Candidate improvement to `TileRegistrationEngine.chooseReference`: rank candidates by peak
-      decisiveness on one sampled seam rather than by texture. Caveat before acting: 4 seams,
-      one prepared cell slide, all channels with healthy signal. Confirm on tissue first
+- [x] ~~Auto-pick chooses the wrong channel on that set.~~ **Done, and this entry was stale.**
+      The proposed fix has landed: `TileRegistrationEngine.chooseReference` now ranks candidates
+      by seam decisiveness, not texture, and the javadoc at `TileRegistrationEngine.java:747-757`
+      records the reasoning and the measurement ("the texture score ranked DAPI last; seam
+      decisiveness ranked it first, and it was the channel the other two agreed with").
+      Left here as a warning: this entry survived long enough that a later review quoted it back
+      as evidence of a live defect. Close stale entries.
+
+### Tiles to Pyramid memory, measured 2026-09-19
+
+Ran the repo's own `StitchBenchmarkTest` across grid sizes so the deck's memory claim has a
+source (`./gradlew test --tests "*StitchBenchmarkTest*" -PstitchBench -PstitchBenchGrid=N
+-PstitchBenchReps=1`, JDK 21, 1024 px 16-bit tiles, 10% overlap, peak **live** heap):
+
+| Tiles | Mosaic | OME-TIFF | OME-Zarr |
+|---|---|---|---|
+| 4 (2x2) | 3.8 MP | 31.3 MB | 14.7 MB |
+| 9 (3x3) | 8.2 MP | 68.6 MB | 16.1 MB |
+| 16 (4x4) | 14.4 MP | 128.3 MB | 29.1 MB |
+| 36 (6x6) | 31.7 MP | 171.9 MB | 132.6 MB |
+| 64 (8x8) | 55.9 MP | 227.5 MB | 121.9 MB |
+| 144 (12x12) | 124.7 MP | 227.1 MB | 106.5 MB |
+
+Memory **plateaus** rather than tracking the mosaic: 144 tiles costs the same as 64 despite
+2.2x the pixels. That is the claim on the slide. It does **not** support the extension
+README's "Memory use stays around 40 MB no matter how many tiles there are"
+(`qupath-extension-tiles-to-pyramid/README.md:12`) -- that line needs correcting in its own
+repo. Confound ruled out: the harness GCs before sampling and `SyntheticGridFixture.Grid`
+holds only positions, no pixels. A 256-tile run died inside the fixture's own texture
+generation, so the plateau is unverified past 144.
+
 - [ ] Convert the fluorescence tiles to Micro-Manager layout (per-position folders with
       `metadata.txt`, or MMStack plus sidecars) if the real MM acquisition does not pan out, so
       the MicroManager strategy has something to read. The current `IFStitching` folder holds the
