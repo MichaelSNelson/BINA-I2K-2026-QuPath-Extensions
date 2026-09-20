@@ -94,6 +94,8 @@ and troubleshooting: [setup guide](docs/setup.md).
 | Tiles for the stitching exercise | Being prepared |
 | Presentation slides | %%DRIVE_SLIDES_URL%% |
 
+# Introducing: The Extensions
+
 ## Shown, not practised
 
 These three appear in the first hour, but attendees do not run them. Each has a hard barrier to
