@@ -128,6 +128,51 @@ function figureDuo(title, labelA, imgA, labelB, imgB, caption) {
   return s;
 }
 
+// Tile-assembly build, designed for PowerPoint Morph.
+// Each tile keeps the same objectName across slides, so Morph slides it into place.
+// scale: the 2x2 grid is 2048 px tiles with 1843 px between origins (10.01% overlap).
+function tileStep(title, shown, exploded, caption, shade) {
+  const s = pptx.addSlide();
+  s.background = bg;
+  s.addText(title, {
+    x: M, y: 0.42, w: W - 2 * M, h: 0.72,
+    fontFace: HEAD, fontSize: 30, bold: true, color: BLUE_DK, valign: 'middle',
+  });
+  s.addShape(pptx.ShapeType.rect, { x: M, y: 1.2, w: 2.1, h: 0.055, fill: { color: BLUE } });
+
+  const TILE = 2.25;                     // tile edge on the slide, inches
+  const step = exploded ? TILE + 0.30 : TILE * 1843 / 2048;
+  const span = step + TILE;
+  const x0 = (W - span) / 2, y0 = 1.62;
+  const grid = [[0, 0, 0], [1, 1, 0], [2, 1, 1], [3, 0, 1]];   // name, col, row
+
+  if (shade && !exploded) {
+    // the strip the neighbouring tiles share
+    s.addShape(pptx.ShapeType.rect, {
+      x: x0 + step, y: y0, w: TILE - step, h: span,
+      fill: { color: BLUE, transparency: 62 },
+    });
+    s.addShape(pptx.ShapeType.rect, {
+      x: x0, y: y0 + step, w: span, h: TILE - step,
+      fill: { color: BLUE, transparency: 62 },
+    });
+  }
+  grid.forEach(([n, c, r]) => {
+    if (n >= shown) return;
+    s.addImage({
+      path: 'images/tile_' + n + '.jpg',
+      x: x0 + c * step, y: y0 + r * step, w: TILE, h: TILE,
+      objectName: 'tile' + n,
+    });
+  });
+  s.addText(caption, {
+    x: M, y: H - 1.02, w: W - 2 * M, h: 0.62,
+    fontFace: BODY, fontSize: 15, italic: true, color: MUT, valign: 'top',
+  });
+  pageNum(s);
+  return s;
+}
+
 // section divider: tinted panel, big number
 function section(num, title, sub) {
   const s = pptx.addSlide();
@@ -408,6 +453,18 @@ content('Class Distribution', [
   'Charts update while you annotate, so the feedback arrives while you can still act',
   'Classes badly over- or under-represented are flagged',
 ], { note: 'Annotation count, annotation area, and implied training detections are three different numbers. For an object classifier it is the third that drives training. Flagged at twice, or half, the median class share.' });
+
+tileStep('Four captures, one field of view', 4, true,
+  'Each tile is a separate exposure. The stage moved between them, and every neighbouring pair was told to share about 10% of its width so there is common tissue to match on.', false);
+
+tileStep('Where the stage said they were', 1, false,
+  'The first tile lands at the position the stage reported.', false);
+
+tileStep('Where the stage said they were', 2, false,
+  'The second overlaps the first. That shared strip is the only evidence available for whether the stage was right.', false);
+
+tileStep('Where the stage said they were', 4, false,
+  'All four, placed on the recorded coordinates alone. Every neighbouring pair now shares a strip.', true);
 
 figurePair('Tiles to Pyramid: stitching two tiles',
   'As acquired: neighbouring tiles share a strip of the same tissue (shaded)',
