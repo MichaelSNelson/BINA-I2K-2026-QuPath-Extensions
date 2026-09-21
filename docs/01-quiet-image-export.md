@@ -94,13 +94,21 @@ Both menu items stay greyed out until a project with at least one image is open.
 1. Open the project. Confirm at least one annotation exists.
 2. `Extensions > QuIET > Image Export...`
 3. **Step 1:** choose **Rendered Image**.
-4. **Step 2:** turn on a **scale bar**. Set the downsample so the exported image is roughly
-   2000 px on its long edge. Read the QUAREP panel on the right and note what it says is
-   missing from your project's metadata.
-5. **Step 3:** select one image, choose an output folder, read the Publication Advice, export.
+4. **Step 2:** set **Render Mode** — **Object Overlay** draws your annotations onto the
+   figure, **None (no overlay source)** gives a clean image. Turn on a **scale bar**.
+   **Downsample** only matters if the image is much larger than you want the figure to be:
+   CMU-1 is tens of thousands of pixels wide, so bring it down to roughly 2000 px on its long
+   edge. The synthetic images are already 2048 × 2048, so leave the downsample at **1**.
+   Read the QUAREP panel on the right and note what it says is missing from your project's
+   metadata.
+5. **Step 3:** **every image in the project starts ticked.** Click **Deselect All** and tick
+   exactly one — Part B needs a second image that has *not* been exported yet. Choose an
+   output folder, read the Publication Advice, and export.
 6. Open the result. Check that the scale bar is legible at the size you would print it.
 
 ### Part B: the reproducibility half
+
+*This is why Part A asked you to export only one image.*
 
 7. Find the Groovy script QuIET wrote alongside your export.
 8. Open QuPath's script editor (`Automate > Script editor`), paste it in, and run it against
