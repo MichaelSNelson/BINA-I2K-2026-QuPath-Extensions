@@ -31,6 +31,9 @@ a.chip:hover b{color:var(--cy)}
 section{padding:2.6rem 0}
 h2{font-size:1.25rem; color:var(--cy); margin:0 0 .35rem; letter-spacing:.01em}
 h2.umbrella{font-size:2rem; color:var(--ink); margin:2.6rem 0 -.6rem; letter-spacing:-.01em}
+.umbrella-group{border-left:3px solid var(--hair); padding-left:1.15rem; margin:1.4rem 0 2.6rem}
+.umbrella-group>section:first-child{margin-top:.8rem}
+@media (max-width:640px){.umbrella-group{border-left:0; padding-left:0}}
 .note{color:var(--mut); font-size:.93rem; margin:0 0 1.3rem; max-width:46rem}
 .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(16.5rem,1fr)); gap:1rem}
 .card{display:block; background:var(--panel); border:1px solid var(--hair); border-radius:16px;
@@ -160,6 +163,7 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
 </section>
 
 <h2 class="umbrella">Introducing: The Extensions</h2>
+<div class="umbrella-group">
 
 <section>
   <h2>Acquisition &amp; data wrangling</h2>
@@ -238,6 +242,7 @@ footer{border-top:1px solid var(--hair); margin-top:2rem; padding:1.6rem 0 4rem;
     </a>
   </div>
 </section>
+</div>
 
 <section>
   <h2>Slides</h2>
