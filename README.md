@@ -88,7 +88,7 @@ and troubleshooting: [setup guide](docs/setup.md).
 | **[Acknowledgements](docs/acknowledgements.md)** | Data providers, the QuPath team, and the methods these tools build on |
 | **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough and a video for every tool, plus the vote for what we demo live |
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide, for picking just the ones you want |
-| **[Schedule](docs/schedule.md)** | Running order for the first hour, plus suggested tracks for the second hour |
+| **[Schedule](docs/schedule.md)** | Time, room, and what the two hours are |
 
 ## Still to come
 

@@ -200,4 +200,4 @@ not in the list above:
 - **Fiber Analysis / TME-Quant** need a long environment build, or a Windows-only server plus a
   pipeline that cannot be redistributed.
 
-See the [schedule](schedule.md) for where they appear.
+They are shown in the first hour rather than practised in the second.

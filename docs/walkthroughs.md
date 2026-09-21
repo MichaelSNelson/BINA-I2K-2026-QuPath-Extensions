@@ -70,8 +70,8 @@ Each of these you can install and run yourself; see the [extension index](extens
 | Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md) | %%VIDEO_TILES_TO_PYRAMID%% | 12 min |
 
 Total if you did every one: roughly **2 hours 30 minutes**, which is why the second hour is a
-menu rather than a queue. The [schedule](schedule.md) groups them into four tracks, of
-about fifty minutes each.
+menu rather than a queue. The [extension index](extensions.md) groups them into four tracks,
+of about fifty minutes each.
 
 ## Presented tools
 

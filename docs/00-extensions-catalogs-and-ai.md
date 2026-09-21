@@ -43,6 +43,6 @@ for jars again. One catalog covers every hands-on tool in this workshop, and add
 
 - **[Setup guide](setup.md)**: do this before the workshop.
 - **[Extension index](extensions.md)**: every tool, with its guide and video.
-- **[Schedule](schedule.md)**: what happens when.
+- **[Schedule](schedule.md)**: time, room, and what the two hours are.
 - [How this suite was built](how-this-was-built.md), including where AI-assisted development
   helped and where it did not. Background to the talk; not needed to use the tools.
