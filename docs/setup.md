@@ -74,12 +74,17 @@ until you do.
 
 ## 4. OCR language data (only for the OCR track)
 
-`Extensions > OCR for Labels > OCR Settings...` → **Required Downloads**:
+You do not need to install Tesseract — the engine ships with the extension. It only needs two
+language-data files.
 
-- **eng.traineddata** (~4 MB), required
-- **osd.traineddata** (~10 MB), recommended, handles rotated labels
+`Extensions > OCR for Labels > OCR Settings...` → **Required Downloads** fetches them for you,
+or take them directly:
 
-Set **Tessdata Path** to the folder containing them, click OK. Barcode scanning needs no setup.
+- [**eng.traineddata**](https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata) (4 MB) — required
+- [**osd.traineddata**](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata) (11 MB) — recommended, handles rotated labels
+
+Put both in one folder, set **Tessdata Path** to it, click OK. Barcode scanning needs no setup.
+More detail, including other languages, in the [OCR guide](08-ocr4labels.md#setup-do-this-before-the-workshop).
 
 ## 5. Download the workshop data
 
