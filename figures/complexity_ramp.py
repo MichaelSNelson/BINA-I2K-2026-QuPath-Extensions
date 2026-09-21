@@ -2,10 +2,17 @@
 """
 Simple-to-complex ramp of the sixteen extensions, for the "what this hour covers" slide.
 
-The axis is COMPLEXITY AS THE USER MEETS IT: how much you must set up, learn, or
-prepare before the tool does anything useful -- not how complicated the code is.
-Dialog Manager is small and sits at the far left because you never think about it.
-QPSC sits at the far right because it needs a microscope.
+ORDERING AXIS: how much has to already be true before the tool is any use to you.
+Not UI surface area, and not code complexity. Dialog Manager needs nothing but
+QuPath; QPSC needs a microscope, a server and a config. Classify Subset has one
+small dialog but is useless until you have trained and saved a classifier, so it
+sits well to the right of tools with far busier windows.
+
+There are deliberately NO tier captions. A single short phrase per column kept
+claiming a taxonomy that does not survive contact with the list -- the tools vary
+on setup cost, prerequisites, interaction and interpretation independently, and a
+column caption flattens those into one wrong sentence. The gradient carries the
+ordering; the speaker carries the nuance.
 
 Edit TIERS and re-run; everything else sizes itself.
 
@@ -22,18 +29,26 @@ RAMP = ["#E4EEFA", "#A8C8EA", "#5E97D4", "#2C63A8", "#17406F"]   # one per tier
 
 # (caption under the ribbon, [short names])  -- left to right, simple to complex
 TIERS = [
-    ("Open it,\nit works",         ["Dialog Manager", "Channel Names", "Class Distribution"]),
-    ("A tool you\npick up",        ["Wizard Wand", "Polyline Wand", "Classify Subset"]),
-    ("A workflow\nwith settings",  ["QuIET", "OCR for Labels", "Metadata Browser", "Tiles to Pyramid"]),
-    ("Needs data you\nprepare",    ["Confusion Matrix", "Cluster 3D Nav", "Fiber Analysis", "TME-Quant"]),
-    ("A system to\nset up",        ["DL Classifier", "QP-CAT", "QPSC"]),
+    # nothing but QuPath running
+    ["Dialog Manager", "Channel Names"],
+    # an image or a project open
+    ["Wizard Wand", "Polyline Wand", "Metadata Browser", "QuIET"],
+    # objects, annotations or tiles you have already made
+    ["Class Distribution", "OCR for Labels", "Tiles to Pyramid"],
+    # a trained model, ground truth, or an embedding
+    ["Classify Subset", "Confusion Matrix", "Cluster 3D Nav"],
+    # an environment, a server, or hardware
+    ["DL Classifier", "QP-CAT", "Fiber Analysis", "TME-Quant", "QPSC"],
 ]
 
-W, H, DPI = 12.4, 3.9, 300
+W, H, DPI = 12.4, 4.0, 300
 L, R = 0.020, 0.980                 # horizontal margins, axis units
-RIB_Y, RIB_H = 0.150, 0.062         # gradient ribbon
-CHIP_BOT, CHIP_H, CHIP_GAP = 0.320, 0.125, 0.032
+RIB_Y, RIB_H = 0.055, 0.070         # gradient ribbon
+CHIP_BOT, CHIP_H, CHIP_GAP = 0.200, 0.122, 0.028
 FS_CHIP, FS_TIER, FS_END = 12, 11.5, 11.5
+
+_top = CHIP_BOT + max(len(v) for v in TIERS) * (CHIP_H + CHIP_GAP)
+assert _top <= 0.98, f"tallest column reaches {_top:.3f}; raise H or shrink CHIP_H"
 
 fig = plt.figure(figsize=(W, H), dpi=DPI)
 ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis("off")
@@ -54,13 +69,11 @@ ax.text(R, RIB_Y + RIB_H + 0.030, "complex", ha="right", va="bottom",
 n = len(TIERS)
 col = (R - L) / n
 chip_w = col - 0.018
-for i, (caption, names) in enumerate(TIERS):
+for i, names in enumerate(TIERS):
     cx = L + col * (i + 0.5)
     face = RAMP[i]
     lum = sum(c * k for c, k in zip(matplotlib.colors.to_rgb(face), (0.2126, 0.7152, 0.0722)))
     txt = "#FFFFFF" if lum < 0.5 else BLUE_DK
-    ax.text(cx, RIB_Y - 0.045, caption, ha="center", va="top",
-            fontsize=FS_TIER, color=MUT, linespacing=1.4)
     for j, name in enumerate(names):
         y = CHIP_BOT + j * (CHIP_H + CHIP_GAP)
         ax.add_patch(FancyBboxPatch(
@@ -73,4 +86,4 @@ for i, (caption, names) in enumerate(TIERS):
 import os
 out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "images", "complexity_ramp.png")
 fig.savefig(os.path.normpath(out), dpi=DPI, transparent=True)
-print("wrote", os.path.normpath(out), "| chips:", sum(len(v) for _, v in TIERS))
+print("wrote", os.path.normpath(out), "| chips:", sum(len(v) for v in TIERS))
