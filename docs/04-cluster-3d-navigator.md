@@ -61,9 +61,12 @@ satisfy both.
 > you are on Windows and clicking a point selects the *wrong* cell, that is a bug worth
 > reporting, please do.
 
-## Install
+<details>
+<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
+
+</details>
 
 ---
 

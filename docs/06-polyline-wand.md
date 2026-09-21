@@ -101,9 +101,12 @@ Reset Polyline Wand preferences
 Preferences live under **Polyline Wand** in QuPath's Preferences pane, with per-engine
 sub-categories.
 
-## Install
+<details>
+<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
+
+</details>
 
 ---
 

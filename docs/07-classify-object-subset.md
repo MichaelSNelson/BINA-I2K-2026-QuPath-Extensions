@@ -68,9 +68,12 @@ objects *before* you overwrite them.
 **Every Apply is recorded as a workflow step**, so the same subset operation can be re-run
 across a whole project as a script: the GUI is exploratory, the script is reproducible.
 
-## Install
+<details>
+<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
+
+</details>
 
 ---
 

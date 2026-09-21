@@ -59,9 +59,12 @@ classifier learns from pixels and detections, not from your sense of effort.
 For PIs and supervisors, the **All images** grid is a fast read on whether a trainee's project
 is annotated consistently across slides.
 
-## Install
+<details>
+<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
+
+</details>
 
 ---
 

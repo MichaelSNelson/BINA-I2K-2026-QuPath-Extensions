@@ -62,9 +62,12 @@ centered on your primary monitor.
 
 **Start completely fresh:** clear all saved positions from the management UI.
 
-## Install
+<details>
+<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
+
+</details>
 
 ---
 

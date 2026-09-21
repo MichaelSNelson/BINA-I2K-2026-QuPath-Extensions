@@ -72,11 +72,14 @@ Barcode scanning works immediately with no setup.
 > unless you have measured it helping on your own labels. See
 > [what to notice](#what-to-notice) below for what it was doing.
 
-## Install
+<details>
+<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
 It is also listed in the QPSC microscope catalog, but it needs no microscope, so the main catalog is all you need. It does need its language data: see [setup](#setup-do-this-before-the-workshop) below.
+
+</details>
 
 ---
 
