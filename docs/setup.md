@@ -84,7 +84,7 @@ or take them directly:
 - [**osd.traineddata**](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata) (11 MB) — handles rotated labels
 
 Put both in one folder, set **Tessdata Path** to it, click OK. Barcode scanning needs no setup.
-More detail, including other languages, in the [OCR guide](08-ocr4labels.md#setup-do-this-before-the-workshop).
+More detail, including other languages, in the [OCR guide](08-ocr4labels.md#language-data).
 
 ## 5. Download the workshop data
 

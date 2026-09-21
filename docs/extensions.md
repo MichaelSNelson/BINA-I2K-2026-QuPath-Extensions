@@ -48,7 +48,7 @@ QP-CAT fetches a 1.5–2.5 GB Python environment; the DL Pixel Classifier fetche
 | **DL Pixel Classifier** | Deep-learning pixel classification from sparse annotations | **large download**| [Guide](02-dl-pixel-classifier.md) · [repo](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier) |
 | **D · Data wrangling at scale** | | | |
 | **Dialog Position Manager** | Remembers dialog positions; rescues windows lost with a disconnected monitor | | [Guide](12-dialog-position-manager.md) · [repo](https://github.com/uw-loci/qupath-extension-dialog-manager) |
-| **OCR for Labels** | Slide-label OCR and barcode scanning into project metadata | [extra setup](08-ocr4labels.md#setup-do-this-before-the-workshop)| [Guide](08-ocr4labels.md) · [repo](https://github.com/uw-loci/qupath-extension-ocr4labels) |
+| **OCR for Labels** | Slide-label OCR and barcode scanning into project metadata | [extra setup](08-ocr4labels.md#language-data)| [Guide](08-ocr4labels.md) · [repo](https://github.com/uw-loci/qupath-extension-ocr4labels) |
 | **Project Metadata Browser** | Whole-project metadata table with buffered editing and full undo | | [Guide](09-project-metadata-browser.md) · [repo](https://github.com/uw-loci/qupath-extension-project-metadata-browser) |
 | **Tiles to Pyramid** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | | [Guide](13-tiles-to-pyramid.md) · [repo](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
 
@@ -64,7 +64,7 @@ trigger that download **at home**:
 Everything else in the table installs in seconds.
 
 **OCR for Labels** also needs a small extra step: two Tesseract language files, about 14 MB,
-downloaded from inside the extension. See [its guide](08-ocr4labels.md#setup-do-this-before-the-workshop).
+downloaded from inside the extension. See [its guide](08-ocr4labels.md#language-data).
 
 ---
 

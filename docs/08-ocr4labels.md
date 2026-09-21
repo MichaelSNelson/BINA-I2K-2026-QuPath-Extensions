@@ -54,7 +54,20 @@ Once the metadata is in the project, the
 [Project Metadata Browser](09-project-metadata-browser.md) is how you review, correct, and
 export it in bulk.
 
-## Setup: do this before the workshop
+<details>
+<summary><b>Step 1: install the extension</b> — from the LOCI catalog, then restart QuPath</summary>
+
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
+
+It is also listed in the QPSC microscope catalog, but it needs no microscope, so the main catalog is all you need. It does need its language data: see [setup](#language-data) below.
+
+</details>
+
+## Step 2: the language data — do this before the workshop
+{: #language-data}
+
+*(This is separate from installing the extension above. The extension is a jar; the
+language data are two files it reads at runtime, and it will not do OCR without them.)*
 
 **You do not need to install Tesseract.** The OCR engine ships inside the extension. The only
 thing missing is the *language data*, and you want both files:
@@ -84,15 +97,6 @@ Barcode scanning works immediately with no setup — that reader is built in.
 > unless you have measured it helping on your own labels. See
 > [what to notice](#what-to-notice) below for what it was doing.
 
-<details>
-<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
-
-Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
-
-It is also listed in the QPSC microscope catalog, but it needs no microscope, so the main catalog is all you need. It does need its language data: see [setup](#setup-do-this-before-the-workshop) below.
-
-</details>
-
 ---
 
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
@@ -109,7 +113,10 @@ embedded slide label. **Over 500 MB, so download it before you travel.**
 > slide. That is the whole point of the tool: the information is already in the file you were
 > given.
 
-One of these labels is worth finding first. It reads:
+**Start with this one:** `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`. Its label
+carries printed text, a date **and** a 2D barcode, so it exercises OCR, barcode scanning and a
+mixed template in a single image. It is also the label behind the `@` investigation in
+[what to notice](#what-to-notice) below. The printed text reads roughly:
 
 ```
 histology@lji.org
@@ -118,9 +125,26 @@ histology@lji.org
 H&E
 ```
 
-That is printed text, a date **and** a 2D barcode, on one label. It exercises OCR, barcode scanning and
-a mixed template in a single image. It is also the label behind the `@` investigation in
-[what to notice](#what-to-notice) below.
+The other five, if you want more to try:
+
+| File | Size |
+|---|---|
+| `histology@lji_org_610 TOMO___MT3B_20201119-mipcomp.czi` | 11 MB |
+| `8443_51000000_02_IF_2022-11-18-mip.czi` | 138 MB |
+| `8443_51000000_12_IF_2022-11-18-mipcomp.czi` | 91 MB |
+| `8443_51000000_12_IF_2022-11-18-mipcompczi.czi` | 113 MB |
+| `2014_04_08__12_24__0065.czi` | 168 MB |
+
+### Step 0: make a project
+
+The extension works on a QuPath **project**, not on a loose file — its dialog lists project
+images down the left side, and batch mode runs over the project. So before anything else:
+
+1. Unzip the download somewhere you can find it.
+2. In QuPath, `File > Project > Create project...` and choose an **empty folder** for it.
+3. Drag the `.czi` files onto the QuPath window, or use **Add images**, and confirm.
+4. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` in the project list to
+   open it.
 
 ### Part A: one slide
 
