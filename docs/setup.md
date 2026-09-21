@@ -147,6 +147,13 @@ Open QuPath and confirm:
 
   <img src="../images/wand-toolbar.png" alt="QuPath's wand and the two added wand buttons in the toolbar; the order of the two added buttons depends on install order" height="24">
 
+
+| | Which button | How to tell it apart |
+|---|---|---|
+| <img src="../images/icon-wand-builtin.png" alt="" height="22"> | QuPath's own wand | Outline only, no fill |
+| <img src="../images/icon-wizard-wand.png" alt="" height="22"> | **Wizard Wand** (Shift+W) | Solid wand, sparkles, no arrow |
+| <img src="../images/icon-polyline-wand.png" alt="" height="22"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small grey arrow in the corner |
+
   **QuPath's own wand** is the leftmost and was already there. The two new ones sit to its
   right: **Wizard Wand** (**Shift+W**) and **Polyline Wand** (**Shift+P**). Their order
   depends on which you installed first, so go by the icon, not the position. If both
