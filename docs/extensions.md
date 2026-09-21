@@ -31,26 +31,40 @@ QP-CAT fetches a 1.5–2.5 GB Python environment; the DL Pixel Classifier fetche
 
 ## Hands-on extensions
 
+### Track A · Annotation and classification
+
 | Extension | What it is for | Notes | Guide |
 |---|---|---|---|
-| **A · Annotation and classification** | | | |
 | **Class Distribution** | Live charts of annotation balance and implied training balance | | [Guide](10-class-distribution.md) · [repo](https://github.com/uw-loci/qupath-extension-class-distribution) |
 | **Classify Object Subset** | Run a saved classifier on a chosen subset, with a live count first · *needs 0.2.0; earlier jars carry the old name* · *shown in Sara McArdle’s session* | | [Guide](07-classify-object-subset.md) · [repo](https://github.com/uw-loci/qupath-extension-classify-object-subset) |
 | **Polyline Wand & Brush** | Brush editing for lines and polylines, not just areas | | [Guide](06-polyline-wand.md) · [repo](https://github.com/uw-loci/qupath-extension-polyline-wand) |
 | **QuIET — Image Export Toolkit** | Publication figures, masks, ML tile pairs and montages in batch, with QUAREP-LiMi guidance | also in Track C | [Guide](01-quiet-image-export.md) · [repo](https://github.com/uw-loci/qupath-extension-image-export-toolkit) |
 | **Wizard Wand** | A faster, more forgiving wand, with settings auto-tuned from your own example | | [Guide](05-wizard-wand.md) · [repo](https://github.com/uw-loci/qupath-extension-wizard-wand) |
-| **B · Multiplexed imaging** | | | |
+
+### Track B · Multiplexed imaging
+
+| Extension | What it is for | Notes | Guide |
+|---|---|---|---|
 | **Channel Names Viewer** | Always-visible, color-coded legend of selected fluorescence channels · *shown in Sara McArdle’s session* | | [Guide](11-channel-names-viewer.md) · [repo](https://github.com/uw-loci/qupath-extension-channel-names-viewer) |
 | **Cluster 3D Navigator** | Rotatable 3D point cloud of clustered cells; click a point, land on the cell | | [Guide](04-cluster-3d-navigator.md) · [repo](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator) |
 | **QP-CAT — Cell Analysis Tools** | Clustering, phenotyping and spatial statistics for multiplexed data | **large download**| [Guide](03-qp-cat-cell-analysis-tools.md) · [repo](https://github.com/uw-loci/qupath-extension-cell-analysis-tools) |
-| **C · Publication and deep learning** | | | |
+
+### Track C · Publication and deep learning
+
+| Extension | What it is for | Notes | Guide |
+|---|---|---|---|
 | **QuIET — Image Export Toolkit** | Publication figures, masks, ML tile pairs and montages in batch, with QUAREP-LiMi guidance | also in Track A | [Guide](01-quiet-image-export.md) · [repo](https://github.com/uw-loci/qupath-extension-image-export-toolkit) |
 | **DL Pixel Classifier** | Deep-learning pixel classification from sparse annotations | **large download**| [Guide](02-dl-pixel-classifier.md) · [repo](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier) |
-| **D · Data wrangling at scale** | | | |
+
+### Track D · Data wrangling at scale
+
+| Extension | What it is for | Notes | Guide |
+|---|---|---|---|
 | **Dialog Position Manager** | Remembers dialog positions; rescues windows lost with a disconnected monitor | | [Guide](12-dialog-position-manager.md) · [repo](https://github.com/uw-loci/qupath-extension-dialog-manager) |
 | **OCR for Labels** | Slide-label OCR and barcode scanning into project metadata | [extra setup](08-ocr4labels.md#language-data)| [Guide](08-ocr4labels.md) · [repo](https://github.com/uw-loci/qupath-extension-ocr4labels) |
 | **Project Metadata Browser** | Whole-project metadata table with buffered editing and full undo | | [Guide](09-project-metadata-browser.md) · [repo](https://github.com/uw-loci/qupath-extension-project-metadata-browser) |
 | **Tiles to Pyramid** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | | [Guide](13-tiles-to-pyramid.md) · [repo](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
+
 
 ### The two that need a large download
 
