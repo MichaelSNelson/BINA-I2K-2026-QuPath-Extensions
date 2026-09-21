@@ -76,7 +76,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 ## Try it yourself (~10 min)
 
-**Data:** `DATA-02_multiplex_IF`, the LuCa-7color image in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), which already has cells detected and several saved object classifiers, including `LUCA composite` and `LUCA without PDL1`. Those two are the stacking scenario below, ready made.
+**Data:** `DATA-02_multiplex_IF`, the LuCa-7color image in the **`Scripting Demo.zip`** ([Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), four zips — this is the one that is a QuPath project), which already has cells detected and several saved object classifiers, including `LUCA composite` and `LUCA without PDL1`. Those two are the stacking scenario below, ready made.
 
 1. `Extensions > Classify Object Subset`.
 2. Choose a saved classifier. Set **Object source** to *Custom filter*.

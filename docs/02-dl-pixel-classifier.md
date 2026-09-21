@@ -94,7 +94,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 ## Hands-on exercise (~15 min)
 
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)), plus the pre-trained model (link to follow).
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **`Scripting Demo.zip`** ([Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), four zips — this is the one that is a QuPath project) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)), plus the pre-trained model (link to follow).
 
 1. `Extensions > DL Pixel Classifier`. Open the extension and confirm the Python environment
    reports as ready.

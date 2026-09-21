@@ -108,7 +108,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 ## Hands-on exercise (~10 min)
 
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **`Scripting Demo.zip`** ([Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), four zips — this is the one that is a QuPath project) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
 1. Draw a long polyline along a tissue boundary with QuPath's normal polyline tool. Deliberately
    overshoot the end.

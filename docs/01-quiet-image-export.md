@@ -76,7 +76,16 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 ## Hands-on exercise (~15 min)
 
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the [intro project](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **`Scripting Demo.zip`** ([Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), four zips — this is the one that is a QuPath project) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
+
+> **Or use the synthetic multiplex set instead.** If you are on the multiplexed track, or you
+> just want something small, the CC0
+> [multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest)
+> (~14 MB) works for every part of this exercise. Its eight-channel images exercise the channel
+> handling that a brightfield slide cannot, and because every cell carries a known type, the
+> label-mask and tile-pair exports have a ground truth you can check the output against.
+> You will need to detect cells first — the recipe is in the
+> [QP-CAT guide](03-qp-cat-cell-analysis-tools.md#hands-on-exercise-20-min-or-10-for-parts-a-and-b).
 
 ### Part A: a figure you could publish
 
