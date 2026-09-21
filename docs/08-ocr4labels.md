@@ -134,8 +134,10 @@ histology@lji.org     <- the lab's contact address
 H&E                   <- the stain
 ```
 
-Below that text is a square 2D barcode. That is the one step 7 asks you to draw a field
-over.
+Below that text is a square 2D barcode. That is the one step 7 asks you to draw a field over.
+Here is the label with the two regions the exercise uses marked (see below):
+
+<img src="../images/ocr/label-regions.png" alt="The slide label with a box around the line reading 610 TOMO, marked as the case ID for step 6, and a box around the 2D barcode, marked for step 7" width="680">
 
 The other five, if you want more to try:
 

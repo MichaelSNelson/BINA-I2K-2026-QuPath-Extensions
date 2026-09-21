@@ -124,8 +124,10 @@ generation, so the plateau is unverified past 144.
       from HuggingFace on demand, but a *trained classifier* for CMU-1 has to be made and saved
 - [x] Redistribution checked for what is published: CMU-1 is OpenSlide/Aperio public test data,
       LuCa-7color is a public Akoya sample, TME-SYNTH is CC0, and the LJI slides are shared by
-      their owners. **Do not publish the loose label PNGs in `OtherDocuments/labelimages/`** —
-      they carry real accession numbers and were only ever working material
+      their owners. **Do not use the loose label PNGs in `OtherDocuments/labelimages/` as exercise
+      data** — the point of the tool is that the label lives inside the whole-slide file, so an
+      exercise built on PNGs teaches the wrong thing. Using one as an illustration inside a
+      guide is fine
 
 ## Walkthrough videos and Padlet
 
