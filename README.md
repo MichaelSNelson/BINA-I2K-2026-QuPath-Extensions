@@ -65,13 +65,15 @@ each link goes straight to it.
 
 | If you are doing | Download exactly this | Size |
 |---|---|---|
-| **Track A or C** — QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset | **`Scripting Demo.zip`** from [this Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Unzip, then `File > Project > Open project` on the unzipped folder | ~500 MB |
+| **Track A or C** — QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset | **`Scripting Demo.zip`** from [this Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Unzip, then `File > Project > Open project` on the unzipped folder | 229 MB |
 | **Track B** — QP-CAT, Cluster 3D Navigator, Channel Names Viewer | **`multiplex-synthetic-data-v1.2.zip`** from [this release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip), the first file under Assets. Not "Source code" | **14 MB** |
-| **Track D** — OCR for Labels, Project Metadata Browser | **[`LabelImageExamples_from_LJI.zip`](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing)** | **over 500 MB** ⚠️ |
+| **Track D** — OCR for Labels, Project Metadata Browser | **[`LabelImageExamples_from_LJI.zip`](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing)** | **512 MB** ⚠️ |
 | **Track D** — Tiles to Pyramid | Still being prepared; nothing to download yet | — |
 
-The Drive folder holds four zips. **`Scripting Demo.zip` is the QuPath project**; the others are
-individual images and the label slides.
+The Drive folder holds four zips and **you want exactly one**: `Scripting Demo.zip` (229 MB,
+the assembled project) for Tracks A and C, or `LabelImageExamples_from_LJI.zip` (512 MB) for
+Track D. Leave `Multiplex demo images.zip` (**1.86 GB**) and `Brightfield demo.zip` (90 MB)
+alone — no track here uses either, and taking the whole folder is about 2.7 GB.
 
 **Which extensions are in which track: [extension index](docs/extensions.md).** Per-track detail
 and troubleshooting: [setup guide](docs/setup.md).

@@ -87,13 +87,22 @@ wherever it already lives, and the sizes differ by more than an order of magnitu
 
 | If you are doing | Download exactly this | Size |
 |---|---|---|
-| **Track A or C** (QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset) | **`Scripting Demo.zip`**, from [this Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Unzip it, then in QuPath use `File > Project > Open project` and pick the unzipped folder | ~500 MB |
+| **Track A or C** (QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset) | **`Scripting Demo.zip`**, from [this Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Unzip it, then in QuPath use `File > Project > Open project` and pick the unzipped folder | <span title="About a quarter of a gigabyte. Fine at home, slow on conference wifi. Do it before you travel.">⚠️ **229 MB**</span> |
 | **Track B** (QP-CAT, Cluster 3D Navigator, Channel Names Viewer) | **`multiplex-synthetic-data-v1.2.zip`**, from [this release page](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip). It is the first file under Assets. Ignore "Source code (zip)" and "(tar.gz)" | **14 MB** |
-| **Track D** (OCR for Labels, Project Metadata Browser) | **`LabelImageExamples_from_LJI.zip`**, [direct link](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) or the same Drive folder | **over 500 MB** ⚠️ |
+| **Track D** (OCR for Labels, Project Metadata Browser) | **`LabelImageExamples_from_LJI.zip`**, [direct link](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) or the same Drive folder | <span title="Half a gigabyte, and it unzips to more. Fetch it at home on a connection you trust and check you have the disk space before you travel — not on conference wifi at 10:30.">⚠️ **512 MB**</span> |
 | **Track D** (Tiles to Pyramid) | Still being prepared. Nothing to download yet | — |
 
-That Drive folder holds four zips. **`Scripting Demo.zip` is the one that is a QuPath project**;
-the others are individual images and the label slides.
+That Drive folder holds four zips, and **you want exactly one of them**:
+
+| Zip | Size | Take it? |
+|---|---|---|
+| **`Scripting Demo.zip`** | 229 MB | **Yes, for Tracks A and C.** This is the assembled QuPath project |
+| `LabelImageExamples_from_LJI.zip` | 512 MB | Only for Track D (OCR / metadata) |
+| `Multiplex demo images.zip` | **1.86 GB** | **No.** Nothing in this workshop uses it |
+| `Brightfield demo.zip` | 90 MB | No. Loose images, already inside Scripting Demo.zip |
+
+> ⚠️ **Do not download the whole folder.** That is about 2.7 GB, and over two thirds of it is
+> the multiplex demo images, which no track here needs.
 
 **`Scripting Demo.zip`** is the demo project from
 [imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro), already assembled:
@@ -101,7 +110,7 @@ the others are individual images and the label slides.
 detected and several saved object classifiers. Unzip, open as a project, and Tracks A and C are
 ready.
 
-> Prefer the individual images? That page links them at source: CMU-1 from the
+> Prefer the individual images? The imagescientist page links them at source: CMU-1 from the
 > [OpenSlide test data](http://openslide.cs.cmu.edu/download/openslide-testdata/Aperio/) and
 > LuCa-7color from the
 > [OME image repository](https://downloads.openmicroscopy.org/images/Vectra-QPTIFF/perkinelmer/).
@@ -110,7 +119,8 @@ ready.
 > ### ⚠️ The label-slide zip is over 500 MB
 > It is six whole-slide CZI files, and the label image only exists *inside* the slide file, which
 > is why it cannot be a folder of small PNGs. **Download it at home**, and only if you are doing
-> the OCR / metadata track. Everything else in this workshop is far smaller.
+> the OCR / metadata track. It is the largest thing any track here needs; `Scripting Demo.zip`
+> is 229 MB and the synthetic set is 14 MB.
 
 > **These slides were provided by Sara McArdle and Zbigniew Mikulski**, La Jolla Institute for
 > Immunology. Please credit LJI if you use them in your own work. See
