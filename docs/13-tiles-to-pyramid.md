@@ -100,6 +100,9 @@ Also listed in the QPSC microscope catalog, but it needs no microscope, so the m
 
 ---
 
+> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
+> *measurement* are explained in the [glossary](glossary.md).
+
 ## Hands-on exercise (~12 min)
 
 **Data:** `DATA-04_tiles`, a directory of tiles with a `TileConfiguration.txt`.
@@ -110,13 +113,24 @@ Also listed in the QPSC microscope catalog, but it needs no microscope, so the m
 > link appears here, you can still follow the steps against any folder of tiles that has a
 > `TileConfiguration.txt` beside it.
 
+**What you are looking for.** These two are the same join through the same cells, from a real
+2×2 fluorescence acquisition. On the left the tiles sit where the stage said they were; on the
+right they sit where the image content says they are. The stage was about 5 px out, and because
+the tiles are feathered together that error does not show up as a visible seam — it shows up as
+blur. Smeared spots and soft filaments on the left, crisp on the right. Steps 3 to 5 are asking
+you to make this comparison on your own data (see below).
+
+<img src="../images/stitch_if_nominal.jpg" alt="A join between two tiles placed at the recorded stage positions; the cells look slightly blurred and doubled" width="330"> <img src="../images/stitch_if_registered.jpg" alt="The same join with the tiles placed at measured positions; the cells are sharp" width="330">
+
 1. `Extensions > Tiles to Pyramid`.
 2. Point it at the tile directory, choose the **TileConfiguration.txt** strategy, output
    **OME-TIFF** with `LZW`, and stitch.
 3. Open the result in QuPath. Zoom to a seam between tiles and look for a visible offset.
 4. Now stitch the drift-affected copy the same way. Find the seams. They should be obviously
    wrong.
-5. Re-stitch that copy with **content-based tile registration** enabled. Compare the same seam.
+5. Re-stitch that copy with **content-based tile registration** enabled. Compare the same
+   seam — you are looking for the difference between the two pictures above, not for a line
+   that disappears.
 6. Stitch once more to **OME-ZARR** and compare the on-disk result (a directory, not a file)
    and the time it takes to open.
 7. If time permits: run batch mode across two subdirectories at once.

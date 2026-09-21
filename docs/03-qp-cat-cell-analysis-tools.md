@@ -172,6 +172,9 @@ For this exercise you need **one** image, `tme_00.tif`. Parts C and D add `tme_0
 
 ---
 
+> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
+> *measurement* are explained in the [glossary](glossary.md).
+
 ## Hands-on exercise (~20 min, or ~10 for parts A and B)
 
 **Setup (do once).** Create a QuPath project and add `tme_00.tif`. Set the image type to

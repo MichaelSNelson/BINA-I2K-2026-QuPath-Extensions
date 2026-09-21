@@ -70,7 +70,14 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 ---
 
+> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
+> *measurement* are explained in the [glossary](glossary.md).
+
 ## Hands-on exercise (~10 min)
+
+> ⚠️ **Do the [QP-CAT exercise](03-qp-cat-cell-analysis-tools.md) first.** This tool draws a
+> clustering someone else computed; it cannot make one. Without a project whose cells already
+> carry UMAP coordinates, there is nothing for it to plot.
 
 **Data:** the clustered project you produced in the
 [QP-CAT exercise](03-qp-cat-cell-analysis-tools.md): the synthetic tumor-microenvironment

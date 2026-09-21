@@ -83,9 +83,12 @@ It is also listed in the QPSC microscope catalog, but it needs no microscope, so
 
 ---
 
+> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
+> *measurement* are explained in the [glossary](glossary.md).
+
 ## Hands-on exercise (~15 min)
 
-**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing): six CZI whole-slide images from LJI, each carrying an
+**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX): six CZI whole-slide images from LJI, each carrying an
 embedded slide label. **Over 500 MB, so download it before you travel.**
 
 > **Why it is not a folder of small PNGs.** The label lives *inside* the slide file, as an

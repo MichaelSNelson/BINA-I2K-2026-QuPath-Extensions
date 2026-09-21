@@ -87,22 +87,27 @@ wherever it already lives, and the sizes differ by more than an order of magnitu
 
 | If you are doing | Download exactly this | Size |
 |---|---|---|
-| **Track A or C** (QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset) | **`Scripting Demo.zip`**, from [this Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Unzip it, then in QuPath use `File > Project > Open project` and pick the unzipped folder | <span title="About a quarter of a gigabyte. Fine at home, slow on conference wifi. Do it before you travel.">⚠️ **229 MB**</span> |
+| **Track A or C** (QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset) | **`Scripting Demo.zip`**, from [this Drive folder](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY). Unzip it, then in QuPath use `File > Project > Open project` and pick the unzipped folder | <span title="About a quarter of a gigabyte. Fine at home, slow on conference wifi. Do it before you travel.">⚠️ **229 MB**</span> |
 | **Track B** (QP-CAT, Cluster 3D Navigator, Channel Names Viewer) | **`multiplex-synthetic-data-v1.2.zip`**, from [this release page](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip). It is the first file under Assets. Ignore "Source code (zip)" and "(tar.gz)" | **14 MB** |
-| **Track D** (OCR for Labels, Project Metadata Browser) | **`LabelImageExamples_from_LJI.zip`**, [direct link](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) or the same Drive folder | <span title="Half a gigabyte, and it unzips to more. Fetch it at home on a connection you trust and check you have the disk space before you travel — not on conference wifi at 10:30.">⚠️ **512 MB**</span> |
+| **Track D** (OCR for Labels, Project Metadata Browser) | **`LabelImageExamples_from_LJI.zip`**, [direct link](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX) or the same Drive folder | <span title="Half a gigabyte, and it unzips to more. Fetch it at home on a connection you trust and check you have the disk space before you travel — not on conference wifi at 10:30.">⚠️ **512 MB**</span> |
 | **Track D** (Tiles to Pyramid) | Still being prepared. Nothing to download yet | — |
 
-That Drive folder holds four zips, and **you want exactly one of them**:
+That folder holds four zips, each linked directly below. Take whichever ones you want — these
+are the sizes so you can decide, not a rule about what you are allowed to have.
 
-| Zip | Size | Take it? |
+| Zip | Size | What it is for |
 |---|---|---|
-| **`Scripting Demo.zip`** | 229 MB | **Yes, for Tracks A and C.** This is the assembled QuPath project |
-| `LabelImageExamples_from_LJI.zip` | 512 MB | Only for Track D (OCR / metadata) |
-| `Multiplex demo images.zip` | **1.86 GB** | **No.** Nothing in this workshop uses it |
-| `Brightfield demo.zip` | 90 MB | No. Loose images, already inside Scripting Demo.zip |
+| **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** | 229 MB | The assembled QuPath project. **Tracks A and C** |
+| [`LabelImageExamples_from_LJI.zip`](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX) | 512 MB | Slide labels. **Track D** (OCR / metadata) |
+| [`Multiplex demo images.zip`](https://drive.google.com/uc?export=download&id=11PmdpYIrdSEn15Rgv9aa_4BDeF6pXODE) | 1.86 GB | Loose multiplexed images. No track here uses them |
+| [`Brightfield demo.zip`](https://drive.google.com/uc?export=download&id=1ghskMkToAP6DoQSfGxrdQiOKjIMpHtI0) | 90 MB | Loose brightfield images, also inside Scripting Demo.zip |
 
-> ⚠️ **Do not download the whole folder.** That is about 2.7 GB, and over two thirds of it is
-> the multiplex demo images, which no track here needs.
+> If you only plan to follow one track, one zip is enough. All four together are about 2.7 GB,
+> and most of that is the multiplex demo images, which nothing here needs — so it is worth
+> knowing before you start the download rather than after.
+>
+> Drive cannot virus-scan files this large, so it will show a confirmation page before the
+> download starts. That is expected; click through it.
 
 **`Scripting Demo.zip`** is the demo project from
 [imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro), already assembled:
@@ -158,7 +163,12 @@ Open QuPath and confirm:
   right: **Wizard Wand** (**Shift+W**) and **Polyline Wand** (**Shift+P**). Their order
   depends on which you installed first, so go by the icon, not the position. If both
   shortcuts work, both are installed
-- [ ] If doing the multiplex track: `Extensions > QP-CAT` reports its environment as ready
+- [ ] If doing the multiplex track, open `Extensions > QP-CAT` and read the menu — it tells
+  you which state you are in:
+
+  - **“Set up analysis environment (first run)…”** means the environment is *not* built.
+    Click it, and expect 1.5–2.5 GB and 5–15 minutes. Do this at home
+  - **“Find cell populations (clustering)…”** means it is ready and you are done
 - [ ] The download for your track is unzipped and on disk (see the table above)
 
 ## If something goes wrong
