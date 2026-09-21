@@ -47,8 +47,10 @@ RIB_Y, RIB_H = 0.055, 0.070         # gradient ribbon
 CHIP_BOT, CHIP_H, CHIP_GAP = 0.200, 0.122, 0.028
 FS_CHIP, FS_TIER, FS_END = 12, 11.5, 11.5
 
-_top = CHIP_BOT + max(len(v) for v in TIERS) * (CHIP_H + CHIP_GAP)
-assert _top <= 0.98, f"tallest column reaches {_top:.3f}; raise H or shrink CHIP_H"
+_tall = max(len(v) for v in TIERS)
+_block = _tall * CHIP_H + (_tall - 1) * CHIP_GAP
+MID_Y = CHIP_BOT + _block / 2
+assert MID_Y + _block / 2 <= 0.985, f"tallest column reaches {MID_Y + _block/2:.3f}; raise H"
 
 fig = plt.figure(figsize=(W, H), dpi=DPI)
 ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis("off")
@@ -74,8 +76,10 @@ for i, names in enumerate(TIERS):
     face = RAMP[i]
     lum = sum(c * k for c, k in zip(matplotlib.colors.to_rgb(face), (0.2126, 0.7152, 0.0722)))
     txt = "#FFFFFF" if lum < 0.5 else BLUE_DK
+    block = len(names) * CHIP_H + (len(names) - 1) * CHIP_GAP
+    base = MID_Y - block / 2
     for j, name in enumerate(names):
-        y = CHIP_BOT + j * (CHIP_H + CHIP_GAP)
+        y = base + j * (CHIP_H + CHIP_GAP)
         ax.add_patch(FancyBboxPatch(
             (cx - chip_w / 2, y), chip_w, CHIP_H,
             boxstyle="round,pad=0,rounding_size=0.030",
