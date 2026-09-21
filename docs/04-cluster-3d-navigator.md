@@ -71,7 +71,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 **Data:** the clustered project you produced in the
 [QP-CAT exercise](03-qp-cat-cell-analysis-tools.md): the synthetic tumor-microenvironment
-dataset, ~14 MB from [GitHub](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest). Save UMAP components as measurements when you
+dataset, ~14 MB from [GitHub](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip). Save UMAP components as measurements when you
 cluster and they become your X, Y and Z here.
 
 This pairing is worth doing in order: because every cell in that data has a known type, when you

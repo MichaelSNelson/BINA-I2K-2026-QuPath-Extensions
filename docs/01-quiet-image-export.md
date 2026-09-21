@@ -80,7 +80,7 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 > **Or use the synthetic multiplex set instead.** If you are on the multiplexed track, or you
 > just want something small, the CC0
-> [multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest)
+> [multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip)
 > (~14 MB) works for every part of this exercise. Its eight-channel images exercise the channel
 > handling that a brightfield slide cannot, and because every cell carries a known type, the
 > label-mask and tile-pair exports have a ground truth you can check the output against.

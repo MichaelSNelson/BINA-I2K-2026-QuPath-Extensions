@@ -38,7 +38,7 @@ Her [FS2K](https://github.com/saramcardle/FS2K) QuPath course was also the model
 instructional pages are structured.
 
 If you use the **slide-label images** in your own work, please credit LJI. The
-[TME-QUANT synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest)
+[TME-QUANT synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip)
 is CC0, so reuse it freely; the public images carry their own original terms.
 
 ---

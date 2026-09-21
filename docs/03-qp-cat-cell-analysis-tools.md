@@ -119,7 +119,7 @@ This exercise uses the
 **[TME-QUANT synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data)** is a
 small, fully ground-truthed synthetic tumor microenvironment. Download the zip
 (**~14 MB**) from its
-[latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest).
+[latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip).
 It is **CC0**: public domain, no attribution required, yours to reuse in your own teaching.
 
 Why synthetic, for a workshop:

@@ -99,6 +99,19 @@ repo. Confound ruled out: the harness GCs before sampling and `SyntheticGridFixt
 holds only positions, no pixels. A 256-tile run died inside the fixture's own texture
 generation, so the plateau is unverified past 144.
 
+- [ ] **On every synthetic-dataset release, update the direct download links.** The docs now
+      link straight to the asset rather than to `/releases/latest`, so the reader never sees
+      "Source code (zip)" as an option. The cost is that the URL carries the version:
+
+          https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip
+
+      Ten files carry it (README, index.html, and docs/01, 03, 04, 11, acknowledgements,
+      extensions, schedule, setup). A new release makes all ten stale, and they will 404 rather
+      than silently serve the old data, which is the better failure but still a failure. Find
+      them with:
+
+          grep -rn "multiplex-synthetic-data/releases/download" docs/ README.md index.html
+
 - [ ] Convert the fluorescence tiles to Micro-Manager layout (per-position folders with
       `metadata.txt`, or MMStack plus sidecars) if the real MM acquisition does not pan out, so
       the MicroManager strategy has something to read. The current `IFStitching` folder holds the
