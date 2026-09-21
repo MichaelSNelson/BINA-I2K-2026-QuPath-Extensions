@@ -78,6 +78,9 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 **Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **`Scripting Demo.zip`** ([Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing), four zips — this is the one that is a QuPath project) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
+> **Parts A and B need one image. Part C needs at least two**, because it builds a figure out
+> of several panels. `Scripting Demo.zip` gives you two; the synthetic set gives you eight.
+
 > **Or use the synthetic multiplex set instead.** If you are on the multiplexed track, or you
 > just want something small, the CC0
 > [multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip)
@@ -91,7 +94,10 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 ### Part A: a figure you could publish
 
-1. Open the project. Confirm at least one annotation exists.
+1. Open the project — the folder you unzipped, which QuPath opens with
+   `File > Project > Open project`. Confirm at least one **annotation** exists: a region you
+   or someone else drew on the image. If there are none, draw a rectangle over part of the
+   tissue.
 2. `Extensions > QuIET > Image Export...` (see below). The second entry,
    **Panel / Montage Export...**, is Part C.
 
@@ -99,21 +105,31 @@ Both menu items stay greyed out until a project with at least one image is open.
 3. **Step 1:** choose **Rendered Image** — the leftmost of the five categories (see below).
 
    <img src="../images/quiet/step1-categories.png" alt="The Select Export Category screen with five cards: Rendered Image, Label / Mask, Raw Image Data, Tiled Export, Object Crops" width="820">
-4. **Step 2:** set **Render Mode** — **Object Overlay** draws your annotations onto the
-   figure, **None (no overlay source)** gives a clean image. Turn on a **scale bar**.
-   **Downsample** only matters if the image is much larger than you want the figure to be:
-   CMU-1 is tens of thousands of pixels wide, so bring it down to roughly 2000 px on its long
-   edge. The synthetic images are already 2048 × 2048, so leave the downsample at **1**.
-   Read the QUAREP panel on the right (see below) and note what it says is missing from your
-   project's metadata.
+4. **Step 2:** set **Render Mode**. For this figure choose **Object Overlay**, which draws
+   your annotations onto the image; **None (no overlay source)** gives a clean image with no
+   annotations, which is what the screenshot below happens to show. Turn on a **scale bar**.
+   **Downsample** shrinks the exported image: **1** means full size, **4** means a quarter as
+   wide. You only need it when the image is far bigger than the figure you want. The synthetic
+   images are 2048 × 2048, so leave it at **1**. CMU-1 is tens of thousands of pixels wide —
+   QuPath's **Image** tab shows the width, and dividing that by about 2000 gives you the
+   number to enter.
+
+   The panel down the right (see below) is general QUAREP-LiMi guidance for the kind of export
+   you picked, plus one line saying how many of your images it scanned and what type they are.
+   Read it now; the advice specific to *your* images comes at Step 3.
 
    <img src="../images/quiet/step2-settings.png" alt="The Configure Export screen: Render Mode, Export Region, Downsample, Output Format, a Show scale bar tickbox, and the QUAREP-LiMi guidelines panel down the right side" width="820">
 5. **Step 3:** **every image in the project starts ticked.** Click **Deselect All** and tick
    exactly one — Part B needs a second image that has *not* been exported yet. Choose an
-   output folder, read the Publication Advice, and export.
+   output folder.
+
+   Now click **Publication Advice**. *This* is the part that looks at the images you actually
+   selected and tells you what is missing — for example "No scale bar on calibrated images".
+   Items are coloured by how much they matter. Read it, then export.
 6. Open the result. Check that the scale bar is legible at the size you would print it.
 
-   Your output folder should hold **one** image plus `export_info` (see below). If it holds
+   Your output folder should hold **one** image plus `export_info`, a small text file
+   recording the settings used (see below). If it holds
    eight, every image was still ticked at Step 3 — that is the default. Part B needs one that
    has not been exported, so delete the folder and redo Step 3 with **Deselect All**.
 
@@ -123,7 +139,8 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 *This is why Part A asked you to export only one image.*
 
-7. Find the Groovy script QuIET wrote alongside your export.
+7. Find the **Groovy script** QuIET wrote alongside your export — a text file of QuPath
+   commands, which you do not have to write or understand to use.
 8. Open QuPath's script editor, `Automate > Script editor` (see below), paste it in, and run
    it against a *different* image in the project.
 
@@ -133,9 +150,14 @@ Both menu items stay greyed out until a project with at least one image is open.
 ### Part C: a multi-panel figure
 
 10. `Extensions > QuIET > Panel / Montage Export...`
-11. Select 4 images, apply one recipe to all of them, and lay them out 2×2 with captions.
-12. Export and open the montage. It should look like the one below — four panels, one shared
-    recipe, one scale bar per panel.
+11. Select the images you want as panels and apply one **recipe** — one set of rendering
+    settings — to all of them, so every panel is treated identically. How many you have
+    depends on your data: the synthetic set has eight, so pick four and lay them out 2×2;
+    `Scripting Demo.zip` has only two (CMU-1 and LuCa-7color), so lay those out 1×2.
+    Add captions.
+12. Export and open the montage. The one below (see below) was made from four images of the
+    synthetic set: one shared recipe, one scale bar per panel. Yours will have as many panels
+    as you selected.
 
     <img src="../images/quiet/panel-figure.jpg" alt="A 2x2 montage of four synthetic multiplex images, each rendered identically and carrying a 200 micrometre scale bar" width="640">
 
