@@ -79,8 +79,17 @@ thing missing is the *language data*, and you want both files:
 
 There are two ways to get them, and they fetch the same files from the same place:
 
-- **From inside QuPath.** `Extensions > OCR for Labels > OCR Settings...` — the
-  **Required Downloads** section has a button for each, and the links are printed in the dialog.
+- **From inside QuPath.** `Extensions > OCR for Labels > OCR Settings...`. The
+  **Required Downloads** section lists both files with the links right there, and shows
+  **[Not found]** beside each until it can see them (see below).
+
+  <img src="../images/ocr/settings-download.png" alt="The OCR Settings dialog, with the eng.traineddata row highlighted and marked Not found" width="420">
+
+  Once both files are in a folder, set **Tessdata Path** to that folder (see below) and click
+  **OK**. The [Not found] markers clear once the path is right.
+
+  <img src="../images/ocr/settings-path.png" alt="The same dialog with the Tessdata Path field highlighted and empty" width="420">
+
 - **Directly.** [eng.traineddata](https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata) and [osd.traineddata](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata).
 
 Either way, put both in one folder — anywhere you like, say `Documents/tessdata` — then set
@@ -148,7 +157,8 @@ images down the left side, and batch mode runs over the project. So before anyth
 
 ### Part A: one slide
 
-1. Open an image with a label. `Extensions > OCR for Labels > Run OCR on Label`.
+1. With that slide open from Step 0, run
+   `Extensions > OCR for Labels > Run OCR on Label`.
 2. The dialog lists all project images on the left; select one.
 3. Set **Scope** to *Full Image*, **Decode As** to *Try Both* (barcode first, then OCR), and
    leave **Min Conf** at its default. *Try Both* matters here, because these labels carry text and a
@@ -161,6 +171,10 @@ images down the left side, and batch mode runs over the project. So before anyth
 
 ### Part B: a template, then the whole project
 
+**Stay on the same slide** you used in Part A, `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`.
+You are building a template from its label, then applying that template to the whole project —
+so steps 6 to 9 are still one image, and step 10 is where the other five get used.
+
 6. Draw a rectangle over just the region of the label that holds the case ID, set **Decode As**
    to *Text*, and click **Add Region**. This adds the row without reading it, which is what you
    want while laying out a template.
@@ -172,7 +186,9 @@ images down the left side, and batch mode runs over the project. So before anyth
 9. **Save this as a template** with the field positions, types, and metadata key assignments.
 10. Run **batch processing** with that template across the project.
 11. Try a **vocabulary list** for a field with a small known set of valid values, and re-run.
-12. Find the rotated label and confirm orientation detection handled it.
+12. Look through the batch results for a label that was not upright, and confirm orientation
+    detection read it anyway. If every label in your run came out upright, this is the step
+    `osd.traineddata` exists for — rotate one yourself and re-run to see it work.
 
 ### Part C: the two-minute experiment worth doing (~2 min)
 
