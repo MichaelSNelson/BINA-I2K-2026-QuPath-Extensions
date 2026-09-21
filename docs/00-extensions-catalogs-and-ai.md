@@ -19,8 +19,9 @@ An extension is one `.jar` file in a folder. You can add one three ways:
 
 Three things worth knowing before you install:
 
-- **Restart QuPath afterwards.** Extensions are only loaded at startup, so a jar you just
-  installed does nothing until you restart.
+- **Restart QuPath afterwards.** Some extensions work the moment they are installed; others
+  register menus, toolbar buttons or shortcuts only at startup, and an update almost always
+  needs a restart. If something you just installed is not there, restart before anything else.
 - **Take the jar with `-all` in the name.** That one bundles the dependencies. Without it you
   get a `ClassNotFoundException` the first time you use the tool.
 - **Extensions are per QuPath version.** `0.7` has its own extensions folder, so installing

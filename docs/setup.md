@@ -68,7 +68,8 @@ you want; the [extension index](extensions.md) says which track each belongs to:
 - **Deep Learning Pixel Classifier**. The first run downloads an embedded Python
   environment. Also substantial.
 
-**Then restart QuPath.** Extensions are not loaded on the fly; the menu items will not appear
+**Then restart QuPath.** Some extensions work as soon as they are installed, but many do not,
+and an update almost always needs one. The menu items may not appear
 until you do.
 
 ## 4. OCR language data (only for the OCR track)
@@ -173,7 +174,8 @@ Open QuPath and confirm:
 
 ## If something goes wrong
 
-- **A menu item is missing.** Did you restart QuPath? Extensions are only loaded at startup.
+- **A menu item is missing.** Restart QuPath. Some extensions appear immediately, others only
+  after a restart, so restarting is the quickest way to rule it out.
 - **The extension loads but throws `NoSuchMethodError`.** You are probably on QuPath 0.6.
 - **`ClassNotFoundException`.** You downloaded a jar without `-all` in the name. Get the
   `-all` jar.

@@ -404,7 +404,7 @@ content('If you are not set up yet', [
   'Everything below is on the site, and you can do it during this hour if you need to',
   'Add one catalog: Extensions > Manage extensions > Manage extension catalogs > Add catalog',
   { t: 'github.com/uw-loci/qupath-catalog-mikenelson — adding it installs nothing, it shows you a list' },
-  'Pick what you want, then restart QuPath. Nothing appears until you restart',
+  'Pick what you want, then restart QuPath \u2014 some work straight away, many do not',
   'Two entries are large first-use downloads: QP-CAT 1.5–2.5 GB, DL Pixel Classifier 2–4 GB',
 ], { kicker: 'I am not going to walk through setup — the site has it, and I am here in the second hour.',
      note: 'Bring QuPath 0.7.0 or later. Four of the thirteen require it, and everything here is built and tested on it.' });

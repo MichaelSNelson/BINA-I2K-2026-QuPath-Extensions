@@ -68,7 +68,7 @@ shortcut.
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-The toolbar button, menu entry and shortcut do not appear until you restart.
+If the toolbar button, menu entry or shortcut are not there yet, restart QuPath.
 
 </details>
 
