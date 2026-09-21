@@ -7,3 +7,6 @@ _site/
 # Hand-edited deck: generated builds must never touch this
 I2K_2026_QuPath_Extensions_manual.pptx
 ~$*.pptx
+
+# raw screenshot handoff; processed copies live in images/quiet/
+images/QuIET page/

@@ -92,34 +92,52 @@ Both menu items stay greyed out until a project with at least one image is open.
 ### Part A: a figure you could publish
 
 1. Open the project. Confirm at least one annotation exists.
-2. `Extensions > QuIET > Image Export...`
-3. **Step 1:** choose **Rendered Image**.
+2. `Extensions > QuIET > Image Export...` (see below). The second entry,
+   **Panel / Montage Export...**, is Part C.
+
+   <img src="../images/quiet/menu.png" alt="QuPath's Extensions menu open on QuIET, showing Image Export and Panel / Montage Export" width="720">
+3. **Step 1:** choose **Rendered Image** — the leftmost of the five categories (see below).
+
+   <img src="../images/quiet/step1-categories.png" alt="The Select Export Category screen with five cards: Rendered Image, Label / Mask, Raw Image Data, Tiled Export, Object Crops" width="820">
 4. **Step 2:** set **Render Mode** — **Object Overlay** draws your annotations onto the
    figure, **None (no overlay source)** gives a clean image. Turn on a **scale bar**.
    **Downsample** only matters if the image is much larger than you want the figure to be:
    CMU-1 is tens of thousands of pixels wide, so bring it down to roughly 2000 px on its long
    edge. The synthetic images are already 2048 × 2048, so leave the downsample at **1**.
-   Read the QUAREP panel on the right and note what it says is missing from your project's
-   metadata.
+   Read the QUAREP panel on the right (see below) and note what it says is missing from your
+   project's metadata.
+
+   <img src="../images/quiet/step2-settings.png" alt="The Configure Export screen: Render Mode, Export Region, Downsample, Output Format, a Show scale bar tickbox, and the QUAREP-LiMi guidelines panel down the right side" width="820">
 5. **Step 3:** **every image in the project starts ticked.** Click **Deselect All** and tick
    exactly one — Part B needs a second image that has *not* been exported yet. Choose an
    output folder, read the Publication Advice, and export.
 6. Open the result. Check that the scale bar is legible at the size you would print it.
+
+   Your output folder should hold **one** image plus `export_info` (see below). If it holds
+   eight, every image was still ticked at Step 3 — that is the default. Part B needs one that
+   has not been exported, so delete the folder and redo Step 3 with **Deselect All**.
+
+   <img src="../images/quiet/output-folder.png" alt="An output folder listing export_info and eight exported files, the result of leaving every image selected" width="620">
 
 ### Part B: the reproducibility half
 
 *This is why Part A asked you to export only one image.*
 
 7. Find the Groovy script QuIET wrote alongside your export.
-8. Open QuPath's script editor (`Automate > Script editor`), paste it in, and run it against
-   a *different* image in the project.
+8. Open QuPath's script editor, `Automate > Script editor` (see below), paste it in, and run
+   it against a *different* image in the project.
+
+   <img src="../images/quiet/script-editor.png" alt="QuPath's Automate menu open, with Script editor highlighted" width="580">
 9. Confirm you get the same treatment applied to new data with zero clicks.
 
 ### Part C: a multi-panel figure
 
 10. `Extensions > QuIET > Panel / Montage Export...`
 11. Select 4 images, apply one recipe to all of them, and lay them out 2×2 with captions.
-12. Export and open the montage.
+12. Export and open the montage. It should look like the one below — four panels, one shared
+    recipe, one scale bar per panel.
+
+    <img src="../images/quiet/panel-figure.jpg" alt="A 2x2 montage of four synthetic multiplex images, each rendered identically and carrying a 200 micrometre scale bar" width="640">
 
 ### What to notice
 
