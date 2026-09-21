@@ -77,11 +77,11 @@ until you do.
 You do not need to install Tesseract — the engine ships with the extension. It only needs two
 language-data files.
 
-`Extensions > OCR for Labels > OCR Settings...` → **Required Downloads** fetches them for you,
+`Extensions > OCR for Labels > OCR Settings...` → **Required Downloads** has a button for each,
 or take them directly:
 
-- [**eng.traineddata**](https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata) (4 MB) — required
-- [**osd.traineddata**](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata) (11 MB) — recommended, handles rotated labels
+- [**eng.traineddata**](https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata) (4 MB) — reads English text
+- [**osd.traineddata**](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata) (11 MB) — handles rotated labels
 
 Put both in one folder, set **Tessdata Path** to it, click OK. Barcode scanning needs no setup.
 More detail, including other languages, in the [OCR guide](08-ocr4labels.md#setup-do-this-before-the-workshop).

@@ -57,30 +57,25 @@ export it in bulk.
 ## Setup: do this before the workshop
 
 **You do not need to install Tesseract.** The OCR engine ships inside the extension. The only
-thing missing is the *language data* — two small files that tell it what English letters and
-rotated text look like.
+thing missing is the *language data*, and you want both files:
 
-**The easy way, from inside QuPath:**
+| File | Size | What it does |
+|---|---|---|
+| `eng.traineddata` | 4 MB | Reads English text |
+| `osd.traineddata` | 11 MB | Works out which way up the label is, so rotated labels still read |
 
-1. `Extensions > OCR for Labels > OCR Settings...`
-2. Under **Required Downloads**, click **eng.traineddata**, then **osd.traineddata**.
-3. Set **Tessdata Path** to the folder they landed in.
-4. **OK**.
+There are two ways to get them, and they fetch the same files from the same place:
 
-**Or download them yourself** — same files, same place the buttons fetch them from:
+- **From inside QuPath.** `Extensions > OCR for Labels > OCR Settings...` — the
+  **Required Downloads** section has a button for each, and the links are printed in the dialog.
+- **Directly.** [eng.traineddata](https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata) and [osd.traineddata](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata).
 
-| File | Size | Link | What it does |
-|---|---|---|---|
-| `eng.traineddata` | 4 MB | [download](https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata) | English text. **Required** |
-| `osd.traineddata` | 11 MB | [download](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata) | Orientation and script detection. **Get this one** — rotated labels are common |
+Either way, put both in one folder — anywhere you like, say `Documents/tessdata` — then set
+**Tessdata Path** to that folder and click **OK**.
 
-Put both in one folder — anywhere you like, for example `Documents/tessdata` — then set
-**Tessdata Path** to that folder in OCR Settings and click **OK**.
-
-Those come from [tessdata_fast](https://github.com/tesseract-ocr/tessdata_fast), which is what
-the extension's buttons use. There is also
+They come from [tessdata_fast](https://github.com/tesseract-ocr/tessdata_fast). There is also
 [tessdata_best](https://github.com/tesseract-ocr/tessdata_best): slower, slightly more accurate,
-and a drop-in replacement if you ever want it. Other languages live in the same two repositories,
+a drop-in replacement if you ever want it. Other languages live in the same two repositories,
 named by their three-letter code.
 
 Barcode scanning works immediately with no setup — that reader is built in.
