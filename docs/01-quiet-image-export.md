@@ -129,11 +129,17 @@ Both menu items stay greyed out until a project with at least one image is open.
 6. Open the result. Check that the scale bar is legible at the size you would print it.
 
    Your output folder should hold **one** image plus `export_info`, a small text file
-   recording the settings used (see below). If it holds
-   eight, every image was still ticked at Step 3 — that is the default. Part B needs one that
-   has not been exported, so delete the folder and redo Step 3 with **Deselect All**.
+   recording the settings used.
 
-   <img src="../images/quiet/output-folder.png" alt="An output folder listing export_info and eight exported files, the result of leaving every image selected" width="620">
+   The folder below shows what happens when you *don't* do that — eight exports, because every
+   image was still ticked at Step 3. If yours looks like this, delete the folder and redo
+   Step 3 with **Deselect All**, because Part B needs an image that has not been exported yet.
+
+   (The names look odd because that run had **Drop source file extension** unticked on Step 3,
+   so each file kept its original `.tif` name and gained `.svg` on the end. With the tickbox
+   left at its default you get `tme_00.svg`.)
+
+   <img src="../images/quiet/output-folder.png" alt="A file listing showing export_info and eight exported files" width="620">
 
 ### Part B: the reproducibility half
 
@@ -155,9 +161,9 @@ Both menu items stay greyed out until a project with at least one image is open.
     depends on your data: the synthetic set has eight, so pick four and lay them out 2×2;
     `Scripting Demo.zip` has only two (CMU-1 and LuCa-7color), so lay those out 1×2.
     Add captions.
-12. Export and open the montage. The one below (see below) was made from four images of the
-    synthetic set: one shared recipe, one scale bar per panel. Yours will have as many panels
-    as you selected.
+12. Export and open the montage. The one below was made from four images of the **synthetic
+    set**, not the H&E slide — so yours will look different, and will have as many panels as
+    you selected. What matters is that every panel got the same recipe and its own scale bar.
 
     <img src="../images/quiet/panel-figure.jpg" alt="A 2x2 montage of four synthetic multiplex images, each rendered identically and carrying a 200 micrometre scale bar" width="640">
 
