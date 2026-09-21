@@ -77,10 +77,10 @@ will be circulating throughout.
 
 ### Suggested tracks for exploration
 
-Four coherent routes through the material, each about fifty minutes. They are suggestions, not a
+Four coherent groupings of the extensions, each about fifty minutes. They are suggestions, not a
 timetable. Take one, take half of one, or ignore them and bring your own data.
 
-| Track | Best if | Data | Route |
+| Track | Best if | Data | Extensions |
 |---|---|---|---|
 | **A · Annotation and classification** | You do brightfield/H&E work and spend a lot of time annotating | [`DATA-01`](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing) | [Wizard Wand](05-wizard-wand.md) 10 → [Polyline Wand](06-polyline-wand.md) 10 → [Class Distribution](10-class-distribution.md) 8 → [Classify Object Subset](07-classify-object-subset.md) 10. Finish early? Export those annotations as masks with [QuIET](01-quiet-image-export.md) and see what a training set built from them looks like |
 | **B · Multiplexed imaging** | You work with highly multiplexed IF | `TME-SYNTH`, [14 MB, straight from GitHub](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest) | [QP-CAT](03-qp-cat-cell-analysis-tools.md) 20 (parts A and B alone are ~10) → [Cluster 3D Navigator](04-cluster-3d-navigator.md) 10, on the same cells, since it is the navigation half of the clustering you just ran. Optional: [Channel Names Viewer](11-channel-names-viewer.md) 5. **Needs the QP-CAT Python environment installed beforehand** |
