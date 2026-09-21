@@ -26,10 +26,11 @@ title: Wizard Wand
 
 ## Finding the button
 
-The Wizard Wand adds its own toolbar button, and leaves QuPath's wand alone. Left to right:
-QuPath's own wand, **Wizard Wand**, and the [Polyline Wand](06-polyline-wand.md):
+The Wizard Wand adds its own toolbar button and leaves QuPath's wand alone. It sits to the
+right of QuPath's wand, alongside the [Polyline Wand](06-polyline-wand.md) — which of the two
+comes first depends on the order you installed them, so match the icon rather than the position:
 
-<img src="../images/wand-toolbar.png" alt="Three toolbar buttons: QuPath's wand, Wizard Wand, Polyline Wand" height="24">
+<img src="../images/wand-toolbar.png" alt="QuPath's wand and the two added wand buttons in the toolbar; the order of the two added buttons depends on install order" height="24">
 
 ---
 
