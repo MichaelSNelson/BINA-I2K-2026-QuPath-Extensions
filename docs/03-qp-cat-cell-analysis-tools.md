@@ -118,7 +118,7 @@ Then run `Extensions > QP-CAT > Setup environment`. One click configures the ful
 This exercise uses the
 **[TME-QUANT synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data)** is a
 small, fully ground-truthed synthetic tumor microenvironment. Download the zip
-(**~20 MB**) from its
+(**~14 MB**) from its
 [latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest).
 It is **CC0**: public domain, no attribution required, yours to reuse in your own teaching.
 
@@ -127,7 +127,7 @@ Why synthetic, for a workshop:
 - **You can check the answer.** Real multiplexed tissue has no ground truth, so you never
   actually know which cell is which type, or whether two populations really co-localise.
   Here every cell has a known type, known marker positivity, and a known place in the tissue.
-- **It is fast.** ~2,860 cells per image; 22,428 across all eight. Clustering one image is
+- **It is fast.** ~1,430 cells per image; 11,420 across all eight. Clustering one image is
   seconds, not coffee.
 - **Everything has something to recover.** Six cell types, tissue niches, a proliferation
   gradient, and deliberate per-image intensity offsets.
@@ -162,7 +162,7 @@ Why synthetic, for a workshop:
 
 Other settings that work: requested pixel size 0.5 µm, sigma 1.5 µm, minimum area 8 µm²,
 maximum 1000 µm², threshold 50, cell expansion 5 µm, include nuclei and measurements. You
-should detect close to 2,860 cells.
+should detect close to 1,530 cells.
 
 ### Part A: recover the cell types (~6 min)
 
@@ -171,7 +171,7 @@ should detect close to 2,860 cells.
 1. `Extensions > QP-CAT`, confirm the environment is ready.
 2. Run **clustering**. Choose **KMeans with k = 6**, on the seven marker means
    (`Cell: PanCK mean`, `Nucleus: Ki67 mean`, `Cell: aSMA mean`, `Cell: CD3 mean`,
-   `Cell: CD8 mean`, `Cell: CD20 mean`, `Cell: CD68 mean`), z-scored. Seconds on 2,860 cells.
+   `Cell: CD8 mean`, `Cell: CD20 mean`, `Cell: CD68 mean`), z-scored. Seconds on 1,530 cells.
 3. Check the top of the Results window first. On a healthy run it says nothing interesting,
    which is the point: since 0.11.0 a degenerate result announces itself instead of looking like
    a finding. Then open the **cluster-defining markers** plot. Each cluster should be driven by one marker.
@@ -219,7 +219,7 @@ pathologist's read on whether an immune response has reached the tumor.
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
 
 Add **`tme_06`** (immune-rich) and **`tme_07`** (immune-poor) to the project, detect cells in
-both, and cluster all three images **jointly**, about 8,400 cells, still fast.
+both, and cluster all three images **jointly**, about 4,200 cells, still fast.
 
 11. Open the new **Composition by area** tab. Each image is an independent area, so you get
     one row per image.
@@ -227,8 +227,8 @@ both, and cluster all three images **jointly**, about 8,400 cells, still fast.
 
     | | `tme_00` | `tme_06` | `tme_07` |
     |---|---|---|---|
-    | Cells | 2,860 | 3,314 | 2,199 |
-    | Lymphoid fraction | 39% | **55%** | **14%** |
+    | Cells | 1,530 | 1,722 | 945 |
+    | Lymphoid fraction | 33% | **50%** | **6%** |
     | B-cell follicles | present | more | **none at all** |
 
     Those are the two ends of a distinction that matters clinically: an **immune-inflamed**
@@ -249,7 +249,7 @@ both, and cluster all three images **jointly**, about 8,400 cells, still fast.
 
 ### Optional, and slower: batch effects
 
-Best done at home; clustering all eight images is ~22,400 cells.
+Best done at home; clustering all eight images is ~11,400 cells.
 
 16. `tme_02`, `tme_04` and `tme_05` carry deliberate intensity offsets (×0.8, ×1.2, ×0.85),
     a synthetic staining-day effect.

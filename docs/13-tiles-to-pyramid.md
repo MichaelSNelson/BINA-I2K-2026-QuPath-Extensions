@@ -99,8 +99,13 @@ Also listed in the QPSC microscope catalog, but it needs no microscope, so the m
 
 ## Hands-on exercise (~12 min)
 
-**Data:** `DATA-04_tiles`, a directory of tiles with a `TileConfiguration.txt`, plus a
-deliberately drift-affected copy.
+**Data:** `DATA-04_tiles`, a directory of tiles with a `TileConfiguration.txt`.
+
+> ⚠️ **This one is not ready to download yet.** Every other track links straight to its
+> data; this is the exception, and the [setup guide](setup.md) says the same. The tiles are a
+> real polarised-light acquisition of pancreatic cancer and are being packaged now. Until the
+> link appears here, you can still follow the steps against any folder of tiles that has a
+> `TileConfiguration.txt` beside it.
 
 1. `Extensions > Tiles to Pyramid`.
 2. Point it at the tile directory, choose the **TileConfiguration.txt** strategy, output

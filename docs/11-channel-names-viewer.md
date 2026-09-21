@@ -74,7 +74,7 @@ The toolbar button, menu entry and shortcut do not appear until you restart.
 ## Try it yourself (~5 min)
 
 **Data:** any 8-channel image from the synthetic tumor-microenvironment dataset
-(~20 MB from [GitHub](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest)), or `DATA-02_multiplex_IF`. The synthetic images carry
+(~14 MB from [GitHub](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest)), or `DATA-02_multiplex_IF`. The synthetic images carry
 real channel names (DAPI, PanCK, Ki67, aSMA, CD3, CD8, CD20, CD68), so the legend has
 something meaningful to show.
 

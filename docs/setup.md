@@ -88,7 +88,7 @@ wherever it already lives, and the sizes differ by more than an order of magnitu
 | If you are doing | Download exactly this | Size |
 |---|---|---|
 | **Track A or C** (QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset) | **`Scripting Demo.zip`**, from [this Drive folder](https://drive.google.com/drive/folders/1waxGfZt3Ua_EKcC86fOn8Qr89lZXnrIX?usp=sharing). Unzip it, then in QuPath use `File > Project > Open project` and pick the unzipped folder | ~500 MB |
-| **Track B** (QP-CAT, Cluster 3D Navigator, Channel Names Viewer) | **`multiplex-synthetic-data-v1.0.zip`**, from [this release page](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest). It is the first file under Assets. Ignore "Source code (zip)" and "(tar.gz)" | **20 MB** |
+| **Track B** (QP-CAT, Cluster 3D Navigator, Channel Names Viewer) | **`multiplex-synthetic-data-v1.2.zip`**, from [this release page](https://github.com/uw-loci/multiplex-synthetic-data/releases/latest). It is the first file under Assets. Ignore "Source code (zip)" and "(tar.gz)" | **14 MB** |
 | **Track D** (OCR for Labels, Project Metadata Browser) | **`LabelImageExamples_from_LJI.zip`**, [direct link](https://drive.google.com/file/d/1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX/view?usp=sharing) or the same Drive folder | **over 500 MB** ⚠️ |
 | **Track D** (Tiles to Pyramid) | Still being prepared. Nothing to download yet | — |
 
