@@ -116,7 +116,7 @@ Then run `Extensions > QP-CAT > Setup environment`. One click configures the ful
 ## The data: a synthetic tumor microenvironment
 
 This exercise uses the
-**[TME-QUANT synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data)** is a
+**[multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data)**, a
 small, fully ground-truthed synthetic tumor microenvironment. Download the zip
 (**~14 MB**) from its
 [latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip).
@@ -140,6 +140,28 @@ Why synthetic, for a workshop:
 | 6 cell types | tumor, fibroblast, CD8 T, helper T, B cell, macrophage |
 | Tissue niches | tumor nests, an immune-infiltrated nest boundary, B-cell follicles, stroma |
 | Ground truth | per-cell CSV: type, region, position, morphology, per-marker positivity |
+
+**What you get when you unzip it**
+
+Thirty-four files, and QuPath only wants eight of them:
+
+| Files | How many | What to do with them |
+|---|---|---|
+| `tme_00.tif` ... `tme_07.tif` | 8 | **These are the images.** Drag them into a QuPath project. Everything else is reference material |
+| `tme_NN_groundtruth.csv` | 8 | The answer key: one row per cell, with its true type, region and per-marker positivity. Open in a spreadsheet when you want to check a result |
+| `all_groundtruth.csv` | 1 | The same thing for all eight images in one file |
+| `tme_NN_points.geojson` | 8 | The same cells as QuPath point annotations. `File > Import objects from file...` if you want the truth drawn on the image |
+| `tme_NN_params.json` | 8 | How each image was generated: cell counts per type, niche layout, batch offset |
+| `INSTRUCTIONS.md` | 1 | The dataset's own guide, with the full channel and region tables |
+
+> **Set the image type to Fluorescence.** These are synthetic *fluorescence* images: eight
+> separate marker channels, not RGB. QuPath asks for the image type the first time you open
+> one, and the answer is **Fluorescence**. Get this wrong and the channels are treated as
+> colour components, so channel names, per-channel measurements and cell detection on DAPI
+> all misbehave.
+
+For this exercise you need **one** image, `tme_00.tif`. Parts C and D add `tme_06.tif` and
+`tme_07.tif`. You never have to load all eight unless you want to try batch correction.
 
 > **It is a test fixture, not biology.** Proportions, morphology and intensities were chosen to
 > exercise analysis tools, not to reproduce any real tumor or panel. The *concepts* below are

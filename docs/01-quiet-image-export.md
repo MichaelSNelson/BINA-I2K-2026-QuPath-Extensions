@@ -84,6 +84,8 @@ Both menu items stay greyed out until a project with at least one image is open.
 > (~14 MB) works for every part of this exercise. Its eight-channel images exercise the channel
 > handling that a brightfield slide cannot, and because every cell carries a known type, the
 > label-mask and tile-pair exports have a ground truth you can check the output against.
+> The eight `tme_NN.tif` files are the images; the CSVs and GeoJSON beside them are the
+> answer key. Set the image type to **Fluorescence** when QuPath asks.
 > You will need to detect cells first — the recipe is in the
 > [QP-CAT guide](03-qp-cat-cell-analysis-tools.md#hands-on-exercise-20-min-or-10-for-parts-a-and-b).
 
