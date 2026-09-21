@@ -125,14 +125,17 @@ embedded slide label. **Over 500 MB, so download it before you travel.**
 **Start with this one:** `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`. Its label
 carries printed text, a date **and** a 2D barcode, so it exercises OCR, barcode scanning and a
 mixed template in a single image. It is also the label behind the `@` investigation in
-[what to notice](#what-to-notice) below. The printed text reads roughly:
+[what to notice](#what-to-notice) below. The printed text reads:
 
 ```
-histology@lji.org
-610 TOMO
-2020-11-14
-H&E
+histology@lji.org     <- the lab's contact address
+610 TOMO              <- the specimen identifier: this is the "case ID"
+2020-11-14            <- the date
+H&E                   <- the stain
 ```
+
+Below that text is a square 2D barcode. That is the one step 7 asks you to draw a field
+over.
 
 The other five, if you want more to try:
 
@@ -175,8 +178,11 @@ images down the left side, and batch mode runs over the project. So before anyth
 You are building a template from its label, then applying that template to the whole project —
 so steps 6 to 9 are still one image, and step 10 is where the other five get used.
 
-6. Draw a rectangle over just the region of the label that holds the case ID, set **Decode As**
-   to *Text*, and click **Add Region**. This adds the row without reading it, which is what you
+6. Draw a rectangle over just the part of the label that identifies the specimen. On this
+   label that is the line reading **`610 TOMO`** — not the email address above it, not the
+   date, not the stain. That line is what a pathology lab would call the *case ID*: the
+   identifier that ties this slide to a particular specimen. Set **Decode As** to *Text* and
+   click **Add Region**. This adds the row without reading it, which is what you
    want while laying out a template.
 7. Now work the other way round for the barcode: set **Decode As** to *Barcode*, click
    **Add Field**, and drag its rectangle. This one decodes the moment you finish drawing.
