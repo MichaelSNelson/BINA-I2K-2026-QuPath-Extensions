@@ -89,5 +89,11 @@ for i, names in enumerate(TIERS):
 
 import os
 out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "images", "complexity_ramp.png")
-fig.savefig(os.path.normpath(out), dpi=DPI, transparent=True)
+# TRANSPARENT=False by default. Set it True only if you are pasting onto a
+# coloured slide background and have checked the dark chips still read.
+TRANSPARENT = False
+if not TRANSPARENT:
+    fig.patch.set_facecolor("white"); fig.patch.set_alpha(1.0)
+fig.savefig(os.path.normpath(out), dpi=DPI, transparent=TRANSPARENT,
+            facecolor=("none" if TRANSPARENT else "white"))
 print("wrote", os.path.normpath(out), "| chips:", sum(len(v) for v in TIERS))
