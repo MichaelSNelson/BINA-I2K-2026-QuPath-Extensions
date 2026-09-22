@@ -5,9 +5,9 @@ title: Wizard Wand
 
 # Wizard Wand
 
-> A faster, more forgiving wand. Click and drag like the built-in one, or hold still and let
-> the selection grow. Smoother boundaries, automatic hole filling, and it can teach itself
-> the right settings from one example annotation you draw.
+> **Drag it like a brush.** Hold the button down and sweep across a structure and it keeps
+> adding as you go, instead of one click, one region. Pause mid-drag and the selection keeps
+> growing on its own. Boundaries come out smoother and interior holes are filled for you.
 
 | | |
 |---|---|
@@ -49,16 +49,19 @@ corrections is worth more than it sounds.
 Wizard Wand installs as a **separate toolbar button**. QuPath's built-in wand is untouched:
 you can ignore this one entirely until you want it.
 
-Out of the box it behaves like the built-in wand with two upgrades already on:
+Out of the box it differs from the built-in wand in four ways, all already on:
 
-- small holes inside the selection are **filled automatically** (up to 10,000 px), and
-- the boundary is **lightly smoothed**.
+- **It works as a brush.** Hold the button down and sweep, and it keeps extending the same
+  annotation instead of starting a new selection with every click. This is the one that
+  changes how the tool feels to use.
+- If you **hold the cursor still** mid-drag, the selection keeps growing outward on its own.
+  There is no setting to switch on — pause for about a third of a second and it starts, move
+  again and it stops. Good for a structure with a clear outer edge and a messy interior.
+- Small holes inside the selection are **filled automatically** (up to 10,000 px).
+- The boundary is **lightly smoothed**.
 
-Everything else is off until you turn it on in Preferences:
-
-**Hold-to-grow.** Keep the cursor still and the selection expands on its own, growing
-from the region rather than following a drag. Good for structures with a well-defined edge and a
-messy interior.
+Everything below is optional. The settings are under `Edit > Preferences > Wizard Wand`;
+presets and tuning are on the **right-click menu of the toolbar button**.
 
 **Color-space modes.** How the wand decides "this is the same color as where I clicked":
 
@@ -70,20 +73,43 @@ messy interior.
 | **HSV** | Select by hue regardless of brightness, e.g. all blue nuclei, including dark ones |
 
 **Sensitivity.** How greedy the wand is. Lower stays tight against obvious edges; higher
-swallows bigger uniform regions per click. (Internally `threshold = stddev × sensitivity`.)
+swallows bigger uniform regions per click.
 
-**Auto-tuning.** Draw one annotation the way you want it, then let the wand derive its own
-settings from your example. This is the feature to try first, because it converts "fiddle with four
-sliders" into "show me once."
+**Presets** save you setting it by hand. Right-click the toolbar button → **Presets**:
 
-**Edge stops** and **simplification** are also available in Preferences.
+| Preset | Sensitivity |
+|---|---|
+| Fine | 0.30 |
+| Standard | 1.00 |
+| Broad | 2.00 |
+| Aggressive | 4.00 |
+
+You can also **Save current as preset...** once you find settings that suit your images, and
+they appear in the same menu afterwards.
+
+<details>
+<summary><b>The rest of the settings</b> — edge stops, simplification, and how sensitivity works</summary>
+
+**Sensitivity** sets the tolerance as `threshold = stddev × sensitivity`, measured on the
+region around your click. Note this is the opposite of QuPath's built-in wand, which uses
+`1/sensitivity`; here higher always means a larger selection, in every mode, so the scroll
+wheel and the presets push the same direction.
+
+**Edge stops** (off by default) make the wand respect image gradients, so it is less likely to
+leak through a faint boundary. **Simplification** reduces the number of vertices in the
+resulting polygon, which matters if you are exporting a lot of annotations.
+
+Both are off or neutral by default, and neither is worth touching until the basic wand is
+behaving.
+
+</details>
 
 <details>
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-The sparkle-wand button appears in the toolbar and responds to **Shift+W**. Right-click it for presets, auto-tuning, and reset.
+The sparkle-wand button appears in the toolbar and responds to **Shift+W**. **Right-click the button itself** for presets, tuning and reset — right-clicking the image or a selection gives you QuPath's own menu, not this one.
 
 </details>
 
@@ -101,26 +127,41 @@ The wand is a toolbar tool, not a menu item: once an image is open, press **Shif
 select it.
 
 
-1. Press **Shift+W**. Click and drag on some tissue. Note that it already behaves like the
-   built-in wand, with holes filled and edges smoothed.
-2. Now do the same region with QuPath's built-in wand and compare the boundaries.
-3. Right-click the toolbar button → try a **preset**.
-4. Turn on **hold-to-grow** in Preferences. Click on a structure and *hold still*. Watch it
-   grow to the edge.
-5. Draw one careful annotation of the structure type you actually care about. Then run
-   **auto-tune** from the right-click menu and wand a comparable structure. Compare the
-   result to your hand-drawn one.
-6. Switch the color-space mode to **LAB_DISTANCE** or **GRAY** and re-try a region where RGB
-   struggled.
+1. Press **Shift+W**, then **hold the mouse button down and sweep** across a piece of tissue,
+   the way you would use a brush. Notice it keeps extending the same annotation as you move,
+   rather than making a new selection each click. This is the thing to take away.
+2. Do the same region with QuPath's built-in wand for comparison: one click, one region, and
+   you join them up yourself.
+3. **Mid-drag, stop moving and keep the button down.** The selection carries on growing
+   outward until you move again. Use this when a structure has a clean outer edge but a messy
+   middle — start inside and let it find the edge.
+4. Now try a preset. **Right-click the wand button in the toolbar** — not the image, not your
+   annotation — and pick **Presets > Broad**, then wand the same structure. Then **Fine**.
+   Broad for large uniform areas, Fine when you keep spilling into neighbouring tissue.
+5. Change the color-space mode in `Edit > Preferences > Wizard Wand` and re-try somewhere RGB
+   struggled: **GRAY** when color is irrelevant and only intensity matters, **LAB_DISTANCE**
+   for two stains that are close in color, **HSV** to catch every blue nucleus including the
+   dark ones.
+6. Optional: draw an annotation the way you want it, **leave it selected**, then right-click
+   the toolbar button and choose **Tune wand from selection...**, which tries to derive
+   settings from your example.
+
+   > **Expect little from this one.** It tunes for a *single click* placed inside your
+   > annotation, and almost nobody annotates with single clicks — so the settings it picks
+   > often do not match how the wand behaves when you drag. It is worth knowing about, and
+   > worth a try if presets are not getting you there, but reach for the presets first.
 
 ### What to notice
 
-- Auto-tuning is the headline. Settings derived from your own example beat settings you
-  guessed.
-- Hole filling and smoothing sound cosmetic but change downstream numbers: area
-  measurements, mask exports, and training data all inherit boundary noise.
-- If it ever gets weird, `Reset Wizard Wand preferences` from the right-click menu puts
-  everything back.
+- **Dragging is the whole point.** A wand you can sweep is a different tool from a wand you
+  click, and it is why this exists. If you take one thing away, take that.
+- **Presets beat fiddling.** Four named presets cover most of what the sliders would, and you
+  can save your own once you find settings that suit your slides.
+- **Hole filling and smoothing sound cosmetic but change your numbers.** Area measurements,
+  mask exports and training data all inherit boundary noise, so a tidier boundary is not just
+  nicer to look at.
+- If it ever gets strange, right-click the toolbar button and choose
+  **Reset Wizard Wand preferences**. Your saved presets survive that.
 
 ---
 
