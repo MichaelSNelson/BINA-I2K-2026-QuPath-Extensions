@@ -192,7 +192,24 @@ so steps 10 to 13 are still one image, and step 14 is where the other five get u
    row is re-read in place, each using its own **Decode As** value, so you find out what your
    template will actually produce while it is still cheap to fix.
 13. **Save this as a template** with the field positions, types, and metadata key assignments.
-14. Run **batch processing** with that template across the project.
+14. Run **batch processing** with that template — but **only over slides whose labels share
+    the same layout**. A template is positional: it stores where each field sits on the label.
+    Point it at a differently laid-out label and it reads whatever happens to be at those
+    coordinates, which is usually nothing, and it will not warn you.
+
+    The six slides here are three different layouts (see below), so batch the two
+    `histology@lji_org_610 TOMO` slides together and leave the rest out:
+
+    | Layout | Slides |
+    |---|---|
+    | `histology@lji_org_610 TOMO…` | `...H&E_20201119-1-mip.czi`, `...MT3B_20201119-mipcomp.czi` |
+    | `8443_51000000…` | the three `8443_` files |
+    | `2014_04_08__12_24__0065.czi` | on its own |
+
+    <img src="../images/ocr/label-layouts.png" alt="Two slide labels side by side: one with the case ID on the second line and a barcode lower left, the other in two columns with a QR code top right" width="640">
+
+    This is the real constraint on batch OCR, and it is why the tool saves templates rather than
+    one global setting: **one template per label design**, applied to the slides that use it.
 15. Try a **vocabulary list** for a field with a small known set of valid values, and re-run.
 16. Look through the batch results for a label that was not upright, and confirm orientation
     detection read it anyway. If every label in your run came out upright, this is the step
