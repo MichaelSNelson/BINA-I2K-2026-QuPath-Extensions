@@ -60,25 +60,39 @@ private, and the fiber tools need a long environment build or a Windows-only ser
 
 Each of these you can install and run yourself; see the [extension index](extensions.md).
 
-| Tool | Walkthrough | Video | Exercise takes |
-|---|---|---|---|
-| QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md){: .g-todo} | %%VIDEO_QUIET_IMAGE_EXPORT%% | 15 min |
-| DL Pixel Classifier | [Guide](02-dl-pixel-classifier.md){: .g-todo} | %%VIDEO_DL_PIXEL_CLASSIFIER%% | 15 min |
-| QP-CAT — Cell Analysis Tools | [Guide](03-qp-cat-cell-analysis-tools.md){: .g-todo} | %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%% | 20 min |
-| Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | 10 min |
-| Wizard Wand | [Guide](05-wizard-wand.md){: .g-wip} | %%VIDEO_WIZARD_WAND%% | 10 min |
-| Polyline Wand & Brush | [Guide](06-polyline-wand.md){: .g-wip} | %%VIDEO_POLYLINE_WAND%% | 10 min |
-| Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md){: .g-wip} | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | 10 min |
-| OCR for Labels | [Guide](08-ocr4labels.md){: .g-wip} | %%VIDEO_OCR4LABELS%% | 15 min |
-| Project Metadata Browser | [Guide](09-project-metadata-browser.md){: .g-wip} | %%VIDEO_PROJECT_METADATA_BROWSER%% | 12 min |
-| Class Distribution | [Guide](10-class-distribution.md){: .g-todo} | %%VIDEO_CLASS_DISTRIBUTION%% | 8 min |
-| Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md){: .g-todo} | %%VIDEO_CHANNEL_NAMES_VIEWER%% | 5 min |
-| Dialog Position Manager | [Guide](12-dialog-position-manager.md){: .g-todo} | %%VIDEO_DIALOG_POSITION_MANAGER%% | 5 min |
-| Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md){: .g-wip} | %%VIDEO_TILES_TO_PYRAMID%% | 12 min |
+**Four datasets cover all of them.** The **Data** column says which one a tool needs, so if two
+tools you want share a name, that is one download, not two. Each is linked here once:
 
-Total if you did every one: roughly **2 hours 30 minutes**, which is why the second hour is a
-menu rather than a queue. The [extension index](extensions.md) groups them into four tracks,
-of about fifty minutes each.
+| Data | Download | Size |
+|---|---|---|
+| **Scripting Demo** | [`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY) | 229 MB |
+| **Synthetic** | [`multiplex-synthetic-data-v1.2.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip) | 14 MB |
+| **Demo project** | [`multiplex-synthetic-data-demo-project-v1.2.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip) | 20 MB |
+| **Slide labels** | [`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) | 244 MB |
+
+> **Synthetic** and **Demo project** are not the same download, although they share the same
+> eight images. *Synthetic* is the raw dataset with its ground-truth tables; *Demo project* is a
+> ready-to-open QuPath project built from it, with cells already detected and a trained
+> classifier. If you want both tracks, take both — together they are still under 35 MB.
+
+| Tool | Walkthrough | Video | Data |
+|---|---|---|---|
+| QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md){: .g-todo} | %%VIDEO_QUIET_IMAGE_EXPORT%% | Scripting Demo |
+| DL Pixel Classifier | [Guide](02-dl-pixel-classifier.md){: .g-todo} | %%VIDEO_DL_PIXEL_CLASSIFIER%% | Scripting Demo |
+| QP-CAT — Cell Analysis Tools | [Guide](03-qp-cat-cell-analysis-tools.md){: .g-todo} | %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%% | Synthetic |
+| Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | Synthetic |
+| Wizard Wand | [Guide](05-wizard-wand.md){: .g-wip} | %%VIDEO_WIZARD_WAND%% | Scripting Demo |
+| Polyline Wand & Brush | [Guide](06-polyline-wand.md){: .g-wip} | %%VIDEO_POLYLINE_WAND%% | Scripting Demo |
+| Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md){: .g-wip} | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | Demo project |
+| OCR for Labels | [Guide](08-ocr4labels.md){: .g-wip} | %%VIDEO_OCR4LABELS%% | Slide labels |
+| Project Metadata Browser | [Guide](09-project-metadata-browser.md){: .g-wip} | %%VIDEO_PROJECT_METADATA_BROWSER%% | Slide labels |
+| Class Distribution | [Guide](10-class-distribution.md){: .g-todo} | %%VIDEO_CLASS_DISTRIBUTION%% | Scripting Demo |
+| Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md){: .g-todo} | %%VIDEO_CHANNEL_NAMES_VIEWER%% | Synthetic |
+| Dialog Position Manager | [Guide](12-dialog-position-manager.md){: .g-todo} | %%VIDEO_DIALOG_POSITION_MANAGER%% | *none needed* |
+| Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md){: .g-wip} | %%VIDEO_TILES_TO_PYRAMID%% | *not ready yet* |
+
+The second hour is a menu rather than a queue: take whichever of these you came for. The
+[extension index](extensions.md) groups them into four tracks.
 
 ## Presented tools
 
