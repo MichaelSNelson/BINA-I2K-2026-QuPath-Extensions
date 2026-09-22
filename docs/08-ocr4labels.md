@@ -181,6 +181,12 @@ Here is the label with the two regions the exercise uses marked:
    in 0.4.2, and step 17 is about why.
 8. **Scan.** Review the table: correct the **Text** column where OCR guessed wrong, and set
    sensible **Metadata Key** names.
+
+   Everything you need is on the one strip along the top, boxed in red here. Project images are
+   down the left, the label and its detected boxes in the middle, and the results table below:
+
+   <img src="../images/ocr/dialog-full-scan.png" alt="The OCR for Labels dialog after a Full Image scan, with the top toolbar boxed in red: Scan, Scope, Decode As, Draw Region, Add Region, Clear, Mode, Min Conf, Invert, Enhance. The label shows four detected boxes and the table below lists them" width="820">
+
 9. **Apply.** Confirm the metadata landed on the image (right-click the image in the project
    pane → *Edit metadata*, or use the Metadata Browser).
 
@@ -198,18 +204,29 @@ already on the image and is not affected.
 You are building a template from this one label, then applying it to the slides that share its
 design — so steps 10 to 13 are still one image, and step 14 is where the second slide comes in.
 
-10. Draw a rectangle over just the part of the label that identifies the specimen. On this
-   label that is the line reading **`610 TOMO`** — not the email address above it, not the
-   date, not the stain. That line is what a pathology lab would call the *case ID*: the
-   identifier that ties this slide to a particular specimen. Set **Decode As** to *Text* and
-   click **Add Region**. This adds the row without reading it, which is what you
-   want while laying out a template.
-11. Now work the other way round for the barcode: set **Decode As** to *Barcode*, click
-   **Add Field**, and drag its rectangle. This one decodes the moment you finish drawing.
-12. Before saving anything, set **Scope** to *Drawn Regions* and click **Rescan Regions**. Every
-   row is re-read in place, each using its own **Decode As** value, so you find out what your
-   template will actually produce while it is still cheap to fix.
-13. **Save this as a template** with the field positions, types, and metadata key assignments.
+10. Click **Draw Region** in the toolbar, then drag a box over just the line that identifies
+    the specimen — **`610 TOMO`**, not the email address above it, not the date, not the stain.
+    That line is what a pathology lab would call the *case ID*: the identifier tying this slide
+    to a particular specimen. Right-click inside the box you drew and choose **Scan as Text**.
+
+    <img src="../images/ocr/draw-region-text.png" alt="The dialog with Draw Region boxed in red, a selection drawn around the line 610 TOMO, and the right-click menu open showing Scan (Try Both), Scan as Text, Scan as Barcode, Keep Selection and Clear Selection" width="820">
+
+11. Same again for the barcode: **Draw Region**, drag a box over the square 2D barcode, then
+    right-click and choose **Scan as Barcode**. It decodes immediately, and the row appears
+    underneath the one you just made.
+
+    <img src="../images/ocr/draw-region-barcode.png" alt="A selection drawn around the 2D barcode with the right-click menu open and Scan as Barcode highlighted; the table below already holds the 610 TOMO row" width="820">
+
+12. Before saving anything, set **Scope** to *Drawn Regions* and scan again — the **Scan**
+    button renames itself to **Rescan Regions**. Every row is re-read in place, each using its
+    own **Decode As** value, so you find out what your template will actually produce while it
+    is still cheap to fix.
+13. Give each row a **Metadata Key** you will recognize later: double-click the cell and replace
+    `OCR_region_0` with something like `specimen`, and the barcode row with `barcode`. The
+    **Metadata Preview** at the bottom shows exactly what will be written. Then click
+    **Save Template...**, which stores the field positions, their types, and these key names.
+
+    <img src="../images/ocr/save-template.png" alt="The dialog with Save Template boxed in red. The table holds two rows, 610 TOMO keyed as specimen and the decoded barcode keyed as barcode, and the Metadata Preview below shows both" width="820">
 14. Run **batch processing** with that template — but **only over slides whose labels share
     the same layout**. A template is positional: it stores where each field sits on the label.
     Point it at a differently laid-out label and it reads whatever happens to be at those
