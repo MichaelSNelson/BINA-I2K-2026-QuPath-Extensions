@@ -171,8 +171,11 @@ Here is the label with the two regions the exercise uses marked:
 
 5. With that slide open from Part A, run
    `Extensions > OCR for Labels > Run OCR on Label`.
-6. The dialog lists all project images on the left; select one.
-7. Set **Scope** to *Full Image*, **Decode As** to *Try Both* (barcode first, then OCR), and
+6. The dialog lists all project images on the left. Select the same H&E slide you opened —
+   `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`.
+7. Set **Mode** to *Auto (default)*. **Check this one rather than assuming it** — despite the
+   name, the dropdown may open on *Sparse Text*, which does not read these labels properly.
+   Then set **Scope** to *Full Image*, **Decode As** to *Try Both* (barcode first, then OCR), and
    leave **Min Conf** at its default. *Try Both* matters here, because these labels carry text and a
    barcode, and you want whichever is more reliable per region. **Check that Enhance is unticked**. It is off by default
    in 0.4.2, and step 17 is about why.
@@ -183,9 +186,17 @@ Here is the label with the two regions the exercise uses marked:
 
 ### Part C: a template, then the whole project
 
-**Stay on the same slide** you used in Part A, `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`.
-You are building a template from its label, then applying that template to the whole project —
-so steps 10 to 13 are still one image, and step 14 is where the matching slides get used.
+**Same slide, empty table.** Stay on `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` —
+you are not starting the project or the scan over.
+
+But clear the table before you begin: click **Clear All** underneath it. Part B's *Full Image*
+scan left a row for every piece of text it found, and a template is saved from **everything in
+the table**, not just the regions you draw. Skip this and those rows go into your template too,
+which is not what you want and is not obvious afterwards. The metadata you applied in step 9 is
+already on the image and is not affected.
+
+You are building a template from this one label, then applying it to the slides that share its
+design — so steps 10 to 13 are still one image, and step 14 is where the second slide comes in.
 
 10. Draw a rectangle over just the part of the label that identifies the specimen. On this
    label that is the line reading **`610 TOMO`** — not the email address above it, not the
