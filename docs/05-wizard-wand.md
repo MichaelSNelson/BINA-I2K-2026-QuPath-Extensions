@@ -60,6 +60,11 @@ Out of the box it differs from the built-in wand in four ways, all already on:
 - Small holes inside the selection are **filled automatically** (up to 10,000 px).
 - The boundary is **lightly smoothed**.
 
+> **To add to an annotation you already have, select it first.** The wand extends whatever is
+> currently selected. With nothing selected it quietly starts a **new** annotation instead —
+> which is the usual reason someone reports that it "did not work on" an existing one. Click
+> the annotation so it highlights, then wand. Erasing needs the selection too.
+
 Everything below is optional. The settings are under `Edit > Preferences > Wizard Wand`;
 presets and tuning are on the **right-click menu of the toolbar button**.
 

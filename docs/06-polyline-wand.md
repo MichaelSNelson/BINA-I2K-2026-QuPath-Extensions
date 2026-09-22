@@ -41,6 +41,16 @@ installed them, so match the icon rather than the position:
 
 ---
 
+> ## Select the line first — nothing works without it
+>
+> **Every** action here acts on the *currently selected* annotation: pushing, smoothing,
+> erasing from an endpoint, and the cut. If nothing is selected, or the selected thing is not
+> a line or polyline, or it is locked, the tool **does nothing at all** — no new annotation,
+> no error, no message. It looks exactly like a broken extension.
+>
+> So: click your polyline to select it, *then* use the tool. If a stroke
+> seems to do nothing, check the selection before anything else.
+
 ## Why this exists
 
 Four situations, all of which currently mean "delete it and start over":
@@ -128,7 +138,8 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 Like the Wizard Wand this is a toolbar tool: with an image open, press **Shift+P**.
 
 
-1. Draw a long polyline along a tissue boundary with QuPath's normal polyline tool. Deliberately
+1. Draw a long polyline along a tissue boundary with QuPath's normal polyline tool, then
+   **click it to select it** — everything below needs it selected. Deliberately
    overshoot the end.
 2. Press **Shift+P**. Start a stroke *near the overshot endpoint* and the line erases backwards.
 3. Find a section where your trace cuts a corner. Push it outward with the default engine.
