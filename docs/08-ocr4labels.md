@@ -209,8 +209,7 @@ so steps 10 to 13 are still one image, and step 14 is where the matching slides 
 
     You built your template on the brightfield H&E slide, so **run the batch over the two
     brightfield slides only** — the one you just did, plus its `MT3B` partner. Leave the two IF
-    slides out. Two slides is enough to see batch mode work; the point is the grouping, not the
-    count.
+    slides out.
 
     <img src="../images/ocr/label-layouts.png" alt="Two slide labels side by side: one with the case ID on the second line and a barcode lower left, the other in two columns with a QR code top right" width="640">
 
