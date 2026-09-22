@@ -74,13 +74,26 @@ the part that is wrong** — which is the situation the extension exists for.
 
 ### What you need
 
-**Data:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
-**[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** (20 MB).
-A ready-made QuPath project: eight synthetic multiplexed images, cells already detected, one
-saved object classifier, and — unusually — **ground truth**, so you can check whether you got
-the right answer.
+**Data — one download, everything included.**
+`multiplex-synthetic-data-demo-project-v1.2.zip`,
+**[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)**
+(20 MB). This is a **ready-made QuPath project**, not a loose pile of files — you unzip it and
+open it as a project. Inside:
 
-Unzip it anywhere. Work on **`tme_00.tif`**, and use that one image throughout.
+- `images/` — eight synthetic 8-channel multiplexed images (`tme_00.tif` … `tme_07.tif`)
+- **cells already detected** on every image, with measurements — you do **not** run cell
+  detection yourself
+- **ground truth**: one classified point per cell, so you can check whether you got the right
+  answer. A training dataset with ground truth is unusual, and it is the whole reason this one
+  exists
+- a **trained object classifier**, `cell_type_classifier`, in `classifiers/object_classifiers/`
+- a `scripts/` folder of helper scripts (one is used below)
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)). Nothing else — no
+server, no GPU, no internet once the zip is downloaded.
+
+Unzip it anywhere you like. **Work on `tme_00.tif`, and use that one image throughout.**
 
 > **Use `tme_00`, not whichever image opens first.** The eight images are deliberately
 > different. `tme_07` is an immune-poor variant with **no B cells at all**, and `tme_06` is
@@ -90,7 +103,7 @@ Unzip it anywhere. Work on **`tme_00.tif`**, and use that one image throughout.
 `tme_00` contains **1,530 cells**. The ground truth says exactly **412 of them are tumor
 cells**. Hold on to that number — you are going to measure it twice.
 
-### Step 0: open the project
+### Set up the project
 
 1. Start QuPath. `File > Project... > Open project`, and pick the **`project.qpproj`** file
    inside the unzipped folder.
@@ -103,6 +116,33 @@ cells**. Hold on to that number — you are going to measure it twice.
 You should see cells outlined, and a scatter of small colored dots. The dots are the
 **ground truth** — one per cell, colored by what that cell really is. The cells themselves
 start out **unclassified**.
+
+### Getting oriented: where things are in QuPath
+
+A quick map of what you are looking at and where the tools live, before the exercise starts.
+
+- **Project browser — left panel.** Your eight images as thumbnails. Double-click one to open
+  it; the open image is highlighted. Stay on **`tme_00.tif`**.
+- **Viewer — center.** The image itself, with two kinds of object drawn on top of it:
+  - **Cells** are *detections* — the outlines. They start **unclassified** (no fill color).
+  - The **colored dots** are *annotations* — the ground truth, one per cell, colored by the
+    cell's true type. They are reference only; you never edit them.
+
+  This detection-vs-annotation split is the single most important thing to hold onto: this
+  extension, like every cell classifier, acts on **detections**, not annotations (see the note
+  above and the [glossary](glossary.md)).
+- **Analysis panel — left, tabs above the browser.** The **Annotations** tab lists the classes
+  present and their counts; the **Hierarchy** tab shows the object tree. After you classify,
+  the class counts here are the fastest way to see what happened.
+- **Brightness & contrast.** These are 8-channel fluorescence images; they display correctly
+  with no setup, but the Brightness/Contrast dialog (in the toolbar) lets you turn channels on
+  and off if you want to see, say, PanCK alone.
+- **The extension:** `Extensions > Classify Object Subset > Apply Classification to Subset...`.
+- **Scripts:** `Automate > Script editor`, then `File > Open...` a `.groovy` and click **Run**.
+  The project's `scripts/` folder holds the helpers, and one script is downloaded in Part A.
+- **The log** (`View > Show log`) is where scripts print their results — counts and accuracy.
+- **Workflow history** (`Automate > Show workflow command history`) records every operation you
+  run, including each Apply, which is what lets you turn the session into a script in Part E.
 
 ### Part A: make a mistake worth fixing
 

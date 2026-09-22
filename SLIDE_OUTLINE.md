@@ -138,3 +138,20 @@ not slides. The deck's job is to frame each segment and then get out of the way.
   still empty), so capture them once and use them in both.
 - Two safety measures worth the effort: a **recorded fallback** for the QPSC demo, and a
   static screenshot behind every ▶ slide.
+
+---
+
+## Companion deck — Confusion Matrix demo
+
+A standalone, focused deck for the Confusion Matrix segment (or a spare talk) is built by
+`build_confusion_matrix_demo.js`, same house style as the main deck:
+
+```
+NODE_PATH=/home/msnelson/MicroscopyEducation/LOCI/node_modules node build_confusion_matrix_demo.js
+```
+
+Output: `I2K_2026_Confusion_Matrix_Demo.pptx` (9 slides). The amber LIVE DEMO slides carry a
+dashed placeholder for a live screenshot of the extension window; the matrix figure is a real
+confusion matrix on the workshop demo data (`images/confusion-matrix/matrix.png`, regenerate
+with `tools/cell-phantom-creation` + the dataset's `make_figs.py`). Content mirrors
+`docs/presented/confusion-matrix.md`.
