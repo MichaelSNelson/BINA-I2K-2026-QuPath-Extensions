@@ -186,12 +186,5 @@ server requirement. If you want to use it, ask us during the session and we will
 
 ---
 
-## Going further
-
-Pairs naturally with the [DL Pixel Classifier](../02-dl-pixel-classifier.md), where an accuracy
-number with an interval is what makes "the deep model is better" a claim rather than an
-impression, and with [Class Distribution](../10-class-distribution.md), which shows the class
-imbalance that produced those wide intervals in the first place.
-
 **Full documentation:** the
 [repository README](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension#readme).
