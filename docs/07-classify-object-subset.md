@@ -95,10 +95,10 @@ cells**. Hold on to that number — you are going to measure it twice.
 
 1. Start QuPath. `File > Project... > Open project`, and pick the **`project.qpproj`** file
    inside the unzipped folder.
-2. **QuPath will tell you it cannot find the images.** This is expected and it is not your
-   fault — do not re-download or re-unzip. Go to `File > Project... > Check project URIs`.
-   In the **Update URIs** dialog, click **Search...**, choose the folder you unzipped, and
-   QuPath will find the images inside it.
+2. **If QuPath says it cannot find the images**, it is not your fault and you do not need to
+   re-download or re-unzip. Go to `File > Project... > Check project URIs`. In the **Update
+   URIs** dialog click **Search...**, choose the folder you unzipped, and QuPath will find the
+   images inside it. If the project opens without complaining, skip to step 3.
 3. In the project list on the left, double-click **`tme_00.tif`** to open it.
 
 You should see cells outlined, and a scatter of small colored dots. The dots are the
