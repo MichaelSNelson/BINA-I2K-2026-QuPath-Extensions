@@ -74,9 +74,11 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
 > *measurement* are explained in the [glossary](glossary.md).
 
-## Hands-on exercise (~5 min)
+## Hands-on exercise
+**Data:** none needed — this is the one tool here that does not care what is on screen.
+Have any image open, though, since several QuPath dialogs will not open without one.
 
-**Data:** none needed.
+The manager is at `Window > Dialog Position Manager...`, not under `Extensions`.
 
 1. Open two or three QuPath dialogs (brightness/contrast, the script editor, and one of
    today's extension dialogs). Arrange them where you like.

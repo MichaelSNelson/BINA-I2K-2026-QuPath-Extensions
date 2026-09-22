@@ -71,9 +71,14 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
 > *measurement* are explained in the [glossary](glossary.md).
 
-## Hands-on exercise (~8 min)
+## Hands-on exercise
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
+**Before you start.** Unzip `Scripting Demo.zip`. In QuPath, `File > Project > Open project` and pick the unzipped folder — it is already a project. Double-click the **CMU-1 H&E** slide in the project list to open it.
+
+This one reads the whole project, not just the open image, so keep the project open rather
+than a loose file. The extension is at `Extensions > Class Distribution`.
+
 
 1. `Extensions > Class Distribution`. Open the **annotation** distribution dialog.
 2. Look at the **Project** tab, then the **All images** grid. Which slide is the outlier?

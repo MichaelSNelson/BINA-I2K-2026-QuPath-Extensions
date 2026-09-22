@@ -103,8 +103,7 @@ Also listed in the QPSC microscope catalog, but it needs no microscope, so the m
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
 > *measurement* are explained in the [glossary](glossary.md).
 
-## Hands-on exercise (~12 min)
-
+## Hands-on exercise
 **Data:** `DATA-04_tiles`, a directory of tiles with a `TileConfiguration.txt`.
 
 > ⚠️ **This one is not ready to download yet.** Every other track links straight to its
@@ -121,6 +120,13 @@ blur. Smeared spots and soft filaments on the left, crisp on the right. Steps 3 
 you to make this comparison on your own data (see below).
 
 <img src="../images/tiles-to-pyramid/stitch_if_nominal.jpg" alt="A join between two tiles placed at the recorded stage positions; the cells look slightly blurred and doubled" width="330"> <img src="../images/tiles-to-pyramid/stitch_if_registered.jpg" alt="The same join with the tiles placed at measured positions; the cells are sharp" width="330">
+
+**Before you start.** This is the one tool here that runs *before* you have a project:
+it reads a folder of tiles off disk and writes a single image. So there is nothing to open
+first — point it at the tile folder, and open the result afterwards.
+
+The extension is at `Extensions > Tiles to Pyramid`.
+
 
 1. `Extensions > Tiles to Pyramid`.
 2. Point it at the tile directory, choose the **TileConfiguration.txt** strategy, output

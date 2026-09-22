@@ -89,8 +89,7 @@ If you want to use it, ask us during the session and we will sort out access.
 
 ---
 
-## What the demo shows (~5 min)
-
+## What the demo shows
 Using a project with cells detected, classified, and ground-truth point annotations placed on a
 subset:
 

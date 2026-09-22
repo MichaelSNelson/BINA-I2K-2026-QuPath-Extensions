@@ -80,11 +80,18 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
 > *measurement* are explained in the [glossary](glossary.md).
 
-## Hands-on exercise (~12 min)
-
+## Hands-on exercise
 **Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) (**244 MB**) after you have run the
 [OCR exercise](08-ocr4labels.md), or open
 [`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) (244 MB) and use the metadata already in it.
+
+**Before you start.** Easiest is to carry on with the project you built in the
+[OCR exercise](08-ocr4labels.md), which already has metadata on it. Starting fresh: unzip
+`OCR_Test_Images_LJI.zip`, then `File > Project > Create project...`, choose an empty folder,
+and drag the four `.czi` files in.
+
+The extension is at `Extensions > Project Metadata Browser > Browse Metadata...`.
+
 
 1. `Extensions > Project Metadata Browser > Browse Metadata...`
 2. Click **Fit Columns**. Use the **Columns** menu to hide everything except Name and your

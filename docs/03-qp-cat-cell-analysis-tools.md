@@ -175,8 +175,7 @@ For this exercise you need **one** image, `tme_00.tif`. Parts C and D add `tme_0
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
 > *measurement* are explained in the [glossary](glossary.md).
 
-## Hands-on exercise (~20 min, or ~10 for parts A and B)
-
+## Hands-on exercise
 **Setup (do once).** Create a QuPath project and add `tme_00.tif`. Set the image type to
 **Fluorescence** if prompted. Add a rectangle covering the whole image, then run
 `Analyze > Cell detection` on the **DAPI** channel.
@@ -192,8 +191,7 @@ Other settings that work: requested pixel size 0.5 µm, sigma 1.5 µm, minimum a
 maximum 1000 µm², threshold 50, cell expansion 5 µm, include nuclei and measurements. You
 should detect close to 1,530 cells.
 
-### Part A: recover the cell types (~6 min)
-
+### Part A: recover the cell types
 *Concept: cell identity from marker combinations, and what "resolution" costs you.*
 
 1. `Extensions > QP-CAT`, confirm the environment is ready.
@@ -216,8 +214,7 @@ should detect close to 1,530 cells.
 5. Compare against `tme_00_groundtruth.csv`. Every cell's true type is in the `cell_type`
    column.
 
-### Part B: is the tumor infiltrated? (~6 min)
-
+### Part B: is the tumor infiltrated?
 *Concept: immune infiltration at the invasive margin.*
 
 Cell types alone do not tell you much. **Where** they sit does. In this image, T cells are
@@ -242,8 +239,7 @@ pathologist's read on whether an immune response has reached the tumor.
 10. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
     statistic says.
 
-### Part C: inflamed versus desert (~8 min)
-
+### Part C: inflamed versus desert
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
 
 Add **`tme_06`** (immune-rich) and **`tme_07`** (immune-poor) to the project, detect cells in

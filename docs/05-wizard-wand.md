@@ -92,9 +92,14 @@ The sparkle-wand button appears in the toolbar and responds to **Shift+W**. Righ
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
 > *measurement* are explained in the [glossary](glossary.md).
 
-## Hands-on exercise (~10 min)
+## Hands-on exercise
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)).
+**Before you start.** Unzip `Scripting Demo.zip`. In QuPath, `File > Project > Open project` and pick the unzipped folder — it is already a project. Double-click the **CMU-1 H&E** slide in the project list to open it.
+
+The wand is a toolbar tool, not a menu item: once an image is open, press **Shift+W** to
+select it.
+
 
 1. Press **Shift+W**. Click and drag on some tissue. Note that it already behaves like the
    built-in wand, with holes filled and edges smoothed.

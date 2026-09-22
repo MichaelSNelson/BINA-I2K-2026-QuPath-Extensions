@@ -74,12 +74,18 @@ If the toolbar button, menu entry or shortcut are not there yet, restart QuPath.
 
 ---
 
-## Try it yourself (~5 min)
-
+## Try it yourself
 **Data:** any 8-channel image from the synthetic tumor-microenvironment dataset
 (~14 MB from [GitHub](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip)), or `DATA-02_multiplex_IF`. The synthetic images carry
 real channel names (DAPI, PanCK, Ki67, aSMA, CD3, CD8, CD20, CD68), so the legend has
 something meaningful to show.
+
+**Before you start.** Unzip the dataset. In QuPath, `File > Project > Create project...`,
+choose an empty folder, then drag in **`tme_00.tif`** (any of the eight will do). Set the
+image type to **Fluorescence** if prompted, and double-click it to open it.
+
+The legend is toggled with **Ctrl+Shift+C**, or the channel-bars toolbar button.
+
 
 1. Open the multiplex image. Press **Ctrl+Shift+C** (or click the channel-bars toolbar button
    next to brightness/contrast).

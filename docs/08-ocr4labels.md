@@ -111,33 +111,20 @@ Barcode scanning works immediately with no setup — that reader is built in.
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
 > *measurement* are explained in the [glossary](glossary.md).
 
-## Hands-on exercise (~15 min)
+## Hands-on exercise
+
+You are going to read the printed label off a slide file, correct what the reader got
+wrong, save that layout as a template, and then run it over a second slide without
+retyping anything.
 
 **Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS): four CZI whole-slide images from LJI, each carrying an
-embedded slide label. **Over 500 MB, so download it before you travel.**
+embedded slide label. **244 MB, so download it before you travel.**
 
 > **Why it is not a folder of small PNGs.** The label lives *inside* the slide file, as an
 > attachment alongside the pixel data. The extension pulls it out of the WSI. Hand it a
 > screenshot of a label and there is nothing for it to read, because the thing it reads is the
 > slide. That is the whole point of the tool: the information is already in the file you were
 > given.
-
-**Start with this one:** `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`. Its label
-carries printed text, a date **and** a 2D barcode, so it exercises OCR, barcode scanning and a
-mixed template in a single image. It is also the label behind the `@` investigation in
-[what to notice](#what-to-notice) below. The printed text reads:
-
-```
-histology@lji.org     <- the lab's contact address
-610 TOMO              <- the specimen identifier: this is the "case ID"
-2020-11-14            <- the date
-H&E                   <- the stain
-```
-
-Below that text is a square 2D barcode. That is the one step 11 asks you to draw a field over.
-Here is the label with the two regions the exercise uses marked (see below):
-
-<img src="../images/ocr/label-regions.png" alt="The slide label with a box around the line reading 610 TOMO, marked as the case ID for step 6, and a box around the 2D barcode, marked for step 7" width="680">
 
 **These four slides are two different label designs, two slides each.** That matters more than
 it sounds: a template records *where* each field sits, so one built on a brightfield label reads
@@ -151,7 +138,7 @@ for you to repeat on.
 | `8443_51000000_02_IF_2022-11-18-mip.czi` | 138 MB | **IF** — the on-your-own pair |
 | `8443_51000000_12_IF_2022-11-18-mipcomp.czi` | 91 MB | **IF** — the on-your-own pair |
 
-### Part A: make a project
+### Part A: get the data and make a project
 
 The extension works on a QuPath **project**, not on a loose file — its dialog lists project
 images down the left side, and batch mode runs over the project. So before anything else:
@@ -162,7 +149,25 @@ images down the left side, and batch mode runs over the project. So before anyth
 4. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` in the project list to
    open it.
 
-### Part B: one slide
+### Part B: read one label
+
+Now look at the label on the slide you just opened. It
+carries printed text, a date **and** a 2D barcode, so it exercises OCR, barcode scanning and a
+mixed template in a single image. It is also the label behind the `@` investigation in
+[what to notice](#what-to-notice) below. The printed text reads:
+
+```
+histology@lji.org     <- the lab's contact address
+610 TOMO              <- the specimen identifier: this is the "case ID"
+2020-11-14            <- the date
+H&E                   <- the stain
+```
+
+Below that text is a square 2D barcode. That is the one step 11 asks you to draw a field over.
+Here is the label with the two regions the exercise uses marked:
+
+<img src="../images/ocr/label-regions.png" alt="The slide label with a box around the line reading 610 TOMO, marked as the case ID for step 6, and a box around the 2D barcode, marked for step 7" width="680">
+
 
 5. With that slide open from Part A, run
    `Extensions > OCR for Labels > Run OCR on Label`.
@@ -226,8 +231,7 @@ so steps 10 to 13 are still one image, and step 14 is where the matching slides 
     detection read it anyway. If every label in your run came out upright, this is the step
     `osd.traineddata` exists for — rotate one yourself and re-run to see it work.
 
-### Part D: the two-minute experiment worth doing (~2 min)
-
+### Part D: the two-minute experiment worth doing
 17. Go back to the `histology@lji.org` label. Tick
     **Enhance**, set **Scope** to *Drawn Regions*, and **Rescan Regions**. Compare against the
     unenhanced read.

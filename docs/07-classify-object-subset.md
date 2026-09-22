@@ -68,8 +68,7 @@ and it is the one with multiple measurement thresholds and class checkboxes.
 
 ---
 
-## Try it yourself (~15 min)
-
+## Try it yourself
 The point of this exercise is to **make a classification mistake on purpose, then repair only
 the part that is wrong** — which is the situation the extension exists for.
 

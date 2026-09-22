@@ -98,9 +98,13 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
 > *measurement* are explained in the [glossary](glossary.md).
 
-## Hands-on exercise (~15 min)
+## Hands-on exercise
+**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB; see [setup](setup.md#5-download-the-workshop-data)), plus the pre-trained model (link to follow).
 
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB) (~500 MB; see [setup](setup.md#5-download-the-workshop-data)), plus the pre-trained model (link to follow).
+**Before you start.** Unzip `Scripting Demo.zip`. In QuPath, `File > Project > Open project` and pick the unzipped folder — it is already a project. Double-click the **CMU-1 H&E** slide in the project list to open it.
+
+The extension is at `Extensions > DL Pixel Classifier`.
+
 
 1. `Extensions > DL Pixel Classifier`. Open the extension and confirm the Python environment
    reports as ready.
