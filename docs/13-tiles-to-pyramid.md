@@ -101,7 +101,8 @@ Also listed in the QPSC microscope catalog, but it needs no microscope, so the m
 ---
 
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
-> *measurement* are explained in the [glossary](glossary.md).
+> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
+> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
 ## Hands-on exercise
 **Data:** `DATA-04_tiles`, a directory of tiles with a `TileConfiguration.txt`.

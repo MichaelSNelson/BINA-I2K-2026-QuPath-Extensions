@@ -9,6 +9,11 @@ Every guide here was written by someone who uses QuPath daily, and it shows: a d
 up with no explanation. This page defines them once, in plain language. Nothing here is specific
 to our extensions — it is ordinary QuPath vocabulary.
 
+> **This is a quick reference, not the real documentation.** For anything about QuPath itself —
+> how a feature works, what a setting does, why something behaves the way it does — go to the
+> **[official QuPath documentation](https://qupath.readthedocs.io/en/stable/)**. It is thorough, maintained by the people who write
+> QuPath, and will always be more complete and more current than this page.
+
 ## Getting an image open
 
 | Word | What it means |

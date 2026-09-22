@@ -8,7 +8,7 @@ title: Acknowledgements
 ## Sample data
 
 The workshop's datasets come from several sources. **The slide-label images were provided by
-Sara McArdle and Zbigniew Mikulski at the La Jolla Institute for Immunology (LJI)**: six
+Sara McArdle and Zbigniew Mikulski at the [La Jolla Institute for Immunology](https://www.lji.org/research/research-services/microscopy-histology/) (LJI)**: four
 whole-slide images carrying real labels, which is what the OCR for Labels and Project Metadata
 Browser exercises are built on.
 
@@ -46,7 +46,8 @@ is CC0, so reuse it freely; the public images carry their own original terms.
 ## QuPath
 
 **Pete Bankhead** and the QuPath team. None of this exists without QuPath, and its extension
-mechanism is what makes a suite like this possible at all.
+mechanism is what makes a suite like this possible at all. If QuPath contributed to your
+work, please **[cite it](https://qupath.readthedocs.io/en/stable/docs/intro/citing.html)**:
 
 > Bankhead P, Loughrey M B, Fernández J A, *et al.* (2017). *QuPath: Open source software for
 > digital pathology image analysis.* **Scientific Reports** 7:16878.
