@@ -128,7 +128,7 @@ ready.
 > You will have to build the project and detect cells yourself, so the folder is the faster route.
 
 > ### ⚠️ The label-slide zip is over 500 MB
-> It is six whole-slide CZI files, and the label image only exists *inside* the slide file, which
+> It is five whole-slide CZI files, and the label image only exists *inside* the slide file, which
 > is why it cannot be a folder of small PNGs. **Download it at home**, and only if you are doing
 > the OCR / metadata track. It is the largest thing any track here needs; `Scripting Demo.zip`
 > is 229 MB and the synthetic set is 14 MB.

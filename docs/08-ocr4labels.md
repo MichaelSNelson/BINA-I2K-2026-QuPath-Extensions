@@ -113,7 +113,7 @@ Barcode scanning works immediately with no setup — that reader is built in.
 
 ## Hands-on exercise (~15 min)
 
-**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX): six CZI whole-slide images from LJI, each carrying an
+**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX): five CZI whole-slide images from LJI, each carrying an
 embedded slide label. **Over 500 MB, so download it before you travel.**
 
 > **Why it is not a folder of small PNGs.** The label lives *inside* the slide file, as an
@@ -139,7 +139,7 @@ Here is the label with the two regions the exercise uses marked (see below):
 
 <img src="../images/ocr/label-regions.png" alt="The slide label with a box around the line reading 610 TOMO, marked as the case ID for step 6, and a box around the 2D barcode, marked for step 7" width="680">
 
-The other five, if you want more to try:
+The other four, if you want more to try:
 
 | File | Size |
 |---|---|
@@ -147,7 +147,6 @@ The other five, if you want more to try:
 | `8443_51000000_02_IF_2022-11-18-mip.czi` | 138 MB |
 | `8443_51000000_12_IF_2022-11-18-mipcomp.czi` | 91 MB |
 | `8443_51000000_12_IF_2022-11-18-mipcompczi.czi` | 113 MB |
-| `2014_04_08__12_24__0065.czi` | 168 MB |
 
 ### Part A: make a project
 
@@ -178,7 +177,7 @@ images down the left side, and batch mode runs over the project. So before anyth
 
 **Stay on the same slide** you used in Part A, `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`.
 You are building a template from its label, then applying that template to the whole project —
-so steps 10 to 13 are still one image, and step 14 is where the other five get used.
+so steps 10 to 13 are still one image, and step 14 is where the matching slides get used.
 
 10. Draw a rectangle over just the part of the label that identifies the specimen. On this
    label that is the line reading **`610 TOMO`** — not the email address above it, not the
@@ -197,14 +196,16 @@ so steps 10 to 13 are still one image, and step 14 is where the other five get u
     Point it at a differently laid-out label and it reads whatever happens to be at those
     coordinates, which is usually nothing, and it will not warn you.
 
-    The six slides here are three different layouts (see below), so batch the two
-    `histology@lji_org_610 TOMO` slides together and leave the rest out:
+    The slides here fall into two sets, and they happen to split by modality — the brightfield
+    slides came off one labelling system, the IF ones off another (see below):
 
-    | Layout | Slides |
-    |---|---|
-    | `histology@lji_org_610 TOMO…` | `...H&E_20201119-1-mip.czi`, `...MT3B_20201119-mipcomp.czi` |
-    | `8443_51000000…` | the three `8443_` files |
-    | `2014_04_08__12_24__0065.czi` | on its own |
+    | Set | Slides | Label design |
+    |---|---|---|
+    | **Brightfield** | `histology@lji_org_610 TOMO…H&E…`, `…MT3B…` | Case ID on line 2, barcode lower-left |
+    | **IF** | the three `8443_51000000…` files | Two columns, QR top-right, date lower-right |
+
+    Batch within a set, not across. Build your template on one of the brightfield labels and
+    run it over both of those; build a second template if you want the IF ones.
 
     <img src="../images/ocr/label-layouts.png" alt="Two slide labels side by side: one with the case ID on the second line and a barcode lower left, the other in two columns with a QR code top right" width="640">
 
@@ -222,6 +223,11 @@ so steps 10 to 13 are still one image, and step 14 is where the other five get u
     unenhanced read.
 
 ### What to notice
+
+- **A template is positional, so it belongs to one label design.** Batch it over slides laid
+  out differently and it reads whatever sits at those coordinates, usually nothing, without
+  complaining. Grouping slides by label design is the real unit of work in a batch OCR run,
+  and it is why the tool saves templates rather than one global setting.
 
 - Region templates beat full-image OCR by a wide margin when labels are laid out consistently
   which, within one institution, they nearly always are.
