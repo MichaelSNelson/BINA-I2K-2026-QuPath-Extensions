@@ -139,13 +139,17 @@ Here is the label with the two regions the exercise uses marked (see below):
 
 <img src="../images/ocr/label-regions.png" alt="The slide label with a box around the line reading 610 TOMO, marked as the case ID for step 6, and a box around the 2D barcode, marked for step 7" width="680">
 
-The other three, if you want more to try:
+**These four slides are two different label designs, two slides each.** That matters more than
+it sounds: a template records *where* each field sits, so one built on a brightfield label reads
+nothing useful on an IF one. You will work through the brightfield pair, and the IF pair is left
+for you to repeat on.
 
-| File | Size | Modality |
+| File | Size | Label design |
 |---|---|---|
-| `histology@lji_org_610 TOMO___MT3B_20201119-mipcomp.czi` | 11 MB | Brightfield |
-| `8443_51000000_02_IF_2022-11-18-mip.czi` | 138 MB | IF |
-| `8443_51000000_12_IF_2022-11-18-mipcomp.czi` | 91 MB | IF |
+| `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` | 83 MB | **Brightfield** — start here |
+| `histology@lji_org_610 TOMO___MT3B_20201119-mipcomp.czi` | 11 MB | **Brightfield** — batched in step 14 |
+| `8443_51000000_02_IF_2022-11-18-mip.czi` | 138 MB | **IF** — the on-your-own pair |
+| `8443_51000000_12_IF_2022-11-18-mipcomp.czi` | 91 MB | **IF** — the on-your-own pair |
 
 ### Part A: make a project
 
@@ -203,13 +207,21 @@ so steps 10 to 13 are still one image, and step 14 is where the matching slides 
     | **Brightfield** | `histology@lji_org_610 TOMO…H&E…`, `…MT3B…` | Case ID on line 2, barcode lower-left |
     | **IF** | the two `8443_51000000…` files | Two columns, QR top-right, date lower-right |
 
-    Batch within a set, not across. Build your template on one of the brightfield labels and
-    run it over both of those; build a second template if you want the IF ones.
+    You built your template on the brightfield H&E slide, so **run the batch over the two
+    brightfield slides only** — the one you just did, plus its `MT3B` partner. Leave the two IF
+    slides out. Two slides is enough to see batch mode work; the point is the grouping, not the
+    count.
 
     <img src="../images/ocr/label-layouts.png" alt="Two slide labels side by side: one with the case ID on the second line and a barcode lower left, the other in two columns with a QR code top right" width="640">
 
     This is the real constraint on batch OCR, and it is why the tool saves templates rather than
     one global setting: **one template per label design**, applied to the slides that use it.
+
+    > **On your own: the IF pair.** The two `8443_51000000` slides are the other label design.
+    > Nothing you have built so far applies to them — the template you saved knows where fields
+    > sit on the *brightfield* label. Start again from step 10 on one of them, save a second
+    > template, and batch it over the two. That is the whole workflow in miniature, and it is
+    > what you would do on arriving at a new set of slides from a different lab.
 15. Try a **vocabulary list** for a field with a small known set of valid values, and re-run.
 16. Look through the batch results for a label that was not upright, and confirm orientation
     detection read it anyway. If every label in your run came out upright, this is the step
