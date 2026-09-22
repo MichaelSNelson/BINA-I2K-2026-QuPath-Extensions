@@ -19,7 +19,7 @@ const WHITE     = 'FFFFFF';
 const HEAD = 'Trebuchet MS';
 const BODY = 'Calibri';
 const URL  = 'michaelsnelson.github.io/BINA-I2K-2026-QuPath-Extensions';
-const PADLET = '%%PADLET_URL%%';   // replace before presenting
+const PADLET = 'https://padlet.com/imagescientistwebsite/qupath-workshop-questions-ovrlzqdphnojda44';
 
 const W = 13.33, H = 7.5, M = 0.62;
 

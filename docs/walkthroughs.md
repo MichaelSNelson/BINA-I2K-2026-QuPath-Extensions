@@ -20,7 +20,7 @@ Nothing depends on being in the room when a particular tool comes up.
 We will spend the live time on whatever the room actually cares about. Vote before or during the
 session:
 
-### %%PADLET_URL%%
+### [Vote on the Padlet →](https://padlet.com/imagescientistwebsite/qupath-workshop-questions-ovrlzqdphnojda44)
 
 Vote for as many as you like, and add a comment if you have a specific question or a dataset
 you are stuck on. A few slots are already fixed: QPSC, the Confusion Matrix and the fiber tools

@@ -137,7 +137,7 @@ generation, so the plateau is unverified past 144.
 
 ## Walkthrough videos and Padlet
 
-- [ ] Create the Padlet and replace `%%PADLET_URL%%` (appears on the walkthroughs page and on
+- [x] Create the Padlet and replace `%%PADLET_URL%%` (appears on the walkthroughs page and on
       slide 6 of the deck). Set it to allow multiple votes plus comments
 - [ ] Record one video per tool, following the written walkthrough step for step so viewers can
       switch between them without losing their place. 16 videos, 5–20 min each
