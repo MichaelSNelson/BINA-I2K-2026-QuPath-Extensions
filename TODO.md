@@ -112,13 +112,11 @@ generation, so the plateau is unverified past 144.
 
           grep -rn "multiplex-synthetic-data/releases/download" docs/ README.md index.html
 
-- [ ] **Re-upload `LabelImageExamples_from_LJI.zip` without `2014_04_08__12_24__0065.czi`.**
-      The docs already describe the intended five-file zip: the OCR guide lists four "others",
-      setup.md says five whole-slide CZI files, and the batch step groups them as brightfield
-      (`histology@lji_org_610 TOMO` H&E and MT3B) versus IF (the three `8443_51000000` files).
-      Until the new zip is up, the download still contains six. Two numbers need re-checking
-      afterwards: the stated **512 MB** in setup.md, README.md and index.html, and the file's
-      Drive ID if the re-upload creates a new one rather than replacing in place.
+- [x] ~~Re-upload the label-slide zip without the extra slides.~~ **Done 2026-09-21.** It is now
+      `OCR_Test_Images_LJI.zip`, 244 MB, four slides: two brightfield
+      (`histology@lji_org_610 TOMO` H&E and MT3B) and two IF (`8443_51000000_02` and `_12`).
+      New Drive id `1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS`; name, id, size and counts updated across
+      README, index.html, setup.md, 08-ocr4labels.md and 09-project-metadata-browser.md.
 
 - [ ] Convert the fluorescence tiles to Micro-Manager layout (per-position folders with
       `metadata.txt`, or MMStack plus sidecars) if the real MM acquisition does not pan out, so

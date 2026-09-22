@@ -82,9 +82,9 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 ## Hands-on exercise (~12 min)
 
-**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX) (**over 500 MB**) after you have run the
+**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) (**244 MB**) after you have run the
 [OCR exercise](08-ocr4labels.md), or open
-[`LabelImageExamples_from_LJI.zip`](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX) (512 MB) and use the metadata already in it.
+[`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) (244 MB) and use the metadata already in it.
 
 1. `Extensions > Project Metadata Browser > Browse Metadata...`
 2. Click **Fit Columns**. Use the **Columns** menu to hide everything except Name and your

@@ -95,7 +95,7 @@ wherever it already lives, and the sizes differ by more than an order of magnitu
 |---|---|---|
 | **Track A or C** (QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset) | **`Scripting Demo.zip`**, from [this Drive folder](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY). Unzip it, then in QuPath use `File > Project > Open project` and pick the unzipped folder | <span title="About a quarter of a gigabyte. Fine at home, slow on conference wifi. Do it before you travel.">⚠️ **229 MB**</span> |
 | **Track B** (QP-CAT, Cluster 3D Navigator, Channel Names Viewer) | **`multiplex-synthetic-data-v1.2.zip`**, from [this release page](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip). It is the first file under Assets. Ignore "Source code (zip)" and "(tar.gz)" | **14 MB** |
-| **Track D** (OCR for Labels, Project Metadata Browser) | **`LabelImageExamples_from_LJI.zip`**, [direct link](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX) or the same Drive folder | <span title="Half a gigabyte, and it unzips to more. Fetch it at home on a connection you trust and check you have the disk space before you travel — not on conference wifi at 10:30.">⚠️ **512 MB**</span> |
+| **Track D** (OCR for Labels, Project Metadata Browser) | **`OCR_Test_Images_LJI.zip`**, [direct link](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) or the same Drive folder | <span title="About a quarter of a gigabyte. Fine at home, slow on conference wifi. Do it before you travel.">⚠️ **244 MB**</span> |
 | **Track D** (Tiles to Pyramid) | Still being prepared. Nothing to download yet | — |
 
 That folder holds four zips, each linked directly below. Take whichever ones you want — these
@@ -104,7 +104,7 @@ are the sizes so you can decide, not a rule about what you are allowed to have.
 | Zip | Size | What it is for |
 |---|---|---|
 | **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** | 229 MB | The assembled QuPath project. **Tracks A and C** |
-| [`LabelImageExamples_from_LJI.zip`](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX) | 512 MB | Slide labels. **Track D** (OCR / metadata) |
+| [`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) | 244 MB | Slide labels. **Track D** (OCR / metadata) |
 | [`Multiplex demo images.zip`](https://drive.google.com/uc?export=download&id=11PmdpYIrdSEn15Rgv9aa_4BDeF6pXODE) | 1.86 GB | Loose multiplexed images. No track here uses them |
 | [`Brightfield demo.zip`](https://drive.google.com/uc?export=download&id=1ghskMkToAP6DoQSfGxrdQiOKjIMpHtI0) | 90 MB | Loose brightfield images, also inside Scripting Demo.zip |
 
@@ -127,11 +127,10 @@ ready.
 > [OME image repository](https://downloads.openmicroscopy.org/images/Vectra-QPTIFF/perkinelmer/).
 > You will have to build the project and detect cells yourself, so the folder is the faster route.
 
-> ### ⚠️ The label-slide zip is over 500 MB
-> It is five whole-slide CZI files, and the label image only exists *inside* the slide file, which
-> is why it cannot be a folder of small PNGs. **Download it at home**, and only if you are doing
-> the OCR / metadata track. It is the largest thing any track here needs; `Scripting Demo.zip`
-> is 229 MB and the synthetic set is 14 MB.
+> ### ⚠️ The label-slide zip is 244 MB
+> It is four whole-slide CZI files — two brightfield, two IF — and the label image only exists
+> *inside* the slide file, which is why it cannot be a folder of small PNGs. **Download it at
+> home**, and only if you are doing the OCR / metadata track.
 
 > **These slides were provided by Sara McArdle and Zbigniew Mikulski**, La Jolla Institute for
 > Immunology. Please credit LJI if you use them in your own work. See

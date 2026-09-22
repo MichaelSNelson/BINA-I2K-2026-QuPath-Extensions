@@ -113,7 +113,7 @@ Barcode scanning works immediately with no setup — that reader is built in.
 
 ## Hands-on exercise (~15 min)
 
-**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX): five CZI whole-slide images from LJI, each carrying an
+**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS): four CZI whole-slide images from LJI, each carrying an
 embedded slide label. **Over 500 MB, so download it before you travel.**
 
 > **Why it is not a folder of small PNGs.** The label lives *inside* the slide file, as an
@@ -139,14 +139,13 @@ Here is the label with the two regions the exercise uses marked (see below):
 
 <img src="../images/ocr/label-regions.png" alt="The slide label with a box around the line reading 610 TOMO, marked as the case ID for step 6, and a box around the 2D barcode, marked for step 7" width="680">
 
-The other four, if you want more to try:
+The other three, if you want more to try:
 
-| File | Size |
-|---|---|
-| `histology@lji_org_610 TOMO___MT3B_20201119-mipcomp.czi` | 11 MB |
-| `8443_51000000_02_IF_2022-11-18-mip.czi` | 138 MB |
-| `8443_51000000_12_IF_2022-11-18-mipcomp.czi` | 91 MB |
-| `8443_51000000_12_IF_2022-11-18-mipcompczi.czi` | 113 MB |
+| File | Size | Modality |
+|---|---|---|
+| `histology@lji_org_610 TOMO___MT3B_20201119-mipcomp.czi` | 11 MB | Brightfield |
+| `8443_51000000_02_IF_2022-11-18-mip.czi` | 138 MB | IF |
+| `8443_51000000_12_IF_2022-11-18-mipcomp.czi` | 91 MB | IF |
 
 ### Part A: make a project
 
@@ -202,7 +201,7 @@ so steps 10 to 13 are still one image, and step 14 is where the matching slides 
     | Set | Slides | Label design |
     |---|---|---|
     | **Brightfield** | `histology@lji_org_610 TOMO…H&E…`, `…MT3B…` | Case ID on line 2, barcode lower-left |
-    | **IF** | the three `8443_51000000…` files | Two columns, QR top-right, date lower-right |
+    | **IF** | the two `8443_51000000…` files | Two columns, QR top-right, date lower-right |
 
     Batch within a set, not across. Build your template on one of the brightfield labels and
     run it over both of those; build a second template if you want the IF ones.

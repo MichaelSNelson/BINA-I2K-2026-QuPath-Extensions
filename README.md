@@ -67,11 +67,11 @@ each link goes straight to it.
 |---|---|---|
 | **Track A or C** — QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset | **`Scripting Demo.zip`** from [this Drive folder](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY). Unzip, then `File > Project > Open project` on the unzipped folder | 229 MB |
 | **Track B** — QP-CAT, Cluster 3D Navigator, Channel Names Viewer | **`multiplex-synthetic-data-v1.2.zip`** from [this release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip), the first file under Assets. Not "Source code" | **14 MB** |
-| **Track D** — OCR for Labels, Project Metadata Browser | **[`LabelImageExamples_from_LJI.zip`](https://drive.google.com/uc?export=download&id=1xm99nEa0okF7USeip0PTDv6PT4Ut5eWX)** | **512 MB** ⚠️ |
+| **Track D** — OCR for Labels, Project Metadata Browser | **[`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS)** | **244 MB** ⚠️ |
 | **Track D** — Tiles to Pyramid | Still being prepared; nothing to download yet | — |
 
 The Drive folder holds four zips and **you want exactly one**: `Scripting Demo.zip` (229 MB,
-the assembled project) for Tracks A and C, or `LabelImageExamples_from_LJI.zip` (512 MB) for
+the assembled project) for Tracks A and C, or `OCR_Test_Images_LJI.zip` (244 MB) for
 Track D. Leave `Multiplex demo images.zip` (**1.86 GB**) and `Brightfield demo.zip` (90 MB)
 alone — no track here uses either, and taking the whole folder is about 2.7 GB.
 
@@ -160,7 +160,7 @@ Repeat for `%%DRIVE_SLIDES_URL%%`. (`%%DRIVE_DATA_URL%%` is retired: datasets no
 ## Acknowledgements
 
 **The slide-label images were provided by Sara McArdle and Zbigniew Mikulski at the La Jolla
-Institute for Immunology (LJI)**: six whole-slide images with real labels, which the OCR and
+Institute for Immunology (LJI)**: four whole-slide images with real labels, which the OCR and
 metadata exercises depend on. Please credit LJI if you use them. The other datasets are public
 images (CMU-1, LuCa-7color), a CC0 synthetic dataset made at LOCI, and tiles acquired at LOCI.
 
