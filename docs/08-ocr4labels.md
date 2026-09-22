@@ -134,7 +134,7 @@ histology@lji.org     <- the lab's contact address
 H&E                   <- the stain
 ```
 
-Below that text is a square 2D barcode. That is the one step 7 asks you to draw a field over.
+Below that text is a square 2D barcode. That is the one step 11 asks you to draw a field over.
 Here is the label with the two regions the exercise uses marked (see below):
 
 <img src="../images/ocr/label-regions.png" alt="The slide label with a box around the line reading 610 TOMO, marked as the case ID for step 6, and a box around the 2D barcode, marked for step 7" width="680">
@@ -149,7 +149,7 @@ The other five, if you want more to try:
 | `8443_51000000_12_IF_2022-11-18-mipcompczi.czi` | 113 MB |
 | `2014_04_08__12_24__0065.czi` | 168 MB |
 
-### Step 0: make a project
+### Part A: make a project
 
 The extension works on a QuPath **project**, not on a loose file — its dialog lists project
 images down the left side, and batch mode runs over the project. So before anything else:
@@ -160,47 +160,47 @@ images down the left side, and batch mode runs over the project. So before anyth
 4. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` in the project list to
    open it.
 
-### Part A: one slide
+### Part B: one slide
 
-1. With that slide open from Step 0, run
+5. With that slide open from Part A, run
    `Extensions > OCR for Labels > Run OCR on Label`.
-2. The dialog lists all project images on the left; select one.
-3. Set **Scope** to *Full Image*, **Decode As** to *Try Both* (barcode first, then OCR), and
+6. The dialog lists all project images on the left; select one.
+7. Set **Scope** to *Full Image*, **Decode As** to *Try Both* (barcode first, then OCR), and
    leave **Min Conf** at its default. *Try Both* matters here, because these labels carry text and a
    barcode, and you want whichever is more reliable per region. **Check that Enhance is unticked**. It is off by default
-   in 0.4.2, and step 12 is about why.
-4. **Scan.** Review the table: correct the **Text** column where OCR guessed wrong, and set
+   in 0.4.2, and step 17 is about why.
+8. **Scan.** Review the table: correct the **Text** column where OCR guessed wrong, and set
    sensible **Metadata Key** names.
-5. **Apply.** Confirm the metadata landed on the image (right-click the image in the project
+9. **Apply.** Confirm the metadata landed on the image (right-click the image in the project
    pane → *Edit metadata*, or use the Metadata Browser).
 
-### Part B: a template, then the whole project
+### Part C: a template, then the whole project
 
 **Stay on the same slide** you used in Part A, `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`.
 You are building a template from its label, then applying that template to the whole project —
-so steps 6 to 9 are still one image, and step 10 is where the other five get used.
+so steps 10 to 13 are still one image, and step 14 is where the other five get used.
 
-6. Draw a rectangle over just the part of the label that identifies the specimen. On this
+10. Draw a rectangle over just the part of the label that identifies the specimen. On this
    label that is the line reading **`610 TOMO`** — not the email address above it, not the
    date, not the stain. That line is what a pathology lab would call the *case ID*: the
    identifier that ties this slide to a particular specimen. Set **Decode As** to *Text* and
    click **Add Region**. This adds the row without reading it, which is what you
    want while laying out a template.
-7. Now work the other way round for the barcode: set **Decode As** to *Barcode*, click
+11. Now work the other way round for the barcode: set **Decode As** to *Barcode*, click
    **Add Field**, and drag its rectangle. This one decodes the moment you finish drawing.
-8. Before saving anything, set **Scope** to *Drawn Regions* and click **Rescan Regions**. Every
+12. Before saving anything, set **Scope** to *Drawn Regions* and click **Rescan Regions**. Every
    row is re-read in place, each using its own **Decode As** value, so you find out what your
    template will actually produce while it is still cheap to fix.
-9. **Save this as a template** with the field positions, types, and metadata key assignments.
-10. Run **batch processing** with that template across the project.
-11. Try a **vocabulary list** for a field with a small known set of valid values, and re-run.
-12. Look through the batch results for a label that was not upright, and confirm orientation
+13. **Save this as a template** with the field positions, types, and metadata key assignments.
+14. Run **batch processing** with that template across the project.
+15. Try a **vocabulary list** for a field with a small known set of valid values, and re-run.
+16. Look through the batch results for a label that was not upright, and confirm orientation
     detection read it anyway. If every label in your run came out upright, this is the step
     `osd.traineddata` exists for — rotate one yourself and re-run to see it work.
 
-### Part C: the two-minute experiment worth doing (~2 min)
+### Part D: the two-minute experiment worth doing (~2 min)
 
-13. Go back to the `histology@lji.org` label. Tick
+17. Go back to the `histology@lji.org` label. Tick
     **Enhance**, set **Scope** to *Drawn Regions*, and **Rescan Regions**. Compare against the
     unenhanced read.
 
