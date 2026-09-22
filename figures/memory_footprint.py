@@ -10,7 +10,14 @@ O(1) -- only the 1-4 tiles overlapping the current chunk are ever open.
 
 HONESTY BOUNDARY -- the three panels are not the same kind of evidence, and the
 panel titles say so:
-  A  schematic. What is resident in RAM under each strategy.
+  A  schematic. What is resident in RAM under each strategy. The tile/chunk
+     sizes are real: DirectTiffOutputWriter sets IFD.TILE_WIDTH/TILE_LENGTH to
+     512 and calls TiffWriter.saveBytes per tile, ZarrOutputWriter uses 1024.
+     Worth stating on the slide because OME-TIFF is widely assumed to be
+     monolithic -- TIFF 6.0 has had a TILED layout (as against strips) all
+     along, and that is what makes the bounded footprint possible here. The
+     difference from Zarr is where the chunks live (one file with an offset
+     table, vs one file per chunk), not whether they exist.
   B  schematic. The SHAPE of the memory curve as the output file is written.
      Nobody measured a time series here; the shapes follow from panel A.
   C  MEASURED for the chunked path -- the smallest -Xmx at which the stitch
@@ -19,6 +26,23 @@ panel titles say so:
      path, from the arithmetic in fusion_mb() -- a lower bound, since it counts
      only the tile pixels plus one fused canvas and ignores every working copy
      a real fusion step makes.
+
+WHAT ACTUALLY FIXED IT, if asked. Not the output format: QuPath's own
+OMEPyramidWriter is tiled too (javap on qupath-extension-bioformats-0.7.0:
+Builder.tileSize(int)), so the old path wrote tiled OME-TIFFs as well. The
+2-4 GB went on the READ side -- it fed the writer from a SparseImageServer
+holding every tile open at once ("max 8 open file handles regardless of tile
+count (vs 1600)", CHANGELOG). Tiled output is what MAKES chunk-at-a-time
+writing possible; bounding the reader is what collapsed the footprint.
+OMEPyramidWriter was later replaced too, but for correctness (a silent
+pyramid-corruption branch that logs "Error writing Tile" without throwing,
+leaving black downsampled levels) -- not for memory.
+
+So panel A's warm arm is drawn as "every tile, plus the fused canvas". The
+fused canvas is the Fiji-style tools' cost; our own old path's dominant cost
+was the open readers. Both are "everything resident at once", which is what
+the panel claims, but do not tell an audience our old path held a fused
+canvas -- it held 1600 open tiles.
 
 Do not relabel panel C's modelled line as measured. We have never run BigStitcher
 or Ashlar on this data; the line is what their documented strategy costs, and the
@@ -186,7 +210,8 @@ hx = XG + 2 * (CX + GX_)
 hy = BOT_Y + (N - 1 - 3) * (CY + GY)
 ram_box(hx, hy, 2 * CX + GX_, 2 * CY + GY, BLUE_DK)
 block_text(BOT_Y + GRID_H, BLUE_DK, "Write one chunk at a time",
-           "Only the chunk and the 1-4 tiles\nbeneath it. Each is released as\nsoon as it is written.")
+           "Only the chunk and the 1-4 tiles\nbeneath it, then it is written and\nreleased.\n"
+           "Tiled OME-TIFF, 512 px tiles;\nOME-Zarr, 1024 px chunks.")
 
 # =============================================================================
 # Panel B -- memory as the output file is written
@@ -316,7 +341,7 @@ axC.grid(color=RULE, lw=0.6, alpha=0.65, zorder=0)
 axC.set_axisbelow(True)
 
 # =============================================================================
-out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "images",
+out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "images", "tiles-to-pyramid",
                    "memory_footprint.png")
 fig.savefig(os.path.normpath(out), dpi=DPI, facecolor="white")
 print("wrote", os.path.normpath(out))

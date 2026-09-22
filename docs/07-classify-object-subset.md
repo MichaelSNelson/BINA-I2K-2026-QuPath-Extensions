@@ -15,94 +15,188 @@ title: Classify Object Subset
 | **Version at workshop** | 0.2.0 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
-| **Where to find it** | `Extensions > Classify Object Subset` |
+| **Where to find it** | `Extensions > Classify Object Subset > Apply Classification to Subset...` |
 | **Catalog** | LOCI QuPath Extensions |
-| **Session** | Mentioned; presented in Sara McArdle’s Monday session |
+| **Session** | Mentioned; presented in Sara McArdle's Monday session |
 
 > **Walkthrough video:** %%VIDEO_CLASSIFY_OBJECT_SUBSET%%
 > The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
 
 ---
 
-> **On 0.1.x already?** Replace it. Releases before 0.2.0 shipped a jar named
-> `qupath-extension-gated-object-classifier-*.jar` and show as **Gated Object Classifier** in the
-> menu, the extension's former name. 0.2.0 is the first release carrying the current name, and
-> it is the one with multiple measurement thresholds and class checkboxes.
-
-> **Sara McArdle demonstrated this in her session on **Monday 28 September**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
-> Both this extension and its sibling grew out of her Groovy scripts, so we point back to her
-> demo rather than repeating it. The walkthrough below is here for the hands-on hour.
-
 ## What it does
 
 QuPath's built-in `Classify > Object classification > Apply classifier` always runs on
 **every** compatible object in the image. There is no built-in GUI for "apply this classifier
-only to cells that are Tumor," or "only to cells the previous classifier left unclassified."
+only to cells that are tumor," or "only to cells the previous classifier left unclassified."
 
 You can do it in Groovy. This pattern was originally explored in
 [Sara McArdle's `B_Helper_Cyto.groovy`](https://github.com/saramcardle/Image-Analysis-Scripts/blob/master/QuPath%20Groovy%20Scripts/Workshop%20Examples/B_Helper_Cyto.groovy)
-and discussed in [this image.sc thread](https://forum.image.sc/t/feature-request-apply-classifiers-to-only-some-selected-objects/86383)
+and discussed in [this image.sc thread](https://forum.image.sc/t/feature-request-apply-classifiers-to-only-some-selected-objects/86383),
 but only if you are comfortable writing scripts. This extension is the GUI for it.
 
 **Pick the subset by:**
 
 - **class** (one or several),
-- **measurement value** (e.g. `Cell: Autofluorescence max` greater than 11.0), **as many
+- **measurement value** (for example `Cell: CD3 mean` greater than some threshold), **as many
   conditions as you need**, added a row at a time,
 - **current viewer selection**,
 - or any combination of the above.
 
-The dialog shows a **live count**, "337 of 5,353 objects will be classified", before you
-click Apply. That number is the whole point: you find out you targeted the wrong 5,000
-objects *before* you overwrite them.
+The dialog shows a **live count** — "412 of 1530 objects will be classified" — before you
+click Apply. That number is the whole point: you find out you targeted the wrong cells
+*before* you overwrite them.
 
-**Common uses:**
-
-- **Stack two classifiers.** Run a CD20 classifier first, then run a CD4/CD8 classifier only
-  on the cells the first one left unclassified.
-- **Pre-filter a noisy image.** Run a strong-marker classifier only on cells whose intensity
-  is already above threshold.
-- **Iterate on a small region.** Classify just what you have selected in the viewer, without
-  touching the rest of the image.
-
-**Every Apply is recorded as a workflow step**, so the same subset operation can be re-run
-across a whole project as a script: the GUI is exploratory, the script is reproducible.
+> **"Objects" means annotations and detections both.** QuPath calls everything in the image
+> hierarchy an object. Cells are *detections*; the regions you draw, and the colored
+> ground-truth dots in this exercise, are *annotations*. This distinction matters more than it
+> sounds: **this extension filters only the objects your classifier can process**, which for a
+> cell classifier means detections. Classes that exist only on annotations will not appear in
+> the class filter. See the [glossary](glossary.md).
 
 <details>
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
+If you already have a version older than 0.2.0, replace it. Releases before 0.2.0 shipped a jar
+named `qupath-extension-gated-object-classifier-*.jar` and appear in the menu as **Gated Object
+Classifier**, the extension's former name. 0.2.0 is the first release carrying the current name,
+and it is the one with multiple measurement thresholds and class checkboxes.
+
 </details>
 
 ---
 
-## Try it yourself (~10 min)
+## Try it yourself (~15 min)
 
-**Data:** `DATA-02_multiplex_IF`, the LuCa-7color image in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB), which already has cells detected and several saved object classifiers, including `LUCA composite` and `LUCA without PDL1`. Those two are the stacking scenario below, ready made.
+The point of this exercise is to **make a classification mistake on purpose, then repair only
+the part that is wrong** — which is the situation the extension exists for.
 
-1. `Extensions > Classify Object Subset`.
-2. Choose a saved classifier. Set **Object source** to *Custom filter*.
-3. Add a **class filter**. Watch the live count change.
-4. Add a **measurement filter** on top of it. Watch it change again.
-5. Before clicking Apply, predict what the count *should* be. Check whether you were right.
-   this is the habit the tool is trying to build.
-6. Apply.
-7. Now do the stacked-classifier trick: filter to **unclassified** cells only, and run a
-   second classifier on just those. Confirm the first classifier's calls survived untouched.
-8. Open `Automate > Show workflow command history` and find the recorded steps. Export them
-   as a script.
+### What you need
+
+**Data:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
+**[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** (20 MB).
+A ready-made QuPath project: eight synthetic multiplexed images, cells already detected, one
+saved object classifier, and — unusually — **ground truth**, so you can check whether you got
+the right answer.
+
+Unzip it anywhere. Work on **`tme_00.tif`**, and use that one image throughout.
+
+> **Use `tme_00`, not whichever image opens first.** The eight images are deliberately
+> different. `tme_07` is an immune-poor variant with **no B cells at all**, and `tme_06` is
+> immune-rich. If you work on a different image your numbers will not match the ones below,
+> and nothing will have gone wrong.
+
+`tme_00` contains **1,530 cells**. The ground truth says exactly **412 of them are tumor
+cells**. Hold on to that number — you are going to measure it twice.
+
+### Step 0: open the project
+
+1. Start QuPath. `File > Project... > Open project`, and pick the **`project.qpproj`** file
+   inside the unzipped folder.
+2. **QuPath will tell you it cannot find the images.** This is expected and it is not your
+   fault — do not re-download or re-unzip. Go to `File > Project... > Check project URIs`.
+   In the **Update URIs** dialog, click **Search...**, choose the folder you unzipped, and
+   QuPath will find the images inside it.
+3. In the project list on the left, double-click **`tme_00.tif`** to open it.
+
+You should see cells outlined, and a scatter of small colored dots. The dots are the
+**ground truth** — one per cell, colored by what that cell really is. The cells themselves
+start out **unclassified**.
+
+### Part A: make a mistake worth fixing
+
+A classifier that is right about everything teaches you nothing. So first, classify the cells
+with a deliberately crude method that gets most of them right and a few of them wrong.
+
+4. Download **[`apply_otsu_gate.groovy`](https://raw.githubusercontent.com/uw-loci/multiplex-synthetic-data/master/analytical_logs/scripts/08_apply_otsu_gate.groovy)** (right-click → *Save link as*). In QuPath open `Automate > Script editor`, then `File > Open...` that file, and click **Run**.
+
+   This thresholds each marker channel and assigns a cell type from which markers are above
+   threshold. It is right about 97–98% of the time. Its errors are real ones: QuPath expands
+   each nucleus by 5 µm to approximate the cell, and at the edge of a tumor nest that
+   expansion picks up PanCK signal from the tumor cell next door — so **T cells touching a
+   tumor nest get called `tumor`**.
+
+5. The cells are now colored by predicted class. Zoom into the boundary of a tumor nest and
+   look at the cells there against the ground-truth dots underneath. Some disagree.
+
+### Part B: measure the error
+
+Now use the extension as a measuring instrument, before using it as a repair tool.
+
+6. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
+7. Set **Classifier** to `cell_type_classifier`. Set **Object source** to **Custom filter**.
+8. In the **Class filter** list, tick **`tumor`** only.
+9. Read the live count: **"N of 1530 objects will be classified."**
+
+   That **N** is how many cells the crude gate called tumor. The truth is **412**. Your number
+   will be larger — the gate over-calls tumor, because of the spillover in step 4. Across all
+   eight images it labels 2,832 cells tumor where only 2,693 really are.
+
+> **Why was the class list empty before you ran the script?** If you open this dialog on a
+> fresh project, the **Class filter** shows *"No classes present in image."* That is correct
+> behavior, not a bug. The list is built from the classes actually found on the cells, and
+> the cells started out unclassified. The colored ground-truth dots have classes, but they
+> are annotations, and a cell classifier does not process annotations. The filter only fills
+> in once something has classified the cells.
+
+### Part C: repair only the cells that are wrong
+
+10. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the gate
+    called tumor — the correct ones and the mistaken ones together — and nothing else.
+11. Click **Apply**.
+
+    A message confirms how many objects were classified and how many **changed**. The
+    "changed" number is the repair: those are cells the trained classifier disagreed with the
+    gate about.
+
+12. Now measure again. Reopen the dialog, set **Object source** to **Custom filter**, tick
+    **`tumor`** only, and read the live count.
+
+    It should now be much closer to **412**. You repaired the tumor calls without touching
+    any of the other five cell types — every fibroblast, macrophage and B cell the gate got
+    right is exactly as it was.
+
+### Part D: the leftovers (optional)
+
+The gate leaves a few cells matching no marker rule at all, and those stay unclassified.
+
+13. Reopen the dialog, and in the **Class filter** tick **Include unclassified** and nothing
+    else. The count shows how many cells the gate could not call.
+14. Apply the trained classifier to just those. This is the "stacked classifiers" pattern:
+    a first pass that is confident about the easy cases, a second that mops up the rest,
+    with each pass leaving the other's work alone.
+
+### Part E: turn it into a script
+
+Every Apply is recorded so the same operation can be re-run across a whole project.
+
+15. Open `Automate > Show workflow command history`. Look for the step named
+    **`Apply classify object subset`** — one for each time you clicked Apply.
+16. Right-click it and choose **Create script** to get runnable Groovy. (The confirmation
+    message calls this "Open the Workflow tab to copy this operation as a script" — same
+    thing, two names.)
 
 ### What to notice
 
-- The live count is a guard against the most expensive mistake in object classification:
-  silently reclassifying work you already did.
-- Stacked classifiers are often much easier to build and validate than one big multi-class
-  classifier, and each one only has to be good at one distinction.
-- Because every Apply becomes a workflow step, the exploratory session you just did converts
-  directly into a batch script.
+- **The live count is the feature.** You used it to measure the error before the fix and
+  confirm it after, and at no point did you have to trust the tool — you had a number.
+- **You repaired one class without disturbing five others.** Running the trained classifier
+  over the whole image would also have fixed the tumor calls, but it would have overwritten
+  every other call at the same time. On real data, where earlier calls often represent manual
+  work you do not want to lose, that is the difference that matters.
+- **Stacked classifiers are easier to build than one big one.** Each pass only has to be good
+  at one distinction, and you can check each one separately.
+- **The exploratory session converts to a batch script**, so what you just did by hand can be
+  re-run across a project unchanged.
 
 ---
+
+> **Sara McArdle demonstrated this extension in her session on Monday 28 September**,
+> *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*. Both this
+> extension and its sibling grew out of her Groovy scripts. If you were not at that session,
+> the walkthrough above stands on its own.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-classify-object-subset#readme).

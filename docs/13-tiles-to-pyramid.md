@@ -120,7 +120,7 @@ the tiles are feathered together that error does not show up as a visible seam â
 blur. Smeared spots and soft filaments on the left, crisp on the right. Steps 3 to 5 are asking
 you to make this comparison on your own data (see below).
 
-<img src="../images/stitch_if_nominal.jpg" alt="A join between two tiles placed at the recorded stage positions; the cells look slightly blurred and doubled" width="330"> <img src="../images/stitch_if_registered.jpg" alt="The same join with the tiles placed at measured positions; the cells are sharp" width="330">
+<img src="../images/tiles-to-pyramid/stitch_if_nominal.jpg" alt="A join between two tiles placed at the recorded stage positions; the cells look slightly blurred and doubled" width="330"> <img src="../images/tiles-to-pyramid/stitch_if_registered.jpg" alt="The same join with the tiles placed at measured positions; the cells are sharp" width="330">
 
 1. `Extensions > Tiles to Pyramid`.
 2. Point it at the tile directory, choose the **TileConfiguration.txt** strategy, output

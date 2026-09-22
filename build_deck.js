@@ -194,7 +194,7 @@ function tileStep(title, shown, exploded, caption, shade) {
   grid.forEach(([n, c, r]) => {
     if (n >= shown) return;
     s.addImage({
-      path: 'images/tile_' + n + '.jpg',
+      path: 'images/tiles-to-pyramid/tile_' + n + '.jpg',
       x: x0 + c * step, y: y0 + r * step, w: TILE, h: TILE,
       objectName: 'tile' + n,
     });
@@ -503,16 +503,16 @@ tileStep('Where the stage said they were', 4, false,
 
 figureDuo('Measure on the clearest channel, reuse on the rest',
   'Stitched on the stage’s own coordinates',
-  { path: 'images/stitch_if_nominal.jpg', w: 1350, h: 1035 },
+  { path: 'images/tiles-to-pyramid/stitch_if_nominal.jpg', w: 1350, h: 1035 },
   'Stitched on positions measured from the image',
-  { path: 'images/stitch_if_registered.jpg', w: 1350, h: 1035 },
+  { path: 'images/tiles-to-pyramid/stitch_if_registered.jpg', w: 1350, h: 1035 },
   'Both panels are Tiles to Pyramid’s own output, at the same place in the same overlap. The stage was about 5 px out; because the tiles are feathered together, that error does not show up as a seam, it shows up as blur — smeared puncta and soft filaments on the left, crisp on the right. Positions were solved once on DAPI and reused unchanged for green and red.');
 
 figurePair('Tiles to Pyramid: stitching two tiles',
   'As acquired: neighboring tiles share a strip of the same tissue (shaded)',
-  { path: 'images/stitch_ppm_unstitched.jpg', w: 3000, h: 565 },
+  { path: 'images/tiles-to-pyramid/stitch_ppm_unstitched.jpg', w: 3000, h: 565 },
   'Stitched: the join is placed by matching the image content in that strip',
-  { path: 'images/stitch_ppm_stitched.jpg', w: 2766, h: 565 },
+  { path: 'images/tiles-to-pyramid/stitch_ppm_stitched.jpg', w: 2766, h: 565 },
   'Pancreatic cancer, polarized light. The stage recorded this tile about 5 px (0.9 µm) away from where it really was — the worst of 17 seams in this grid, which ran to a 2.2 px median. Registration measured that from the overlap and closed every seam to under a pixel. It is a tick-box: left off, tiles go where the stage said.');
 
 content('Tiles to Pyramid — how the mosaic is assembled', [

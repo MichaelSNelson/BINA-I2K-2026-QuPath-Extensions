@@ -35,7 +35,7 @@ from matplotlib.patches import Rectangle
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-IMAGES = os.path.normpath(os.path.join(HERE, "..", "images"))
+IMAGES = os.path.normpath(os.path.join(HERE, "..", "images", "tiles-to-pyramid"))
 
 BLUE_DK, MUT, WARM = "#1F4C86", "#5A6675", "#B5651D"
 
@@ -120,49 +120,66 @@ ZY = pick_zoom(nominal, solved)
 
 # =============================================================================
 W, H, DPI = 13.333, 7.5, 300
-fig = plt.figure(figsize=(W, H), dpi=DPI)
-fig.patch.set_facecolor("white")
 
 # Row heights follow the two images' own aspect ratios, so neither axes pads
 # itself with white to satisfy imshow's equal aspect.
-gs = fig.add_gridspec(
-    2, 2, height_ratios=[MOSAIC_H / MOSAIC_W, (2 * ZH) / (2 * ZW)],
-    left=0.030, right=0.970, top=0.905, bottom=0.085, wspace=0.040, hspace=0.135,
-)
-
 PANELS = [
     (nominal, "Placed where the stage said", "structures break at the seam", WARM),
     (solved, "Placed where the pixels agree", "structures continue", BLUE_DK),
 ]
 
-for k, (img, title, verdict, colour) in enumerate(PANELS):
-    ax = fig.add_subplot(gs[0, k])
-    ax.imshow(img, interpolation="nearest")
-    ax.set_box_aspect(MOSAIC_H / MOSAIC_W)
-    ax.set_xticks([]); ax.set_yticks([])
-    for sp in ax.spines.values():
-        sp.set_visible(False)
-    ax.set_title(title, fontsize=20, color=colour, fontweight="bold", pad=13)
 
-    # Mark the seam, and box the piece of it shown magnified below.
-    ax.plot([SEAM_X, SEAM_X], [0, MOSAIC_H], color=colour, lw=1.0, alpha=0.55,
-            linestyle=(0, (7, 5)), zorder=4)
-    ax.add_patch(Rectangle((SEAM_X - ZW, ZY - ZH), 2 * ZW, 2 * ZH,
-                           fill=False, edgecolor=colour, linewidth=2.6, zorder=5))
+def draw(panels_shown):
+    """Render the slide with the first `panels_shown` columns filled.
 
-    axz = fig.add_subplot(gs[1, k])
-    axz.imshow(img[ZY - ZH:ZY + ZH, SEAM_X - ZW:SEAM_X + ZW], interpolation="nearest")
-    axz.plot([ZW, ZW], [0, 2 * ZH - 1], color=colour, lw=1.1, alpha=0.65,
-             linestyle=(0, (7, 5)), zorder=4)
-    axz.set_xlim(0, 2 * ZW - 1); axz.set_ylim(2 * ZH - 1, 0)
-    axz.set_box_aspect((2 * ZH) / (2 * ZW))
-    axz.set_xticks([]); axz.set_yticks([])
-    for sp in axz.spines.values():
-        sp.set_edgecolor(colour); sp.set_linewidth(2.6)
-    axz.set_xlabel(verdict, fontsize=17, color=colour, fontweight="bold", labelpad=9)
+    Geometry never depends on panels_shown, so every emitted image lines up
+    pixel for pixel and can be stacked as a PowerPoint build.
+    """
+    fig = plt.figure(figsize=(W, H), dpi=DPI)
+    fig.patch.set_facecolor("white")
+    gs = fig.add_gridspec(
+        2, 2, height_ratios=[MOSAIC_H / MOSAIC_W, (2 * ZH) / (2 * ZW)],
+        left=0.030, right=0.970, top=0.905, bottom=0.085, wspace=0.040, hspace=0.135,
+    )
 
-out = os.path.join(IMAGES, "seam_demo.png")
-fig.savefig(out, dpi=DPI, facecolor="white")
-print("wrote", out)
+    for k, (img, title, verdict, colour) in enumerate(PANELS):
+        ax = fig.add_subplot(gs[0, k])
+        axz = fig.add_subplot(gs[1, k])
+        for a in (ax, axz):
+            a.set_xticks([]); a.set_yticks([])
+        if k >= panels_shown:
+            # Reserve the space, draw nothing: the left column must not move.
+            for a in (ax, axz):
+                a.axis("off")
+            continue
+
+        ax.imshow(img, interpolation="nearest")
+        ax.set_box_aspect(MOSAIC_H / MOSAIC_W)
+        for sp in ax.spines.values():
+            sp.set_visible(False)
+        ax.set_title(title, fontsize=20, color=colour, fontweight="bold", pad=13)
+        ax.plot([SEAM_X, SEAM_X], [0, MOSAIC_H], color=colour, lw=1.0, alpha=0.55,
+                linestyle=(0, (7, 5)), zorder=4)
+        ax.add_patch(Rectangle((SEAM_X - ZW, ZY - ZH), 2 * ZW, 2 * ZH,
+                               fill=False, edgecolor=colour, linewidth=2.6, zorder=5))
+
+        axz.imshow(img[ZY - ZH:ZY + ZH, SEAM_X - ZW:SEAM_X + ZW], interpolation="nearest")
+        axz.plot([ZW, ZW], [0, 2 * ZH - 1], color=colour, lw=1.1, alpha=0.65,
+                 linestyle=(0, (7, 5)), zorder=4)
+        axz.set_xlim(0, 2 * ZW - 1); axz.set_ylim(2 * ZH - 1, 0)
+        axz.set_box_aspect((2 * ZH) / (2 * ZW))
+        axz.set_xticks([]); axz.set_yticks([])
+        for sp in axz.spines.values():
+            sp.set_edgecolor(colour); sp.set_linewidth(2.6)
+        axz.set_xlabel(verdict, fontsize=17, color=colour, fontweight="bold", labelpad=9)
+    return fig
+
+
+for shown, name in ((1, "seam_demo_build1.png"), (2, "seam_demo.png")):
+    f = draw(shown)
+    path = os.path.join(IMAGES, name)
+    f.savefig(path, dpi=DPI, facecolor="white")
+    plt.close(f)
+    print("wrote", path)
 print("  injected shifts px:", dict(sorted(OFF.items())))
 print(f"  seam at x={SEAM_X}, magnifier centred at y={ZY}")

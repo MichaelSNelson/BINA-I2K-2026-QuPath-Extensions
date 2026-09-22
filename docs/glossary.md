@@ -15,16 +15,17 @@ to our extensions — it is ordinary QuPath vocabulary.
 |---|---|
 | **Project** | A folder QuPath manages for you, holding a list of images plus everything you have drawn and measured on them. You make one with `File > Project > Create project`, or open an existing one with `File > Project > Open project` and pointing at the folder. Almost every exercise here starts by opening a project, because that is where your work gets saved |
 | **Image type** | Brightfield (H&E, stained slides, looks like a photo) or Fluorescence (separate channels, usually on black). QuPath asks the first time you open an image. Getting it wrong breaks channel handling and cell detection |
-| **Channel** | One colour of a fluorescence image, measured separately — DAPI for nuclei, say. A brightfield image has red, green and blue; a multiplexed one can have eight or more, each a different marker |
+| **Channel** | One color of a fluorescence image, measured separately — DAPI for nuclei, say. A brightfield image has red, green and blue; a multiplexed one can have eight or more, each a different marker |
 
 ## Things on the image
 
 | Word | What it means |
 |---|---|
-| **Annotation** | A region *you* draw — a rectangle, a freehand outline, a line. Use the toolbar tools. Annotations are what you use to say "analyse here" or "this area is tumour" |
+| **Object** | The umbrella word for anything in the image hierarchy: annotations *and* detections are both objects. Worth knowing because tools often act on one kind and not the other — a cell classifier processes detections, so classes sitting on annotations are invisible to it |
+| **Annotation** | A region *you* draw — a rectangle, a freehand outline, a line. Use the toolbar tools. Annotations are what you use to say "analyze here" or "this area is tumor" |
 | **Detection** | An object QuPath *found* for you, usually one per cell, from running `Analyze > Cell detection`. There are often thousands. The practical difference: you make annotations, QuPath makes detections |
 | **ROI** | Region of interest — the shape itself, separate from what it means. An annotation is an ROI plus a label |
-| **Class** | A label on an object: Tumor, Stroma, Immune. Shown by colour. Both annotations and detections can carry one |
+| **Class** | A label on an object: Tumor, Stroma, Immune. Shown by color. Both annotations and detections can carry one |
 | **Measurement** | A number attached to an object — area, mean intensity in a channel, and so on. QuPath stores many per detection, and tools here add more |
 
 ## Classifying
@@ -40,6 +41,7 @@ to our extensions — it is ordinary QuPath vocabulary.
 
 | Word | What it means |
 |---|---|
+| **Workflow** | QuPath's running record of what you did to an image. Most commands add a step as you go, and `Automate > Show workflow command history` lists them. Right-click a step to turn it into a script, which is how an afternoon of clicking becomes something you can re-run over a whole project |
 | **Metadata** | Information *about* an image rather than the pixels: case ID, stain, scanner, date. In QuPath it is a set of key-and-value pairs per image, where the key is the field name (`Stain`) and the value is its content (`H&E`) |
 | **Tile** | One camera field of view. A microscope photographs a slide as a grid of overlapping tiles, which are then stitched into one large image |
 | **Stitching** | Joining those tiles back into a single image, using recorded stage positions and, optionally, the image content itself |

@@ -75,37 +75,37 @@ OVER = TW1 * 0.26                  # the shared strip
 ax_ = 0.055
 ay_ = 0.335
 
-SHX, SHY = 0.038, 0.055          # where the stage put B vs where it belongs
+# Two tiles, offset so they read as two rather than one wide box, overlapping
+# by a strip. Nothing here is about the stage yet -- that is panel 2's job.
 BX = ax_ + TW1 - OVER
+BY = ay_ - 0.075
 
 ax1.add_patch(Rectangle((ax_, ay_), TW1, TH1, facecolor=TILE_FILL,
-                        edgecolor=TILE_EDGE, linewidth=1.4, zorder=3))
-# B as the stage reported it ...
-ax1.add_patch(Rectangle((BX + SHX, ay_ - SHY), TW1, TH1, facecolor="none",
-                        edgecolor=MUT, linewidth=1.5, linestyle=(0, (4, 3)), zorder=5))
-# ... and B where its pixels say it belongs
-ax1.add_patch(Rectangle((BX, ay_), TW1, TH1, facecolor=TILE_FILL,
-                        edgecolor=BLUE_MID, linewidth=1.8, zorder=4))
-# the overlap band is the only place the two tiles can be compared at all
-ax1.add_patch(Rectangle((BX, ay_), OVER, TH1, facecolor=BLUE_PALE,
-                        edgecolor=BLUE_MID, linewidth=1.6, zorder=6))
-ax1.text(BX + OVER / 2, ay_ + TH1 + 0.040, "shared strip",
-         fontsize=NOTE_FS, color=BLUE_DK, fontweight="bold", ha="center")
+                        edgecolor=TILE_EDGE, linewidth=1.5, zorder=3))
+ax1.add_patch(Rectangle((BX, BY), TW1, TH1, facecolor=TILE_FILL,
+                        edgecolor=TILE_EDGE, linewidth=1.5, zorder=4))
 
-ax1.text(ax_ + TW1 * 0.36, ay_ - 0.052, "tile A", fontsize=NOTE_FS, color=MUT, ha="center")
-ax1.text(BX + TW1 * 0.80, ay_ + TH1 * 0.5, "tile B", fontsize=NOTE_FS, color=BLUE_DK,
-         ha="center", va="center", fontweight="bold")
+# The strip the two tiles actually share: their intersection, nothing more.
+sx0, sx1 = BX, ax_ + TW1
+sy0, sy1 = ay_, BY + TH1
+ax1.add_patch(Rectangle((sx0, sy0), sx1 - sx0, sy1 - sy0, facecolor=BLUE_PALE,
+                        edgecolor=BLUE_MID, linewidth=2.0, zorder=5))
 
-# the measurement itself: from where the stage said, to where the pixels agree
-ax1.add_patch(FancyArrowPatch(
-    (BX + SHX + TW1 * 0.5, ay_ - SHY + TH1 * 0.5), (BX + TW1 * 0.5, ay_ + TH1 * 0.5),
-    arrowstyle="-|>", mutation_scale=28, color=WARM, lw=3.0, zorder=8))
-ax1.text(BX + TW1 * 0.5 + 0.045, ay_ - SHY + TH1 * 0.30,
-         "the measured shift",
-         fontsize=NOTE_FS, color=WARM, va="top", ha="left", fontweight="bold")
+ax1.text(ax_ + TW1 * 0.30, ay_ + TH1 + 0.035, "tile A", fontsize=NOTE_FS,
+         color=MUT, ha="center", fontweight="bold")
+ax1.text(BX + TW1 * 0.78, BY - 0.048, "tile B", fontsize=NOTE_FS,
+         color=MUT, ha="center", fontweight="bold")
+ax1.annotate("shared strip", xy=((sx0 + sx1) / 2, sy1 - 0.02),
+             xytext=((sx0 + sx1) / 2, ay_ + TH1 + 0.105),
+             fontsize=NOTE_FS, color=BLUE_DK, fontweight="bold", ha="center",
+             arrowprops=dict(arrowstyle="-|>", color=BLUE_DK, lw=2.0,
+                             shrinkA=3, shrinkB=2))
 
-ax1.text(0.02, 0.175, "Done for every overlapping pair in the grid,\n"
-                      "on the image content -- not on the stage numbers.",
+ax1.text(0.02, 0.185,
+         "The only place two tiles can be compared.\n"
+         "Matching it gives how far B must move for\n"
+         "the content to line up -- measured on the\n"
+         "pixels, not read off the stage.",
          fontsize=NOTE_FS, color=MUT, va="top", ha="left", linespacing=1.5)
 
 # =============================================================================
@@ -170,6 +170,6 @@ ax2.text(kx + 0.090, ky - 0.058, "stage position", fontsize=NOTE_FS - 1.5,
          color=MUT, va="center", ha="left")
 
 out = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                    "..", "images", "seam_method.png"))
+                                    "..", "images", "tiles-to-pyramid", "seam_method.png"))
 fig.savefig(out, dpi=DPI, facecolor="white")
 print("wrote", out)

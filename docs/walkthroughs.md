@@ -68,7 +68,7 @@ Each of these you can install and run yourself; see the [extension index](extens
 | Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | 10 min |
 | Wizard Wand | [Guide](05-wizard-wand.md){: .g-wip} | %%VIDEO_WIZARD_WAND%% | 10 min |
 | Polyline Wand & Brush | [Guide](06-polyline-wand.md){: .g-wip} | %%VIDEO_POLYLINE_WAND%% | 10 min |
-| Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md){: .g-todo} | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | 10 min |
+| Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md){: .g-wip} | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | 10 min |
 | OCR for Labels | [Guide](08-ocr4labels.md){: .g-wip} | %%VIDEO_OCR4LABELS%% | 15 min |
 | Project Metadata Browser | [Guide](09-project-metadata-browser.md){: .g-wip} | %%VIDEO_PROJECT_METADATA_BROWSER%% | 12 min |
 | Class Distribution | [Guide](10-class-distribution.md){: .g-todo} | %%VIDEO_CLASS_DISTRIBUTION%% | 8 min |
