@@ -107,10 +107,11 @@ cells**. Hold on to that number — you are going to measure it twice.
 
 1. Start QuPath. `File > Project... > Open project`, and pick the **`project.qpproj`** file
    inside the unzipped folder.
-2. **If QuPath says it cannot find the images**, it is not your fault and you do not need to
-   re-download or re-unzip. Go to `File > Project... > Check project URIs`. In the **Update
-   URIs** dialog click **Search...**, choose the folder you unzipped, and QuPath will find the
-   images inside it. If the project opens without complaining, skip to step 3.
+2. QuPath pops up an **Update URIs** dialog — "Files may have been deleted or moved!" — because
+   a project stores absolute image paths and cannot find them after the move (the images are
+   listed in red). It is not your fault and you do not need to re-download or re-unzip. Click
+   **Search...** (bottom-right), choose the folder you unzipped, and QuPath fills in the
+   **Replacement URI** column; then click **Apply changes**. This happens once.
 3. In the project list on the left, double-click **`tme_00.tif`** to open it.
 
 You should see cells outlined, and a scatter of small colored dots. The dots are the

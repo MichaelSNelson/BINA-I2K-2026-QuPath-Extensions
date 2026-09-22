@@ -59,9 +59,10 @@ Unzip it anywhere and **work on `tme_00.tif`** throughout.
 ### 2. Load it into QuPath
 
 1. `File > Project... > Open project`, and pick **`project.qpproj`** in the unzipped folder.
-2. **If the images read as missing** (a QuPath project stores absolute image paths), fix them
-   once: `Automate > Project scripts > fix_image_paths` and Run, then reopen the project — or
-   `File > Project... > Check project URIs`, click **Search...**, and choose the unzipped folder.
+2. QuPath pops up an **Update URIs** dialog — a project stores absolute image paths, so after
+   unzipping on your machine it cannot find the images (they are listed in red). Click
+   **Search...** (bottom-right), choose the folder you unzipped, and QuPath fills in the
+   replacements; then click **Apply changes**. This happens once.
 3. Double-click **`tme_00.tif`** in the project list to open it.
 
 %%SHOT_CM_01_PROJECT_OPEN%%
