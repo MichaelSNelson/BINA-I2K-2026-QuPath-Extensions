@@ -13,3 +13,25 @@ images/QuIET page/
 
 # raw screenshot handoff; processed copies live in images/ocr/
 images/OCR/
+
+# --- working material: this repo is public and Pages serves the root of main,
+# so anything tracked here is world-readable whether or not the site links it.
+# These stay on disk; they are simply not published.
+*.pptx
+I2K_FORM_RESPONSES.md
+SLIDE_OUTLINE.md
+TODO.md
+build_deck.js
+build_confusion_matrix_demo.js
+figures/
+
+# deck-only figures: not referenced by any page on the site
+images/complexity_ramp*.png
+images/stitch_biref_*.jpg
+images/confusion-matrix/
+images/tiles-to-pyramid/seam_*.png
+images/tiles-to-pyramid/memory_footprint.png
+images/tiles-to-pyramid/stitch_inputs.png
+images/tiles-to-pyramid/stitch_landscape.png
+images/tiles-to-pyramid/stitch_ppm_*.jpg
+images/tiles-to-pyramid/tile_*.jpg
