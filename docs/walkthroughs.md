@@ -51,23 +51,30 @@ private, and the fiber tools need a long environment build or a Windows-only ser
 
 ## Hands-on tools
 
+<div class="legend">
+  <span><i class="d-ok"></i> Walkthrough verified and video recorded</span>
+  <span><i class="d-wip"></i> Being revised now</span>
+  <span><i class="d-todo"></i> Not yet checked end to end</span>
+</div>
+
+
 Each of these you can install and run yourself; see the [extension index](extensions.md).
 
 | Tool | Walkthrough | Video | Exercise takes |
 |---|---|---|---|
-| QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md) | %%VIDEO_QUIET_IMAGE_EXPORT%% | 15 min |
-| DL Pixel Classifier | [Guide](02-dl-pixel-classifier.md) | %%VIDEO_DL_PIXEL_CLASSIFIER%% | 15 min |
-| QP-CAT — Cell Analysis Tools | [Guide](03-qp-cat-cell-analysis-tools.md) | %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%% | 20 min |
-| Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md) | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | 10 min |
-| Wizard Wand | [Guide](05-wizard-wand.md) | %%VIDEO_WIZARD_WAND%% | 10 min |
-| Polyline Wand & Brush | [Guide](06-polyline-wand.md) | %%VIDEO_POLYLINE_WAND%% | 10 min |
-| Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md) | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | 10 min |
-| OCR for Labels | [Guide](08-ocr4labels.md) | %%VIDEO_OCR4LABELS%% | 15 min |
-| Project Metadata Browser | [Guide](09-project-metadata-browser.md) | %%VIDEO_PROJECT_METADATA_BROWSER%% | 12 min |
-| Class Distribution | [Guide](10-class-distribution.md) | %%VIDEO_CLASS_DISTRIBUTION%% | 8 min |
-| Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md) | %%VIDEO_CHANNEL_NAMES_VIEWER%% | 5 min |
-| Dialog Position Manager | [Guide](12-dialog-position-manager.md) | %%VIDEO_DIALOG_POSITION_MANAGER%% | 5 min |
-| Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md) | %%VIDEO_TILES_TO_PYRAMID%% | 12 min |
+| QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md){: .g-todo} | %%VIDEO_QUIET_IMAGE_EXPORT%% | 15 min |
+| DL Pixel Classifier | [Guide](02-dl-pixel-classifier.md){: .g-todo} | %%VIDEO_DL_PIXEL_CLASSIFIER%% | 15 min |
+| QP-CAT — Cell Analysis Tools | [Guide](03-qp-cat-cell-analysis-tools.md){: .g-todo} | %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%% | 20 min |
+| Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | 10 min |
+| Wizard Wand | [Guide](05-wizard-wand.md){: .g-todo} | %%VIDEO_WIZARD_WAND%% | 10 min |
+| Polyline Wand & Brush | [Guide](06-polyline-wand.md){: .g-todo} | %%VIDEO_POLYLINE_WAND%% | 10 min |
+| Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md){: .g-todo} | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | 10 min |
+| OCR for Labels | [Guide](08-ocr4labels.md){: .g-wip} | %%VIDEO_OCR4LABELS%% | 15 min |
+| Project Metadata Browser | [Guide](09-project-metadata-browser.md){: .g-wip} | %%VIDEO_PROJECT_METADATA_BROWSER%% | 12 min |
+| Class Distribution | [Guide](10-class-distribution.md){: .g-todo} | %%VIDEO_CLASS_DISTRIBUTION%% | 8 min |
+| Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md){: .g-todo} | %%VIDEO_CHANNEL_NAMES_VIEWER%% | 5 min |
+| Dialog Position Manager | [Guide](12-dialog-position-manager.md){: .g-todo} | %%VIDEO_DIALOG_POSITION_MANAGER%% | 5 min |
+| Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md){: .g-wip} | %%VIDEO_TILES_TO_PYRAMID%% | 12 min |
 
 Total if you did every one: roughly **2 hours 30 minutes**, which is why the second hour is a
 menu rather than a queue. The [extension index](extensions.md) groups them into four tracks,
@@ -79,9 +86,9 @@ You cannot install these today, but their pages and videos are complete.
 
 | Tool | Walkthrough | Video | Why not hands-on |
 |---|---|---|---|
-| QPSC — QuPath Scope Control | [Overview](presented/qpsc.md) | %%VIDEO_QPSC%% | Needs a microscope; shown, never run |
-| Confusion Matrix | [Guide](presented/confusion-matrix.md) | %%VIDEO_CONFUSION_MATRIX%% | Repository currently private |
-| Collagen fiber and texture analysis | [Guide](presented/fiber-analysis.md) | %%VIDEO_FIBER_ANALYSIS%% | Long environment build, or a Windows-only server plus a pipeline that cannot be redistributed |
+| QPSC — QuPath Scope Control | [Overview](presented/qpsc.md){: .g-todo} | %%VIDEO_QPSC%% | Needs a microscope; shown, never run |
+| Confusion Matrix | [Guide](presented/confusion-matrix.md){: .g-todo} | %%VIDEO_CONFUSION_MATRIX%% | Repository currently private |
+| Collagen fiber and texture analysis | [Guide](presented/fiber-analysis.md){: .g-todo} | %%VIDEO_FIBER_ANALYSIS%% | Long environment build, or a Windows-only server plus a pipeline that cannot be redistributed |
 
 ---
 

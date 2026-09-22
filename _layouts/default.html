@@ -18,6 +18,17 @@ body{
 }
 a{color:var(--cy); text-decoration:none}
 a:hover{text-decoration:underline}
+/* guide status: blue = walkthrough verified and video recorded; amber = being
+   revised now; red = not yet checked end to end. */
+a.g-ok{color:var(--cy)}
+a.g-wip{color:var(--am)}
+a.g-todo{color:#F87171}
+.legend{display:flex; gap:1.2rem; flex-wrap:wrap; margin:0 0 1.05rem;
+  font-size:.88rem; color:var(--mut)}
+.legend span{display:inline-flex; align-items:center; gap:.4rem}
+.legend i{width:.62rem; height:.62rem; border-radius:50%; display:inline-block}
+.legend .d-ok{background:var(--cy)} .legend .d-wip{background:var(--am)}
+.legend .d-todo{background:#F87171}
 .topbar{
   position:sticky; top:0; z-index:10;
   background:rgba(11,16,32,.92); backdrop-filter:blur(6px);
