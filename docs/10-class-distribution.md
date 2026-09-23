@@ -12,7 +12,7 @@ title: Class Distribution
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-class-distribution](https://github.com/uw-loci/qupath-extension-class-distribution) |
-| **Version at workshop** | 0.1.8 |
+| **Extension version** | 0.1.8 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ and a project (single-image use works but is degraded) |
 | **Where to find it** | `Extensions > Class Distribution` |

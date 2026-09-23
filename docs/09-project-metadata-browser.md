@@ -12,7 +12,7 @@ title: Project Metadata Browser
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-project-metadata-browser](https://github.com/uw-loci/qupath-extension-project-metadata-browser) |
-| **Version at workshop** | 1.0.0 |
+| **Extension version** | 1.0.0 |
 | **License** | GPL-3.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Project Metadata Browser > Browse Metadata...` |

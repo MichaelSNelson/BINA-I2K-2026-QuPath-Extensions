@@ -12,7 +12,7 @@ title: Polyline Wand and Brush
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-polyline-wand](https://github.com/uw-loci/qupath-extension-polyline-wand) |
-| **Version at workshop** | 0.3.6 |
+| **Extension version** | 0.3.8 |
 | **License** | GPL-3.0 |
 | **Requires** | QuPath 0.6.0+ (use 0.7 today) |
 | **Where to find it** | Toolbar <img src="../images/icon-polyline-wand.png" alt="Polyline Wand toolbar icon" height="13"> · **Shift+P** |

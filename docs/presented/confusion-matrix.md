@@ -17,7 +17,7 @@ title: Confusion Matrix
 |---|---|
 | **Origin** | Concept and half of the initial scripts by Kristin Gallik; built out into the extension at LOCI |
 | **Repository** | [kgallik/QuPath_Confusion_Matrix_Extension](https://github.com/kgallik/QuPath_Confusion_Matrix_Extension) |
-| **Version at workshop** | 0.2.2 |
+| **Extension version** | 0.2.2 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, classified detections, and ground-truth annotations |
 | **Where to find it** | `Extensions > Confusion Matrix > Analyze Current Image...` / `Analyze Project...` |

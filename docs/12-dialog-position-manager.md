@@ -12,7 +12,7 @@ title: Dialog Position Manager
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-dialog-manager](https://github.com/uw-loci/qupath-extension-dialog-manager) |
-| **Version at workshop** | 0.4.1 |
+| **Extension version** | 0.4.1 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Window > Dialog Position Manager...` and `Window > Recover Off-Screen Dialogs` |

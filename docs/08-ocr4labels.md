@@ -11,7 +11,7 @@ title: OCR for Labels
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-ocr4labels](https://github.com/uw-loci/qupath-extension-ocr4labels) |
-| **Version at workshop** | 0.4.3 |
+| **Extension version** | 0.4.3 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+, Tesseract language data (see Setup) |
 | **Where to find it** | `Extensions > OCR for Labels` |

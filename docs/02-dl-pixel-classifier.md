@@ -12,7 +12,7 @@ title: Deep Learning Pixel Classifier
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-dl-pixel-classifier](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier) |
-| **Version at workshop** | 0.8.5 |
+| **Extension version** | 0.9.0 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+. **A CUDA GPU for training.** ~2–4 GB download for the Python environment on first use |
 | **Where to find it** | `Extensions > DL Pixel Classifier` |

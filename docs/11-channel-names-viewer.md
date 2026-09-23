@@ -12,7 +12,7 @@ title: Channel Names Viewer
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-channel-names-viewer](https://github.com/uw-loci/qupath-extension-channel-names-viewer) |
-| **Version at workshop** | 1.0.9 |
+| **Extension version** | 1.0.9 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | Toolbar button beside brightness/contrast · `Extensions > Channel Names Viewer...` · **Ctrl+Shift+C** (**Cmd+Shift+C** on macOS) |

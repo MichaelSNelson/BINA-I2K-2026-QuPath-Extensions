@@ -12,7 +12,7 @@ title: Tiles to Pyramid
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-tiles-to-pyramid](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
-| **Version at workshop** | 0.6.5 |
+| **Extension version** | 0.7.3 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Tiles to Pyramid` |

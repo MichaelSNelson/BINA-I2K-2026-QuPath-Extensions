@@ -11,7 +11,7 @@ title: Cluster 3D Navigator
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-cluster-3d-navigator](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator) |
-| **Version at workshop** | 0.1.5 |
+| **Extension version** | 0.1.5 |
 | **License** | GPL-3.0-or-later |
 | **Requires** | QuPath 0.7.0+. No Python, no browser, no network. Pure Java |
 | **Where to find it** | `Extensions > Cluster 3D Navigator > Open 3D navigator...` |
