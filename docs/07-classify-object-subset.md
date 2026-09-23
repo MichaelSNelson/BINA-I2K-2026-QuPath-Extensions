@@ -254,16 +254,18 @@ Every Apply is recorded so the same operation can be re-run across a whole proje
 
 ### What to notice
 
-- **The live count is the feature.** You used it to measure the error before the fix and
-  confirm it after, and at no point did you have to trust the tool — you had a number.
-- **You repaired one class without disturbing five others.** Running the trained classifier
-  over the whole image would also have fixed the tumor calls, but it would have overwritten
-  every other call at the same time. On real data, where earlier calls often represent manual
-  work you do not want to lose, that is the difference that matters.
-- **Stacked classifiers are easier to build than one big one.** Each pass only has to be good
-  at one distinction, and you can check each one separately.
-- **The exploratory session converts to a batch script**, so what you just did by hand can be
-  re-run across a project unchanged.
+You read 439, applied, and read 412. The count is how you knew the repair worked, and how you
+knew it was needed in the first place.
+
+Running the trained classifier over the whole image would have fixed the tumor calls too — and
+rewritten all 1,530 cells while doing it. Here the other five classes came through untouched.
+On your own slides those other calls are often manual work.
+
+The gate and the trained classifier each did one job. A pass that only has to separate tumor
+from not-tumor is easier to check than one that has to get all six right at once.
+
+Each Apply is recorded in the workflow history, so the same operation runs over a whole project
+from a script.
 
 ---
 
