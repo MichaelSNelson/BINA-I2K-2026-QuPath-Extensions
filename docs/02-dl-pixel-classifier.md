@@ -84,7 +84,7 @@ This is why **training is a demo today and inference is the hands-on part**. Wor
 are not going to train a transformer in twenty minutes, and pretending otherwise wastes your
 hour.
 
-<details>
+<details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).

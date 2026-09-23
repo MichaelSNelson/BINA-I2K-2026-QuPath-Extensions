@@ -89,7 +89,7 @@ case-insensitive). The two levels match independently, so both `z{nn}/t{nn}/` an
 
 There is no maximum-intensity projection and no flattening; planes are written through as-is.
 
-<details>
+<details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).

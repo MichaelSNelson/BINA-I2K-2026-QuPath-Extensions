@@ -92,7 +92,7 @@ swallows bigger uniform regions per click.
 You can also **Save current as preset...** once you find settings that suit your images, and
 they appear in the same menu afterwards.
 
-<details>
+<details markdown="1">
 <summary><b>The rest of the settings</b> — edge stops, simplification, and how sensitivity works</summary>
 
 **Sensitivity** sets the tolerance as `threshold = stddev × sensitivity`, measured on the
@@ -109,7 +109,7 @@ behaving.
 
 </details>
 
-<details>
+<details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).

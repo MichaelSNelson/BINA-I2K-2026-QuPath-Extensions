@@ -68,7 +68,7 @@ this is the difference between a tool you will use and one you will be afraid of
   one originates from a request by `sebg` on [image.sc](https://forum.image.sc/), building on
   Pete Bankhead's per-project rename script.)
 
-<details>
+<details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).

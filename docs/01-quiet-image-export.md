@@ -66,7 +66,7 @@ and is there a scale bar?" *before* the figure goes into a manuscript, not durin
 > default and hides rarely-used controls. If a setting described here seems to be missing,
 > flip to Advanced. The choice persists across sessions.
 
-<details>
+<details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).

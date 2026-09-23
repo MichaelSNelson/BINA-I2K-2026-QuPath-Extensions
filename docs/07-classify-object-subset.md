@@ -54,7 +54,7 @@ click Apply. That number is the whole point: you find out you targeted the wrong
 > cell classifier means detections. Classes that exist only on annotations will not appear in
 > the class filter. See the [glossary](glossary.md).
 
-<details>
+<details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).

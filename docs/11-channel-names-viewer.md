@@ -63,7 +63,7 @@ rebinding, an RGB empty state, persisted state, and a right-click settings menu.
 `Ctrl/Cmd+Shift+C` accelerator is exclusive to the extension; the script registers no global
 shortcut.
 
-<details>
+<details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
