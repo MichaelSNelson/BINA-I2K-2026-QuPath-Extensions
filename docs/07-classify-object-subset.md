@@ -43,7 +43,7 @@ but only if you are comfortable writing scripts. This extension is the GUI for i
 - **current viewer selection**,
 - or any combination of the above.
 
-The dialog shows a **live count** — "412 of 1530 objects will be classified" — before you
+The dialog shows a **live count** — "413 of 1487 objects will be classified" — before you
 click Apply. That number is the whole point: you find out you targeted the wrong cells
 *before* you overwrite them.
 
@@ -93,14 +93,14 @@ open it as a project. Inside:
 catalog (see the **Install** box above, or the [setup guide](setup.md)). Nothing else — no
 server, no GPU, no internet once the zip is downloaded.
 
-Unzip it anywhere you like. **Work on `tme_00.tif`, and use that one image throughout.**
+Unzip it anywhere you like. **Work on `tme_04.tif`, and use that one image throughout.**
 
-> **Use `tme_00`, not whichever image opens first.** The eight images are deliberately
+> **Use `tme_04`, not whichever image opens first.** The eight images are deliberately
 > different. `tme_07` is an immune-poor variant with **no B cells at all**, and `tme_06` is
-> immune-rich. If you work on a different image your numbers will not match the ones below,
-> and nothing will have gone wrong.
+> immune-rich. Every number below is from `tme_04`; on another image they will differ, and
+> nothing will have gone wrong.
 
-`tme_00` contains **1,530 cells**. The ground truth says exactly **412 of them are tumor
+`tme_04` contains **1,487 cells**, of which the ground truth says exactly **396 are tumor
 cells**. Hold on to that number — you are going to measure it twice.
 
 ### Set up the project
@@ -108,20 +108,21 @@ cells**. Hold on to that number — you are going to measure it twice.
 1. Start QuPath, then **drag the unzipped folder — or the `project.qpproj` file inside it —
    onto the QuPath window.** That opens it as a project. (Menu route, if you prefer:
    `File > Project... > Open project`.)
-2. QuPath pops up an **Update URIs** dialog — "Files may have been deleted or moved!" — with
-   the images listed in red. **This is expected**, it is not your fault, and you do not need to
-   re-download or re-unzip. The project ships with *relative* image paths so the zip is portable,
-   and QuPath cannot resolve those until you show it the folder once. Click
-   **Search...** (bottom-right), choose the folder you unzipped, and QuPath fills in the
-   **Replacement URI** column; then click **Apply changes**. This happens once.
-3. In the project list on the left, double-click **`tme_00.tif`** to open it.
+2. **The images will show as missing.** This is expected, it is not your fault, and you do
+   not need to re-download or re-unzip — the project cannot know where you unzipped it. Fix it
+   once: **`Automate > Project scripts > fix_image_paths` > Run**, then reopen the project. That
+   repoints all eight images at the bundled `images/` folder.
+
+   (If QuPath instead offers to locate the missing images, point it at the `images/` folder
+   beside `project.qpproj`; fixing one fixes all.)
+3. In the project list on the left, double-click **`tme_04.tif`** to open it.
 
 You should see cells outlined, and a scatter of small colored dots. The dots are the
 **ground truth** — one per cell, colored by what that cell really is. The cells themselves
 start out **unclassified**.
 
 %%SHOT_COS_01_PROJECT_OPEN%%
-> *Screenshot to add: `tme_00` open — cell outlines and the colored ground-truth dots, cells
+> *Screenshot to add: `tme_04` open — cell outlines and the colored ground-truth dots, cells
 > still unclassified.*
 
 **The extension lives at** `Extensions > Classify Object Subset > Apply Classification to Subset...`.
@@ -131,42 +132,47 @@ start out **unclassified**.
 A classifier that is right about everything teaches you nothing. So first, classify the cells
 with a deliberately crude method that gets most of them right and a few of them wrong.
 
-4. Get **[`apply_otsu_gate.groovy`](https://raw.githubusercontent.com/uw-loci/multiplex-synthetic-data/master/analytical_logs/scripts/08_apply_otsu_gate.groovy)** into QuPath, whichever way suits you:
+4. Run the imperfect classifier: **`Automate > Project scripts > classify_with_marker_gate`**,
+   then **Run**. It is bundled with the project, so there is nothing to download.
 
-   - **Copy and paste.** Click the link, select all of the text, open `Automate > Script editor` in QuPath, paste it into a new script.
-   - **Save the file.** Right-click the link → *Save link as*, then in the Script editor use `File > Open...`.
-
-   Either way, click **Run**.
-
-   This thresholds each marker channel and assigns a cell type from which markers are above
-   threshold. It is right about 97–98% of the time. Its errors are real ones: QuPath expands
-   each nucleus by 5 µm to approximate the cell, and at the edge of a tumor nest that
-   expansion picks up PanCK signal from the tumor cell next door — so **T cells touching a
-   tumor nest get called `tumor`**.
+   It thresholds each marker channel and assigns a cell type from which markers are above
+   threshold. Its errors are real ones: QuPath expands each nucleus by 5 µm to approximate the
+   cell, and at the edge of a tumor nest that expansion picks up PanCK signal from the tumor
+   cell next door — so **T cells touching a tumor nest get called `tumor`**.
 
 5. The cells are now colored by predicted class. Zoom into the boundary of a tumor nest and
-   look at the cells there against the ground-truth dots underneath. Some disagree.
+   look at the cells there against the ground-truth dots underneath. Some disagree — the
+   arrows below mark three of them.
 
-%%SHOT_COS_02_GATE_CLASSIFIED%%
-> *Screenshot to add: a tumor-nest boundary, cells colored by the gate's prediction, with a few
-> visibly disagreeing with the ground-truth dot beneath them.*
+   <img src="../images/classify-object-subset/gate-errors-at-nest-boundary.png" alt="A tumor nest boundary at high zoom. Most cells are classified correctly, but arrows mark a green helper T cell and a magenta CD8 T cell sitting against the nest edge, and an orange macrophage, each outlined as the wrong class" width="820">
+
+6. Score it: **`Automate > Project scripts > check_against_ground_truth`**, then **Run**. It
+   prints a confusion matrix and the overall accuracy to the log (`View > Show log`) and
+   **selects the misclassified cells in the viewer**, so you can jump straight to them. This
+   needs no extension.
+
+   <img src="../images/classify-object-subset/gate-confusion-matrix.png" alt="A seven-class confusion matrix for tme_04. The diagonal holds 154 b_cell, 170 cd8_t, 419 fibroblast, 149 helper_t, 167 macrophage and 396 tumor. Off the diagonal, 12 cd8_t, 3 helper_t and 2 macrophage are predicted tumor, and 15 cells are left unclassified" width="620">
+
+   Read the `tumor` column: **12 CD8 T cells, 3 helper T cells and 2 macrophages** were called
+   tumor. That is **17 cells wrongly in the tumor class**, every one of them at a nest
+   boundary. A further **15 cells matched no marker rule** and were left unclassified.
 
 ### Part B: measure the error
 
 Now use the extension as a measuring instrument, before using it as a repair tool.
 
-6. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
-7. Set **Classifier** to `cell_type_classifier`. Set **Object source** to **Custom filter**.
-8. In the **Class filter** list, tick **`tumor`** only.
-9. Read the live count: **"N of 1530 objects will be classified."**
+7. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
+8. Set **Classifier** to `cell_type_classifier`. Set **Object source** to **Custom filter**.
+9. In the **Class filter** list, tick **`tumor`** only.
+10. Read the live count: it should say **"413 of 1487 objects will be classified."**
 
-   That **N** is how many cells the crude gate called tumor. The truth is **412**. Your number
-   will be larger — the gate over-calls tumor, because of the spillover in step 4. Across all
-   eight images it labels 2,832 cells tumor where only 2,693 really are.
+    **413 is the gate's tumor call. The truth is 396.** The extra 17 are the boundary cells
+    from the matrix above. You have now measured the error with the same dialog you are about
+    to fix it with.
 
 %%SHOT_COS_03_DIALOG_COUNT%%
 > *Screenshot to add: the Apply Classification to Subset dialog with the `tumor` class filter
-> ticked and the live count reading "N of 1530 objects will be classified."*
+> ticked and the live count reading "413 of 1487 objects will be classified."*
 
 > **Why was the class list empty before you ran the script?** If you open this dialog on a
 > fresh project, the **Class filter** shows *"No classes present in image."* That is correct
@@ -177,31 +183,31 @@ Now use the extension as a measuring instrument, before using it as a repair too
 
 ### Part C: repair only the cells that are wrong
 
-10. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the gate
+11. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the gate
     called tumor — the correct ones and the mistaken ones together — and nothing else.
-11. Click **Apply**.
+12. Click **Apply**.
 
     A message confirms how many objects were classified and how many **changed**. The
     "changed" number is the repair: those are cells the trained classifier disagreed with the
     gate about.
 
-12. Now measure again. Reopen the dialog, set **Object source** to **Custom filter**, tick
+13. Now measure again. Reopen the dialog, set **Object source** to **Custom filter**, tick
     **`tumor`** only, and read the live count.
 
-    It should now be much closer to **412**. You repaired the tumor calls without touching
+    It should now be much closer to **396**. You repaired the tumor calls without touching
     any of the other five cell types — every fibroblast, macrophage and B cell the gate got
     right is exactly as it was.
 
 %%SHOT_COS_04_AFTER_REPAIR%%
-> *Screenshot to add: the dialog's live count on the second measurement, now close to 412.*
+> *Screenshot to add: the dialog's live count on the second measurement, now close to 396.*
 
 ### Part D: the leftovers (optional)
 
 The gate leaves a few cells matching no marker rule at all, and those stay unclassified.
 
-13. Reopen the dialog, and in the **Class filter** tick **Include unclassified** and nothing
+14. Reopen the dialog, and in the **Class filter** tick **Include unclassified** and nothing
     else. The count shows how many cells the gate could not call.
-14. Apply the trained classifier to just those. This is the "stacked classifiers" pattern:
+15. Apply the trained classifier to just those. This is the "stacked classifiers" pattern:
     a first pass that is confident about the easy cases, a second that mops up the rest,
     with each pass leaving the other's work alone.
 
@@ -209,9 +215,9 @@ The gate leaves a few cells matching no marker rule at all, and those stay uncla
 
 Every Apply is recorded so the same operation can be re-run across a whole project.
 
-15. Open `Automate > Show workflow command history`. Look for the step named
+16. Open `Automate > Show workflow command history`. Look for the step named
     **`Apply classify object subset`** — one for each time you clicked Apply.
-16. Right-click it and choose **Create script** to get runnable Groovy. (The confirmation
+17. Right-click it and choose **Create script** to get runnable Groovy. (The confirmation
     message calls this "Open the Workflow tab to copy this operation as a script" — same
     thing, two names.)
 
