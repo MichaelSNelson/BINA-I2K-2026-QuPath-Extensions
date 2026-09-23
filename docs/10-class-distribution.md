@@ -50,7 +50,7 @@ Keep the whole **project** open — this extension reads across all images, not 
 
 ### 2. Load it into QuPath
 
-1. `File > Project... > Open project`, and pick **`project.qpproj`** in the unzipped folder.
+1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either works. (Menu route: `File > Project... > Open project`.)
 2. QuPath pops up an **Update URIs** dialog — a project stores absolute image paths, so it
    cannot find the images after the move (listed in red). Click **Search...** (bottom-right),
    choose the folder you unzipped, then **Apply changes**.

@@ -100,8 +100,8 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 ### Part A: a figure you could publish
 
-1. Open the project — the folder you unzipped, which QuPath opens with
-   `File > Project > Open project`. Confirm at least one **annotation** exists: a region you
+1. **Drag the unzipped folder onto an open QuPath window** to open it as a project.
+   Confirm at least one **annotation** exists: a region you
    or someone else drew on the image. If there are none, draw a rectangle over part of the
    tissue.
 2. `Extensions > QuIET > Image Export...` (see below). The second entry,

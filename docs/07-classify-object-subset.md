@@ -105,8 +105,9 @@ cells**. Hold on to that number — you are going to measure it twice.
 
 ### Set up the project
 
-1. Start QuPath. `File > Project... > Open project`, and pick the **`project.qpproj`** file
-   inside the unzipped folder.
+1. Start QuPath, then **drag the unzipped folder — or the `project.qpproj` file inside it —
+   onto the QuPath window.** That opens it as a project. (Menu route, if you prefer:
+   `File > Project... > Open project`.)
 2. QuPath pops up an **Update URIs** dialog — "Files may have been deleted or moved!" — because
    a project stores absolute image paths and cannot find them after the move (the images are
    listed in red). It is not your fault and you do not need to re-download or re-unzip. Click

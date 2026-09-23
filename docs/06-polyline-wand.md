@@ -134,7 +134,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 ## Hands-on exercise
 **Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
-**Before you start.** Unzip `Scripting Demo.zip`. In QuPath, `File > Project > Open project` and pick the unzipped folder — it is already a project. Double-click the **CMU-1 H&E** slide in the project list to open it.
+**Before you start.** Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it is already a project, and dropping it opens it. (The menu route is `File > Project > Open project`, if you prefer.) Then double-click the **CMU-1 H&E** slide in the project list to open it.
 
 Like the Wizard Wand this is a toolbar tool: with an image open, press **Shift+P**.
 
