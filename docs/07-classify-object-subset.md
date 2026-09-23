@@ -151,11 +151,10 @@ with a deliberately crude method that gets most of them right and a few of them 
    **selects the misclassified cells in the viewer**, so you can jump straight to them. This
    needs no extension.
 
-   <img src="../images/classify-object-subset/gate-confusion-matrix.png" alt="A seven-class confusion matrix for tme_00. The diagonal holds 102 b_cell, 173 cd8_t, 396 fibroblast, 196 helper_t, 205 macrophage and 412 tumor. Off the diagonal, 14 cd8_t, 9 macrophage, 3 helper_t and 1 b_cell are predicted tumor, and 19 cells are left unclassified" width="620">
-
-   Read the `tumor` column: **14 CD8 T cells, 9 macrophages, 3 helper T cells and 1 B cell**
-   were called tumor. That is **27 cells wrongly in the tumor class**, nearly all of them at a
-   nest boundary. A further **19 cells matched no marker rule** and were left unclassified.
+   Read down the `tumor` column of the printed matrix: **14 CD8 T cells, 9 macrophages, 3
+   helper T cells and 1 B cell** were called tumor. That is **27 cells wrongly in the tumor
+   class**, nearly all of them at a nest boundary. A further **19 cells matched no marker
+   rule** and were left unclassified.
 
 ### Part B: measure the error
 
