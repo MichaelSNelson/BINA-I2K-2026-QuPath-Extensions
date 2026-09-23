@@ -123,32 +123,7 @@ start out **unclassified**.
 > *Screenshot to add: `tme_00` open — cell outlines and the colored ground-truth dots, cells
 > still unclassified.*
 
-### Getting oriented: where things are in QuPath
-
-A quick map of what you are looking at and where the tools live, before the exercise starts.
-
-- **Project browser — left panel.** Your eight images as thumbnails. Double-click one to open
-  it; the open image is highlighted. Stay on **`tme_00.tif`**.
-- **Viewer — center.** The image itself, with two kinds of object drawn on top of it:
-  - **Cells** are *detections* — the outlines. They start **unclassified** (no fill color).
-  - The **colored dots** are *annotations* — the ground truth, one per cell, colored by the
-    cell's true type. They are reference only; you never edit them.
-
-  This detection-vs-annotation split is the single most important thing to hold onto: this
-  extension, like every cell classifier, acts on **detections**, not annotations (see the note
-  above and the [glossary](glossary.md)).
-- **Analysis panel — left, tabs above the browser.** The **Annotations** tab lists the classes
-  present and their counts; the **Hierarchy** tab shows the object tree. After you classify,
-  the class counts here are the fastest way to see what happened.
-- **Brightness & contrast.** These are 8-channel fluorescence images; they display correctly
-  with no setup, but the Brightness/Contrast dialog (in the toolbar) lets you turn channels on
-  and off if you want to see, say, PanCK alone.
-- **The extension:** `Extensions > Classify Object Subset > Apply Classification to Subset...`.
-- **Scripts:** `Automate > Script editor`, then `File > Open...` a `.groovy` and click **Run**.
-  The project's `scripts/` folder holds the helpers, and one script is downloaded in Part A.
-- **The log** (`View > Show log`) is where scripts print their results — counts and accuracy.
-- **Workflow history** (`Automate > Show workflow command history`) records every operation you
-  run, including each Apply, which is what lets you turn the session into a script in Part E.
+**The extension lives at** `Extensions > Classify Object Subset > Apply Classification to Subset...`.
 
 ### Part A: make a mistake worth fixing
 
