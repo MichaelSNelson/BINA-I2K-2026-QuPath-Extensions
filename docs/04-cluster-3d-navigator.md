@@ -55,8 +55,9 @@ Work on **`tme_00.tif`**.
 ### 2. Load it into QuPath
 
 1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either works. (Menu route: `File > Project... > Open project`.)
-2. QuPath pops up an **Update URIs** dialog — a project stores absolute image paths, so it
-   cannot find the images after the move (they are listed in red). Click **Search...**
+2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected.
+   The project ships with *relative* image paths so the zip is portable,
+   and QuPath cannot resolve those until you show it the folder once. Click **Search...**
    (bottom-right), choose the folder you unzipped, and QuPath fills in the **Replacement URI**
    column; then click **Apply changes**.
 3. Double-click **`tme_00.tif`** to open it.
