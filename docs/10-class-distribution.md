@@ -5,9 +5,9 @@ title: Class Distribution
 
 # Class Distribution
 
-> Live pie charts of class distribution across your project, plus the classifier training
-> balance those annotations imply. Spot class imbalance *before* you export training data,
-> not after the classifier disappoints you.
+> Live pie charts of how your classes are distributed across a whole project — by annotation
+> area, or by how many detections each class labels. Spot class imbalance *before* it quietly
+> wrecks a classifier, not after.
 
 | | |
 |---|---|
@@ -20,91 +20,113 @@ title: Class Distribution
 | **Session** | Hands-on |
 
 > **Walkthrough video:** %%VIDEO_CLASS_DISTRIBUTION%%
-> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
 
 ---
 
-## What it does
+## The idea in one sentence
 
-Two dialogs:
-
-- **Annotation class distribution**: how your annotation classes are distributed. Closed
-  annotations count by **area**; polylines count by **length**.
-- **Detection-classifier training balance**: how many *detections* each class would label,
-  given your current training annotations. This is the number that actually determines
-  whether a classifier can learn a class, and it is not the same as the number of annotations
-  you drew.
-
-Each dialog has three tabs:
-
-| Tab | Shows |
-|---|---|
-| **Project** | An aggregate chart over every image |
-| **Current image** | A live chart for the open image, updating as you annotate |
-| **All images** | A grid of one mini-chart per project image |
-
-You can filter to a single **ImageType**, and classes that are dramatically over- or
-under-represented relative to the rest are marked `[over]` / `[under]` in the legend.
-
-The charts update **as you annotate**. That is the design intent: the feedback arrives while
-you can still act on it, rather than in a post-mortem after training.
-
-## Why it matters
-
-Class imbalance is the most common reason a QuPath classifier underperforms, and the hardest
-to see by eye. Drawing ten large stroma annotations and forty small tumor ones *feels*
-balanced; by area it may be 20:1. The training-balance dialog is the one to watch, because a
-classifier learns from pixels and detections, not from your sense of effort.
-
-For PIs and supervisors, the **All images** grid is a fast read on whether a trainee's project
-is annotated consistently across slides.
-
-<details>
-<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
-
-Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
-
-</details>
+It charts how your classes are distributed — across the project, the current image, or every
+image side by side — so class imbalance, the most common and least visible reason a classifier
+underperforms, is something you can see at a glance.
 
 ---
 
-> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
-> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
-> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
+## Walkthrough: read the class balance across a project
 
-## Hands-on exercise
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB; see [setup](setup.md#5-download-the-workshop-data)).
+Uses the same ready-made project as the other exercises. It follows naturally **after
+classification / labeling**: once your cells carry classes, this is how you check whether those
+classes are balanced enough to trust.
 
-**Before you start.** Unzip `Scripting Demo.zip`. In QuPath, `File > Project > Open project` and pick the unzipped folder — it is already a project. Double-click the **CMU-1 H&E** slide in the project list to open it.
+### 1. The data
 
-This one reads the whole project, not just the open image, so keep the project open rather
-than a loose file. The extension is at `Extensions > Class Distribution`.
+**Download:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
+**[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)**
+(20 MB). A ready-made project of eight images. Each cell carries a **classified ground-truth
+point** — a labeled point annotation — and the eight images were built with deliberately
+different compositions: **`tme_06` is immune-rich**, **`tme_07` is immune-poor with no B cells
+at all**. That built-in imbalance is exactly what this tool is for.
 
+Keep the whole **project** open — this extension reads across all images, not just the open one.
 
-1. `Extensions > Class Distribution`. Open the **annotation** distribution dialog.
-2. Look at the **Project** tab, then the **All images** grid. Which slide is the outlier?
-3. Switch to the **Current image** tab and leave the dialog open beside the viewer.
-4. Draw a few more annotations of your least-represented class. Watch the chart move in real
-   time.
-5. Now open the **detection-classifier training balance** dialog. Compare it to the annotation
-   chart. They will not agree, and the gap is the point.
-6. Find a class marked `[under]`. Annotate until it is no longer marked.
-7. Filter to a single **ImageType** and see whether the imbalance is type-specific.
+### 2. Load it into QuPath
+
+1. `File > Project... > Open project`, and pick **`project.qpproj`** in the unzipped folder.
+2. QuPath pops up an **Update URIs** dialog — a project stores absolute image paths, so it
+   cannot find the images after the move (listed in red). Click **Search...** (bottom-right),
+   choose the folder you unzipped, then **Apply changes**.
+3. Double-click any image (e.g. `tme_00.tif`) so the viewer has something open.
+
+### 3. Open the distribution that uses your labels
+
+The ground-truth points are classified **point** annotations, and they are what labels the
+cells. Open **`Extensions > Class Distribution > Show Detection Training Distribution...`** — it
+counts, for each class, how many detections those points label. (The other dialog, *Show Class
+Distribution...*, measures drawn **area** annotations by area; points contribute no area, so use
+that one when you are annotating regions — see below.)
+
+%%SHOT_CD_01_DIALOG%%
+> *Screenshot to add: the Detection Training Distribution dialog open beside the viewer.*
+
+### 4. The project as a whole
+
+On the **Project** tab, each slice is a class in its own QuPath color, sized by how many cells
+carry it across all eight images. Hover for the exact percentage.
+
+%%SHOT_CD_02_PROJECT%%
+> *Screenshot to add: the Project tab pie chart with per-class percentages.*
+
+### 5. Every image at once — where the imbalance shows
+
+Switch to the **All images** tab: one mini-chart per image, shared legend. This is the moment
+worth watching. `tme_06`'s chart is visibly heavier on the immune classes; **`tme_07` has no
+B-cell slice at all**, and a class that is far below the others is flagged **`[under]`** in the
+legend (dramatically over-represented ones get `[over]`).
+
+%%SHOT_CD_03_ALL_IMAGES%%
+> *Screenshot to add: the All images grid, with `tme_06` (immune-rich) and `tme_07` (no B cells)
+> visibly different, and an `[under]` marker in the legend.*
+
+### 6. One image, and the ImageType filter
+
+The **Current image** tab charts just the open image and also surfaces project classes that are
+*missing* from it. The **Image Type** dropdown at the top aggregates only images of one type —
+useful when a project mixes stains or magnifications.
+
+%%SHOT_CD_04_CURRENT%%
+> *Screenshot to add: the Current image tab, with a missing-class note and the Image Type filter.*
 
 ### What to notice
 
-- Annotation count, annotation area, and implied training-detection count are three different
-  numbers. Only the third predicts classifier behavior.
-- Live feedback while annotating is a genuinely different workflow from checking afterwards.
-- `[over]` / `[under]` markers are relative to the rest of your project, so they tell you about
-  *your* balance, not a universal target.
+- **The number that predicts classifier behavior is the detection count per class, not the
+  count of annotations you drew.** Ten big stroma regions and forty small tumor ones can be 20:1
+  by the count that matters.
+- **`[over]` / `[under]` are relative to your project's own median**, so they describe *your*
+  balance, not a universal target.
+- The `tme_07` gap (no B cells) is the kind of thing that silently produces a classifier that
+  cannot call a class it never really saw — and here it is, obvious, before you train anything.
 
 ---
 
-## Going further
+## What it does, in full
 
-The natural companion is the [Confusion Matrix](presented/confusion-matrix.md) extension: class
-imbalance visible here is usually the explanation for a wide confidence interval there.
+**Two dialogs.** *Show Class Distribution...* charts **annotation** classes — closed annotations
+by pixel area, polylines by length × width (points contribute nothing). *Show Detection Training
+Distribution...* charts how many **detections** each class would label given your training
+annotations (area regions, or classified counting **points** like this dataset's ground truth).
+
+**Three tabs each** — Project (aggregate), Current image (live), and All images (a grid of one
+mini-chart per image with a shared legend and a thumbnail-size slider) — plus an **Image Type**
+filter and the `[over]`/`[under]` highlighting.
+
+**Live as you annotate.** With the annotation dialog open on the Current image tab, draw or edit
+area annotations and the chart updates immediately — the feedback arrives while you can still act
+on it. That is the intended workflow for building balanced training data; try it by drawing a
+couple of classified rectangles on an image and watching the chart move.
+
+**It stores nothing in your project** — preferences live in QuPath's own settings.
+
+> **New to QuPath?** *project*, *annotation*, *detection*, *class* are in the
+> [glossary](glossary.md).
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-class-distribution#readme).

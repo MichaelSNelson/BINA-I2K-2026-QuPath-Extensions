@@ -118,6 +118,10 @@ You should see cells outlined, and a scatter of small colored dots. The dots are
 **ground truth** — one per cell, colored by what that cell really is. The cells themselves
 start out **unclassified**.
 
+%%SHOT_COS_01_PROJECT_OPEN%%
+> *Screenshot to add: `tme_00` open — cell outlines and the colored ground-truth dots, cells
+> still unclassified.*
+
 ### Getting oriented: where things are in QuPath
 
 A quick map of what you are looking at and where the tools live, before the exercise starts.
@@ -161,6 +165,10 @@ with a deliberately crude method that gets most of them right and a few of them 
 5. The cells are now colored by predicted class. Zoom into the boundary of a tumor nest and
    look at the cells there against the ground-truth dots underneath. Some disagree.
 
+%%SHOT_COS_02_GATE_CLASSIFIED%%
+> *Screenshot to add: a tumor-nest boundary, cells colored by the gate's prediction, with a few
+> visibly disagreeing with the ground-truth dot beneath them.*
+
 ### Part B: measure the error
 
 Now use the extension as a measuring instrument, before using it as a repair tool.
@@ -173,6 +181,10 @@ Now use the extension as a measuring instrument, before using it as a repair too
    That **N** is how many cells the crude gate called tumor. The truth is **412**. Your number
    will be larger — the gate over-calls tumor, because of the spillover in step 4. Across all
    eight images it labels 2,832 cells tumor where only 2,693 really are.
+
+%%SHOT_COS_03_DIALOG_COUNT%%
+> *Screenshot to add: the Apply Classification to Subset dialog with the `tumor` class filter
+> ticked and the live count reading "N of 1530 objects will be classified."*
 
 > **Why was the class list empty before you ran the script?** If you open this dialog on a
 > fresh project, the **Class filter** shows *"No classes present in image."* That is correct
@@ -197,6 +209,9 @@ Now use the extension as a measuring instrument, before using it as a repair too
     It should now be much closer to **412**. You repaired the tumor calls without touching
     any of the other five cell types — every fibroblast, macrophage and B cell the gate got
     right is exactly as it was.
+
+%%SHOT_COS_04_AFTER_REPAIR%%
+> *Screenshot to add: the dialog's live count on the second measurement, now close to 412.*
 
 ### Part D: the leftovers (optional)
 

@@ -5,107 +5,143 @@ title: Cluster 3D Navigator
 
 # Cluster 3D Navigator
 
-> A rotatable 3D point cloud of your clustered cells, inside QuPath. Click a point in cluster
-> space and land on that cell on the slide.
+> A rotatable **3D point cloud of your cells** inside QuPath — one point per cell, colored by
+> its class. Click a point in cluster space and land on that cell on the slide, in one click.
 
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-cluster-3d-navigator](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator) |
 | **Version at workshop** | 0.1.5 |
 | **License** | GPL-3.0-or-later |
-| **Requires** | QuPath 0.7.0+. No Python, no browser, no network, no large download. Pure Java |
+| **Requires** | QuPath 0.7.0+. No Python, no browser, no network. Pure Java |
 | **Where to find it** | `Extensions > Cluster 3D Navigator > Open 3D navigator...` |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
 > **Walkthrough video:** %%VIDEO_CLUSTER_3D_NAVIGATOR%%
-> The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
 
 ---
 
-## What it does
+## The idea in one sentence
 
-One point per detection, colored by its classification (PathClass). Rotate, zoom, and pan
-the cloud, then **click a point to select and center that cell in the QuPath viewer**. An
-interesting spot in cluster space becomes an actual cell on the slide in one click.
+It plots every cell as a point in a 3D space you choose (three measurements as the axes),
+colors each point by its class, and lets you **click a point to select and center that exact
+cell in the viewer** — so a spot in cluster space becomes a real cell on the slide.
 
-There is a flat **2D** view for genuine 2D embeddings (a 2D UMAP) and a **3D** view for
-three-component embeddings.
-
-The extension is deliberately **generic**: it does not care which tool produced your
-clusters. If your detections carry a PathClass and at least three numeric measurement
-columns, say `UMAP1`, `UMAP2` and `UMAP3`, it will plot them. QP-CAT output works; so does
-anything you computed elsewhere and imported as measurements.
-
-**It reads detections only and writes nothing to the hierarchy.** Navigation selects existing
-cells; it cannot damage your project.
-
-### How it relates to QP-CAT
-
-QP-CAT ships a 2D embedding scatter, and a one-way "Export for VEST" that opens in a browser
-and cannot navigate back. Cluster 3D Navigator is the complementary **in-QuPath,
-bidirectional, 3D** tool. Use either, or both.
-
-## Requirements in practice
-
-Your detections need:
-
-- a **PathClass** (the color), and
-- **at least three numeric measurement columns** to use as X, Y, Z.
-
-If you have run clustering in QP-CAT with UMAP components saved as measurements, you already
-satisfy both.
-
-> **Platform caveat:** verified on Linux for this build. Windows is a claimed target that
-> still needs real-world verification (HiDPI pointer mapping, native window behavior). If
-> you are on Windows and clicking a point selects the *wrong* cell, that is a bug worth
-> reporting, please do.
-
-<details>
-<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
-
-Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
-
-</details>
+It reads detections only and writes nothing to the hierarchy, so you can explore freely.
 
 ---
 
-> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
-> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
-> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
+## Walkthrough: navigate cells in 3D and land on the real thing
 
-## Hands-on exercise
-> ⚠️ **Do the [QP-CAT exercise](03-qp-cat-cell-analysis-tools.md) first.** This tool draws a
-> clustering someone else computed; it cannot make one. Without a project whose cells already
-> carry UMAP coordinates, there is nothing for it to plot.
+Uses the same ready-made project as the [Classify Object Subset](07-classify-object-subset.md)
+and [Confusion Matrix](presented/confusion-matrix.md) exercises.
 
-**Data:** the clustered project you produced in the
-[QP-CAT exercise](03-qp-cat-cell-analysis-tools.md): the synthetic tumor-microenvironment
-dataset, ~14 MB from [GitHub](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip). Save UMAP components as measurements when you
-cluster and they become your X, Y and Z here.
+### 1. The data
 
-This pairing is worth doing in order: because every cell in that data has a known type, when you
-click a point in cluster space you can check whether the cell you land on really is what the
-cluster claims. Do that a few times on **boundary** points, the cells sitting between two
-clusters, and you will learn more about your clustering than any metric will tell you.
+**Download:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
+**[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)**
+(20 MB). A ready-made QuPath project: eight 8-channel images with cells already detected (and
+their per-marker measurements), ground-truth points, a trained classifier, and helper scripts.
 
-1. `Extensions > Cluster 3D Navigator > Open 3D navigator...`
-2. Assign three measurement columns to X, Y, Z (e.g. `UMAP1`, `UMAP2`, `UMAP3`).
-3. Rotate the cloud. Look for structure that is *invisible* in a 2D projection: two clusters
-   that overlap in 2D but separate cleanly along the third axis.
-4. Find a point sitting between two clusters. Click it. Go look at that cell on the slide.
-5. Repeat for a point at the dense core of a cluster. Compare the two cells.
-6. Switch to the **2D** view and confirm which structure you would have missed.
+The navigator needs two things on your cells, both of which this project has once you classify:
+a **class** (the color) and **at least three numeric measurement columns** to use as the X, Y
+and Z axes. Here the axes are marker means (`Cell: PanCK mean`, `Cell: aSMA mean`, …). If you
+run the [QP-CAT clustering exercise](03-qp-cat-cell-analysis-tools.md) and save UMAP components
+as measurements, `UMAP1/2/3` work as axes too — and the navigator will preselect them.
+
+Work on **`tme_00.tif`**.
+
+### 2. Load it into QuPath
+
+1. `File > Project... > Open project`, and pick **`project.qpproj`** in the unzipped folder.
+2. QuPath pops up an **Update URIs** dialog — a project stores absolute image paths, so it
+   cannot find the images after the move (they are listed in red). Click **Search...**
+   (bottom-right), choose the folder you unzipped, and QuPath fills in the **Replacement URI**
+   column; then click **Apply changes**.
+3. Double-click **`tme_00.tif`** to open it.
+
+### 3. Give the cells a class (the color)
+
+The cells start unclassified, so the cloud would be one flat color. Classify them first: run
+**`Automate > Project scripts > apply_trained_classifier`** (the bundled classifier). The cells
+are now colored by cell type — those colors carry straight into the point cloud.
+
+%%SHOT_C3D_01_CLASSIFIED%%
+> *Screenshot to add: `tme_00` with cells colored by predicted class.*
+
+### 4. Open the navigator and choose the axes
+
+1. `Extensions > Cluster 3D Navigator > Open 3D navigator...`.
+2. Pick three numeric measurements for the **X, Y and Z** axes. With no embedding columns
+   present, choose three marker means — for example `Cell: PanCK mean`, `Cell: aSMA mean`, and
+   `Cell: CD3 mean` — which spread tumor, fibroblast and T cells apart. (If `UMAP1/2/3` exist,
+   the navigator preselects them.)
+
+%%SHOT_C3D_02_AXES%%
+> *Screenshot to add: the axis-selection controls with three measurements chosen.*
+
+### 5. Explore the cloud
+
+- **Drag to rotate**, **scroll to zoom**, **middle-drag (or Shift+drag) to pan**.
+- Each point is one cell; its color is its class. Use the class legend's checkboxes to show or
+  hide classes and declutter.
+- Look for structure that a flat 2D view hides — two classes that overlap along two axes but
+  separate cleanly along the third.
+
+%%SHOT_C3D_03_CLOUD%%
+> *Screenshot to add: the rotated 3D cloud, colored by class, with the class legend.*
+
+### 6. Click a point, land on the cell
+
+This is the whole point of the tool. Click a point in the cloud and the matching cell is
+**selected and centered in the QuPath viewer**. Try a point at the dense core of one color, then
+a point sitting **between** two colors — the boundary cells are where classification and
+clustering disagreements live. Because this data has ground truth (the colored points on the
+slide), you can immediately check whether the cell you landed on really is what its color
+claims.
+
+%%SHOT_C3D_04_CLICK_TO_CELL%%
+> *Screenshot to add: a point selected in the cloud and the corresponding cell centered/selected
+> in the viewer (side by side).*
+
+### 7. 2D when that is what you have
+
+Switch to the **2D** view for a genuine 2D embedding (a 2D UMAP). Rotating the 3D cloud and then
+comparing to 2D is the fastest way to see what a third component would have told you.
+
+%%SHOT_C3D_05_2D%%
+> *Screenshot to add: the 2D view of the same data.*
 
 ### What to notice
 
-- Boundary cells are where classifier and clustering errors live. This tool makes them a
-  one-click investigation rather than a scripting exercise.
+- Boundary cells — where two colors meet in the cloud — are where errors live, and this makes
+  them a one-click investigation rather than a scripting exercise.
 - Three components is not automatically better than two, but when it is, it is obvious the
   moment you rotate.
-- Because it only reads, you can explore freely without worrying about your hierarchy.
+- The tool only reads, so nothing you do here can damage your project.
 
 ---
+
+## What it does, in full
+
+One point per detection, colored by its classification (PathClass); a **3D** view for
+three-component data and a flat **2D** view for 2D embeddings. It is deliberately **generic** —
+it does not care which tool produced your clusters. Any detections carrying a class and at least
+three numeric measurement columns will plot: QP-CAT output, or anything you computed elsewhere
+and imported as measurements. It **reads detections only and writes nothing to the hierarchy**.
+
+**How it relates to QP-CAT.** QP-CAT ships a 2D embedding scatter and a one-way "Export for
+VEST" that opens in a browser and cannot navigate back. Cluster 3D Navigator is the
+complementary **in-QuPath, bidirectional, 3D** tool. Use either, or both.
+
+> **Platform caveat:** verified on Linux for this build; Windows is a claimed target that still
+> needs real-world verification (HiDPI pointer mapping, native window behavior). If clicking a
+> point selects the *wrong* cell on Windows, that is a bug worth reporting.
+
+> **New to QuPath?** *project*, *detection*, *class* and *measurement* are in the
+> [glossary](glossary.md); QuPath's [official docs](https://qupath.readthedocs.io/en/stable/) go
+> deeper.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator#readme).
