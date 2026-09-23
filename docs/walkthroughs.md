@@ -5,10 +5,8 @@ title: Walkthroughs and videos - every tool, whether or not we reach it
 
 # Walkthroughs and videos
 
-**We will not get through all sixteen tools in two hours, and we are not going to pretend
-otherwise.** There are roughly forty minutes of live demonstration in the first hour and sixty
-optional minutes in the second. That is enough for a handful of tools done properly, not all of
-them done badly.
+There are roughly forty minutes of live demonstration in the first hour and sixty optional
+minutes in the second — enough for a handful of the sixteen tools, done properly.
 
 So every tool you can install has a **complete written walkthrough** and a **recorded video**
 of it being done. The three you cannot install get a video and a pointer to their
@@ -94,8 +92,8 @@ tools you want share a name, that is one download, not two. Each is linked here 
 | Dialog Position Manager | [Guide](12-dialog-position-manager.md){: .g-todo} | %%VIDEO_DIALOG_POSITION_MANAGER%% | *none needed* |
 | Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md){: .g-wip} | %%VIDEO_TILES_TO_PYRAMID%% | *not ready yet* |
 
-The second hour is a menu rather than a queue: take whichever of these you came for. The
-[extension index](extensions.md) groups them into four tracks.
+Take whichever of these you came for. The [extension index](extensions.md) groups them into
+four tracks.
 
 ## Presented tools
 

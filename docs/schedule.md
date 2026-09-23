@@ -33,8 +33,8 @@ spend the second hour on your own data instead of ours.
 
 ---
 
-The two hours are simply **presentation and demos**, then **optional hands-on**. There is no
-minute-by-minute running order, and the second hour is yours to spend as you like.
+The two hours are **presentation and demos**, then **optional hands-on**. The second hour is
+yours to spend as you like.
 
 - **What to install and download beforehand:** the [setup guide](setup.md), including which
   data goes with which track.
