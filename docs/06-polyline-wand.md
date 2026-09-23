@@ -109,8 +109,8 @@ accidentally drag your line sideways, use the second.
 ## Right-click menu
 
 ```
-Engine >              (Direct vertex push / Displacement field)
 Mode >                (Auto / Push / Smooth / Erase from end / Scissors)
+Engine >              (Direct vertex push / Displacement field)
 Engine settings >     (rebuilds for the active engine)
 Set brush radius...
 Reset Polyline Wand preferences
