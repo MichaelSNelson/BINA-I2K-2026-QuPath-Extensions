@@ -77,7 +77,7 @@ tools you want share a name, that is one download, not two. Each is linked here 
 
 | Tool | Walkthrough | Video | Data |
 |---|---|---|---|
-| QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md){: .g-todo} | %%VIDEO_QUIET_IMAGE_EXPORT%% | Scripting Demo |
+| QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md){: .g-todo} | %%VIDEO_QUIET_IMAGE_EXPORT%% | Demo project |
 | DL Pixel Classifier | [Guide](02-dl-pixel-classifier.md){: .g-todo} | %%VIDEO_DL_PIXEL_CLASSIFIER%% | Scripting Demo |
 | QP-CAT — Cell Analysis Tools | [Guide](03-qp-cat-cell-analysis-tools.md){: .g-todo} | %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%% | Synthetic |
 | Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | Synthetic |
@@ -86,7 +86,7 @@ tools you want share a name, that is one download, not two. Each is linked here 
 | Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md){: .g-wip} | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | Demo project |
 | OCR for Labels | [Guide](08-ocr4labels.md){: .g-wip} | %%VIDEO_OCR4LABELS%% | Slide labels |
 | Project Metadata Browser | [Guide](09-project-metadata-browser.md){: .g-wip} | %%VIDEO_PROJECT_METADATA_BROWSER%% | Slide labels |
-| Class Distribution | [Guide](10-class-distribution.md){: .g-todo} | %%VIDEO_CLASS_DISTRIBUTION%% | Scripting Demo |
+| Class Distribution | [Guide](10-class-distribution.md){: .g-todo} | %%VIDEO_CLASS_DISTRIBUTION%% | Demo project |
 | Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md){: .g-todo} | %%VIDEO_CHANNEL_NAMES_VIEWER%% | Synthetic |
 | Dialog Position Manager | [Guide](12-dialog-position-manager.md){: .g-todo} | %%VIDEO_DIALOG_POSITION_MANAGER%% | *none needed* |
 | Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md){: .g-wip} | %%VIDEO_TILES_TO_PYRAMID%% | *not ready yet* |

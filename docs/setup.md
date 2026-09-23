@@ -92,9 +92,9 @@ wherever it already lives, and the sizes differ by more than an order of magnitu
 
 | If you are doing | Download exactly this | Size |
 |---|---|---|
-| **Track A or C** (QuIET, DL Pixel Classifier, both wands, Class Distribution) | **`Scripting Demo.zip`**, from [this Drive folder](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY). Unzip it, then drag the unzipped folder onto an open QuPath window to open it as a project | **229 MB** |
+| **Track A or C** (DL Pixel Classifier, both wands) | **`Scripting Demo.zip`**, from [this Drive folder](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY). Unzip it, then drag the unzipped folder onto an open QuPath window to open it as a project | **229 MB** |
 | **Track B** (QP-CAT, Cluster 3D Navigator, Channel Names Viewer) | **`multiplex-synthetic-data-v1.2.zip`**, from [this release page](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip). It is the first file under Assets. Ignore "Source code (zip)" and "(tar.gz)" | **14 MB** |
-| **Track A or C** (Classify Object Subset) | **`multiplex-synthetic-data-demo-project-v1.2.zip`**, [direct link](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip). A ready-made QuPath project — cells already detected, a saved classifier, and ground truth to check your answer against. Unzip it, then drag the folder (or `project.qpproj` inside it) onto an open QuPath window | **20 MB** |
+| **Track A or C** (QuIET, Classify Object Subset, Class Distribution) | **`multiplex-synthetic-data-demo-project-v1.2.zip`**, [direct link](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip). A ready-made QuPath project — cells already detected, a saved classifier, and ground truth to check your answer against. Unzip it, then drag the folder (or `project.qpproj` inside it) onto an open QuPath window | **20 MB** |
 | **Track D** (OCR for Labels, Project Metadata Browser) | **`OCR_Test_Images_LJI.zip`**, [direct link](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) or the same Drive folder | **244 MB** |
 | **Track D** (Tiles to Pyramid) | Still being prepared. Nothing to download yet | — |
 
@@ -103,7 +103,7 @@ are the sizes so you can decide, not a rule about what you are allowed to have.
 
 | Zip | Size | What it is for |
 |---|---|---|
-| **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** | 229 MB | The assembled QuPath project. **Tracks A and C** |
+| **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** | 229 MB | The assembled QuPath project. **Tracks A and C** (DL Pixel Classifier and the wands; QuIET, Classify Object Subset and Class Distribution use the synthetic demo project instead) |
 | [`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) | 244 MB | Slide labels. **Track D** (OCR / metadata) |
 | [`Multiplex demo images.zip`](https://drive.google.com/uc?export=download&id=11PmdpYIrdSEn15Rgv9aa_4BDeF6pXODE) | 1.86 GB | Loose multiplexed images. No track here uses them |
 | [`Brightfield demo.zip`](https://drive.google.com/uc?export=download&id=1ghskMkToAP6DoQSfGxrdQiOKjIMpHtI0) | 90 MB | Loose brightfield images, also inside Scripting Demo.zip |
@@ -118,8 +118,8 @@ are the sizes so you can decide, not a rule about what you are allowed to have.
 **`Scripting Demo.zip`** is the demo project from
 [imagescientist.com/qupath-intro](https://www.imagescientist.com/qupath-intro), already assembled:
 **CMU-1** (brightfield H&E) and **LuCa-7color** (8-channel multiplexed IF), with cells already
-detected and several saved object classifiers. Unzip, open as a project, and Tracks A and C are
-ready.
+detected and several saved object classifiers. Unzip, open as a project, and the DL Pixel
+Classifier and wand exercises are ready.
 
 > Prefer the individual images? The imagescientist page links them at source: CMU-1 from the
 > [OpenSlide test data](http://openslide.cs.cmu.edu/download/openslide-testdata/Aperio/) and

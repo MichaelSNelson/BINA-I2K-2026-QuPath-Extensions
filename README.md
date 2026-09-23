@@ -65,8 +65,9 @@ each link goes straight to it.
 
 | If you are doing | Download exactly this | Size |
 |---|---|---|
-| **Track A or C** — QuIET, DL Pixel Classifier, both wands, Class Distribution, Classify Object Subset | **`Scripting Demo.zip`** from [this Drive folder](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY). Unzip, then `File > Project > Open project` on the unzipped folder | 229 MB |
+| **Track A or C** — DL Pixel Classifier, both wands | **`Scripting Demo.zip`** from [this Drive folder](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY). Unzip, then `File > Project > Open project` on the unzipped folder | 229 MB |
 | **Track B** — QP-CAT, Cluster 3D Navigator, Channel Names Viewer | **`multiplex-synthetic-data-v1.2.zip`** from [this release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip), the first file under Assets. Not "Source code" | **14 MB** |
+| **Track A or C** — QuIET, Classify Object Subset, Class Distribution | **`multiplex-synthetic-data-demo-project-v1.2.zip`**, [direct link](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip). A ready-made project: cells detected, ground truth, a saved classifier. Unzip, then drag the folder onto QuPath | **20 MB** |
 | **Track D** — OCR for Labels, Project Metadata Browser | **[`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS)** | **244 MB** ⚠️ |
 | **Track D** — Tiles to Pyramid | Still being prepared; nothing to download yet | — |
 

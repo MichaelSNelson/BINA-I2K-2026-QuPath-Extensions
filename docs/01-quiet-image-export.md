@@ -12,7 +12,7 @@ title: QuIET - QuPath Image Export Toolkit
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-image-export-toolkit](https://github.com/uw-loci/qupath-extension-image-export-toolkit) |
-| **Version at workshop** | 1.2.8 |
+| **Version at workshop** | 1.2.12 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+ |
 | **Where to find it** | `Extensions > QuIET > Image Export...` and `Extensions > QuIET > Panel / Montage Export...` |
@@ -82,28 +82,35 @@ Both menu items stay greyed out until a project with at least one image is open.
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
 ## Hands-on exercise
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB; see [setup](setup.md#5-download-the-workshop-data)).
+**Data:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
+**[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)**
+(20 MB; see [setup](setup.md#5-download-the-workshop-data)). It is a ready-made QuPath project
+of eight synthetic 8-channel multiplexed images, `tme_00.tif` … `tme_07.tif`, from the CC0
+[multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data). Cells are
+already detected on every image, and every cell carries a classified ground-truth point, so
+there are objects to draw in Part A and a known answer to check mask and tile exports against.
+The same zip serves the [Classify Object Subset](07-classify-object-subset.md) and
+[Class Distribution](10-class-distribution.md) exercises, so one download covers all three.
 
 > **Parts A and B need one image. Part C needs at least two**, because it builds a figure out
-> of several panels. `Scripting Demo.zip` gives you two; the synthetic set gives you eight.
+> of several panels. This project gives you eight.
 
-> **Or use the synthetic multiplex set instead.** If you are on the multiplexed track, or you
-> just want something small, the CC0
-> [multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip)
-> (~14 MB) works for every part of this exercise. Its eight-channel images exercise the channel
-> handling that a brightfield slide cannot, and because every cell carries a known type, the
-> label-mask and tile-pair exports have a ground truth you can check the output against.
-> The eight `tme_NN.tif` files are the images; the CSVs and GeoJSON beside them are the
-> answer key. Set the image type to **Fluorescence** when QuPath asks.
-> You will need to detect cells first — the recipe is in the
-> [QP-CAT guide](03-qp-cat-cell-analysis-tools.md#hands-on-exercise-20-min-or-10-for-parts-a-and-b).
+> **Already have the 14 MB `multiplex-synthetic-data-v1.2.zip` from Track B?** Those are the
+> same eight images as loose files, with the ground truth beside them as CSV and GeoJSON, but
+> with no project and no cells detected. It works for this exercise once you have added the
+> images to a project and run cell detection — the recipe is in the
+> [QP-CAT guide](03-qp-cat-cell-analysis-tools.md#hands-on-exercise). The demo project above
+> skips both steps.
 
 ### Part A: a figure you could publish
 
-1. **Drag the unzipped folder onto an open QuPath window** to open it as a project.
-   Confirm at least one **annotation** exists: a region you
-   or someone else drew on the image. If there are none, draw a rectangle over part of the
-   tissue.
+1. **Drag the unzipped folder — or the `project.qpproj` inside it — onto an open QuPath
+   window** to open it as a project. The images will show as **missing**: the project cannot
+   know where you unzipped it. In the **Update URIs** dialog click **Search...**, choose the
+   folder you unzipped, then **Apply changes**. Double-click `tme_00.tif` to open it. You
+   should see cell outlines (the detections) and a coloured dot on each cell (the
+   ground-truth points). Those are the objects Part A draws onto the figure, so there is
+   nothing to annotate by hand.
 2. `Extensions > QuIET > Image Export...` (see below). The second entry,
    **Panel / Montage Export...**, is Part C.
 
@@ -111,14 +118,16 @@ Both menu items stay greyed out until a project with at least one image is open.
 3. **Step 1:** choose **Rendered Image** — the leftmost of the five categories (see below).
 
    <img src="../images/quiet/step1-categories.png" alt="The Select Export Category screen with five cards: Rendered Image, Label / Mask, Raw Image Data, Tiled Export, Object Crops" width="820">
-4. **Step 2:** set **Render Mode**. For this figure choose **Object Overlay**, which draws
-   your annotations onto the image; **None (no overlay source)** gives a clean image with no
-   annotations, which is what the screenshot below happens to show. Turn on a **scale bar**.
-   **Downsample** shrinks the exported image: **1** means full size, **4** means a quarter as
-   wide. You only need it when the image is far bigger than the figure you want. The synthetic
-   images are 2048 × 2048, so leave it at **1**. CMU-1 is tens of thousands of pixels wide —
-   QuPath's **Image** tab shows the width, and dividing that by about 2000 gives you the
-   number to enter.
+4. **Step 2:** set **Render Mode**. The dropdown starts on **None (no overlay source)**, with
+   a blue ring around it to draw your eye — that gives a clean image with no objects, which is
+   what the screenshot below happens to show. For this figure choose **Object Overlay**, which
+   draws the detected cells and their ground-truth points onto the image. Turn on a
+   **scale bar**. **Downsample** shrinks the exported image: **1** means full size, **4** means
+   a quarter as wide. You only need it when the image is far bigger than the figure you want.
+   These images are 2048 × 2048, so leave it at **1**. (On a whole-slide image tens of
+   thousands of pixels wide you would check the width in QuPath's **Image** tab — the wizard
+   does not block the main window, so you can do that with it open — and divide by roughly
+   2000 to get the number to enter.)
 
    The panel down the right (see below) is general QUAREP-LiMi guidance for the kind of export
    you picked, plus one line saying how many of your images it scanned and what type they are.
@@ -163,13 +172,13 @@ Both menu items stay greyed out until a project with at least one image is open.
 
 10. `Extensions > QuIET > Panel / Montage Export...`
 11. Select the images you want as panels and apply one **recipe** — one set of rendering
-    settings — to all of them, so every panel is treated identically. How many you have
-    depends on your data: the synthetic set has eight, so pick four and lay them out 2×2;
-    `Scripting Demo.zip` has only two (CMU-1 and LuCa-7color), so lay those out 1×2.
-    Add captions.
-12. Export and open the montage. The one below was made from four images of the **synthetic
-    set**, not the H&E slide — so yours will look different, and will have as many panels as
-    you selected. What matters is that every panel got the same recipe and its own scale bar.
+    settings — to all of them, so every panel is treated identically. The project has eight
+    images; pick four and lay them out 2×2. `tme_06` (immune-rich) and `tme_07` (immune-poor)
+    are the two most different, so include those. Add captions — the caption is the full
+    image name, `tme_06.tif`, extension included, so you can tell versions of an image apart.
+12. Export and open the montage. The one below was made from four of these images, so yours
+    should look similar, with as many panels as you selected. What matters is that every panel
+    got the same recipe and its own scale bar.
 
     <img src="../images/quiet/panel-figure.jpg" alt="A 2x2 montage of four synthetic multiplex images, each rendered identically and carrying a 200 micrometre scale bar" width="640">
 
