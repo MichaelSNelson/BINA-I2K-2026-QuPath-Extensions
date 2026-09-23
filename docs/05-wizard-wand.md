@@ -15,7 +15,7 @@ title: Wizard Wand
 | **Extension version** | 0.4.3 |
 | **License** | GPL-3.0 |
 | **Requires** | QuPath 0.6.0+ (use 0.7 today) |
-| **Where to find it** | Toolbar <img src="../images/icon-wizard-wand.png" alt="Wizard Wand toolbar icon" height="13"> · **Shift+W** |
+| **Where to find it** | Toolbar <img src="../images/icon-wizard-wand.png" alt="Wizard Wand toolbar icon" class="icon"> · **Shift+W** |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
@@ -35,16 +35,16 @@ comes first depends on the order you installed them, so match the icon rather th
 
 | | Which button | How to tell it apart |
 |---|---|---|
-| <img src="../images/icon-wand-builtin.png" alt="" height="22"> | QuPath's own wand | Outline only, no fill |
-| <img src="../images/icon-wizard-wand.png" alt="" height="22"> | **Wizard Wand** (Shift+W) | Solid wand, sparkles, no arrow |
-| <img src="../images/icon-polyline-wand.png" alt="" height="22"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small grey arrow in the corner |
+| <img src="../images/icon-wand-builtin.png" alt="" class="icon-lg"> | QuPath's own wand | Outline only, no fill |
+| <img src="../images/icon-wizard-wand.png" alt="" class="icon-lg"> | **Wizard Wand** (Shift+W) | Solid wand, sparkles, no arrow |
+| <img src="../images/icon-polyline-wand.png" alt="" class="icon-lg"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small grey arrow in the corner |
 
 ---
 
 ## What it does
 
 Annotation is where most people spend most of their QuPath time, so a wand that needs fewer
-corrections is worth more than it sounds.
+corrections saves real hours.
 
 Wizard Wand installs as a **separate toolbar button**. QuPath's built-in wand is untouched:
 you can ignore this one entirely until you want it.
@@ -134,8 +134,8 @@ select it.
 
 
 1. Press **Shift+W**, then **hold the mouse button down and sweep** across a piece of tissue,
-   the way you would use a brush. Notice it keeps extending the same annotation as you move,
-   rather than making a new selection each click. This is the thing to take away.
+   the way you would use a brush. It keeps extending the same annotation as you move, rather
+   than starting a new selection each click.
 2. Do the same region with QuPath's built-in wand for comparison: one click, one region, and
    you join them up yourself.
 3. **Mid-drag, stop moving and keep the button down.** The selection carries on growing
@@ -159,8 +159,8 @@ select it.
 
 ### What to notice
 
-- **Dragging is the whole point.** A wand you can sweep is a different tool from a wand you
-  click, and it is why this exists. If you take one thing away, take that.
+- **A wand you can sweep is a different tool from a wand you click.** One stroke covers what
+  would otherwise be a dozen clicks and a dozen boundaries to reconcile.
 - **Presets beat fiddling.** Four named presets cover most of what the sliders would, and you
   can save your own once you find settings that suit your slides.
 - **Hole filling and smoothing sound cosmetic but change your numbers.** Area measurements,

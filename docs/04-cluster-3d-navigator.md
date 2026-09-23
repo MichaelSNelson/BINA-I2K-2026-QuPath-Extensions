@@ -95,8 +95,8 @@ are now colored by cell type — those colors carry straight into the point clou
 
 ### 6. Click a point, land on the cell
 
-This is the whole point of the tool. Click a point in the cloud and the matching cell is
-**selected and centered in the QuPath viewer**. Try a point at the dense core of one color, then
+Click a point in the cloud and the matching cell is **selected and centered in the QuPath
+viewer**. Try a point at the dense core of one color, then
 a point sitting **between** two colors — the boundary cells are where classification and
 clustering disagreements live. Because this data has ground truth (the colored points on the
 slide), you can immediately check whether the cell you landed on really is what its color

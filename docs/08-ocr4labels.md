@@ -120,8 +120,7 @@ embedded slide label. **244 MB, so download it before you travel.**
 > **Why it is not a folder of small PNGs.** The label lives *inside* the slide file, as an
 > attachment alongside the pixel data. The extension pulls it out of the WSI. Hand it a
 > screenshot of a label and there is nothing for it to read, because the thing it reads is the
-> slide. That is the whole point of the tool: the information is already in the file you were
-> given.
+> slide. The information is already in the file you were given.
 
 **These four slides are two different label designs, two slides each.** That matters more than
 it sounds: a template records *where* each field sits, so one built on a brightfield label reads

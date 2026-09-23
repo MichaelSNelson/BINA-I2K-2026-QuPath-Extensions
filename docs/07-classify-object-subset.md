@@ -44,8 +44,7 @@ but only if you are comfortable writing scripts. This extension is the GUI for i
 - or any combination of the above.
 
 The dialog shows a **live count** — "439 of 1,530 objects will be classified" — before you
-click Apply. That number is the whole point: you find out you targeted the wrong cells
-*before* you overwrite them.
+click Apply, so you find out you targeted the wrong cells *before* you overwrite them.
 
 > **"Objects" means annotations and detections both.** QuPath calls everything in the image
 > hierarchy an object. Cells are *detections*; the regions you draw, and the colored

@@ -70,6 +70,10 @@ table{border-collapse:collapse; width:100%; display:block; overflow-x:auto}
 th,td{border:1px solid var(--hair); padding:.5rem .7rem; text-align:left; vertical-align:top}
 th{background:var(--panel); color:var(--mut); font-size:.86rem; text-transform:uppercase; letter-spacing:.05em}
 img{max-width:100%; height:auto; border-radius:12px; border:1px solid var(--hair)}
+/* inline icons: img{height:auto} above beats an HTML height attribute, so size
+   them here. No border or rounding -- these sit in running text and in tables. */
+img.icon{height:1.15em; width:auto; border:0; border-radius:0; vertical-align:-.18em}
+img.icon-lg{height:1.7em; width:auto; border:0; border-radius:0; vertical-align:-.45em}
 .footer{
   max-width:56rem; margin:0 auto; padding:0 1.25rem 4rem;
   color:var(--mut); font-size:.87rem; border-top:1px solid var(--hair); padding-top:1.25rem;

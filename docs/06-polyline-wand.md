@@ -15,7 +15,7 @@ title: Polyline Wand and Brush
 | **Extension version** | 0.3.8 |
 | **License** | GPL-3.0 |
 | **Requires** | QuPath 0.6.0+ (use 0.7 today) |
-| **Where to find it** | Toolbar <img src="../images/icon-polyline-wand.png" alt="Polyline Wand toolbar icon" height="13"> · **Shift+P** |
+| **Where to find it** | Toolbar <img src="../images/icon-polyline-wand.png" alt="Polyline Wand toolbar icon" class="icon"> · **Shift+P** |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
@@ -35,9 +35,9 @@ installed them, so match the icon rather than the position:
 
 | | Which button | How to tell it apart |
 |---|---|---|
-| <img src="../images/icon-wand-builtin.png" alt="" height="22"> | QuPath's own wand | Outline only, no fill |
-| <img src="../images/icon-wizard-wand.png" alt="" height="22"> | **Wizard Wand** (Shift+W) | Solid wand, sparkles, no arrow |
-| <img src="../images/icon-polyline-wand.png" alt="" height="22"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small grey arrow in the corner |
+| <img src="../images/icon-wand-builtin.png" alt="" class="icon-lg"> | QuPath's own wand | Outline only, no fill |
+| <img src="../images/icon-wizard-wand.png" alt="" class="icon-lg"> | **Wizard Wand** (Shift+W) | Solid wand, sparkles, no arrow |
+| <img src="../images/icon-polyline-wand.png" alt="" class="icon-lg"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small grey arrow in the corner |
 
 ---
 
