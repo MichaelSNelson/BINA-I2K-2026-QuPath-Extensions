@@ -117,13 +117,23 @@ cells**. Hold on to that number — you are going to measure it twice.
    beside `project.qpproj`; fixing one fixes all.)
 3. In the project list on the left, double-click **`tme_00.tif`** to open it.
 
-You should see cells outlined, and a scatter of small colored dots. The dots are the
-**ground truth** — one per cell, colored by what that cell really is. The cells themselves
-start out **unclassified**.
+<img src="../images/classify-object-subset/project-open-tme00.png" alt="tme_00 open in QuPath. A red rectangle annotation frames the whole image; every cell carries a red detection outline; and a small colored dot sits on each cell, colored by its true type" width="820">
 
-%%SHOT_COS_01_PROJECT_OPEN%%
-> *Screenshot to add: `tme_00` open — cell outlines and the colored ground-truth dots, cells
-> still unclassified.*
+**There are three different things drawn on this image, and telling them apart is most of the
+exercise:**
+
+- **The square outline around the whole image** is an *annotation* — a rectangle someone drew
+  so that `Analyze > Cell detection` had a region to run in. It produced everything else here,
+  and you will not touch it again.
+- **The cell outlines** are *detections*, one per cell, about 1,530 of them. They are all the
+  same color because they are **unclassified**: no cell yet carries a class.
+- **The small colored dots**, one sitting on each cell, are *point annotations*. Their colors
+  are the six cell types, and they are the **ground truth** — what each cell really is. They
+  are reference only; you never edit them, and the classifier never reads them.
+
+That last distinction is the one that catches people. The classes you can see on screen belong
+to the **dots**, which are annotations. The extension classifies **cells**, which are
+detections — so until something classifies a cell, the extension has no classes to offer you.
 
 **The extension lives at** `Extensions > Classify Object Subset > Apply Classification to Subset...`.
 
