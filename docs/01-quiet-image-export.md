@@ -112,7 +112,7 @@ The same zip serves the [Classify Object Subset](07-classify-object-subset.md) a
    window** to open it as a project. The images will show as **missing**: the project cannot
    know where you unzipped it. In the **Update URIs** dialog click **Search...**, choose the
    folder you unzipped, then **Apply changes**. Double-click `tme_00.tif` to open it. You
-   should see cell outlines (the detections) and a coloured dot on each cell (the
+   should see cell outlines (the detections) and a colored dot on each cell (the
    ground-truth points). Those are the objects Part A draws onto the figure, so there is
    nothing to annotate by hand.
 2. `Extensions > QuIET > Image Export...` (see below). The second entry,
