@@ -48,7 +48,13 @@ The navigator needs two things on your cells, both of which this project has onc
 a **class** (the color) and **at least three numeric measurement columns** to use as the X, Y
 and Z axes. Here the axes are marker means (`Cell: PanCK mean`, `Cell: aSMA mean`, …). If you
 run the [QP-CAT clustering exercise](03-qp-cat-cell-analysis-tools.md) and save UMAP components
-as measurements, `UMAP1/2/3` work as axes too — and the navigator will preselect them.
+as measurements, `UMAP1/2/3` work as axes too.
+
+> **Coming: pre-computed QP-CAT results.** Clustering takes real compute, and a conference
+> laptop may not want to spend it. A zip of finished QP-CAT output will be offered here so you
+> can load the results and come straight to this exercise with `UMAP1/2/3` already on your
+> cells. It is optional and separate from the track downloads — do the QP-CAT exercise yourself
+> if you want to see how the numbers were produced. **Not available yet.**
 
 Work on **`tme_00.tif`**.
 
