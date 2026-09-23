@@ -80,7 +80,7 @@ tools you want share a name, that is one download, not two. Each is linked here 
 | QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md){: .g-todo} | %%VIDEO_QUIET_IMAGE_EXPORT%% | Demo project |
 | DL Pixel Classifier | [Guide](02-dl-pixel-classifier.md){: .g-todo} | %%VIDEO_DL_PIXEL_CLASSIFIER%% | Scripting Demo |
 | QP-CAT — Cell Analysis Tools | [Guide](03-qp-cat-cell-analysis-tools.md){: .g-todo} | %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%% | Synthetic |
-| Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | Synthetic |
+| Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | Demo project |
 | Wizard Wand | [Guide](05-wizard-wand.md){: .g-wip} | %%VIDEO_WIZARD_WAND%% | Scripting Demo |
 | Polyline Wand & Brush | [Guide](06-polyline-wand.md){: .g-wip} | %%VIDEO_POLYLINE_WAND%% | Scripting Demo |
 | Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md){: .g-wip} | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | Demo project |
