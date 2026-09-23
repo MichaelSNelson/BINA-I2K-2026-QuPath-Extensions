@@ -254,8 +254,10 @@ Every Apply is recorded so the same operation can be re-run across a whole proje
 
 ### What to notice
 
-You read 439, applied, and read 412. The count is how you knew the repair worked, and how you
-knew it was needed in the first place.
+You read 439, applied, and read 412. Both numbers came from the extension itself — what made
+them checkable was the answer key, which independently says 412. That is the part you will not
+have on your own slides: the live count will still tell you **how many** cells you are about to
+change, which is the useful thing, but nothing will tell you the right answer.
 
 Running the trained classifier over the whole image would have fixed the tumor calls too — and
 rewritten all 1,530 cells while doing it. Here the other five classes came through untouched.
