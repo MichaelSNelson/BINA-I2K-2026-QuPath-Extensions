@@ -136,8 +136,7 @@ select it.
 1. Press **Shift+W**, then **hold the mouse button down and sweep** across a piece of tissue,
    the way you would use a brush. It keeps extending the same annotation as you move, rather
    than starting a new selection each click.
-2. Do the same region with QuPath's built-in wand for comparison: one click, one region, and
-   you join them up yourself.
+2. Do the same region with QuPath's built-in wand and compare the two boundaries.
 3. **Mid-drag, stop moving and keep the button down.** The selection carries on growing
    outward until you move again. Use this when a structure has a clean outer edge but a messy
    middle — start inside and let it find the edge.
