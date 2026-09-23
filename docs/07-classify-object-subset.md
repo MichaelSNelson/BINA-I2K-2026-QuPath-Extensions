@@ -187,21 +187,22 @@ matching cells in the viewer, if you would rather see them than count them.
 
 11. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the gate
     called tumor — the correct ones and the mistaken ones together — and nothing else.
-12. Click **Apply**.
+12. Click **Apply**. The confirmation reads **"439 objects classified, 27 changed."**
 
-    A message confirms how many objects were classified and how many **changed**. The
-    "changed" number is the repair: those are cells the trained classifier disagreed with the
-    gate about.
+    <img src="../images/classify-object-subset/apply-notification.png" alt="A QuPath notification headed Subset classification complete, reading: 439 objects classified, 27 changed. Open the Workflow tab to copy this operation as a script" width="700">
+
+    **27 is the repair, and it is the same 27** you counted off the confusion matrix: the 14
+    CD8 T cells, 9 macrophages, 3 helper T cells and 1 B cell the gate had pushed into the
+    tumor class. The other 412 it looked at were already right and were left alone.
 
 13. Now measure again. Reopen the dialog, set **Object source** to **Custom filter**, tick
     **`tumor`** only, and read the live count.
 
-    It should now be much closer to **412**. You repaired the tumor calls without touching
-    any of the other five cell types — every fibroblast, macrophage and B cell the gate got
-    right is exactly as it was.
+    <img src="../images/classify-object-subset/dialog-after-repair.png" alt="The filter panel after the repair, with only tumor ticked, and the live count now reading 412 of 1,530 objects will be classified" width="640">
 
-%%SHOT_COS_04_AFTER_REPAIR%%
-> *Screenshot to add: the dialog's live count on the second measurement, now close to 412.*
+    **412 of 1,530** — the ground truth exactly. You repaired the tumor calls without touching
+    any of the other five cell types: every fibroblast, macrophage and B cell the gate got
+    right is exactly as it was.
 
 ### Part D: the leftovers (optional)
 
