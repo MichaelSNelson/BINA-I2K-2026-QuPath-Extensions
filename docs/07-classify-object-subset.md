@@ -225,9 +225,14 @@ Every Apply is recorded so the same operation can be re-run across a whole proje
 
 16. Open `Automate > Show workflow command history`. Look for the step named
     **`Apply classify object subset`** — one for each time you clicked Apply.
-17. Right-click it and choose **Create script** to get runnable Groovy. (The confirmation
-    message calls this "Open the Workflow tab to copy this operation as a script" — same
-    thing, two names.)
+17. Get it into Groovy, one of two ways:
+
+    - **Copy the step** out of the history and paste it into the script editor. Use this when
+      you want that one operation and nothing else.
+    - **Click Create script**, which turns the *whole* workflow into a script — every step
+      you ran, not just the Apply — then delete down to the parts you want.
+
+    There is no per-step *Create script*; the button works on the workflow as a whole.
 
 ### What to notice
 
