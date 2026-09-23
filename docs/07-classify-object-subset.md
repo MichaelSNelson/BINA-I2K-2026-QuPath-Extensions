@@ -222,6 +222,11 @@ matching cells in the viewer, if you would rather see them than count them.
     any of the other five cell types: every fibroblast, macrophage and B cell the gate got
     right is exactly as it was.
 
+    > **Why it lands exactly on 412.** `cell_type_classifier` was trained on the ground-truth
+    > points of all eight images, this one included, with nothing held back. So recovering 412
+    > is the model reproducing labels it was fitted on — it shows the repair worked, but it is
+    > not an accuracy estimate. On your own data, train and score on different images.
+
 ### Part D: the leftovers (optional)
 
 The gate leaves a few cells matching no marker rule at all, and those stay unclassified.

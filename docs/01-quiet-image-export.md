@@ -51,10 +51,14 @@ another program.
 
 ## Two things that make it worth your time
 
-**Every export writes a Groovy script.** Whatever you clicked in the wizard is emitted as a
+**Every export records a Groovy script.** Whatever you clicked in the wizard is emitted as a
 self-contained script you can save, version-control, re-run next year, or send to a
-collaborator who does not have QuIET installed. The wizard is a script *generator*, not a
-black box, which is the difference between a convenience and a reproducibility tool.
+collaborator who does not have QuIET installed. Save it from **Save Script...** on Step 3, or
+find it afterwards in `Automate > Show workflow command history`.
+
+The two exceptions: exports using the **active overlay**, which cannot be reproduced from a
+script because the classifier is ephemeral, and the case where you have turned script recording
+off in Preferences.
 
 **QUAREP-LiMi guidance is in the dialog.** [QUAREP-LiMi](https://quarep.org/) is the
 community effort to define minimum reporting standards for light microscopy. Step 2 shows a
@@ -160,8 +164,9 @@ The same zip serves the [Classify Object Subset](07-classify-object-subset.md) a
 
 *This is why Part A asked you to export only one image.*
 
-7. Find the **Groovy script** QuIET wrote alongside your export — a text file of QuPath
-   commands, which you do not have to write or understand to use.
+7. Get the **Groovy script** for that export. QuIET does not write one into the output
+   folder — on Step 3, click **Save Script...** and save it somewhere you can find. (It is also
+   recorded in `Automate > Show workflow command history` on the exported image.)
 8. Open QuPath's script editor, `Automate > Script editor` (see below), paste it in, and run
    it against a *different* image in the project.
 

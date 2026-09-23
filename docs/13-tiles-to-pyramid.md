@@ -15,7 +15,7 @@ title: Tiles to Pyramid
 | **Extension version** | 0.7.3 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
-| **Where to find it** | `Extensions > Tiles to Pyramid` |
+| **Where to find it** | `Extensions > Tiles to Pyramid > Tiles-to-pyramid` |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
@@ -57,10 +57,11 @@ other*, which is the property that matters for multi-angle or multi-channel acqu
 - **Multichannel merge**: combine N same-shape single-channel pyramids into one multichannel
   image via a separate `ChannelMerger` step.
 
-**Memory behavior** is worth calling out: the direct tile stitcher holds roughly **40 MB
-steady state regardless of tile count** (the older SparseImageServer approach used 2–4+ GB),
-and handles 1600+ tiles without running out of memory via spatial indexing and a bounded
-reader pool.
+**Memory is set by the chunk being written, not by the tile count.** Measured as the smallest
+heap in which the stitch completes (1024 px 16-bit tiles, 10% overlap, OME-TIFF/LZW): **96 MB at
+36 tiles** (32 MP) and **128 MB at 196 tiles** (169 MP) — 5.3× the mosaic for 1.33× the heap.
+The older SparseImageServer path needed 2–4+ GB, and ran out of memory somewhere above a
+thousand tiles because it opened every tile at once.
 
 ## Read this before planning an acquisition
 
@@ -115,9 +116,14 @@ Also listed in the QPSC microscope catalog, but it needs no microscope, so the m
 
 **What you are looking for.** These two are the same join through the same cells, from a real
 2×2 fluorescence acquisition. On the left the tiles sit where the stage said they were; on the
-right they sit where the image content says they are. The stage was about 5 px out, and because
-the tiles are feathered together that error does not show up as a visible seam — it shows up as
-blur. Smeared spots and soft filaments on the left, crisp on the right. Steps 3 to 5 are asking
+right they sit where the image content says they are. The stage was about 5 px out. These were
+stitched with **linear feathering**, which blends the overlap, so the error shows up as blur
+rather than as a line — smeared spots and soft filaments on the left, crisp on the right.
+
+> **On the default setting you will see a step, not blur.** The shipped overlap blend is
+> *last wins*, a hard cut at the tile boundary, so a misregistration appears as an abrupt jump
+> wherever two tiles differ. Feathering is opt-in. Either way the fix is the same; only the
+> symptom changes. Steps 3 to 5 are asking
 you to make this comparison on your own data (see below).
 
 <img src="../images/tiles-to-pyramid/stitch_if_nominal.jpg" alt="A join between two tiles placed at the recorded stage positions; the cells look slightly blurred and doubled" width="330"> <img src="../images/tiles-to-pyramid/stitch_if_registered.jpg" alt="The same join with the tiles placed at measured positions; the cells are sharp" width="330">
@@ -126,11 +132,11 @@ you to make this comparison on your own data (see below).
 it reads a folder of tiles off disk and writes a single image. So there is nothing to open
 first — point it at the tile folder, and open the result afterwards.
 
-The extension is at `Extensions > Tiles to Pyramid`.
+The extension is at `Extensions > Tiles to Pyramid > Tiles-to-pyramid` — note the item is hyphenated where the submenu is not.
 
 
-1. `Extensions > Tiles to Pyramid`.
-2. Point it at the tile directory, choose the **TileConfiguration.txt** strategy, output
+1. `Extensions > Tiles to Pyramid > Tiles-to-pyramid`.
+2. Point it at the tile directory, choose **Coordinates in TileConfiguration.txt file**, output
    **OME-TIFF** with `LZW`, and stitch.
 3. Open the result in QuPath. Zoom to a seam between tiles and look for a visible offset.
 4. Now stitch the drift-affected copy the same way. Find the seams. They should be obviously

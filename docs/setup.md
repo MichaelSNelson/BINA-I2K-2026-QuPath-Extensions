@@ -64,7 +64,7 @@ you want; the [extension index](extensions.md) says which track each belongs to:
 **Large downloads, only if you plan to do these tracks:**
 
 - **QP-CAT — Cell Analysis Tools**. After installing, run
-  `Extensions > QP-CAT > Setup environment`. **~1.5–2.5 GB download, ~2.5 GB on disk.**
+  `Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`. **~1.5–2.5 GB download, ~2.5 GB on disk.**
 - **Deep Learning Pixel Classifier**. The first run downloads an embedded Python
   environment. Also substantial.
 

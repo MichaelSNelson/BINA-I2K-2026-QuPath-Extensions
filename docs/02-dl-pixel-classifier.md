@@ -100,7 +100,18 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
 ## Hands-on exercise
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB; see [setup](setup.md#5-download-the-workshop-data)), plus the pre-trained model (link to follow).
+
+> ⚠️ **Not runnable yet — watch the demo instead.** Every step below needs a pre-trained model
+> that is not published. Until it is, **do not download the 229 MB dataset for this guide**: there
+> is nothing here you can complete with it. The steps are listed so you can follow the
+> demonstration and know what to come back to.
+>
+> Still worth doing beforehand if this is your track: install the extension and open it once, so
+> its Python environment (**2–4 GB**) downloads at home rather than on conference wifi.
+
+**Data, once the model is published:** the CMU-1 H&E slide in
+[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)
+(229 MB; see [setup](setup.md#5-download-the-workshop-data)), plus the model itself.
 
 **Before you start.** Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it is already a project, and dropping it opens it. (The menu route is `File > Project > Open project`, if you prefer.) Then double-click the **CMU-1 H&E** slide in the project list to open it.
 

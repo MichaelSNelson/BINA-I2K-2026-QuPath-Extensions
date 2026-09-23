@@ -220,7 +220,7 @@ design — so steps 10 to 13 are still one image, and step 14 is where the secon
     own **Decode As** value, so you find out what your template will actually produce while it
     is still cheap to fix.
 13. Give each row a **Metadata Key** you will recognize later: double-click the cell and replace
-    `OCR_region_0` with something like `specimen`, and the barcode row with `barcode`. The
+    `OCR_field_0` with something like `specimen`, and the barcode row with `barcode`. The
     **Metadata Preview** at the bottom shows exactly what will be written. Then click
     **Save Template...**, which stores the field positions, their types, and these key names.
 

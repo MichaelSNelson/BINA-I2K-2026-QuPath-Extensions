@@ -15,7 +15,7 @@ title: Channel Names Viewer
 | **Extension version** | 1.0.9 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
-| **Where to find it** | Toolbar button beside brightness/contrast · `Extensions > Channel Names Viewer...` · **Ctrl+Shift+C** (**Cmd+Shift+C** on macOS) |
+| **Where to find it** | Toolbar button beside brightness/contrast · `Extensions > Channel Names Viewer > Channel Names Viewer...` · **Ctrl+Shift+C** (**Cmd+Shift+C** on macOS) |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Mentioned; presented in Sara McArdle’s Monday session |
 
@@ -34,9 +34,13 @@ Anyone who has presented a multiplex image has been asked "which one is the gree
 had to go open brightness/contrast to find out. This is the fix.
 
 The window mirrors what brightness/contrast calls *selected*: toggle a channel there and the
-legend updates immediately. Each channel name is drawn in its display color, with a
-perceived-brightness (BT.601) luminance check that switches very dark channels to white so
-they stay readable against the dark background.
+legend updates immediately. Each channel name is drawn in its display color, and keeps that
+color — a dark channel stays dark, which is your choice to make.
+
+If that is hard to read, right-click the legend: **Outline dark channels in white** adds a white
+halo around the glyphs, and **Backdrop panel on dark channels** puts a light chip behind them.
+Both apply only to channels below a perceived-brightness (BT.601) threshold, and both are off by
+default.
 
 - **Move:** drag the body. **Resize:** drag any edge or corner. **Close:** double-click the
   body, press the shortcut again, or Esc.

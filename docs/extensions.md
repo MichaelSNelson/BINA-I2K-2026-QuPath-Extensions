@@ -72,7 +72,7 @@ QP-CAT fetches a 1.5–2.5 GB Python environment; the DL Pixel Classifier fetche
 run — **1.5–2.5 GB** for QP-CAT, **2–4 GB** for the DL Pixel Classifier. If you want either,
 trigger that download **at home**:
 
-- QP-CAT: `Extensions > QP-CAT > Setup environment`
+- QP-CAT: `Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`
 - DL Pixel Classifier: open the extension once and let it prepare its environment
 
 Everything else in the table installs in seconds.

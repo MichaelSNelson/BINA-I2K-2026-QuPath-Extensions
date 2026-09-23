@@ -89,7 +89,7 @@ accidentally drag your line sideways, use the second.
   editable; head and tail are spliced back bit-exact at commit, so untouched segments are
   never re-shaped. This also keeps long polylines fast, because the engine sees ~50 vertices, not
   10,000.
-- **Scissors / cut-at-click.** Right-click → **Mode** → *Scissors*. The icon swaps to
+- **Scissors / cut-at-click.** Right-click → **Mode** → *Scissors (cut at click)*. The icon swaps to
   scissors and the brush circle becomes a crosshair with a small ring on the selected polyline
   showing exactly where the cut will land. A click splits the polyline into two annotations at
   that point, removes the original, and selects the first half. Both pieces inherit the
@@ -109,7 +109,8 @@ accidentally drag your line sideways, use the second.
 ## Right-click menu
 
 ```
-Mode >                (Auto / Push / Smooth / Erase from end / Scissors)
+Mode >                (Auto (push, erase-near-endpoint) / Push / Smooth /
+                       Erase from end / Scissors (cut at click))
 Engine >              (Direct vertex push / Displacement field)
 Engine settings >     (rebuilds for the active engine)
 Set brush radius...
@@ -148,7 +149,7 @@ Like the Wizard Wand this is a toolbar tool: with an image open, press **Shift+P
 4. Right-click → **Engine** → *Displacement field*. Push the same kind of section. Notice that
    dragging **along** the line now does nothing, and only perpendicular motion moves it.
 5. Right-click → **Mode** → *Smooth*. Clean up a noisy stretch.
-6. Right-click → **Mode** → *Scissors*. Click on the polyline to split it in two. Check that
+6. Right-click → **Mode** → *Scissors (cut at click)*. Click on the polyline to split it in two. Check that
    both halves kept the class and color.
 7. Press Ctrl+Z a few times and confirm each *stroke* is one undo step, not each frame.
 

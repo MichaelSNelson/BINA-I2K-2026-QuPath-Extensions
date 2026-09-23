@@ -100,8 +100,9 @@ region around your click. Note this is the opposite of QuPath's built-in wand, w
 `1/sensitivity`; here higher always means a larger selection, in every mode, so the scroll
 wheel and the presets push the same direction.
 
-**Edge stops** (off by default) make the wand respect image gradients, so it is less likely to
-leak through a faint boundary. **Simplification** reduces the number of vertices in the
+**Edge-aware** (off by default) makes the wand respect image gradients, so it is less likely to
+leak through a faint boundary; **Edge strength** and **Edge pyramid level** tune it.
+**Simplify** reduces the number of vertices in the
 resulting polygon, which matters if you are exporting a lot of annotations.
 
 Both are off or neutral by default, and neither is worth touching until the basic wand is
@@ -141,7 +142,8 @@ select it.
    outward until you move again. Use this when a structure has a clean outer edge but a messy
    middle — start inside and let it find the edge.
 4. Now try a preset. **Right-click the wand button in the toolbar** — not the image, not your
-   annotation — and pick **Presets > Broad**, then wand the same structure. Then **Fine**.
+   annotation — and pick **Presets > Broad (sensitivity 2.00)**, then wand the same structure.
+   Then **Fine (sensitivity 0.30)**. The menu shows each preset's value beside its name.
    Broad for large uniform areas, Fine when you keep spilling into neighbouring tissue.
 5. Change the color-space mode in `Edit > Preferences > Wizard Wand` and re-try somewhere RGB
    struggled: **GRAY** when color is irrelevant and only intensity matters, **LAB_DISTANCE**

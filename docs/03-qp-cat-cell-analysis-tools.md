@@ -108,7 +108,7 @@ logs its prompt and response. Read it as a hypothesis generator.
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-Then run `Extensions > QP-CAT > Setup environment`. One click configures the full Python environment.
+Then run `Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`. One click configures the full Python environment.
 
 </details>
 
