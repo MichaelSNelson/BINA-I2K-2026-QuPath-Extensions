@@ -118,12 +118,14 @@ Then run `Extensions > QP-CAT > Setup environment`. One click configures the ful
 
 ## The data: a synthetic tumor microenvironment
 
-> ### Coming: a real multiplexed set, for afterwards
+> ### Coming: a real multiplexed set, shown in the video
 >
 > A second dataset is being prepared for QP-CAT specifically — a QuPath project
 > (`multiplexTesting`) of **seven Orion images**, six numbered `Orion1`–`Orion6` plus
 > `Orion_Tonsil_10follicles`. Real tissue, real markers, and **several GB**, which is why it is
-> not the workshop exercise: it is for exploring afterwards, on a machine with room for it.
+> not the hands-on exercise. **You will see it in the walkthrough video**, showing what this
+> workflow looks like on real data, and the download is there for exploring afterwards on a
+> machine with room for it.
 >
 > <img src="../images/qp-cat/orion-tonsil-follicles.png" alt="A multiplexed tonsil image in green, magenta and yellow. Pale rounded follicles fill the field, several with a darker, more densely stained core, separated by magenta-rich bands of surrounding tissue" width="680">
 >
