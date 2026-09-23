@@ -59,11 +59,6 @@ click Apply. That number is the whole point: you find out you targeted the wrong
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-If you already have a version older than 0.2.0, replace it. Releases before 0.2.0 shipped a jar
-named `qupath-extension-gated-object-classifier-*.jar` and appear in the menu as **Gated Object
-Classifier**, the extension's former name. 0.2.0 is the first release carrying the current name,
-and it is the one with multiple measurement thresholds and class checkboxes.
-
 </details>
 
 ---
