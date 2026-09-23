@@ -156,10 +156,20 @@ with a deliberately crude method that gets most of them right and a few of them 
 
    <img src="../images/classify-object-subset/gate-errors-at-nest-boundary.png" alt="A tumor nest boundary at high zoom. Most cells are classified correctly, but arrows mark a green helper T cell and a magenta CD8 T cell sitting against the nest edge, and an orange macrophage, each outlined as the wrong class" width="820">
 
-6. Score it: **`Automate > Project scripts > check_against_ground_truth`**, then **Run**. It
-   prints a confusion matrix and the overall accuracy to the log (`View > Show log`) and
-   **selects the misclassified cells in the viewer**, so you can jump straight to them. This
-   needs no extension.
+6. Score it: **`Automate > Project scripts > check_against_ground_truth`**, then **Run**.
+   It needs no extension.
+
+   You get three things: a text confusion matrix, an **overall accuracy** line, and the
+   misclassified cells **selected in the viewer**, so you can jump straight to them.
+
+   > **If you see no matrix.** The script prints with `println`, which lands in the **output
+   > pane at the bottom of the Script Editor window** — the panel under the code, often
+   > collapsed to a sliver, so drag the divider up. The same text also goes to
+   > `View > Show log`. The matrix is printed *above* the accuracy line, so scroll up in
+   > whichever panel you are looking at.
+   >
+   > If both are genuinely empty, the usual causes are: the script was opened but never
+   > **Run**; or the cells were not classified first, so step 4 needs doing before this one.
 
    Read down the `tumor` column of the printed matrix: **14 CD8 T cells, 9 macrophages, 3
    helper T cells and 1 B cell** were called tumor. That is **27 cells wrongly in the tumor
@@ -168,7 +178,12 @@ with a deliberately crude method that gets most of them right and a few of them 
 
 ### Part B: measure the error
 
-Now use the extension as a measuring instrument, before using it as a repair tool.
+**Nothing has been fixed yet.** All you have done so far is run a deliberately poor classifier
+and find out *that* it is wrong and *which* cells it got wrong. The repair is Part C.
+
+What this part does is get the same error out of the extension as a **single number**, so that
+in Part C you can watch that number move. The dialog is a measuring instrument before it is a
+repair tool.
 
 7. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
 8. Set **Classifier** to `cell_type_classifier`. Set **Object source** to **Custom filter**.
