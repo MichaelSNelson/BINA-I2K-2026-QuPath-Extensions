@@ -97,6 +97,7 @@ wherever it already lives, and the sizes differ by more than an order of magnitu
 | **Track A or C** (QuIET, Classify Object Subset, Class Distribution, Cluster 3D Navigator) | **`multiplex-synthetic-data-demo-project-v1.2.zip`**, [direct link](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip). A ready-made QuPath project — cells already detected, a saved classifier, and ground truth to check your answer against. Unzip it, then drag the folder (or `project.qpproj` inside it) onto an open QuPath window | **20 MB** |
 | **Track D** (OCR for Labels, Project Metadata Browser) | **`OCR_Test_Images_LJI.zip`**, [direct link](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) or the same Drive folder | **244 MB** |
 | **Track D** (Tiles to Pyramid) | Still being prepared. Nothing to download yet | — |
+| **Track B, optional** (QP-CAT, afterwards) | Orion multiplex project. Still being prepared, and **several GB** — for exploring after the workshop, not during it | — |
 
 That folder holds four zips, each linked directly below. Take whichever ones you want — these
 are the sizes so you can decide, not a rule about what you are allowed to have.
