@@ -11,7 +11,7 @@ title: OCR for Labels
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-ocr4labels](https://github.com/uw-loci/qupath-extension-ocr4labels) |
-| **Version at workshop** | 0.4.2 |
+| **Version at workshop** | 0.4.3 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+, Tesseract language data (see Setup) |
 | **Where to find it** | `Extensions > OCR for Labels` |
@@ -55,33 +55,33 @@ Once the metadata is in the project, the
 export it in bulk.
 
 <details>
-<summary><b>Step 1: install the extension</b> — from the LOCI catalog, then restart QuPath</summary>
+<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-It is also listed in the QPSC microscope catalog, but it needs no microscope, so the main catalog is all you need. It does need its language data: see [setup](#language-data) below.
+It is also listed in the QPSC microscope catalog, but it needs no microscope, so the main catalog is all you need. It does need its language data: see [the next section](#language-data).
 
 </details>
 
-## Step 2: the language data — do this before the workshop
+## Before the workshop: the language data
 {: #language-data}
 
 *(This is separate from installing the extension above. The extension is a jar; the
-language data are two files it reads at runtime, and it will not do OCR without them.)*
+language data are files it reads at runtime, and it will not do OCR without them.)*
 
-**You do not need to install Tesseract.** The OCR engine ships inside the extension. The only
-thing missing is the *language data*, and you want both files:
+The OCR engine is built into the extension. What it does not include is the language data:
 
 | File | Size | What it does |
 |---|---|---|
-| `eng.traineddata` | 4 MB | Reads English text |
-| `osd.traineddata` | 11 MB | Works out which way up the label is, so rotated labels still read |
+| `eng.traineddata` | 4 MB | Reads English text. **Required.** |
+| `osd.traineddata` | 11 MB | Works out which way up the label is, so rotated labels still read. The Settings dialog files this one under *Optional*, because upright labels read without it. Step 16 of the exercise is about rotated labels, so get it too. |
 
 There are two ways to get them, and they fetch the same files from the same place:
 
 - **From inside QuPath.** `Extensions > OCR for Labels > OCR Settings...`. The
-  **Required Downloads** section lists both files with the links right there, and shows
-  **[Not found]** beside each until it can see them (see below).
+  **Required Downloads** section has a link for each file (`osd.traineddata` sits under its
+  *Optional File* subheading), and shows **[Not found]** beside each until it can see them
+  (see below).
 
   <img src="../images/ocr/settings-download.png" alt="The OCR Settings dialog, with the eng.traineddata row highlighted and marked Not found" width="420">
 
@@ -101,10 +101,6 @@ a drop-in replacement if you ever want it. Other languages live in the same two 
 named by their three-letter code.
 
 Barcode scanning works immediately with no setup — that reader is built in.
-
-> **Leave Enhance unticked.** As of 0.4.2 it is off by default, and it should stay that way
-> unless you have measured it helping on your own labels. See
-> [what to notice](#what-to-notice) below for what it was doing.
 
 ---
 
@@ -134,17 +130,17 @@ for you to repeat on.
 
 | File | Size | Label design |
 |---|---|---|
-| `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` | 83 MB | **Brightfield** — start here |
+| `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` | 83 MB | **Brightfield** — the one Part B reads |
 | `histology@lji_org_610 TOMO___MT3B_20201119-mipcomp.czi` | 11 MB | **Brightfield** — batched in step 14 |
 | `8443_51000000_02_IF_2022-11-18-mip.czi` | 138 MB | **IF** — the on-your-own pair |
 | `8443_51000000_12_IF_2022-11-18-mipcomp.czi` | 91 MB | **IF** — the on-your-own pair |
 
-### Part A: get the data and make a project
+### Part A: start here — get the data and make a project
 
 The extension works on a QuPath **project**, not on a loose file — its dialog lists project
 images down the left side, and batch mode runs over the project. So before anything else:
 
-1. Unzip the download somewhere you can find it.
+1. Download `DATA-03_labeled_slides` (link above) and unzip it somewhere you can find it.
 2. In QuPath, `File > Project > Create project...` and choose an **empty folder** for it.
 3. Drag the `.czi` files onto the QuPath window, or use **Add images**, and confirm.
 4. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` in the project list to
@@ -174,12 +170,14 @@ Here is the label with the two regions the exercise uses marked:
    `Extensions > OCR for Labels > Run OCR on Label`.
 6. The dialog lists all project images on the left. Select the same H&E slide you opened —
    `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`.
-7. Set **Mode** to *Auto (default)*. **Check this one rather than assuming it** — despite the
-   name, the dropdown may open on *Sparse Text*, which does not read these labels properly.
-   Then set **Scope** to *Full Image*, **Decode As** to *Try Both* (barcode first, then OCR), and
-   leave **Min Conf** at its default. *Try Both* matters here, because these labels carry text and a
-   barcode, and you want whichever is more reliable per region. **Check that Enhance is unticked**. It is off by default
-   in 0.4.2, and step 17 is about why.
+7. Set **Mode** to *Auto (default)*. In 0.4.3 that is where the dropdown opens; on an older
+   build it may open on *Sparse Text*, which does not read these labels properly, so check it
+   rather than assume it. Then set **Scope** to *Full Image*, **Decode As** to *Try Both*
+   (barcode first, then OCR), and leave **Min Conf** at its default. *Try Both* matters here,
+   because these labels carry text and a barcode, and you want whichever is more reliable per
+   region. **Leave Enhance unticked.** It has been off by default since 0.4.2 and should stay
+   that way unless you have measured it helping on your own labels; step 17 is where you
+   measure it.
 8. **Scan.** Review the table: correct the **Text** column where OCR guessed wrong, and set
    sensible **Metadata Key** names.
 
