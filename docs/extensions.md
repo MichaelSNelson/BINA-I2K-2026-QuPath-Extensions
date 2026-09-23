@@ -41,7 +41,7 @@ QP-CAT fetches a 1.5–2.5 GB Python environment; the DL Pixel Classifier fetche
 | **QuIET — Image Export Toolkit** | Publication figures, masks, ML tile pairs and montages in batch, with QUAREP-LiMi guidance | also in Track C | [Guide](01-quiet-image-export.md) · [repo](https://github.com/uw-loci/qupath-extension-image-export-toolkit) |
 | **Wizard Wand** | A faster, more forgiving wand, with settings auto-tuned from your own example | | [Guide](05-wizard-wand.md) · [repo](https://github.com/uw-loci/qupath-extension-wizard-wand) |
 
-### Track B · Multiplexed imaging
+### Track B · Multiplexed analysis
 
 | Extension | What it is for | Notes | Guide |
 |---|---|---|---|
