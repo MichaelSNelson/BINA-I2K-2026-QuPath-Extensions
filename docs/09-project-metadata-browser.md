@@ -82,14 +82,18 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
 ## Hands-on exercise
-**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) (**244 MB**) after you have run the
-[OCR exercise](08-ocr4labels.md), or open
-[`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) (244 MB) and use the metadata already in it.
 
-**Before you start.** Easiest is to carry on with the project you built in the
-[OCR exercise](08-ocr4labels.md), which already has metadata on it. Starting fresh: unzip
-`OCR_Test_Images_LJI.zip`, then `File > Project > Create project...`, choose an empty folder,
-and drag the four `.czi` files in.
+> ⚠️ **Do the [OCR for Labels exercise](08-ocr4labels.md) first.** This tool displays and edits
+> metadata that is already on your images; it does not create any. A project built straight
+> from the `.czi` files has nothing in it but image names, so every column here would be empty
+> and there would be nothing to sort, filter or export.
+>
+> Parts A and B of that exercise are enough: they leave you with a project carrying real
+> OCR fields.
+
+**Data:** the project you built in the [OCR exercise](08-ocr4labels.md), from
+[`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS)
+(**244 MB**). Nothing extra to download.
 
 The extension is at `Extensions > Project Metadata Browser > Browse Metadata...`.
 
