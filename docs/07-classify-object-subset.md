@@ -130,7 +130,12 @@ start out **unclassified**.
 A classifier that is right about everything teaches you nothing. So first, classify the cells
 with a deliberately crude method that gets most of them right and a few of them wrong.
 
-4. Download **[`apply_otsu_gate.groovy`](https://raw.githubusercontent.com/uw-loci/multiplex-synthetic-data/master/analytical_logs/scripts/08_apply_otsu_gate.groovy)** (right-click → *Save link as*). In QuPath open `Automate > Script editor`, then `File > Open...` that file, and click **Run**.
+4. Get **[`apply_otsu_gate.groovy`](https://raw.githubusercontent.com/uw-loci/multiplex-synthetic-data/master/analytical_logs/scripts/08_apply_otsu_gate.groovy)** into QuPath, whichever way suits you:
+
+   - **Copy and paste.** Click the link, select all of the text, open `Automate > Script editor` in QuPath, paste it into a new script.
+   - **Save the file.** Right-click the link → *Save link as*, then in the Script editor use `File > Open...`.
+
+   Either way, click **Run**.
 
    This thresholds each marker channel and assigns a cell type from which markers are above
    threshold. It is right about 97–98% of the time. Its errors are real ones: QuPath expands
