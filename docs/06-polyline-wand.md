@@ -90,9 +90,10 @@ accidentally drag your line sideways, use the second.
   never re-shaped. This also keeps long polylines fast, because the engine sees ~50 vertices, not
   10,000.
 - **Scissors / cut-at-click.** Right-click → **Mode** → *Scissors*. The icon swaps to
-  scissors; a click on the selected polyline splits it into two annotations at the closest
-  point, removes the original, and selects the first half. Both pieces inherit the original's
-  class, name, and color.
+  scissors and the brush circle becomes a crosshair with a small ring on the selected polyline
+  showing exactly where the cut will land. A click splits the polyline into two annotations at
+  that point, removes the original, and selects the first half. Both pieces inherit the
+  original's class, name, and color.
 - **Zoom-aware brush.** By default the radius is in *screen* pixels, so the on-screen size
   stays constant and zooming out covers more image, matching QuPath's built-in brush. Turn
   it off to lock the brush to image pixels.
