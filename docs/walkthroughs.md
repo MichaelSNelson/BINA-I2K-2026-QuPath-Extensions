@@ -10,7 +10,9 @@ otherwise.** There are roughly forty minutes of live demonstration in the first 
 optional minutes in the second. That is enough for a handful of tools done properly, not all of
 them done badly.
 
-So every tool has a **complete written walkthrough** and a **recorded video** of it being done.
+So every tool you can install has a **complete written walkthrough** and a **recorded video**
+of it being done. The three you cannot install get a video and a pointer to their
+documentation — there is no point walking you through a setup you cannot do.
 Nothing depends on being in the room when a particular tool comes up.
 
 ---
@@ -97,13 +99,14 @@ The second hour is a menu rather than a queue: take whichever of these you came 
 
 ## Presented tools
 
-You cannot install these today, but their pages and videos are complete.
+These are demonstrated on screen. **There is no walkthrough for any of them**, because you
+cannot set them up — each page is the video plus links to the documentation, for afterwards.
 
-| Tool | Walkthrough | Video | Why not hands-on |
+| Tool | Page | Video | Why not hands-on |
 |---|---|---|---|
-| QPSC — QuPath Scope Control | [Overview](presented/qpsc.md){: .g-todo} | %%VIDEO_QPSC%% | Needs a microscope; shown, never run |
-| Confusion Matrix | [Guide](presented/confusion-matrix.md){: .g-todo} | %%VIDEO_CONFUSION_MATRIX%% | Repository currently private |
-| Collagen fiber and texture analysis | [Guide](presented/fiber-analysis.md){: .g-todo} | %%VIDEO_FIBER_ANALYSIS%% | Long environment build, or a Windows-only server plus a pipeline that cannot be redistributed |
+| QPSC — QuPath Scope Control | [Links](presented/qpsc.md){: .g-todo} | %%VIDEO_QPSC%% | Needs a microscope; shown, never run |
+| Confusion Matrix | [Links](presented/confusion-matrix.md){: .g-todo} | %%VIDEO_CONFUSION_MATRIX%% | Repository currently private |
+| Collagen fiber and texture analysis | [Links](presented/fiber-analysis.md){: .g-todo} | %%VIDEO_FIBER_ANALYSIS%% | Long environment build, or a Windows-only server plus a pipeline that cannot be redistributed |
 
 ---
 

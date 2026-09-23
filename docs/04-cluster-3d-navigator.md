@@ -34,8 +34,8 @@ It reads detections only and writes nothing to the hierarchy, so you can explore
 
 ## Walkthrough: navigate cells in 3D and land on the real thing
 
-Uses the same ready-made project as the [Classify Object Subset](07-classify-object-subset.md)
-and [Confusion Matrix](presented/confusion-matrix.md) exercises.
+Uses the same ready-made project as the
+[Classify Object Subset](07-classify-object-subset.md) exercise.
 
 ### 1. The data
 
