@@ -43,7 +43,7 @@ but only if you are comfortable writing scripts. This extension is the GUI for i
 - **current viewer selection**,
 - or any combination of the above.
 
-The dialog shows a **live count** — "439 of 1530 objects will be classified" — before you
+The dialog shows a **live count** — "439 of 1,530 objects will be classified" — before you
 click Apply. That number is the whole point: you find out you targeted the wrong cells
 *before* you overwrite them.
 
@@ -164,15 +164,17 @@ Now use the extension as a measuring instrument, before using it as a repair too
 7. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
 8. Set **Classifier** to `cell_type_classifier`. Set **Object source** to **Custom filter**.
 9. In the **Class filter** list, tick **`tumor`** only.
-10. Read the live count: it should say **"439 of 1530 objects will be classified."**
+10. Read the live count: it should say **"439 of 1,530 objects will be classified."**
 
     **439 is the gate's tumor call. The truth is 412.** The extra 27 are the boundary cells
     from the matrix above. You have now measured the error with the same dialog you are about
     to fix it with.
 
-%%SHOT_COS_03_DIALOG_COUNT%%
-> *Screenshot to add: the Apply Classification to Subset dialog with the `tumor` class filter
-> ticked and the live count reading "439 of 1530 objects will be classified."*
+<img src="../images/classify-object-subset/dialog-tumor-count.png" alt="The Classify Object Subset dialog. Classifier is cell_type_classifier, Object source is Custom filter, and in the class filter only tumor is ticked, showing 1 of 6 checked. At the bottom the live count reads 439 of 1,530 objects will be classified" width="640">
+
+The dialog also tells you what the classifier can produce — *Classifies into: tumor,
+fibroblast, cd8_t, helper_t, b_cell, macrophage* — and **Show selection** highlights the
+matching cells in the viewer, if you would rather see them than count them.
 
 > **Why was the class list empty before you ran the script?** If you open this dialog on a
 > fresh project, the **Class filter** shows *"No classes present in image."* That is correct
@@ -210,6 +212,11 @@ The gate leaves a few cells matching no marker rule at all, and those stay uncla
 15. Apply the trained classifier to just those. This is the "stacked classifiers" pattern:
     a first pass that is confident about the easy cases, a second that mops up the rest,
     with each pass leaving the other's work alone.
+
+    The dialog has a switch built for exactly this: **Preserve existing class (only set
+    unclassified objects)**, at the bottom. Tick it and you can point the classifier at
+    everything while it still only fills in the blanks — the safer habit once the calls you
+    already have are ones you care about.
 
 ### Part E: turn it into a script
 
