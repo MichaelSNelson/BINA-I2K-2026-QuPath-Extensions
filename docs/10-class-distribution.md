@@ -89,9 +89,12 @@ matters when a project mixes stains or magnifications. It lives on this tab only
 Switch to the **All images** tab: one mini-chart per image, shared legend. `tme_06`'s chart is
 visibly heavier on the immune classes, and **`tme_07` has no B-cell slice at all**.
 
-The `[over]` / `[under]` markers do **not** appear here — the mini-charts carry no markers. To
-see them, go back to **Project** or **Current image**, where they sit beside the class name in
-the legend, as `fibroblast 28.9% [over]`.
+**The `[over]` / `[under]` markers are deliberately left off this tab.** A mini-chart is
+stripped down to the pie alone — no labels, no per-chart legend, no highlight aura — so that
+eight of them stay readable at thumbnail size under one shared legend. Nothing is missing and
+nothing has gone wrong; this tab is for comparing *shapes* across images. For the markers, go
+back to **Project** or **Current image**, where they sit beside the class name in the legend,
+as `fibroblast 28.9% [over]`.
 
 <img src="../images/class-distribution/all-images-tab.png" alt="The All images tab: eight mini pie charts, one per image, with a shared legend and no over or under markers. tme_07 is selected and visibly lacks the blue b_cell slice the others have" width="760">
 
@@ -148,8 +151,9 @@ Distribution...* charts how many **detections** each class would label given you
 annotations (area regions, or classified counting **points** like this dataset's ground truth).
 
 **Three tabs each** — Project (aggregate), Current image (live), and All images (a grid of one
-mini-chart per image with a shared legend and a thumbnail-size slider) — plus an **Image Type**
-filter and the `[over]`/`[under]` highlighting.
+mini-chart per image with a shared legend and a thumbnail-size slider). Two controls are tab-specific
+by design: the **Image Type** filter sits on the **Project** tab only, and the `[over]`/`[under]`
+markers appear on **Project** and **Current image**, never on the mini-charts.
 
 **Live as you annotate.** With the annotation dialog open on the Current image tab, draw or edit
 area annotations and the chart updates immediately — the feedback arrives while you can still act
