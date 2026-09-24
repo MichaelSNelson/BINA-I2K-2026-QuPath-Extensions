@@ -15,7 +15,7 @@ Nothing depends on being in the room when a particular tool comes up.
 
 ---
 
-## Tell us what you want to see
+## Tell us what you want to see at the workshop
 
 We will spend the live time on whatever the room actually cares about. Vote before or during the
 session:
@@ -34,7 +34,7 @@ hour.
 ## Hands-on tools
 
 <div class="legend">
-  <span><i class="d-ok"></i> Walkthrough verified and video recorded</span>
+  <span><i class="d-ok"></i> Walkthrough checked end to end</span>
   <span><i class="d-wip"></i> Being revised now</span>
   <span><i class="d-todo"></i> Not yet checked end to end</span>
 </div>
@@ -61,7 +61,7 @@ tools you want share a name, that is one download, not two. Each is linked here 
 
 | Tool | Walkthrough | Video | Data |
 |---|---|---|---|
-| QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md){: .g-todo} | %%VIDEO_QUIET_IMAGE_EXPORT%% | Synth multiplex<br>project |
+| QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md){: .g-ok} | %%VIDEO_QUIET_IMAGE_EXPORT%% | Synth multiplex<br>project |
 | DL Pixel Classifier | [Guide](02-dl-pixel-classifier.md){: .g-todo} | %%VIDEO_DL_PIXEL_CLASSIFIER%% | Scripting Demo |
 | QP-CAT — Cell Analysis Tools | [Guide](03-qp-cat-cell-analysis-tools.md){: .g-todo} | %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%% | Clustered<br>project |
 | Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | Clustered<br>project |
@@ -70,10 +70,10 @@ tools you want share a name, that is one download, not two. Each is linked here 
 | Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md){: .g-wip} | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | Synth multiplex<br>project |
 | OCR for Labels | [Guide](08-ocr4labels.md){: .g-wip} | %%VIDEO_OCR4LABELS%% | Slide labels |
 | Project Metadata Browser | [Guide](09-project-metadata-browser.md){: .g-wip} | %%VIDEO_PROJECT_METADATA_BROWSER%% | Slide labels |
-| Class Distribution | [Guide](10-class-distribution.md){: .g-todo} | %%VIDEO_CLASS_DISTRIBUTION%% | Synth multiplex<br>project |
-| Class Visibility | [Guide](14-class-visibility.md){: .g-todo} | %%VIDEO_CLASS_VISIBILITY%% | Synth multiplex<br>project |
-| Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md){: .g-todo} | %%VIDEO_CHANNEL_NAMES_VIEWER%% | Either multiplex download |
-| Dialog Position Manager | [Guide](12-dialog-position-manager.md){: .g-todo} | %%VIDEO_DIALOG_POSITION_MANAGER%% | *none needed* |
+| Class Distribution | [Guide](10-class-distribution.md){: .g-ok} | %%VIDEO_CLASS_DISTRIBUTION%% | Synth multiplex<br>project |
+| Class Visibility | [Guide](14-class-visibility.md){: .g-ok} | %%VIDEO_CLASS_VISIBILITY%% | Synth multiplex<br>project |
+| Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md){: .g-ok} | %%VIDEO_CHANNEL_NAMES_VIEWER%% | Either multiplex download |
+| Dialog Position Manager | [Guide](12-dialog-position-manager.md){: .g-ok} | %%VIDEO_DIALOG_POSITION_MANAGER%% | *none needed* |
 | Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md){: .g-wip} | %%VIDEO_TILES_TO_PYRAMID%% | *not ready yet* |
 
 Take whichever of these you came for. The [extension index](extensions.md) groups them into
