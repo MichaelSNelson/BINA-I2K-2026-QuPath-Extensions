@@ -124,39 +124,55 @@ for (cell in cells) {
 fireHierarchyUpdate()
 
 // ---- summary -------------------------------------------------------------
-// Paste this block into the guide discussion; it is everything needed to describe
-// the result without guessing at it.
+// Built as one string and logged in a single call: twenty separate println lines
+// bury everything else in QuPath's log, and Run for project multiplies that by eight.
+//
+// "Unclassified" is counted as a class here because QuPath counts it as one -- it is a
+// real bucket with its own row in the class list, and the Class Visibility panel uses
+// that same total as its Spread denominator. Reporting 19 when the panel says 20 would
+// leave a reader checking one of the two for a bug that is not there.
 def imageName = getCurrentServer().getMetadata().getName()
-println "=".multiply(70)
-println "composite_marker_classes.groovy -- ${imageName}"
-println "=".multiply(70)
-println "cells: ${cells.size()}   classified: ${cells.size() - nNegative}   negative for every marker: ${nNegative}"
-def multi = counts.keySet().count { it.contains(":") }
-println "distinct classes: ${counts.size()} (${multi} with two or more markers)"
-println "  the Class Visibility panel counts Unclassified too, so its Spread denominator "+
-        "will read ${counts.size() + (nNegative > 0 ? 1 : 0)}"
-println ""
-println "Otsu thresholds and marker prevalence:"
+int nClasses = counts.size() + (nNegative > 0 ? 1 : 0)
+int nMulti = counts.keySet().count { it.contains(":") }
+
+def out = new StringBuilder()
+def line = { s -> out << s << "\n" }
+def rule = "=".multiply(70)
+
+line ""
+line rule
+line "composite_marker_classes.groovy -- ${imageName}"
+line rule
+line "cells: ${cells.size()}   classified: ${cells.size() - nNegative}   Unclassified: ${nNegative}"
+line "distinct classes: ${nClasses} (${nMulti} with two or more markers, plus Unclassified)"
+line ""
+line "Otsu thresholds and marker prevalence:"
 for (m in MARKERS) {
     def pct = 100.0 * markerPositive[m] / cells.size()
-    println String.format("  %-6s %-9s thr=%8.2f   positive in %5d cells (%5.1f%%)",
+    line String.format("  %-6s %-9s thr=%8.2f   positive in %5d cells (%5.1f%%)",
             m, "(${COMPARTMENT[m]})", thr[m], markerPositive[m], pct)
 }
-println ""
-println "Classes, commonest first:"
-def sorted = counts.entrySet().sort { -it.value }
-sorted.take(SUMMARY_ROWS).each { e ->
-    def nComp = e.key.split(":").length
-    println String.format("  %5d  %-40s (%d marker%s)", e.value, e.key, nComp, nComp == 1 ? "" : "s")
+line ""
+line "Classes, commonest first:"
+def rows = counts.entrySet().collect { [it.key, it.value] }
+if (nNegative > 0) rows << ["Unclassified", nNegative]
+rows = rows.sort { -it[1] }
+rows.take(SUMMARY_ROWS).each { r ->
+    def nComp = r[0] == "Unclassified" ? 0 : r[0].split(":").length
+    def label = nComp == 0 ? "(no marker)" : "(${nComp} marker${nComp == 1 ? '' : 's'})"
+    line String.format("  %5d  %-40s %s", r[1], r[0], label)
 }
-if (sorted.size() > SUMMARY_ROWS) {
-    println "  ... and ${sorted.size() - SUMMARY_ROWS} rarer combinations"
+if (rows.size() > SUMMARY_ROWS) {
+    line "  ... and ${rows.size() - SUMMARY_ROWS} rarer combinations"
 }
-println ""
-println "Component spread -- how many of the ${counts.size()} classes each marker appears in:"
+line ""
+line "Component spread -- how many of the ${nClasses} classes each marker appears in:"
+line "(a component can never appear in Unclassified, so no marker reaches ${nClasses})"
 for (m in MARKERS) {
     def inClasses = counts.keySet().count { it.split(":")*.trim().contains(m) }
-    println String.format("  %-6s in %2d of %2d classes", m, inClasses, counts.size())
+    line String.format("  %-6s in %2d of %2d classes", m, inClasses, nClasses)
 }
-println ""
-println "Next: Extensions > Class Visibility > Show panel"
+line ""
+line "Next: Extensions > Class Visibility > Show panel"
+
+println out.toString()

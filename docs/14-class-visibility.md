@@ -147,13 +147,13 @@ rather than a whole-cell mean that would dilute it. The other six are read as
 > **No** when QuPath asks whether to save changes to `tme_00.tif` — but see the warning in step 8
 > first, because `Run for project` saves as it goes and that escape route is then gone.
 
-**What you should see.** On `tme_00`, 1,530 cells become **19 classes**, with 17 cells negative
-for every marker and left unclassified:
+**What you should see.** On `tme_00`, 1,530 cells become **20 classes** — nineteen marker
+combinations plus `Unclassified`, which holds the 17 cells positive for nothing. QuPath treats
+Unclassified as a class, so it is counted as one here and in the panel:
 
 ```
-cells: 1530   classified: 1513   negative for every marker: 17
-distinct classes: 19 (13 with two or more markers)
-  the Class Visibility panel counts Unclassified too, so its Spread denominator will read 20
+cells: 1530   classified: 1513   Unclassified: 17
+distinct classes: 20 (13 with two or more markers, plus Unclassified)
 
   PanCK  (Cell)    thr=   34.20   positive in   439 cells ( 28.7%)
   Ki67   (Nucleus) thr=    0.73   positive in   126 cells (  8.2%)
@@ -167,13 +167,14 @@ distinct classes: 19 (13 with two or more markers)
     286  PanCK               (1 marker)         9  aSMA: CD3         (2 markers)
     199  CD68                (1 marker)         9  PanCK: CD68       (2 markers)
     184  CD3                 (1 marker)         6  aSMA: CD68        (2 markers)
-    167  CD3: CD8            (2 markers)        4  CD3: CD8: CD68    (3 markers)
+    167  CD3: CD8            (2 markers)         4  CD3: CD8: CD68   (3 markers)
     126  PanCK: Ki67         (2 markers)      ... and six rarer combinations
     100  CD20                (1 marker)
+     17  Unclassified        (no marker)
 ```
 
 **The lattice is thinner than the class count suggests, and that is worth seeing.** Six of the
-nineteen classes carry a single marker, and they hold 1,167 of the 1,513 classified cells — 77%.
+nineteen marker combinations carry a single marker, and they hold 1,167 of the 1,513 classified cells — 77%.
 Thirteen classes combine two or more markers, and eleven of those hold fewer than ten cells each.
 That long tail of near-empty combinations is what a real hi-plex panel looks like, and it is what
 a flat class list handles worst.
@@ -320,20 +321,20 @@ above it), then tick `Spread`.
 > That menu's first entry is blank and does nothing. It is the check-box column, which has no
 > name to show and is not allowed to hide. Ignore it.
 
-Compare what the panel shows against the spread table the script printed:
+Compare what the panel shows against the spread table the script printed — they should match:
 
-| Component | Panel | Script |
-|---|---|---|
-| CD3 | `9/20` | in 9 of 19 classes |
-| PanCK | `7/20` | in 7 of 19 classes |
-| aSMA | `6/20` | in 6 of 19 classes |
-| CD8 | `5/20` | in 5 of 19 classes |
-| CD68 | `5/20` | in 5 of 19 classes |
-| CD20 | `3/20` | in 3 of 19 classes |
-| Ki67 | `1/20` | in 1 of 19 classes |
+| Component | Spread |
+|---|---|
+| CD3 | `9/20` |
+| PanCK | `7/20` |
+| aSMA | `6/20` |
+| CD8 | `5/20` |
+| CD68 | `5/20` |
+| CD20 | `3/20` |
+| Ki67 | `1/20` |
 
-The two denominators differ by one: the panel counts `Unclassified` among the image's classes
-and the script does not.
+These are the numbers the script printed, so the two agree exactly. No component ever reaches
+20: `Unclassified` is one of the twenty and can never contain a component.
 
 **`CD3` is the widest-spreading component here, and `Ki67` the narrowest.** Ki67 is the only
 marker read in the nucleus, so a neighboring cell's cytoplasm cannot leak into it, and it lands in
