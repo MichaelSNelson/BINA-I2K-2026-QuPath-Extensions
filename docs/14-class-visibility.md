@@ -128,13 +128,8 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 **The script:**
 [`composite_marker_classes.groovy`](https://raw.githubusercontent.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/main/scripts/composite_marker_classes.groovy)
 
-It gates each of seven markers independently and names every cell after all the markers it is
-positive for: `CD3: CD8`, `PanCK: Ki67`, `Ki67: CD3`. The gate is the Otsu routine copied from
-`08_apply_otsu_gate.groovy` — which ships in the dataset's `analytical_logs/scripts/`, not in
-this project, so there is nothing to go and find. That script gates six markers; this one adds
-Ki67, which 08 leaves out as nuclear-only and which this script reads as `Nucleus: Ki67 mean`
-rather than a whole-cell mean that would dilute it. The other six are read as
-`Cell: <marker> mean`.
+It thresholds each of seven markers independently and names every cell after all the markers it
+is positive for: `CD3: CD8`, `PanCK: Ki67`, `Ki67: CD3`.
 
 > **This overwrites cell classifications.** If you have already run a classifier on these cells
 > — from the Classify Object Subset or Class Distribution walkthroughs — this replaces it. It does
@@ -165,34 +160,20 @@ That long tail of near-empty combinations is what a real hi-plex panel looks lik
 a flat class list handles worst.
 
 <details markdown="1">
-<summary><b>What this lattice is, and is not</b> — four things worth knowing before you trust it</summary>
+<summary><b>What this lattice is, and is not</b> — three things worth knowing before you trust it</summary>
 
 1. **These are not phenotype calls.** Each marker is gated on its own, so nothing forbids
-   `CD3: CD20` (a T cell and a B cell at once). The dataset's ground truth is clean by
-   construction — one lineage marker per cell type — so **every multi-lineage combination here
-   is an artifact** of the 5 µm cell expansion picking up signal from a neighbor, not biology.
-2. **Thresholds are per image**, computed over the cells of the open image only. See step 8.
-3. **Cells negative for everything are dropped** and become Unclassified. No component rule can
-   ever reach them. Set `NEGATIVE_CLASS = "Negative"` in the script to give them a class instead.
-4. **The data are synthetic and background-free.** `INSTRUCTIONS.md` notes that markers other
-   than DAPI have no background, so each is cleanly bimodal — which is exactly what makes a
-   plain Otsu cut work. Real hi-plex data with autofluorescence is not this well behaved; gate
-   against controls, not against a per-image Otsu cut.
+   `CD3: CD20` — a T cell and a B cell at once. The dataset's ground truth is clean by
+   construction, one lineage marker per cell type, so **every multi-lineage combination here is
+   an artifact** of the 5 µm cell expansion picking up signal from a neighbor.
+2. **Thresholds are computed per image**, over the cells of the open image only. Step 8 is about
+   what that costs you.
+3. **The data are synthetic and background-free**, which is what makes a plain threshold work at
+   all. Real hi-plex data with autofluorescence is not this well behaved.
 
-**About the threshold.** "Otsu" here is the between-class variance threshold computed on a
-256-bin histogram of that marker's per-cell mean, after clipping the top 0.5% of values. The
-printed number is in raw channel-intensity units and is comparable only within one marker and
-one compartment. The script is fully deterministic — no sampling, no seed — so re-running on
-the same image gives identical classes.
-
-**Script parameters** (in the `USER-EDITABLE PARAMETERS` block at the top):
-
-| Parameter | Default | Effect |
-|---|---|---|
-| `MARKERS` | the seven markers | Also the order inside a class name, so one combination is always one class |
-| `COMPARTMENT` | `Cell`, with `Ki67` → `Nucleus` | **Changes results** — see step 7 |
-| `NEGATIVE_CLASS` | `null` | **Changes results** — names the all-negative cells instead of dropping them |
-| `SUMMARY_ROWS` | `40` | Print-only; caps how many classes the summary lists |
+The gate itself is [Otsu's method](https://en.wikipedia.org/wiki/Otsu%27s_method), applied to
+each marker separately. You do not need to know how it works to do this walkthrough — only that
+it is automatic, deterministic, and picks one cut per marker per image.
 
 </details>
 
