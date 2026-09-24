@@ -12,7 +12,7 @@ title: Class Visibility
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-class-visibility](https://github.com/uw-loci/qupath-extension-class-visibility) |
-| **Extension version** | 0.2.2 |
+| **Extension version** | 0.3.0 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Class Visibility > Show panel` · toolbar button |
@@ -40,6 +40,8 @@ at once.
 - **A `Spread` column** — a ratio such as `9/20` beside a component — saying how many of the
   image's classes contain it. Some naming schemes append `positive` or `Cell` to every class
   name, and those components look exactly like markers until you count. Off by default.
+- **A blue ring** round the check box of every class row the checked components reach, so you
+  can see what a component rule is acting on.
 - **`Find`** over both lists, with the matched text in **bold**.
 - **Named presets, saved in the project**, so a filter worth building gets built once.
 
@@ -252,9 +254,15 @@ class names it covers.
 > That setting is QuPath-wide, so it may be on from earlier work, and while it is on **no
 > component rule can match**. Click **Turn off** beside the warning.
 
-**Now switch on the `Count` column in the classes list and find the `CD3` row.** It reads 184,
-but its `Affects` figure reads 386 — the same 386 the component just selected. On this dataset,
-ticking that one class row does the same job, because QuPath matches supersets by default.
+**Now look at the classes list.** Nine rows have a **blue ring** round their check box, and they
+pulsed briefly when you checked `CD3`. Those are the classes the component rule reaches. A row
+with a *tick* is on because you checked it; a row with a *ring* is on because a component reaches
+it — and the ring disappears the moment you uncheck `CD3`, where a tick would stay.
+
+Switch on the `Count` column and find the `CD3` row: it reads 184, but its `Affects` figure reads
+386 — the same 386 the component just selected. So on this dataset, ticking that one class row
+does the same job, because QuPath matches supersets by default. (`Affects` is shown in bold
+wherever it exceeds the row's own count, which is exactly the case that makes the two differ.)
 
 That is worth seeing rather than glossing: on a *real* panel there is usually no plain `CD3`
 class to tick, and then the component row is the only way to say it. Here there is one, so the
@@ -272,12 +280,17 @@ Check a second component, **`CD8`**. Two radios below the list now read:
 **That is a finding, not a dead click** — 187 of the 189 CD8-positive cells are also CD3-positive,
 so CD8 sits almost entirely inside CD3.
 
-Now switch to `All`. 201 cells leave the screen and you are looking at the CD8 T cells.
+Now switch to `All`. 201 cells leave the screen, you are looking at the CD8 T cells, and **the
+rings in the classes list narrow from 10 rows to 4** — under `All`, only classes carrying every
+checked component are ringed.
 
-> The first time you check a second component in a QuPath session, the `Any` / `All` control
-> **pulses** to draw your eye to it — three slow swells over about five seconds. It fires once per
-> session and carries no information of its own. Turn it off with
-> `Extensions > Class Visibility > Highlight the Any / All choice when it first applies`.
+> **Two things pulse here, and they are different.** The `Any` / `All` control itself pulses the
+> first time you check a second component in a session, once only, to point out a control that was
+> inert until that moment (`Highlight the Any / All choice when it first applies`). The ringed
+> class rows pulse on *every* component change, as ongoing feedback
+> (`Pulse the classes a component change covers`). Both are on by default and both have their own
+> switch under `Extensions > Class Visibility`. Turning the second one off stops the motion only —
+> the steady rings stay.
 
 **There is no class row that does this.** QuPath evaluates its selected-class set as an OR, so
 the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across separate names. The
