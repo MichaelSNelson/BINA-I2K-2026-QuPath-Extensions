@@ -88,6 +88,7 @@ tools you want share a name, that is one download, not two. Each is linked here 
 | OCR for Labels | [Guide](08-ocr4labels.md){: .g-wip} | %%VIDEO_OCR4LABELS%% | Slide labels |
 | Project Metadata Browser | [Guide](09-project-metadata-browser.md){: .g-wip} | %%VIDEO_PROJECT_METADATA_BROWSER%% | Slide labels |
 | Class Distribution | [Guide](10-class-distribution.md){: .g-todo} | %%VIDEO_CLASS_DISTRIBUTION%% | Synth multiplex<br>project |
+| Class Visibility | [Guide](14-class-visibility.md){: .g-todo} | %%VIDEO_CLASS_VISIBILITY%% | Synth multiplex<br>project |
 | Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md){: .g-todo} | %%VIDEO_CHANNEL_NAMES_VIEWER%% | Either multiplex download |
 | Dialog Position Manager | [Guide](12-dialog-position-manager.md){: .g-todo} | %%VIDEO_DIALOG_POSITION_MANAGER%% | *none needed* |
 | Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md){: .g-wip} | %%VIDEO_TILES_TO_PYRAMID%% | *not ready yet* |

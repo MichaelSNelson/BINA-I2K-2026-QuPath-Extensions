@@ -133,6 +133,7 @@ a microscope.
 | 11 | **[Channel Names Viewer](docs/11-channel-names-viewer.md)** | Always-visible color-coded channel legend. *Shown in Sara McArdle’s earlier session* | Apache-2.0 |
 | 12 | **[Dialog Position Manager](docs/12-dialog-position-manager.md)** | Remembers dialog positions; rescues off-screen windows | Apache-2.0 |
 | 13 | **[Tiles to Pyramid](docs/13-tiles-to-pyramid.md)** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | Apache-2.0 |
+| 14 | **[Class Visibility](docs/14-class-visibility.md)** | Show or hide objects by class, or by one marker inside a combinatorial class name | Apache-2.0 |
 
 ---
 

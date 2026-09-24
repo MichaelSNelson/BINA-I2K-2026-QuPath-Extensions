@@ -46,6 +46,7 @@ QP-CAT fetches a 1.5–2.5 GB Python environment; the DL Pixel Classifier fetche
 | Extension | What it is for | Notes | Guide |
 |---|---|---|---|
 | **Channel Names Viewer** | Always-visible, color-coded legend of selected fluorescence channels · *shown in Sara McArdle’s session* | | [Guide](11-channel-names-viewer.md) · [repo](https://github.com/uw-loci/qupath-extension-channel-names-viewer) |
+| **Class Visibility** | Show or hide objects by class, or by one marker inside a combinatorial class name | for 20+ class panels | [Guide](14-class-visibility.md) · [repo](https://github.com/uw-loci/qupath-extension-class-visibility) |
 | **Cluster 3D Navigator** | Rotatable 3D point cloud of clustered cells; click a point, land on the cell | | [Guide](04-cluster-3d-navigator.md) · [repo](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator) |
 | **QP-CAT — Cell Analysis Tools** | Clustering, phenotyping and spatial statistics for multiplexed data | **large download**| [Guide](03-qp-cat-cell-analysis-tools.md) · [repo](https://github.com/uw-loci/qupath-extension-cell-analysis-tools) |
 

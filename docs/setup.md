@@ -54,6 +54,7 @@ you want; the [extension index](extensions.md) says which track each belongs to:
 - Polyline Wand
 - Classify Object Subset
 - Class Distribution
+- Class Visibility
 - Channel Names Viewer
 - Project Metadata Browser
 - Dialog Position Manager
@@ -94,7 +95,7 @@ wherever it already lives, and the sizes differ by more than an order of magnitu
 |---|---|---|
 | **Track A or C** (DL Pixel Classifier, both wands) | **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)**. Unzip it, then drag the unzipped folder onto an open QuPath window to open it as a project | **229 MB** |
 | **Track B** (QP-CAT, Channel Names Viewer) | **`multiplex-synthetic-data-v1.2.zip`**, from [this release page](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip). It is the first file under Assets. Ignore "Source code (zip)" and "(tar.gz)" | **14 MB** |
-| **Track A or C** (QuIET, Classify Object Subset, Class Distribution, Cluster 3D Navigator) | **`multiplex-synthetic-data-demo-project-v1.2.zip`**, [direct link](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip). A ready-made QuPath project — cells already detected, a saved classifier, and ground truth to check your answer against. Unzip it, then drag the folder (or `project.qpproj` inside it) onto an open QuPath window | **20 MB** |
+| **Track A or C** (QuIET, Classify Object Subset, Class Distribution, Class Visibility, Cluster 3D Navigator) | **`multiplex-synthetic-data-demo-project-v1.2.zip`**, [direct link](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip). A ready-made QuPath project — cells already detected, a saved classifier, and ground truth to check your answer against. Unzip it, then drag the folder (or `project.qpproj` inside it) onto an open QuPath window | **20 MB** |
 | **Track D** (OCR for Labels, Project Metadata Browser) | **`OCR_Test_Images_LJI.zip`**, [direct link](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) | **244 MB** |
 | **Track D** (Tiles to Pyramid) | Still being prepared. Nothing to download yet | — |
 | **Track B, optional** (QP-CAT, afterwards) | Orion multiplex project. Still being prepared, and **several GB** — for exploring after the workshop, not during it | — |
