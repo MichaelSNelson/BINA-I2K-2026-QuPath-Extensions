@@ -218,10 +218,24 @@ should detect close to 1,530 cells.
 ### Part A: recover the cell types
 *Concept: cell identity from marker combinations, and what "resolution" costs you.*
 
-1. `Extensions > QP-CAT`, confirm the environment is ready.
-2. Run **clustering**. Choose **KMeans with k = 6**, on the seven marker means
+1. **Check the environment first.** Open `Extensions > QP-CAT`. Until the Python environment
+   is installed, every group except **Setup & help** is hidden, so a fresh install shows a menu
+   with one item on it — that is expected, not a broken install. Build it from
+   `Setup & help > Set up analysis environment (first run)...`. Once it is ready the menu fills
+   out:
+
+   <img src="../images/qp-cat/menu.png" alt="The Extensions menu with QP-CAT expanded. Its first item is Find cell populations (clustering), followed by the submenus Classify cells, Explore and spatial, Results and populations, Export, and Setup and help. The extensions list behind it shows QuIET, Classify Object Subset, Project Metadata Browser, Channel Names Viewer, Class Distribution and Cluster 3D Navigator" width="586">
+
+2. **`Extensions > QP-CAT > Find cell populations (clustering)...`**. Choose **KMeans with
+   k = 6**, on the seven marker means
    (`Cell: PanCK mean`, `Nucleus: Ki67 mean`, `Cell: aSMA mean`, `Cell: CD3 mean`,
    `Cell: CD8 mean`, `Cell: CD20 mean`, `Cell: CD68 mean`), z-scored. Seconds on 1,530 cells.
+
+   > **Select only those seven.** Leaving everything ticked hands the algorithm morphology, DAPI
+   > and the same marker in three correlated compartments, and it splits cells on size instead of
+   > phenotype. The dialog warns about the compartment case itself. Note also that
+   > `Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6 —
+   > it is not a shortcut for this step.
 3. Check the top of the Results window first. On a healthy run it says nothing interesting,
    which is the point: since 0.11.0 a degenerate result announces itself instead of looking like
    a finding. Then open the **cluster-defining markers** plot. Each cluster should be driven by one marker.
@@ -245,7 +259,10 @@ Cell types alone do not tell you much. **Where** they sit does. In this image, T
 concentrated in a band just outside each tumor nest, the computational version of a
 pathologist's read on whether an immune response has reached the tumor.
 
-6. Run **neighborhood enrichment** on your classified cells.
+6. Run **neighborhood enrichment** on your classified cells. It is a tick-box —
+   `Neighborhood enrichment + Moran's I` — in the Run Clustering dialog, so the easiest route is
+   to turn it on before you cluster. After the fact, use
+   `Explore & spatial > Spatial statistics on existing clusters...` instead.
 7. Read the matrix for four specific pairs, and predict each before you look:
 
    | Pair | Expect | Because |
@@ -260,6 +277,8 @@ pathologist's read on whether an immune response has reached the tumor.
    which is exactly why Part A's k = 5 merge would have destroyed this finding: the two
    T-cell populations would have been averaged into one indifferent number.
 9. Run **Ripley K/L** per type: tumor and B cells clustered, fibroblasts dispersed.
+   `Ripley K and L (point-pattern, dual plot)` is one of four tick-boxes under **Spatial
+   statistics**, in the same two places as step 6.
 10. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
     statistic says.
 
