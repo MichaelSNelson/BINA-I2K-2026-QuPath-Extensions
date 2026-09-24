@@ -235,7 +235,12 @@ empty state.
 
 > **The panel opens as a floating window.** If it covers the viewer, use the **Dock as tab**
 > button in the panel's own header to park it in the analysis pane. **Undock to window** puts
-> it back.
+> it back, and the docked layout stacks the two lists instead of placing them side by side.
+
+<img src="../images/class-visibility/panel-over-viewer.png" alt="The Class visibility floating window over the QuPath viewer on tme_00. Its header carries Preset, the Visibility rule radios set to Show only checked classes, a Find box and Exact matches only. Below are two lists side by side: Classes on detections in this image (20), sorted by an Affects column, and Anything containing these components (7) with a Count column. PanCK is checked in the components list and the viewer shows only the teal PanCK-positive cells; the status strip reads Active rules (1) with Undo Check PanCK and Reset all buttons" width="900">
+
+The screenshot is one step ahead of you — it has `PanCK` already checked, so the lists have
+something in them. Yours will be empty of rules until the next step.
 
 ### 5. One component, many classes
 
@@ -259,6 +264,11 @@ pulsed briefly when you checked `CD3`. Those are the classes the component rule 
 with a *tick* is on because you checked it; a row with a *ring* is on because a component reaches
 it — and the ring disappears the moment you uncheck `CD3`, where a tick would stay.
 
+<img src="../images/class-visibility/classes-ringed-by-component.png" alt="The classes list with PanCK checked in the components list. The PanCK row carries a grey tick; the rows PanCK colon Ki67, PanCK colon CD3, PanCK colon CD3 colon CD8 and PanCK colon CD68 carry an empty check box outlined with a blue ring; rows that do not contain PanCK, such as aSMA, CD3, CD68 and CD3 colon CD8, have plain empty boxes. The Affects column reads 439, 416, 386, 221, 189, 187, 126, 103, 17, 14, 12 and 9 down the rows, in bold on every row where it exceeds that class's own count" width="584">
+
+*(This one shows `PanCK` checked rather than `CD3`, and the docked layout — the ring behaves the
+same either way. `PanCK` reaches seven classes, `CD3` nine.)*
+
 Switch on the `Count` column and find the `CD3` row: it reads 184, but its `Affects` figure reads
 386 — the same 386 the component just selected. So on this dataset, ticking that one class row
 does the same job, because QuPath matches supersets by default. (`Affects` is shown in bold
@@ -276,7 +286,9 @@ Check a second component, **`CD8`**. Two radios below the list now read:
 - `All -- CD3 and CD8 together` — **4 classes, 187 cells** (`CD3: CD8`, `PanCK: CD3: CD8`,
   `CD3: CD8: CD68`, `aSMA: CD3: CD8`)
 
-`Any` is the default, and on this image it barely does anything: you go from 386 cells to 388.
+`Any` is the **first-run** default, but the panel remembers whichever you last chose, so glance at
+which radio is filled before you read any counts. On `Any`, this image barely changes: you go from
+386 cells to 388.
 **That is a finding, not a dead click** — 187 of the 189 CD8-positive cells are also CD3-positive,
 so CD8 sits almost entirely inside CD3.
 
