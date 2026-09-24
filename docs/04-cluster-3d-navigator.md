@@ -48,12 +48,14 @@ The navigator needs two things on your cells, both of which this project has onc
 a **class** (the color) and **at least three numeric measurement columns** to use as the X, Y
 and Z axes. Here the axes are marker means (`Cell: PanCK mean`, `Cell: aSMA mean`, …). If you
 run the [QP-CAT clustering exercise](03-qp-cat-cell-analysis-tools.md) and save UMAP components
-as measurements, `UMAP1/2/3` work as axes too.
+as measurements, those work as axes too. A current QP-CAT run names them
+`QPCAT 3D UMAP1/2/3`; the pre-computed download predates that and has `UMAP1/2/3`. The navigator
+recognises either.
 
 > **Coming: pre-computed QP-CAT results.** Clustering takes real compute, and a conference
 > laptop may not want to spend it. A zip of finished QP-CAT output will be offered here so you
-> can load the results and come straight to this exercise with `UMAP1/2/3` already on your
-> cells. It is optional and separate from the track downloads — do the QP-CAT exercise yourself
+> can load the results and come straight to this exercise with the embedding columns already on
+> your cells. It is optional and separate from the track downloads — do the QP-CAT exercise yourself
 > if you want to see how the numbers were produced. **Not available yet.**
 
 Work on **`tme_00.tif`**.
@@ -82,8 +84,8 @@ are now colored by cell type — those colors carry straight into the point clou
 1. `Extensions > Cluster 3D Navigator > Open 3D navigator...`.
 2. Pick three numeric measurements for the **X, Y and Z** axes. With no embedding columns
    present, choose three marker means — for example `Cell: PanCK mean`, `Cell: aSMA mean`, and
-   `Cell: CD3 mean` — which spread tumor, fibroblast and T cells apart. (If `UMAP1/2/3` exist,
-   the navigator preselects them.)
+   `Cell: CD3 mean` — which spread tumor, fibroblast and T cells apart. (If embedding columns
+   exist, the navigator preselects them.)
 
 %%SHOT_C3D_02_AXES%%
 > *Screenshot to add: the axis-selection controls with three measurements chosen.*

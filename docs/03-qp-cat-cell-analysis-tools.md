@@ -210,6 +210,12 @@ an open QuPath window; if the images come up red in an **Update URIs** dialog, c
 That saved result means **you can read every number in Part A without running anything** — useful
 if the environment build is slow, or if you would rather spend the hour on Parts B and C.
 
+> **One difference between the download and a fresh run.** The clustered project was produced
+> before QP-CAT began marking its own measurements, so its embedding columns are named
+> `UMAP1/2/3`. A run you do today writes `QPCAT 3D UMAP1` instead. Nothing is broken either way —
+> QP-CAT reads both, and the saved result still opens on its own embedding in the 3D View — but
+> the column names in the download will not match the ones in these instructions.
+
 <details markdown="1">
 <summary><b>Building it yourself instead</b> — detection settings, if you want to start from the images</summary>
 
@@ -252,7 +258,10 @@ should detect close to 1,530 cells on `tme_00`.
    | Clustering Algorithm | **KMeans**, **k = 6** |
 
    Leave the random seed at 42. KMeans runs ten initialisations and keeps the best, so the run
-   is repeatable. Tick **`Neighborhood enrichment + Moran's I`** and, under Spatial statistics,
+   is repeatable. The dialog reopens with whatever you last ran, so the second and third runs in
+   this exercise start from the first rather than from defaults. While a run is going, the
+   progress checklist shows how long each step has taken — useful for deciding which spatial
+   statistics are worth their time on your own data. Tick **`Neighborhood enrichment + Moran's I`** and, under Spatial statistics,
    **`Ripley K and L`** as well — Parts B and C need them, and computing them now saves a second
    run.
 
@@ -350,8 +359,20 @@ pathologist's read on whether an immune response has reached the tumor.
 9. Run **Ripley K/L** per type: tumor and B cells clustered, fibroblasts dispersed.
    `Ripley K and L (point-pattern, dual plot)` is one of four tick-boxes under **Spatial
    statistics**, in the same two places as step 6.
+
+   > **You may see one plot, not two.** Recent versions of squidpy dropped Ripley K and keep
+   > only L. When that happens QP-CAT shows L alone and says so, rather than drawing a K chart
+   > of placeholder zeros that would read as "no clustering at any radius". Read L: it is the
+   > variance-stabilised transform of K and answers the same question. Above the dashed Poisson
+   > reference means clustered, below means dispersed.
 10. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
     statistic says.
+
+    > **Taking the numbers with you.** The Geary's C, Ripley and co-occurrence tabs each have
+    > `Copy`, `Copy CSV` and `Save CSV...`. The CSV is written one row per observation, so a
+    > pairwise co-occurrence row names both clusters — easier to work with than the on-screen
+    > table, which is one column per ordered pair and scrolls off the right on a run with many
+    > clusters.
 
 ### Part C: inflamed versus desert
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
@@ -396,6 +417,12 @@ Best done at home; clustering all eight images is ~11,400 cells.
 18. Re-run **with Harmony**. The same cell type should now cluster together across all eight
     images.
 
+    > **Before any second run, click `Deselect QPCAT` in the Measurements list.** The first run
+    > wrote its own columns onto the cells — embedding coordinates, spatial and component
+    > measurements — all named with a leading `QPCAT`. They are output, not input: clustering on
+    > them clusters on the previous run's answer. One button clears every one of them and leaves
+    > your own measurements ticked.
+
 ### Saved results: reopen a run instead of repeating it
 
 Clustering is the slow part of this exercise, and you do not have to do it twice. **Every
@@ -418,9 +445,10 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 
 > Applied labels are namespaced by the result name — `<result>: Cluster N` — so results from
 > different runs can coexist on the same detections without colliding. Handy, with one
-> consequence worth knowing: any embedding measurements come back prefixed too, which means the
-> Cluster 3D Navigator will not auto-detect them as `UMAP1/2/3` and you will have to pick the
-> three axes by hand.
+> consequence worth knowing: any embedding measurements come back prefixed too
+> (`<result>: QPCAT 3D UMAP1`). QP-CAT's own **3D View** tab is unaffected, because the result
+> tells the view which columns it wrote; the standalone Cluster 3D Navigator reads the columns
+> generically and may still need the three axes picked by hand.
 
 ### What to notice
 
@@ -430,11 +458,12 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 - A statistical test that says two populations co-localise, over a slide where they visibly do
   not, means the test answered a different question than you asked. Look at both.
 - **A single cluster is a result about your measurements, not about the tissue.** If you try
-  HDBSCAN here and it collapses, that is expected: HDBSCAN separates groups only where there is
-  a gap in density between them, and cell morphometry usually forms one connected cloud with no
-  such gap. On a 304,083-cell TMA it returned one population plus 22% noise, while KMeans over
-  the identical measurements separated the cores 91–99% cleanly. Evenly-spread noise is the tell.
-  Try Leiden or KMeans on the same measurements before concluding your data lack structure.
+  [HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html) here
+  and it collapses to one population plus scattered noise, that is a property of the method meeting
+  this kind of data, not a verdict on the tissue: on a 304,083-cell TMA it gave one population plus
+  22% noise where KMeans over the identical measurements separated the cores 91–99% cleanly.
+  Evenly-spread noise is the tell. Try another algorithm on the same measurements before
+  concluding your data lack structure.
 - Ground truth is a luxury you will not have again. Use this dataset to learn what a *correct*
   result looks like, so you can recognize a wrong one on data where nobody can tell you.
 
@@ -452,3 +481,24 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-cell-analysis-tools#readme).
+
+### The analysis libraries underneath
+
+QP-CAT is a QuPath front end for established Python tools: it moves your measurements out, runs
+these, and brings the answers back onto the cells. Nothing in this guide re-teaches them, so when
+you want to know what a parameter actually does, or how a method behaves, go to its own
+documentation.
+
+| Library | What QP-CAT uses it for |
+|---|---|
+| [scanpy](https://scanpy.readthedocs.io/) | Leiden clustering, marker ranking, PAGA, the dotplot / matrixplot / stacked-violin figures |
+| [squidpy](https://squidpy.readthedocs.io/) | Neighborhood enrichment, Ripley's K/L, Geary's C, Moran's I, co-occurrence |
+| [umap-learn](https://umap-learn.readthedocs.io/) | UMAP embeddings, 2D and 3D |
+| [scikit-learn](https://scikit-learn.org/stable/) | KMeans, agglomerative clustering, HDBSCAN, PCA, t-SNE |
+| [leidenalg](https://leidenalg.readthedocs.io/) + [python-igraph](https://python.igraph.org/) | The graph partitioning behind Leiden |
+| [harmonypy](https://github.com/slowkow/harmonypy) | Harmony batch correction |
+| [pybanksy](https://pypi.org/project/pybanksy/) | BANKSY spatially aware clustering |
+| [anndata](https://anndata.readthedocs.io/) | The data structure the analysis is assembled in |
+
+Versions are pinned per release; the exact set is in the extension's
+[`pixi.toml`](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/src/main/resources/qupath/ext/qpcat/pixi.toml).
