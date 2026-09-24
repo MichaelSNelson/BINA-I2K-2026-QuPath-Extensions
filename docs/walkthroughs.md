@@ -31,24 +31,6 @@ hour.
 
 ---
 
-## How the three formats relate
-
-| | What it is | When to use it |
-|---|---|---|
-| **Live demo** | A handful of tools, driven by the vote, in the first hour | Being in the room |
-| **Written walkthrough** | Every tool. Step-by-step, with a "what to notice" section | Following along, or working alone in the second hour |
-| **Video** | Every tool. Short, and the same steps as the walkthrough | When a step does not behave, or you would rather watch than read |
-
-The written walkthrough is the source of truth. The video follows it step for step, so you can
-switch between them without losing your place.
-
-**Everything in the extension index is yours to install and keep**, whether or not we demo it
-live. Demoing is just about what fits in the first hour. Three tools are the exception, and only
-because you cannot run them here: QPSC needs a microscope, the Confusion Matrix repository is
-private, and the fiber tools need a long environment build or a Windows-only server.
-
----
-
 ## Hands-on tools
 
 <div class="legend">
