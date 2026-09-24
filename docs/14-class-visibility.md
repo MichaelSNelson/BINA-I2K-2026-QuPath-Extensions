@@ -212,7 +212,13 @@ the same image gives identical classes.
 ### 4. Open the panel
 
 `Extensions > Class Visibility > Show panel`, or the Class Visibility button in QuPath's
-toolbar.
+toolbar — the blue eye, two along from the brightness/contrast half-circle.
+
+<img src="../images/class-visibility/toolbar-button.png" alt="Two QuPath toolbar buttons side by side: on the left the Channel Names Viewer button, three stacked stripes in red, green and blue, and on the right the Class Visibility button, an open blue eye with a small grey triangle at its lower right" width="125">
+
+The eye reports whether class rules are in force: open while nothing is hidden, slashed once a
+rule is hiding objects. Right-clicking it reaches the same recovery actions as the Extensions
+menu.
 
 **Your objects will disappear, and that is the intended starting state.** The `Visibility rule:`
 radios sit on **`Show only checked classes`** with nothing checked, so the status strip reads:
