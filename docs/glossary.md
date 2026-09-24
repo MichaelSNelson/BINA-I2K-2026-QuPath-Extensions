@@ -18,7 +18,7 @@ to our extensions — it is ordinary QuPath vocabulary.
 
 | Word | What it means |
 |---|---|
-| **Project** | A folder QuPath manages for you, holding a list of images plus everything you have drawn and measured on them. You make one with `File > Project > Create project`, or open an existing one with `File > Project > Open project` and pointing at the folder. Almost every exercise here starts by opening a project, because that is where your work gets saved |
+| **Project** | A folder QuPath manages for you, holding a list of images plus everything you have drawn and measured on them. You make one with `File > Project > Create project...`, or open an existing one with `File > Project > Open project...` and pointing at the folder. Almost every exercise here starts by opening a project, because that is where your work gets saved |
 | **Image type** | Brightfield (H&E, stained slides, looks like a photo) or Fluorescence (separate channels, usually on black). QuPath asks the first time you open an image. Getting it wrong breaks channel handling and cell detection |
 | **Channel** | One color of a fluorescence image, measured separately — DAPI for nuclei, say. A brightfield image has red, green and blue; a multiplexed one can have eight or more, each a different marker |
 

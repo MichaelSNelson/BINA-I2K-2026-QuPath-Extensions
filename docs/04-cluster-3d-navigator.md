@@ -13,87 +13,114 @@ title: Cluster 3D Navigator
 | **Repository** | [uw-loci/qupath-extension-cluster-3d-navigator](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator) |
 | **Extension version** | 0.1.5 |
 | **License** | GPL-3.0-or-later |
-| **Requires** | QuPath 0.7.0+. No Python, no browser, no network. Pure Java |
+| **Requires** | QuPath 0.7.0+. Nothing else to install |
 | **Where to find it** | `Extensions > Cluster 3D Navigator > Open 3D navigator...` |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
 > **Walkthrough video:** %%VIDEO_CLUSTER_3D_NAVIGATOR%%
+> The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
+
+> **New to QuPath?** *project*, *detection*, *class*, *measurement*, *clustering* and *embedding*
+> are in the [glossary](glossary.md); QuPath's [official docs](https://qupath.readthedocs.io/en/stable/)
+> go deeper.
 
 ---
 
-## The idea in one sentence
+## What it does
 
 It plots every cell as a point in a 3D space you choose (three measurements as the axes),
 colors each point by its class, and lets you **click a point to select and center that exact
 cell in the viewer** — so a spot in cluster space becomes a real cell on the slide.
 
-It reads detections only and writes nothing to the hierarchy, so you can explore freely.
+It only reads your cells. It never changes their classes or measurements, so you can explore
+freely.
 
 <img src="../images/cluster-3d-navigator/window-layout.png" alt="The Cluster 3D Navigator window. Across the top: a Mode row with Current image and Project images radio buttons, X, Y and Z axis dropdowns reading UMAP1, UMAP2 and UMAP3, a Change axes button, a Show cell images check box, and Cell limit per image and Seed fields. Below that a Points counter and a Reset view button, then a collapsed Display options bar. The main area shows several separate colored blobs of points. On the right a CLASSES legend lists Cluster 0 to Cluster 24 with colored squares, check boxes and counts, and a Cell preview thumbnail sits below it. A gesture hint runs along the bottom." width="1000">
 
-*The window, on a different dataset from the one used below (a real tissue section, 25 clusters).
-The layout is the same: axes and mode across the top, the cloud in the middle, the class legend
-and cell preview on the right, gesture hints along the bottom. The
+*The window on a different, real-tissue dataset (25 clusters, all project images loaded). Yours
+at step 3 will show **Current image**, 1,530 points, six clusters and, until you confirm the
+axes, a "(no embedding detected)" tag next to the dropdowns. The **View** 3D/2D switch, added
+after this picture was taken, sits between Mode and Axes. The layout is otherwise the same: axes
+and mode across the top, the cloud in the middle, the class legend and cell preview on the right,
+gesture hints along the bottom. The
 [repository README](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator#readme)
 has the animated version.*
 
+<details markdown="1">
+<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
+
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including
+the catalog URL, are in the [setup guide](setup.md).
+
+</details>
+
 ---
 
-## Walkthrough: navigate cells in 3D and land on the real thing
+## Try it yourself
 
 Uses the **clustered** version of the synthetic multiplex project — the same download as the
 [QP-CAT](03-qp-cat-cell-analysis-tools.md) exercise. Nothing here needs QP-CAT installed: the
 clustering has already been done, and the navigator only reads what is on the cells.
 
-### 1. The data
+### 1. Get the data
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above).
 
 **Download:** `multiplex-synthetic-data-demo-project-clustered.zip` —
 **[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)**
 (23 MB). Eight synthetic 8-channel images with cells already detected, and a saved QP-CAT
-KMeans run over all 11,421 of them. Two things from that run are what the navigator needs:
+KMeans run over all 11,421 of them. Three things in it matter here:
 
 - every cell carries a **class**, `Cluster 0` to `Cluster 5` — that is the color of its point;
 - every cell carries **three embedding measurements**, `3DUMAP1`, `3DUMAP2` and `3DUMAP3` — those
-  are the axes.
+  are the axes. They are a 3D UMAP of the same 30 measurements the KMeans used (settings in the
+  [QP-CAT guide](03-qp-cat-cell-analysis-tools.md#hands-on-exercise)). The clusters were decided
+  on those 30 measurements, not on this picture: the cloud is a map of the data, not the thing
+  that made the clusters;
+- every image also carries **ground-truth point annotations**, one at each cell's center, classed
+  by true type (`tumor`, `fibroblast`, `cd8_t`, `helper_t`, `b_cell`, `macrophage`). That is how
+  you check a cluster: select the point and read its class in the **Annotations** tab.
 
-The navigator does not care that QP-CAT produced them. Any tool that puts a class and three
-numeric measurements on a detection would do.
+The navigator does not care that QP-CAT produced the first two. Any tool that puts a class and
+three numeric measurements on a detection would do.
 
-> **The saved run is also in the project.** It sits in `qpcat/cluster_results/` as
-> `auto_20260924_135415_kmeans`. If you have QP-CAT installed with its environment built, you can
-> reopen the heatmap and the other result plots without recomputing anything, and put labels back on
-> cells that have lost them. The [QP-CAT guide](03-qp-cat-cell-analysis-tools.md#saved-results-reopen-a-run-instead-of-repeating-it)
-> covers both. Neither is needed for this exercise.
+> **The README inside the zip is the unclustered project's** and says the cells ship
+> unclassified and need a script run first. Ignore it for this exercise; the labels are on the
+> cells.
 
 ### 2. Load it into QuPath
 
 1. Unzip it, then **drag `project.qpproj` onto an open QuPath window** — or the unzipped folder
-   itself, either works. (Menu route: `File > Project... > Open project`.)
-2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected:
-   the project ships with relative image paths so the zip is portable, and QuPath cannot resolve
-   them until you show it the folder once. Click **Search...** (bottom-right), choose the folder
-   you unzipped, and QuPath fills in the **Replacement URI** column; then **Apply changes**.
+   itself, either works. (Menu route: `File > Project > Open project...`.)
+2. The images should open straight away: the project remembers the paths from the machine it was
+   built on, and QuPath repoints them to the `images/` folder beside `project.qpproj` on its own.
+   If instead an **Update URIs** dialog appears with rows marked missing, click **Search...**
+   (bottom-right), choose the folder you unzipped, and QuPath fills the **Replacement URI**
+   column; then **Apply changes**.
 3. Double-click **`tme_00.tif`** to open it. The cells should already be colored, six colors in
-   all. If they are one flat color, see *If something looks wrong* at the end.
+   all. If they are one flat color, see [If something looks wrong](#if-something-looks-wrong).
 
-### 3. Open the navigator and pick the axes
+### 3. Open the navigator and confirm the axes
 
-1. `Extensions > Cluster 3D Navigator > Open 3D navigator...`.
-2. Look at the **Axes** row at the top. Next to it you will see the tag
-   **(no embedding detected -- pick 3 axes)**, and the three dropdowns will be holding the first
-   three numeric measurements it found, not the embedding. This is because the navigator
-   recognizes columns named `UMAP1`, `PCA1`, `tSNE1` and so on, and this project's columns start
-   with `3D`.
-3. Set **X** to `3DUMAP1`, **Y** to `3DUMAP2` and **Z** to `3DUMAP3` from the dropdowns. The cloud
-   redraws after each change. Or click **Change axes...** for a picker that sets all three at
-   once and offers **Use these axes automatically next time you open this project.** — tick it,
-   and you will not have to do this again.
+1. `Extensions > Cluster 3D Navigator > Open 3D navigator...`. A window titled
+   **Cluster 3D Navigator** opens with a cloud already drawn.
+2. Look at the **Axes** row at the top. Next to the dropdowns is the tag
+   **(no embedding detected -- pick 3 axes)**: the navigator did not recognize the
+   `3D`-prefixed names (see [axis auto-detection](#what-it-does-in-full)). With nothing
+   recognized it takes the first three numeric measurements in alphabetical order, and `3DUMAP1`,
+   `3DUMAP2` and `3DUMAP3` sort ahead of every `Cell:` and `Nucleus:` column — so the dropdowns
+   already hold the right axes and the cloud is right, by luck. On your own data it will not be.
+3. Click **Change axes...**. In the picker check that **X** is `3DUMAP1`, **Y** is `3DUMAP2` and
+   **Z** is `3DUMAP3`, tick **Use these axes automatically next time you open this project.**,
+   then **Apply**. The tag goes away and stays away for this project.
 
-<!-- screenshot: the Axes row with 3DUMAP1/2/3 selected, and the "(no embedding detected)" tag before the change -->
+<!-- TODO: Add screenshot — the Axes row with the "(no embedding detected)" tag, then the Change axes picker with 3DUMAP1/2/3 -->
 
-You should now see six colored blobs, and the **Points** counter should read 1,530 shown out of
-1,530 total for this image.
+You should see six colored blobs. The counter under the top row reads
+`Points: 1,530 shown / 1,530 total`, and the **CLASSES** legend lists Cluster 0 (404),
+Cluster 1 (294), Cluster 2 (389), Cluster 3 (106), Cluster 4 (217) and Cluster 5 (120).
 
 ### 4. Explore the cloud
 
@@ -101,47 +128,54 @@ You should now see six colored blobs, and the **Points** counter should read 1,5
   pan**. **Reset view** puts everything back in frame. The same hints are written along the
   bottom of the window.
 - **Hover** a point and a tooltip names its class and shows its values on the three axes.
-- The **CLASSES** legend on the right lists each cluster with its color and how many of the
-  shown cells it holds. **Untick a cluster** to hide it; **All** and **None** flip every box at
-  once. Hidden points stop counting as "shown" in the Points counter.
-- **Colors come from QuPath**, not from the navigator. To recolor a cluster, change the class
-  color in QuPath's class list and the cloud follows.
+- The **CLASSES** legend lists each cluster with its color and how many cells it holds (that
+  number does not change when you uncheck the cluster; only the Points counter does).
+  **Uncheck a cluster** to hide it. **All** shows every cluster again; **None** hides them all.
+- **Colors come from QuPath.** To recolor a cluster, right-click the class list in the
+  **Annotations** tab and populate it from the existing objects (the `Cluster` classes are not
+  in the project's list until you do), change the color there, then change an axis or reopen the
+  navigator so it re-reads.
 
-Rotate until two blobs that overlap from one angle separate from another. That is the reason for
-a third axis: a flat scatter of the same cells would have hidden it.
+Rotate until two blobs that overlap from one angle separate from another. The overlap was the
+viewpoint, not the cells: they sit at different depths. That is what a third axis buys you over a
+single flat picture — you can check whether two groups really touch.
 
-<!-- screenshot: the rotated cloud of six clusters on tme_00, legend visible -->
+<!-- TODO: Add screenshot — the rotated cloud of six clusters on tme_00, legend visible -->
 
 ### 5. Click a point, land on the cell
 
 Click a point. The matching cell is **selected and centered in the QuPath viewer**, and its crop
 appears in the **Cell preview** panel with the class name under it.
 
-Try a point at the dense core of a blob, then one sitting **between** two colors. The boundary
-cells are where a clustering is least sure of itself, and this makes each one a single click
-rather than a scripting job. Because this data has ground truth — the colored points on the
-slide, one per cell — you can see straight away whether the cell you landed on is what its
-cluster claims.
+Try a point at the dense core of a blob, then one sitting **between** two colors. A cell at a
+color boundary has neighbors from another cluster in the embedding, so it is a natural place to
+look for cells that could have gone either way. The clustering itself decided in the
+30-measurement space, not in this picture, so a confident mistake can also sit deep inside a
+blob. Either way, each one is a single click rather than a scripting job. Because every cell has a
+ground-truth point at its center, you can check on the spot whether the cell you landed on is
+what its cluster claims; the cluster-to-type key is the table in the
+[QP-CAT guide](03-qp-cat-cell-analysis-tools.md#hands-on-exercise).
 
-Two options under **Display options** (the collapsed bar under the top row) are worth turning on
-here:
+Expand **Display options** (the collapsed bar under the top row) and check two boxes:
 
 - **Show detection outlines** draws the cell's segmentation boundary on the preview crop, in the
-  cluster's color. If a cluster's crops keep showing merged or clipped outlines, that cluster is
-  a segmentation problem, not biology.
+  cluster's color. If most of a cluster's crops show merged or clipped outlines, that cluster is
+  probably collecting segmentation failures rather than a cell type. You will not find one in
+  this dataset, whose detections are clean, but it is the first thing to check on your own data.
 - **Preview crop on hover** loads the crop as you hover, instead of waiting for a click.
 
 The crop is rendered with whatever channels and brightness the viewer is showing at that moment.
 Change the viewer's display and click **Update from viewer** under the preview to re-render it.
 
-<!-- screenshot: a point selected in the cloud with the cell centered in the viewer and the Cell preview showing its crop -->
+<!-- TODO: Add screenshot — a point selected in the cloud, the cell centered in the viewer, the Cell preview showing its crop. First priority if only one screenshot gets taken -->
 
 ### 6. See the cells instead of the points
 
-Tick **Show cell images** in the top row and zoom in. Points near the front turn into the actual
-cell crops, each with a thin border in its cluster color, and clicking one still jumps to the
-cell. Zoom back out and they collapse to points again. On a cloud this size (1,530 cells) every
-cell can be drawn as an image once you are close enough.
+Tick **Show cell images** in the top row. Three cells per cluster turn into crops straight away,
+at any zoom; those are representatives (**Representative cells per cluster** under Display
+options). Zoom in and the points near the front fill in as crops too, each with a thin border in
+its cluster color, up to a few hundred non-overlapping cells at a time. Clicking a crop still
+jumps to the cell. Zoom back out and all but the representatives collapse to points.
 
 <img src="../images/cluster-3d-navigator/cell-images-zoomed.png" alt="A zoomed-in region of a point cloud in which the nearest cells are drawn as small square image crops, each with a thin colored border, over a scatter of remaining points. Crops in the upper part show reddish cells and crops in the lower part show cyan cells." width="800">
 
@@ -153,73 +187,89 @@ project the crops are simpler — one nucleus and its ring — but the behavior 
 The clustering ran over all eight images together, so the embedding is shared and the other
 seven images' cells belong in the same cloud.
 
-1. Switch **Mode** to **Project images...**. A picker opens listing the project's images.
-2. Click **Select all**, then confirm. A busy indicator counts through the images while their
-   detections are read; wait for it.
-3. The Points counter should now read 11,421 total.
+1. Switch **Mode** to **Project images...**. A picker titled **Select project images** opens.
+2. Click **Select all**, then **OK**. A busy indicator reads *Read image 1 of 8...* and counts
+   up; wait for it. (Changing an axis in this mode re-reads all eight images, so expect the same
+   pause each time.)
+3. The counter reads `Points: 11,421 shown / 11,421 total`, and the legend counts now match the
+   QP-CAT guide's table: 3,306 / 1,914 / 2,752 / 1,093 / 1,566 / 790.
 
-Click a point that belongs to another image and QuPath **opens that image first**, then centers
-the cell. **Select images...** next to the mode toggle reopens the picker if you want a subset —
-`tme_02` and `tme_04` are the two with the strongest intensity offsets, if you want to see
-whether they sit apart from the rest inside a cluster.
+Click any point. If its cell is on another image, QuPath opens that image first, then centers
+the cell; expect a short pause. **Select images...** next to the mode toggle reopens the picker if
+you want a subset. `tme_02` and `tme_04` were generated with a deliberate brightness shift, a
+simulated batch effect (see [batch effects](03-qp-cat-cell-analysis-tools.md#optional-and-slower-batch-effects)).
+The cloud does not mark which image a point came from, so the way to look for that shift is to
+click points along one edge of a blob and watch which image opens: if the same image keeps
+opening, that edge is a staining-day effect, not a cell type.
 
-### 8. 2D, and when not to use it
+### 8. A two-marker scatter in 2D
 
-**View** at the top switches between **3D** and **2D**. The 2D view is for a genuine two-component
-embedding, which this project does not have — and plotting `3DUMAP1` against `3DUMAP2` is not a
-2D UMAP, only a slice through the 3D one. The navigator warns when it catches you doing that with
-columns it recognizes; with these `3D`-prefixed names it will not, so you are on your own.
+**View** at the top switches between **3D** and **2D**. Switch to **2D**, then set **X** to
+`Cell: PanCK mean` and **Y** to `Cell: CD3 mean` (the Z dropdown grays out). You get an ordinary
+marker-versus-marker plot: Cluster 1 and Cluster 5, the two tumor clusters, run out along the
+PanCK axis, Cluster 2 (T cells) up the CD3 axis, and the other three sit near the origin. There
+is nothing to rotate in 2D, so left-drag pans. Every point is still a click from its cell.
 
-What the 2D view *is* good for here is a plain two-measurement scatter. Switch to **2D**, set
-**X** to `Cell: PanCK mean` and **Y** to `Cell: CD3 mean`, and you get an ordinary marker-versus-
-marker plot with every point still clickable: tumor clusters along one axis, T cells along the
-other, and the click-to-cell round trip works exactly as in 3D.
+> The 2D view is for a genuine two-component embedding or a plain scatter like this one. Plotting
+> `3DUMAP1` against `3DUMAP2` is not a 2D UMAP; it is the 3D cloud seen from one side with depth
+> flattened, so two groups that only overlap in depth will look like one (step 4 is the
+> demonstration). The navigator warns you when it recognizes the column names as an embedding,
+> but not for the `3D`-prefixed names in this project.
 
-### What to notice
+---
 
-- Boundary cells — where two colors meet in the cloud — are where a clustering is wrong, and
-  here they are one click from the tissue.
-- Six clusters for six cell types looks like a success. Click into the cluster that mixes two
-  T-cell types (the QP-CAT guide names it) and the crops show you what "right number, wrong
-  partition" looks like.
-- The tool only reads, so nothing you do here can damage your project.
+## If something looks wrong
 
-### If something looks wrong
+Symptoms you may hit during the walkthrough:
 
 | You see | Why | Do |
 |---|---|---|
-| Cells on the slide are all one color | The cluster labels are not on the detections | With QP-CAT installed: `Extensions > QP-CAT > Results & populations > Apply saved result to detections...` and pick `auto_20260924_135415_kmeans`. Without it, re-unzip the download; the labels ship on the cells |
-| Blank cloud, or a shape that looks like a line | The three axes are not the embedding, or two dropdowns hold the same measurement | Set X, Y, Z to `3DUMAP1`, `3DUMAP2`, `3DUMAP3` (step 3) |
-| Gray points in the cloud | Those cells are unclassified | Same fix as the first row |
-| Points counter says some cells are omitted | Those cells have no value on one of the chosen axes | Expected only if you picked a column that not every cell has; with the three `3DUMAP` columns none are omitted |
-| Clicking a point selects the wrong cell | Stale point-to-cell map, or the cell is on another image that is still opening | Reopen the navigator; in project mode, give the target image a moment |
+| Cells on the slide are all one color, or gray points in the cloud | The cluster labels are not on the detections | Re-unzip the download and open the fresh copy; the labels ship on the cells. If you would rather use QP-CAT (installed, with its analysis environment set up; the menu is hidden until then): `Extensions > QP-CAT > Results & populations > Apply saved result to detections...`, acknowledge the backup warning, pick `auto_20260924_135415_kmeans`. The classes then come back named `auto_20260924_135415_kmeans: Cluster 0` and so on, and that is what the legend will show |
+| The cloud reads *No cells have finite values on all three chosen axes.* | An axis is a column these cells do not have | Set X, Y, Z to `3DUMAP1`, `3DUMAP2`, `3DUMAP3` (step 3) |
+| The cloud reads *No image open. Open an image with detections, then reopen this view.* | You opened the navigator before opening an image | Double-click `tme_00.tif` in the project list (step 2), then reopen the navigator |
+| The cloud reads *No images selected...* | You clicked **OK** in the image picker with nothing checked | **Select images...**, **Select all**, **OK** |
+| Mode flipped back to **Current image** | You cancelled the picker | Switch to **Project images...** again and click **OK** this time |
+| Points counter ends in *(… omitted: missing axis value)* | Those cells have no value on one of the chosen axes | Expected only if you picked a column that not every cell has; with the three `3DUMAP` columns none are omitted |
+| Clicking a point selects the wrong cell | The target image is still opening | Give it a moment, then click again |
 | Project mode is slow to read | Eight images of detections | Wait for the busy indicator; use **Current image** for quick checks |
+
+## What to notice
+
+- Boundary cells, where two colors meet in the cloud, are the first place to look for cells that
+  could have gone either way. They are not the only place a clustering goes wrong: the next
+  bullet is a mistake with no boundary at all.
+- Six clusters for six cell types looks like a success. Click into Cluster 2, the one that
+  merges the CD8 and helper T cells (the QP-CAT guide shows why), and the crops show you what
+  "right number, wrong partition" looks like.
 
 ---
 
 ## What it does, in full
 
-One point per detection, colored by its classification; a **3D** view for three-component data
-and a flat **2D** view for two. It is deliberately **generic** — it does not care which tool
-produced your clusters. Any detections carrying a class and at least three numeric measurement
-columns will plot: QP-CAT output, or anything you computed elsewhere and imported as
-measurements. It **reads detections only and writes nothing to the hierarchy**.
-
 **Axis auto-detection** looks for columns named `UMAP1/2/3`, `PCA1/2/3`, `PC1/2/3` or
-`tSNE1/2/3`, with or without a `QPCAT` prefix and with any separator before the number. Anything
-else — including the `3DUMAP` columns in this exercise — you pick by hand, once per project.
+`tSNE1/2/3`, with an underscore, hyphen, space or nothing between the name and the number.
+Anything else — including the `3DUMAP` columns in this exercise — you pick by hand, once per
+project.
+
+The controls in the top row that the walkthrough does not use:
+
+| Control | What it does | Default |
+|---|---|---|
+| **Cell limit per image** | Caps how many cells per image are read. Every cluster keeps at least its representative cells; the rest are sampled at random | 0 (no limit) |
+| **Seed** | Which cells are sampled when a limit is set; change it to resample | 42 |
+| **?** | Explains how the limit chooses cells | |
 
 **How it relates to QP-CAT.** QP-CAT ships its own embedding views inside its results window.
-Cluster 3D Navigator is the standalone, **in-QuPath, click-to-cell** tool that works from the
-measurements alone, so it works on clusters from any source. Use either, or both.
+Cluster 3D Navigator is the standalone, in-QuPath, click-to-cell tool that works from the
+measurements alone, so it works on clusters from any source. The download also contains the
+saved QP-CAT run (`qpcat/cluster_results/auto_20260924_135415_kmeans`); the
+[QP-CAT guide](03-qp-cat-cell-analysis-tools.md#saved-results-reopen-a-run-instead-of-repeating-it)
+explains reopening it.
 
 > **Platform caveat:** the extension's own documentation lists Linux as the verified platform,
 > with Windows and macOS not yet verified. If clicking a point selects the *wrong* cell on
-> Windows or macOS, that is a bug worth reporting.
-
-> **New to QuPath?** *project*, *detection*, *class* and *measurement* are in the
-> [glossary](glossary.md); QuPath's [official docs](https://qupath.readthedocs.io/en/stable/) go
-> deeper.
+> Windows or macOS, report it at the
+> [repository issues page](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator/issues).
 
 **Full documentation:** the
 [user guide](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator/blob/main/documentation/user-guide.md)

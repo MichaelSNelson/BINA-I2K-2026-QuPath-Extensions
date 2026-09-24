@@ -153,7 +153,7 @@ Why synthetic, for a workshop:
 - **You can check the answer.** Real multiplexed tissue has no ground truth, so you never
   actually know which cell is which type, or whether two populations really co-localise.
   Here every cell has a known type, known marker positivity, and a known place in the tissue.
-- **It is fast.** ~1,430 cells per image; 11,420 across all eight. Clustering one image is
+- **It is fast.** ~1,430 cells per image; 11,421 across all eight. Clustering one image is
   seconds, not coffee.
 - **Everything has something to recover.** Six cell types, tissue niches, a proliferation
   gradient, and deliberate per-image intensity offsets.
