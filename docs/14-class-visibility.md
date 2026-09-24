@@ -12,7 +12,7 @@ title: Class Visibility
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-class-visibility](https://github.com/uw-loci/qupath-extension-class-visibility) |
-| **Extension version** | 0.3.0 |
+| **Extension version** | 0.3.3 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Class Visibility > Show panel` · toolbar button |
@@ -202,6 +202,10 @@ empty state.
 > **The panel opens as a floating window.** If it covers the viewer, use the **Dock as tab**
 > button in the panel's own header to park it in the analysis pane. **Undock to window** puts
 > it back, and the docked layout stacks the two lists instead of placing them side by side.
+>
+> **Short of room for the lists?** **`Collapse`**, at the left of the `Image:` row, hides the
+> `Preset`, `Visibility rule`, `List` and `Find` rows. Your rules keep working while they are
+> hidden. **`Expand`** brings them back, and so does **Ctrl+F** (**Cmd+F** on macOS).
 
 <img src="../images/class-visibility/panel-over-viewer.png" alt="The Class visibility floating window over the QuPath viewer on tme_00. Its header carries Preset, the Visibility rule radios set to Show only checked classes, a Find box and Exact matches only. Below are two lists side by side: Classes on detections in this image (20), sorted by an Affects column, and Anything containing these components (7) with a Count column. PanCK is checked in the components list and the viewer shows only the teal PanCK-positive cells; the status strip reads Active rules (1) with Undo Check PanCK and Reset all buttons" width="900">
 
@@ -221,7 +225,8 @@ class names it covers.
 > **`Active rules` shows a bigger number?** The classes list still has rules in it. Click
 > **Clear all rules** in the `Active rules` expander and check `CD3` again.
 
-> **Nothing happened at all?** Look for `[!] "Exact matches only" is on` in the status strip.
+> **Nothing happened at all?** Look for `[!] "Exact matches only" is on` just under the `Find`
+> row.
 > That setting is QuPath-wide, so it may be on from earlier work, and while it is on **no
 > component rule can match**. Click **Turn off** beside the warning.
 
@@ -235,10 +240,13 @@ it — and the ring disappears the moment you uncheck `CD3`, where a tick would 
 *(This one shows `PanCK` checked rather than `CD3`, and the docked layout — the ring behaves the
 same either way. `PanCK` reaches seven classes, `CD3` nine.)*
 
-Switch on the `Count` column and find the `CD3` row: it reads 184, but its `Affects` figure reads
-386 — the same 386 the component just selected. So on this dataset, ticking that one class row
-does the same job, because QuPath matches supersets by default. (`Affects` is shown in bold
-wherever it exceeds the row's own count, which is exactly the case that makes the two differ.)
+The number beside each class is its **`Count`** — cells carrying exactly that class. Find the
+`CD3` row: it reads 184. **Hover that 184** and the tooltip says checking the row would act on
+386 — the same 386 the component just selected, and the figure in the components list's
+**`Total`** column for `CD3`. So on this dataset, ticking that one class row does the same job,
+because QuPath matches supersets by default. (To see that second number on every row at once,
+switch on the **`Affects`** column from the **+** at the right end of the classes list's
+column-header row. It is shown in bold wherever it exceeds the row's own count.)
 
 That is worth seeing rather than glossing: on a *real* panel there is usually no plain `CD3`
 class to tick, and then the component row is the only way to say it. Here there is one, so the
@@ -246,11 +254,15 @@ component list saves you nothing yet. The next step is where it stops being opti
 
 ### 6. `Any` vs `All` — the part with no equivalent
 
-Check a second component, **`CD8`**. Two radios below the list now read:
+Check a second component, **`CD8`**. Two radios below the list now read, each with the number
+of cells it would show:
 
-- `Any -- CD3, or CD8, or both` — **10 classes, 388 cells**
-- `All -- CD3 and CD8 together` — **4 classes, 187 cells** (`CD3: CD8`, `PanCK: CD3: CD8`,
+- `Any -- CD3, or CD8, or both (388 objects)` — **10 classes**
+- `All -- CD3 and CD8 together (187 objects)` — **4 classes** (`CD3: CD8`, `PanCK: CD3: CD8`,
   `CD3: CD8: CD68`, `aSMA: CD3: CD8`)
+
+You can compare the two before choosing. Neither number appears on any single row: each
+component's `Total` is that component alone.
 
 `Any` is the **first-run** default, but the panel remembers whichever you last chose, so glance at
 which radio is filled before you read any counts. On `Any`, this image barely changes: you go from
@@ -278,7 +290,7 @@ where the class names may be different.
 ### 7. `Spread`, and what it is really for
 
 Switch on the **`Spread`** column: click the small **+** button at the right end of the
-component list's **column-header row** (the row reading `Component` and `Count`, not the caption
+component list's **column-header row** (the row reading `Component` and `Total`, not the caption
 above it), then tick `Spread`.
 
 > That menu's first entry is blank and does nothing. It is the check-box column, which has no
@@ -367,7 +379,7 @@ spelled **`Reset all visibility`**.
 |---|---|---|
 | `No cells in this image -- open an image from the synth multiplex project first.` | No image open, or one with no detections | Double-click `tme_00.tif` in the project list, then Run again |
 | The script printed nothing | The Script Editor's output pane is below the code and often collapsed to a sliver | Drag the divider up, or use `View > Show log` |
-| You check a component and nothing happens | `Exact matches only` is on. It is a QuPath-wide, persistent setting, so it can arrive on from an earlier session | The status strip says so and offers a **`Turn off`** button beside the warning |
+| You check a component and nothing happens | `Exact matches only` is on. It is a QuPath-wide, persistent setting, so it can arrive on from an earlier session | A warning under the `Find` row says so and offers a **`Turn off`** button beside it. It stays visible even when the panel's top rows are collapsed |
 | The classes list shows `tumor`, `fibroblast`, `cd8_t`… | The **`List:`** selector is on `Annotations`, so you are looking at the ground-truth points | Set `List:` back to `Detections` |
 | `Active rules` shows a number you did not expect | The classes-list header check box adds every listed class as a rule | **Clear all rules** in the `Active rules` expander |
 | Everything is hidden and you cannot get back | `Show only checked classes` with the wrong rules | **`Reset all`** on the status strip, or `Extensions > Class Visibility > Reset all visibility` |
@@ -386,5 +398,5 @@ spelled **`Reset all visibility`**.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-class-visibility#readme), the
-[user guide](https://github.com/uw-loci/qupath-extension-class-visibility/blob/main/docs/user-guide.md),
-and [migrating from the script](https://github.com/uw-loci/qupath-extension-class-visibility/blob/main/docs/migration-from-the-script.md).
+[user guide](https://github.com/uw-loci/qupath-extension-class-visibility/blob/master/docs/user-guide.md),
+and [migrating from the script](https://github.com/uw-loci/qupath-extension-class-visibility/blob/master/docs/migration-from-the-script.md).
