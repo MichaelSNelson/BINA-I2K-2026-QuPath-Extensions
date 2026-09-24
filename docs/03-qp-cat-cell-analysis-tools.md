@@ -210,11 +210,11 @@ an open QuPath window; if the images come up red in an **Update URIs** dialog, c
 That saved result means **you can read every number in Part A without running anything** — useful
 if the environment build is slow, or if you would rather spend the hour on Parts B and C.
 
-> **One difference between the download and a fresh run.** The clustered project was produced
-> before QP-CAT began marking its own measurements, so its embedding columns are named
-> `UMAP1/2/3`. A run you do today writes `QPCAT 3D UMAP1` instead. Nothing is broken either way —
-> QP-CAT reads both, and the saved result still opens on its own embedding in the 3D View — but
-> the column names in the download will not match the ones in these instructions.
+> **The embedding columns in the download are named `3DUMAP1`, `3DUMAP2` and `3DUMAP3`** — the
+> dialog's **Name** field was `3D UMAP`, and the space is dropped when the columns are written. A
+> run you do with a newer QP-CAT build may write `QPCAT 3D UMAP1` instead. Nothing is broken
+> either way — the saved result knows which columns it wrote — but if you go on to the
+> [Cluster 3D Navigator](04-cluster-3d-navigator.md) exercise, those are the three names to pick.
 
 <details markdown="1">
 <summary><b>Building it yourself instead</b> — detection settings, if you want to start from the images</summary>
