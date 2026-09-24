@@ -180,6 +180,18 @@ menu.
 classes list is haloed in blue: clicking it checks **every** class, which puts every object back
 on screen. Leave it alone for now — step 5 starts from the empty state.
 
+**What you should see.** On `tme_00`, 1,530 cells become **20 classes**: nineteen marker
+combinations plus `Unclassified`, which holds the 17 cells positive for nothing. QuPath treats
+Unclassified as a class, so the panel counts it as one. The `Visibility rule` row is boxed in red
+here:
+
+<img src="../images/class-visibility/panel-nothing-checked.png" alt="The Class visibility floating window on tme_00 with nothing checked. The Visibility rule row, with Hide checked classes and Show only checked classes options and the second one selected, is outlined in red. The classes list header reads Classes on detections in this image (20) and lists aSMA 396, PanCK 286, CD68 199, CD3 184, CD3 colon CD8 167, PanCK colon Ki67 126, CD20 100 and rarer combinations in a Count column. The components list header reads Anything containing these components (7) with a Total column: aSMA 416, CD20 103, CD3 386, CD68 221, CD8 189, Ki67 126, PanCK 439. Active rules reads none, and the status strip reads: Every object is hidden. Show only checked classes is on and nothing is checked" width="900">
+
+Six of the nineteen combinations carry a single marker, and they hold 1,167 of the 1,513
+classified cells, 77%. The other thirteen combine two or more markers, and eleven of those hold
+fewer than ten cells each. That long tail of near-empty combinations is what a real hi-plex panel
+looks like, and it is what a flat class list handles worst.
+
 > **The panel opens as a floating window.** If it covers the viewer, use the **Dock as tab**
 > button in the panel's own header to park it in the analysis pane. **Undock to window** puts
 > it back, and the docked layout stacks the two lists instead of placing them side by side.
@@ -188,38 +200,30 @@ on screen. Leave it alone for now — step 5 starts from the empty state.
 > `Preset`, `Visibility rule`, `List` and `Find` rows. Your rules keep working while they are
 > hidden. **`Expand`** brings them back, and so does **Ctrl+F** (**Cmd+F** on macOS).
 
-**What you should see.** On `tme_00`, 1,530 cells become **20 classes**: nineteen marker
-combinations plus `Unclassified`, which holds the 17 cells positive for nothing. QuPath treats
-Unclassified as a class, so the panel counts it as one:
-
-<img src="../images/class-visibility/after-the-script.png" alt="The Class visibility panel on tme_00 after running the script. The classes list header reads Classes on detections in this image (20) and lists PanCK, aSMA, CD3, CD68, CD8, CD3 colon CD8, PanCK colon Ki67, CD20 and rarer combinations with an Affects column reading 439, 416, 386, 221, 189, 187, 126 and 103. The components list header reads Anything containing these components (7) with counts for aSMA, CD20, CD3, CD68, CD8, Ki67 and PanCK. The status strip warns that every object is hidden because Show only checked classes is on with nothing checked" width="900">
-
-Six of the nineteen combinations carry a single marker, and they hold 1,167 of the 1,513
-classified cells, 77%. The other thirteen combine two or more markers, and eleven of those hold
-fewer than ten cells each. That long tail of near-empty combinations is what a real hi-plex panel
-looks like, and it is what a flat class list handles worst.
-
 ### 5. One component, many classes
 
 In the components list — its header reads **Anything containing these components (7)** — check
 **`CD3`**. Every object whose class contains `CD3` is now visible, and nothing else is. (If
 nothing changed, see [If something looks wrong](#if-something-looks-wrong).)
 
-**Now look at the classes list.** Nine rows have a **blue ring** on their check box, and they
-pulsed briefly when you checked `CD3`. Those are the classes the component rule reaches. A row
-with a *tick* is on because you checked it; a row with a *ring* is on because a component reaches
-it — and the ring disappears the moment you uncheck `CD3`, where a tick would stay.
+<img src="../images/class-visibility/panel-cd3-checked.png" alt="The same window with CD3 checked in the components list. In the classes list the CD3 row shows a greyed-out tick, and the rows CD3 colon CD8, PanCK colon CD3 colon CD8, aSMA colon CD3, CD3 colon CD8 colon CD68 and CD3 colon CD68 have a blue ring around their check box; rows such as aSMA, PanCK, CD68 and PanCK colon Ki67 have plain empty boxes. Below the components list the two options read Any CD3 and All CD3, greyed out. Active rules reads 1, and the buttons at the bottom read Undo Check CD3 and Reset all" width="900">
 
-<img src="../images/class-visibility/classes-ringed-by-component.png" alt="The classes list with PanCK checked in the components list. The PanCK row carries a grey tick; the rows PanCK colon Ki67, PanCK colon CD3, PanCK colon CD3 colon CD8 and PanCK colon CD68 carry an empty check box outlined with a blue ring; rows that do not contain PanCK, such as aSMA, CD3, CD68 and CD3 colon CD8, have plain empty boxes. The Affects column reads 439, 416, 386, 221, 189, 187, 126, 103, 17, 14, 12 and 9 down the rows, in bold on every row where it exceeds that class's own count" width="584">
-
-*(This one shows `PanCK` checked rather than `CD3`, and the docked layout — the ring behaves the
-same either way. `PanCK` reaches seven classes, `CD3` nine.)*
+**Now look at the classes list.** The `CD3` row shows a greyed-out tick: the component rule set
+it, and hovering it says to change it in the components list. The other eight classes containing
+`CD3` (`CD3: CD8`, `PanCK: CD3: CD8`, `aSMA: CD3` and five more, some below the fold) have a
+**blue ring** around their check box, and they pulsed briefly when you checked `CD3`. A ring means
+the component rule reaches that class. Uncheck `CD3` and the rings disappear; a tick you put there
+yourself would stay.
 
 Now compare two numbers. In the classes list, the `CD3` row's **`Count`** reads 184: cells whose
 class is exactly `CD3`. In the components list, the `CD3` row's **`Total`** reads 386: cells
-carrying `CD3` anywhere in their class. Checking the `CD3` *class* row would act on all 386, not
-184, because QuPath matches supersets by default (hover the 184 and the tooltip says so). So on
-this dataset, checking that one class row does the same job as checking the component.
+carrying `CD3` anywhere in their class.
+
+<img src="../images/class-visibility/count-vs-total.png" alt="A close-up of the tops of both lists. Left, the classes list: aSMA 396, PanCK 286, CD68 199, CD3 184 with a greyed tick and the row highlighted, CD3 colon CD8 167. Right, the components list: aSMA 416, CD20 103, CD3 386 checked and highlighted, CD68 221, CD8 189" width="900">
+
+Checking the `CD3` *class* row would act on all 386, not 184, because QuPath matches supersets by
+default (hover the 184 and the tooltip says so). So on this dataset, checking that one class row
+does the same job as checking the component.
 
 > **That is worth seeing rather than glossing.** On a *real* panel there is usually no plain
 > `CD3` class to check, and then the component row is the only way to say it. Here there is one,
