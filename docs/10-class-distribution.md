@@ -64,8 +64,7 @@ It works on the **project**, not just the image in the viewer: the Project and A
 aggregate across all eight. Open a loose file instead of a project and there is nothing for it
 to read.
 
-%%SHOT_CD_01_DIALOG%%
-> *Screenshot to add: the Detection Training Distribution dialog open beside the viewer.*
+<img src="../images/class-distribution/dialog-beside-viewer.png" alt="The Detection Training Distribution dialog open beside the QuPath viewer, with tme_00 showing cell detections and colored ground-truth points, and the eight-image project listed on the left" width="900">
 
 ### 4. The project as a whole
 
@@ -76,11 +75,14 @@ legend beneath — `fibroblast 28.9%`, `tumor 23.6%`, and so on — so there is 
 The **Image type** dropdown above the chart narrows the total to images of one type, which
 matters when a project mixes stains or magnifications. It lives on this tab only.
 
+<img src="../images/class-distribution/project-image-type.png" alt="The same Project tab with the Image type dropdown highlighted, set to Fluorescence (8), and the Advanced section expanded to show the Highlight outliers slider, the over and under color pickers, and the slice-label checkbox" width="700">
+
+**Advanced**, at the bottom, is where the outlier rule lives — see step 5.
+
 > **If the labels pile up on top of each other**, drag the **Highlight outliers at** slider in
 > **Advanced** a notch and back. The chart redraws and they separate.
 
-%%SHOT_CD_02_PROJECT%%
-> *Screenshot to add: the Project tab pie chart with per-class percentages.*
+<img src="../images/class-distribution/project-tab.png" alt="The Project tab: a pie chart with each class labelled and its percentage, fibroblast 28.9 percent down to b_cell 9.5 percent, repeated in the legend beneath where fibroblast is marked [over]" width="560">
 
 ### 5. Every image at once — where the imbalance shows
 
@@ -91,20 +93,20 @@ The `[over]` / `[under]` markers do **not** appear here — the mini-charts carr
 see them, go back to **Project** or **Current image**, where they sit beside the class name in
 the legend, as `fibroblast 28.9% [over]`.
 
-%%SHOT_CD_03_ALL_IMAGES%%
-> *Screenshot to add: the All images grid, with `tme_06` (immune-rich) and `tme_07` (no B cells)
-> visibly different, and an `[under]` marker in the legend.*
+<img src="../images/class-distribution/all-images-tab.png" alt="The All images tab: eight mini pie charts, one per image, with a shared legend and no over or under markers. tme_07 is selected and visibly lacks the blue b_cell slice the others have" width="760">
 
 ### 6. One image, and what is missing from it
 
-The **Current image** tab charts just the open image, and surfaces project classes that are
-**absent** from it — open `tme_07` and the B-cell class shows as missing rather than silently
-not being drawn. That is the check worth running before you train on a single slide.
+The **Current image** tab charts just the open image, and — more usefully — surfaces project
+classes that are **absent** from it. Open `tme_07` and `b_cell` appears in the legend as
+**`0.0% [missing]`** rather than simply not being drawn. A class you cannot see is easy to
+forget; a class labelled *missing* is not.
+
+That is the check worth running before you train on a single slide.
 
 (The **Image type** filter is not on this tab; it is on **Project**, from step 4.)
 
-%%SHOT_CD_04_CURRENT%%
-> *Screenshot to add: the Current image tab, with a missing-class note and the Image Type filter.*
+<img src="../images/class-distribution/current-image-tme07.png" alt="The Current image tab on tme_07: fibroblast 48.7 percent and tumor 30.6 percent both marked [over], cd8_t and helper_t marked [under], and b_cell shown as 0.0 percent [missing]" width="740">
 
 ### 7. The other dialog, and when to use it
 
@@ -128,7 +130,9 @@ count.
   by the count that matters.
 - **`[over]` / `[under]` are relative to your project's own median.** A class is flagged
   `[over]` when its share reaches the multiplier shown on the **Highlight outliers at** slider
-  (2.0× by default) and `[under]` at the reciprocal, 0.5×. The median is taken over the classes
+  (2.0× by default) and `[under]` at the reciprocal, 0.5×. Lowering it flags more: the
+  screenshots above sit at **1.5×**, which is why `tumor` is marked `[over]` there and not on
+  the default. The median is taken over the classes
   actually present, and the slider is yours to move — so these describe *your* balance, not a
   universal target.
 - The `tme_07` gap (no B cells) is the kind of thing that silently produces a classifier that
