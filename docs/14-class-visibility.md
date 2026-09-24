@@ -149,38 +149,20 @@ rather than a whole-cell mean that would dilute it. The other six are read as
 
 **What you should see.** On `tme_00`, 1,530 cells become **20 classes** — nineteen marker
 combinations plus `Unclassified`, which holds the 17 cells positive for nothing. QuPath treats
-Unclassified as a class, so it is counted as one here and in the panel:
+Unclassified as a class, so it is counted as one both by the script and by the panel:
 
-```
-cells: 1530   classified: 1513   Unclassified: 17
-distinct classes: 20 (13 with two or more markers, plus Unclassified)
+<img src="../images/class-visibility/after-the-script.png" alt="The Class visibility panel on tme_00 after running the script. The classes list header reads Classes on detections in this image (20) and lists PanCK, aSMA, CD3, CD68, CD8, CD3 colon CD8, PanCK colon Ki67, CD20 and rarer combinations with an Affects column reading 439, 416, 386, 221, 189, 187, 126 and 103. The components list header reads Anything containing these components (7) with counts for aSMA, CD20, CD3, CD68, CD8, Ki67 and PanCK. The status strip warns that every object is hidden because Show only checked classes is on with nothing checked" width="900">
 
-  PanCK  (Cell)    thr=   34.20   positive in   439 cells ( 28.7%)
-  Ki67   (Nucleus) thr=    0.73   positive in   126 cells (  8.2%)
-  aSMA   (Cell)    thr=   46.09   positive in   416 cells ( 27.2%)
-  CD3    (Cell)    thr=   30.78   positive in   386 cells ( 25.2%)
-  CD8    (Cell)    thr=   20.24   positive in   189 cells ( 12.4%)
-  CD20   (Cell)    thr=   34.25   positive in   103 cells (  6.7%)
-  CD68   (Cell)    thr=   42.00   positive in   221 cells ( 14.4%)
-
-    396  aSMA                (1 marker)        14  PanCK: CD3: CD8   (3 markers)
-    286  PanCK               (1 marker)         9  aSMA: CD3         (2 markers)
-    199  CD68                (1 marker)         9  PanCK: CD68       (2 markers)
-    184  CD3                 (1 marker)         6  aSMA: CD68        (2 markers)
-    167  CD3: CD8            (2 markers)         4  CD3: CD8: CD68   (3 markers)
-    126  PanCK: Ki67         (2 markers)      ... and six rarer combinations
-    100  CD20                (1 marker)
-     17  Unclassified        (no marker)
-```
+The script's log carries what the panel cannot: the Otsu threshold it chose for each marker, how
+many cells each marker is positive in, and the spread table you will check against step 7. **Copy
+that block out of the log before you move on** — it is the only record of how this lattice was
+built, and it changes with the image.
 
 **The lattice is thinner than the class count suggests, and that is worth seeing.** Six of the
 nineteen marker combinations carry a single marker, and they hold 1,167 of the 1,513 classified cells — 77%.
 Thirteen classes combine two or more markers, and eleven of those hold fewer than ten cells each.
 That long tail of near-empty combinations is what a real hi-plex panel looks like, and it is what
 a flat class list handles worst.
-
-**Copy that block out of the log before you move on.** The thresholds and counts are the only
-record of how this lattice was built, and they change with the image.
 
 <details markdown="1">
 <summary><b>What this lattice is, and is not</b> — four things worth knowing before you trust it</summary>
