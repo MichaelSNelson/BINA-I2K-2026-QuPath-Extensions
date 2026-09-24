@@ -102,9 +102,6 @@ already have it, you are done here.
 **You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
 catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
-> **One step needs a connection.** The script in step 3 lives on this site rather than inside
-> the project. Fetch it before the session if the room's wifi is unreliable.
-
 ### 2. Load it into QuPath
 
 1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either
