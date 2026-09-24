@@ -26,28 +26,11 @@ title: Class Visibility
 
 ## What it does
 
-A *class* is the whole label on an object: `CD3: CD8: PD1`. A **component** is one
-colon-separated part of it: `CD3`. This panel filters the viewer by either one.
-
-Class names built by combining markers are the case it exists for. Twenty or forty such names
-are overlapping groups rather than a list of categories, and two jobs become awkward: finding
-every name that carries a given marker, and asking for the cells that carry *several* markers
-at once.
-
-- **A component list.** One row per marker, however many class names contain it.
-- **An `Any` / `All` switch** over the checked components. `CD3` **and** `CD8` **and** `PD1`
-  together is one rule.
-- **A `Spread` column** — a ratio such as `9/20` beside a component — saying how many of the
-  image's classes contain it. Some naming schemes append `positive` or `Cell` to every class
-  name, and those components look exactly like markers until you count. Off by default.
-- **A blue ring** on the check box of every class that a checked component matches, so you can
-  see which classes a component rule is acting on.
-- **`Find`** over both lists, with the matched text in **bold**.
-- **Named presets.** Save the set of components and classes you have checked under a name. It is
-  stored in the project, so you can reapply it later, or on another image, without rebuilding it.
-
-It writes to the same QuPath setting the built-in class list writes to, so the two stay in
-agreement.
+A panel of check boxes that shows or hides detections by their class, or by part of a class
+name. Check `CD3` and every cell whose class contains CD3 appears, whether that class is `CD3`,
+`CD3: CD8` or `PanCK: CD3: CD8`. Check two parts and choose whether you want cells with either
+one or with both. Combinations like these are hard to build from QuPath's built-in class list,
+which only checks whole classes one at a time.
 
 ## When the built-in class list is the better tool
 
