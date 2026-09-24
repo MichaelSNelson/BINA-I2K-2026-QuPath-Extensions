@@ -60,7 +60,7 @@ private, and the fiber tools need a long environment build or a Windows-only ser
 
 Each of these you can install and run yourself; see the [extension index](extensions.md).
 
-**Four datasets cover all of them.** The **Data** column says which one a tool needs, so if two
+**Five datasets cover all of them.** The **Data** column says which one a tool needs, so if two
 tools you want share a name, that is one download, not two. Each is linked here once:
 
 | Data | Download | Size |
@@ -68,6 +68,7 @@ tools you want share a name, that is one download, not two. Each is linked here 
 | **Scripting Demo** | [`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY) | 229 MB |
 | **Synthetic images** | [`multiplex-synthetic-data-v1.2.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip) | 14 MB |
 | **Synth multiplex project** | [`multiplex-synthetic-data-demo-project-v1.2.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip) | 20 MB |
+| **Clustered project** | [`multiplex-synthetic-data-demo-project-clustered.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip) | 23 MB |
 | **Slide labels** | [`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) | 244 MB |
 
 > **Synthetic images** and the **synth multiplex project** are not the same download, although
@@ -80,8 +81,8 @@ tools you want share a name, that is one download, not two. Each is linked here 
 |---|---|---|---|
 | QuIET — Image Export Toolkit | [Guide](01-quiet-image-export.md){: .g-todo} | %%VIDEO_QUIET_IMAGE_EXPORT%% | Synth multiplex<br>project |
 | DL Pixel Classifier | [Guide](02-dl-pixel-classifier.md){: .g-todo} | %%VIDEO_DL_PIXEL_CLASSIFIER%% | Scripting Demo |
-| QP-CAT — Cell Analysis Tools | [Guide](03-qp-cat-cell-analysis-tools.md){: .g-todo} | %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%% | Synthetic images |
-| Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | Synth multiplex<br>project |
+| QP-CAT — Cell Analysis Tools | [Guide](03-qp-cat-cell-analysis-tools.md){: .g-todo} | %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%% | Clustered<br>project |
+| Cluster 3D Navigator | [Guide](04-cluster-3d-navigator.md){: .g-todo} | %%VIDEO_CLUSTER_3D_NAVIGATOR%% | Clustered<br>project |
 | Wizard Wand | [Guide](05-wizard-wand.md){: .g-wip} | %%VIDEO_WIZARD_WAND%% | Scripting Demo |
 | Polyline Wand & Brush | [Guide](06-polyline-wand.md){: .g-wip} | %%VIDEO_POLYLINE_WAND%% | Scripting Demo |
 | Classify Object Subset *(shown in Sara McArdle’s session)* | [Guide](07-classify-object-subset.md){: .g-wip} | %%VIDEO_CLASSIFY_OBJECT_SUBSET%% | Synth multiplex<br>project |

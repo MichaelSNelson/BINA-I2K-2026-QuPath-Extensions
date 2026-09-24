@@ -200,9 +200,22 @@ For this exercise you need **one** image, `tme_00.tif`. Parts C and D add `tme_0
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
 ## Hands-on exercise
-**Setup (do once).** Create a QuPath project and add `tme_00.tif`. Set the image type to
-**Fluorescence** if prompted. Add a rectangle covering the whole image, then run
-`Analyze > Cell detection` on the **DAPI** channel.
+
+**Download:** `multiplex-synthetic-data-demo-project-clustered.zip` —
+**[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** (23 MB). All eight synthetic images with cells already detected, plus
+a saved KMeans k = 6 clustering of all 11,421 of them. Unzip it and drag `project.qpproj` onto
+an open QuPath window; if the images come up red in an **Update URIs** dialog, click
+**Search...**, point it at the unzipped folder, and **Apply changes**.
+
+That saved result means **you can read every number in Part A without running anything** — useful
+if the environment build is slow, or if you would rather spend the hour on Parts B and C.
+
+<details markdown="1">
+<summary><b>Building it yourself instead</b> — detection settings, if you want to start from the images</summary>
+
+Create a QuPath project and add `tme_00.tif`. Set the image type to **Fluorescence** if
+prompted. Add a rectangle covering the whole image, then run `Analyze > Cell detection` on the
+**DAPI** channel.
 
 > **One parameter matters more than the rest: background radius = 0.**
 > DAPI in this data has no background. Any nonzero radius smaller than the largest nucleus
@@ -213,7 +226,9 @@ For this exercise you need **one** image, `tme_00.tif`. Parts C and D add `tme_0
 
 Other settings that work: requested pixel size 0.5 µm, sigma 1.5 µm, minimum area 8 µm²,
 maximum 1000 µm², threshold 50, cell expansion 5 µm, include nuclei and measurements. You
-should detect close to 1,530 cells.
+should detect close to 1,530 cells on `tme_00`.
+
+</details>
 
 ### Part A: recover the cell types
 *Concept: cell identity from marker combinations, and what "resolution" costs you.*
@@ -226,31 +241,87 @@ should detect close to 1,530 cells.
 
    <img src="../images/qp-cat/menu.png" alt="The Extensions menu with QP-CAT expanded. Its first item is Find cell populations (clustering), followed by the submenus Classify cells, Explore and spatial, Results and populations, Export, and Setup and help. The extensions list behind it shows QuIET, Classify Object Subset, Project Metadata Browser, Channel Names Viewer, Class Distribution and Cluster 3D Navigator" width="586">
 
-2. **`Extensions > QP-CAT > Find cell populations (clustering)...`**. Choose **KMeans with
-   k = 6**, on the seven marker means
-   (`Cell: PanCK mean`, `Nucleus: Ki67 mean`, `Cell: aSMA mean`, `Cell: CD3 mean`,
-   `Cell: CD8 mean`, `Cell: CD20 mean`, `Cell: CD68 mean`), z-scored. Seconds on 1,530 cells.
+2. **`Extensions > QP-CAT > Find cell populations (clustering)...`**, and set it up like this:
 
-   > **Select only those seven.** Leaving everything ticked hands the algorithm morphology, DAPI
-   > and the same marker in three correlated compartments, and it splits cells on size instead of
-   > phenotype. The dialog warns about the compartment case itself. Note also that
-   > `Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6 —
-   > it is not a shortcut for this step.
-3. Check the top of the Results window first. On a healthy run it says nothing interesting,
-   which is the point: since 0.11.0 a degenerate result announces itself instead of looking like
-   a finding. Then open the **cluster-defining markers** plot. Each cluster should be driven by one marker.
-   name them: PanCK → tumor, aSMA → fibroblast, CD20 → B cell, CD68 → macrophage, and two
-   CD3⁺ clusters.
-4. **The interesting pair.** CD8 T cells and helper T cells differ by *one* marker. Both are
-   CD3⁺, only one is CD8⁺. Look at where they land. Then re-run with **k = 5** and watch them
-   merge.
+   | Section | Setting |
+   |---|---|
+   | Scope | **All project images (8)** — 11,421 cells |
+   | Measurements | **`Select 'Mean' only`**, then also tick the six **`Nucleus:`** shape measurements (Area, Perimeter, Circularity, Max caliper, Min caliper, Eccentricity). **30 in total** |
+   | Normalization | **Z-score (standard)**, the default |
+   | Dimensionality Reduction | **UMAP**, **Dimensions: 3D** |
+   | Clustering Algorithm | **KMeans**, **k = 6** |
 
-   That merge is not a cosmetic loss. "T cells are present" and "*cytotoxic* T cells are
-   present" are different claims about a tumor, and only one of them speaks to whether the
-   immune response has effector potential. Under-resolve, and the distinction disappears
-   without any error message.
-5. Compare against `tme_00_groundtruth.csv`. Every cell's true type is in the `cell_type`
-   column.
+   Leave the random seed at 42. KMeans runs ten initialisations and keeps the best, so the run
+   is repeatable. Tick **`Neighborhood enrichment + Moran's I`** and, under Spatial statistics,
+   **`Ripley K and L`** as well — Parts B and C need them, and computing them now saves a second
+   run.
+
+   > **Short on time, or something went wrong?** Everything below is already computed in the
+   > **clustered project** download. Open it, then
+   > `Results & populations > View Past Results...` and pick `auto_20260924_135415_kmeans`.
+   > The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
+   > dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
+
+   > **Why keep the shape measurements?** General advice says to cluster on markers alone. This
+   > dataset is built so that shape carries real information — fibroblasts have elongated
+   > spindle nuclei, tumor nuclei are large and round — and you will see the shape features earn
+   > their place in the next step. It is worth knowing the general advice and knowing when the
+   > data contradicts it.
+   >
+   > `Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6.
+   > It is not a shortcut for this step.
+
+3. **Read the Marker Fingerprints tab.** One card per cluster, showing each measurement's
+   enrichment as log2 fold-change against every other cell. This is where you name the clusters:
+
+   <img src="../images/qp-cat/fingerprints kmeans6.png" alt="The Marker Fingerprints tab showing six cluster cards. Cluster 0, 3306 cells, is led by Cytoplasm aSMA mean plus nucleus eccentricity and max caliper. Cluster 1, 1914 cells, by PanCK. Cluster 2, 2752 cells, by CD3 across three compartments and by CD8. Cluster 3, 1093 cells, by CD20. Cluster 4, 1566 cells, by CD68. Cluster 5, 790 cells, by Ki67 across three compartments together with PanCK" width="1000">
+
+   | Cluster | Cells | Led by | Read it as |
+   |---|---|---|---|
+   | 0 | 3,306 | aSMA, **plus eccentric, long nuclei** | fibroblast |
+   | 1 | 1,914 | PanCK | tumor |
+   | 2 | 2,752 | CD3 **and** CD8 | T cells |
+   | 3 | 1,093 | CD20 | B cell |
+   | 4 | 1,566 | CD68 | macrophage |
+   | 5 | 790 | Ki67 **and** PanCK | proliferating tumor |
+
+   Cluster 0 is the shape argument made concrete: `Nucleus: Eccentricity` and `Nucleus: Max
+   caliper` sit alongside aSMA, because a fibroblast is both aSMA-positive *and* spindle-shaped.
+
+4. **Now compare that against the ground truth, and notice it does not line up the way you
+   would expect.** Every cluster matches a real population to within about one percent —
+   but they are not the six types the dataset was built from:
+
+   | Cluster | % of cells | Ground-truth population | % |
+   |---|---|---|---|
+   | 0 fibroblast | 28.9 | `fibroblast` | 28.9 |
+   | 1 tumor | 16.8 | `tumor`, Ki67-negative | 16.4 |
+   | 5 proliferating tumor | 6.9 | `tumor`, Ki67-positive | 7.2 |
+   | 2 T cells | 24.1 | `cd8_t` **+** `helper_t` | 24.3 |
+   | 3 B cell | 9.6 | `b_cell` | 9.5 |
+   | 4 macrophage | 13.7 | `macrophage` | 13.6 |
+
+   **KMeans spent one of its six clusters splitting the tumor by proliferation, and paid for it
+   by merging the two T-cell lineages.** Ki67 is a *state* — a cell cycling or not — while CD8
+   marks a *lineage*. Nothing in the algorithm knows the difference; both are just columns that
+   separate cells.
+
+   The cost is not cosmetic. "T cells are present" and "*cytotoxic* T cells are present" are
+   different claims about a tumor, and only the second speaks to whether the immune response has
+   effector potential. You got the right *number* of clusters and the wrong *partition*, and the
+   only reason you can tell is that this dataset ships a ground truth. On real data you could not.
+
+5. **So what would you change?** Two honest routes, both worth trying:
+   - **k = 7**, which gives the algorithm room to keep the tumor split *and* separate the T cells.
+   - **Drop Ki67 from the measurements** and re-run at k = 6. If proliferation cannot define a
+     cluster, the spare cluster goes somewhere else.
+
+   Neither is more correct in the abstract. Which you want depends on whether proliferation or
+   cytotoxic identity is the question you came with — and that is a decision about biology, not
+   about clustering.
+
+6. Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
+   true type is in the `cell_type` column.
 
 ### Part B: is the tumor infiltrated?
 *Concept: immune infiltration at the invasive margin.*
