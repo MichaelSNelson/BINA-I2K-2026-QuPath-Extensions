@@ -5,9 +5,9 @@ title: Class Visibility
 
 # Class Visibility
 
-> Show or hide objects by class — or by **one marker inside a class name**. On a panel of
-> thirty combinatorial classes like `CD3: CD8: PD1`, `CD8` is one row here and twenty-six rows
-> in QuPath's built-in class list.
+> Show or hide objects by class — or by **one marker inside a class name**, combined with
+> `Any` or `All`. On a panel of combinatorial classes like `CD3: CD8: PD1`, "CD3 **and** CD8
+> together" is one rule here and no rule at all in QuPath's built-in class list.
 
 | | |
 |---|---|
@@ -15,7 +15,7 @@ title: Class Visibility
 | **Extension version** | 0.2.2 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
-| **Where to find it** | Toolbar button · `Extensions > Class Visibility > Show panel` |
+| **Where to find it** | `Extensions > Class Visibility > Show panel` · toolbar button |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
@@ -24,38 +24,41 @@ title: Class Visibility
 
 ---
 
-## Do you need this? Often, no
+## What it does
 
-This is the rare extension whose README opens by talking you out of installing it, and that
-is worth repeating here.
+A *class* is the whole label on an object: `CD3: CD8: PD1`. A **component** is one
+colon-separated part of it: `CD3`. This panel filters the viewer by either one.
 
-**If you have five or ten classes, QuPath's built-in class list is the better tool.** Open the
-**Annotations** tab of the analysis pane and the **Class list** on the right already gives you
-per-class show and hide, a color picker on every row, a `Show by default` / `Hide by default`
-dropdown, and a filter field that accepts regular expressions — which this panel's does not.
+Class names built by combining markers are the case it exists for. Twenty or forty such names
+are overlapping groups rather than a list of categories, and two jobs become awkward: finding
+every name that carries a given marker, and asking for the cells that carry *several* markers
+at once.
 
-This panel is for one situation: **class names built by combining markers.** `CD3: CD8: PD1`
-is one class made of three components. Twenty or forty such names are not a list of categories,
-they are a lattice of overlapping supersets, and that is where the built-in list runs out.
-
-## What it adds, and all of it is about scale
-
-- **A component list.** `CD8` is one row. In the built-in class list it is however many of your
-  classes happen to contain `CD8` — find them all, tick them all, be sure you missed none. Here
-  the rule follows the marker, not the spelling of each class name.
-- **An `Any` / `All` switch** over those components. `CD3` **and** `CD8` **and** `PD1` together
-  is one rule. Nothing else in QuPath expresses that.
-- **A `Spread` column** — `26/28` beside a component — because multiplex naming schemes put
-  `positive`, `pos` or `Cell` into nearly every class name, and on screen those look exactly
-  like markers. The number tells you a component is a near-synonym for "everything" *before*
-  you click it. It is off by default, in the column menu button at the right of the component
-  list's header.
+- **A component list.** One row per marker, however many class names contain it.
+- **An `Any` / `All` switch** over the checked components. `CD3` **and** `CD8` **and** `PD1`
+  together is one rule.
+- **A `Spread` column** — a ratio such as `9/20` beside a component — saying how many of the
+  image's classes contain it. Some naming schemes append `positive` or `Cell` to every class
+  name, and those components look exactly like markers until you count. Off by default.
 - **`Find`** over both lists, with the matched text in **bold**.
-- **Named presets, saved in the project**, so a filter worth building on a 30-class panel gets
-  built once.
+- **Named presets, saved in the project**, so a filter worth building gets built once.
 
 It writes to the same QuPath setting the built-in class list writes to, so the two stay in
-agreement. Nothing here is a private copy of QuPath's state.
+agreement.
+
+## When the built-in class list is the better tool
+
+With five or ten classes, use the built-in one. Open the **Annotations** tab of the analysis
+pane: the **Class list** on the right gives per-class show and hide, a color picker on every
+row, a `Show by default` / `Hide by default` dropdown, and a filter field that accepts regular
+expressions — which this panel's does not.
+
+It is also worth knowing that QuPath's class matching is not exact by default. Ticking a class
+named `CD3: CD8` matches every class containing **both** parts, because the panel and the
+built-in pane share one matching rule. So a single-marker class row, where one exists, already
+does what a single checked component does. The component list earns its place when **no class
+of that name exists** — the normal case in a real panel — and the `All` combination has no
+equivalent anywhere in QuPath.
 
 ## Provenance
 
@@ -76,19 +79,25 @@ the catalog URL, are in the [setup guide](setup.md).
 ## Try it yourself
 
 The synth multiplex project ships **six flat classes** — `tumor`, `fibroblast`, `cd8_t`,
-`helper_t`, `b_cell`, `macrophage`. By the standard above, that is a case where you should use
-the built-in class list and skip this extension entirely.
+`helper_t`, `b_cell`, `macrophage`. Nothing overlaps, so there is nothing here for a component
+list to do. The walkthrough therefore starts by **changing the shape of the data**: one script
+re-labels every cell by the markers it is actually positive for.
 
-So the first thing this walkthrough does is **change the shape of the data**: one script turns
-those six categories into the combinatorial lattice that real hi-plex panels have. Then the
-panel has something to do.
+Every number below is from **`tme_00.tif`** and was produced by the run this guide describes.
+On another image they differ, and step 8 is about why.
 
 ### 1. Get the data
 
 **Download:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
 **[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)**
-(20 MB). The same ready-made project used by Classify Object Subset and Class Distribution, so
-if you already have it, you are done here.
+(20 MB). The same project used by Classify Object Subset and Class Distribution, so if you
+already have it, you are done here.
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
+
+> **One step needs a connection.** The script in step 3 lives on this site rather than inside
+> the project. Fetch it before the session if the room's wifi is unreliable.
 
 ### 2. Load it into QuPath
 
@@ -100,16 +109,18 @@ if you already have it, you are done here.
    the folder you unzipped, then **Apply changes**.
 3. Double-click **`tme_00.tif`** to open it.
 
-### 3. Build the class lattice
+### 3. Re-label the cells by marker
 
 Open `Automate > Script editor`, then paste in
 **[`composite_marker_classes.groovy`](https://raw.githubusercontent.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/main/scripts/composite_marker_classes.groovy)**
-— click the link, select all, copy, paste — and **Run**.
+— click the link, select all, copy, paste — and press **Run** (`Run > Run`, or **Ctrl+R** /
+**Cmd+R** on macOS).
 
-The script gates each of the seven markers independently, using the same Otsu threshold the
-project's own `08_apply_otsu_gate.groovy` uses, then names every cell after **all** the markers
-it is positive for: `CD3: CD8`, `PanCK: Ki67`, `aSMA: CD68`, and so on. Six categories become
-a couple of dozen overlapping combinations.
+It gates each of seven markers independently and names every cell after all the markers it is
+positive for: `CD3: CD8`, `PanCK: Ki67`, `Ki67: CD3`. The gate is the Otsu routine copied from
+the project's own `08_apply_otsu_gate.groovy`, extended to Ki67 — which 08 leaves out as
+nuclear-only, and which this script reads as `Nucleus: Ki67 mean` rather than a whole-cell mean
+that would dilute it. The other six are read as `Cell: <marker> mean`.
 
 > **This overwrites cell classifications.** It replaces whatever is on the cells — the
 > `cell_type_classifier` output, or the Otsu gate from script 08. It does **not** touch the
@@ -117,93 +128,207 @@ a couple of dozen overlapping combinations.
 > nothing the other walkthroughs need is lost. To get the flat six classes back, re-run the
 > object classifier, or close the image without saving.
 
-Read what the script prints before moving on. It reports the per-marker Otsu threshold, how
-many cells each marker is positive in, every composite class with its count, and — most
-relevant here — **how many of the classes each marker appears in**. That last table is the
-`Spread` column, computed before you ever open the panel, and it tells you which markers are
-going to be interesting and which are near-synonyms for "everything".
+**What you should see.** On `tme_00`, 1,530 cells become **19 classes**, with 17 cells negative
+for every marker and left unclassified:
+
+```
+cells: 1530   classified: 1513   negative for every marker: 17
+distinct composite classes: 19
+
+  PanCK  (Cell)    thr=   34.20   positive in   439 cells ( 28.7%)
+  Ki67   (Nucleus) thr=    0.73   positive in   126 cells (  8.2%)
+  aSMA   (Cell)    thr=   46.09   positive in   416 cells ( 27.2%)
+  CD3    (Cell)    thr=   30.78   positive in   386 cells ( 25.2%)
+  CD8    (Cell)    thr=   20.24   positive in   189 cells ( 12.4%)
+  CD20   (Cell)    thr=   34.25   positive in   103 cells (  6.7%)
+  CD68   (Cell)    thr=   42.00   positive in   221 cells ( 14.4%)
+
+    396  aSMA                (1 marker)        14  PanCK: CD3: CD8   (3 markers)
+    286  PanCK               (1 marker)         9  aSMA: CD3         (2 markers)
+    199  CD68                (1 marker)         9  PanCK: CD68       (2 markers)
+    184  CD3                 (1 marker)         6  aSMA: CD68        (2 markers)
+    167  CD3: CD8            (2 markers)        4  CD3: CD8: CD68    (3 markers)
+    126  PanCK: Ki67         (2 markers)      ... and six rarer combinations
+    100  CD20                (1 marker)
+```
+
+**Copy that block out of the log before you move on.** The thresholds and counts are the only
+record of how this lattice was built, and they change with the image.
+
+<details markdown="1">
+<summary><b>What this lattice is, and is not</b> — four things worth knowing before you trust it</summary>
+
+1. **These are not phenotype calls.** Each marker is gated on its own, so nothing forbids
+   `CD3: CD20` (a T cell and a B cell at once). The dataset's ground truth is clean by
+   construction — one lineage marker per cell type — so **every multi-lineage combination here
+   is an artifact** of the 5 µm cell expansion picking up signal from a neighbor, not biology.
+2. **Thresholds are per image**, computed over the cells of the open image only. See step 8.
+3. **Cells negative for everything are dropped** and become Unclassified. No component rule can
+   ever reach them. Set `NEGATIVE_CLASS = "Negative"` in the script to give them a class instead.
+4. **The data are synthetic and background-free.** `INSTRUCTIONS.md` notes that markers other
+   than DAPI have no background, so each is cleanly bimodal — which is exactly what makes a
+   plain Otsu cut work. Real hi-plex data with autofluorescence is not this well behaved; gate
+   against controls, not against a per-image Otsu cut.
+
+**About the threshold.** "Otsu" here is the between-class variance threshold computed on a
+256-bin histogram of that marker's per-cell mean, after clipping the top 0.5% of values. The
+printed number is in raw channel-intensity units and is comparable only within one marker and
+one compartment. The script is fully deterministic — no sampling, no seed — so re-running on
+the same image gives identical classes.
+
+**Script parameters** (in the `USER-EDITABLE PARAMETERS` block at the top):
+
+| Parameter | Default | Effect |
+|---|---|---|
+| `MARKERS` | the seven markers | Also the order inside a class name, so one combination is always one class |
+| `COMPARTMENT` | `Cell`, with `Ki67` → `Nucleus` | **Changes results** — see step 7 |
+| `NEGATIVE_CLASS` | `null` | **Changes results** — names the all-negative cells instead of dropping them |
+| `SUMMARY_ROWS` | `40` | Print-only; caps how many classes the summary lists |
+
+</details>
 
 ### 4. Open the panel
 
-The toolbar button, or `Extensions > Class Visibility > Show panel`.
+`Extensions > Class Visibility > Show panel`, or the Class Visibility button in QuPath's
+toolbar.
 
-**Your objects will disappear, and that is the intended starting state.** The mode radio sits
-on **`Show only checked classes`** with nothing checked, so the status strip reads:
+**Your objects will disappear, and that is the intended starting state.** The `Visibility rule:`
+radios sit on **`Show only checked classes`** with nothing checked, so the status strip reads:
 
 ```
 [!] Every object is hidden. "Show only checked classes" is on and nothing is checked.
 ```
 
-The check box at the top of the classes list is haloed in blue; one click on it puts everything
-back. The panel starts this way so you check your way *toward* what you want to see.
+The check box at the top of the classes list is haloed in blue: clicking it checks **every**
+class, which puts every object back on screen. Leave it alone for now — step 5 starts from the
+empty state.
 
-### 5. One component instead of many classes
+> **The panel opens as a floating window.** If it covers the viewer, use the **Dock as tab**
+> button in the panel's own header to park it in the analysis pane. **Undock to window** puts
+> it back.
 
-In the **Components** list, check **`CD3`**.
+### 5. One component, many classes
 
-Every class containing `CD3` is now the only thing on screen — the T cells, whether they are
-`CD3: CD8`, `CD3: Ki67`, or any other combination the gate produced. `Active rules` reads
-`Active rules (1)`: one checked component is **one rule**, however many class names it covers.
+In the components list — its header reads **Anything containing these components (7)** — check
+**`CD3`**.
 
-Now look at the **Classes** list and count how many rows you would have had to tick to get the
-same result. That difference is the entire argument for this extension.
+Every class containing `CD3` is now the only thing on screen: `CD3`, `CD3: CD8`,
+`PanCK: CD3: CD8`, `aSMA: CD3` and five others. Nine classes, 386 cells, from one click.
+`Active rules` reads `Active rules (1)` — one checked component is **one rule**, however many
+class names it covers.
 
-### 6. `Any` vs `All`
+> **`Active rules` shows a bigger number?** The classes list still has rules in it. Click
+> **Clear all rules** in the `Active rules` expander and check `CD3` again.
 
-Check a second component — **`CD8`**.
+> **Nothing happened at all?** Look for `[!] "Exact matches only" is on` in the status strip.
+> That setting is QuPath-wide, so it may be on from earlier work, and while it is on **no
+> component rule can match**. Click **Turn off** beside the warning.
 
-With the combination on **`Any`**, the default, you see everything CD3-positive **plus**
-everything CD8-positive. Switch `Checked components combine as:` to **`All`** and you see only
-the cells positive for both.
+**Now switch on the `Count` column in the classes list and find the `CD3` row.** It reads 184,
+but its `Affects` figure reads 386 — the same 386 the component just selected. On this dataset,
+ticking that one class row does the same job, because QuPath matches supersets by default.
 
-`CD3` **and** `CD8` together, as one rule, is the thing no other QuPath interface expresses.
-In the built-in class list it is a manual hunt for whichever class names carry both, repeated by
-hand on the next image.
+That is worth seeing rather than glossing: on a *real* panel there is usually no plain `CD3`
+class to tick, and then the component row is the only way to say it. Here there is one, so the
+component list saves you nothing yet. The next step is where it stops being optional.
 
-### 7. Turn on `Spread`, and find the fake marker
+### 6. `Any` vs `All` — the part with no equivalent
 
-Click the **column menu button** at the right of the component list's header and switch on
-**`Spread`**.
+Check a second component, **`CD8`**. Two radios below the list now read:
 
-Compare what the panel shows against the spread table the script printed in step 3. In this
-dataset `PanCK` is the one to look at: the 5 µm cell expansion picks up PanCK from neighboring
-tumor cytoplasm, so it turns up in far more combinations than a clean marker would. A high
-spread does not mean a marker is wrong — it means checking it will select nearly everything,
-which is exactly what you want to know *before* you click it.
+- `Any -- CD3, or CD8, or both` — **10 classes, 388 cells**
+- `All -- CD3 and CD8 together` — **4 classes, 187 cells** (`CD3: CD8`, `PanCK: CD3: CD8`,
+  `CD3: CD8: CD68`, `aSMA: CD3: CD8`)
 
-### 8. Save it as a preset
+`Any` is the default. Switch to `All` and watch 201 cells leave the screen.
 
-Build a filter worth keeping — say `CD3` and `CD8` on `All` — then use **`Preset`** in the
-panel header and **Save** it under a name.
+**There is no class row that does this.** QuPath evaluates its selected-class set as an OR, so
+the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across separate names. The
+panel builds a single composite rule to get the AND — and it survives onto the next image,
+where the class names may be different.
 
-Presets are stored **in the project**, so the filter is there next week, and for whoever else
-opens that project. On a thirty-class panel this is the difference between a filter you rebuild
-every session and one you build once.
+### 7. `Spread`, and the marker that selects nearly everything
 
-### 9. Get your view back
+Switch on the **`Spread`** column: click the small **+** button at the right end of the
+component list's **column-header row** (the row reading `Component` and `Count`, not the caption
+above it), then tick `Spread`.
 
-Three different things, worth keeping straight:
+> That menu's first entry is blank and does nothing. It is the check-box column, which has no
+> name to show and is not allowed to hide. Ignore it.
+
+Compare what the panel shows against the spread table the script printed:
+
+| Component | Panel | Script |
+|---|---|---|
+| CD3 | `9/20` | in 9 of 19 classes |
+| PanCK | `7/20` | in 7 of 19 classes |
+| aSMA | `6/20` | in 6 of 19 classes |
+| CD8 | `5/20` | in 5 of 19 classes |
+| CD68 | `5/20` | in 5 of 19 classes |
+| CD20 | `3/20` | in 3 of 19 classes |
+| Ki67 | `1/20` | in 1 of 19 classes |
+
+The two denominators differ by one: the panel counts `Unclassified` among the image's classes
+and the script does not.
+
+**`CD3` is the widest-spreading component here, and `Ki67` the narrowest.** The contrast is
+instructive. Ki67 is the only marker read in the nucleus, so a neighboring cell's cytoplasm
+cannot leak into it, and it lands in exactly one class (`PanCK: Ki67`). The six read as whole-cell
+means all pick up some signal from whatever they are touching.
+
+**Test that, rather than taking it on trust.** Change `COMPARTMENT` in the script to
+`["Ki67": "Nucleus"].withDefault { "Cytoplasm" }` and re-run. Cytoplasm excludes the nuclear
+hole and is documented as the cleaner of the two, and the lattice should thin out.
+
+### 8. Why a preset does not travel between images
+
+Run the script over the whole project (`Run > Run for project`) and compare the PanCK threshold:
+
+| Image | PanCK threshold | Classes |
+|---|---|---|
+| tme_02 | 27.41 | 19 |
+| tme_05 | 28.40 | 19 |
+| **tme_00** | **34.20** | **19** |
+| tme_04 | 42.18 | 19 |
+| tme_07 | 32.68 | 12 |
+
+Those differences are not noise. The dataset deliberately carries per-image intensity offsets of
+roughly ×0.80 on `tme_02`, ×0.85 on `tme_05` and ×1.20 on `tme_04` — and a per-image Otsu cut
+recovers almost exactly those factors. A class name here means "above **this image's** Otsu
+cut", so **the same name does not mean the same thing on two images.**
+
+`tme_07` is the extreme case: it is the immune-poor variant with no B cells at all, so `CD20` is
+positive in **0** cells and its `Spread` reads `0`. A component can exist in the list and select
+nothing.
+
+### 9. Save a preset
+
+Build a filter worth keeping — `CD3` and `CD8` on `All` — then use **`Preset`** in the panel
+header and **Save** it under a name. Presets are stored in the project, so the filter is there
+next week and for whoever else opens it.
+
+### 10. Get your view back
 
 | You want | Do this |
 |---|---|
 | Every listed class visible again | The check box in the **classes list's header** |
 | The view you had *before* you opened the panel | **Close the panel.** That state is recorded automatically |
-| QuPath's own defaults — no rules, `Hide checked classes`, `Exact matches only` off | **`Reset all`** |
+| QuPath's own defaults — no rules, `Hide checked classes`, `Exact matches only` off | **`Reset all`**, on the status strip |
 
 `Extensions > Class Visibility > Restore the state from when the panel opened` does the middle
-one from the menu, if the panel is still open.
+one from the menu, whether or not the panel is still open. It is greyed out and reads *(nothing
+recorded yet)* until the panel has changed something. The menu's own version of the last row is
+spelled **`Reset all visibility`**.
 
-### What to notice
+## What to notice
 
-- The component list is not a convenience layer over the class list. It expresses a filter —
-  "all three of these markers, together" — that the class list cannot state at all, only
-  approximate by hand.
-- `Spread` exists because a name that looks like a marker may not behave like one. Any naming
-  scheme that appends `positive` or `Cell` to every class produces components that match
-  everything, and they are indistinguishable from real markers until you count.
-- This same script is a second, richer way into
-  **[Class Distribution](10-class-distribution.md)**: charting two dozen combinatorial classes
-  instead of six flat ones is a very different picture, and a more realistic one.
+- The component list and the class list overlap more than they look like they do, because
+  QuPath matches supersets by default. `All` is the operation that has no equivalent.
+- Naming schemes that append `positive` or `Cell` to every class name produce components that
+  match everything, and they look exactly like real markers until you count — which is what
+  `Spread` counts.
+- This same script gives **[Class Distribution](10-class-distribution.md)** a second, richer
+  view: nineteen combinatorial classes instead of six flat ones, on data you already have.
 
 ---
 
