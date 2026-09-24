@@ -146,11 +146,17 @@ Like the Wizard Wand this is a toolbar tool: with an image open, press **Shift+P
    overshoot the end.
 2. Press **Shift+P**. Start a stroke *near the overshot endpoint* and the line erases backwards.
 3. Find a section where your trace cuts a corner. Push it outward with the default engine.
+
+   <img src="../images/polyline-wand/direct-push.gif" alt="Animation: a short brush stroke pushes a section of the yellow polyline outward, the vertices moving with the brush while the rest of the line stays put" width="720">
+
 4. Right-click → **Engine** → *Displacement field*. Push the same kind of section. Notice that
    dragging **along** the line now does nothing, and only perpendicular motion moves it.
 5. Right-click → **Mode** → *Smooth*. Clean up a noisy stretch.
 6. Right-click → **Mode** → *Scissors (cut at click)*. Click on the polyline to split it in two. Check that
    both halves kept the class and color.
+
+   <img src="../images/polyline-wand/scissors-cut.gif" alt="Animation: the right-click menu opens on the polyline wand button, Mode is set to Scissors (cut at click), and a click on the yellow polyline splits it into two annotations" width="720">
+
 7. Press Ctrl+Z a few times and confirm each *stroke* is one undo step, not each frame.
 
 ### What to notice
