@@ -78,10 +78,14 @@ the catalog URL, are in the [setup guide](setup.md).
 
 ## Try it yourself
 
-The synth multiplex project ships **six flat classes** — `tumor`, `fibroblast`, `cd8_t`,
-`helper_t`, `b_cell`, `macrophage`. Nothing overlaps, so there is nothing here for a component
-list to do. The walkthrough therefore starts by **changing the shape of the data**: one script
-re-labels every cell by the markers it is actually positive for.
+**The cells in this project ship unclassified.** The six type names you may have met in other
+walkthroughs — `tumor`, `fibroblast`, `cd8_t`, `helper_t`, `b_cell`, `macrophage` — belong to the
+ground-truth *point annotations*, not to the cells. So if you open the panel right now you get a
+single `Unclassified` row and an empty components list, which looks like a broken extension.
+
+Either way there is nothing for a component list to do: six names that never overlap is a job
+for the built-in class list. The walkthrough therefore starts by **changing the shape of the
+data** — one script labels every cell by the markers it is actually positive for.
 
 Every number below is from **`tme_00.tif`** and was produced by the run this guide describes.
 On another image they differ, and step 8 is about why.
@@ -109,6 +113,10 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
    the folder you unzipped, then **Apply changes**.
 3. Double-click **`tme_00.tif`** to open it.
 
+> **Use `tme_00`, not whichever image opens first.** The eight images differ on purpose. `tme_07`
+> is the immune-poor variant and produces **twelve** classes rather than nineteen, with `CD20`
+> positive in no cells at all. Nothing will have gone wrong; the numbers just will not match.
+
 ### 3. Re-label the cells by marker
 
 Open `Automate > Script editor`, then paste in
@@ -118,22 +126,30 @@ Open `Automate > Script editor`, then paste in
 
 It gates each of seven markers independently and names every cell after all the markers it is
 positive for: `CD3: CD8`, `PanCK: Ki67`, `Ki67: CD3`. The gate is the Otsu routine copied from
-the project's own `08_apply_otsu_gate.groovy`, extended to Ki67 — which 08 leaves out as
-nuclear-only, and which this script reads as `Nucleus: Ki67 mean` rather than a whole-cell mean
-that would dilute it. The other six are read as `Cell: <marker> mean`.
+`08_apply_otsu_gate.groovy` — which ships in the dataset's `analytical_logs/scripts/`, not in
+this project, so there is nothing to go and find. That script gates six markers; this one adds
+Ki67, which 08 leaves out as nuclear-only and which this script reads as `Nucleus: Ki67 mean`
+rather than a whole-cell mean that would dilute it. The other six are read as
+`Cell: <marker> mean`.
 
-> **This overwrites cell classifications.** It replaces whatever is on the cells — the
-> `cell_type_classifier` output, or the Otsu gate from script 08. It does **not** touch the
-> ground-truth point annotations, because those are annotations rather than detections, so
-> nothing the other walkthroughs need is lost. To get the flat six classes back, re-run the
-> object classifier, or close the image without saving.
+> **This overwrites cell classifications.** If you have already run a classifier on these cells
+> — from the Classify Object Subset or Class Distribution walkthroughs — this replaces it. It does
+> **not** touch the ground-truth point annotations, because those are annotations rather than
+> detections, so nothing the other walkthroughs need is lost.
+>
+> **To get the six type classes back:** `Automate > Project scripts > apply_trained_classifier`,
+> then **Run**. For the deliberately imperfect version used by Classify Object Subset, run
+> `classify_with_marker_gate` instead. To discard the change entirely, close the image and answer
+> **No** when QuPath asks whether to save changes to `tme_00.tif` — but see the warning in step 8
+> first, because `Run for project` saves as it goes and that escape route is then gone.
 
 **What you should see.** On `tme_00`, 1,530 cells become **19 classes**, with 17 cells negative
 for every marker and left unclassified:
 
 ```
 cells: 1530   classified: 1513   negative for every marker: 17
-distinct composite classes: 19
+distinct classes: 19 (13 with two or more markers)
+  the Class Visibility panel counts Unclassified too, so its Spread denominator will read 20
 
   PanCK  (Cell)    thr=   34.20   positive in   439 cells ( 28.7%)
   Ki67   (Nucleus) thr=    0.73   positive in   126 cells (  8.2%)
@@ -151,6 +167,12 @@ distinct composite classes: 19
     126  PanCK: Ki67         (2 markers)      ... and six rarer combinations
     100  CD20                (1 marker)
 ```
+
+**The lattice is thinner than the class count suggests, and that is worth seeing.** Six of the
+nineteen classes carry a single marker, and they hold 1,167 of the 1,513 classified cells — 77%.
+Thirteen classes combine two or more markers, and eleven of those hold fewer than ten cells each.
+That long tail of near-empty combinations is what a real hi-plex panel looks like, and it is what
+a flat class list handles worst.
 
 **Copy that block out of the log before you move on.** The thresholds and counts are the only
 record of how this lattice was built, and they change with the image.
@@ -240,14 +262,23 @@ Check a second component, **`CD8`**. Two radios below the list now read:
 - `All -- CD3 and CD8 together` — **4 classes, 187 cells** (`CD3: CD8`, `PanCK: CD3: CD8`,
   `CD3: CD8: CD68`, `aSMA: CD3: CD8`)
 
-`Any` is the default. Switch to `All` and watch 201 cells leave the screen.
+`Any` is the default, and on this image it barely does anything: you go from 386 cells to 388.
+**That is a finding, not a dead click** — 187 of the 189 CD8-positive cells are also CD3-positive,
+so CD8 sits almost entirely inside CD3.
+
+Now switch to `All`. 201 cells leave the screen and you are looking at the CD8 T cells.
+
+> The first time you check a second component in a QuPath session, the `Any` / `All` control
+> **pulses** to draw your eye to it — three slow swells over about five seconds. It fires once per
+> session and carries no information of its own. Turn it off with
+> `Extensions > Class Visibility > Highlight the Any / All choice when it first applies`.
 
 **There is no class row that does this.** QuPath evaluates its selected-class set as an OR, so
 the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across separate names. The
 panel builds a single composite rule to get the AND — and it survives onto the next image,
 where the class names may be different.
 
-### 7. `Spread`, and the marker that selects nearly everything
+### 7. `Spread`, and what it is really for
 
 Switch on the **`Spread`** column: click the small **+** button at the right end of the
 component list's **column-header row** (the row reading `Component` and `Count`, not the caption
@@ -271,16 +302,29 @@ Compare what the panel shows against the spread table the script printed:
 The two denominators differ by one: the panel counts `Unclassified` among the image's classes
 and the script does not.
 
-**`CD3` is the widest-spreading component here, and `Ki67` the narrowest.** The contrast is
-instructive. Ki67 is the only marker read in the nucleus, so a neighboring cell's cytoplasm
-cannot leak into it, and it lands in exactly one class (`PanCK: Ki67`). The six read as whole-cell
-means all pick up some signal from whatever they are touching.
+**`CD3` is the widest-spreading component here, and `Ki67` the narrowest.** Ki67 is the only
+marker read in the nucleus, so a neighboring cell's cytoplasm cannot leak into it, and it lands in
+exactly one class (`PanCK: Ki67`). The six read as whole-cell means all pick up some signal from
+whatever they are touching.
+
+**Nothing here will be shown in bold, and that is worth understanding.** The panel emphasises a
+`Spread` figure only when a component covers at least 80% of the classes, and only once there are
+five or more of them. CD3 tops out at 9 of 20, which is 45%. A real hi-plex panel that appends
+`positive` or `Cell` to every class name produces a component sitting in 19 of 20 classes — that
+one bolds, and the status strip names it. This dataset has no such component, because the script
+builds names from marker names alone. What you are seeing is the column behaving correctly on
+well-formed names.
 
 **Test that, rather than taking it on trust.** Change `COMPARTMENT` in the script to
 `["Ki67": "Nucleus"].withDefault { "Cytoplasm" }` and re-run. Cytoplasm excludes the nuclear
 hole and is documented as the cleaner of the two, and the lattice should thin out.
 
 ### 8. Why a preset does not travel between images
+
+> **`Run for project` saves each image as it goes.** After this step the new classes are written
+> to all eight images, and closing without saving will not undo them. To put the project back, run
+> `Automate > Project scripts > apply_trained_classifier` with `Run for project` as well. If you
+> would rather not touch the other seven images, read the table below instead of running it.
 
 Run the script over the whole project (`Run > Run for project`) and compare the PanCK threshold:
 
@@ -319,6 +363,17 @@ next week and for whoever else opens it.
 one from the menu, whether or not the panel is still open. It is greyed out and reads *(nothing
 recorded yet)* until the panel has changed something. The menu's own version of the last row is
 spelled **`Reset all visibility`**.
+
+## If something looks wrong
+
+| What you see | Why | What to do |
+|---|---|---|
+| `No cells in this image -- open an image from the synth multiplex project first.` | No image open, or one with no detections | Double-click `tme_00.tif` in the project list, then Run again |
+| The script printed nothing | The Script Editor's output pane is below the code and often collapsed to a sliver | Drag the divider up, or use `View > Show log` |
+| You check a component and nothing happens | `Exact matches only` is on. It is a QuPath-wide, persistent setting, so it can arrive on from an earlier session | The status strip says so and offers a **`Turn off`** button beside the warning |
+| The classes list shows `tumor`, `fibroblast`, `cd8_t`… | The **`List:`** selector is on `Annotations`, so you are looking at the ground-truth points | Set `List:` back to `Detections` |
+| `Active rules` shows a number you did not expect | The classes-list header check box adds every listed class as a rule | **Clear all rules** in the `Active rules` expander |
+| Everything is hidden and you cannot get back | `Show only checked classes` with the wrong rules | **`Reset all`** on the status strip, or `Extensions > Class Visibility > Reset all visibility` |
 
 ## What to notice
 

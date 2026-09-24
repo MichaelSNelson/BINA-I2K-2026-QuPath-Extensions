@@ -1,26 +1,29 @@
 /*
  * composite_marker_classes.groovy -- turn six flat cell types into a multiplex class lattice.
  *
- * The synth multiplex project ships six mutually exclusive classes (tumor, fibroblast,
- * cd8_t, helper_t, b_cell, macrophage). That is a fine shape for Classify Object Subset
- * and for the Confusion Matrix, but it is NOT the shape highly multiplexed data has, and
- * it is too small to show what Class Visibility is for.
+ * The cells in the synth multiplex project ship UNCLASSIFIED -- the six type names
+ * (tumor, fibroblast, cd8_t, helper_t, b_cell, macrophage) are on the ground-truth point
+ * annotations, and the walkthroughs that put them on cells use a classifier to do it.
+ * Either way, six mutually exclusive names are not the shape highly multiplexed data has.
  *
- * This script gates every marker independently with the same Otsu threshold used by
- * 08_apply_otsu_gate.groovy, then names each cell after ALL the markers it is positive
- * for: "CD3: CD8", "PanCK: Ki67", "aSMA: CD68" and so on. Instead of six categories you
- * get twenty-odd overlapping combinations that share components -- the lattice the
- * Class Visibility panel, and its component list, exist to handle.
+ * This script gates every marker independently, using the Otsu routine copied from
+ * 08_apply_otsu_gate.groovy (which gates six markers; this adds Ki67, read from the
+ * nucleus). It then names each cell after ALL the markers it is positive for: "CD3: CD8",
+ * "PanCK: Ki67", "Ki67: CD3" and so on. On tme_00 that gives 19 classes, 13 of them
+ * combining two or more markers.
  *
  * Open the synth multiplex project, open one image, and Run. Run > Run for project does
  * all eight.
  *
  * ---------------------------------------------------------------------------
- * THIS OVERWRITES CELL CLASSIFICATIONS. It replaces whatever is on the cells --
- * cell_type_classifier output, or the Otsu gate from script 08. It does NOT touch the
- * ground-truth point annotations, which are annotations, not detections, so nothing you
- * need for the other walkthroughs is lost. To get the flat six classes back, re-run the
- * object classifier, or close the image without saving.
+ * THIS OVERWRITES CELL CLASSIFICATIONS. It replaces whatever a classifier has put on the
+ * cells. It does NOT touch the ground-truth point annotations, which are annotations, not
+ * detections, so nothing you need for the other walkthroughs is lost.
+ *
+ * To put the six type classes back: Automate > Project scripts > apply_trained_classifier.
+ * To discard the change instead, close the image and answer No when QuPath asks to save --
+ * but note that Run > Run for project SAVES each image as it goes, so after a project run
+ * that escape route is gone and you need apply_trained_classifier (also for the project).
  * ---------------------------------------------------------------------------
  *
  * ==== USER-EDITABLE PARAMETERS ==========================================
@@ -38,7 +41,8 @@ COMPARTMENT = ["Ki67": "Nucleus"].withDefault { "Cell" }
 NEGATIVE_CLASS = null
 
 // Combinations rarer than this are still created; this only controls how many rows the
-// summary prints at the end.
+// summary prints at the end. The eight bundled images top out at 20 classes, so raise or
+// lower this only if you point the script at richer data.
 SUMMARY_ROWS = 40
 // ========================================================================
 
@@ -127,7 +131,10 @@ println "=".multiply(70)
 println "composite_marker_classes.groovy -- ${imageName}"
 println "=".multiply(70)
 println "cells: ${cells.size()}   classified: ${cells.size() - nNegative}   negative for every marker: ${nNegative}"
-println "distinct composite classes: ${counts.size()}"
+def multi = counts.keySet().count { it.contains(":") }
+println "distinct classes: ${counts.size()} (${multi} with two or more markers)"
+println "  the Class Visibility panel counts Unclassified too, so its Spread denominator "+
+        "will read ${counts.size() + (nNegative > 0 ? 1 : 0)}"
 println ""
 println "Otsu thresholds and marker prevalence:"
 for (m in MARKERS) {
@@ -136,7 +143,7 @@ for (m in MARKERS) {
             m, "(${COMPARTMENT[m]})", thr[m], markerPositive[m], pct)
 }
 println ""
-println "Composite classes, commonest first:"
+println "Classes, commonest first:"
 def sorted = counts.entrySet().sort { -it.value }
 sorted.take(SUMMARY_ROWS).each { e ->
     def nComp = e.key.split(":").length
