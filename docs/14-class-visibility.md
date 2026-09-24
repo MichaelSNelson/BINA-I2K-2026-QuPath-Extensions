@@ -40,33 +40,32 @@ at once.
 - **A `Spread` column** — a ratio such as `9/20` beside a component — saying how many of the
   image's classes contain it. Some naming schemes append `positive` or `Cell` to every class
   name, and those components look exactly like markers until you count. Off by default.
-- **A blue ring** round the check box of every class row the checked components reach, so you
-  can see what a component rule is acting on.
+- **A blue ring** on the check box of every class that a checked component matches, so you can
+  see which classes a component rule is acting on.
 - **`Find`** over both lists, with the matched text in **bold**.
-- **Named presets, saved in the project**, so a filter worth building gets built once.
+- **Named presets.** Save the set of components and classes you have checked under a name. It is
+  stored in the project, so you can reapply it later, or on another image, without rebuilding it.
 
 It writes to the same QuPath setting the built-in class list writes to, so the two stay in
 agreement.
 
 ## When the built-in class list is the better tool
 
-With five or ten classes, use the built-in one. Open the **Annotations** tab of the analysis
-pane: the **Class list** on the right gives per-class show and hide, a color picker on every
-row, a `Show by default` / `Hide by default` dropdown, and a filter field that accepts regular
-expressions — which this panel's does not.
+With five or ten classes, use the built-in class list. Open the **Annotations** tab of the
+analysis pane: the **Class list** on the right gives per-class show and hide, a color picker on
+every row, a `Show by default` / `Hide by default` dropdown, and a filter field that accepts
+regular expressions, which the extension's panel does not.
 
-It is also worth knowing that QuPath's class matching is not exact by default. Ticking a class
-named `CD3: CD8` matches every class containing **both** parts, because the panel and the
-built-in pane share one matching rule. So a single-marker class row, where one exists, already
-does what a single checked component does. The component list earns its place when **no class
-of that name exists** — the normal case in a real panel — and the `All` combination has no
-equivalent anywhere in QuPath.
+One thing to know about both tools: QuPath's class matching is not exact by default, and the
+built-in class list and the extension's panel use the same matching rule. Checking the class
+`CD3: CD8` in either one shows every class that contains both `CD3` and `CD8`, such as
+`PanCK: CD3: CD8`, not only the cells whose class is exactly `CD3: CD8`.
 
-## Provenance
-
-A port of the community Groovy script *"Show specific classes of objects v3"*
-([image.sc topic 31828](https://forum.image.sc/t/31828)), which stopped working when
-`OverlayOptions.hiddenClassesProperty()` was removed from QuPath.
+That answers this section's question. If your image has a plain `CD3` class, checking it in the
+built-in list already shows every class containing CD3, which is exactly what checking the `CD3`
+component in the extension does. The extension earns its place in two cases: when no plain class
+of that name exists, which is the usual situation on a real panel, and when you want the cells
+carrying two markers at once (`All`), which nothing in QuPath's built-in list can express.
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
@@ -105,16 +104,15 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 ### 2. Load it into QuPath
 
 1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either
-   works. (Menu route: `File > Project... > Open project`.)
+   works. (Menu route: `File > Project > Open project...`.)
 2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected.
    The project ships with *relative* image paths so the zip is portable, and QuPath cannot
    resolve those until you show it the folder once. Click **Search...** (bottom-right), choose
    the folder you unzipped, then **Apply changes**.
 3. Double-click **`tme_00.tif`** to open it.
 
-> **Use `tme_00`, not whichever image opens first.** The eight images differ on purpose. `tme_07`
-> is the immune-poor variant and produces **twelve** classes rather than nineteen, with `CD20`
-> positive in no cells at all. Nothing will have gone wrong; the numbers just will not match.
+> **Use `tme_00`, not whichever image opens first.** The eight images are different, and the
+> numbers in this guide will not match on the other images.
 
 ### 3. Re-label the cells by marker
 
@@ -128,8 +126,9 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 **The script:**
 [`composite_marker_classes.groovy`](https://raw.githubusercontent.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/main/scripts/composite_marker_classes.groovy)
 
-It thresholds each of seven markers independently and names every cell after all the markers it
-is positive for: `CD3: CD8`, `PanCK: Ki67`, `Ki67: CD3`.
+It decides, for each of seven markers, whether each cell is positive, and names the cell after
+every marker it is positive for: `CD3: CD8`, `PanCK: Ki67`, `Ki67: CD3`. Cells positive for
+nothing stay `Unclassified`.
 
 > **This overwrites cell classifications.** If you have already run a classifier on these cells
 > — from the Classify Object Subset or Class Distribution walkthroughs — this replaces it. It does
@@ -142,25 +141,16 @@ is positive for: `CD3: CD8`, `PanCK: Ki67`, `Ki67: CD3`.
 > **No** when QuPath asks whether to save changes to `tme_00.tif` — but see the warning in step 8
 > first, because `Run for project` saves as it goes and that escape route is then gone.
 
-**What you should see.** On `tme_00`, 1,530 cells become **20 classes** — nineteen marker
-combinations plus `Unclassified`, which holds the 17 cells positive for nothing. QuPath treats
-Unclassified as a class, so it is counted as one both by the script and by the panel:
-
-<img src="../images/class-visibility/after-the-script.png" alt="The Class visibility panel on tme_00 after running the script. The classes list header reads Classes on detections in this image (20) and lists PanCK, aSMA, CD3, CD68, CD8, CD3 colon CD8, PanCK colon Ki67, CD20 and rarer combinations with an Affects column reading 439, 416, 386, 221, 189, 187, 126 and 103. The components list header reads Anything containing these components (7) with counts for aSMA, CD20, CD3, CD68, CD8, Ki67 and PanCK. The status strip warns that every object is hidden because Show only checked classes is on with nothing checked" width="900">
-
-The script's log carries what the panel cannot: the Otsu threshold it chose for each marker, how
-many cells each marker is positive in, and the spread table you will check against step 7. **Copy
-that block out of the log before you move on** — it is the only record of how this lattice was
-built, and it changes with the image.
-
-**The lattice is thinner than the class count suggests, and that is worth seeing.** Six of the
-nineteen marker combinations carry a single marker, and they hold 1,167 of the 1,513 classified cells — 77%.
-Thirteen classes combine two or more markers, and eleven of those hold fewer than ten cells each.
-That long tail of near-empty combinations is what a real hi-plex panel looks like, and it is what
-a flat class list handles worst.
-
 <details markdown="1">
-<summary><b>What this lattice is, and is not</b> — three things worth knowing before you trust it</summary>
+<summary><b>How the script decides "positive"</b> — for those who want the biology</summary>
+
+Each marker gets its own threshold, computed on the open image by
+[Otsu's method](https://en.wikipedia.org/wiki/Otsu%27s_method): automatic, deterministic, one
+cut per marker per image. Six markers are read as the whole-cell mean (`Cell: CD3 mean` and so
+on); `Ki67` is read from the nucleus (`Nucleus: Ki67 mean`), because a whole-cell mean would
+dilute a nuclear marker.
+
+Three things to know before you trust the result:
 
 1. **These are not phenotype calls.** Each marker is gated on its own, so nothing forbids
    `CD3: CD20` — a T cell and a B cell at once. The dataset's ground truth is clean by
@@ -171,16 +161,13 @@ a flat class list handles worst.
 3. **The data are synthetic and background-free**, which is what makes a plain threshold work at
    all. Real hi-plex data with autofluorescence is not this well behaved.
 
-The gate itself is [Otsu's method](https://en.wikipedia.org/wiki/Otsu%27s_method), applied to
-each marker separately. You do not need to know how it works to do this walkthrough — only that
-it is automatic, deterministic, and picks one cut per marker per image.
-
 </details>
 
 ### 4. Open the panel
 
 `Extensions > Class Visibility > Show panel`, or the Class Visibility button in QuPath's
-toolbar — the blue eye, two along from the brightness/contrast half-circle.
+toolbar: the blue eye. (Where it sits in the toolbar depends on the order your extensions were
+installed.)
 
 <img src="../images/class-visibility/toolbar-button.png" alt="Two QuPath toolbar buttons side by side: on the left the Channel Names Viewer button, three stacked stripes in red, green and blue, and on the right the Class Visibility button, an open blue eye with a small grey triangle at its lower right" width="125">
 
@@ -188,16 +175,10 @@ The eye reports whether class rules are in force: open while nothing is hidden, 
 rule is hiding objects. Right-clicking it reaches the same recovery actions as the Extensions
 menu.
 
-**Your objects will disappear, and that is the intended starting state.** The `Visibility rule:`
-radios sit on **`Show only checked classes`** with nothing checked, so the status strip reads:
-
-```
-[!] Every object is hidden. "Show only checked classes" is on and nothing is checked.
-```
-
-The check box at the top of the classes list is haloed in blue: clicking it checks **every**
-class, which puts every object back on screen. Leave it alone for now — step 5 starts from the
-empty state.
+**When you first open the panel, all objects will be hidden.** By default, visibility is set to
+**`Show only checked classes`**, and no classes are checked. The check box at the top of the
+classes list is haloed in blue: clicking it checks **every** class, which puts every object back
+on screen. Leave it alone for now — step 5 starts from the empty state.
 
 > **The panel opens as a floating window.** If it covers the viewer, use the **Dock as tab**
 > button in the panel's own header to park it in the analysis pane. **Undock to window** puts
@@ -207,30 +188,24 @@ empty state.
 > `Preset`, `Visibility rule`, `List` and `Find` rows. Your rules keep working while they are
 > hidden. **`Expand`** brings them back, and so does **Ctrl+F** (**Cmd+F** on macOS).
 
-<img src="../images/class-visibility/panel-over-viewer.png" alt="The Class visibility floating window over the QuPath viewer on tme_00. Its header carries Preset, the Visibility rule radios set to Show only checked classes, a Find box and Exact matches only. Below are two lists side by side: Classes on detections in this image (20), sorted by an Affects column, and Anything containing these components (7) with a Count column. PanCK is checked in the components list and the viewer shows only the teal PanCK-positive cells; the status strip reads Active rules (1) with Undo Check PanCK and Reset all buttons" width="900">
+**What you should see.** On `tme_00`, 1,530 cells become **20 classes**: nineteen marker
+combinations plus `Unclassified`, which holds the 17 cells positive for nothing. QuPath treats
+Unclassified as a class, so the panel counts it as one:
 
-The screenshot is one step ahead of you — it has `PanCK` already checked, so the lists have
-something in them. Yours will be empty of rules until the next step.
+<img src="../images/class-visibility/after-the-script.png" alt="The Class visibility panel on tme_00 after running the script. The classes list header reads Classes on detections in this image (20) and lists PanCK, aSMA, CD3, CD68, CD8, CD3 colon CD8, PanCK colon Ki67, CD20 and rarer combinations with an Affects column reading 439, 416, 386, 221, 189, 187, 126 and 103. The components list header reads Anything containing these components (7) with counts for aSMA, CD20, CD3, CD68, CD8, Ki67 and PanCK. The status strip warns that every object is hidden because Show only checked classes is on with nothing checked" width="900">
+
+Six of the nineteen combinations carry a single marker, and they hold 1,167 of the 1,513
+classified cells, 77%. The other thirteen combine two or more markers, and eleven of those hold
+fewer than ten cells each. That long tail of near-empty combinations is what a real hi-plex panel
+looks like, and it is what a flat class list handles worst.
 
 ### 5. One component, many classes
 
 In the components list — its header reads **Anything containing these components (7)** — check
-**`CD3`**.
+**`CD3`**. Every object whose class contains `CD3` is now visible, and nothing else is. (If
+nothing changed, see [If something looks wrong](#if-something-looks-wrong).)
 
-Every class containing `CD3` is now the only thing on screen: `CD3`, `CD3: CD8`,
-`PanCK: CD3: CD8`, `aSMA: CD3` and five others. Nine classes, 386 cells, from one click.
-`Active rules` reads `Active rules (1)` — one checked component is **one rule**, however many
-class names it covers.
-
-> **`Active rules` shows a bigger number?** The classes list still has rules in it. Click
-> **Clear all rules** in the `Active rules` expander and check `CD3` again.
-
-> **Nothing happened at all?** Look for `[!] "Exact matches only" is on` just under the `Find`
-> row.
-> That setting is QuPath-wide, so it may be on from earlier work, and while it is on **no
-> component rule can match**. Click **Turn off** beside the warning.
-
-**Now look at the classes list.** Nine rows have a **blue ring** round their check box, and they
+**Now look at the classes list.** Nine rows have a **blue ring** on their check box, and they
 pulsed briefly when you checked `CD3`. Those are the classes the component rule reaches. A row
 with a *tick* is on because you checked it; a row with a *ring* is on because a component reaches
 it — and the ring disappears the moment you uncheck `CD3`, where a tick would stay.
@@ -240,21 +215,19 @@ it — and the ring disappears the moment you uncheck `CD3`, where a tick would 
 *(This one shows `PanCK` checked rather than `CD3`, and the docked layout — the ring behaves the
 same either way. `PanCK` reaches seven classes, `CD3` nine.)*
 
-The number beside each class is its **`Count`** — cells carrying exactly that class. Find the
-`CD3` row: it reads 184. **Hover that 184** and the tooltip says checking the row would act on
-386 — the same 386 the component just selected, and the figure in the components list's
-**`Total`** column for `CD3`. So on this dataset, ticking that one class row does the same job,
-because QuPath matches supersets by default. (To see that second number on every row at once,
-switch on the **`Affects`** column from the **+** at the right end of the classes list's
-column-header row. It is shown in bold wherever it exceeds the row's own count.)
+Now compare two numbers. In the classes list, the `CD3` row's **`Count`** reads 184: cells whose
+class is exactly `CD3`. In the components list, the `CD3` row's **`Total`** reads 386: cells
+carrying `CD3` anywhere in their class. Checking the `CD3` *class* row would act on all 386, not
+184, because QuPath matches supersets by default (hover the 184 and the tooltip says so). So on
+this dataset, checking that one class row does the same job as checking the component.
 
-That is worth seeing rather than glossing: on a *real* panel there is usually no plain `CD3`
-class to tick, and then the component row is the only way to say it. Here there is one, so the
-component list saves you nothing yet. The next step is where it stops being optional.
+> **That is worth seeing rather than glossing.** On a *real* panel there is usually no plain
+> `CD3` class to check, and then the component row is the only way to say it. Here there is one,
+> so the component list saves you nothing yet. The next step is where it stops being optional.
 
 ### 6. `Any` vs `All` — the part with no equivalent
 
-Check a second component, **`CD8`**. Two radios below the list now read, each with the number
+Check a second component, **`CD8`**. Two options below the list now read, each with the number
 of cells it would show:
 
 - `Any -- CD3, or CD8, or both (388 objects)` — **10 classes**
@@ -296,7 +269,7 @@ above it), then tick `Spread`.
 > That menu's first entry is blank and does nothing. It is the check-box column, which has no
 > name to show and is not allowed to hide. Ignore it.
 
-Compare what the panel shows against the spread table the script printed — they should match:
+On `tme_00` the column should read:
 
 | Component | Spread |
 |---|---|
@@ -308,7 +281,7 @@ Compare what the panel shows against the spread table the script printed — the
 | CD20 | `3/20` |
 | Ki67 | `1/20` |
 
-These are the numbers the script printed, so the two agree exactly. No component ever reaches
+No component ever reaches
 20: `Unclassified` is one of the twenty and can never contain a component.
 
 **`CD3` is the widest-spreading component here, and `Ki67` the narrowest.** Ki67 is the only
@@ -326,7 +299,7 @@ well-formed names.
 
 **Test that, rather than taking it on trust.** Change `COMPARTMENT` in the script to
 `["Ki67": "Nucleus"].withDefault { "Cytoplasm" }` and re-run. Cytoplasm excludes the nuclear
-hole and is documented as the cleaner of the two, and the lattice should thin out.
+hole and is documented as the cleaner of the two, and there should be fewer multi-marker classes.
 
 ### 8. Why a preset does not travel between images
 
@@ -378,7 +351,6 @@ spelled **`Reset all visibility`**.
 | What you see | Why | What to do |
 |---|---|---|
 | `No cells in this image -- open an image from the synth multiplex project first.` | No image open, or one with no detections | Double-click `tme_00.tif` in the project list, then Run again |
-| The script printed nothing | The Script Editor's output pane is below the code and often collapsed to a sliver | Drag the divider up, or use `View > Show log` |
 | You check a component and nothing happens | `Exact matches only` is on. It is a QuPath-wide, persistent setting, so it can arrive on from an earlier session | A warning under the `Find` row says so and offers a **`Turn off`** button beside it. It stays visible even when the panel's top rows are collapsed |
 | The classes list shows `tumor`, `fibroblast`, `cd8_t`… | The **`List:`** selector is on `Annotations`, so you are looking at the ground-truth points | Set `List:` back to `Detections` |
 | `Active rules` shows a number you did not expect | The classes-list header check box adds every listed class as a rule | **Clear all rules** in the `Active rules` expander |
