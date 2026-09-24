@@ -325,6 +325,32 @@ Best done at home; clustering all eight images is ~11,400 cells.
 18. Re-run **with Harmony**. The same cell type should now cluster together across all eight
     images.
 
+### Saved results: reopen a run instead of repeating it
+
+Clustering is the slow part of this exercise, and you do not have to do it twice. **Every
+successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timestamped name like
+`auto_20260617_193235_leiden`. Nothing to click.
+
+<img src="../images/qp-cat/menu-savedresults.png" alt="The QP-CAT menu with Results and populations expanded, showing View Past Results, Manage Saved Results, then Modify cell populations (rename, merge, split, sub-cluster), Analyze current cell classifications, Apply saved result to detections, and Apply cluster color palette" width="1000">
+
+- **`Results & populations > View Past Results...`** reopens the whole results window — heatmap,
+  marker rankings, embedding, every tab — with no Python run and no re-clustering. This is the
+  one to use if you want to go back to Part A's plots while working on Part B, or to look again
+  after the session.
+- **`Apply saved result to detections...`** is the different one: it writes a saved run's labels
+  back onto the cells. Reach for it when the labels are right in the saved result but are not on
+  the image — most often after closing and reopening the project. It matches cells by source
+  image id and centroid rather than by count, and shows a predicted match count before you
+  commit, so cells it cannot match are reported rather than mislabeled.
+- **`Manage Saved Results...`** lists everything saved with its size, for deleting the runs you
+  no longer want. Auto-saves are never removed for you.
+
+> Applied labels are namespaced by the result name — `<result>: Cluster N` — so results from
+> different runs can coexist on the same detections without colliding. Handy, with one
+> consequence worth knowing: any embedding measurements come back prefixed too, which means the
+> Cluster 3D Navigator will not auto-detect them as `UMAP1/2/3` and you will have to pick the
+> three axes by hand.
+
 ### What to notice
 
 - Every result stays clickable back to the tissue. The value here is the round trip.
