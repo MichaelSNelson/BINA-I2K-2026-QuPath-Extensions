@@ -118,10 +118,15 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 3. Re-label the cells by marker
 
-Open `Automate > Script editor`, then paste in
-**[`composite_marker_classes.groovy`](https://raw.githubusercontent.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/main/scripts/composite_marker_classes.groovy)**
-— click the link, select all, copy, paste — and press **Run** (`Run > Run`, or **Ctrl+R** /
-**Cmd+R** on macOS).
+1. In QuPath, open `Automate > Script editor`.
+2. Open the script link below in a browser tab. It opens as plain text, not a download.
+3. **Select all of that page and copy it** — you want the file's contents, several dozen lines
+   of Groovy, not the link itself.
+4. Paste into the Script Editor and press **Run** (`Run > Run`, or **Ctrl+R** / **Cmd+R** on
+   macOS).
+
+**The script:**
+[`composite_marker_classes.groovy`](https://raw.githubusercontent.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/main/scripts/composite_marker_classes.groovy)
 
 It gates each of seven markers independently and names every cell after all the markers it is
 positive for: `CD3: CD8`, `PanCK: Ki67`, `Ki67: CD3`. The gate is the Otsu routine copied from
