@@ -27,31 +27,14 @@ title: Class Visibility
 ## What it does
 
 A panel of check boxes that shows or hides detections by their class, or by part of a class
-name. Check `CD3` and every cell whose class contains CD3 appears, whether that class is `CD3`,
-`CD3: CD8` or `PanCK: CD3: CD8`. Check two parts and choose whether you want cells with either
-one or with both. Combinations like these are hard to build from QuPath's built-in class list,
-which only checks whole classes one at a time. The panel earns its place when no plain
-single-marker class exists in your image, which is usual on a real panel, and when you want the
-cells carrying two markers at once.
+name. Check the `CD3` **component** and every cell whose class contains CD3 appears, whether
+that class is `CD3`, `CD3: CD8` or `PanCK: CD3: CD8`. Check two components and choose whether
+you want cells with either one or with both. Combinations like these are hard to build from
+QuPath's built-in class list, which only checks whole classes one at a time.
 
-## When the built-in class list is the better tool
-
-When you have a small number of classes (five to ten), use QuPath's built-in class list on the
-**Annotations** tab. It does things the extension's panel does not: a color picker on every row,
-a `Show by default` / `Hide by default` dropdown, and a filter field that accepts regular
-expressions.
-
-<details markdown="1">
-<summary><b>How class matching works</b> — in both tools</summary>
-
-QuPath's class matching is not exact by default, and the built-in class list and the extension's
-panel follow the same rule. Checking the class `CD3: CD8` in either one shows every class that
-contains both `CD3` and `CD8`, such as `PanCK: CD3: CD8`, not only the cells whose class is
-exactly `CD3: CD8`. So if your image has a plain `CD3` class, checking it in the built-in list
-already shows every class containing CD3, which is what checking the `CD3` component in the
-extension does.
-
-</details>
+This interface is most useful with large numbers of classes, where QuPath's standard interface
+becomes clunky. If you have never been frustrated trying to show specific objects from the
+Annotations panel, you can skip this one.
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
