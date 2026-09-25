@@ -146,6 +146,10 @@ Why synthetic, for a workshop:
 - **Everything has something to recover.** Six cell types, tissue niches, a proliferation
   gradient, and deliberate per-image intensity offsets.
 
+> **None of the biology is real.** Treat it as you would fake news: the biological accuracy
+> has not been checked by a biologist. Or even by me. It is built so the analysis has
+> structure to find, not so the tissue is right.
+
 **What is in it**
 
 | | |
