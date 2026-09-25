@@ -172,11 +172,10 @@ Thirty-four files, and QuPath only wants eight of them:
 | `tme_NN_params.json` | 8 | How each image was generated: cell counts per type, niche layout, batch offset |
 | `INSTRUCTIONS.md` | 1 | The dataset's own guide, with the full channel and region tables |
 
-> **Set the image type to Fluorescence.** These are synthetic *fluorescence* images: eight
-> separate marker channels, not RGB. QuPath asks for the image type the first time you open
-> one, and the answer is **Fluorescence**. Get this wrong and the channels are treated as
-> colour components, so channel names, per-channel measurements and cell detection on DAPI
-> all misbehave.
+> **Set the image type to Fluorescence.** QuPath asks the first time you open one, and the
+> answer is **Fluorescence**. The brightfield options are RGB-only and are not offered for
+> an eight-channel image, so this is a quick confirmation rather than something to get
+> wrong.
 
 For this exercise you need **one** image, `tme_00.tif`. Parts C and D add `tme_06.tif` and
 `tme_07.tif`. You never have to load all eight unless you want to try batch correction.
