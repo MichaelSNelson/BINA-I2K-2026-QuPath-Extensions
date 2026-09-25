@@ -86,6 +86,10 @@ KMeans run over all 11,421 of them. Three things in it matter here:
   classed by true type (`tumor`, `fibroblast`, `cd8_t`, `helper_t`, `b_cell`, `macrophage`) —
   select a point and read its class in the **Annotations** tab to check a cluster.
 
+The classifications and the three display axes can be generated anywhere. The navigator needs
+only three numeric measurements in the object data to position each point, and an object class
+to colour it.
+
 > **The README inside the zip is the unclustered project's** and says the cells ship
 > unclassified and need a script run first. Ignore it for this exercise; the labels are on the
 > cells.
