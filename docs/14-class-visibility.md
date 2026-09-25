@@ -75,7 +75,7 @@ for the built-in class list. The walkthrough therefore starts by **changing the 
 data** — one script labels every cell by the markers it is actually positive for.
 
 Every number below is from **`tme_00.tif`** and was produced by the run this guide describes.
-On another image they differ, and step 8 is about why.
+On another image the numbers differ.
 
 ### 1. Get the data
 
@@ -134,8 +134,7 @@ walkthroughs need is lost.
 **To get the six type classes back:** `Automate > Project scripts > apply_trained_classifier`,
 then **Run**. For the deliberately imperfect version used by Classify Object Subset, run
 `classify_with_marker_gate` instead. To discard the change entirely, close the image and answer
-**No** when QuPath asks whether to save changes to `tme_00.tif` — but see the warning in step 8
-first, because `Run for project` saves as it goes and that escape route is then gone.
+**No** when QuPath asks whether to save changes to `tme_00.tif`.
 
 </details>
 
@@ -156,8 +155,8 @@ dilute a nuclear marker.
 >    `CD3: CD20` — a T cell and a B cell at once. The dataset's ground truth is clean by
 >    construction, one lineage marker per cell type, so **every multi-lineage combination here is
 >    an artifact** of the 5 µm cell expansion picking up signal from a neighbor.
-> 2. **Thresholds are computed per image**, over the cells of the open image only. Step 8 is about
->    what that costs you.
+> 2. **Thresholds are computed per image**, over the cells of the open image only, so the same
+>    class name can mean a slightly different cut on another image.
 > 3. **The data are synthetic and background-free**, which is what makes a plain threshold work at
 >    all. Real hi-plex data with autofluorescence is not this well behaved.
 
@@ -297,39 +296,18 @@ builds names from marker names alone.
 `["Ki67": "Nucleus"].withDefault { "Cytoplasm" }` and re-run. Cytoplasm excludes the nuclear
 hole and is documented as the cleaner of the two, and there should be fewer multi-marker classes.
 
-### 8. Why a preset does not travel between images
-
-> **`Run for project` saves each image as it goes.** After this step the new classes are written
-> to all eight images, and closing without saving will not undo them. To put the project back, run
-> `Automate > Project scripts > apply_trained_classifier` with `Run for project` as well. If you
-> would rather not touch the other seven images, read the table below instead of running it.
-
-Run the script over the whole project (`Run > Run for project`) and compare the PanCK threshold:
-
-| Image | PanCK threshold | Classes |
-|---|---|---|
-| tme_02 | 27.41 | 19 |
-| tme_05 | 28.40 | 19 |
-| **tme_00** | **34.20** | **19** |
-| tme_04 | 42.18 | 19 |
-| tme_07 | 32.68 | 12 |
-
-Those differences are not noise. The dataset deliberately carries per-image intensity offsets of
-roughly ×0.80 on `tme_02`, ×0.85 on `tme_05` and ×1.20 on `tme_04` — and a per-image Otsu cut
-recovers almost exactly those factors. A class name here means "above **this image's** Otsu
-cut", so **the same name does not mean the same thing on two images.**
-
-`tme_07` is the extreme case: it is the immune-poor variant with no B cells at all, so `CD20` is
-positive in **0** cells and its `Spread` reads `0`. A component can exist in the list and select
-nothing.
-
-### 9. Save a preset
+### 8. Save a preset, and take it to another image
 
 Build a filter worth keeping — `CD3` and `CD8` on `All` — then use **`Preset`** in the panel
-header and **Save** it under a name. Presets are stored in the project, so the filter is there
-next week and for whoever else opens it.
+header and **Save** it under a name. A preset stores which components and classes are checked,
+the `Any` / `All` choice, and the show/hide setting, in the project. So it is there next week, for
+whoever else opens the project, and on every image in it.
 
-### 10. Get your view back
+To see that, open **`tme_02.tif`** and run the script on it the same way as in step 3 (plain
+**Run**; the script works on the open image only). Then pick your preset from the **`Preset`**
+dropdown: the same rule is rebuilt on the new image, with no clicking through the lists.
+
+### 9. Get your view back
 
 | You want | Do this |
 |---|---|
