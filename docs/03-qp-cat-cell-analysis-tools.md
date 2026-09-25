@@ -318,16 +318,10 @@ should detect close to 1,530 cells on `tme_00`.
    > The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
    > dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
 
-   > **Why keep the shape measurements?** Because the convention is to leave them out. Published
-   > multiplexed-imaging phenotyping pipelines cluster on **per-cell marker expression**:
-   > [Ahmadian *et al.* 2023](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011432)
-   > describes the clustering input as "a table with cells in rows and marker expression level in
-   > columns", even though the same pipeline also computes "spatial information and morphological
-   > properties" into that table. Note what that is and is not: the paper does not argue against
-   > morphology, it just does not cluster on it. This dataset is built so that shape carries real
+   > **Why keep the shape measurements?** Marker intensities are the usual starting point, and
+   > it would be reasonable to stop there. This dataset is built so that shape carries real
    > information — fibroblasts have elongated spindle nuclei, tumor nuclei are large and round —
-   > and you will see those features earn their place in the next step. Worth knowing the
-   > convention, and worth noticing that it is a convention rather than a finding.
+   > and you will see those features earn their place in the next step.
    >
    > `Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6.
    > It is not a shortcut for this step.
@@ -396,13 +390,12 @@ should detect close to 1,530 cells on `tme_00`.
    | Dimensionality Reduction | **Method: None** |
    | Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0** |
 
-   **The three settings in bold are the exercise.** On the defaults this run returns a single
-   cluster holding almost every cell — from a space whose groups you can see separated in the
-   3D view. Why each one matters is
-   [scikit-learn's `cluster_selection_method` and `min_samples`](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html),
-   and QP-CAT's own [troubleshooting entry](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md)
-   spells out the diagnosis; the short version is that the defaults suit compact blobs of even
-   density, and an embedding is not that.
+   **The three settings in bold are the exercise.** Left on their defaults, this configuration
+   returned a single cluster holding **97.0%** of 107,282 cells on a different, real dataset —
+   from a space whose groups were plainly separated in the 3D view. What each setting does:
+   [scikit-learn's `cluster_selection_method` and `min_samples`](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html).
+   What it looks like when it goes wrong, and how to tell:
+   [QP-CAT troubleshooting](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md#5-hdbscan-returns-one-giant-cluster-and-almost-no-noise).
 
    **The tell is the noise fraction**, and QP-CAT names it for you in the banner above the
    results. HDBSCAN has two failure modes that look identical in the viewer and are opposites
@@ -417,11 +410,10 @@ should detect close to 1,530 cells on `tme_00`.
    nothing new was computed to plot. The **3D View** tab still works, because it reads the UMAP
    columns off the cells.
 
-   > **Worth knowing before you rely on this.** The UMAP authors caution against treating an
-   > embedding as ground truth for clustering; read
-   > [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html)
-   > before you use this on real data. Cross-check against a full-marker-space run — which,
-   > conveniently, is the run you did in step 2.
+   > **Worth reading before you rely on this:**
+   > [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html).
+   > Cross-check against a full-marker-space run — which, conveniently, is the run you did in
+   > step 2.
 
 7. Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
    true type is in the `cell_type` column.
