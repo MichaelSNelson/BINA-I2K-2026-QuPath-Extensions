@@ -44,7 +44,7 @@ stay linked** — every result stays clickable back to the cell it came from.
 You do not need the rest of this section to start the exercise.
 
 <details markdown="1">
-<summary><b>The capabilities, in pictures</b> — what QP-CAT adds beyond QuPath's own classification</summary>
+<summary><b>The capabilities</b> — what QP-CAT adds beyond QuPath's own classification</summary>
 
 QuPath already classifies objects (train on measurements, or threshold one). These are the
 other routes to a class on a cell, for when you have thirty markers and no training set worth
