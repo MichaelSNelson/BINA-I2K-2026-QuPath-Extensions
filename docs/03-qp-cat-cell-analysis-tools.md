@@ -72,9 +72,6 @@ advice specific to the algorithm you chose. In the same release, cells an algori
 place are reported as **noise** rather than counted as a cluster: a run finding one population no
 longer claims "3 clusters", and the per-area tables no longer carry a `Cluster -1` column.
 
-> If you clustered a TMA or annotation subregions on 0.10.0, re-run it. The areas themselves were
-> right; how the results were reported was not.
-
 **Keep separate tissue separate** *(new in 0.10.0)*
 
 - **Independent areas.** Cells in physically separate pieces of tissue (different TMA cores,
