@@ -202,7 +202,7 @@ In the components list — its header reads **Anything containing these componen
 **`CD3`**. Every object whose class contains `CD3` is now visible, and nothing else is. (If
 nothing changed, see [If something looks wrong](#if-something-looks-wrong).)
 
-<img src="../images/class-visibility/panel-cd3-checked.png" alt="The same window with CD3 checked in the components list. In the classes list the CD3 row shows a greyed-out tick, and the rows CD3 colon CD8, PanCK colon CD3 colon CD8, aSMA colon CD3, CD3 colon CD8 colon CD68 and CD3 colon CD68 have a blue ring around their check box; rows such as aSMA, PanCK, CD68 and PanCK colon Ki67 have plain empty boxes. Below the components list the two options read Any CD3 and All CD3, greyed out. Active rules reads 1, and the buttons at the bottom read Undo Check CD3 and Reset all" width="900">
+<img src="../images/class-visibility/panel-cd3-checked-with-viewer.png" alt="QuPath with the Class visibility floating window over the lower left of the viewer, on tme_00, with CD3 checked in the components list. In the classes list the CD3 row shows a greyed-out tick and the rows CD3 colon CD8, PanCK colon CD3 colon CD8, aSMA colon CD3, CD3 colon CD8 colon CD68 and CD3 colon CD68 have a blue ring around their check box. Below the components list the options read Any CD3, selected, and All CD3. Active rules reads 1. In the viewer, most cells are plain white outlines and only the CD3-containing cells are drawn with teal and green outlines, scattered through the tissue" width="1000">
 
 **Now look at the classes list.** The `CD3` row shows a greyed-out tick: the component rule set
 it, and hovering it says to change it in the components list. The other eight classes containing
