@@ -65,7 +65,7 @@ the catalog URL, are in the [setup guide](setup.md).
 
 Uses the **clustered** version of the synthetic multiplex project — the same download as the
 [QP-CAT](03-qp-cat-cell-analysis-tools.md) exercise. Nothing here needs QP-CAT installed: the
-clustering has already been done, and the navigator only reads what is on the cells.
+clustering has already been done, and the navigator only reads the cell data.
 
 ### 1. Get the data
 
