@@ -388,7 +388,8 @@ should detect close to 1,530 cells on `tme_00`.
    | Measurements | **`Select none`**, then tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`** — three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
    | Normalization | **None** |
    | Dimensionality Reduction | **Method: None** |
-   | Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0** |
+   | Batch correction (Harmony) | **Off** |
+   | Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0**, `min_cluster_size` **200** |
 
    **The three settings in bold are the exercise.** Left on their defaults, this configuration
    returned a single cluster holding **97.0%** of 107,282 cells on a different, real dataset —
@@ -396,6 +397,35 @@ should detect close to 1,530 cells on `tme_00`.
    [scikit-learn's `cluster_selection_method` and `min_samples`](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html).
    What it looks like when it goes wrong, and how to tell:
    [QP-CAT troubleshooting](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md#5-hdbscan-returns-one-giant-cluster-and-almost-no-noise).
+
+   **`min_cluster_size` is the one you will actually tune, and 200 is a starting point rather
+   than a tuned value.** It is the smallest group HDBSCAN is allowed to call a cluster, so it
+   has to be read against this dataset: 11,421 cells, and the smallest population you are trying
+   to recover is proliferating tumor at 790. The default of 15 is 0.1% of the cohort — fine for
+   finding something rare, but with **Leaf** selection, which deliberately cuts at the finest
+   level of the tree, a floor that low is an invitation to shatter each population into
+   fragments. 200 sits well under 790 so a real group can still clear it, and well above 15.
+
+   **Changing it changes two things at once.** With `min_samples` on **0**, scikit-learn ties
+   the density estimate to `min_cluster_size`, so raising the floor also widens the neighbourhood
+   the density is measured over. That is usually what you want — it is why 0 is the default —
+   but it means a sweep of `min_cluster_size` is not a one-variable sweep.
+
+   **Leave batch correction off, even though the dialog offers it.** Eight images are in scope,
+   so Harmony is selectable, but there is nothing here for it to correct: the input is three
+   UMAP columns, and correcting those adjusts the *picture* rather than the measurements that
+   produced it. Batch correction belongs in the run that computes the embedding. Note the
+   consequence for this dataset — the step 2 UMAP was computed without it, over eight images
+   three of which (`tme_02`, `tme_04`, `tme_05`) carry deliberate intensity offsets, so whatever
+   batch structure that introduced is already baked into the coordinates you are about to
+   cluster. If you want it gone, correct it in step 2 and recompute the UMAP; the
+   [batch-effects exercise](#optional-and-slower-batch-effects) below is that run.
+
+   > **One deliberate exception to a rule stated later.** The batch-effects exercise tells you to
+   > press **`Deselect QPCAT`** before a second run, because QP-CAT's own output columns are
+   > answers, not inputs. This step is the case where clustering on them is the point — which is
+   > why you tick exactly three of them by hand rather than leaving the rest of the previous
+   > run's output selected alongside.
 
    **The tell is the noise fraction**, and QP-CAT names it for you in the banner above the
    results. HDBSCAN has two failure modes that look identical in the viewer and are opposites
