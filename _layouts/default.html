@@ -41,6 +41,11 @@ a.g-todo{color:#F87171}
   padding:.7rem 1.25rem; color:var(--ink); font-size:.9rem; line-height:1.5}
 .wip .wrapinner{max-width:56rem; margin:0 auto}
 .wip b{color:var(--am)}
+main img.zoomable{cursor:zoom-in}
+.lightbox{position:fixed; inset:0; z-index:1000; display:none; overflow:auto; background:rgba(5,8,18,.94); cursor:zoom-out}
+.lightbox.open{display:block}
+.lightbox img{display:block; margin:1.5rem auto; max-width:none; box-shadow:0 0 0 1px var(--hair)}
+.lightbox .hint{position:fixed; left:0; right:0; bottom:.8rem; text-align:center; color:var(--mut); font-size:.85rem; pointer-events:none}
 main{max-width:56rem; margin:0 auto; padding:2rem 1.25rem 5rem}
 h1,h2,h3,h4{line-height:1.25; font-weight:700; margin:2.2rem 0 .7rem}
 h1{font-size:2.05rem; margin-top:.6rem; letter-spacing:-.01em}
@@ -118,6 +123,35 @@ document.querySelectorAll('a[href^="http"]').forEach(function (a) {
     a.setAttribute('rel', 'noopener noreferrer');
   }
 });
+
+// Screenshots are shown scaled down to fit the column. Any image that is displayed
+// smaller than its real size opens full-size in an overlay when clicked; icons and
+// images already at natural size are left alone. Click anywhere or press Esc to close.
+(function () {
+  var box = document.createElement('div');
+  box.className = 'lightbox';
+  box.innerHTML = '<img alt=""><div class="hint">Full size. Scroll to pan. Click anywhere or press Esc to close.</div>';
+  document.body.appendChild(box);
+  var big = box.querySelector('img');
+  function close() { box.classList.remove('open'); big.removeAttribute('src'); }
+  box.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  function arm(img) {
+    if (img.closest('a') || img.classList.contains('zoomable')) return;
+    if (img.naturalWidth <= img.clientWidth + 8) return;
+    img.classList.add('zoomable');
+    img.setAttribute('title', 'Click to view full size');
+    img.addEventListener('click', function () {
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt || '';
+      box.classList.add('open');
+      box.scrollTop = 0;
+    });
+  }
+  document.querySelectorAll('main img').forEach(function (img) {
+    if (img.complete && img.naturalWidth) arm(img); else img.addEventListener('load', function () { arm(img); });
+  });
+})();
 </script>
 </body>
 </html>
