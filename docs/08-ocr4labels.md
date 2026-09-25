@@ -144,10 +144,8 @@ and click **Clear All** underneath the table so Part B's rows do not end up in y
 You are manually building a template from this one label, then applying it to the slides that
 share its design.
 
-1. Click **Draw Region** in the toolbar, then drag a box over just the line that identifies
-    the specimen — **`610 TOMO`**, not the email address above it, not the date, not the stain.
-    That line is what a pathology lab would call the *case ID*: the identifier tying this slide
-    to a particular specimen. Right-click inside the box you drew and choose **Scan as Text**.
+1. Click **Draw Region** in the toolbar, then drag a box over the case ID line, **`610 TOMO`**.
+    Right-click inside the box you drew and choose **Scan as Text**.
 
     <img src="../images/ocr/draw-region-text.png" alt="The dialog with Draw Region boxed in red, a selection drawn around the line 610 TOMO, and the right-click menu open showing Scan (Try Both), Scan as Text, Scan as Barcode, Keep Selection and Clear Selection" width="820">
 
