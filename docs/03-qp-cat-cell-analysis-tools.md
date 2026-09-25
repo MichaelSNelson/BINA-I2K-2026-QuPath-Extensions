@@ -83,13 +83,10 @@ Areas decide which cells may share a graph; class decides how results are compar
 
 - Interactive **UMAP / PCA / t-SNE** (plus a 3D view). Brush a region of the embedding and
   those cells highlight on the slide; double-click to jump to one.
-- **Lasso gating** on any biaxial marker plot. Draw a polygon, act on what falls inside.
+- **Lasso gating** on any biaxial marker plot. Draw a polygon and the objects inside it are
+  selected in QuPath, in the current image.
 - Cluster-defining markers via Wilcoxon ranking, plotted as dotplot, matrix plot, violin, or
   PAGA, without leaving QuPath.
-
-There is also an experimental **LLM cluster explainer** that proposes a plain-English cell
-type per cluster with a rationale citing markers. It is beta, largely untested, and always
-logs its prompt and response. Read it as a hypothesis generator.
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
@@ -106,27 +103,30 @@ Then run `Extensions > QP-CAT > Setup & help > Set up analysis environment (firs
 
 ## The data: a synthetic tumor microenvironment
 
-> ### Coming: a real multiplexed set, shown in the video
->
-> A second dataset is being prepared for QP-CAT specifically — a QuPath project
-> (`multiplexTesting`) of **seven Orion images**, six numbered `Orion1`–`Orion6` plus
-> `Orion_Tonsil_10follicles`. Real tissue, real markers, and **several GB**, which is why it is
-> not the hands-on exercise. **You will see it in the walkthrough video**, showing what this
-> workflow looks like on real data, and the download is there for exploring afterwards on a
-> machine with room for it.
->
-> <img src="../images/qp-cat/orion-tonsil-follicles.png" alt="A multiplexed tonsil image in green, magenta and yellow. Pale rounded follicles fill the field, several with a darker, more densely stained core, separated by magenta-rich bands of surrounding tissue" width="680">
->
-> The tonsil image is the one to start from: ten follicles in a single field, each with a
-> distinct core and a surrounding zone, so clustering and neighborhood analysis have real
-> structure to recover rather than a schematic one.
->
-> **It does not replace the synthetic set below, and is not meant to.** The synthetic data
-> stays the one you learn the workflow on: it is small, it is quick to look at, and it has
-> ground truth, so you can tell whether you got the right answer. Come here once you trust the
-> workflow and want it on real tissue.
->
-> **Not downloadable yet.** The link will appear here and in the [setup guide](setup.md).
+<details markdown="1">
+<summary><b>Coming: a real multiplexed Orion dataset</b> — seven images, shown in the walkthrough video; not downloadable yet</summary>
+
+A second dataset is being prepared for QP-CAT specifically — a QuPath project
+(`multiplexTesting`) of **seven Orion images**, six numbered `Orion1`–`Orion6` plus
+`Orion_Tonsil_10follicles`. Real tissue, real markers, and **several GB**, which is why it is
+not the hands-on exercise. **You will see it in the walkthrough video**, showing what this
+workflow looks like on real data, and the download is there for exploring afterwards on a
+machine with room for it.
+
+<img src="../images/qp-cat/orion-tonsil-follicles.png" alt="A multiplexed tonsil image in green, magenta and yellow. Pale rounded follicles fill the field, several with a darker, more densely stained core, separated by magenta-rich bands of surrounding tissue" width="680">
+
+The tonsil image is the one to start from: ten follicles in a single field, each with a
+distinct core and a surrounding zone, so clustering and neighborhood analysis have real
+structure to recover rather than a schematic one.
+
+**It does not replace the synthetic set below, and is not meant to.** The synthetic data
+stays the one you learn the workflow on: it is small, it is quick to look at, and it has
+ground truth, so you can tell whether you got the right answer. Come here once you trust the
+workflow and want it on real tissue.
+
+**Not downloadable yet.** The link will appear here and in the [setup guide](setup.md).
+
+</details>
 
 
 This exercise uses the
