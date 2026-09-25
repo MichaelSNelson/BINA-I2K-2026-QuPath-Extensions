@@ -9,7 +9,7 @@ An I2K workshop at the BioImaging North America Congress 2026.
 |---|---|
 | **Date** | Tuesday 29 September 2026 |
 | **Time** | 10:30 – 12:30 |
-| **Location** | Morgridge Hall, WARF Seminar Hub, Rm. 7560 |
+| **Location** | Morgridge Hall, 7th floor, WARF Centennial Seminar Hub |
 | **Format** | Hour 1 presentation and demos · Hour 2 optional hands-on |
 | **Requires** | QuPath **0.7.0 or later** |
 
