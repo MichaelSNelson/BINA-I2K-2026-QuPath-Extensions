@@ -190,7 +190,6 @@ share its design.
     > sit on the *brightfield* label. Start again from the top of Part C on one of them, save a second
     > template, and batch it over the two. That is the whole workflow in miniature, and it is
     > what you would do on arriving at a new set of slides from a different lab.
-6. Try a **vocabulary list** for a field with a small known set of valid values, and re-run.
 
 ### Part D: the two-minute experiment worth doing
 Go back to the `histology@lji.org` label. Tick **Enhance**, set **Scope** to *Drawn Regions*,
@@ -205,8 +204,6 @@ and **Rescan Regions**. Compare against the unenhanced read.
 
 - Region templates beat full-image OCR by a wide margin when labels are laid out consistently
   which, within one institution, they nearly always are.
-- Vocabulary matching converts OCR from "usually right" to "right or obviously wrong," which
-  is the difference between usable and not for automated metadata.
 - **"Enhance image contrast" made OCR worse, and it took measurement to find out.** Its adaptive
   threshold forces every pixel to pure black or white before Tesseract sees it, discarding the
   smooth edges the classifier depends on. Dense glyphs suffer first. On this very slide, `histology@lji.org` came
