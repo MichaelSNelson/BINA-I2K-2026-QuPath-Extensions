@@ -31,6 +31,10 @@ spend the second hour on your own data instead of ours.
 | **Location** | Morgridge Hall, 7th floor, WARF Centennial Seminar Hub |
 | **Format** | Hour 1 presentation and demos · Hour 2 optional hands-on |
 
+<img src="../images/venue/morgridge-7th-floor.png" alt="Floor plan of the 7th floor of Morgridge Hall. The WARF Centennial Seminar Hub is at the top left, marked with an arrow labeled I2KxBINA 2026 Workshops. The teal atrium space runs diagonally through the middle, with restrooms to its upper right and the elevators at the lower right. A photo at the left shows the atrium railing and the seminar hub doors beyond it" width="760">
+
+*From the elevators, cross the atrium; the seminar hub is on the far side.*
+
 ---
 
 The two hours are **presentation and demos**, then **optional hands-on**. The second hour is
