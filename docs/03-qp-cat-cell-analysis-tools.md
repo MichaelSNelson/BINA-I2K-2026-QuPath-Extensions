@@ -134,10 +134,12 @@ This exercise uses the
 small, fully ground-truthed synthetic tumor microenvironment. It is **CC0**: public domain,
 no attribution required, yours to reuse in your own teaching.
 
-The hands-on exercise below hands you a **ready-made QuPath project** built from it, so most
-people never need the raw data. The source zip (**~14 MB**) is the
-[latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip),
-and it is what you want for the answer-key CSVs, or to do the cell detection yourself.
+The hands-on exercise below hands you a **ready-made QuPath project** built from it — the
+eight images with cells already detected — so you do not need to run any detection yourself.
+Get the source zip (**~14 MB**, the
+[latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip))
+only if you want the **answer-key CSVs**, which are not in the project, or would rather build
+it from the images.
 
 Why synthetic, for a workshop:
 
@@ -162,7 +164,7 @@ Why synthetic, for a workshop:
 | Tissue niches | tumor nests, an immune-infiltrated nest boundary, B-cell follicles, stroma |
 | Ground truth | per-cell CSV: type, region, position, morphology, per-marker positivity |
 
-**What you get when you unzip it**
+**What you get when you unzip the source zip**
 
 Thirty-four files, and QuPath only wants eight of them:
 
