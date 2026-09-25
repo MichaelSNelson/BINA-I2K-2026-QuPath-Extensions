@@ -29,12 +29,16 @@ title: Cluster 3D Navigator
 
 ## What it does
 
-It plots every cell as a point in a 3D space you choose (three measurements as the axes),
-colors each point by its class, and lets you **click a point to select and center that exact
-cell in the viewer** — so a spot in cluster space becomes a real cell on the slide.
+View your analysed cells in three dimensions. Each point is one cell, **coloured by its
+class** — a clustering result, or any classification already on the cells. The three axes are
+numeric measurements you choose, normally a dimensionality reduction that is already stored on
+the cells: in the picture below, three UMAP components.
 
-It only reads your cells. It never changes their classes or measurements, so you can explore
-freely.
+Tick **Show cell images** and the points carry thumbnails, so you can see what the cells in one
+region actually look like. Click a point to **select that cell and centre it in the QuPath
+viewer** — a spot in cluster space becomes a real cell on the slide.
+
+It only reads your cells: looking changes no class and no measurement.
 
 <img src="../images/cluster-3d-navigator/window-layout.png" alt="The Cluster 3D Navigator window. Across the top: a Mode row with Current image and Project images radio buttons, X, Y and Z axis dropdowns reading UMAP1, UMAP2 and UMAP3, a Change axes button, a Show cell images check box, and Cell limit per image and Seed fields. Below that a Points counter and a Reset view button, then a collapsed Display options bar. The main area shows several separate colored blobs of points. On the right a CLASSES legend lists Cluster 0 to Cluster 24 with colored squares, check boxes and counts, and a Cell preview thumbnail sits below it. A gesture hint runs along the bottom." width="1000">
 
