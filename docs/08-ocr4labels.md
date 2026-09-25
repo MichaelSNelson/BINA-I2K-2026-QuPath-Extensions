@@ -139,14 +139,8 @@ file, and the extension pulls it out for you in step 1. This is what it will sho
 
 ### Part C: a template, then the whole project
 
-**Same slide, empty table.** Stay on `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` —
-you are not starting the project or the scan over.
-
-But clear the table before you begin: click **Clear All** underneath it. Part B's *Full Image*
-scan left a row for every piece of text it found, and a template is saved from **everything in
-the table**, not just the regions you draw. Skip this and those rows go into your template too,
-which is not what you want and is not obvious afterwards. The metadata you applied at the end of Part B is
-already on the image and is not affected.
+**Same slide, empty table.** Stay on `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`,
+and click **Clear All** underneath the table so Part B's rows do not end up in your template.
 
 You are building a template from this one label, then applying it to the slides that share its
 design — so the first four steps are still one image, and step 5 is where the second slide comes in.
