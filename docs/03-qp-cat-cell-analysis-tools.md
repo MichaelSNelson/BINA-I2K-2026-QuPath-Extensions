@@ -131,10 +131,13 @@ workflow and want it on real tissue.
 
 This exercise uses the
 **[multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data)**, a
-small, fully ground-truthed synthetic tumor microenvironment. Download the zip
-(**~14 MB**) from its
-[latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip).
-It is **CC0**: public domain, no attribution required, yours to reuse in your own teaching.
+small, fully ground-truthed synthetic tumor microenvironment. It is **CC0**: public domain,
+no attribution required, yours to reuse in your own teaching.
+
+The hands-on exercise below hands you a **ready-made QuPath project** built from it, so most
+people never need the raw data. The source zip (**~14 MB**) is the
+[latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip),
+and it is what you want for the answer-key CSVs, or to do the cell detection yourself.
 
 Why synthetic, for a workshop:
 
@@ -177,13 +180,6 @@ Thirty-four files, and QuPath only wants eight of them:
 > an eight-channel image, so this is a quick confirmation rather than something to get
 > wrong.
 
-For this exercise you need **one** image, `tme_00.tif`. Parts C and D add `tme_06.tif` and
-`tme_07.tif`. You never have to load all eight unless you want to try batch correction.
-
-> **It is a test fixture, not biology.** Proportions, morphology and intensities were chosen to
-> exercise analysis tools, not to reproduce any real tumor or panel. The *concepts* below are
-> real; the tissue is not.
-
 ---
 
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
@@ -209,6 +205,9 @@ if the environment build is slow, or if you would rather spend the hour on Parts
 
 <details markdown="1">
 <summary><b>Building it yourself instead</b> — detection settings, if you want to start from the images</summary>
+
+You need **one** image to start, `tme_00.tif`; Parts C and D add `tme_06.tif` and
+`tme_07.tif`, and only batch correction wants all eight.
 
 Create a QuPath project and add `tme_00.tif`. Set the image type to **Fluorescence** if
 prompted. Add a rectangle covering the whole image, then run `Analyze > Cell detection` on the
