@@ -207,7 +207,7 @@ nothing changed, see [If something looks wrong](#if-something-looks-wrong).)
 **Now look at the classes list.** The `CD3` row shows a greyed-out tick: the component rule set
 it, and hovering it says to change it in the components list. The other eight classes containing
 `CD3` (`CD3: CD8`, `PanCK: CD3: CD8`, `aSMA: CD3` and five more, some below the fold) have a
-**blue ring** around their check box, and they pulsed briefly when you checked `CD3`. A ring means
+**blue ring** around their check box. A ring means
 the component rule reaches that class. Uncheck `CD3` and the rings disappear; a tick you put there
 yourself would stay.
 
@@ -237,34 +237,26 @@ of cells it would show:
 You can compare the two before choosing. Neither number appears on any single row: each
 component's `Total` is that component alone.
 
-`Any` is the **first-run** default, but the panel remembers whichever you last chose, so glance at
-which radio is filled before you read any counts. On `Any`, this image barely changes: you go from
-386 cells to 388.
-**That is a finding, not a dead click** — 187 of the 189 CD8-positive cells are also CD3-positive,
+`Any` is selected by default, but the panel remembers whichever you last chose, so glance at
+which option is selected before you read any counts. On `Any`, this image barely changes: you go from
+386 cells to 388 — 187 of the 189 CD8-positive cells are also CD3-positive,
 so CD8 sits almost entirely inside CD3.
 
 Now switch to `All`. 201 cells leave the screen, you are looking at the CD8 T cells, and **the
 rings in the classes list narrow from 10 rows to 4** — under `All`, only classes carrying every
-checked component are ringed.
+checked component are highlighted.
 
-> **Two things pulse here, and they are different.** The `Any` / `All` control itself pulses the
-> first time you check a second component in a session, once only, to point out a control that was
-> inert until that moment (`Highlight the Any / All choice when it first applies`). The ringed
-> class rows pulse on *every* component change, as ongoing feedback
-> (`Pulse the classes a component change covers`). Both are on by default and both have their own
-> switch under `Extensions > Class Visibility`. Turning the second one off stops the motion only —
-> the steady rings stay.
-
-**There is no class row that does this.** QuPath evaluates its selected-class set as an OR, so
-the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across separate names. The
-panel builds a single composite rule to get the AND — and it survives onto the next image,
+**There is no class row that does this.** QuPath evaluates its selected-class set as a logical <code>OR</code>,
+so the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across separate names. The
+panel builds a single composite rule to get the logical <code>AND</code> — and it survives onto the next image,
 where the class names may be different.
 
 ### 7. `Spread`, and what it is really for
 
-Switch on the **`Spread`** column: click the small **+** button at the right end of the
-component list's **column-header row** (the row reading `Component` and `Total`, not the caption
-above it), then tick `Spread`.
+Switch on the **`Spread`** column. In the component list, on the right side of the panel under
+**Anything containing these components**, click the small **+** button at the right end of the
+**column-header row** (the row reading `Component` and `Total`, not the caption above it), then
+tick `Spread`.
 
 > That menu's first entry is blank and does nothing. It is the check-box column, which has no
 > name to show and is not allowed to hide. Ignore it.
@@ -289,13 +281,12 @@ marker read in the nucleus, so a neighboring cell's cytoplasm cannot leak into i
 exactly one class (`PanCK: Ki67`). The six read as whole-cell means all pick up some signal from
 whatever they are touching.
 
-**Nothing here will be shown in bold, and that is worth understanding.** The panel emphasises a
-`Spread` figure only when a component covers at least 80% of the classes, and only once there are
-five or more of them. CD3 tops out at 9 of 20, which is 45%. A real hi-plex panel that appends
+The panel emphasizes a `Spread` figure, by showing it in bold, only when a component covers at
+least 80% of the classes, and only once there are five or more of them. The widest-spreading
+component, CD3, tops out at 9 of 20, which is 45%. A real hi-plex panel that appends
 `positive` or `Cell` to every class name produces a component sitting in 19 of 20 classes — that
 one bolds, and the status strip names it. This dataset has no such component, because the script
-builds names from marker names alone. What you are seeing is the column behaving correctly on
-well-formed names.
+builds names from marker names alone.
 
 **Test that, rather than taking it on trust.** Change `COMPARTMENT` in the script to
 `["Ki67": "Nucleus"].withDefault { "Cytoplasm" }` and re-run. Cytoplasm excludes the nuclear
