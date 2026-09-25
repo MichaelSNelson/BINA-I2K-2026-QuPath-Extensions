@@ -233,7 +233,7 @@ following `Per-edge shifts used:` line.
    (too large packs them, too small spreads them), and the output carries that wrong calibration,
    so every later measurement in micrometers is off by the same ratio. Far enough out and there
    is no overlap left for registration to work with, and the log says `no overlapping
-   neighbours`.
+   neighbors`.
 
    > The **Measure from tiles...** button next to the field estimates a pixel size from the
    > actual tile overlap, which is the escape hatch when you do not know it. It reads
