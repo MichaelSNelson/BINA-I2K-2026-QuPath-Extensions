@@ -113,23 +113,10 @@ images down the left side, and batch mode runs over the project. So before anyth
 
 ### Part B: read one label
 
-Now look at the label on the slide you just opened. It
-carries printed text, a date **and** a 2D barcode, so it exercises OCR, barcode scanning and a
-mixed template in a single image. It is also the label behind the `@` investigation in
-[what to notice](#what-to-notice) below. The printed text reads:
+The viewer shows the tissue. The label is a separate small photograph stored inside the same
+file, and the extension pulls it out for you in step 1. This is what it will show:
 
-```
-histology@lji.org     <- the lab's contact address
-610 TOMO              <- the specimen identifier: this is the "case ID"
-2020-11-14            <- the date
-H&E                   <- the stain
-```
-
-Below that text is a square 2D barcode. That is the one Part C asks you to draw a field over.
-Here is the label with the two regions the exercise uses marked:
-
-<img src="../images/ocr/label-regions.png" alt="The slide label with a box around the line reading 610 TOMO, marked as the case ID, and a box around the 2D barcode, both drawn in Part C" width="680">
-
+<img src="../images/ocr/label-key.png" alt="Left, the photographed slide label: four lines of printed text, histology at lji dot org, 610 TOMO, 2020-11-14 and H and E, with a square 2D barcode below them, each marked with a numbered blue badge. Right, a key: 1 the lab's contact address, 2 the specimen identifier or case ID, 3 the date, 4 the stain, 5 the 2D barcode, read by the barcode scanner rather than OCR. A note says a full-image scan reads all of it and Part C builds a template from items 2 and 5 only" width="900">
 
 1. With that slide open from Part A, run
    `Extensions > OCR for Labels > Run OCR on Label`.
