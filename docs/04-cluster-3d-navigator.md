@@ -75,7 +75,12 @@ catalog (see the **Install** box above).
 **Download:** `multiplex-synthetic-data-demo-project-clustered.zip` —
 **[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)**
 (23 MB). Eight synthetic 8-channel images with cells already detected, and a saved QP-CAT
-KMeans run over all 11,421 of them. Three things in it matter here:
+KMeans run over all 11,421 of them.
+
+<details markdown="1">
+<summary><b>What is in the download</b> — the class, the three axes, the ground truth, and why the zip's README is wrong</summary>
+
+Three things in it matter here:
 
 - every cell carries a **class**, `Cluster 0` to `Cluster 5` — that is the color of its point;
 - every cell carries **three embedding measurements**, `3DUMAP1`, `3DUMAP2` and `3DUMAP3` —
@@ -90,9 +95,11 @@ The classifications and the three display axes can be generated anywhere. The na
 only three numeric measurements in the object data to position each point, and an object class
 to colour it.
 
-> **The README inside the zip is the unclustered project's** and says the cells ship
-> unclassified and need a script run first. Ignore it for this exercise; the labels are on the
-> cells.
+**The README inside the zip is the unclustered project's** and says the cells ship
+unclassified and need a script run first. Ignore it for this exercise; the labels are on the
+cells.
+
+</details>
 
 ### 2. Load it into QuPath
 
