@@ -42,7 +42,7 @@ hour.
 
 Each of these you can install and run yourself; see the [extension index](extensions.md).
 
-**Five datasets cover all of them.** The **Data** column says which one a tool needs, so if two
+**Six datasets cover all of them.** The **Data** column says which one a tool needs, so if two
 tools you want share a name, that is one download, not two. Each is linked here once:
 
 | Data | Download | Size |
@@ -52,6 +52,7 @@ tools you want share a name, that is one download, not two. Each is linked here 
 | **Synth multiplex project** | [`multiplex-synthetic-data-demo-project-v1.2.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip) | 20 MB |
 | **Clustered project** | [`multiplex-synthetic-data-demo-project-clustered.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip) | 23 MB |
 | **Slide labels** | [`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) | 244 MB |
+| **Tile folders** | [`Tiles-to-pyramid.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/Tiles-to-pyramid.zip) | 459 MB |
 
 > **Synthetic images** and the **synth multiplex project** are not the same download, although
 > they share the same eight images. *Synthetic images* is the raw dataset with its ground-truth
@@ -74,7 +75,7 @@ tools you want share a name, that is one download, not two. Each is linked here 
 | Class Visibility | [Guide](14-class-visibility.md){: .g-ok} | %%VIDEO_CLASS_VISIBILITY%% | Synth multiplex<br>project |
 | Channel Names Viewer *(shown in Sara McArdle’s session)* | [Guide](11-channel-names-viewer.md){: .g-ok} | %%VIDEO_CHANNEL_NAMES_VIEWER%% | Either multiplex download |
 | Dialog Position Manager | [Guide](12-dialog-position-manager.md){: .g-ok} | %%VIDEO_DIALOG_POSITION_MANAGER%% | *none needed* |
-| Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md){: .g-wip} | %%VIDEO_TILES_TO_PYRAMID%% | *not ready yet* |
+| Tiles to Pyramid | [Guide](13-tiles-to-pyramid.md){: .g-wip} | %%VIDEO_TILES_TO_PYRAMID%% | Tile folders |
 
 Take whichever of these you came for. The [extension index](extensions.md) groups them into
 four tracks.
