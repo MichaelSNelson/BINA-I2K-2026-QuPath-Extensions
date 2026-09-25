@@ -332,11 +332,11 @@ Cell types alone do not tell you much. **Where** they sit does. In this image, T
 concentrated in a band just outside each tumor nest, the computational version of a
 pathologist's read on whether an immune response has reached the tumor.
 
-6. Run **neighborhood enrichment** on your classified cells. It is a tick-box —
+1. Run **neighborhood enrichment** on your classified cells. It is a tick-box —
    `Neighborhood enrichment + Moran's I` — in the Run Clustering dialog, so the easiest route is
    to turn it on before you cluster. After the fact, use
    `Explore & spatial > Spatial statistics on existing clusters...` instead.
-7. Read the matrix for four specific pairs, and predict each before you look:
+2. Read the matrix for four specific pairs, and predict each before you look:
 
    | Pair | Expect | Because |
    |---|---|---|
@@ -345,15 +345,15 @@ pathologist's read on whether an immune response has reached the tumor.
    | tumor ↔ fibroblast | strongly **negative** | they occupy different compartments |
    | tumor ↔ CD8 T | positive | cytotoxic T cells sit at the nest boundary |
 
-8. **Now the control that makes it a result.** Check tumor ↔ *helper* T. It should be
+3. **Now the control that makes it a result.** Check tumor ↔ *helper* T. It should be
    markedly weaker than tumor ↔ CD8 T. The enrichment is specific to the cytotoxic subset,
    which is exactly why Part A's k = 5 merge would have destroyed this finding: the two
    T-cell populations would have been averaged into one indifferent number.
-9. Run **Ripley L** per type: tumor and B cells clustered, fibroblasts dispersed. It is one of
-   four tick-boxes under **Spatial statistics**, in the same two places as step 6. Read the
+4. Run **Ripley L** per type: tumor and B cells clustered, fibroblasts dispersed. It is one of
+   four tick-boxes under **Spatial statistics**, in the same two places as step 1 of this part. Read the
    curve against the dashed diagonal: above it means clustered at that radius, below means
    dispersed.
-10. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
+5. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
     statistic says.
 
     > **Taking the numbers with you.** The Geary's C, Ripley and co-occurrence tabs each have
@@ -368,9 +368,9 @@ pathologist's read on whether an immune response has reached the tumor.
 Add **`tme_06`** (immune-rich) and **`tme_07`** (immune-poor) to the project, detect cells in
 both, and cluster all three images **jointly**, about 4,200 cells, still fast.
 
-11. Open the new **Composition by area** tab. Each image is an independent area, so you get
+1. Open the new **Composition by area** tab. Each image is an independent area, so you get
     one row per image.
-12. The contrast is stark, and it is the point:
+2. The contrast is stark, and it is the point:
 
     | | `tme_00` | `tme_06` | `tme_07` |
     |---|---|---|---|
@@ -383,14 +383,14 @@ both, and cluster all three images **jointly**, about 4,200 cells, still fast.
     desert**, where the tumor sits in fibroblast-rich stroma with almost no lymphoid presence.
     It is the same axis used to stratify patients for immunotherapy: inflamed tumors tend to
     respond; deserts tend not to.
-13. Note what `tme_07` is *missing*. Zero B cells, no follicles. An absent population is easy
+3. Note what `tme_07` is *missing*. Zero B cells, no follicles. An absent population is easy
     to overlook in a UMAP, where it simply is not drawn, and obvious in a composition table.
-14. **Why "independent areas" is not a technical detail.** These are three separate images. If
+4. **Why "independent areas" is not a technical detail.** These are three separate images. If
     a spatial graph were allowed to join them, cells at the edge of one image would acquire
     "neighbors" from another, a neighborhood relationship that exists only because of how
     files were laid out. QP-CAT guarantees no graph edge crosses an area boundary. The same
     applies to TMA cores on one slide, which is the case you are far more likely to meet.
-15. If your project has annotation classes (Tumor, Stroma, …), the **Composition by class** tab
+5. If your project has annotation classes (Tumor, Stroma, …), the **Composition by class** tab
     pools clusters by class across every image and area, the way to compare compartments that
     share a spatial graph.
 
@@ -398,11 +398,11 @@ both, and cluster all three images **jointly**, about 4,200 cells, still fast.
 
 Best done at home; clustering all eight images is ~11,400 cells.
 
-16. `tme_02`, `tme_04` and `tme_05` carry deliberate intensity offsets (×0.8, ×1.2, ×0.85),
+1. `tme_02`, `tme_04` and `tme_05` carry deliberate intensity offsets (×0.8, ×1.2, ×0.85),
     a synthetic staining-day effect.
-17. Cluster all eight jointly, **without** correction. Cells of one type from the offset images
+2. Cluster all eight jointly, **without** correction. Cells of one type from the offset images
     split off into their own clusters: you have discovered your slide scanner, not biology.
-18. Re-run **with Harmony**. The same cell type should now cluster together across all eight
+3. Re-run **with Harmony**. The same cell type should now cluster together across all eight
     images.
 
     > **Before any second run, click `Deselect QPCAT` in the Measurements list.** The first run

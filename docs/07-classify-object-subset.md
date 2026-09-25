@@ -136,7 +136,7 @@ detections — so until something classifies a cell, the extension has no classe
 A classifier that is right about everything teaches you nothing. So first, classify the cells
 with a deliberately crude method that gets most of them right and a few of them wrong.
 
-4. Run the imperfect classifier: **`Automate > Project scripts > classify_with_marker_gate`**,
+1. Run the imperfect classifier: **`Automate > Project scripts > classify_with_marker_gate`**,
    then **Run**. It is bundled with the project, so there is nothing to download.
 
    It thresholds each marker channel and assigns a cell type from which markers are above
@@ -144,13 +144,13 @@ with a deliberately crude method that gets most of them right and a few of them 
    cell, and at the edge of a tumor nest that expansion picks up PanCK signal from the tumor
    cell next door — so **T cells touching a tumor nest get called `tumor`**.
 
-5. The cells are now colored by predicted class. Zoom into the boundary of a tumor nest and
+2. The cells are now colored by predicted class. Zoom into the boundary of a tumor nest and
    look at the cells there against the ground-truth dots underneath. Some disagree — the
    arrows below mark three of them.
 
    <img src="../images/classify-object-subset/gate-errors-at-nest-boundary.png" alt="A tumor nest boundary at high zoom. Most cells are classified correctly, but arrows mark a green helper T cell and a magenta CD8 T cell sitting against the nest edge, and an orange macrophage, each outlined as the wrong class" width="820">
 
-6. Score it: **`Automate > Project scripts > check_against_ground_truth`**, then **Run**.
+3. Score it: **`Automate > Project scripts > check_against_ground_truth`**, then **Run**.
    It needs no extension.
 
    You get three things: a text confusion matrix, an **overall accuracy** line, and the
@@ -163,7 +163,7 @@ with a deliberately crude method that gets most of them right and a few of them 
    > whichever panel you are looking at.
    >
    > If both are genuinely empty, the usual causes are: the script was opened but never
-   > **Run**; or the cells were not classified first, so step 4 needs doing before this one.
+   > **Run**; or the cells were not classified first, so the first step of Part A needs doing before this one.
 
    Read down the `tumor` column of the printed matrix: **14 CD8 T cells, 9 macrophages, 3
    helper T cells and 1 B cell** were called tumor. That is **27 cells wrongly in the tumor
@@ -179,10 +179,10 @@ What this part does is get the same error out of the extension as a **single num
 in Part C you can watch that number move. The dialog is a measuring instrument before it is a
 repair tool.
 
-7. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
-8. Set **Classifier** to `cell_type_classifier`. Set **Object source** to **Custom filter**.
-9. In the **Class filter** list, tick **`tumor`** only.
-10. Read the live count: it should say **"439 of 1,530 objects will be classified."**
+1. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
+2. Set **Classifier** to `cell_type_classifier`. Set **Object source** to **Custom filter**.
+3. In the **Class filter** list, tick **`tumor`** only.
+4. Read the live count: it should say **"439 of 1,530 objects will be classified."**
 
     **439 is the gate's tumor call. The truth is 412.** The extra 27 are the boundary cells
     from the matrix above. You have now measured the error with the same dialog you are about
@@ -203,9 +203,9 @@ matching cells in the viewer, if you would rather see them than count them.
 
 ### Part C: repair only the cells that are wrong
 
-11. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the gate
+1. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the gate
     called tumor — the correct ones and the mistaken ones together — and nothing else.
-12. Click **Apply**. The confirmation reads **"439 objects classified, 27 changed."**
+2. Click **Apply**. The confirmation reads **"439 objects classified, 27 changed."**
 
     <img src="../images/classify-object-subset/apply-notification.png" alt="A QuPath notification headed Subset classification complete, reading: 439 objects classified, 27 changed. Open the Workflow tab to copy this operation as a script" width="700">
 
@@ -213,7 +213,7 @@ matching cells in the viewer, if you would rather see them than count them.
     CD8 T cells, 9 macrophages, 3 helper T cells and 1 B cell the gate had pushed into the
     tumor class. The other 412 it looked at were already right and were left alone.
 
-13. Now measure again. Reopen the dialog, set **Object source** to **Custom filter**, tick
+3. Now measure again. Reopen the dialog, set **Object source** to **Custom filter**, tick
     **`tumor`** only, and read the live count.
 
     <img src="../images/classify-object-subset/dialog-after-repair.png" alt="The filter panel after the repair, with only tumor ticked, and the live count now reading 412 of 1,530 objects will be classified" width="640">
@@ -231,9 +231,9 @@ matching cells in the viewer, if you would rather see them than count them.
 
 The gate leaves a few cells matching no marker rule at all, and those stay unclassified.
 
-14. Reopen the dialog, and in the **Class filter** tick **Include unclassified** and nothing
+1. Reopen the dialog, and in the **Class filter** tick **Include unclassified** and nothing
     else. The count shows how many cells the gate could not call.
-15. Apply the trained classifier to just those. This is the "stacked classifiers" pattern:
+2. Apply the trained classifier to just those. This is the "stacked classifiers" pattern:
     a first pass that is confident about the easy cases, a second that mops up the rest,
     with each pass leaving the other's work alone.
 
@@ -246,9 +246,9 @@ The gate leaves a few cells matching no marker rule at all, and those stay uncla
 
 Every Apply is recorded so the same operation can be re-run across a whole project.
 
-16. Open `Automate > Show workflow command history`. Look for the step named
+1. Open `Automate > Show workflow command history`. Look for the step named
     **`Apply classify object subset`** — one for each time you clicked Apply.
-17. Get it into Groovy, one of two ways:
+2. Get it into Groovy, one of two ways:
 
     - **Copy the step** out of the history and paste it into the script editor. Use this when
       you want that one operation and nothing else.

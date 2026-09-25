@@ -164,24 +164,24 @@ The same zip serves the [Classify Object Subset](07-classify-object-subset.md) a
 
 *This is why Part A asked you to export only one image.*
 
-7. Get the **Groovy script** for that export. QuIET does not write one into the output
+1. Get the **Groovy script** for that export. QuIET does not write one into the output
    folder — on Step 3, click **Save Script...** and save it somewhere you can find. (It is also
    recorded in `Automate > Show workflow command history` on the exported image.)
-8. Open QuPath's script editor, `Automate > Script editor` (see below), paste it in, and run
+2. Open QuPath's script editor, `Automate > Script editor` (see below), paste it in, and run
    it against a *different* image in the project.
 
    <img src="../images/quiet/script-editor.png" alt="QuPath's Automate menu open, with Script editor highlighted" width="580">
-9. Confirm you get the same treatment applied to new data with zero clicks.
+3. Confirm you get the same treatment applied to new data with zero clicks.
 
 ### Part C: a multi-panel figure
 
-10. `Extensions > QuIET > Panel / Montage Export...`
-11. Select the images you want as panels and apply one **recipe** — one set of rendering
+1. `Extensions > QuIET > Panel / Montage Export...`
+2. Select the images you want as panels and apply one **recipe** — one set of rendering
     settings — to all of them, so every panel is treated identically. The project has eight
     images; pick four and lay them out 2×2. `tme_06` (immune-rich) and `tme_07` (immune-poor)
     are the two most different, so include those. Add captions — the caption is the full
     image name, `tme_06.tif`, extension included, so you can tell versions of an image apart.
-12. Export and open the montage. The one below was made from four of these images, so yours
+3. Export and open the montage. The one below was made from four of these images, so yours
     should look similar, with as many panels as you selected. What matters is that every panel
     got the same recipe and its own scale bar.
 
