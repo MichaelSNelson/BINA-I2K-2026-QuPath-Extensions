@@ -65,18 +65,6 @@ the catalog URL, are in the [setup guide](setup.md).
 
 ## Try it yourself
 
-**The cells in this project ship unclassified.** The six type names you may have met in other
-walkthroughs — `tumor`, `fibroblast`, `cd8_t`, `helper_t`, `b_cell`, `macrophage` — belong to the
-ground-truth *point annotations*, not to the cells. So if you open the panel right now you get a
-single `Unclassified` row and an empty components list, which looks like a broken extension.
-
-Either way there is nothing for a component list to do: six names that never overlap is a job
-for the built-in class list. The walkthrough therefore starts by **changing the shape of the
-data** — one script labels every cell by the markers it is actually positive for.
-
-Every number below is from **`tme_00.tif`** and was produced by the run this guide describes.
-On another image the numbers differ.
-
 ### 1. Get the data
 
 **Download:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
@@ -110,9 +98,10 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 4. Paste into the Script Editor and press **Run** (`Run > Run`, or **Ctrl+R** / **Cmd+R** on
    macOS).
 
-For every cell, the script decides whether it is positive or negative for each of seven markers.
-Any cell can contain any combination of markers, or none at all. Each cell is classified based on
-the markers for which it is positive. Cells positive for no markers are called `Unclassified`.
+> For every cell, the script decides whether it is positive or negative for each of seven
+> markers. Any cell can contain any combination of markers, or none at all. Each cell is
+> classified based on the markers for which it is positive. Cells positive for no markers are
+> called `Unclassified`.
 
 <details markdown="1">
 <summary><b>The markers, and how the names are built</b></summary>
@@ -168,8 +157,8 @@ installed.)
 
 <img src="../images/class-visibility/toolbar-button.png" alt="Two QuPath toolbar buttons side by side: on the left the Channel Names Viewer button, three stacked stripes in red, green and blue, and on the right the Class Visibility button, an open blue eye with a small grey triangle at its lower right" width="125">
 
-**When you first open the panel, all objects will be hidden.** By default, visibility is set to
-**`Show only checked classes`**, and no classes are checked.
+> **When you first open the panel, all objects will be hidden.** By default, visibility is set
+> to **`Show only checked classes`**, and no classes are checked.
 
 > **The check box at the top of the classes list is haloed in blue.** Clicking it checks
 > **every** class, which puts every object back on screen. Leave it alone for now — step 5
@@ -267,8 +256,8 @@ where the class names may be different.
 
 Switch on the **`Spread`** column. In the component list, on the right side of the panel under
 **Anything containing these components**, click the small **+** button at the right end of the
-**column-header row** (the row reading `Component` and `Total`, not the caption above it), then
-tick `Spread`.
+**column-header row** (the row reading `Component` and `Total`, not the caption above it; it is
+boxed in red in the picture below), then tick `Spread`.
 
 > That menu's first entry is blank and does nothing. It is the check-box column, which has no
 > name to show and is not allowed to hide. Ignore it.
@@ -291,10 +280,6 @@ component, CD3, tops out at 9 of 20, which is 45%. A real hi-plex panel that app
 `positive` or `Cell` to every class name produces a component sitting in 19 of 20 classes — that
 one bolds, and the status strip names it. This dataset has no such component, because the script
 builds names from marker names alone.
-
-**Test that, rather than taking it on trust.** Change `COMPARTMENT` in the script to
-`["Ki67": "Nucleus"].withDefault { "Cytoplasm" }` and re-run. Cytoplasm excludes the nuclear
-hole and is documented as the cleaner of the two, and there should be fewer multi-marker classes.
 
 ### 8. Save a preset, and take it to another image
 
