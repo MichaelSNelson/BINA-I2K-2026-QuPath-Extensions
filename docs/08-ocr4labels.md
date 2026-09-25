@@ -69,14 +69,10 @@ file names in the table above, or use the links inside QuPath:
 - **From inside QuPath.** `Extensions > OCR for Labels > OCR Settings...`. The
   **Required Downloads** section has a link for each file (`osd.traineddata` sits under its
   *Optional File* subheading), and shows **[Not found]** beside each until it can see them
-  (see below).
+  (the red box below). Once the file is in a folder, set **Tessdata Path** to that folder (the
+  blue box) and click **OK**. The [Not found] markers clear once the path is right.
 
-  <img src="../images/ocr/settings-download.png" alt="The OCR Settings dialog, with the eng.traineddata row highlighted and marked Not found" width="420">
-
-  Once the file is in a folder, set **Tessdata Path** to that folder (see below) and click
-  **OK**. The [Not found] markers clear once the path is right.
-
-  <img src="../images/ocr/settings-path.png" alt="The same dialog with the Tessdata Path field highlighted and empty" width="420">
+  <img src="../images/ocr/settings.png" alt="The OCR Settings dialog. Under Required Downloads, the eng.traineddata row is outlined in red and marked Not found; the osd.traineddata row below it is also marked Not found. Under Tessdata Location, the empty Tessdata Path field is outlined in blue, with a Browse button beside it" width="420">
 
 Either way, put the file in one folder — anywhere you like, say `Documents/tessdata` — then set
 **Tessdata Path** to that folder and click **OK**.
