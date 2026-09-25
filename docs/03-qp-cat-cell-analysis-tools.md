@@ -63,15 +63,6 @@ worth the name:
 - **Cellular neighborhoods**: recurring tissue niches derived from the cell-type
   composition around each cell.
 
-**Tell you when the run was useless** *(new in 0.11.0)*
-
-A clustering run could previously finish, draw every plot, and still be worthless, with one cluster
-holding nearly every cell, with the only clue being a viewer showing a single color. QP-CAT now
-checks the result and says so, at the top of the Results window and in `*_RUN_INFO.txt`, with
-advice specific to the algorithm you chose. In the same release, cells an algorithm could not
-place are reported as **noise** rather than counted as a cluster: a run finding one population no
-longer claims "3 clusters", and the per-area tables no longer carry a `Cluster -1` column.
-
 **Keep separate tissue separate** *(new in 0.10.0)*
 
 - **Independent areas.** Cells in physically separate pieces of tissue (different TMA cores,
