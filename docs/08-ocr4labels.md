@@ -192,8 +192,14 @@ share its design.
     > what you would do on arriving at a new set of slides from a different lab.
 
 ### Part D: the two-minute experiment worth doing
-Go back to the `histology@lji.org` label. Tick **Enhance**, set **Scope** to *Drawn Regions*,
-and **Rescan Regions**. Compare against the unenhanced read.
+
+Go back to the `histology@lji.org` label. Tick **Enhance**, set **Scope** to *Drawn Regions*, and
+**Rescan Regions**. The address line, which read correctly before, now comes back as something
+like `histoloawalli.org`: the `@` is the densest glyph on the label, and Enhance's hard
+black-or-white threshold closes the gap between the `a` and its ring. Untick **Enhance** and
+rescan to get the correct read back. The option sounds helpful and was once recommended for
+faded labels, and it makes things worse. OCR is one of the few places you can check a setting
+like this, because you know what the right answer is.
 
 ### What to notice
 
@@ -201,24 +207,8 @@ and **Rescan Regions**. Compare against the unenhanced read.
   out differently and it reads whatever sits at those coordinates, usually nothing, without
   complaining. Grouping slides by label design is the real unit of work in a batch OCR run,
   and it is why the tool saves templates rather than one global setting.
-
 - Region templates beat full-image OCR by a wide margin when labels are laid out consistently
   which, within one institution, they nearly always are.
-- **"Enhance image contrast" made OCR worse, and it took measurement to find out.** Its adaptive
-  threshold forces every pixel to pure black or white before Tesseract sees it, discarding the
-  smooth edges the classifier depends on. Dense glyphs suffer first. On this very slide, `histology@lji.org` came
-  back as `histoloawalli.org`, because `@` is the densest glyph in ASCII and hard thresholding
-  closes the gap between the `a` and its ring. Across a blur series the untouched image read
-  correctly at every level while the enhanced one degraded steadily. Tesseract already
-  thresholds internally, and does it better. It is now off by default.
-- **The generalisable lesson:** the option was called *Enhance*, it was recommended for faded
-  labels, and it was wrong. A pre-processing step that sounds helpful is a hypothesis, not a
-  fix, and OCR is one of the few places where you can actually test it, because you know what
-  the answer should be.
-- **If a read is still wrong, suspect the image before the settings.** A label image cropped
-  through the descenders turns `g` into `a`, `y` into `v`, and `j` into `i`, which is why a real
-  label kept coming back ending in `.ora`. No amount of processing recovers pixels that were
-  never captured.
 - The review step is not optional. OCR on a photographed label is *good*, not *correct*.
 
 ---
