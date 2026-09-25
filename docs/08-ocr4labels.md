@@ -118,8 +118,7 @@ file, and the extension pulls it out for you in step 1. This is what it will sho
 
 <img src="../images/ocr/label-key.png" alt="Left, the photographed slide label: four lines of printed text, histology at lji dot org, 610 TOMO, 2020-11-14 and H and E, with a square 2D barcode below them, each marked with a numbered blue badge. Right, a key: 1 the lab's contact address, 2 the specimen identifier or case ID, 3 the date, 4 the stain, 5 the 2D barcode, read by the barcode scanner rather than OCR. A note says a full-image scan reads all of it and Part C builds a template from items 2 and 5 only" width="900">
 
-1. With that slide open from Part A, run
-   `Extensions > OCR for Labels > Run OCR on Label`.
+1. Run `Extensions > OCR for Labels > Run OCR on Label`.
 2. The dialog lists all project images on the left. Select the same H&E slide you opened —
    `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`.
 3. Set **Mode** to *Auto (default)*. In 0.4.3 that is where the dropdown opens; on an older
