@@ -237,14 +237,24 @@ of cells it would show:
 You can compare the two before choosing. Neither number appears on any single row: each
 component's `Total` is that component alone.
 
+<img src="../images/class-visibility/any-vs-all-boxed.png" alt="The Class visibility window with CD3 and CD8 both checked in the components list. Below that list, outlined in red, the section Checked components combine as shows two options: Any, CD3 or CD8 or both, 388 objects, which is selected, and All, CD3 and CD8 together, 187 objects. In the classes list the CD3 and CD8 rows show greyed-out ticks and eight other rows carry a blue ring. Active rules reads 2" width="900">
+
 `Any` is selected by default, but the panel remembers whichever you last chose, so glance at
 which option is selected before you read any counts. On `Any`, this image barely changes: you go from
 386 cells to 388 — 187 of the 189 CD8-positive cells are also CD3-positive,
 so CD8 sits almost entirely inside CD3.
 
+<img src="../images/class-visibility/any-cd3-cd8.png" alt="The tme_00 image with CD3 and CD8 checked and Any selected. Most cells are plain white outlines on black; the visible cells, outlined in teal and green with a few in purple, are scattered along the edges of the round tumor nests and through the stroma" width="700">
+
+*`Any`: every cell carrying CD3 or CD8.*
+
 Now switch to `All`. 201 cells leave the screen, you are looking at the CD8 T cells, and **the
 rings in the classes list narrow from 10 rows to 4** — under `All`, only classes carrying every
 checked component are highlighted.
+
+<img src="../images/class-visibility/all-cd3-cd8.png" alt="The same view with All selected instead. The teal outlines are gone; only the green-outlined cells and a few purple ones remain, in the same places along the tumor nests and through the stroma" width="700">
+
+*`All`: only the cells carrying both. The teal CD3-only cells have gone.*
 
 **There is no class row that does this.** QuPath evaluates its selected-class set as a logical <code>OR</code>,
 so the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across separate names. The
