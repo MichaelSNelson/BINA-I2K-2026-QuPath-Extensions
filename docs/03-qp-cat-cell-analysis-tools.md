@@ -432,13 +432,37 @@ should detect close to 1,530 cells on `tme_00`.
    underneath: a lot of noise spread evenly means change the *algorithm*; almost no noise beside
    one dominant cluster means change the *cluster selection*.
 
-   **What to look for, rather than what to expect.** HDBSCAN chooses its own cluster count, and
-   it may split or merge differently from your k = 6 run. Read Marker Fingerprints and compare
-   against the ground truth as you did before, then ask the question this route exists for: *did
-   letting the data choose recover the CD8 / helper split that KMeans spent its spare cluster
-   elsewhere?* Note that with **Method: None** the results window has no 2D embedding tab —
-   nothing new was computed to plot. The **3D View** tab still works, because it reads the UMAP
-   columns off the cells.
+   **What it looks like when it works** — click any panel for full size:
+
+<div class="shots" markdown="0">
+<figure>
+<img src="../images/qp-cat/HDBSCAN_umap3d.png" alt="The 3D View tab showing seven cleanly separated point clouds in different colours, one per cluster, with the class list reporting 7 clusters over 11,421 cells and no noise.">
+<figcaption><b>Seven separated lobes, no noise.</b> HDBSCAN found the count itself. This is
+what Leaf selection buys you: the lobes, rather than their common parent.</figcaption>
+</figure>
+<figure>
+<img src="../images/qp-cat/HDBSCAN_markerfingerprints_useless.png" alt="The Marker Fingerprints tab. Every cluster card lists 3DUMAP1, 3DUMAP2 and 3DUMAP3 as its defining features, with no marker names anywhere.">
+<figcaption><b>And the bill for it.</b> Every card is described by <code>3DUMAP1/2/3</code>,
+because those are the only three columns the run saw. No marker names, so no phenotype.</figcaption>
+</figure>
+<figure>
+<img src="../images/qp-cat/HDBSCAN_RepresentativeCells.png" alt="The Representative cells tab, five image patches per cluster. Cluster 1's cells are brown elongated spindles; clusters 0 and 3 are cyan-ringed round cells of different sizes; cluster 2 is blue-ringed.">
+<figcaption><b>The clusters are real anyway.</b> Cluster 1 is unmistakably spindle-shaped,
+cluster 2 blue-ringed. Read the clusters by eye here, or re-run over markers to name them.</figcaption>
+</figure>
+</div>
+
+   **What to look for, rather than what to expect.** Your run may split or merge differently.
+   Read Marker Fingerprints and compare against the ground truth as you did before, then ask
+   the question this route exists for: *did letting the data choose recover the CD8 / helper
+   split that KMeans spent its spare cluster elsewhere?*
+
+   **The middle panel is the honest cost of this route, and it is not a bug.** Clustering on
+   three embedding columns means the marker rankings can only rank those three columns. If you
+   need phenotypes, name the clusters from **Representative cells**, or cross-check against the
+   marker-space run from step 2. Note also that with **Method: None** the results window has no
+   2D embedding tab — nothing new was computed to plot. The **3D View** tab still works,
+   because it reads the UMAP columns off the cells.
 
    > **Worth reading before you rely on this:**
    > [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html).

@@ -90,6 +90,15 @@ img.icon{height:1.15em; width:auto; border:0; border-radius:0; vertical-align:-.
 .card p{margin:0; font-size:.92rem; color:#E3E9FB; line-height:1.5}
 .card p + p{margin-top:.5rem}
 .card a{text-decoration:underline; text-underline-offset:2px}
+/* Screenshot strip: thumbnails side by side, each click-to-full-size via the
+   lightbox below (it arms any image displayed smaller than its natural size). */
+.shots{display:grid; grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
+  gap:.9rem; margin:1rem 0 1.3rem}
+.shots figure{margin:0}
+.shots img{display:block; width:100%; height:auto; border:1px solid var(--hair);
+  border-radius:8px; background:var(--panel)}
+.shots figcaption{margin:.4rem 0 0; font-size:.84rem; color:var(--mut); line-height:1.45}
+.shots figcaption b{color:var(--ink); font-weight:600}
 img.icon-lg{height:1.7em; width:auto; border:0; border-radius:0; vertical-align:-.45em}
 .footer{
   max-width:56rem; margin:0 auto; padding:0 1.25rem 4rem;
