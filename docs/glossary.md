@@ -50,7 +50,7 @@ to our extensions — it is ordinary QuPath vocabulary.
 | **Metadata** | Information *about* an image rather than the pixels: case ID, stain, scanner, date. In QuPath it is a set of key-and-value pairs per image, where the key is the field name (`Stain`) and the value is its content (`H&E`) |
 | **Tile** | One camera field of view. A microscope photographs a slide as a grid of overlapping tiles, which are then stitched into one large image |
 | **Stitching** | Joining those tiles back into a single image, using recorded stage positions and, optionally, the image content itself |
-| **Pyramid** | A large image saved at several zoom levels at once, so it opens and pans quickly. OME-TIFF and OME-ZARR are two file formats that store one |
+| **Pyramid** | A large image saved at several zoom levels at once, so it opens and pans quickly. OME-TIFF and OME-Zarr are two file formats that store one |
 | **Script** | A text file of QuPath commands. Several tools here write one for you; you do not need to read or write scripts to use them. QuPath's scripts are in a language called Groovy |
 
 ---

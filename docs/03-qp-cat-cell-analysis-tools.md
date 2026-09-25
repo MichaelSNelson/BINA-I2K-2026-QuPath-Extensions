@@ -451,9 +451,39 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
   this kind of data, not a verdict on the tissue: on a 304,083-cell TMA it gave one population plus
   22% noise where KMeans over the identical measurements separated the cores 91–99% cleanly.
   Evenly-spread noise is the tell. Try another algorithm on the same measurements before
-  concluding your data lack structure.
+  concluding your data lack structure. One big cluster with *almost no* noise is a different
+  problem — see the two-step recipe below.
 - Ground truth is a luxury you will not have again. Use this dataset to learn what a *correct*
   result looks like, so you can recognize a wrong one on data where nobody can tell you.
+
+<details>
+<summary><strong>Optional: cluster on the UMAP instead of on the markers</strong></summary>
+
+QP-CAT normally clusters in full marker space and computes the embedding only so you have
+something to look at. The popular alternative — reduce first, then cluster the reduced
+coordinates — is two runs rather than one setting:
+
+1. Run clustering (or **Map cells in 2D / 3D**) with UMAP, which writes `QPCAT 3D UMAP1`,
+   `2` and `3` onto every cell.
+2. Run clustering again. In the measurement picker press **Select none**, then tick only
+   those three columns. Set **Algorithm: HDBSCAN**, **Cluster selection: Leaf**, and
+   **Normalization: None**.
+
+**The two settings in bold are not optional.** With the defaults this returns one cluster
+holding almost every cell even when the lobes are plainly separated in the 3D view —
+measured here at 97.0% of 107,282 cells, with 0.9% noise. *Excess of mass*, HDBSCAN's
+default way of reading clusters off its density tree, keeps the most persistent cluster and
+so prefers the lobes' common parent; **Leaf** takes the lobes. And z-scoring three UMAP
+axes separately stretches the very geometry the density estimate is measured in.
+
+Worth knowing before you rely on it: the UMAP authors themselves caution that UMAP "does
+not completely preserve density" and "can also create false tears in clusters", so
+clustering the embedding "is somewhat controversial, and should be attempted with care"
+([Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html)).
+Treat the cluster count as a starting point and cross-check against a full-marker-space
+run.
+
+</details>
 
 ---
 

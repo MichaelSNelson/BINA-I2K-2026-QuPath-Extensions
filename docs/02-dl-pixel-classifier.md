@@ -75,14 +75,19 @@ backed by a real segmentation network.
 
 ## Hardware reality check
 
-> These models were originally trained on GPU clusters. On a workstation you hit limits fast.
+> What you can train is decided by which encoder you pick, and they span five orders of
+> magnitude. Tiny U-Net trains from scratch at 10k–300k parameters. The ImageNet- and
+> histopathology-pretrained backbones (ResNet, EfficientNet) sit in the middle. The pathology
+> foundation models are another matter: Virchow is 632M parameters, H-optimus-0 and Midnight
+> are 1.1B each. Those were trained on GPU clusters and are demanding even to fine-tune.
 >
 > - **Without a dedicated NVIDIA GPU (CUDA), training is impractical.** Apple Silicon (MPS)
 >   can take 1–2+ hours *per epoch* on larger models. CPU training is for toy experiments only.
 > - Larger model + larger tiles + larger batch = more VRAM. Exceeding it can hang or crash
 >   QuPath, occasionally requiring a force-quit.
-> - **Start small:** ResNet-18 or ResNet-34, 256 px tiles, batch size 2–4. Scale up only if
->   your hardware is comfortable.
+> - **Start small:** Tiny U-Net if you have enough annotation to train from scratch, ResNet-18
+>   or ResNet-34 if you want pretrained weights. 256 px tiles, batch size 2–4. Scale up only
+>   if your hardware is comfortable.
 
 This is why **training is a demo today and inference is the hands-on part**. Workshop laptops
 are not going to train a transformer in twenty minutes, and pretending otherwise wastes your
@@ -118,6 +123,11 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 The extension is at `Extensions > DL Pixel Classifier`.
 
 
+<img src="../images/dl-pixel-classifier/menu.png" alt="QuPath's Extensions menu open on DL Pixel Classifier, showing Train and Apply at the top, then Select Overlay Model, Toggle Prediction Overlay and Manage Classifiers, with the Utilities submenu expanded to show Python Console, MAE Pretrain Encoder, Calibrate model to current image, Load Saved Training Area Issues and the environment controls" width="720">
+
+Note the **Utilities** submenu — pretraining, AdaBN calibration and the environment controls
+live there, not on the top level.
+
 1. `Extensions > DL Pixel Classifier`. Open the extension and confirm the Python environment
    reports as ready.
 2. **Load the provided pre-trained model** rather than training one.
@@ -143,13 +153,113 @@ The extension is at `Extensions > DL Pixel Classifier`.
 
 ---
 
+## The training loop (demo)
+
+Training is a demonstration today rather than a hands-on step — see the hardware note above.
+These are the four stages worth watching. Each is deliberately brief: what is *specific to this
+extension* is described here, and the method behind it is linked rather than explained.
+
+### 1. Create a classifier
+
+`Extensions > DL Pixel Classifier > Train DL Pixel Classifier...`
+
+Draw sparse brush annotations for each class, load the classes into the dialog, pick an
+architecture, and train. The dialog opens in a simplified Basic view; **Show All Settings**
+exposes everything else.
+
+Two things here are unlike QuPath's built-in pixel classifier: your annotations are a
+*sampler*, not a dataset, so you mark a few representative regions rather than labelling
+exhaustively; and one run can train across **several project images** at once.
+
+→ [Training Guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/TRAINING_GUIDE.md)
+
+### 2. Review the training data the model disagrees with
+
+**Review Training Areas...**, in the training progress dialog when a run finishes.
+
+Your first annotations will be wrong somewhere, and this is how you find out where. The model
+is run back over every training tile and the tiles are ranked by loss, so the ones it fought
+hardest with rise to the top. A confusion matrix tab shows which class is being mistaken for
+which; click a cell to jump straight to the tiles where that specific confusion happens.
+**Apply Annotation Adjustment** can then push corrections back into your annotations, one
+class-to-class transition at a time, with a live preview.
+
+> **Do it before you close the dialog.** Training tiles are deleted when the progress dialog
+> closes. Save the session first if you want to reopen it later via
+> `Extensions > DL Pixel Classifier > Utilities > Load Saved Training Area Issues...`.
+
+This is the stage people skip, and it is usually worth more than a bigger model.
+
+→ [Training Guide, Step 9](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/TRAINING_GUIDE.md#step-9-review-training-areas-optional)
+
+### 3. Pretrain on your own images
+
+`Extensions > DL Pixel Classifier > Utilities > MAE Pretrain Encoder...`
+
+If you have far more unlabelled tissue than annotation time — which is most people — the
+encoder can learn your imagery before it ever sees a label, by reconstructing masked patches
+of your own tiles. You then train the classifier on top of that encoder.
+
+Extension-specific: it runs on your project images, in the embedded environment, with no data
+leaving QuPath. Masked autoencoders themselves are a published method and the guide below
+links onward.
+
+→ [Domain Adaptation Guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/DOMAIN_ADAPTATION_GUIDE.md)
+
+### 4. Adapt a model to a domain shift
+
+*Described only — we have no second-batch data to demonstrate this on today.*
+
+A classifier that worked last month can fail on this month's slides: new scanner, new stain
+lot, different exposure. The extension offers three responses, cheapest first:
+
+- **Calibrate model to current image (AdaBN)** — recomputes BatchNorm statistics on the new
+  image in seconds, no retraining. Try this first; it often recovers most of the loss.
+- **Domain-adaptive MAE** — continue MAE pretraining from the existing encoder on the new
+  images, then fine-tune. For when the shift is too large for AdaBN.
+- **Retrain** — when the new data is genuinely a different problem, not a shifted version of
+  the old one.
+
+The **out-of-distribution check** is what tells you a shift has happened at all, before you
+have trusted a bad result.
+
+→ [Domain Adaptation Guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/DOMAIN_ADAPTATION_GUIDE.md)
+
+---
+
+## Sharing and moving a model
+
+`Extensions > DL Pixel Classifier > Manage Classifiers...`
+
+<img src="../images/dl-pixel-classifier/manage_classifiers.png" alt="The Manage Classifiers dialog: a table of trained classifiers with Name, Architecture, Classes and Created columns, a details panel showing architecture, classes, training info and settings for the selected model, and Delete, Import, Export Descriptor and Export Full buttons along the bottom" width="820">
+
+*The screenshot is from a different project — yours will list only what you have trained.*
+
+Every classifier you train lands here, with the architecture, classes and settings it was
+trained with. Two export buttons, and the difference matters:
+
+- **Export Descriptor...** writes the model's `metadata.json` alone: architecture, classes,
+  normalization, training settings. A few kilobytes, readable as text, and **not runnable**.
+  This is what you attach to a methods section or send someone who asks how you configured a
+  model.
+- **Export Full (with weights)** writes the whole thing, weights included — 500 MB to several
+  gigabytes. This is the one to use when you want the model to actually *run* somewhere else.
+  **Import...** takes that zip; it cannot take a descriptor.
+
+---
+
 ## Going further
 
 - [Domain Adaptation Guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/DOMAIN_ADAPTATION_GUIDE.md)
   covers when to use AdaBN, when to use domain-adaptive MAE, and when you really do need to retrain.
-- Training data for this extension pairs naturally with [QuIET](01-quiet-image-export.md)'s
-  Tiled export, and results pair with the
-  [Confusion Matrix](presented/confusion-matrix.md) extension for a defensible accuracy number.
+- **You do not need to pre-tile anything.** The extension exports its own training patches
+  from your annotations when a run starts, so there is no separate export step to prepare.
+- **Accuracy numbers** for the pixel output come from this extension's own confusion matrix,
+  in *Review Training Areas* above — it is pixel-level, aggregated over the training tiles.
+  The separate [Confusion Matrix](presented/confusion-matrix.md) extension is a different
+  tool for a different job: it evaluates **cell** classifiers by matching detected cells
+  against ground-truth points or regions. Reach for it once you have turned predictions into
+  classified objects, not for the pixel classification itself.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier#readme)

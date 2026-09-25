@@ -64,7 +64,7 @@ QP-CAT fetches a 1.5–2.5 GB Python environment; the DL Pixel Classifier fetche
 | **Dialog Position Manager** | Remembers dialog positions; rescues windows lost with a disconnected monitor | | [Guide](12-dialog-position-manager.md) · [repo](https://github.com/uw-loci/qupath-extension-dialog-manager) |
 | **OCR for Labels** | Slide-label OCR and barcode scanning into project metadata | [extra setup](08-ocr4labels.md#language-data)| [Guide](08-ocr4labels.md) · [repo](https://github.com/uw-loci/qupath-extension-ocr4labels) |
 | **Project Metadata Browser** | Whole-project metadata table with buffered editing and full undo | | [Guide](09-project-metadata-browser.md) · [repo](https://github.com/uw-loci/qupath-extension-project-metadata-browser) |
-| **Tiles to Pyramid** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | | [Guide](13-tiles-to-pyramid.md) · [repo](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
+| **Tiles to Pyramid** | Stitch tile directories into pyramidal OME-TIFF / OME-Zarr | **large download** | [Guide](13-tiles-to-pyramid.md) · [repo](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
 
 
 ### The two that need a large download

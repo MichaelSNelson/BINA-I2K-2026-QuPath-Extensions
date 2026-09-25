@@ -32,10 +32,9 @@ suite of open-source QuPath extensions developed at
 
 > ### ⚠️ This site is still being built
 >
-> Setup, guides and exercises are current and usable now. **Most datasets are linked and ready to
-> download**; the tile set for the stitching exercise is still being prepared. Still to come: the
-> slides and the walkthrough videos. Anywhere you see a `%%PLACEHOLDER%%` instead of a link, that
-> is why.
+> Setup, guides and exercises are current and usable now, and **every dataset is linked and ready
+> to download**. Still to come: the slides and the walkthrough videos. Anywhere you see a
+> `%%PLACEHOLDER%%` instead of a link, that is why.
 > It will all be in place before 29 September.
 
 ## Setup: do this before you travel
@@ -69,7 +68,7 @@ each link goes straight to it.
 | **Track B** — QP-CAT, Cluster 3D Navigator, Channel Names Viewer | **`multiplex-synthetic-data-v1.2.zip`** from [this release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip), the first file under Assets. Not "Source code" | **14 MB** |
 | **Track A or C** — QuIET, Classify Object Subset, Class Distribution | **`multiplex-synthetic-data-demo-project-v1.2.zip`**, [direct link](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip). A ready-made project: cells detected, ground truth, a saved classifier. Unzip, then drag the folder onto QuPath | **20 MB** |
 | **Track D** — OCR for Labels, Project Metadata Browser | **[`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS)** | **244 MB** ⚠️ |
-| **Track D** — Tiles to Pyramid | Still being prepared; nothing to download yet | — |
+| **Track D** — Tiles to Pyramid | **[`Tiles-to-pyramid.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/Tiles-to-pyramid.zip)** — four folders of raw acquisition tiles. Unzip anywhere; you point the extension at a folder inside it rather than opening a project | **459 MB** ⚠️ |
 
 The Drive folder holds four zips and **you want exactly one**: `Scripting Demo.zip` (229 MB,
 the assembled project) for Tracks A and C, or `OCR_Test_Images_LJI.zip` (244 MB) for
@@ -132,7 +131,7 @@ a microscope.
 | 10 | **[Class Distribution](docs/10-class-distribution.md)** | Live charts of annotation and training-class balance | Apache-2.0 |
 | 11 | **[Channel Names Viewer](docs/11-channel-names-viewer.md)** | Always-visible color-coded channel legend. *Shown in Sara McArdle’s earlier session* | Apache-2.0 |
 | 12 | **[Dialog Position Manager](docs/12-dialog-position-manager.md)** | Remembers dialog positions; rescues off-screen windows | Apache-2.0 |
-| 13 | **[Tiles to Pyramid](docs/13-tiles-to-pyramid.md)** | Stitch tile directories into pyramidal OME-TIFF / OME-ZARR | Apache-2.0 |
+| 13 | **[Tiles to Pyramid](docs/13-tiles-to-pyramid.md)** | Stitch tile directories into pyramidal OME-TIFF / OME-Zarr | Apache-2.0 |
 | 14 | **[Class Visibility](docs/14-class-visibility.md)** | Show or hide objects by class, or by one marker inside a combinatorial class name | Apache-2.0 |
 
 ---

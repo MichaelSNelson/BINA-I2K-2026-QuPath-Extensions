@@ -43,11 +43,11 @@ title: Tiles to Pyramid
 | Vectra | Vectra metadata |
 | MicroManager | MMStack or single-plane TIFF series metadata |
 
-**Content-based tile registration** (off by default) positions tiles by correlating the image
-content in their overlap, rather than trusting nominal stage coordinates. It corrects
-backlash, encoder error, and thermal drift. One solve is measured on a reference subdirectory
-and **reused by every angle and channel**, so co-captured images stay registered *to each
-other*, which is what multi-angle and multi-channel work needs.
+**Content-based tile registration** (off by default) places tiles by matching the image content
+where they overlap, instead of trusting the stage. It absorbs backlash, encoder error and
+thermal drift. When one acquisition produced several images of the same scene — channels of a
+multiplex, or angles of a polarization series — the corrections are measured once and applied to
+all of them, so they stay aligned with each other and not just internally.
 
 ### Output
 
@@ -63,15 +63,11 @@ other*, which is what multi-angle and multi-channel work needs.
 - **Multichannel merge**: combine N same-shape single-channel pyramids into one multichannel
   image via a separate `ChannelMerger` step.
 
-**Memory is set by the chunk being written, not by the tile count.** Measured as the smallest
-heap in which the stitch completes (1024 px 16-bit tiles, 10% overlap, OME-TIFF/LZW): **96 MB at
-36 tiles** (32 MP) and **128 MB at 196 tiles** (169 MP) — 5.3× the mosaic for 1.33× the heap.
-The older SparseImageServer path needed 2–4+ GB, and ran out of memory somewhere above a
-thousand tiles, because it held a server per tile rather than reading sub-regions on demand.
-
-Read those as completion floors from a bracketing run on a synthetic single-channel grid, not as
-an `-Xmx` to copy. They say the stitcher's own footprint barely grows with the mosaic; they do
-not say QuPath will run in 128 MB.
+**Memory is capped, and the cap barely moves with the size of the mosaic.** A 32-megapixel
+stitch completes in a 96 MB heap; a 169-megapixel one, five times larger, needs 128 MB. The
+exercises below are 33 MP and 15 MP, so both sit at the bottom of that range. Nothing here
+loads the whole mosaic — the stitcher holds one output chunk at a time and reads each tile's
+overlap on demand, so doubling the tile count costs you almost nothing.
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
@@ -122,29 +118,24 @@ MicroManager writes **one file per position**, with the channels as pages inside
 for thirty-six images. QPSC writes **one folder per channel**, each holding the same four
 positions. Either way you get one output image per channel.
 
-**What you are looking for.** Both panels below are the same join through the same cells, from a
-real 2×2 fluorescence acquisition. In the nominal panel the tiles sit where the stage said they
-were; in the registered panel they sit where the image content says they are. The stage was about
-5 px out — smeared spots and soft filaments on one side, crisp on the other.
+**What you are looking for.** This is one join out of `fluo-cells`, the folder you are about to
+stitch, done both ways. On the left the tiles sit where the stage said they were, and cells are
+cut and shunted sideways at the join. On the right they sit where the image content says they
+are, and the cells run straight through.
 
-| Nominal — stage positions | Registered — measured positions |
-|---|---|
-| <img src="../images/tiles-to-pyramid/stitch_if_nominal.jpg" alt="A join between two tiles placed at the recorded stage positions; the cells look slightly blurred and doubled" width="460"> | <img src="../images/tiles-to-pyramid/stitch_if_registered.jpg" alt="The same join with the tiles placed at measured positions; the cells are sharp" width="460"> |
+<img src="../images/tiles-to-pyramid/join_nominal_vs_registered.png" alt="The same tile join stitched twice. At the stage's positions, cells are visibly cut and offset along a vertical line; at measured positions the same cells run continuously through the join" width="880">
 
-> **Two ways your own output will look different.** These were stitched with **linear
-> feathering**, which blends the overlap so a misregistration reads as blur. The shipped default
-> is *last tile wins*, a hard cut at the boundary, so yours shows an abrupt step instead —
-> same fault, different symptom. Feathering is a QuPath preference, not a dialog field:
-> `Edit > Preferences > Tiles-to-pyramid > Stitching: overlap blending`, where the shipped value
-> is `Last tile wins (sharp, default)`. These panels are also a color merge of three channels;
-> your stitched output opens as separate grayscale channels.
+Both panels are cut from the same coordinates in the two mosaics and scaled identically, so the
+only thing that differs is where the tiles were put. The step is sharp rather than blurred
+because the shipped blend is a hard cut at the boundary; if you would rather it blended, that is
+a QuPath preference — `Edit > Preferences > Tiles-to-pyramid > Stitching: overlap blending` — not
+a field in the dialog. The color here is three channels merged for the figure; your own output
+opens as separate grayscale channels.
 
-**Before you start.** This is the one tool here that runs *before* you have a project:
-it reads a folder of tiles off disk and writes a single image. So there is nothing to open
-first — point it at the tile folder, and open the result afterwards. Output lands **in the
-folder you selected**, beside the tiles.
-
-The extension is at `Extensions > Tiles to Pyramid > Tiles-to-pyramid` — note the item is hyphenated where the submenu is not.
+**There is nothing to set up.** Unlike every other tool here, this one runs before you have a
+project — it reads tiles off disk and writes an image. Open QuPath, go to
+`Extensions > Tiles to Pyramid > Tiles-to-pyramid`, and start at step 1. The stitched files land
+**in the folder you selected**, beside the tiles.
 
 ### Exercise 1 — a MicroManager acquisition
 
@@ -156,9 +147,9 @@ The extension is at `Extensions > Tiles to Pyramid > Tiles-to-pyramid` — note 
    metadata, and a new checkbox appear reading **Merge the 4 channel stitches into one
    multichannel image** — the extension has found four channels inside the files. Leave it
    ticked; it is on by default, and the merged file in step 8 depends on it.
-4. **Clear** the **Stitch sub-folders with text string** field. It is not empty on a first run —
-   it ships holding `20x` — and it remembers whatever you last typed. The MicroManager method
-   ignores it either way.
+4. Leave **Stitch sub-folders with text string** empty. It starts empty, but it remembers
+   whatever you last typed, so clear it if anything is there. The MicroManager method ignores it
+   either way.
 5. **Output format** `OME-TIFF (single file)`, **Compression type** `LZW`, **Downsample** `1`.
    Downsample is remembered between runs, and anything but `1` renames the outputs
    (`385_2x_downsample.ome.tif`).
@@ -309,20 +300,22 @@ register *with each other* — worse than leaving all three on the same imperfec
 
 ### What to notice
 
-- Nominal stage coordinates are a hypothesis. Content-based registration tests it, and the
-  accepted-edge count in the log is how you find out whether it passed.
+- The stage was wrong, and by more than you would guess: up to 12 px here, enough to break a
+  filament across a seam. It is wrong on every microscope; the only question is by how much.
 - Stage axis direction is a property of the microscope, not of the data. Two of the folders in
   this zip need both axes inverted and two need neither, and nothing in the files says which.
-- Reusing one solve across angles and channels is what keeps co-captured images aligned with
-  each other, where re-solving per channel would not.
+- Your channels are measured once, together. DAPI, FITC and TRITC in exercise 2 came off the
+  same four stage positions, so they get one set of corrections and stay lined up on top of each
+  other. Correcting each channel on its own evidence would nudge them apart, and a red dot would
+  stop sitting inside its blue nucleus.
 - Every output carries a `.stitch-info.txt` beside it, recording the method, pixel size, axis
   negation, blending, compression, what registration actually did, and the QuPath, Java and
   extension versions. Copy a methods section from that file, not from memory.
 
 ## Before you plan your own acquisition
 
-Nothing here is needed for the exercises. It matters when you are deciding how to write
-tiles out in the first place.
+<details markdown="1">
+<summary><b>Z-stacks, time series, and the limits worth knowing</b> — only matters when you are deciding how to write tiles out</summary>
 
 Whether Z and time survive stitching depends on **how the input encodes them**:
 
@@ -361,6 +354,8 @@ Directory names must be a `z` or `t` followed by digits and nothing else — `z0
 `t{nn}/z{nn}/` nesting work.
 
 There is no maximum-intensity projection and no flattening; planes are written through as-is.
+
+</details>
 
 ---
 
