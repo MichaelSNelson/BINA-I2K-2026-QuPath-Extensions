@@ -173,7 +173,7 @@ share its design.
 
     | Set | Slides | Label design |
     |---|---|---|
-    | **Brightfield** | `histology@lji_org_610 TOMO…H&E…`, `…MT3B…` | Case ID on line 2, barcode lower-left |
+    | **Brightfield** | the two `histology@lji_org_610 TOMO…` files | Case ID on line 2, barcode lower-left |
     | **IF** | the two `8443_51000000…` files | Two columns, QR top-right, date lower-right |
 
     You built your template on the brightfield H&E slide, so **run the batch over the two
