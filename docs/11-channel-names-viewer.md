@@ -109,9 +109,10 @@ empty folder, and drag in **`tme_00.tif`** (any of the eight will do). Set the i
 
 ### 3. Open the legend
 
-**Ctrl+Shift+C** (**Cmd+Shift+C** on macOS), or the channel-bars toolbar button — the red, green
-and blue stripes, immediately right of the brightness/contrast half-circle. Menu route:
-`Extensions > Channel Names Viewer > Channel Names Viewer...`.
+**Ctrl+Shift+C** (**Cmd+Shift+C** on macOS), or the channel-bars toolbar button: the red, green
+and blue stripes. (Where it sits in the toolbar depends on the order your extensions were
+installed; in the picture below it happens to be next to the brightness/contrast half-circle.)
+Menu route: `Extensions > Channel Names Viewer > Channel Names Viewer...`.
 
 <img src="../images/channel-names-viewer/toolbar-button.png" alt="Two QuPath toolbar buttons side by side: on the left the brightness and contrast button, a circle half filled, and on the right the Channel Names Viewer button, three stacked horizontal stripes in red, green and blue with a small gray triangle at its lower right" width="126">
 
