@@ -119,22 +119,22 @@ file, and the extension pulls it out for you in step 1. This is what it will sho
 <img src="../images/ocr/label-key.png" alt="Left, the photographed slide label: four lines of printed text, histology at lji dot org, 610 TOMO, 2020-11-14 and H and E, with a square 2D barcode below them, each marked with a numbered blue badge. Right, a key: 1 the lab's contact address, 2 the specimen identifier or case ID, 3 the date, 4 the stain, 5 the 2D barcode, read by the barcode scanner rather than OCR. A note says a full-image scan reads all of it and Part C builds a template from items 2 and 5 only" width="900">
 
 1. Run `Extensions > OCR for Labels > Run OCR on Label`.
-2. Set **Mode** to *Auto (default)*. In 0.4.3 that is where the dropdown opens; on an older
-   build it may open on *Sparse Text*, which does not read these labels properly, so check it
-   rather than assume it. Then set **Scope** to *Full Image*, **Decode As** to *Try Both*
-   (barcode first, then OCR), and leave **Min Conf** at its default. *Try Both* matters here,
-   because these labels carry text and a barcode, and you want whichever is more reliable per
-   region. **Leave Enhance unticked.** It has been off by default since 0.4.2 and should stay
-   that way unless you have measured it helping on your own labels; Part D is where you
-   measure it.
-3. **Scan.** Review the table: correct the **Text** column where OCR guessed wrong, and set
-   sensible **Metadata Key** names.
+2. Set the controls on the strip along the top of the dialog. All of them sit inside the red
+   box below:
 
-   Everything you need is on the one strip along the top, boxed in red here. Project images are
-   down the left, the label and its detected boxes in the middle, and the results table below:
+   - **Mode:** *Auto (default)*. On an older build the dropdown may open on *Sparse Text*,
+     which does not read these labels properly, so check it rather than assume it.
+   - **Scope:** *Full Image*.
+   - **Decode As:** *Try Both* (barcode first, then OCR). These labels carry text and a
+     barcode, and you want whichever is more reliable per region.
+   - **Min Conf:** leave the default.
+   - **Enhance:** unticked. Part D is where you test what it does.
 
    <img src="../images/ocr/dialog-full-scan.png" alt="The OCR for Labels dialog after a Full Image scan, with the top toolbar boxed in red: Scan, Scope, Decode As, Draw Region, Add Region, Clear, Mode, Min Conf, Invert, Enhance. The label shows four detected boxes and the table below lists them" width="820">
 
+3. **Scan.** The label appears in the middle with a box around each thing it read, and the
+   results land in the table below. Correct the **Text** column where OCR guessed wrong, and
+   set sensible **Metadata Key** names.
 4. **Apply.** Confirm the metadata landed on the image (right-click the image in the project
    pane → *Edit metadata*, or use the Metadata Browser).
 
