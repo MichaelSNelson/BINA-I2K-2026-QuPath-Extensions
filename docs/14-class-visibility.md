@@ -149,7 +149,23 @@ dilute a nuclear marker.
 > 3. **The data are synthetic and background-free**, which is what makes a plain threshold work at
 >    all. Real hi-plex data with autofluorescence is not this well behaved.
 
-### 4. Open the panel
+### 4. Simplify the view
+
+The cells are easier to read as flat shapes in one color, so before opening the panel, show
+only the nuclei and fill the cells in.
+
+1. Open the **Brightness & contrast** window: the toolbar button boxed in red below, or
+   **Shift+C**. In the channel list, leave only **DAPI** checked.
+2. In the toolbar group boxed in blue, make sure **Show detections** (the left button,
+   or **D**) is on, and turn on **Fill detections** (the right button, or **F**).
+
+<img src="../images/class-visibility/brightness-boxed.png" alt="The QuPath toolbar. The Brightness/Contrast button, a half-filled circle, is outlined in red. Two buttons further along, Show detections and Fill detections, are outlined together in blue" width="900">
+
+<img src="../images/class-visibility/dapi-only.png" alt="The Brightness & contrast window. Its channel list reads DAPI, PanCK, Ki67, aSMA, CD3, CD8, CD20 and CD68; only the DAPI row has its Show check box ticked" width="420">
+
+Every cell is now a solid white shape on black, and a class rule shows as a change of color.
+
+### 5. Open the panel
 
 `Extensions > Class Visibility > Show panel`, or the Class Visibility button in QuPath's
 toolbar: the blue eye. (Where it sits in the toolbar depends on the order your extensions were
@@ -161,7 +177,7 @@ installed.)
 > to **`Show only checked classes`**, and no classes are checked.
 
 > **The check box at the top of the classes list is haloed in blue.** Clicking it checks
-> **every** class, which puts every object back on screen. Leave it alone for now — step 5
+> **every** class, which puts every object back on screen. Leave it alone for now — step 6
 > starts from the empty state.
 
 **What you should see.** On `tme_00`, 1,530 cells become **20 classes**: nineteen marker
@@ -184,7 +200,7 @@ looks like, and it is what a flat class list handles worst.
 > `Preset`, `Visibility rule`, `List` and `Find` rows. Your rules keep working while they are
 > hidden. **`Expand`** brings them back, and so does **Ctrl+F** (**Cmd+F** on macOS).
 
-### 5. One component, many classes
+### 6. One component, many classes
 
 In the components list — its header reads **Anything containing these components (7)** — check
 **`CD3`**. Every object whose class contains `CD3` is now visible, and nothing else is. (If
@@ -213,7 +229,7 @@ does the same job as checking the component.
 > `CD3` class to check, and then the component row is the only way to say it. Here there is one,
 > so the component list saves you nothing yet. The next step is where it stops being optional.
 
-### 6. `Any` vs `All` — the part with no equivalent
+### 7. `Any` vs `All` — the part with no equivalent
 
 Check a second component, **`CD8`**. Two options below the list now read, each with the number
 of cells it would show:
@@ -252,7 +268,7 @@ so the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across sep
 panel builds a single composite rule to get the logical <code>AND</code> — and it survives onto the next image,
 where the class names may be different.
 
-### 7. `Spread`, and what it is really for
+### 8. `Spread`, and what it is really for
 
 Switch on the **`Spread`** column. In the component list, on the right side of the panel under
 **Anything containing these components**, click the small **+** button at the right end of the
@@ -281,7 +297,7 @@ component, CD3, tops out at 9 of 20, which is 45%. A real hi-plex panel that app
 one bolds, and the status strip names it. This dataset has no such component, because the script
 builds names from marker names alone.
 
-### 8. Save a preset, and take it to another image
+### 9. Save a preset, and take it to another image
 
 Build a filter worth keeping — `CD3` and `CD8` on `All` — then use **`Preset`** in the panel
 header and **Save** it under a name. A preset stores which components and classes are checked,
@@ -292,7 +308,7 @@ To see that, open **`tme_02.tif`** and run the script on it the same way as in s
 **Run**; the script works on the open image only). Then pick your preset from the **`Preset`**
 dropdown: the same rule is rebuilt on the new image, with no clicking through the lists.
 
-### 9. Get your view back
+### 10. Get your view back
 
 | You want | Do this |
 |---|---|
