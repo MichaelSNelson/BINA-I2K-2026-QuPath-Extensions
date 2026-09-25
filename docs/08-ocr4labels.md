@@ -75,11 +75,6 @@ where it is:
 
 <img src="../images/ocr/settings.png" alt="The OCR Settings dialog. Under Required Downloads, the eng.traineddata row is outlined in red and marked Not found; the osd.traineddata row below it is also marked Not found. Under Tessdata Location, the empty Tessdata Path field is outlined in blue, with a Browse button beside it" width="420">
 
-They come from [tessdata_fast](https://github.com/tesseract-ocr/tessdata_fast). There is also
-[tessdata_best](https://github.com/tesseract-ocr/tessdata_best): slower, slightly more accurate,
-a drop-in replacement if you ever want it. Other languages live in the same two repositories,
-named by their three-letter code.
-
 Barcode scanning works immediately with no setup — that reader is built in.
 
 ---
