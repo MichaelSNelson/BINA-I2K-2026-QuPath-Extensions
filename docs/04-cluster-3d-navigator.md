@@ -178,7 +178,10 @@ Expand **Display options** (the collapsed bar under the top row) and check two b
 The crop is rendered with whatever channels and brightness the viewer is showing at that moment.
 Change the viewer's display and click **Update from viewer** under the preview to re-render it.
 
-<!-- TODO: Add screenshot — a point selected in the cloud, the cell centered in the viewer, the Cell preview showing its crop. First priority if only one screenshot gets taken -->
+<img src="../images/cluster-3d-navigator/click-to-cell.png" alt="QuPath with the Cluster 3D Navigator window over the right half of the viewer. The viewer is zoomed in on tme_00 so each cell is a large colored, filled shape; one cell in the middle is filled bright yellow, the selected one. In the navigator the cloud is zoomed in on a single green cluster with one point ringed in black, Display options is expanded with Show detection outlines checked, and the Cell preview on the right shows the selected cell's crop with outlines drawn, labeled Cluster 2" width="1000">
+
+*A point at the edge of Cluster 2, clicked. The viewer has jumped to that cell and filled it
+yellow; the preview shows its crop with the segmentation outlines on.*
 
 ### 6. See the cells instead of the points
 
@@ -188,10 +191,9 @@ options). Zoom in and the points near the front fill in as crops too, each with 
 its cluster color, up to a few hundred non-overlapping cells at a time. Clicking a crop still
 jumps to the cell. Zoom back out and all but the representatives collapse to points.
 
-<img src="../images/cluster-3d-navigator/cell-images-zoomed.png" alt="A zoomed-in region of a point cloud in which the nearest cells are drawn as small square image crops, each with a thin colored border, over a scatter of remaining points. Crops in the upper part show reddish cells and crops in the lower part show cyan cells." width="800">
+<img src="../images/cluster-3d-navigator/show-cell-images.png" alt="The navigator's cloud with Show cell images on. Six separate clusters, each a cluster of small square cell crops with thin borders in the cluster's color: green crops at the top and center, red at the left, purple at the right, blue in the lower middle, brown at the lower left and orange at the lower right. A few plain points remain around each group" width="800">
 
-*Show cell images, zoomed in, on the real-tissue dataset from the first picture. On the synthetic
-project the crops are simpler — one nucleus and its ring — but the behavior is the same.*
+*Show cell images on tme_00, zoomed in enough for the crops to fill in.*
 
 ### 7. The whole project at once
 
@@ -204,6 +206,8 @@ seven images' cells belong in the same cloud.
    pause each time.)
 3. The counter reads `Points: 11,421 shown / 11,421 total`, and the legend counts now match the
    QP-CAT guide's table: 3,306 / 1,914 / 2,752 / 1,093 / 1,566 / 790.
+
+<img src="../images/cluster-3d-navigator/project-images.png" alt="The navigator window in project mode. In the Mode row, Project images is selected and outlined in red. The counter reads Points: 11,421 shown / 11,421 total, Show cell images is ticked, and the cloud shows the six clusters as dense groups of cell crops. The CLASSES legend lists Cluster 0, 4, 2, 3, 5 and 1" width="900">
 
 Click any point. If its cell is on another image, QuPath opens that image first, then centers
 the cell; expect a short pause. **Select images...** next to the mode toggle reopens the picker if
@@ -220,6 +224,8 @@ opening, that edge is a staining-day effect, not a cell type.
 marker-versus-marker plot: Cluster 1 and Cluster 5, the two tumor clusters, run out along the
 PanCK axis, Cluster 2 (T cells) up the CD3 axis, and the other three sit near the origin. There
 is nothing to rotate in 2D, so left-drag pans. Every point is still a click from its cell.
+
+<img src="../images/cluster-3d-navigator/view-2d.png" alt="The navigator in 2D view over the whole project. View: 2D and the Axes row, X Cell: PanCK mean and Y Cell: CD3 mean with Z grayed out, are outlined in red. The plot shows green points spread up the left edge and across the top, orange and brown points in a band along the bottom to the right, and purple points near the bottom left corner" width="900">
 
 > The 2D view is for a genuine two-component embedding or a plain scatter like this one. Plotting
 > `3DUMAP1` against `3DUMAP2` is not a 2D UMAP; it is the 3D cloud seen from one side with depth
