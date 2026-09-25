@@ -86,7 +86,7 @@ and troubleshooting: [setup guide](docs/setup.md).
 | | |
 |---|---|
 | **[Extensions and catalogs in five minutes](docs/00-extensions-catalogs-and-ai.md)** | The whole background you need: installing an extension, and adding the one catalog |
-| **[Acknowledgements](docs/acknowledgements.md)** | Data providers, the QuPath team, and the methods these tools build on |
+| **[Acknowledgments](docs/acknowledgements.md)** | Data providers, the QuPath team, and the methods these tools build on |
 | **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough and a video for every tool, plus the vote for what we demo live |
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide, for picking just the ones you want |
 | **[Schedule](docs/schedule.md)** | Time, room, and what the two hours are |
@@ -118,7 +118,7 @@ a microscope.
 
 ## Hands-on extensions
 
-| # | Extension | What it does | Licence |
+| # | Extension | What it does | License |
 |---|---|---|---|
 | 01 | **[QuIET — Image Export Toolkit](docs/01-quiet-image-export.md)** | Publication figures, masks, ML tile pairs, object crops and montages in batch, with QUAREP-LiMi guidance | Apache-2.0 |
 | 02 | **[DL Pixel Classifier](docs/02-dl-pixel-classifier.md)** | Retrainable deep-learning pixel classification from sparse annotations | Apache-2.0 |
@@ -159,7 +159,7 @@ sed -i 's|%%DRIVE_FOLDER_URL%%|https://…|g' $(grep -rl '%%DRIVE_FOLDER_URL%%' 
 
 Repeat for `%%DRIVE_SLIDES_URL%%`. (`%%DRIVE_DATA_URL%%` is retired: datasets now link directly to where they are hosted.)
 
-## Acknowledgements
+## Acknowledgments
 
 **The slide-label images were provided by Sara McArdle and Zbigniew Mikulski at the La Jolla
 Institute for Immunology (LJI)**: four whole-slide images with real labels, which the OCR and
@@ -173,7 +173,7 @@ these pages are structured.
 Full credits, including the methods these tools wrap and the QuPath team:
 **[docs/acknowledgements.md](docs/acknowledgements.md)**.
 
-## Licence
+## License
 
 Workshop materials in this repository are **CC BY 4.0**. Each extension is licensed separately;
 see the table above and the individual repositories.

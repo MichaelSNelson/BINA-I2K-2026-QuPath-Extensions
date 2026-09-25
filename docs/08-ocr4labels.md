@@ -231,7 +231,7 @@ design — so steps 10 to 13 are still one image, and step 14 is where the secon
     coordinates, which is usually nothing, and it will not warn you.
 
     The slides here fall into two sets, and they happen to split by modality — the brightfield
-    slides came off one labelling system, the IF ones off another (see below):
+    slides came off one labeling system, the IF ones off another (see below):
 
     | Set | Slides | Label design |
     |---|---|---|

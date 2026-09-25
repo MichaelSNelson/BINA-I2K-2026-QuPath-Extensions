@@ -75,7 +75,7 @@ and is there a scale bar?" *before* the figure goes into a manuscript, not durin
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-Both menu items stay greyed out until a project with at least one image is open.
+Both menu items stay grayed out until a project with at least one image is open.
 
 </details>
 
@@ -144,7 +144,7 @@ The same zip serves the [Classify Object Subset](07-classify-object-subset.md) a
 
    Now click **Publication Advice**. *This* is the part that looks at the images you actually
    selected and tells you what is missing — for example "No scale bar on calibrated images".
-   Items are coloured by how much they matter. Read it, then export.
+   Items are colored by how much they matter. Read it, then export.
 6. Open the result. Check that the scale bar is legible at the size you would print it.
 
    Your output folder should hold **one** image plus `export_info`, a small text file

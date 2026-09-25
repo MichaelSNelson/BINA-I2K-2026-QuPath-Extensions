@@ -58,7 +58,7 @@ worth the name:
 **Ask spatial questions**
 
 - Neighborhood enrichment, Ripley K/L, Geary's C, Moran's I, co-occurrence (via squidpy),
-  over kNN / radius / Delaunay graphs. Do two phenotypes co-localise or avoid each other,
+  over kNN / radius / Delaunay graphs. Do two phenotypes co-localize or avoid each other,
   and at what distance?
 - **Cellular neighborhoods**: recurring tissue niches derived from the cell-type
   composition around each cell.
@@ -145,7 +145,7 @@ parameters, or the raw images to build the project yourself.
 Why synthetic, for a workshop:
 
 - **You can check the answer.** Real multiplexed tissue has no ground truth, so you never
-  actually know which cell is which type, or whether two populations really co-localise.
+  actually know which cell is which type, or whether two populations really co-localize.
   Here every cell has a known type, known marker positivity, and a known place in the tissue.
 - **It is fast.** ~1,430 cells per image; 11,421 across all eight. Clustering one image is
   seconds, not coffee.
@@ -220,7 +220,7 @@ prompted. Add a rectangle covering the whole image, then run `Analyze > Cell det
 > DAPI in this data has no background. Any nonzero radius smaller than the largest nucleus
 > hollows out the biggest round nuclei and **silently drops about 20% of the tumor cells**,
 > and a tumor compartment that is quietly 20% short still looks entirely plausible. This is
-> worth internalising beyond this dataset: segmentation defaults chosen for one image type
+> worth internalizing beyond this dataset: segmentation defaults chosen for one image type
 > fail *silently* on another, and the failure shows up as biology.
 
 Other settings that work: requested pixel size 0.5 µm, sigma 1.5 µm, minimum area 8 µm²,
@@ -250,7 +250,7 @@ should detect close to 1,530 cells on `tme_00`.
    | Dimensionality Reduction | **UMAP**, **Dimensions: 3D** |
    | Clustering Algorithm | **KMeans**, **k = 6** |
 
-   Leave the random seed at 42. KMeans runs ten initialisations and keeps the best, so the run
+   Leave the random seed at 42. KMeans runs ten initializations and keeps the best, so the run
    is repeatable. The dialog reopens with whatever you last ran, so the second and third runs in
    this exercise start from the first rather than from defaults. While a run is going, the
    progress checklist shows how long each step has taken — useful for deciding which spatial
@@ -356,7 +356,7 @@ pathologist's read on whether an immune response has reached the tumor.
    > **You may see one plot, not two.** Recent versions of squidpy dropped Ripley K and keep
    > only L. When that happens QP-CAT shows L alone and says so, rather than drawing a K chart
    > of placeholder zeros that would read as "no clustering at any radius". Read L: it is the
-   > variance-stabilised transform of K and answers the same question. Above the dashed Poisson
+   > variance-stabilized transform of K and answers the same question. Above the dashed Poisson
    > reference means clustered, below means dispersed.
 10. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
     statistic says.
@@ -448,7 +448,7 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 - Every result stays clickable back to the tissue. The value here is the round trip.
 - Changing the *measurement selection* usually changes the answer more than changing the
   algorithm. Try it.
-- A statistical test that says two populations co-localise, over a slide where they visibly do
+- A statistical test that says two populations co-localize, over a slide where they visibly do
   not, means the test answered a different question than you asked. Look at both.
 - **A single cluster is a result about your measurements, not about the tissue.** If you try
   [HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html) here

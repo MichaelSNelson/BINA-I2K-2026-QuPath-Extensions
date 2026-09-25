@@ -110,7 +110,7 @@ Also listed in the QPSC microscope catalog, but it needs no microscope, so the m
 
 > ⚠️ **This one is not ready to download yet.** Every other track links straight to its
 > data; this is the exception, and the [setup guide](setup.md) says the same. The tiles are a
-> real polarised-light acquisition of pancreatic cancer and are being packaged now. Until the
+> real polarized-light acquisition of pancreatic cancer and are being packaged now. Until the
 > link appears here, you can still follow the steps against any folder of tiles that has a
 > `TileConfiguration.txt` beside it.
 

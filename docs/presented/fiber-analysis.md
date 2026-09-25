@@ -30,4 +30,4 @@ If you want to try TME-Quant on Windows, its README has a
 
 Both wrap published work from other people — CT-FIRE, CurveAlign and the TACS classification
 scheme. If you use either, cite the underlying methods; the full list with references is in
-[acknowledgements](../acknowledgements.md).
+[acknowledgments](../acknowledgements.md).

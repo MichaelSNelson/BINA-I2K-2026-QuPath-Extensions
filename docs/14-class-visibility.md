@@ -171,7 +171,7 @@ Every cell is now a solid white shape on black, and a class rule shows as a chan
 toolbar: the blue eye. (Where it sits in the toolbar depends on the order your extensions were
 installed.)
 
-<img src="../images/class-visibility/toolbar-button.png" alt="Two QuPath toolbar buttons side by side: on the left the Channel Names Viewer button, three stacked stripes in red, green and blue, and on the right the Class Visibility button, an open blue eye with a small grey triangle at its lower right" width="125">
+<img src="../images/class-visibility/toolbar-button.png" alt="Two QuPath toolbar buttons side by side: on the left the Channel Names Viewer button, three stacked stripes in red, green and blue, and on the right the Class Visibility button, an open blue eye with a small gray triangle at its lower right" width="125">
 
 > **When you first open the panel, all objects will be hidden.** By default, visibility is set
 > to **`Show only checked classes`**, and no classes are checked.
@@ -206,9 +206,9 @@ In the components list — its header reads **Anything containing these componen
 **`CD3`**. Every object whose class contains `CD3` is now visible, and nothing else is. (If
 nothing changed, see [If something looks wrong](#if-something-looks-wrong).)
 
-<img src="../images/class-visibility/panel-cd3-checked-with-viewer.png" alt="QuPath with the Class visibility floating window over the lower left of the viewer, on tme_00, with CD3 checked in the components list. In the classes list the CD3 row shows a greyed-out tick and the rows CD3 colon CD8, PanCK colon CD3 colon CD8, aSMA colon CD3, CD3 colon CD8 colon CD68 and CD3 colon CD68 have a blue ring around their check box. Below the components list the options read Any CD3, selected, and All CD3. Active rules reads 1. In the viewer, most cells are plain white outlines and only the CD3-containing cells are drawn with teal and green outlines, scattered through the tissue" width="1000">
+<img src="../images/class-visibility/panel-cd3-checked-with-viewer.png" alt="QuPath with the Class visibility floating window over the lower left of the viewer, on tme_00, with CD3 checked in the components list. In the classes list the CD3 row shows a grayed-out tick and the rows CD3 colon CD8, PanCK colon CD3 colon CD8, aSMA colon CD3, CD3 colon CD8 colon CD68 and CD3 colon CD68 have a blue ring around their check box. Below the components list the options read Any CD3, selected, and All CD3. Active rules reads 1. In the viewer, most cells are plain white outlines and only the CD3-containing cells are drawn with teal and green outlines, scattered through the tissue" width="1000">
 
-**Now look at the classes list.** The `CD3` row shows a greyed-out tick: the component rule set
+**Now look at the classes list.** The `CD3` row shows a grayed-out tick: the component rule set
 it, and hovering it says to change it in the components list. The other eight classes containing
 `CD3` (`CD3: CD8`, `PanCK: CD3: CD8`, `aSMA: CD3` and five more, some below the fold) have a
 **blue ring** around their check box. A ring means
@@ -219,7 +219,7 @@ Now compare two numbers. In the classes list, the `CD3` row's **`Count`** reads 
 class is exactly `CD3`. In the components list, the `CD3` row's **`Total`** reads 386: cells
 carrying `CD3` anywhere in their class.
 
-<img src="../images/class-visibility/count-vs-total.png" alt="A close-up of the tops of both lists. Left, the classes list: aSMA 396, PanCK 286, CD68 199, CD3 184 with a greyed tick and the row highlighted, CD3 colon CD8 167. Right, the components list: aSMA 416, CD20 103, CD3 386 checked and highlighted, CD68 221, CD8 189" width="900">
+<img src="../images/class-visibility/count-vs-total.png" alt="A close-up of the tops of both lists. Left, the classes list: aSMA 396, PanCK 286, CD68 199, CD3 184 with a grayed tick and the row highlighted, CD3 colon CD8 167. Right, the components list: aSMA 416, CD20 103, CD3 386 checked and highlighted, CD68 221, CD8 189" width="900">
 
 Checking the `CD3` *class* row would act on all 386, not 184, because QuPath matches supersets by
 default (hover the 184 and the tooltip says so). So on this dataset, checking that one class row
@@ -241,7 +241,7 @@ of cells it would show:
 You can compare the two before choosing. Neither number appears on any single row: each
 component's `Total` is that component alone.
 
-<img src="../images/class-visibility/any-vs-all-boxed.png" alt="The Class visibility window with CD3 and CD8 both checked in the components list. Below that list, outlined in red, the section Checked components combine as shows two options: Any, CD3 or CD8 or both, 388 objects, which is selected, and All, CD3 and CD8 together, 187 objects. In the classes list the CD3 and CD8 rows show greyed-out ticks and eight other rows carry a blue ring. Active rules reads 2" width="900">
+<img src="../images/class-visibility/any-vs-all-boxed.png" alt="The Class visibility window with CD3 and CD8 both checked in the components list. Below that list, outlined in red, the section Checked components combine as shows two options: Any, CD3 or CD8 or both, 388 objects, which is selected, and All, CD3 and CD8 together, 187 objects. In the classes list the CD3 and CD8 rows show grayed-out ticks and eight other rows carry a blue ring. Active rules reads 2" width="900">
 
 `Any` is selected by default, but the panel remembers whichever you last chose, so glance at
 which option is selected before you read any counts. On `Any`, this image barely changes: you go from
@@ -317,7 +317,7 @@ dropdown: the same rule is rebuilt on the new image, with no clicking through th
 | QuPath's own defaults — no rules, `Hide checked classes`, `Exact matches only` off | **`Reset all`**, on the status strip |
 
 `Extensions > Class Visibility > Restore the state from when the panel opened` does the middle
-one from the menu, whether or not the panel is still open. It is greyed out and reads *(nothing
+one from the menu, whether or not the panel is still open. It is grayed out and reads *(nothing
 recorded yet)* until the panel has changed something. The menu's own version of the last row is
 spelled **`Reset all visibility`**.
 

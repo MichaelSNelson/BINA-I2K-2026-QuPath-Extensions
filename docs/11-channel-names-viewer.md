@@ -63,7 +63,7 @@ toolbar button, menu item and keyboard accelerator, plus handling for image swit
 images, and listener cleanup.
 
 **It does not replace the script.** Both can be installed at once, because they create independent
-JavaFX windows and do not conflict. Keep using the script if you have customised it or wired
+JavaFX windows and do not conflict. Keep using the script if you have customized it or wired
 it into automation. The extension adds discoverability, resize-with-text scaling, clean
 rebinding, an RGB empty state, persisted state, and a right-click settings menu. The
 `Ctrl/Cmd+Shift+C` accelerator is exclusive to the extension; the script registers no global
@@ -113,7 +113,7 @@ empty folder, and drag in **`tme_00.tif`** (any of the eight will do). Set the i
 and blue stripes, immediately right of the brightness/contrast half-circle. Menu route:
 `Extensions > Channel Names Viewer > Channel Names Viewer...`.
 
-<img src="../images/channel-names-viewer/toolbar-button.png" alt="Two QuPath toolbar buttons side by side: on the left the brightness and contrast button, a circle half filled, and on the right the Channel Names Viewer button, three stacked horizontal stripes in red, green and blue with a small grey triangle at its lower right" width="126">
+<img src="../images/channel-names-viewer/toolbar-button.png" alt="Two QuPath toolbar buttons side by side: on the left the brightness and contrast button, a circle half filled, and on the right the Channel Names Viewer button, three stacked horizontal stripes in red, green and blue with a small gray triangle at its lower right" width="126">
 
 
 ### 4. Work through it

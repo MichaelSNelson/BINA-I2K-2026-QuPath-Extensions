@@ -29,13 +29,13 @@ title: Cluster 3D Navigator
 
 ## What it does
 
-View your analysed cells in three dimensions. Each point is one cell, **coloured by its
+View your analyzed cells in three dimensions. Each point is one cell, **colored by its
 class** — a clustering result, or any classification already on the cells. The three axes are
 numeric measurements you choose, normally a dimensionality reduction that is already stored on
 the cells: in the picture below, three UMAP components.
 
 Tick **Show cell images** and the points carry thumbnails, so you can see what the cells in one
-region actually look like. Click a point to **select that cell and centre it in the QuPath
+region actually look like. Click a point to **select that cell and center it in the QuPath
 viewer** — a spot in cluster space becomes a real cell on the slide.
 
 It only reads your cells: looking changes no class and no measurement.
@@ -232,7 +232,7 @@ Symptoms you may hit during the walkthrough:
 | The cloud reads *No cells have finite values on all three chosen axes.* | An axis is a column these cells do not have | Set X, Y, Z to `3DUMAP1`, `3DUMAP2`, `3DUMAP3` (step 3) |
 | The cloud reads *No image open. Open an image with detections, then reopen this view.* | You opened the navigator before opening an image | Double-click `tme_00.tif` in the project list (step 2), then reopen the navigator |
 | The cloud reads *No images selected...* | You clicked **OK** in the image picker with nothing checked | **Select images...**, **Select all**, **OK** |
-| Mode flipped back to **Current image** | You cancelled the picker | Switch to **Project images...** again and click **OK** this time |
+| Mode flipped back to **Current image** | You canceled the picker | Switch to **Project images...** again and click **OK** this time |
 | Points counter ends in *(… omitted: missing axis value)* | Those cells have no value on one of the chosen axes | Expected only if you picked a column that not every cell has; with the three `3DUMAP` columns none are omitted |
 | Clicking a point selects the wrong cell | The target image is still opening | Give it a moment, then click again |
 | Project mode is slow to read | Eight images of detections | Wait for the busy indicator; use **Current image** for quick checks |

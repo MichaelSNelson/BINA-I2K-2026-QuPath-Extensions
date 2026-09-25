@@ -37,7 +37,7 @@ comes first depends on the order you installed them, so match the icon rather th
 |---|---|---|
 | <img src="../images/icon-wand-builtin.png" alt="" class="icon-lg"> | QuPath's own wand | Outline only, no fill |
 | <img src="../images/icon-wizard-wand.png" alt="" class="icon-lg"> | **Wizard Wand** (Shift+W) | Solid wand, sparkles, no arrow |
-| <img src="../images/icon-polyline-wand.png" alt="" class="icon-lg"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small grey arrow in the corner |
+| <img src="../images/icon-polyline-wand.png" alt="" class="icon-lg"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small gray arrow in the corner |
 
 ---
 
@@ -144,7 +144,7 @@ select it.
 4. Now try a preset. **Right-click the wand button in the toolbar** — not the image, not your
    annotation — and pick **Presets > Broad (sensitivity 2.00)**, then wand the same structure.
    Then **Fine (sensitivity 0.30)**. The menu shows each preset's value beside its name.
-   Broad for large uniform areas, Fine when you keep spilling into neighbouring tissue.
+   Broad for large uniform areas, Fine when you keep spilling into neighboring tissue.
 5. Change the color-space mode in `Edit > Preferences > Wizard Wand` and re-try somewhere RGB
    struggled: **GRAY** when color is irrelevant and only intensity matters, **LAB_DISTANCE**
    for two stains that are close in color, **HSV** to catch every blue nucleus including the

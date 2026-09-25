@@ -137,7 +137,7 @@ Classifier and wand exercises are ready.
 
 > **These slides were provided by Sara McArdle and Zbigniew Mikulski**, La Jolla Institute for
 > Immunology. Please credit LJI if you use them in your own work. See
-> [acknowledgements](acknowledgements.md).
+> [acknowledgments](acknowledgements.md).
 
 **You are also very welcome to bring your own data.** The second hour is optional exploration,
 and working on a problem you actually have is a better use of the time than working on ours.
@@ -165,7 +165,7 @@ Open QuPath and confirm:
 |---|---|---|
 | <img src="../images/icon-wand-builtin.png" alt="" class="icon-lg"> | QuPath's own wand | Outline only, no fill |
 | <img src="../images/icon-wizard-wand.png" alt="" class="icon-lg"> | **Wizard Wand** (Shift+W) | Solid wand, sparkles, no arrow |
-| <img src="../images/icon-polyline-wand.png" alt="" class="icon-lg"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small grey arrow in the corner |
+| <img src="../images/icon-polyline-wand.png" alt="" class="icon-lg"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small gray arrow in the corner |
 
   **QuPath's own wand** is the leftmost and was already there. The two new ones sit to its
   right: **Wizard Wand** (**Shift+W**) and **Polyline Wand** (**Shift+P**). Their order
@@ -202,4 +202,4 @@ not in the list above:
 - **Fiber Analysis / TME-Quant** need a long environment build, or a Windows-only server plus a
   pipeline that cannot be redistributed.
 
-They are shown in the first hour rather than practised in the second.
+They are shown in the first hour rather than practiced in the second.

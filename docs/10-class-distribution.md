@@ -82,7 +82,7 @@ matters when a project mixes stains or magnifications. It lives on this tab only
 > **If the labels pile up on top of each other**, drag the **Highlight outliers at** slider in
 > **Advanced** a notch and back. The chart redraws and they separate.
 
-<img src="../images/class-distribution/project-tab.png" alt="The Project tab: a pie chart with each class labelled and its percentage, fibroblast 28.9 percent down to b_cell 9.5 percent, repeated in the legend beneath where fibroblast is marked [over]" width="560">
+<img src="../images/class-distribution/project-tab.png" alt="The Project tab: a pie chart with each class labeled and its percentage, fibroblast 28.9 percent down to b_cell 9.5 percent, repeated in the legend beneath where fibroblast is marked [over]" width="560">
 
 ### 5. Every image at once — where the imbalance shows
 
@@ -103,7 +103,7 @@ as `fibroblast 28.9% [over]`.
 The **Current image** tab charts just the open image, and — more usefully — surfaces project
 classes that are **absent** from it. Open `tme_07` and `b_cell` appears in the legend as
 **`0.0% [missing]`** rather than simply not being drawn. A class you cannot see is easy to
-forget; a class labelled *missing* is not.
+forget; a class labeled *missing* is not.
 
 That is the check worth running before you train on a single slide.
 
@@ -114,7 +114,7 @@ That is the check worth running before you train on a single slide.
 ### 7. The other dialog, and when to use it
 
 Everything so far used **Show Detection Training Distribution...**, which counts *detections*
-labelled by your annotations — the number that predicts classifier behavior.
+labeled by your annotations — the number that predicts classifier behavior.
 
 Now open **`Extensions > Class Distribution > Show Class Distribution...`**. Same tabs, same
 layout, different measurement: it sums **annotation area**, so a class is big here because you
@@ -122,7 +122,7 @@ drew a lot of it, not because it covers a lot of cells. On this project it is ne
 because the ground truth is **points** and points have no area.
 
 Use the area dialog while you are drawing regions, and the detection dialog once those regions
-are labelling cells. They disagree on purpose, and the disagreement is the point: ten large
+are labeling cells. They disagree on purpose, and the disagreement is the point: ten large
 stroma regions and forty small tumor ones can be 20:1 by area and the other way round by cell
 count.
 

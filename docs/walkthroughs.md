@@ -98,7 +98,7 @@ Each walkthrough names the dataset it uses, and they come from different places:
 a CC0 synthetic dataset, tiles acquired at LOCI, and the slide-label images provided by
 **Sara McArdle** and **Zbigniew Mikulski** at the **La Jolla Institute for Immunology**. The
 [setup guide](setup.md) lists what to download for each; see also
-[acknowledgements](acknowledgements.md).
+[acknowledgments](acknowledgements.md).
 
 ---
 

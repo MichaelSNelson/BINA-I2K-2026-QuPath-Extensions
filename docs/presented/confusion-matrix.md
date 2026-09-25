@@ -23,7 +23,7 @@ confidence intervals.
 is no download.
 
 The concept and the initial scripts are **Kristin Gallik's**; it was built out into an extension
-at LOCI. See [acknowledgements](../acknowledgements.md).
+at LOCI. See [acknowledgments](../acknowledgements.md).
 
 ## What to do instead, today
 

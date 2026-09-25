@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Acknowledgements
+title: Acknowledgments
 ---
 
-# Acknowledgements
+# Acknowledgments
 
 ## Sample data
 
