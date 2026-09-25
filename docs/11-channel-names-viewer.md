@@ -22,6 +22,10 @@ title: Channel Names Viewer
 > **Walkthrough video:** %%VIDEO_CHANNEL_NAMES_VIEWER%%
 > The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
 
+> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
+> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
+> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
+
 ---
 
 > **Sara McArdle demonstrated this in her session on **Monday 28 September**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
