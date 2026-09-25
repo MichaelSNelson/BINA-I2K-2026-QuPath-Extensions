@@ -147,9 +147,9 @@ Cluster 1 (294), Cluster 2 (389), Cluster 3 (106), Cluster 4 (217) and Cluster 5
   in the project's list until you do), change the color there, then change an axis or reopen the
   navigator so it re-reads.
 
-Rotate until two blobs that overlap from one angle separate from another. The overlap was the
-viewpoint, not the cells: they sit at different depths. That is what a third axis buys you over a
-single flat picture — you can check whether two groups really touch.
+Rotate the cloud and watch it from several angles. A third axis gives the embedding more room
+to spread groups apart than a flat one has; rotating is how you see that spread, since any
+single view is a flat projection of it.
 
 <!-- TODO: Add screenshot — the rotated cloud of six clusters on tme_00, legend visible -->
 
