@@ -63,11 +63,17 @@ all of them, so they stay aligned with each other and not just internally.
 - **Multichannel merge**: combine N same-shape single-channel pyramids into one multichannel
   image via a separate `ChannelMerger` step.
 
-**Memory is capped, and the cap barely moves with the size of the mosaic.** A 32-megapixel
-stitch completes in a 96 MB heap; a 169-megapixel one, five times larger, needs 128 MB. The
-exercises below are 33 MP and 15 MP, so both sit at the bottom of that range. Nothing here
-loads the whole mosaic — the stitcher holds one output chunk at a time and reads each tile's
-overlap on demand, so doubling the tile count costs you almost nothing.
+**Memory stops growing.** The stitcher never holds the mosaic — it writes one output chunk at a
+time and reads only the tile overlaps beneath it — so past a certain size the heap it needs
+simply flattens. Measured as the smallest `-Xmx` in which the stitch completes: 87, 169 and 279
+megapixels all finish in the same 128 MB.
+
+<img src="../images/tiles-to-pyramid/memory_scaling.png" alt="Log-log plot of heap needed against tiles in the mosaic. The measured Tiles to Pyramid curve rises from 64 MB at 16 tiles to 128 MB at 100 tiles and then runs flat through 324 tiles, while a modelled load-everything-then-fuse line climbs steadily through the typical QuPath heap band." width="760">
+
+The orange line is what it costs to hold every tile plus one fused canvas — arithmetic, not a
+measurement of any particular program, and a generous lower bound at that. It is the shape that
+matters: that approach grows with your slide, and this one does not. Both exercises below are
+well inside the flat part.
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
