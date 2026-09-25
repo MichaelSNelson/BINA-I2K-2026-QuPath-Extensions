@@ -244,17 +244,20 @@ which option is selected before you read any counts. On `Any`, this image barely
 386 cells to 388 — 187 of the 189 CD8-positive cells are also CD3-positive,
 so CD8 sits almost entirely inside CD3.
 
-<img src="../images/class-visibility/any-cd3-cd8.png" alt="The tme_00 image with CD3 and CD8 checked and Any selected. Most cells are plain white outlines on black; the visible cells, outlined in teal and green with a few in purple, are scattered along the edges of the round tumor nests and through the stroma" width="700">
-
-*`Any`: every cell carrying CD3 or CD8.*
-
 Now switch to `All`. 201 cells leave the screen, you are looking at the CD8 T cells, and **the
 rings in the classes list narrow from 10 rows to 4** — under `All`, only classes carrying every
 checked component are highlighted.
 
-<img src="../images/class-visibility/all-cd3-cd8.png" alt="The same view with All selected instead. The teal outlines are gone; only the green-outlined cells and a few purple ones remain, in the same places along the tumor nests and through the stroma" width="700">
-
-*`All`: only the cells carrying both. The teal CD3-only cells have gone.*
+<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;margin:1em 0">
+  <figure style="flex:1 1 300px;margin:0">
+    <img src="../images/class-visibility/any-cd3-cd8.png" alt="The tme_00 image with CD3 and CD8 checked and Any selected. Most cells are plain white outlines on black; the visible cells, outlined in teal and green with a few in purple, are scattered along the edges of the round tumor nests and through the stroma" style="width:100%;height:auto">
+    <figcaption><b>Any</b>: every cell carrying CD3 or CD8.</figcaption>
+  </figure>
+  <figure style="flex:1 1 300px;margin:0">
+    <img src="../images/class-visibility/all-cd3-cd8.png" alt="The same view with All selected instead. The teal outlines are gone; only the green-outlined cells and a few purple ones remain, in the same places along the tumor nests and through the stroma" style="width:100%;height:auto">
+    <figcaption><b>All</b>: only the cells carrying both. The teal CD3-only cells have gone.</figcaption>
+  </figure>
+</div>
 
 **There is no class row that does this.** QuPath evaluates its selected-class set as a logical <code>OR</code>,
 so the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across separate names. The
