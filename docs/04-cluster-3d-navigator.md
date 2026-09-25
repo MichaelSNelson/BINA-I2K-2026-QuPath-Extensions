@@ -78,17 +78,13 @@ catalog (see the **Install** box above).
 KMeans run over all 11,421 of them. Three things in it matter here:
 
 - every cell carries a **class**, `Cluster 0` to `Cluster 5` — that is the color of its point;
-- every cell carries **three embedding measurements**, `3DUMAP1`, `3DUMAP2` and `3DUMAP3` — those
-  are the axes. They are a 3D UMAP of the same 30 measurements the KMeans used (settings in the
-  [QP-CAT guide](03-qp-cat-cell-analysis-tools.md#hands-on-exercise)). The clusters were decided
-  on those 30 measurements, not on this picture: the cloud is a map of the data, not the thing
-  that made the clusters;
-- every image also carries **ground-truth point annotations**, one at each cell's center, classed
-  by true type (`tumor`, `fibroblast`, `cd8_t`, `helper_t`, `b_cell`, `macrophage`). That is how
-  you check a cluster: select the point and read its class in the **Annotations** tab.
-
-The navigator does not care that QP-CAT produced the first two. Any tool that puts a class and
-three numeric measurements on a detection would do.
+- every cell carries **three embedding measurements**, `3DUMAP1`, `3DUMAP2` and `3DUMAP3` —
+  those are the axes. They are not what the clustering used, which was KMeans on the
+  measurements themselves. Do not expect the point cloud to match the clusters: the two come
+  from different calculations;
+- every image also carries **ground-truth point annotations**, one at each cell's center,
+  classed by true type (`tumor`, `fibroblast`, `cd8_t`, `helper_t`, `b_cell`, `macrophage`) —
+  select a point and read its class in the **Annotations** tab to check a cluster.
 
 > **The README inside the zip is the unclustered project's** and says the cells ship
 > unclassified and need a script run first. Ignore it for this exercise; the labels are on the
