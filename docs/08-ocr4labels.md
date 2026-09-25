@@ -153,8 +153,6 @@ share its design.
     right-click and choose **Scan as Barcode**. It decodes immediately, and the row appears
     underneath the one you just made.
 
-    <img src="../images/ocr/draw-region-barcode.png" alt="A selection drawn around the 2D barcode with the right-click menu open and Scan as Barcode highlighted; the table below already holds the 610 TOMO row" width="820">
-
 3. Before saving anything, set **Scope** to *Drawn Regions* and scan again — the **Scan**
     button renames itself to **Rescan Regions**. Every row is re-read in place, each using its
     own **Decode As** value, so you find out what your template will actually produce while it
