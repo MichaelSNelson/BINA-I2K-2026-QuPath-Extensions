@@ -463,10 +463,10 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 
 ## Going further
 
-- **[How-To Guide](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/HOW_TO_GUIDE.md)**: step-by-step for every workflow.
-- **[Best Practices](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/BEST_PRACTICES.md)**: measurement selection, normalization, algorithm choice, phenotyping strategy.
-- **[Scripting (Groovy)](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/SCRIPTING.md)** and the **[YAML headless-batch runner](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/YAML_SCHEMA.md)**: for running this across a whole cohort, including `area_levels` for TMA cores.
-- **[References](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/REFERENCES.md)**: papers and DOIs for every algorithm used.
+- **[Documentation index](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/README.md)**: one page per topic; the place to start.
+- **[Clustering](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/clustering.md)**: measurement selection, normalization and algorithm choice.
+- **[Scripting (Groovy)](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/scripting.md)** and the **[YAML headless-batch runner](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/yaml-reference.md)**: for running this across a whole cohort, including `area_levels` for TMA cores.
+- **[References](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/references.md)**: papers and DOIs for every algorithm used.
 - **[Dataset instructions](https://github.com/uw-loci/multiplex-synthetic-data/blob/master/INSTRUCTIONS.md)**: channel tables, the full detection recipe, what every analysis should recover, and the ground-truth CSV reference.
 - Once you have clusters, [Cluster 3D Navigator](04-cluster-3d-navigator.md) gives you a
   rotatable 3D point cloud with click-to-navigate.
