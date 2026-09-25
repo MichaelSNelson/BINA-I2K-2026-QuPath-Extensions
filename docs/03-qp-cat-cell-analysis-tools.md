@@ -136,10 +136,11 @@ no attribution required, yours to reuse in your own teaching.
 
 The hands-on exercise below hands you a **ready-made QuPath project** built from it — the
 eight images with cells already detected — so you do not need to run any detection yourself.
-Get the source zip (**~14 MB**, the
+It also carries the ground truth as classified **point annotations**, one per cell, so you can
+check an answer without leaving QuPath. Get the source zip (**~14 MB**, the
 [latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip))
-only if you want the **answer-key CSVs**, which are not in the project, or would rather build
-it from the images.
+when you want that same truth as **CSVs** to open in a spreadsheet, the per-image generation
+parameters, or the raw images to build the project yourself.
 
 Why synthetic, for a workshop:
 
