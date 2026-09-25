@@ -319,15 +319,15 @@ should detect close to 1,530 cells on `tme_00`.
    > dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
 
    > **Why keep the shape measurements?** Because the convention is to leave them out. Published
-   > multiplexed-imaging phenotyping pipelines cluster on **per-cell marker expression**; where
-   > morphology is measured at all it is not fed to the clustering — see, for example, the
-   > pipeline description in
-   > [Ahmadian *et al.* 2023, *PLOS Computational Biology*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011432),
-   > where the clustering input is "a table with cells in rows and marker expression level in
-   > columns". This dataset is built so that shape carries real information — fibroblasts have
-   > elongated spindle nuclei, tumor nuclei are large and round — and you will see those
-   > features earn their place in the next step. Worth knowing the convention, and knowing when
-   > your data is not the case it was formed on.
+   > multiplexed-imaging phenotyping pipelines cluster on **per-cell marker expression**:
+   > [Ahmadian *et al.* 2023](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011432)
+   > describes the clustering input as "a table with cells in rows and marker expression level in
+   > columns", even though the same pipeline also computes "spatial information and morphological
+   > properties" into that table. Note what that is and is not: the paper does not argue against
+   > morphology, it just does not cluster on it. This dataset is built so that shape carries real
+   > information — fibroblasts have elongated spindle nuclei, tumor nuclei are large and round —
+   > and you will see those features earn their place in the next step. Worth knowing the
+   > convention, and worth noticing that it is a convention rather than a finding.
    >
    > `Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6.
    > It is not a shortcut for this step.
