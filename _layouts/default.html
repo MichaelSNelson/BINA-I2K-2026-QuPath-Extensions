@@ -101,9 +101,9 @@ img.icon-lg{height:1.7em; width:auto; border:0; border-radius:0; vertical-align:
 {{ content }}
 </main>
 <div class="footer">
-  <p>Slide-label images courtesy of Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology &mdash;
+  <p>{% if page.slide_label_credit %}Slide-label images courtesy of Sara McArdle and Zbigniew Mikulski, La Jolla Institute for Immunology &mdash;
   see <a href="{{ site.baseurl }}/docs/acknowledgements.html">acknowledgements</a>.<br>
-  Laboratory for Optical and Computational Instrumentation (LOCI), University of Wisconsin&ndash;Madison.
+  {% endif %}Laboratory for Optical and Computational Instrumentation (LOCI), University of Wisconsin&ndash;Madison.
   Source: <a href="https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions">MichaelSNelson/BINA-I2K-2026-QuPath-Extensions</a>.</p>
 </div>
 <script>

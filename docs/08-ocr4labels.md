@@ -1,6 +1,7 @@
 ---
 layout: default
 title: OCR for Labels
+slide_label_credit: true
 ---
 
 # OCR for Labels
