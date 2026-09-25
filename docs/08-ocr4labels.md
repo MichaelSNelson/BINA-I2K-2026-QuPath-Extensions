@@ -60,10 +60,11 @@ The OCR engine is built into the extension. What it does not include is the lang
 
 | File | Size | What it does |
 |---|---|---|
-| `eng.traineddata` | 4 MB | Reads English text. **Required.** |
-| `osd.traineddata` | 11 MB | Optional, and not used in this exercise. Lets the reader work out which way up a label is. |
+| [`eng.traineddata`](https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata) | 4 MB | Reads English text. **Required.** |
+| [`osd.traineddata`](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata) | 11 MB | Optional, and not used in this exercise. Lets the reader work out which way up a label is. |
 
-There are two ways to get them, and they fetch the same files from the same place:
+There are two ways to get them, and they fetch the same files from the same place: click the
+file names in the table above, or use the links inside QuPath:
 
 - **From inside QuPath.** `Extensions > OCR for Labels > OCR Settings...`. The
   **Required Downloads** section has a link for each file (`osd.traineddata` sits under its
@@ -76,8 +77,6 @@ There are two ways to get them, and they fetch the same files from the same plac
   **OK**. The [Not found] markers clear once the path is right.
 
   <img src="../images/ocr/settings-path.png" alt="The same dialog with the Tessdata Path field highlighted and empty" width="420">
-
-- **Directly.** [eng.traineddata](https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata) and [osd.traineddata](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata).
 
 Either way, put the file in one folder — anywhere you like, say `Documents/tessdata` — then set
 **Tessdata Path** to that folder and click **OK**.
