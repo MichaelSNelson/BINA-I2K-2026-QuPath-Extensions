@@ -162,8 +162,5 @@ couple of classified rectangles on an image and watching the chart move.
 
 **It stores nothing in your project** — preferences live in QuPath's own settings.
 
-> **New to QuPath?** *project*, *annotation*, *detection*, *class* are in the
-> [glossary](glossary.md).
-
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-class-distribution#readme).
