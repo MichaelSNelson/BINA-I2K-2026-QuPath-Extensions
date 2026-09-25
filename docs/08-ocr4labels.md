@@ -22,34 +22,20 @@ slide_label_credit: true
 > **Walkthrough video:** %%VIDEO_OCR4LABELS%%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
 
+> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
+> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
+> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
+
 ---
 
 ## What it does
 
-Whole-slide image files usually carry a **label image**: the photograph of the physical
-slide label, with the case ID, stain, block number and often a barcode written on it. That
-information is already in your file, and almost nobody uses it, because getting it out means
-squinting at an image and typing.
-
-This extension extracts the label image, runs OCR and/or barcode detection on it, and lets
-you assign the detected content to QuPath metadata keys.
-
-- **Label image access** pulls the label out of the WSI file and displays it.
-- **Tesseract OCR** for text (via the Tess4J wrapper).
-- **ZXing barcode scanning** for 1D and 2D barcodes, with no extra setup needed.
-- **Hybrid templates**: mix text regions and barcode regions in one template.
-- **Interactive review**: the detected content lands in an editable table before anything is
-  written. Fix the OCR's mistakes, set the metadata key names, then apply.
-- **Project navigation**: browse every project image without closing the dialog.
-- **Batch processing**: apply a template across the whole project.
-- **Text filtering**: one-click character filters to clean up OCR noise.
-- **Literal transcription** *(on by default since 0.4.0)*: OCR reports the characters it saw
-  instead of correcting them toward English words. Labels are overwhelmingly codes, dates and
-  accession numbers, and dictionary correction damages those more than it repairs.
-- **Vocabulary matching**: correct OCR errors by matching against a list of known valid
-  values. If you know the only legal stains are `H&E`, `CD3`, `CD8`, then `CD９` resolves.
-- **Rotated label support**: automatic orientation detection for sideways or upside-down
-  labels.
+Whole-slide image files usually carry a **label image**: the photograph of the physical slide
+label, with the case ID, stain, block number and often a barcode on it. This extension reads
+the text and barcodes off that label and turns them into QuPath project metadata, so the
+information that is already in your files becomes something you can search, sort and export
+on. You check and correct what it read before anything is written, and one template can be run
+across a whole project.
 
 Once the metadata is in the project, the
 [Project Metadata Browser](09-project-metadata-browser.md) is how you review, correct, and
@@ -104,10 +90,6 @@ named by their three-letter code.
 Barcode scanning works immediately with no setup — that reader is built in.
 
 ---
-
-> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
-> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
-> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
 ## Hands-on exercise
 

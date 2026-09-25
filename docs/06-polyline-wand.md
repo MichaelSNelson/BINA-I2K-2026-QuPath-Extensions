@@ -22,6 +22,10 @@ title: Polyline Wand and Brush
 > **Walkthrough video:** %%VIDEO_POLYLINE_WAND%%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
 
+> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
+> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
+> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
+
 ---
 
 ## Finding the button
@@ -128,10 +132,6 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 </details>
 
 ---
-
-> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
-> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
-> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
 ## Hands-on exercise
 **Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB; see [setup](setup.md#5-download-the-workshop-data)).

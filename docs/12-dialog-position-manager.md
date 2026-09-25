@@ -24,6 +24,10 @@ title: Dialog Position Manager
 > **Walkthrough video:** %%VIDEO_DIALOG_POSITION_MANAGER%%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
 
+> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
+> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
+> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
+
 ---
 
 ## What it does
@@ -96,10 +100,6 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 </details>
 
 ---
-
-> **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
-> *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
-> [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
 ## Hands-on exercise
 **Data:** none needed — this is the one tool here that does not care what is on screen.
