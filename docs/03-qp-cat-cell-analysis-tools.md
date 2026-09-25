@@ -349,15 +349,10 @@ pathologist's read on whether an immune response has reached the tumor.
    markedly weaker than tumor ↔ CD8 T. The enrichment is specific to the cytotoxic subset,
    which is exactly why Part A's k = 5 merge would have destroyed this finding: the two
    T-cell populations would have been averaged into one indifferent number.
-9. Run **Ripley K/L** per type: tumor and B cells clustered, fibroblasts dispersed.
-   `Ripley K and L (point-pattern, dual plot)` is one of four tick-boxes under **Spatial
-   statistics**, in the same two places as step 6.
-
-   > **You may see one plot, not two.** Recent versions of squidpy dropped Ripley K and keep
-   > only L. When that happens QP-CAT shows L alone and says so, rather than drawing a K chart
-   > of placeholder zeros that would read as "no clustering at any radius". Read L: it is the
-   > variance-stabilized transform of K and answers the same question. Above the dashed Poisson
-   > reference means clustered, below means dispersed.
+9. Run **Ripley L** per type: tumor and B cells clustered, fibroblasts dispersed. It is one of
+   four tick-boxes under **Spatial statistics**, in the same two places as step 6. Read the
+   curve against the dashed diagonal: above it means clustered at that radius, below means
+   dispersed.
 10. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
     statistic says.
 
