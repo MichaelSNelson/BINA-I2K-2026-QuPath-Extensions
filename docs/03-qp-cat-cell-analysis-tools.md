@@ -318,11 +318,16 @@ should detect close to 1,530 cells on `tme_00`.
    > The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
    > dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
 
-   > **Why keep the shape measurements?** General advice says to cluster on markers alone. This
-   > dataset is built so that shape carries real information — fibroblasts have elongated
-   > spindle nuclei, tumor nuclei are large and round — and you will see the shape features earn
-   > their place in the next step. It is worth knowing the general advice and knowing when the
-   > data contradicts it.
+   > **Why keep the shape measurements?** Because the convention is to leave them out. Published
+   > multiplexed-imaging phenotyping pipelines cluster on **per-cell marker expression**; where
+   > morphology is measured at all it is not fed to the clustering — see, for example, the
+   > pipeline description in
+   > [Ahmadian *et al.* 2023, *PLOS Computational Biology*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011432),
+   > where the clustering input is "a table with cells in rows and marker expression level in
+   > columns". This dataset is built so that shape carries real information — fibroblasts have
+   > elongated spindle nuclei, tumor nuclei are large and round — and you will see those
+   > features earn their place in the next step. Worth knowing the convention, and knowing when
+   > your data is not the case it was formed on.
    >
    > `Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6.
    > It is not a shortcut for this step.
