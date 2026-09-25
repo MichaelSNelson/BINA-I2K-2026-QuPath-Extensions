@@ -142,8 +142,7 @@ file, and the extension pulls it out for you in step 1. This is what it will sho
 **Same slide, empty table.** Stay on `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`,
 and click **Clear All** underneath the table so Part B's rows do not end up in your template.
 You are manually building a template from this one label, then applying it to the slides that
-share its design, so the first four steps are still one image, and step 5 is where the second
-slide comes in.
+share its design.
 
 1. Click **Draw Region** in the toolbar, then drag a box over just the line that identifies
     the specimen — **`610 TOMO`**, not the email address above it, not the date, not the stain.
