@@ -63,19 +63,17 @@ The OCR engine is built into the extension. What it does not include is the lang
 | [`eng.traineddata`](https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata) | 4 MB | Reads English text. **Required.** |
 | [`osd.traineddata`](https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata) | 11 MB | Optional, and not used in this exercise. Lets the reader work out which way up a label is. |
 
-There are two ways to get them, and they fetch the same files from the same place: click the
-file names in the table above, or use the links inside QuPath:
+Download the file from the link in the table, or from inside QuPath, and tell the extension
+where it is:
 
-- **From inside QuPath.** `Extensions > OCR for Labels > OCR Settings...`. The
-  **Required Downloads** section has a link for each file (`osd.traineddata` sits under its
-  *Optional File* subheading), and shows **[Not found]** beside each until it can see them
-  (the red box below). Once the file is in a folder, set **Tessdata Path** to that folder (the
-  blue box) and click **OK**. The [Not found] markers clear once the path is right.
+1. `Extensions > OCR for Labels > OCR Settings...`.
+2. In the **Required Downloads** section, the `eng.traineddata` row (**red box** below) is a
+   download link. It shows **[Not found]** until the extension can see the file.
+3. Save the file in a folder of your choosing, say `Documents/tessdata`.
+4. Set **Tessdata Path** (**blue box**) to that folder, with **Browse...** or by typing it, and
+   click **OK**. The [Not found] marker clears once the path is right.
 
-  <img src="../images/ocr/settings.png" alt="The OCR Settings dialog. Under Required Downloads, the eng.traineddata row is outlined in red and marked Not found; the osd.traineddata row below it is also marked Not found. Under Tessdata Location, the empty Tessdata Path field is outlined in blue, with a Browse button beside it" width="420">
-
-Either way, put the file in one folder — anywhere you like, say `Documents/tessdata` — then set
-**Tessdata Path** to that folder and click **OK**.
+<img src="../images/ocr/settings.png" alt="The OCR Settings dialog. Under Required Downloads, the eng.traineddata row is outlined in red and marked Not found; the osd.traineddata row below it is also marked Not found. Under Tessdata Location, the empty Tessdata Path field is outlined in blue, with a Browse button beside it" width="420">
 
 They come from [tessdata_fast](https://github.com/tesseract-ocr/tessdata_fast). There is also
 [tessdata_best](https://github.com/tesseract-ocr/tessdata_best): slower, slightly more accurate,
