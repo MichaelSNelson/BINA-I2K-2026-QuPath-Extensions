@@ -105,7 +105,7 @@ for you to repeat on.
 The extension works on a QuPath **project**, not on a loose file — its dialog lists project
 images down the left side, and batch mode runs over the project. So before anything else:
 
-1. Download `DATA-03_labeled_slides` (link above) and unzip it somewhere you can find it.
+1. Download [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) and unzip it somewhere you can find it.
 2. In QuPath, `File > Project > Create project...` and choose an **empty folder** for it.
 3. Drag the `.czi` files onto the QuPath window, or use **Add images**, and confirm.
 4. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` in the project list to
