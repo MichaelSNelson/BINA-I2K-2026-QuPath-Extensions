@@ -40,17 +40,6 @@ viewer** — a spot in cluster space becomes a real cell on the slide.
 
 It only reads your cells: looking changes no class and no measurement.
 
-<img src="../images/cluster-3d-navigator/window-layout.png" alt="The Cluster 3D Navigator window. Across the top: a Mode row with Current image and Project images radio buttons, X, Y and Z axis dropdowns reading UMAP1, UMAP2 and UMAP3, a Change axes button, a Show cell images check box, and Cell limit per image and Seed fields. Below that a Points counter and a Reset view button, then a collapsed Display options bar. The main area shows several separate colored blobs of points. On the right a CLASSES legend lists Cluster 0 to Cluster 24 with colored squares, check boxes and counts, and a Cell preview thumbnail sits below it. A gesture hint runs along the bottom." width="1000">
-
-*The window on a different, real-tissue dataset (25 clusters, all project images loaded). Yours
-at step 3 will show **Current image**, 1,530 points, six clusters and, until you confirm the
-axes, a "(no embedding detected)" tag next to the dropdowns. The **View** 3D/2D switch, added
-after this picture was taken, sits between Mode and Axes. The layout is otherwise the same: axes
-and mode across the top, the cloud in the middle, the class legend and cell preview on the right,
-gesture hints along the bottom. The
-[repository README](https://github.com/uw-loci/qupath-extension-cluster-3d-navigator#readme)
-has the animated version.*
-
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
