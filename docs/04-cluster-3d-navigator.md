@@ -127,7 +127,7 @@ cells.
    **Z** is `3DUMAP3`, tick **Use these axes automatically next time you open this project.**,
    then **Apply**. The tag goes away and stays away for this project.
 
-<!-- TODO: Add screenshot — the Axes row with the "(no embedding detected)" tag, then the Change axes picker with 3DUMAP1/2/3 -->
+<img src="../images/cluster-3d-navigator/change-axes.png" alt="The Cluster 3D Navigator window on tme_00. The Axes row reads X 3DUMAP1, Y 3DUMAP2, Z 3DUMAP3 with the green tag no embedding detected, pick 3 axes beside it; the Change axes button is outlined in red. The counter reads Points: 1,530 shown / 1,530 total. Six separate colored blobs of points fill the middle and the CLASSES legend lists Cluster 0 to Cluster 5. In the lower right, a Choose axes dialog reads Pick three numeric measurements for X / Y / Z, with X axis 3DUMAP1, Y axis 3DUMAP2, Z axis 3DUMAP3, the box Use these axes automatically next time you open this project ticked, and Apply and Cancel buttons" width="1000">
 
 You should see six colored blobs. The counter under the top row reads
 `Points: 1,530 shown / 1,530 total`, and the **CLASSES** legend lists Cluster 0 (404),
