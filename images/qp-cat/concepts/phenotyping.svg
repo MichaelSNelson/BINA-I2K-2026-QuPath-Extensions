@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 120" width="280" height="120" role="img" aria-labelledby="t d">
+  <title id="t">Rule-based phenotyping</title>
+  <desc id="d">A biaxial plot of CD3 against CD8 with two dashed threshold lines forming a gate; the cells inside the upper-right quadrant are highlighted and labelled CD3 positive CD8 positive.</desc>
+  <line x1="40" y1="100" x2="248" y2="100" stroke="#9AA6C4" stroke-width="1.5"/>
+  <line x1="40" y1="100" x2="40" y2="14" stroke="#9AA6C4" stroke-width="1.5"/>
+  <text x="144" y="116" font-size="12" fill="#9AA6C4" text-anchor="middle" font-family="sans-serif">CD3</text>
+  <text x="16" y="60" font-size="12" fill="#9AA6C4" text-anchor="middle" font-family="sans-serif" transform="rotate(-90 16 60)">CD8</text>
+  <rect x="150" y="14" width="98" height="46" fill="#22D3EE" opacity="0.10"/>
+<circle cx="93.9" cy="89.9" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="86.1" cy="61.8" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="99.5" cy="83.4" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="101.9" cy="82.4" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="94.1" cy="70.0" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="84.1" cy="74.5" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="90.6" cy="86.6" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="104.8" cy="64.8" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="107.6" cy="76.8" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="108.5" cy="88.5" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="102.9" cy="62.0" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="104.6" cy="63.1" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="115.3" cy="71.3" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="94.1" cy="91.5" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="74.2" cy="77.2" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="80.5" cy="71.7" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="84.7" cy="84.3" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="91.8" cy="81.3" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="104.1" cy="62.4" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="114.9" cy="74.7" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="75.4" cy="71.1" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="108.1" cy="86.4" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="85.5" cy="78.5" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="100.1" cy="87.6" r="2.6" fill="#9AA6C4" opacity="0.5"/>
+<circle cx="191.8" cy="49.2" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="183.6" cy="34.7" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="200.1" cy="47.0" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="192.8" cy="46.6" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="195.5" cy="47.7" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="204.3" cy="44.9" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="202.2" cy="37.6" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="188.8" cy="27.1" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="198.2" cy="41.4" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="197.4" cy="28.3" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="187.6" cy="35.8" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="178.4" cy="46.6" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="203.5" cy="32.0" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="196.6" cy="52.0" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="181.8" cy="48.2" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="202.9" cy="50.2" r="2.6" fill="#22D3EE" opacity="1.0"/>
+  <line x1="150" y1="100" x2="150" y2="14" stroke="#FBBF24" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <line x1="40" y1="60" x2="248" y2="60" stroke="#FBBF24" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="244" y="74" font-size="12" fill="#22D3EE" text-anchor="end" font-family="sans-serif">CD3+ CD8+</text>
+</svg>

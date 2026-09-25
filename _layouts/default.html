@@ -78,6 +78,18 @@ img{max-width:100%; height:auto; border-radius:12px; border:1px solid var(--hair
 /* inline icons: img{height:auto} above beats an HTML height attribute, so size
    them here. No border or rounding -- these sit in running text and in tables. */
 img.icon{height:1.15em; width:auto; border:0; border-radius:0; vertical-align:-.18em}
+/* Concept cards: a diagram over a one-line claim, used where a bullet list had
+   grown into a wall of text. Two up on desktop, one up on a phone. */
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+  gap:1rem; margin:0 0 1.3rem}
+.card{background:var(--panel); border:1px solid var(--hair); border-radius:12px;
+  padding:.9rem 1rem 1rem}
+.card img{display:block; width:100%; height:auto; border:0; border-radius:0;
+  margin:0 0 .55rem; background:transparent}
+.card b{display:block; color:var(--cy); font-size:.95rem; margin:0 0 .25rem}
+.card p{margin:0; font-size:.92rem; color:#E3E9FB; line-height:1.5}
+.card p + p{margin-top:.5rem}
+.card a{text-decoration:underline; text-underline-offset:2px}
 img.icon-lg{height:1.7em; width:auto; border:0; border-radius:0; vertical-align:-.45em}
 .footer{
   max-width:56rem; margin:0 auto; padding:0 1.25rem 4rem;

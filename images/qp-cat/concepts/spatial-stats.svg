@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 120" width="280" height="120" role="img" aria-labelledby="t d">
+  <title id="t">Spatial statistics</title>
+  <desc id="d">Two point patterns side by side: on the left cyan and pink cells intermixed and labelled co-localized; on the right the two colours occupying separate regions and labelled avoiding.</desc>
+<circle cx="78.7" cy="74.2" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="52.3" cy="42.8" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="71.7" cy="78.2" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="73.6" cy="38.9" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="51.4" cy="55.6" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="84.3" cy="56.3" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="59.2" cy="52.6" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="69.9" cy="44.2" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="66.7" cy="61.2" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="91.8" cy="55.7" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="82.7" cy="41.9" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="82.8" cy="59.1" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="55.8" cy="56.1" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="83.4" cy="51.4" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="81.3" cy="75.1" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="86.5" cy="73.4" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="44.7" cy="61.5" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="54.5" cy="70.8" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="68.2" cy="60.5" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="75.7" cy="46.8" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="68.6" cy="44.6" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="93.8" cy="51.3" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="66.8" cy="33.7" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="43.6" cy="45.4" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="80.9" cy="68.2" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="72.3" cy="45.9" r="2.6" fill="#22D3EE" opacity="1.0"/>
+  <circle cx="66" cy="56" r="31" fill="none" stroke="#9AA6C4" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
+  <text x="66" y="108" font-size="12" fill="#22D3EE" text-anchor="middle" font-family="sans-serif">co-localized</text>
+  <line x1="140" y1="24" x2="140" y2="92" stroke="#9AA6C4" stroke-width="1" opacity="0.4"/>
+<circle cx="202.2" cy="36.6" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="179.3" cy="49.5" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="177.9" cy="47.2" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="198.6" cy="43.7" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="193.1" cy="44.9" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="184.6" cy="27.4" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="176.1" cy="44.3" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="174.0" cy="39.4" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="190.3" cy="57.1" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="175.4" cy="39.3" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="191.0" cy="50.4" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="178.5" cy="57.3" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="180.5" cy="54.8" r="2.6" fill="#22D3EE" opacity="1.0"/>
+<circle cx="234.1" cy="81.1" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="250.0" cy="82.1" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="237.8" cy="65.7" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="230.3" cy="63.2" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="249.4" cy="66.1" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="221.9" cy="85.3" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="248.7" cy="72.9" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="244.8" cy="68.0" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="230.0" cy="82.0" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="240.9" cy="71.2" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="249.8" cy="82.4" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="237.8" cy="64.3" r="2.6" fill="#F472B6" opacity="1.0"/>
+<circle cx="238.0" cy="72.7" r="2.6" fill="#F472B6" opacity="1.0"/>
+  <text x="212" y="108" font-size="12" fill="#F472B6" text-anchor="middle" font-family="sans-serif">avoiding</text>
+</svg>

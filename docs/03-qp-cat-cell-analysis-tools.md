@@ -35,62 +35,116 @@ title: QP-CAT - Cell Analysis Tools
 
 ## What it does
 
-The standard multiplex workflow is: segment cells in QuPath, export a measurement table,
-open Python, cluster, produce a UMAP, and then lose the connection back to the tissue.
-QP-CAT collapses that loop by embedding the Python environment (via
-[Appose](https://github.com/apposed/appose)) inside QuPath, so cluster space and slide space
-stay linked.
+The standard multiplex workflow is: segment cells in QuPath, export a measurement table, open
+Python, cluster, produce a UMAP, and then lose the connection back to the tissue. QP-CAT
+collapses that loop by embedding the Python environment (via
+[Appose](https://github.com/apposed/appose)) inside QuPath, so **cluster space and slide space
+stay linked** — every result stays clickable back to the cell it came from.
 
-**Find cell types.** Note what this is *not*: QuPath already has object classification (train
-on measurements, or threshold a single one), and this workshop does not re-teach it. What QP-CAT
-adds are other routes to a class on a cell, for when you have thirty markers and no training set
-worth the name:
+You do not need the rest of this section to start the exercise.
 
-- **Unsupervised clustering**: Leiden or KMeans to start, HDBSCAN for rare populations,
-  BANKSY when tissue architecture matters, plus several others.
-- **Rule-based phenotyping**: classic flow-cytometry-style marker gating, with a threshold
-  *suggested* per marker (Triangle, GMM, Gamma). Since 0.11.0, `anypos` / `anyneg` conditions
-  express "Macrophage = CD68 **or** CD163 **or** CD206" as one rule instead of three sharing a
-  name.
-- **Spatial feature smoothing**: blend each cell with its neighbors before clustering
-  (graph convolution), so niches come out as coherent regions instead of salt-and-pepper.
-- **Autoencoder cell classifier**: label a small subset by hand and have the rest of the
-  project labeled for you (variational autoencoder over marker measurements, image patches,
-  or both). Original to QP-CAT and unpublished.
-- **Batch correction** (Harmony) so clusters reflect biology rather than staining day.
+<details markdown="1">
+<summary><b>The capabilities, in pictures</b> — what QP-CAT adds beyond QuPath's own classification</summary>
 
-**Ask spatial questions**
+QuPath already classifies objects (train on measurements, or threshold one). These are the
+other routes to a class on a cell, for when you have thirty markers and no training set worth
+the name.
 
-- Neighborhood enrichment, Ripley K/L, Geary's C, Moran's I, co-occurrence (via squidpy),
-  over kNN / radius / Delaunay graphs. Do two phenotypes co-localize or avoid each other,
-  and at what distance?
-- **Cellular neighborhoods**: recurring tissue niches derived from the cell-type
-  composition around each cell.
+### Find cell types
 
-**Keep separate tissue separate** *(new in 0.10.0)*
+<div class="cards">
+<div class="card">
+<img src="../images/qp-cat/concepts/clustering.svg" alt="One undifferentiated cloud of grey cells on the left; an arrow; the same cells on the right separated into three coloured groups.">
+<b>Unsupervised clustering</b>
+<p>Leiden or KMeans to start, HDBSCAN for rare populations, BANKSY when tissue architecture
+matters, plus several others. <a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/clustering.md">Choosing one</a>.</p>
+</div>
+<div class="card">
+<img src="../images/qp-cat/concepts/phenotyping.svg" alt="A biaxial plot of CD3 against CD8 with two dashed threshold lines forming a gate; cells in the upper-right quadrant are highlighted and labelled CD3 positive CD8 positive.">
+<b>Rule-based phenotyping</b>
+<p>Flow-cytometry-style marker gating, with a threshold <em>suggested</em> per marker.
+<code>anypos</code> / <code>anyneg</code> express "Macrophage = CD68 <b>or</b> CD163 <b>or</b>
+CD206" as one rule. <a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/phenotyping.md">Details</a>.</p>
+</div>
+<div class="card">
+<img src="../images/qp-cat/concepts/smoothing.svg" alt="A grid of randomly interleaved cyan and pink tiles on the left; an arrow; the same grid on the right resolved into one solid cyan region beside one solid pink region.">
+<b>Spatial feature smoothing</b>
+<p>Blend each cell with its neighbours before clustering, so niches come out as coherent
+regions instead of salt-and-pepper.</p>
+</div>
+<div class="card">
+<img src="../images/qp-cat/concepts/autoencoder.svg" alt="Thirty cells, five of them coloured and labelled by hand and the rest empty outlines; an arrow; the same thirty cells on the right all coloured.">
+<b>Autoencoder cell classifier</b>
+<p>Label a small subset by hand and have the rest of the project labelled for you. Original to
+QP-CAT and unpublished. <a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/autoencoder.md">Details</a>.</p>
+</div>
+<div class="card">
+<img src="../images/qp-cat/concepts/harmony.svg" alt="Two grids of six image tiles. On the left each tile's cells are drawn at a different opacity, standing for six different staining days. An arrow leads to the right-hand grid where every tile's cells are drawn at the same intensity.">
+<b>Batch correction</b>
+<p>So clusters reflect biology rather than staining day. Runs
+<a href="https://portals.broadinstitute.org/harmony/">Harmony</a> over images, or over
+independent areas within one image.</p>
+</div>
+</div>
 
-- **Independent areas.** Cells in physically separate pieces of tissue (different TMA cores,
-  different sections, different images) must never share a spatial graph. A neighbor
-  relationship across two cores is an artifact of how the slide was laid out, not biology.
-  Configure them in the **Independent areas** section and QP-CAT resolves areas by geometry,
-  guaranteeing no graph edge joins two of them, across every spatial statistic and
-  cellular-neighborhood run. Left unconfigured, the graph is global.
-- **Composition by area**: one row per independent area. The core-to-core comparison: how
-  does cluster makeup vary across physically separate regions?
-- **Composition by class**: clusters grouped by annotation *class* (Tumor, Stroma, …), pooled
-  across images and areas. Keyed on class rather than annotation name, so the table stays
-  readable however many named regions you have.
+### Ask where things sit
 
-Areas decide which cells may share a graph; class decides how results are compared.
+<div class="cards">
+<div class="card">
+<img src="../images/qp-cat/concepts/independent-areas.svg" alt="Two views of a slide carrying three tissue sections. On the left a single neighbour graph includes amber edges that jump the empty space between sections. On the right each section has its own graph and no edge crosses between them.">
+<b>Independent areas</b>
+<p>Cells in physically separate tissue — different TMA cores, sections, images — must never
+share a spatial graph. A neighbour relationship across two cores is an artifact of how the
+slide was laid out, not biology. QP-CAT resolves areas by geometry and guarantees no edge
+joins two of them. Left unconfigured, the graph is global.</p>
+</div>
+<div class="card">
+<img src="../images/qp-cat/concepts/spatial-stats.svg" alt="Two point patterns side by side: on the left cyan and pink cells intermixed and labelled co-localized; on the right the two colours occupying separate regions and labelled avoiding.">
+<b>Spatial statistics</b>
+<p>Neighborhood enrichment, Ripley's L, Geary's C, Moran's I and co-occurrence over kNN,
+radius or Delaunay graphs — via <a href="https://squidpy.readthedocs.io/">squidpy</a>. Do two
+phenotypes co-localize or avoid each other, and at what distance?
+<a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/spatial-statistics.md">Details</a>.</p>
+</div>
+<div class="card">
+<img src="../images/qp-cat/concepts/neighborhoods.svg" alt="A tissue region tiled into windows, each window coloured by the mix of cell types inside it, so recurring niches show as repeated colours.">
+<b>Cellular neighborhoods</b>
+<p>Recurring tissue niches derived from the cell-type composition around each cell.
+<a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/spatial-neighborhoods.md">Details</a>.</p>
+</div>
+<div class="card">
+<img src="../images/qp-cat/concepts/composition.svg" alt="Three stacked bars of differing composition, one per area, above a second pair of bars grouped by annotation class.">
+<b>Composition tables</b>
+<p><b>By area</b>: one row per independent area — how does cluster makeup vary core to core?
+<b>By class</b>: clusters grouped by annotation class (Tumor, Stroma), pooled across images.</p>
+<p><em>Areas decide which cells may share a graph; class decides how results are compared.</em></p>
+</div>
+</div>
 
-**Look at results**
+### Look at results
 
-- Interactive **UMAP / PCA / t-SNE** (plus a 3D view). Brush a region of the embedding and
-  those cells highlight on the slide; double-click to jump to one.
-- **Lasso gating** on any biaxial marker plot. Draw a polygon and the objects inside it are
-  selected in QuPath, in the current image.
-- Cluster-defining markers via Wilcoxon ranking, plotted as dotplot, matrix plot, violin, or
-  PAGA, without leaving QuPath.
+<div class="cards">
+<div class="card">
+<img src="../images/qp-cat/concepts/brush-link.svg" alt="A UMAP scatter on the left with a region brushed; an arrow to a tissue view on the right where the corresponding cells are highlighted.">
+<b>Linked embedding</b>
+<p>Interactive UMAP / PCA / t-SNE plus a 3D view. Brush a region and those cells highlight on
+the slide; double-click to jump to one.</p>
+</div>
+<div class="card">
+<img src="../images/qp-cat/concepts/lasso.svg" alt="A biaxial marker plot with a freehand polygon drawn around a group of points, which are highlighted as selected.">
+<b>Lasso gating</b>
+<p>Draw a polygon on any biaxial marker plot and the objects inside it are selected in QuPath,
+in the current image.</p>
+</div>
+<div class="card">
+<img src="../images/qp-cat/concepts/marker-ranking.svg" alt="A dotplot grid: clusters down the side, markers across the top, dot size and colour showing enrichment.">
+<b>Cluster-defining markers</b>
+<p>Wilcoxon ranking, plotted as dotplot, matrix plot, violin or PAGA, without leaving QuPath.
+<a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/results.md">Reading the tabs</a>.</p>
+</div>
+</div>
+
+</details>
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
@@ -255,7 +309,7 @@ should detect close to 1,530 cells on `tme_00`.
    this exercise start from the first rather than from defaults. While a run is going, the
    progress checklist shows how long each step has taken — useful for deciding which spatial
    statistics are worth their time on your own data. Tick **`Neighborhood enrichment + Moran's I`** and, under Spatial statistics,
-   **`Ripley K and L`** as well — Parts B and C need them, and computing them now saves a second
+   **`Ripley L`** as well — Parts B and C need them, and computing them now saves a second
    run.
 
    > **Short on time, or something went wrong?** Everything below is already computed in the
@@ -322,7 +376,49 @@ should detect close to 1,530 cells on `tme_00`.
    cytotoxic identity is the question you came with — and that is a decision about biology, not
    about clustering.
 
-6. Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
+6. **A third route: cluster the UMAP, and let the data pick the number.** Both routes above
+   still make you choose *k*. There is a way not to — and you already have what it needs,
+   because step 2 computed a 3D UMAP and wrote it onto every cell.
+
+   In QP-CAT this is a **second run**, not a setting: clustering normally fits in full marker
+   space and the embedding is computed only so you have something to look at. Open **Find cell
+   populations (clustering)...** again and change four things:
+
+   | Section | Setting |
+   |---|---|
+   | Measurements | **`Select none`**, then tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`** — three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
+   | Normalization | **None** |
+   | Dimensionality Reduction | **Method: None** |
+   | Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0** |
+
+   **The three settings in bold are the exercise.** On the defaults this run returns a single
+   cluster holding almost every cell — from a space whose groups you can see separated in the
+   3D view. Why each one matters is
+   [scikit-learn's `cluster_selection_method` and `min_samples`](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html),
+   and QP-CAT's own [troubleshooting entry](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md)
+   spells out the diagnosis; the short version is that the defaults suit compact blobs of even
+   density, and an embedding is not that.
+
+   **The tell is the noise fraction**, and QP-CAT names it for you in the banner above the
+   results. HDBSCAN has two failure modes that look identical in the viewer and are opposites
+   underneath: a lot of noise spread evenly means change the *algorithm*; almost no noise beside
+   one dominant cluster means change the *cluster selection*.
+
+   **What to look for, rather than what to expect.** HDBSCAN chooses its own cluster count, and
+   it may split or merge differently from your k = 6 run. Read Marker Fingerprints and compare
+   against the ground truth as you did before, then ask the question this route exists for: *did
+   letting the data choose recover the CD8 / helper split that KMeans spent its spare cluster
+   elsewhere?* Note that with **Method: None** the results window has no 2D embedding tab —
+   nothing new was computed to plot. The **3D View** tab still works, because it reads the UMAP
+   columns off the cells.
+
+   > **Worth knowing before you rely on this.** The UMAP authors caution against treating an
+   > embedding as ground truth for clustering; read
+   > [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html)
+   > before you use this on real data. Cross-check against a full-marker-space run — which,
+   > conveniently, is the run you did in step 2.
+
+7. Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
    true type is in the `cell_type` column.
 
 ### Part B: is the tumor infiltrated?
@@ -445,45 +541,12 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
   algorithm. Try it.
 - A statistical test that says two populations co-localize, over a slide where they visibly do
   not, means the test answered a different question than you asked. Look at both.
-- **A single cluster is a result about your measurements, not about the tissue.** If you try
-  [HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html) here
-  and it collapses to one population plus scattered noise, that is a property of the method meeting
-  this kind of data, not a verdict on the tissue: on a 304,083-cell TMA it gave one population plus
-  22% noise where KMeans over the identical measurements separated the cores 91–99% cleanly.
-  Evenly-spread noise is the tell. Try another algorithm on the same measurements before
-  concluding your data lack structure. One big cluster with *almost no* noise is a different
-  problem — see the two-step recipe below.
+- **A single cluster is a result about your settings, not about the tissue.** Read the noise
+  fraction before you conclude anything: *a lot* of noise means the algorithm found no density
+  gap — try KMeans or Leiden on the same measurements; *almost none* means it found no
+  boundary at all — that is Part A step 6.
 - Ground truth is a luxury you will not have again. Use this dataset to learn what a *correct*
   result looks like, so you can recognize a wrong one on data where nobody can tell you.
-
-<details>
-<summary><strong>Optional: cluster on the UMAP instead of on the markers</strong></summary>
-
-QP-CAT normally clusters in full marker space and computes the embedding only so you have
-something to look at. The popular alternative — reduce first, then cluster the reduced
-coordinates — is two runs rather than one setting:
-
-1. Run clustering (or **Map cells in 2D / 3D**) with UMAP, which writes `QPCAT 3D UMAP1`,
-   `2` and `3` onto every cell.
-2. Run clustering again. In the measurement picker press **Select none**, then tick only
-   those three columns. Set **Algorithm: HDBSCAN**, **Cluster selection: Leaf**, and
-   **Normalization: None**.
-
-**The two settings in bold are not optional.** With the defaults this returns one cluster
-holding almost every cell even when the lobes are plainly separated in the 3D view —
-measured here at 97.0% of 107,282 cells, with 0.9% noise. *Excess of mass*, HDBSCAN's
-default way of reading clusters off its density tree, keeps the most persistent cluster and
-so prefers the lobes' common parent; **Leaf** takes the lobes. And z-scoring three UMAP
-axes separately stretches the very geometry the density estimate is measured in.
-
-Worth knowing before you rely on it: the UMAP authors themselves caution that UMAP "does
-not completely preserve density" and "can also create false tears in clusters", so
-clustering the embedding "is somewhat controversial, and should be attempted with care"
-([Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html)).
-Treat the cluster count as a starting point and cross-check against a full-marker-space
-run.
-
-</details>
 
 ---
 
@@ -500,7 +563,8 @@ run.
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-cell-analysis-tools#readme).
 
-### The analysis libraries underneath
+<details markdown="1">
+<summary><b>The analysis libraries underneath</b> — where to read what a parameter actually does</summary>
 
 QP-CAT is a QuPath front end for established Python tools: it moves your measurements out, runs
 these, and brings the answers back onto the cells. Nothing in this guide re-teaches them, so when
@@ -510,7 +574,7 @@ documentation.
 | Library | What QP-CAT uses it for |
 |---|---|
 | [scanpy](https://scanpy.readthedocs.io/) | Leiden clustering, marker ranking, PAGA, the dotplot / matrixplot / stacked-violin figures |
-| [squidpy](https://squidpy.readthedocs.io/) | Neighborhood enrichment, Ripley's K/L, Geary's C, Moran's I, co-occurrence |
+| [squidpy](https://squidpy.readthedocs.io/) | Neighborhood enrichment, Ripley's L, Geary's C, Moran's I, co-occurrence |
 | [umap-learn](https://umap-learn.readthedocs.io/) | UMAP embeddings, 2D and 3D |
 | [scikit-learn](https://scikit-learn.org/stable/) | KMeans, agglomerative clustering, HDBSCAN, PCA, t-SNE |
 | [leidenalg](https://leidenalg.readthedocs.io/) + [python-igraph](https://python.igraph.org/) | The graph partitioning behind Leiden |
@@ -520,3 +584,5 @@ documentation.
 
 Versions are pinned per release; the exact set is in the extension's
 [`pixi.toml`](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/src/main/resources/qupath/ext/qpcat/pixi.toml).
+
+</details>
