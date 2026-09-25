@@ -276,7 +276,7 @@ tick `Spread`.
 
 On `tme_00` the column should read:
 
-<img src="../images/class-visibility/spread-column.png" alt="The components table under the header Anything containing these components (7), with columns Component, Spread and Total: aSMA 6/20 416, CD20 3/20 103, CD3 9/20 386 checked, CD68 5/20 221, CD8 5/20 189 checked, Ki67 1/20 126, PanCK 7/20 439. Below it, Checked components combine as shows All, CD3 and CD8 together, 187 objects, selected" width="347">
+<img src="../images/class-visibility/spread-column.png" alt="The components table under the header Anything containing these components (7), with columns Component, Spread and Total. The small plus button at the right end of the column-header row is outlined in red. Rows: aSMA 6/20 416, CD20 3/20 103, CD3 9/20 386 checked, CD68 5/20 221, CD8 5/20 189 checked, Ki67 1/20 126, PanCK 7/20 439. Below it, Checked components combine as shows All, CD3 and CD8 together, 187 objects, selected" width="347">
 
 No component ever reaches
 20: `Unclassified` is one of the twenty and can never contain a component.
