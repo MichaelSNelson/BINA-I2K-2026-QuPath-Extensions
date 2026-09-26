@@ -129,9 +129,11 @@ which is the other reason to have it installed.
 > people fetching it at once is not a good use of the hour. Open the extension once at home so
 > the download happens there.
 
-The inference steps additionally need a pre-trained model we have not published yet, so those
-are a demonstration for everyone until it is released. Training your own is the way to get a
-model to run them against today.
+A trained model is provided, so you do not have to train one first to try inference:
+[`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip) (70 MB). Import it with
+`Extensions > DL Pixel Classifier > Manage Classifiers` and the **Import...** button. It also
+carries a saved **Training Area Issues** session, so the review step below works without
+retraining.
 
 **Data:** the CMU-1 H&E slide in
 [`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)
@@ -139,7 +141,8 @@ model to run them against today.
 [`CMU-1_NanoTissueTrainingData.geojson`](../data/dl-pixel-classifier/CMU-1_NanoTissueTrainingData.geojson)
 (110 KB) and the matching settings profile
 [`ResNet18_fast_tissue.json`](../data/dl-pixel-classifier/ResNet18_fast_tissue.json) (2 KB) if
-you want to train your own.
+you want to train your own. For the inference steps, the trained model itself:
+[`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip) (70 MB).
 
 **Before you start.** Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it is already a project, and dropping it opens it. (The menu route is `File > Project > Open project`, if you prefer.) Then double-click the **CMU-1 H&E** slide in the project list to open it.
 
@@ -153,9 +156,10 @@ live there, not on the top level.
 
 1. `Extensions > DL Pixel Classifier`. Open it once and check that the Python environment
    reports as ready.
-2. **Load a trained model.** In the workshop this is demonstrated with a model we have not
-   published yet. To follow along on your own, train one first with
-   [Train your own, in about a minute](#train-your-own-in-about-a-minute), then come back.
+2. **Load the trained model.** Download [`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip), then
+   `Extensions > DL Pixel Classifier > Manage Classifiers` and press **Import...**. It appears
+   as **CMU-1 Tissue (ResNet-18)**. (Or train your own first with
+   [Train your own, in about a minute](#train-your-own-in-about-a-minute).)
 3. Draw a rectangle over a small area of tissue, then choose
    `Extensions > DL Pixel Classifier > Apply DL Pixel Classifier...`. Set the output to
    **overlay** so the prediction is drawn on the slide.
@@ -404,6 +408,11 @@ Annotations outside the current tile are never touched.
 > **Do it before you close the dialog.** Training tiles are deleted when the progress dialog
 > closes. Save the session first if you want to reopen it later via
 > `Extensions > DL Pixel Classifier > Utilities > Load Saved Training Area Issues...`.
+>
+> The provided model already has a session saved inside it, so once you have imported it you can
+> reach this straight from `Utilities > Load Saved Training Area Issues...` without training
+> anything. The menu asks which classifier's sessions to browse, not for a file path — a session
+> lives inside its model's folder and travels with it.
 
 Correcting annotations here typically improves results more than moving to a larger model.
 
