@@ -97,7 +97,7 @@ This is why the large encoders are a demonstration rather than a hands-on step: 
 laptop will not fine-tune a 1.1B-parameter model in the time available. A **small pretrained
 encoder is a different matter** — ResNet-18 on a two-class problem trains in well under a
 minute on a workstation GPU, which is what the
-[hands-on training exercise](#train-your-own-in-about-a-minute) uses.
+[hands-on training exercise](#3-train-your-own-classifier) uses.
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
@@ -108,7 +108,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 ---
 
-## Exercise
+## Hands-on exercise
 
 **Training and inference have different hardware floors**, so "can I follow along?" has two
 answers:
@@ -129,53 +129,40 @@ which is the other reason to have it installed.
 > people fetching it at once is not a good use of the hour. Open the extension once at home so
 > the download happens there.
 
-A trained model is provided, so you do not have to train one first to try inference:
-[`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip) (70 MB). Import it with
-`Extensions > DL Pixel Classifier > Manage Classifiers` and the **Import...** button. It also
-carries a saved **Training Area Issues** session, so the review step below works without
-retraining.
+### 1. Get the data
 
-**Data:** the CMU-1 H&E slide in
-[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)
-(229 MB; see [setup](setup.md#5-download-the-workshop-data)), plus
-[`CMU-1_NanoTissueTrainingData.geojson`](../data/dl-pixel-classifier/CMU-1_NanoTissueTrainingData.geojson)
-(110 KB) and the matching settings profile
-[`ResNet18_fast_tissue.json`](../data/dl-pixel-classifier/ResNet18_fast_tissue.json) (2 KB) if
-you want to train your own. For the inference steps, the trained model itself:
-[`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip) (70 MB).
+**Download:** `Scripting Demo.zip` — **[direct download](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB). It holds the
+CMU-1 H&E slide (`DATA-01_HE_WSI` in the [setup guide](setup.md#5-download-the-workshop-data))
+inside a ready-made QuPath project, the same one the two wand exercises use.
 
-**Before you start.** Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it is already a project, and dropping it opens it. (The menu route is `File > Project > Open project`, if you prefer.) Then double-click the **CMU-1 H&E** slide in the project list to open it.
+**Download:** `CMU1-tissue-resnet18.zip` — **[direct download](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip)** (70 MB). The trained
+tissue-vs-background model, so you can run inference without training first. It also carries a
+saved **Training Area Issues** session, so step 5 works without retraining.
+
+**Download:** `CMU-1_NanoTissueTrainingData.geojson`
+(**[direct download](../data/dl-pixel-classifier/CMU-1_NanoTissueTrainingData.geojson)**, 110 KB)
+and `ResNet18_fast_tissue.json`
+(**[direct download](../data/dl-pixel-classifier/ResNet18_fast_tissue.json)**, 2 KB) — the
+annotations and the matching settings, for training your own in step 3.
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
+
+### 2. Load it into QuPath
+
+1. Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it
+   is already a project, and dropping it opens it. (Menu route: `File > Project > Open project...`.)
+2. Double-click the **CMU-1 H&E** slide in the project list to open it.
 
 The extension is at `Extensions > DL Pixel Classifier`.
-
 
 <img src="../images/dl-pixel-classifier/menu.png" alt="QuPath's Extensions menu open on DL Pixel Classifier, showing Train and Apply at the top, then Select Overlay Model, Toggle Prediction Overlay and Manage Classifiers, with the Utilities submenu expanded to show Python Console, MAE Pretrain Encoder, Calibrate model to current image, Load Saved Training Area Issues and the environment controls" width="720">
 
 Note the **Utilities** submenu — pretraining, AdaBN calibration and the environment controls
-live there, not on the top level.
+live there, not on the top level. Open the extension once and check that the Python environment
+reports as ready.
 
-1. `Extensions > DL Pixel Classifier`. Open it once and check that the Python environment
-   reports as ready.
-2. **Load the trained model.** Download [`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip), then
-   `Extensions > DL Pixel Classifier > Manage Classifiers` and press **Import...**. It appears
-   as **CMU-1 Tissue (ResNet-18)**. (Or train your own first with
-   [Train your own, in about a minute](#train-your-own-in-about-a-minute).)
-3. Draw a rectangle over a small area of tissue, then choose
-   `Extensions > DL Pixel Classifier > Apply DL Pixel Classifier...`. Set the output to
-   **overlay** so the prediction is drawn on the slide.
-4. Look at the **probability map**, not just the class assignment. Find a region where the
-   model is genuinely uncertain. Uncertainty is usually highest at class boundaries; that is
-   expected, and a model that looks confident everywhere is the one to distrust.
-5. Run it again with **detection objects** as the output, so the result becomes QuPath objects
-   you can measure and classify downstream.
-6. Open a slide with a visibly different stain and run inference again, watching for the
-   **out-of-distribution warning**. The workshop project does not contain a second H&E slide,
-   so use one of your own if you have one — otherwise this step is a demonstration.
-7. On that second slide, try
-   `Extensions > DL Pixel Classifier > Utilities > Calibrate model to current image...`
-   (AdaBN), run inference again, and compare.
-
-### Train your own, in about a minute
+### 3. Train your own classifier
 
 This part you *can* run today. It trains tissue-vs-background on CMU-1 and finishes in seconds
 on a workstation GPU.
@@ -353,6 +340,54 @@ the numbers here.
 learns the places you showed it. Run it over the whole slide and look for where it fails —
 usually the tissue boundary and anything you never annotated. Those failing regions are what you
 annotate next, and *Review Training Areas* (below) is how you find them systematically.
+
+### 4. Apply a classifier to the slide
+
+You can use the model you just trained, or the provided one.
+
+1. **To use the provided model:** download
+   [`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip), then
+   `Extensions > DL Pixel Classifier > Manage Classifiers` and press **Import...**. It appears
+   as **CMU-1 Tissue (ResNet-18)**.
+2. Draw a rectangle over a small area of tissue, then choose
+   `Extensions > DL Pixel Classifier > Apply DL Pixel Classifier...`. Set the output to
+   **overlay** so the prediction is drawn on the slide.
+3. Look at the **probability map**, not just the class assignment. Find a region where the model
+   is genuinely uncertain. Uncertainty is usually highest at class boundaries; that is expected,
+   and a model that looks confident everywhere is the one to distrust.
+4. Run it again with **detection objects** as the output, so the result becomes QuPath objects
+   you can measure and classify downstream.
+5. Open a slide with a visibly different stain and run inference again, watching for the
+   **out-of-distribution warning**. The workshop project does not contain a second H&E slide,
+   so use one of your own if you have one — otherwise this step is a demonstration.
+6. On that second slide, try
+   `Extensions > DL Pixel Classifier > Utilities > Calibrate model to current image...`
+   (AdaBN), run inference again, and compare.
+
+### 5. Review what the model disagreed with
+
+Covered in [The training loop](#2-review-the-training-data-the-model-disagrees-with) below. If
+you imported the provided model rather than training your own, its saved session is already
+inside it: `Utilities > Load Saved Training Area Issues...`, then pick
+**CMU-1 Tissue (ResNet-18)**.
+
+### If something looks wrong
+
+- **Every class but one sits at 0.000 IoU and accuracy will not move.** The model is predicting
+  a single class. Training reports this from epoch 10. It often escapes on its own, so give it
+  epochs before changing anything — and read the **step budget** line at the top of the log
+  first, because too few optimizer steps per epoch is the usual cause.
+- **The run stopped early with a poor score.** Early stopping watches mean IoU, which cannot
+  move until predictions cross a decision boundary, so a run that is improving steadily can look
+  flat and be cut off. The provided profile turns early stopping off for exactly this reason.
+- **"No valid training patches could be extracted."** Most often the annotations are not
+  classified, or they are too small for the current downsample. The message lists what it found;
+  `Total annotations found on disk` tells you whether the export saw them at all.
+- **Results differ from the numbers here.** With a validation set this small, one patch is a
+  large share of the score. See *Will everyone get the same result?* in step 3.
+- Anything else: the extension's own
+  [troubleshooting guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/TROUBLESHOOTING.md)
+  is organised by symptom.
 
 ### What to notice
 
