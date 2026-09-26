@@ -192,11 +192,12 @@ This exercise uses the
 small, fully ground-truthed synthetic tumor microenvironment. It is **CC0**: public domain,
 no attribution required, yours to reuse in your own teaching.
 
-The hands-on exercise hands you a **ready-made QuPath project** built from it — the eight
-images with cells already detected, so you do not run any detection yourself — which also
-carries the ground truth as classified **point annotations**, one per cell, so you can check an
-answer without leaving QuPath. [Getting set up](#getting-set-up) has the downloads; there are
-two projects and you only need one.
+You do not build anything from it. **[Getting set up](#getting-set-up) hands you a ready-made
+QuPath project** — eight images, cells already detected, and the ground truth as classified
+point annotations so you can check an answer without leaving QuPath. The
+[dataset repository](https://github.com/uw-loci/multiplex-synthetic-data) has the raw images,
+per-cell ground-truth CSVs and generation parameters if you want to do something else with the
+data afterwards.
 
 Why synthetic, for a workshop:
 
@@ -212,50 +213,24 @@ Why synthetic, for a workshop:
 > has not been checked by a biologist. Or even by me. It is built so the analysis has
 > structure to find, not so the tissue is right.
 
-**What is in it**
-
-| | |
-|---|---|
-| 8 images | 8 channels (DAPI, PanCK, Ki67, aSMA, CD3, CD8, CD20, CD68), 2D, 0.5 µm/pixel |
-| 6 cell types | tumor, fibroblast, CD8 T, helper T, B cell, macrophage |
-| Tissue niches | tumor nests, an immune-infiltrated nest boundary, B-cell follicles, stroma |
-| Ground truth | per-cell CSV: type, region, position, morphology, per-marker positivity |
-
-**What you get when you unzip the source zip**
-
-Thirty-four files, and QuPath only wants eight of them:
-
-| Files | How many | What to do with them |
-|---|---|---|
-| `tme_00.tif` ... `tme_07.tif` | 8 | **These are the images.** Drag them into a QuPath project. Everything else is reference material |
-| `tme_NN_groundtruth.csv` | 8 | The answer key: one row per cell, with its true type, region and per-marker positivity. Open in a spreadsheet when you want to check a result |
-| `all_groundtruth.csv` | 1 | The same thing for all eight images in one file |
-| `tme_NN_points.geojson` | 8 | The same cells as QuPath point annotations. `File > Import objects from file...` if you want the truth drawn on the image |
-| `tme_NN_params.json` | 8 | How each image was generated: cell counts per type, niche layout, batch offset |
-| `INSTRUCTIONS.md` | 1 | The dataset's own guide, with the full channel and region tables |
-
-> **Set the image type to Fluorescence.** QuPath asks the first time you open one, and the
-> answer is **Fluorescence**. The brightfield options are RGB-only and are not offered for
-> an eight-channel image, so this is a quick confirmation rather than something to get
-> wrong.
-
 ---
 
 ## Hands-on exercise
 
 ### Getting set up
 
-**There are two QuPath projects. Download ONE.** They hold the same eight images with the same
-cells already detected, so either way you never run cell detection. The only difference is
-whether a clustering result is already in the box.
+**There are two projects, one per starting point.** Same eight images, same cells already
+detected, same ground truth. Download the one for where you are starting.
 
-| Download | Take this one if | Size |
-|---|---|---|
-| **[Demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** | You want to **do Part A yourself** — run the clustering and watch it happen. | 20 MB |
-| **[Demo project, clustered](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** | You want to **skip the run**: go straight to Parts B and C, or read Part A's numbers without waiting. It carries a saved KMeans k = 6 over all 11,421 cells. | 23 MB |
+| Download | Use it for | Why | Size |
+|---|---|---|---|
+| **[Demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** | **Part A** | Cells detected, nothing clustered — Part A is you doing the clustering. | 20 MB |
+| **[Demo project, clustered](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** | **Part B onward** | Adds a saved KMeans k = 6 and the 3D UMAP it wrote onto every cell. Part B clusters *on* that UMAP, so this is what you need if you are not doing Part A first. | 23 MB |
 
-If you are unsure, take the **clustered** one: you can still run Part A from it, and you are
-not stuck if the Python environment is still building.
+**Doing the whole workshop?** Take the plain **demo project** and start at Part A; the run you
+do there produces the UMAP that Part B needs, so you will not need the second download.
+**Short on time, or the Python environment is still building?** Take the **clustered** one and
+start wherever you like.
 
 Then, whichever you took:
 
@@ -267,51 +242,21 @@ Then, whichever you took:
    - in the **Update URIs** dialog QuPath offers, click **Search...**, point it at the folder
      from step 1, and click **Apply changes**.
 
-<details markdown="1">
-<summary><b>A third download, optional</b> — the raw dataset, if you want the answer key in a spreadsheet</summary>
-
-**[multiplex-synthetic-data-v1.2.zip](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip)**
-(14 MB) is the dataset rather than a project: the eight images, the per-cell ground truth as
-**CSVs**, the same truth as QuPath-importable point annotations, and the per-image generation
-parameters.
-
-You do **not** need it for the exercise — both projects already carry the ground truth as
-classified point annotations, so you can check an answer without leaving QuPath. Take this one
-if you want to open the truth in a spreadsheet, or build the project yourself from the images.
-
-</details>
-
 > **The embedding columns in the download are named `3DUMAP1`, `3DUMAP2` and `3DUMAP3`** — the
 > dialog's **Name** field was `3D UMAP`, and the space is dropped when the columns are written. A
 > run you do with a newer QP-CAT build may write `QPCAT 3D UMAP1` instead. Nothing is broken
 > either way — the saved result knows which columns it wrote — but if you go on to the
 > [Cluster 3D Navigator](04-cluster-3d-navigator.md) exercise, those are the three names to pick.
 
-<details markdown="1">
-<summary><b>Building it yourself instead</b> — detection settings, if you want to start from the images</summary>
-
-You need **one** image to start, `tme_00.tif`; Parts C and D add `tme_06.tif` and
-`tme_07.tif`, and only batch correction wants all eight.
-
-Create a QuPath project and add `tme_00.tif`. Set the image type to **Fluorescence** if
-prompted. Add a rectangle covering the whole image, then run `Analyze > Cell detection` on the
-**DAPI** channel.
-
-> **One parameter matters more than the rest: background radius = 0.**
-> DAPI in this data has no background. Any nonzero radius smaller than the largest nucleus
-> hollows out the biggest round nuclei and **silently drops about 20% of the tumor cells**,
-> and a tumor compartment that is quietly 20% short still looks entirely plausible. This is
-> worth internalizing beyond this dataset: segmentation defaults chosen for one image type
-> fail *silently* on another, and the failure shows up as biology.
-
-Other settings that work: requested pixel size 0.5 µm, sigma 1.5 µm, minimum area 8 µm²,
-maximum 1000 µm², threshold 50, cell expansion 5 µm, include nuclei and measurements. You
-should detect close to 1,530 cells on `tme_00`.
-
-</details>
-
 ### Part A: find the cell types
 *Concept: cell identity from marker combinations, and what "resolution" costs you.*
+
+**Project:** the plain **[demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** — cells detected, nothing clustered yet.
+
+The eight channels you are about to cluster on are **DAPI** (used for detection), **PanCK**,
+**Ki67**, **aSMA**, **CD3**, **CD8**, **CD20** and **CD68**, at 0.5 um/pixel. They were built
+from **six cell types** — tumor, fibroblast, CD8 T, helper T, B cell, macrophage — which is
+the answer you are trying to arrive at without being told.
 
 1. **Check the environment first.** Open `Extensions > QP-CAT`. Until the Python environment
    is installed, every group except **Setup & help** is hidden, so a fresh install shows a menu
@@ -336,7 +281,7 @@ should detect close to 1,530 cells on `tme_00`.
    this exercise start from the first rather than from defaults. While a run is going, the
    progress checklist shows how long each step has taken — useful for deciding which spatial
    statistics are worth their time on your own data. Tick **`Neighborhood enrichment + Moran's I`** and, under Spatial statistics,
-   **`Ripley L`** as well — Parts B and C need them, and computing them now saves a second
+   **`Ripley L`** as well — Parts C and D need them, and computing them now saves a second
    run.
 
    > **Short on time, or something went wrong?** If you took the **clustered** project,
@@ -402,21 +347,33 @@ should detect close to 1,530 cells on `tme_00`.
    cytotoxic identity is the question you came with — and that is a decision about biology, not
    about clustering.
 
-6. **A third route: cluster the UMAP, and let the data pick the number.** Both routes above
-   still make you choose *k*. There is a way not to — and you already have what it needs,
-   because step 2 computed a 3D UMAP and wrote it onto every cell.
+6. Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
+   true type is in the `cell_type` column.
 
-   In QP-CAT this is a **second run**, not a setting: clustering normally fits in full marker
-   space and the embedding is computed only so you have something to look at. Open **Find cell
-   populations (clustering)...** again and change four things:
+### Part B: cluster on the UMAP instead of the markers
+*Concept: letting the data choose the number of clusters, and what that costs you.*
 
-   | Section | Setting |
-   |---|---|
-   | Measurements | **`Select none`**, then tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`** — three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
-   | Normalization | **None** |
-   | Dimensionality Reduction | **Method: None** |
-   | Batch correction (Harmony) | **Off** |
-   | Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0**, `min_cluster_size` **500** |
+**Project:** whatever you used for Part A, if you did it — that run wrote the 3D UMAP this
+Part needs. Starting here instead? Take the
+**[clustered demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)**,
+which ships that UMAP already on the cells. This is the main reason that download exists.
+
+Part A made you choose *k*. There is a way not to, and you already have what it needs: a 3D
+UMAP on every cell.
+
+In QP-CAT this is a **second run**, not a setting. Clustering normally fits in full marker
+space and the embedding is computed only so you have something to look at, so to cluster *on*
+the embedding you run again over those columns.
+
+**Open `Find cell populations (clustering)...` again** and change five things:
+
+| Section | Setting |
+|---|---|
+| Measurements | **`Select none`**, then tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`** — three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
+| Normalization | **None** |
+| Dimensionality Reduction | **Method: None** |
+| Batch correction (Harmony) | **Off** |
+| Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0**, `min_cluster_size` **500** |
 
 <div class="shots" markdown="0">
 <figure>
@@ -428,49 +385,49 @@ result below.</figcaption>
 </div>
 
 
-   **The three settings in bold are the exercise.** Left on their defaults, this configuration
-   returned a single cluster holding **97.0%** of 107,282 cells on a different, real dataset —
-   from a space whose groups were plainly separated in the 3D view. What each setting does:
-   [scikit-learn's `cluster_selection_method` and `min_samples`](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html).
-   What it looks like when it goes wrong, and how to tell:
-   [QP-CAT troubleshooting](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md#5-hdbscan-returns-one-giant-cluster-and-almost-no-noise).
+**The three settings in bold are the exercise.** Left on their defaults, this configuration
+returned a single cluster holding **97.0%** of 107,282 cells on a different, real dataset —
+from a space whose groups were plainly separated in the 3D view. What each setting does:
+[scikit-learn's `cluster_selection_method` and `min_samples`](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html).
+What it looks like when it goes wrong, and how to tell:
+[QP-CAT troubleshooting](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md#5-hdbscan-returns-one-giant-cluster-and-almost-no-noise).
 
-   **`min_cluster_size` is the one you will actually tune, and 500 is the value that produced
-   the result below.** It is the smallest group HDBSCAN is allowed to call a cluster, so read it
-   against this dataset: 11,421 cells, and the smallest population you are trying to recover is
-   proliferating tumor at 790. The default of 15 is 0.1% of the cohort — fine for finding
-   something rare, but with **Leaf** selection, which deliberately cuts at the finest level of
-   the tree, a floor that low is an invitation to shatter each population into fragments. 500
-   sits under 790, so a real group still clears it, and far above 15. The seven clusters it
-   returned ran from 825 to 3,306 cells.
+**`min_cluster_size` is the one you will actually tune, and 500 is the value that produced
+the result below.** It is the smallest group HDBSCAN is allowed to call a cluster, so read it
+against this dataset: 11,421 cells, and the smallest population you are trying to recover is
+proliferating tumor at 790. The default of 15 is 0.1% of the cohort — fine for finding
+something rare, but with **Leaf** selection, which deliberately cuts at the finest level of
+the tree, a floor that low is an invitation to shatter each population into fragments. 500
+sits under 790, so a real group still clears it, and far above 15. The seven clusters it
+returned ran from 825 to 3,306 cells.
 
-   **Changing it changes two things at once.** With `min_samples` on **0**, scikit-learn ties
-   the density estimate to `min_cluster_size`, so raising the floor also widens the neighbourhood
-   the density is measured over. That is usually what you want — it is why 0 is the default —
-   but it means a sweep of `min_cluster_size` is not a one-variable sweep.
+**Changing it changes two things at once.** With `min_samples` on **0**, scikit-learn ties
+the density estimate to `min_cluster_size`, so raising the floor also widens the neighbourhood
+the density is measured over. That is usually what you want — it is why 0 is the default —
+but it means a sweep of `min_cluster_size` is not a one-variable sweep.
 
-   **Leave batch correction off, even though the dialog offers it.** Eight images are in scope,
-   so Harmony is selectable, but there is nothing here for it to correct: the input is three
-   UMAP columns, and correcting those adjusts the *picture* rather than the measurements that
-   produced it. Batch correction belongs in the run that computes the embedding. Note the
-   consequence for this dataset — the step 2 UMAP was computed without it, over eight images
-   three of which (`tme_02`, `tme_04`, `tme_05`) carry deliberate intensity offsets, so whatever
-   batch structure that introduced is already baked into the coordinates you are about to
-   cluster. If you want it gone, correct it in step 2 and recompute the UMAP; the
-   [batch-effects exercise](#optional-and-slower-batch-effects) below is that run.
+**Leave batch correction off, even though the dialog offers it.** Eight images are in scope,
+so Harmony is selectable, but there is nothing here for it to correct: the input is three
+UMAP columns, and correcting those adjusts the *picture* rather than the measurements that
+produced it. Batch correction belongs in the run that computes the embedding. Note the
+consequence for this dataset — the step 2 UMAP was computed without it, over eight images
+three of which (`tme_02`, `tme_04`, `tme_05`) carry deliberate intensity offsets, so whatever
+batch structure that introduced is already baked into the coordinates you are about to
+cluster. If you want it gone, correct it in step 2 and recompute the UMAP; the
+[batch-effects exercise](#optional-and-slower-batch-effects) below is that run.
 
-   > **One deliberate exception to a rule stated later.** The batch-effects exercise tells you to
-   > press **`Deselect QPCAT`** before a second run, because QP-CAT's own output columns are
-   > answers, not inputs. This step is the case where clustering on them is the point — which is
-   > why you tick exactly three of them by hand rather than leaving the rest of the previous
-   > run's output selected alongside.
+> **One deliberate exception to a rule stated later.** The batch-effects exercise tells you to
+> press **`Deselect QPCAT`** before a second run, because QP-CAT's own output columns are
+> answers, not inputs. This step is the case where clustering on them is the point — which is
+> why you tick exactly three of them by hand rather than leaving the rest of the previous
+> run's output selected alongside.
 
-   **The tell is the noise fraction**, and QP-CAT names it for you in the banner above the
-   results. HDBSCAN has two failure modes that look identical in the viewer and are opposites
-   underneath: a lot of noise spread evenly means change the *algorithm*; almost no noise beside
-   one dominant cluster means change the *cluster selection*.
+**The tell is the noise fraction**, and QP-CAT names it for you in the banner above the
+results. HDBSCAN has two failure modes that look identical in the viewer and are opposites
+underneath: a lot of noise spread evenly means change the *algorithm*; almost no noise beside
+one dominant cluster means change the *cluster selection*.
 
-   **What it looks like when it works** — click any panel for full size:
+**What it looks like when it works** — click any panel for full size:
 
 <div class="shots" markdown="0">
 <figure>
@@ -490,28 +447,28 @@ cluster 2 blue-ringed. Read the clusters by eye here, or re-run over markers to 
 </figure>
 </div>
 
-   **What to look for, rather than what to expect.** Your run may split or merge differently.
-   Read Marker Fingerprints and compare against the ground truth as you did before, then ask
-   the question this route exists for: *did letting the data choose recover the CD8 / helper
-   split that KMeans spent its spare cluster elsewhere?*
+**What to look for, rather than what to expect.** Your run may split or merge differently.
+Read Marker Fingerprints and compare against the ground truth as you did before, then ask
+the question this route exists for: *did letting the data choose recover the CD8 / helper
+split that KMeans spent its spare cluster elsewhere?*
 
-   **The middle panel is the honest cost of this route, and it is not a bug.** Clustering on
-   three embedding columns means the marker rankings can only rank those three columns. If you
-   need phenotypes, name the clusters from **Representative cells**, or cross-check against the
-   marker-space run from step 2. Note also that with **Method: None** the results window has no
-   2D embedding tab — nothing new was computed to plot. The **3D View** tab still works,
-   because it reads the UMAP columns off the cells.
+**The middle panel is the honest cost of this route, and it is not a bug.** Clustering on
+three embedding columns means the marker rankings can only rank those three columns. If you
+need phenotypes, name the clusters from **Representative cells**, or cross-check against the
+marker-space run from step 2. Note also that with **Method: None** the results window has no
+2D embedding tab — nothing new was computed to plot. The **3D View** tab still works,
+because it reads the UMAP columns off the cells.
 
-   > **Worth reading before you rely on this:**
-   > [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html).
-   > Cross-check against a full-marker-space run — which, conveniently, is the run you did in
-   > step 2.
+> **Worth reading before you rely on this:**
+> [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html).
+> Cross-check against a full-marker-space run — which, conveniently, is the run you did in
+> step 2.
 
-7. Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
-   true type is in the `cell_type` column.
-
-### Part B: is the tumor infiltrated?
+### Part C: is the tumor infiltrated?
 *Concept: immune infiltration at the invasive margin.*
+
+The tissue was built with four structures to find: **tumor nests**, an **immune-infiltrated
+nest boundary**, **B-cell follicles**, and **stroma**. This Part goes after the second one.
 
 Cell types alone do not tell you much. **Where** they sit does. In this image, T cells are
 concentrated in a band just outside each tumor nest, the computational version of a
@@ -532,7 +489,8 @@ pathologist's read on whether an immune response has reached the tumor.
 
 3. **Now the control that makes it a result.** Check tumor ↔ *helper* T. It should be
    markedly weaker than tumor ↔ CD8 T. The enrichment is specific to the cytotoxic subset,
-   which is exactly why Part A's k = 5 merge would have destroyed this finding: the two
+   which is exactly why Part A's k = 6 merge of the two T-cell lineages would have destroyed
+   this finding: the two
    T-cell populations would have been averaged into one indifferent number.
 4. Run **Ripley L** per type: tumor and B cells clustered, fibroblasts dispersed. It is one of
    four tick-boxes under **Spatial statistics**, in the same two places as step 1 of this part. Read the
@@ -547,11 +505,13 @@ pathologist's read on whether an immune response has reached the tumor.
     > table, which is one column per ordered pair and scrolls off the right on a run with many
     > clusters.
 
-### Part C: inflamed versus desert
+### Part D: inflamed versus desert
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
 
-Add **`tme_06`** (immune-rich) and **`tme_07`** (immune-poor) to the project, detect cells in
-both, and cluster all three images **jointly**, about 4,200 cells, still fast.
+**`tme_06`** is immune-rich and **`tme_07`** is immune-poor. Both are already in the project
+with cells detected, so this is a scope change rather than any new work: in **Scope** choose
+**`Specific images...`**, pick **`tme_00`**, **`tme_06`** and **`tme_07`**, and cluster the
+three **jointly** — about 4,200 cells, still fast.
 
 1. Open the new **Composition by area** tab. Each image is an independent area, so you get
     one row per image.
@@ -606,7 +566,7 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 
 - **`Results & populations > View Past Results...`** reopens the whole results window — heatmap,
   marker rankings, embedding, every tab — with no Python run and no re-clustering. This is the
-  one to use if you want to go back to Part A's plots while working on Part B, or to look again
+  one to use if you want to go back to Part A's plots while working on Part C, or to look again
   after the session.
 - **`Apply saved result to detections...`** is the different one: it writes a saved run's labels
   back onto the cells. Reach for it when the labels are right in the saved result but are not on
@@ -633,7 +593,7 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 - **A single cluster is a result about your settings, not about the tissue.** Read the noise
   fraction before you conclude anything: *a lot* of noise means the algorithm found no density
   gap — try KMeans or Leiden on the same measurements; *almost none* means it found no
-  boundary at all — that is Part A step 6.
+  boundary at all — that is Part B.
 - Ground truth is a luxury you will not have again. Use this dataset to learn what a *correct*
   result looks like, so you can recognize a wrong one on data where nobody can tell you.
 
