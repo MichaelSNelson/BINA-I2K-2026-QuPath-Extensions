@@ -289,11 +289,25 @@ can train across **several project images** at once.
 **Review Training Areas...**, in the training progress dialog when a run finishes.
 
 Your first annotations will be wrong somewhere, and this is how you find out where. The model
-is run back over every training tile and the tiles are ranked by loss, highest first. A confusion matrix tab shows which class is being mistaken for
-which; click a cell to jump straight to the tiles where that specific confusion happens.
-The collapsible **Annotation Adjustment** panel can then push corrections back into your
-annotations, one class-to-class transition at a time. Set a confidence threshold, preview which
-pixels would change, and confirm — nothing is edited until you do.
+is run back over every training tile and the tiles are ranked by loss, highest first.
+
+The **Confusion Matrix** tab aggregates labelled pixels across the tiles, so you can see which
+class is being mistaken for which instead of guessing from individual tiles. Click any
+off-diagonal cell and the Tiles tab filters to exactly those confusions.
+
+<img src="../images/dl-pixel-classifier/Issues-confusion.png" alt="The Training Area Issues window on the Confusion Matrix tab. A red banner shows the view is filtered to tiles with the confusion Ignore-star to Tissue, with a Clear link beside it. Below is a two-by-two matrix with ground truth as rows and prediction as columns: the diagonal cells are grey, and the off-diagonal cells are shaded pink and red in proportion to how much of that class's pixels went to the wrong column" width="640">
+
+Then fix what it found. Expand **Annotation Adjustment**:
+
+1. Set the confidence threshold — click or drag the colour ramp, or use the slider. Only pixels
+   the model is at least that confident about are eligible to change.
+2. Click **Preview annotation adjustment areas**. Nothing is edited yet; the pixels that would
+   change are drawn in green.
+3. Uncheck any class-to-class transition you disagree with, so you apply only the corrections
+   you want.
+4. Click **Apply previewed adjustment** and confirm.
+
+Annotations outside the current tile are never touched.
 
 > **Do it before you close the dialog.** Training tiles are deleted when the progress dialog
 > closes. Save the session first if you want to reopen it later via
