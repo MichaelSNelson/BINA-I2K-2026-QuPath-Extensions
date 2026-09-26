@@ -98,8 +98,16 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 ---
 
 ## Hands-on exercise
-**Data:** none needed — this is the one tool here that does not care what is on screen.
-Have any image open, though, since several QuPath dialogs will not open without one.
+
+### 1. Get the data
+
+**Download:** nothing. This is the one tool here that does not care what is on screen. Have any
+image open, though, since several QuPath dialogs will not open without one.
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
+
+### 2. Move some dialogs around
 
 The manager is at `Window > Dialog Position Manager...`, not under `Extensions`.
 

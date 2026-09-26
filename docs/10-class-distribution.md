@@ -35,12 +35,12 @@ underperforms, is something you can see at a glance.
 
 ---
 
-## Walkthrough: read the class balance across a project
+## Hands-on exercise
 
 This one follows **after classification or labeling**: once your cells carry classes, it is how
 you check whether those classes are balanced enough to train on.
 
-### 1. The data
+### 1. Get the data
 
 **Download:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
 **[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)**
@@ -49,9 +49,12 @@ point** — a labeled point annotation — and the eight images were built with 
 different compositions: **`tme_06` is immune-rich**, **`tme_07` is immune-poor with no B cells
 at all**. That built-in imbalance is exactly what this tool is for.
 
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
+
 ### 2. Load it into QuPath
 
-1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either works. (Menu route: `File > Project... > Open project`.)
+1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either works. (Menu route: `File > Project > Open project...`.)
 2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected.
    The project ships with *relative* image paths so the zip is portable,
    and QuPath cannot resolve those until you show it the folder once. Click **Search...** (bottom-right),

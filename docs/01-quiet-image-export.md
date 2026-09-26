@@ -86,17 +86,22 @@ Both menu items stay grayed out until a project with at least one image is open.
 ---
 
 ## Hands-on exercise
-**Data:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
+
+### 1. Get the data
+
+**Download:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
 **[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)**
-(20 MB; see [setup](setup.md#5-download-the-workshop-data)). It is a ready-made QuPath project
-of eight synthetic 8-channel multiplexed images, `tme_00.tif` … `tme_07.tif`, from the CC0
+(20 MB). The same project used by Classify Object Subset and Class Distribution, so if you
+already have it, you are done here. It is a ready-made QuPath project of eight synthetic
+8-channel multiplexed images, `tme_00.tif` … `tme_07.tif`, from the CC0
 [multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data). Cells are
 already detected on every image, and every cell carries a classified ground-truth point, so
-there are objects to draw in Part A and a known answer to check mask and tile exports against.
-The same zip serves the [Classify Object Subset](07-classify-object-subset.md) and
-[Class Distribution](10-class-distribution.md) exercises, so one download covers all three.
+there are objects to draw in section 3 and a known answer to check mask and tile exports against.
 
-> **Parts A and B need one image. Part C needs at least two**, because it builds a figure out
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
+
+> **Sections 3 and 4 need one image. Section 5 needs at least two**, because it builds a figure out
 > of several panels. This project gives you eight.
 
 > **Already have the 14 MB `multiplex-synthetic-data-v1.2.zip` from Track B?** Those are the
@@ -106,23 +111,28 @@ The same zip serves the [Classify Object Subset](07-classify-object-subset.md) a
 > [QP-CAT guide](03-qp-cat-cell-analysis-tools.md#hands-on-exercise). The demo project above
 > skips both steps.
 
-### Part A: a figure you could publish
+### 2. Load it into QuPath
 
-1. **Drag the unzipped folder — or the `project.qpproj` inside it — onto an open QuPath
-   window** to open it as a project. The images will show as **missing**: the project cannot
-   know where you unzipped it. In the **Update URIs** dialog click **Search...**, choose the
-   folder you unzipped, then **Apply changes**. Double-click `tme_00.tif` to open it. You
-   should see cell outlines (the detections) and a colored dot on each cell (the
-   ground-truth points). Those are the objects Part A draws onto the figure, so there is
-   nothing to annotate by hand.
-2. `Extensions > QuIET > Image Export...` (see below). The second entry,
-   **Panel / Montage Export...**, is Part C.
+1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either
+   works. (Menu route: `File > Project > Open project...`.)
+2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected.
+   The project ships with *relative* image paths so the zip is portable, and QuPath cannot
+   resolve those until you show it the folder once. Click **Search...** (bottom-right), choose
+   the folder you unzipped, then **Apply changes**.
+3. Double-click **`tme_00.tif`** to open it. You should see cell outlines (the detections) and a
+   colored dot on each cell (the ground-truth points). Those are the objects section 3 draws
+   onto the figure, so there is nothing to annotate by hand.
+
+### 3. A figure you could publish
+
+1. `Extensions > QuIET > Image Export...` (see below). The second entry,
+   **Panel / Montage Export...**, is section 5.
 
    <img src="../images/quiet/menu.png" alt="QuPath's Extensions menu open on QuIET, showing Image Export and Panel / Montage Export" width="720">
-3. **Step 1:** choose **Rendered Image** — the leftmost of the five categories (see below).
+2. **Step 1:** choose **Rendered Image** — the leftmost of the five categories (see below).
 
    <img src="../images/quiet/step1-categories.png" alt="The Select Export Category screen with five cards: Rendered Image, Label / Mask, Raw Image Data, Tiled Export, Object Crops" width="820">
-4. **Step 2:** set the export up like this. The numbers match the badges in the picture below.
+3. **Step 2:** set the export up like this. The numbers match the badges in the picture below.
 
    | # | Field | Set to |
    |---|---|---|
@@ -143,21 +153,21 @@ The same zip serves the [Classify Object Subset](07-classify-object-subset.md) a
    plus one line saying how many of your images it scanned and what type they are. Read it
    now; the advice specific to *your* images comes at Step 3.
 
-5. **Step 3:** **every image in the project starts ticked.** Click **Deselect All** and tick
-   exactly one — Part B needs a second image that has *not* been exported yet. Choose an
+4. **Step 3:** **every image in the project starts ticked.** Click **Deselect All** and tick
+   exactly one — section 4 needs a second image that has *not* been exported yet. Choose an
    output folder.
 
    Now click **Publication Advice**. *This* is the part that looks at the images you actually
    selected and tells you what is missing — for example "No scale bar on calibrated images".
    Items are colored by how much they matter. Read it, then export.
-6. Open the result. Check that the scale bar is legible at the size you would print it.
+5. Open the result. Check that the scale bar is legible at the size you would print it.
 
    Your output folder should hold **one** image plus `export_info`, a small text file
    recording the settings used.
 
    The folder below shows what happens when you *don't* do that — eight exports, because every
    image was still ticked at Step 3. If yours looks like this, delete the folder and redo
-   Step 3 with **Deselect All**, because Part B needs an image that has not been exported yet.
+   Step 3 with **Deselect All**, because section 4 needs an image that has not been exported yet.
 
    (The names look odd because that run had **Drop source file extension** unticked on Step 3,
    so each file kept its original `.tif` name and gained `.svg` on the end. With the tickbox
@@ -165,9 +175,9 @@ The same zip serves the [Classify Object Subset](07-classify-object-subset.md) a
 
    <img src="../images/quiet/output-folder.png" alt="A file listing showing export_info and eight exported files" width="620">
 
-### Part B: the reproducibility half
+### 4. The reproducibility half
 
-*This is why Part A asked you to export only one image.*
+*This is why section 3 asked you to export only one image.*
 
 1. Get the **Groovy script** for that export. QuIET does not write one into the output
    folder — on Step 3, click **Save Script...** and save it somewhere you can find. (It is also
@@ -178,7 +188,7 @@ The same zip serves the [Classify Object Subset](07-classify-object-subset.md) a
    <img src="../images/quiet/script-editor.png" alt="QuPath's Automate menu open, with Script editor highlighted" width="580">
 3. Confirm you get the same treatment applied to new data with zero clicks.
 
-### Part C: a multi-panel figure
+### 5. A multi-panel figure
 
 1. `Extensions > QuIET > Panel / Montage Export...`
 2. Select the images you want as panels and apply one **recipe** — one set of rendering

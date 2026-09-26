@@ -134,9 +134,23 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 ---
 
 ## Hands-on exercise
-**Data:** `DATA-01_HE_WSI`, the CMU-1 H&E slide in the **[`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB; see [setup](setup.md#5-download-the-workshop-data)).
 
-**Before you start.** Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it is already a project, and dropping it opens it. (The menu route is `File > Project > Open project`, if you prefer.) Then double-click the **CMU-1 H&E** slide in the project list to open it.
+### 1. Get the data
+
+**Download:** `Scripting Demo.zip` — **[direct download](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB). It holds the
+CMU-1 H&E slide (`DATA-01_HE_WSI` in the [setup guide](setup.md#5-download-the-workshop-data))
+inside a ready-made QuPath project, the same one the DL Pixel Classifier exercise uses.
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
+
+### 2. Load it into QuPath
+
+1. Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it
+   is already a project, and dropping it opens it. (Menu route: `File > Project > Open project...`.)
+2. Double-click the **CMU-1 H&E** slide in the project list to open it.
+
+### 3. Repair a polyline
 
 Like the Wizard Wand this is a toolbar tool: with an image open, press **Shift+P**.
 

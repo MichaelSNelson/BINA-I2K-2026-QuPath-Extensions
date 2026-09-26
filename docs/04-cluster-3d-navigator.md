@@ -50,7 +50,7 @@ the catalog URL, are in the [setup guide](setup.md).
 
 ---
 
-## Try it yourself
+## Hands-on exercise
 
 Uses the **clustered** version of the synthetic multiplex project — the same download as the
 [QP-CAT](03-qp-cat-cell-analysis-tools.md) exercise. Nothing here needs QP-CAT installed: the
@@ -58,13 +58,13 @@ clustering has already been done, and the navigator only reads the cell data.
 
 ### 1. Get the data
 
-**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
-catalog (see the **Install** box above).
-
 **Download:** `multiplex-synthetic-data-demo-project-clustered.zip` —
 **[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)**
 (23 MB). Eight synthetic 8-channel images with cells already detected, and a saved QP-CAT
 KMeans run over all 11,421 of them.
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 <details markdown="1">
 <summary><b>What is in the download</b> — the class, the three axes, the ground truth, and why the zip's README is wrong</summary>
@@ -238,7 +238,7 @@ is nothing to rotate in 2D, so left-drag pans. Every point is still a click from
 
 ---
 
-## If something looks wrong
+### If something looks wrong
 
 Symptoms you may hit during the walkthrough:
 
@@ -253,7 +253,7 @@ Symptoms you may hit during the walkthrough:
 | Clicking a point selects the wrong cell | The target image is still opening | Give it a moment, then click again |
 | Project mode is slow to read | Eight images of detections | Wait for the busy indicator; use **Current image** for quick checks |
 
-## What to notice
+### What to notice
 
 - Boundary cells, where two colors meet in the cloud, are the first place to look for cells that
   could have gone either way. They are not the only place a clustering goes wrong: the next

@@ -66,16 +66,16 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 ---
 
-## Try it yourself
+## Hands-on exercise
 The point of this exercise is to **make a classification mistake on purpose, then repair only
 the part that is wrong** — which is the situation the extension exists for.
 
-### What you need
+### 1. Get the data
 
-**Data — one download, everything included.**
-`multiplex-synthetic-data-demo-project-v1.2.zip`,
+**Download:** `multiplex-synthetic-data-demo-project-v1.2.zip` —
 **[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)**
-(20 MB). This is a **ready-made QuPath project**, not a loose pile of files — you unzip it and
+(20 MB). The same project used by Class Distribution and Class Visibility, so if you already
+have it, you are done here. This is a **ready-made QuPath project**, not a loose pile of files — you unzip it and
 open it as a project. Inside:
 
 - `images/` — eight synthetic 8-channel multiplexed images (`tme_00.tif` … `tme_07.tif`)
@@ -101,41 +101,17 @@ Unzip it anywhere you like. **Work on `tme_00.tif`, and use that one image throu
 `tme_00` contains **1,530 cells**, of which the ground truth says exactly **412 are tumor
 cells**. Hold on to that number — you are going to measure it twice.
 
-### Set up the project
+### 2. Load it into QuPath
 
-1. Start QuPath, then **drag the unzipped folder — or the `project.qpproj` file inside it —
-   onto the QuPath window.** That opens it as a project. (Menu route, if you prefer:
-   `File > Project... > Open project`.)
-2. **The images will show as missing.** This is expected, it is not your fault, and you do
-   not need to re-download or re-unzip — the project cannot know where you unzipped it. Fix it
-   once: **`Automate > Project scripts > fix_image_paths` > Run**, then reopen the project. That
-   repoints all eight images at the bundled `images/` folder.
-
-   (If QuPath instead offers to locate the missing images, point it at the `images/` folder
-   beside `project.qpproj`; fixing one fixes all.)
+1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either
+   works. (Menu route: `File > Project > Open project...`.)
+2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected.
+   The project ships with *relative* image paths so the zip is portable, and QuPath cannot
+   resolve those until you show it the folder once. Click **Search...** (bottom-right), choose
+   the folder you unzipped, then **Apply changes**.
 3. In the project list on the left, double-click **`tme_00.tif`** to open it.
 
-<img src="../images/classify-object-subset/project-open-tme00.png" alt="tme_00 open in QuPath. A red rectangle annotation frames the whole image; every cell carries a red detection outline; and a small colored dot sits on each cell, colored by its true type" width="820">
-
-**There are three different things drawn on this image, and telling them apart is most of the
-exercise:**
-
-- **The square outline around the whole image** is an *annotation* — a rectangle someone drew
-  so that `Analyze > Cell detection` had a region to run in. It produced everything else here,
-  and you will not touch it again.
-- **The cell outlines** are *detections*, one per cell, about 1,530 of them. They are all the
-  same color because they are **unclassified**: no cell yet carries a class.
-- **The small colored dots**, one sitting on each cell, are *point annotations*. Their colors
-  are the six cell types, and they are the **ground truth** — what each cell really is. They
-  are reference only; you never edit them, and the classifier never reads them.
-
-That last distinction is the one that catches people. The classes you can see on screen belong
-to the **dots**, which are annotations. The extension classifies **cells**, which are
-detections — so until something classifies a cell, the extension has no classes to offer you.
-
-**The extension lives at** `Extensions > Classify Object Subset > Apply Classification to Subset...`.
-
-### Part A: make a mistake worth fixing
+### 3. Make a mistake worth fixing
 
 A classifier that is right about everything teaches you nothing. So first, classify the cells
 with a deliberately crude method that gets most of them right and a few of them wrong.
@@ -167,20 +143,20 @@ with a deliberately crude method that gets most of them right and a few of them 
    > whichever panel you are looking at.
    >
    > If both are genuinely empty, the usual causes are: the script was opened but never
-   > **Run**; or the cells were not classified first, so the first step of Part A needs doing before this one.
+   > **Run**; or the cells were not classified first, so the first item in step 3 needs doing before this one.
 
    Read down the `tumor` column of the printed matrix: **14 CD8 T cells, 9 macrophages, 3
    helper T cells and 1 B cell** were called tumor. That is **27 cells wrongly in the tumor
    class**, nearly all of them at a nest boundary. A further **19 cells matched no marker
    rule** and were left unclassified.
 
-### Part B: measure the error
+### 4. Measure the error
 
 **Nothing has been fixed yet.** All you have done so far is run a deliberately poor classifier
-and find out *that* it is wrong and *which* cells it got wrong. The repair is Part C.
+and find out *that* it is wrong and *which* cells it got wrong. The repair is step 5.
 
 What this part does is get the same error out of the extension as a **single number**, so that
-in Part C you can watch that number move. The dialog is a measuring instrument before it is a
+in step 5 you can watch that number move. The dialog is a measuring instrument before it is a
 repair tool.
 
 1. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
@@ -210,7 +186,7 @@ matching cells in the viewer, if you would rather see them than count them.
 > are annotations, and a cell classifier does not process annotations. The filter only fills
 > in once something has classified the cells.
 
-### Part C: repair only the cells that are wrong
+### 5. Repair only the cells that are wrong
 
 1. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the gate
     called tumor — the correct ones and the mistaken ones together — and nothing else.
@@ -222,7 +198,7 @@ matching cells in the viewer, if you would rather see them than count them.
     CD8 T cells, 9 macrophages, 3 helper T cells and 1 B cell the gate had pushed into the
     tumor class. The other 412 it looked at were already right and were left alone.
 
-3. Now measure again. Reopen the dialog with the same settings as in Part B (**Custom filter**,
+3. Now measure again. Reopen the dialog with the same settings as in step 4 (**Custom filter**,
     **`tumor`** only) and read the live count.
 
     <img src="../images/classify-object-subset/dialog-after-repair.png" alt="The filter panel after the repair, with only tumor ticked, and the live count now reading 412 of 1,530 objects will be classified" width="640">
@@ -236,7 +212,7 @@ matching cells in the viewer, if you would rather see them than count them.
     > is the model reproducing labels it was fitted on — it shows the repair worked, but it is
     > not an accuracy estimate. On your own data, train and score on different images.
 
-### Part D: the leftovers (optional)
+### 6. The leftovers (optional)
 
 The gate leaves a few cells matching no marker rule at all, and those stay unclassified.
 
@@ -251,7 +227,7 @@ The gate leaves a few cells matching no marker rule at all, and those stay uncla
     everything while it still only fills in the blanks — the safer habit once the calls you
     already have are ones you care about.
 
-### Part E: turn it into a script
+### 7. Turn it into a script
 
 Every Apply is recorded so the same operation can be re-run across a whole project.
 

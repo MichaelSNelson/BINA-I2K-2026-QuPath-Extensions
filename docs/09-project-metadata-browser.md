@@ -53,16 +53,26 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 > from the `.czi` files has nothing in it but image names, so every column here would be empty
 > and there would be nothing to sort, filter or export.
 >
-> Parts A and B of that exercise are enough: they leave you with a project carrying real
+> Steps 1 to 3 of that exercise are enough: they leave you with a project carrying real
 > OCR fields.
 
-| | |
-|---|---|
-| **Data** | The project you built in the [OCR exercise](08-ocr4labels.md) from [`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) (244 MB). Nothing extra to download. |
-| **Starting point** | That project open in QuPath, its four slides listed in the project pane. |
-| **OCR columns** | The keys you typed into the OCR dialog: `specimen` and `barcode` if you followed its Part C. Substitute your own names below if you chose others. |
+### 1. Get the data
 
-### Part A: look around
+**Download:** nothing new. This exercise runs on the project you built in the
+[OCR exercise](08-ocr4labels.md) from `OCR_Test_Images_LJI.zip` (244 MB), with the keys you
+typed into the OCR dialog: `specimen` and `barcode` if you followed its step 4. Those are the
+**OCR columns** referred to below; substitute your own names if you chose others.
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
+
+### 2. Load it into QuPath
+
+If that project is not still open, drag its `project.qpproj` onto an open QuPath window (menu
+route: `File > Project > Open project...`). It was made on this machine, so no **Update URIs**
+dialog appears. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` to open it.
+
+### 3. Look around
 
 1. Open `Extensions > Project Metadata Browser > Browse Metadata...`. The **Entries** tab shows
    one row per image: Name, ID, URI, Description, Tags, then one column per metadata key.
@@ -88,7 +98,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
    see. On a project of hundreds this is the quickest check there is, because a misread value
    sorts to the top or bottom, away from the real ones.
 
-### Part B: edit, undo, redo
+### 4. Edit, undo, redo
 
 1. Change one value:
 
@@ -100,7 +110,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 2. Press **Ctrl+Z**. The cell reads `610 TOMO` again. Press **Ctrl+Shift+Z** and `TEST`
    returns. Leave it there, and **do not save yet**.
 
-### Part C: two new columns pulled out of the filenames
+### 5. Two new columns pulled out of the filenames
 
 Every filename in this project carries a stain and a scan date, written two different ways:
 
@@ -146,7 +156,7 @@ the pattern below, which was written for these four filenames.
 > flavor selected lets you paste a filename and see what a pattern captures before you bring
 > it here, and the dialog's preview shows the same thing on your real project.
 
-### Part D: rename a key across the project
+### 6. Rename a key across the project
 
 1. On the **Metadata Keys** tab, rename the `date` key on every image at once:
 
@@ -163,13 +173,13 @@ the pattern below, which was written for these four filenames.
 2. Press **Ctrl+Z**: the key, and the column header, read `date` again. Press **Ctrl+Shift+Z**
    to put the rename back.
 
-### Part E: save, refresh, export
+### 7. Save, refresh, export
 
 1. `File > Save` (**Ctrl+S**). The `*` and the unsaved-changes marker disappear, and the status
    line reports how many changes were saved.
 2. Click **Refresh**. The table is reloaded from the project on disk: `stain` and `scan_date`
    are still there, filled in for all four images, and the `specimen` cell you changed in
-   Part B still reads `TEST`. The columns you hid in Part A stay hidden.
+   step 4 still reads `TEST`. The columns you hid in step 3 stay hidden.
 3. Export what you see:
 
    | | Field | Set to |

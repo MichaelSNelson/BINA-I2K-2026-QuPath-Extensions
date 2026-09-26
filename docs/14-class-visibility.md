@@ -51,7 +51,7 @@ the catalog URL, are in the [setup guide](setup.md).
 
 ---
 
-## Try it yourself
+## Hands-on exercise
 
 ### 1. Get the data
 
@@ -313,7 +313,7 @@ one from the menu, whether or not the panel is still open. It is grayed out and 
 recorded yet)* until the panel has changed something. The menu's own version of the last row is
 spelled **`Reset all visibility`**.
 
-## If something looks wrong
+### If something looks wrong
 
 | What you see | Why | What to do |
 |---|---|---|
@@ -323,7 +323,7 @@ spelled **`Reset all visibility`**.
 | `Active rules` shows a number you did not expect | The classes-list header check box adds every listed class as a rule | **Clear all rules** in the `Active rules` expander |
 | Everything is hidden and you cannot get back | `Show only checked classes` with the wrong rules | **`Reset all`** on the status strip, or `Extensions > Class Visibility > Reset all visibility` |
 
-## What to notice
+### What to notice
 
 - The two lists answer different questions: a class row is exactly that class, a component is
   everything containing it. `All` is the operation that has no equivalent in QuPath's own list.

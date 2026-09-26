@@ -192,7 +192,7 @@ This exercise uses the
 small, fully ground-truthed synthetic tumor microenvironment. It is **CC0**: public domain,
 no attribution required, yours to reuse in your own teaching.
 
-You do not build anything from it. **[Getting set up](#getting-set-up) hands you a ready-made
+You do not build anything from it. **[Get the data](#1-get-the-data) hands you a ready-made
 QuPath project** — eight images, cells already detected, and the ground truth as classified
 point annotations so you can check an answer without leaving QuPath. The
 [dataset repository](https://github.com/uw-loci/multiplex-synthetic-data) has the raw images,
@@ -217,22 +217,25 @@ Why synthetic, for a workshop:
 
 ## Hands-on exercise
 
-### Getting set up
+### 1. Get the data
 
 **There are two projects, one per starting point.** Same eight images, same cells already
 detected, same ground truth. Download the one for where you are starting.
 
 | Download | Use it for | Why | Size |
 |---|---|---|---|
-| **[Demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** | **Part A** | Cells detected, nothing clustered — Part A is you doing the clustering. | 20 MB |
-| **[Demo project, clustered](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** | **Part B onward** | Adds a saved KMeans k = 6 and the 3D UMAP it wrote onto every cell. Part B clusters *on* that UMAP, so this is what you need if you are not doing Part A first. | 23 MB |
+| **[Demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** | **step 3** | Cells detected, nothing clustered — step 3 is you doing the clustering. | 20 MB |
+| **[Demo project, clustered](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** | **step 4 onward** | Adds a saved KMeans k = 6 and the 3D UMAP it wrote onto every cell. step 4 clusters *on* that UMAP, so this is what you need if you are not doing step 3 first. | 23 MB |
 
-**Doing the whole workshop?** Take the plain **demo project** and start at Part A; the run you
-do there produces the UMAP that Part B needs, so you will not need the second download.
+**Doing the whole workshop?** Take the plain **demo project** and start at step 3; the run you
+do there produces the UMAP that step 4 needs, so you will not need the second download.
 **Short on time, or the Python environment is still building?** Take the **clustered** one and
 start wherever you like.
 
-Then, whichever you took:
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
+
+### 2. Load it into QuPath
 
 1. **Unzip it** somewhere you can find again — step 3 may need that folder.
 2. **Drag `project.qpproj` onto an open QuPath window.**
@@ -248,7 +251,7 @@ Then, whichever you took:
 > either way — the saved result knows which columns it wrote — but if you go on to the
 > [Cluster 3D Navigator](04-cluster-3d-navigator.md) exercise, those are the three names to pick.
 
-### Part A: find the cell types
+### 3. Find the cell types
 *Concept: cell identity from marker combinations, and what "resolution" costs you.*
 
 **Project:** the plain **[demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** — cells detected, nothing clustered yet.
@@ -350,15 +353,15 @@ the answer you are trying to arrive at without being told.
 6. Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
    true type is in the `cell_type` column.
 
-### Part B: cluster on the UMAP instead of the markers
+### 4. Cluster on the UMAP instead of the markers
 *Concept: letting the data choose the number of clusters, and what that costs you.*
 
-**Project:** whatever you used for Part A, if you did it — that run wrote the 3D UMAP this
+**Project:** whatever you used for step 3, if you did it — that run wrote the 3D UMAP this
 Part needs. Starting here instead? Take the
 **[clustered demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)**,
 which ships that UMAP already on the cells. This is the main reason that download exists.
 
-Part A made you choose *k*. There is a way not to, and you already have what it needs: a 3D
+Step 3 made you choose *k*. There is a way not to, and you already have what it needs: a 3D
 UMAP on every cell.
 
 In QP-CAT this is a **second run**, not a setting. Clustering normally fits in full marker
@@ -477,7 +480,7 @@ the cells.
 > Cross-check against a full-marker-space run — which, conveniently, is the run you did in
 > step 2.
 
-### Part C: is the tumor infiltrated?
+### 5. Is the tumor infiltrated?
 *Concept: immune infiltration at the invasive margin.*
 
 The tissue was built with four structures to find: **tumor nests**, an **immune-infiltrated
@@ -502,7 +505,7 @@ pathologist's read on whether an immune response has reached the tumor.
 
 3. **Now the control that makes it a result.** Check tumor ↔ *helper* T. It should be
    markedly weaker than tumor ↔ CD8 T. The enrichment is specific to the cytotoxic subset,
-   which is exactly why Part A's k = 6 merge of the two T-cell lineages would have destroyed
+   which is exactly why step 3's k = 6 merge of the two T-cell lineages would have destroyed
    this finding: the two
    T-cell populations would have been averaged into one indifferent number.
 4. Run **Ripley L** per type: tumor and B cells clustered, fibroblasts dispersed. It is one of
@@ -518,7 +521,7 @@ pathologist's read on whether an immune response has reached the tumor.
     > table, which is one column per ordered pair and scrolls off the right on a run with many
     > clusters.
 
-### Part D: inflamed versus desert
+### 6. Inflamed versus desert
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
 
 **`tme_06`** is immune-rich and **`tme_07`** is immune-poor. Both are already in the project
@@ -552,7 +555,7 @@ three **jointly** — about 4,200 cells, still fast.
     pools clusters by class across every image and area, the way to compare compartments that
     share a spatial graph.
 
-### Optional, and slower: batch effects
+### 7. Optional, and slower: batch effects
 
 Best done at home; clustering all eight images is ~11,400 cells.
 
@@ -569,7 +572,7 @@ Best done at home; clustering all eight images is ~11,400 cells.
     > them clusters on the previous run's answer. One button clears every one of them and leaves
     > your own measurements ticked.
 
-### Saved results: reopen a run instead of repeating it
+### 8. Saved results: reopen a run instead of repeating it
 
 Clustering is the slow part of this exercise, and you do not have to do it twice. **Every
 successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timestamped name like
@@ -579,7 +582,7 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 
 - **`Results & populations > View Past Results...`** reopens the whole results window — heatmap,
   marker rankings, embedding, every tab — with no Python run and no re-clustering. This is the
-  one to use if you want to go back to Part A's plots while working on Part C, or to look again
+  one to use if you want to go back to step 3's plots while working on step 5, or to look again
   after the session.
 - **`Apply saved result to detections...`** is the different one: it writes a saved run's labels
   back onto the cells. Reach for it when the labels are right in the saved result but are not on
@@ -606,7 +609,7 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 - **A single cluster is a result about your settings, not about the tissue.** Read the noise
   fraction before you conclude anything: *a lot* of noise means the algorithm found no density
   gap — try KMeans or Leiden on the same measurements; *almost none* means it found no
-  boundary at all — that is Part B.
+  boundary at all — that is step 4.
 - Ground truth is a luxury you will not have again. Use this dataset to learn what a *correct*
   result looks like, so you can recognize a wrong one on data where nobody can tell you.
 

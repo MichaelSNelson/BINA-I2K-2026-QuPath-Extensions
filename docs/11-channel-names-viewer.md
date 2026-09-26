@@ -84,7 +84,7 @@ If the toolbar button, menu entry or shortcut are not there yet, restart QuPath.
 
 ---
 
-## Try it yourself
+## Hands-on exercise
 
 ### 1. Get the data
 
@@ -97,11 +97,14 @@ Both carry the same eight synthetic 8-channel images, and all eight carry real c
 | **Synth multiplex project** | [`multiplex-synthetic-data-demo-project-v1.2.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip) | 20 MB — a ready-made QuPath project. Open it and you are done. This is what the screenshot above shows. |
 | **Synthetic images** | [`multiplex-synthetic-data-v1.2.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip) | 14 MB — the raw dataset: eight `.tif` files plus ground truth. You build the project yourself. |
 
-### 2. Open it in QuPath
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
+
+### 2. Load it into QuPath
 
 **If you took the project:** unzip it, then **drag `project.qpproj` onto an open QuPath
 window** — or the unzipped folder itself, either works. (Menu route:
-`File > Project... > Open project`.) QuPath pops up an **Update URIs** dialog with the images
+`File > Project > Open project...`.) QuPath pops up an **Update URIs** dialog with the images
 listed in red. This is expected: the project ships with *relative* image paths so the zip is
 portable, and QuPath cannot resolve those until you show it the folder once. Click
 **Search...** (bottom-right), choose the folder you unzipped, then **Apply changes**.

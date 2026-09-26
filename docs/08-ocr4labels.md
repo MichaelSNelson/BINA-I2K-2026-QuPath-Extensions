@@ -85,8 +85,15 @@ You are going to read the printed label off a slide file, correct what the reade
 wrong, save that layout as a template, and then run it over a second slide without
 retyping anything.
 
-**Data:** [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS): four CZI whole-slide images from LJI, each carrying an
-embedded slide label. **244 MB, so download it before you travel.**
+### 1. Get the data
+
+**Download:** `OCR_Test_Images_LJI.zip` — **[direct download](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS)**
+(**244 MB, so download it before you travel**). Four CZI whole-slide images from LJI, each
+carrying an embedded slide label.
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)). Plus the language data from
+[the section above](#language-data).
 
 **These four slides are two different label designs, two slides each.** That matters more than
 it sounds: a template records *where* each field sits, so one built on a brightfield label reads
@@ -95,28 +102,29 @@ for you to repeat on.
 
 | File | Size | Label design |
 |---|---|---|
-| `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` | 83 MB | **Brightfield** — the one Part B reads |
-| `histology@lji_org_610 TOMO___MT3B_20201119-mipcomp.czi` | 11 MB | **Brightfield** — batched in Part C |
+| `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` | 83 MB | **Brightfield** — the one step 3 reads |
+| `histology@lji_org_610 TOMO___MT3B_20201119-mipcomp.czi` | 11 MB | **Brightfield** — batched in step 4 |
 | `8443_51000000_02_IF_2022-11-18-mip.czi` | 138 MB | **IF** — the on-your-own pair |
 | `8443_51000000_12_IF_2022-11-18-mipcomp.czi` | 91 MB | **IF** — the on-your-own pair |
 
-### Part A: start here — get the data and make a project
+### 2. Load it into QuPath
 
 The extension works on a QuPath **project**, not on a loose file — its dialog lists project
-images down the left side, and batch mode runs over the project. So before anything else:
+images down the left side, and batch mode runs over the project. The zip is not a project, so
+make one:
 
-1. Download [`DATA-03_labeled_slides`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) and unzip it somewhere you can find it.
+1. Unzip it somewhere you can find it.
 2. In QuPath, `File > Project > Create project...` and choose an **empty folder** for it.
-3. Drag the `.czi` files onto the QuPath window, or use **Add images**, and confirm.
+3. Drag the four `.czi` files onto the QuPath window, or use **Add images**, and confirm.
 4. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` in the project list to
    open it.
 
-### Part B: read one label
+### 3. Read one label
 
 The viewer shows the tissue. The label is a separate small photograph stored inside the same
 file, and the extension pulls it out for you in step 1. This is what it will show:
 
-<img src="../images/ocr/label-key.png" alt="Left, the photographed slide label: four lines of printed text, histology at lji dot org, 610 TOMO, 2020-11-14 and H and E, with a square 2D barcode below them, each marked with a numbered blue badge. Right, a key: 1 the lab's contact address, 2 the specimen identifier or case ID, 3 the date, 4 the stain, 5 the 2D barcode, read by the barcode scanner rather than OCR. A note says a full-image scan reads all of it and Part C builds a template from items 2 and 5 only" width="900">
+<img src="../images/ocr/label-key.png" alt="Left, the photographed slide label: four lines of printed text, histology at lji dot org, 610 TOMO, 2020-11-14 and H and E, with a square 2D barcode below them, each marked with a numbered blue badge. Right, a key: 1 the lab's contact address, 2 the specimen identifier or case ID, 3 the date, 4 the stain, 5 the 2D barcode, read by the barcode scanner rather than OCR. A note says a full-image scan reads all of it and step 4 builds a template from items 2 and 5 only" width="900">
 
 1. Run `Extensions > OCR for Labels > Run OCR on Label`.
 2. Set the controls on the strip along the top of the dialog (boxed in red):
@@ -127,7 +135,7 @@ file, and the extension pulls it out for you in step 1. This is what it will sho
    - **Decode As:** *Try Both* (barcode first, then OCR). These labels carry text and a
      barcode, and you want whichever is more reliable per region.
    - **Min Conf:** leave the default.
-   - **Enhance:** unticked. Part D is where you test what it does.
+   - **Enhance:** unticked. Step 5 is where you test what it does.
 
    <img src="../images/ocr/dialog-full-scan.png" alt="The OCR for Labels dialog after a Full Image scan, with the top toolbar boxed in red: Scan, Scope, Decode As, Draw Region, Add Region, Clear, Mode, Min Conf, Invert, Enhance. The label shows four detected boxes and the table below lists them" width="820">
 
@@ -137,10 +145,10 @@ file, and the extension pulls it out for you in step 1. This is what it will sho
 4. **Apply.** Confirm the metadata landed on the image (right-click the image in the project
    pane → *Edit metadata*, or use the Metadata Browser).
 
-### Part C: a template, then the whole project
+### 4. A template, then the whole project
 
 **Same slide, empty table.** Stay on `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`,
-and click **Clear All** underneath the table so Part B's rows do not end up in your template.
+and click **Clear All** underneath the table so step 3's rows do not end up in your template.
 You are manually building a template from this one label, then applying it to the slides that
 share its design.
 
@@ -187,11 +195,11 @@ share its design.
 
     > **On your own: the IF pair.** The two `8443_51000000` slides are the other label design.
     > Nothing you have built so far applies to them — the template you saved knows where fields
-    > sit on the *brightfield* label. Start again from the top of Part C on one of them, save a second
+    > sit on the *brightfield* label. Start again from the top of step 4 on one of them, save a second
     > template, and batch it over the two. That is the whole workflow in miniature, and it is
     > what you would do on arriving at a new set of slides from a different lab.
 
-### Part D: the two-minute experiment worth doing
+### 5. The two-minute experiment worth doing
 
 Go back to the `histology@lji.org` label. Tick **Enhance**, set **Scope** to *Drawn Regions*, and
 **Rescan Regions**. The address line, which read correctly before, now comes back as something

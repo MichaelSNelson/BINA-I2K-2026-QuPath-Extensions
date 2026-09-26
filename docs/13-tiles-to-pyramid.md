@@ -88,10 +88,15 @@ Also listed in the QPSC microscope catalog, but it needs no microscope, so the m
 
 ## Hands-on exercise
 
-**Data:** `Tiles-to-pyramid.zip` — **[direct download](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/Tiles-to-pyramid.zip)** (459 MB). **Get this before the
+### 1. Get the data
+
+**Download:** `Tiles-to-pyramid.zip` — **[direct download](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/Tiles-to-pyramid.zip)** (459 MB). **Get this before the
 workshop**: it is the largest download of the day, and conference wifi will be slow with several
 people fetching it at once. Unzip it anywhere; you will point the extension at folders inside it,
 not open it as a project.
+
+**You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
+catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 <details markdown="1">
 <summary><b>Why stitching needs more than the stage coordinates</b></summary>
@@ -146,16 +151,16 @@ Get it backwards and every tile lands in the wrong cell:
 <img src="../images/tiles-to-pyramid/axis_inversion.png" alt="Nine numbered tiles cut from a large letter R, shown twice. Placed as the scope recorded them they reassemble into a readable R; with both axes inverted, tile 1 moves from the top left to the bottom right and the letter is scrambled, although no individual tile has been flipped or rotated." width="820">
 
 Nothing in the files says which you have, so you tell the extension with the **Invert X axis** and
-**Invert Y axis** boxes. Exercise 1 is about how you find out.
+**Invert Y axis** boxes. Step 2 is about how you find out.
 
 </details>
 
-**No project required.** Unlike every other tool here, this one does not need one — it reads
+**No project to load.** Unlike every other tool here, this one does not need one — it reads
 tiles off disk and writes an image. Open QuPath, go to
-`Extensions > Tiles to Pyramid > Tiles-to-pyramid`, and start at step 1. The stitched files land
+`Extensions > Tiles to Pyramid > Tiles-to-pyramid`, and carry on with step 2. The stitched files land
 **in the folder you selected**, beside the tiles.
 
-### Exercise 1 — a MicroManager acquisition
+### 2. A MicroManager acquisition
 
 1. `Extensions > Tiles to Pyramid > Tiles-to-pyramid`.
 2. Set the dialog up like this. The numbers match the badges in the picture below.
@@ -220,7 +225,7 @@ corrections, applied to all of them.
 
 </details>
 
-### Exercise 2 — a QPSC acquisition, three channels at once
+### 3. A QPSC acquisition, three channels at once
 
 Reopen the Tiles to Pyramid dialog and change these settings; everything else stays as it was.
 
@@ -297,7 +302,7 @@ many seams were accepted.
 
 </details>
 
-### Exercise 3 — color tiles, upright scope
+### 4. Color tiles, upright scope
 
 Twelve RGB tiles from a polarized-light acquisition. Four changes from exercise 2:
 
@@ -322,11 +327,11 @@ opposite stage convention — and only the pixel size and two checkboxes changed
 No banding, and this is the one mosaic of the three without it. Measured across the joins,
 brightness steps by 1 to 4% here, against 14 to 18% in exercise 2 and 16 to 27% in exercise 1.
 Same stitcher and the same registration all three times, so the difference is not the stitch: it
-is that background correction was switched on when these tiles were acquired. Exercise 2 came off
+is that background correction was switched on when these tiles were acquired. Step 3 came off
 a QPSC acquisition too and still bands, because it was acquired with the correction off --
 `acquisition_metadata.json` in that folder records `bg_correction_enabled: false`.
 
-### If you have time
+### 5. If you have time
 
 **Stitch to OME-Zarr.** This is exercise 2 again in the other output format. You have been through
 exercise 3 since, so several fields need putting back:
@@ -404,7 +409,7 @@ a drive of acquisitions and the same one click does all of them.
 > (16-bit gray and 8-bit RGB), so the merge throws and the run reports "Stitching did not fully
 > succeed" even though both stitches worked.
 
-### If something goes wrong
+### If something looks wrong
 
 | What you see | Why | What to do |
 |---|---|---|
@@ -430,7 +435,7 @@ a drive of acquisitions and the same one click does all of them.
   use and sat at a slight tilt in a rushed acquisition, which deepens the falloff. **Overlap
   blending** turns the hard step into a gradient and is worth trying, but the difference is in
   the pixels and no blend removes it. The cure is flat-field correction before stitching --
-  BaSiC in Fiji, for instance -- and this extension does not do it. Exercise 3 is the one mosaic
+  BaSiC in Fiji, for instance -- and this extension does not do it. Step 4 is the one mosaic
   of the three without banding, because those tiles were acquired with background correction
   switched on; exercise 2 came off the same microscope software with it switched off, and bands
   like exercise 1. Correct at acquisition if you can, because by stitching time it is too late.
