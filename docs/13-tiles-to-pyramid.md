@@ -269,6 +269,11 @@ The result window names the channel it measured on — `aligned on FITC`, or whi
 and the corrections from that one channel are applied to all three. Open the merged image and the
 three channels sit on top of each other; a red dot stays inside its blue nucleus.
 
+<img src="../images/tiles-to-pyramid/qpsc-fluo-final.jpg" alt="The finished four-tile mosaic, showing cultured cells with green cytoskeleton, blue nuclei and orange perinuclear speckle on a black background. Cells run continuously across the field, with one faint horizontal and one faint vertical band crossing near the middle where the four tiles meet" width="720">
+
+Cells run straight through both joins. The faint cross near the middle is the same banding as in
+exercise 1 — a brightness difference between tiles, not a placement error.
+
 <details markdown="1">
 <summary>Why one channel decides for all three, and why the name changes between runs</summary>
 
@@ -305,9 +310,12 @@ opposite stage convention — and only the pixel size and two checkboxes changed
 
 <img src="../images/tiles-to-pyramid/ppm-90-final.jpg" alt="The finished twelve-tile mosaic, showing pink and purple hematoxylin-and-eosin stained tissue: branching glands lined with dark epithelium, set in fibromuscular stroma. Glands and stroma run continuously across the field with no visible lines where tiles meet" width="720">
 
-Compare this with the exercise 1 mosaic: no banding. Measured across the joins, brightness steps
-by 1 to 4% here against 16 to 27% there. Same stitcher, same registration — the difference is
-that QPSC corrected each tile's illumination when it acquired them.
+No banding, and this is the one mosaic of the three without it. Measured across the joins,
+brightness steps by 1 to 4% here, against 14 to 18% in exercise 2 and 16 to 27% in exercise 1.
+Same stitcher and the same registration all three times, so the difference is not the stitch: it
+is that background correction was switched on when these tiles were acquired. Exercise 2 came off
+a QPSC acquisition too and still bands, because it was acquired with the correction off --
+`acquisition_metadata.json` in that folder records `bg_correction_enabled: false`.
 
 ### If you have time
 
@@ -373,8 +381,10 @@ Each angle reports `17 of 17 seams accepted`.
   use and sat at a slight tilt in a rushed acquisition, which deepens the falloff. **Overlap
   blending** turns the hard step into a gradient and is worth trying, but the difference is in
   the pixels and no blend removes it. The cure is flat-field correction before stitching --
-  BaSiC in Fiji, for instance -- and this extension does not do it. Exercise 3 looks cleaner
-  because QPSC applied a background correction when it acquired those tiles.
+  BaSiC in Fiji, for instance -- and this extension does not do it. Exercise 3 is the one mosaic
+  of the three without banding, because those tiles were acquired with background correction
+  switched on; exercise 2 came off the same microscope software with it switched off, and bands
+  like exercise 1. Correct at acquisition if you can, because by stitching time it is too late.
 - Every output carries a `.stitch-info.txt` beside it, recording the method, pixel size, axis
   negation, blending, compression, what registration actually did, and the QuPath, Java and
   extension versions. Copy a methods section from that file, not from memory.
