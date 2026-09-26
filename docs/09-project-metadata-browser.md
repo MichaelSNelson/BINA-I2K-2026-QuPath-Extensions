@@ -30,47 +30,12 @@ title: Project Metadata Browser
 
 ## What it does
 
-Modeled on QuPath's built-in TMA Results Viewer, but for whole projects. One row per project
-image; built-in columns (Name, ID, URI, Description, Tags) plus **one column per user-metadata
-key used anywhere in the project**.
+One window for all the metadata in a project: one row per image, one column per metadata key.
+You can **view** it (filter, sort, hide columns), **edit** it (type into cells, with undo, and
+nothing written to disk until you save), and run **bulk workflows** that add, fill or remove
+metadata on many images at once, from a spreadsheet, a filename pattern or a fill-in template.
 
-If you have just run [OCR for Labels](08-ocr4labels.md) across a few hundred slides, this is where you
-find out whether it worked.
-
-**Viewing**
-
-- Global case-insensitive **Filter rows** search, plus per-column sort.
-- **Fit Columns** auto-sizes each visible column to its widest content, capped by a **Max
-  column width** preference; longer cells wrap rather than truncate. The cap persists across
-  sessions.
-- **Columns** menu lists every column as a checkbox with Select All / Select None, necessary
-  once a project has thirty metadata keys.
-- Multi-row selection with **Ctrl+C** (TSV), and export to CSV or TSV.
-- Double-click or right-click → **Open image**.
-
-**Editing: buffered, and undoable**
-
-This is the part that matters. Edits accumulate in a **working copy** and commit to disk only
-when you click **Save**. Everything (inline cell edits, per-image edits, rename, delete,
-paste, import, regex extraction) is **undoable with Ctrl+Z** (and redoable with
-Ctrl+Shift+Z). Discard reverts to the last save, and closing with unsaved work prompts you.
-**The on-disk project is untouched until Save.**
-
-Given that the alternative is a script that rewrites metadata across every image with no undo,
-this is the difference between a tool you will use and one you will be afraid of.
-
-**Bulk workflows**
-
-- **Excel-style copy/paste**: paste a column of values from a spreadsheet straight into the
-  table.
-- **Template export + reimport**: export a metadata template, send it to the collaborator who
-  actually knows the case IDs, reimport what they fill in.
-- **Regex extraction from filenames**: pull the block number, stain or case ID out of a
-  structured filename into its own metadata column.
-- **Metadata Keys tab**: every distinct key in the project with a usage count, and one
-  operation to **rename** a key across every image or **remove** it from every image. (This
-  one originates from a request by `sebg` on [image.sc](https://forum.image.sc/), building on
-  Pete Bankhead's per-project rename script.)
+<img src="../images/project-metadata-browser/window.png" alt="The Project Metadata Browser window: a Filter rows box and Refresh and Fit Columns buttons above a table with Name, ID, URI, Description, Tags and OCR metadata columns, one row per image, with an entry count, Max column width, Export and Close controls along the bottom" width="820">
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
