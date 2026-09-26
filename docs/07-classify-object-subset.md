@@ -128,16 +128,15 @@ each kind, which helps when the dots and the outlines get in each other's way.
 
 ### 3. Make a mistake worth fixing
 
-First, classify the cells with a deliberately crude method that gets most of them right and a
-few of them wrong.
+First, classify the cells with a script that thresholds each marker channel and assigns a cell
+type from whichever markers are above threshold. It gets most cells right and is wrong in one
+specific way: QuPath expands each nucleus by 5 µm to approximate the cell, and at the edge of a
+tumor nest that expansion picks up PanCK signal from the tumor cell next door, so **T cells
+touching a tumor nest are classified as `tumor`**. In step 5 you will correct only those cells
+with the extension and leave every other cell as it is.
 
-1. Run the imperfect classifier: **`Automate > Project scripts > classify_with_marker_gate`**,
-   then **Run**. It is bundled with the project, so there is nothing to download.
-
-   It thresholds each marker channel and assigns a cell type from which markers are above
-   threshold. Its errors are real ones: QuPath expands each nucleus by 5 µm to approximate the
-   cell, and at the edge of a tumor nest that expansion picks up PanCK signal from the tumor
-   cell next door — so **T cells touching a tumor nest get called `tumor`**.
+1. Run the script: **`Automate > Project scripts > classify_with_marker_gate`**, then **Run**.
+   It is bundled with the project, so there is nothing to download.
 
 2. The cells are now colored by predicted class. Zoom into the boundary of a tumor nest and
    look at the cells there against the ground-truth dots underneath. Some disagree — the
@@ -161,7 +160,7 @@ few of them wrong.
    > **Run**; or the cells were not classified first, so the first item in step 3 needs doing before this one.
 
    Read down the `tumor` column of the printed matrix: **14 CD8 T cells, 9 macrophages, 3
-   helper T cells and 1 B cell** were called tumor. That is **27 cells wrongly in the tumor
+   helper T cells and 1 B cell** were classified as tumor. That is **27 cells wrongly in the tumor
    class**, nearly all of them at a nest boundary. A further **19 cells matched no marker
    rule** and were left unclassified.
 
@@ -185,7 +184,7 @@ you can watch that number move.
 
     <img src="../images/classify-object-subset/dialog-tumor-count-numbered.png" alt="The Classify Object Subset dialog with red numbered badges down the left edge. 1 beside Classifier, set to cell_type_classifier; 2 beside the Object source options, with Custom filter selected; 3 beside the tumor row in the class filter list, the only one ticked, with 1 of 6 checked at the right; 4 beside the line at the bottom reading 439 of 1,530 objects will be classified" width="640">
 
-    **439 is the gate's tumor call. The truth is 412.** The extra 27 are the boundary cells
+    **The script classified 439 cells as tumor. The ground truth says 412.** The extra 27 are the boundary cells
     from the matrix above. You have now measured the error with the same dialog you are about
     to fix it with.
 
@@ -202,24 +201,24 @@ matching cells in the viewer, if you would rather see them than count them.
 
 ### 5. Repair only the cells that are wrong
 
-1. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the gate
-    called tumor — the correct ones and the mistaken ones together — and nothing else.
+1. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the script
+    classified as tumor, the 412 correct ones and the 27 wrong ones together, and nothing else.
 2. Click **Apply**. The confirmation reads **"439 objects classified, 27 changed."**
 
     <img src="../images/classify-object-subset/apply-notification.png" alt="A QuPath notification headed Subset classification complete, reading: 439 objects classified, 27 changed. Open the Workflow tab to copy this operation as a script" width="700">
 
     **27 is the repair, and it is the same 27** you counted off the confusion matrix: the 14
-    CD8 T cells, 9 macrophages, 3 helper T cells and 1 B cell the gate had pushed into the
-    tumor class. The other 412 it looked at were already right and were left alone.
+    CD8 T cells, 9 macrophages, 3 helper T cells and 1 B cell the script had classified as
+    tumor. The other 412 it looked at were already right and were left alone.
 
 3. Now measure again. Reopen the dialog with the same settings as in step 4 (**Custom filter**,
     **`tumor`** only) and read the live count.
 
     <img src="../images/classify-object-subset/dialog-after-repair.png" alt="The filter panel after the repair, with only tumor ticked, and the live count now reading 412 of 1,530 objects will be classified" width="640">
 
-    **412 of 1,530** — the ground truth exactly. You repaired the tumor calls without touching
-    any of the other five cell types: every fibroblast, macrophage and B cell the gate got
-    right is exactly as it was.
+    **412 of 1,530** — the ground truth exactly. You corrected the tumor class without touching
+    any of the other five cell types: every fibroblast, macrophage and B cell the script
+    classified correctly is exactly as it was.
 
     > **Why it lands exactly on 412.** `cell_type_classifier` was trained on the ground-truth
     > points of all eight images, this one included, with nothing held back. So recovering 412
@@ -228,17 +227,17 @@ matching cells in the viewer, if you would rather see them than count them.
 
 ### 6. The leftovers (optional)
 
-The gate leaves a few cells matching no marker rule at all, and those stay unclassified.
+The script leaves 19 cells that match none of its marker rules, and those stay unclassified.
 
 1. Reopen the dialog, and in the **Class filter** tick **Include unclassified** and nothing
-    else. The count shows how many cells the gate could not call.
+    else. The count shows how many cells the script could not classify.
 2. Apply the trained classifier to just those. This is the "stacked classifiers" pattern:
     a first pass that is confident about the easy cases, a second that mops up the rest,
     with each pass leaving the other's work alone.
 
     The dialog has a switch built for exactly this: **Preserve existing class (only set
     unclassified objects)**, at the bottom. Tick it and you can point the classifier at
-    everything while it still only fills in the blanks — the safer habit once the calls you
+    everything while it still only fills in the blanks — the safer habit once the classes you
     already have are ones you care about.
 
 ### 7. Turn it into a script
@@ -249,8 +248,8 @@ Every Apply is recorded so the same operation can be re-run across a whole proje
     **`Apply classify object subset`** — one for each time you clicked Apply.
 2. Get it into Groovy, one of two ways:
 
-    - **Copy the step** out of the history and paste it into the script editor. Use this when
-      you want that one operation and nothing else.
+    - **Right-click the step and choose `Copy command`**, then paste it into the script editor
+      (`Automate > Script editor`). Use this when you want that one operation and nothing else.
     - **Click Create script**, which turns the *whole* workflow into a script — every step
       you ran, not just the Apply — then delete down to the parts you want.
 
@@ -263,11 +262,11 @@ them checkable was the answer key, which independently says 412. That is the par
 have on your own slides: the live count will still tell you **how many** cells you are about to
 change, which is the useful thing, but nothing will tell you the right answer.
 
-Running the trained classifier over the whole image would have fixed the tumor calls too — and
+Running the trained classifier over the whole image would have fixed the tumor class too — and
 rewritten all 1,530 cells while doing it. Here the other five classes came through untouched.
-On your own slides those other calls are often manual work.
+On your own slides those other classes are often the product of manual work.
 
-The gate and the trained classifier each did one job. A pass that only has to separate tumor
+The threshold script and the trained classifier each did one job. A pass that only has to separate tumor
 from not-tumor is easier to check than one that has to get all six right at once.
 
 Each Apply is recorded in the workflow history, so the same operation runs over a whole project
@@ -277,8 +276,7 @@ from a script.
 
 > **Sara McArdle demonstrated this extension in her session on Monday 28 September**,
 > *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*. Both this
-> extension and its sibling grew out of her Groovy scripts. If you were not at that session,
-> the walkthrough above stands on its own.
+> extension and its sibling grew out of her Groovy scripts.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-classify-object-subset#readme).
