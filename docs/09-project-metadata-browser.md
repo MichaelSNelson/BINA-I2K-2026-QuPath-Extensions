@@ -56,33 +56,49 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 > Parts A and B of that exercise are enough: they leave you with a project carrying real
 > OCR fields.
 
-**Data:** the project you built in the [OCR exercise](08-ocr4labels.md), from
-[`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS)
-(**244 MB**). Nothing extra to download.
-
-After the OCR exercise your project holds the four slides, and the ones you ran OCR on carry
-the keys you typed into that dialog (`specimen` and `barcode` if you followed its Part C).
-Those are the **OCR columns** referred to below.
+| | |
+|---|---|
+| **Data** | The project you built in the [OCR exercise](08-ocr4labels.md) from [`OCR_Test_Images_LJI.zip`](https://drive.google.com/uc?export=download&id=1HIAm8hbVkVQHNqJziyfBf3r1hYDjUaRS) (244 MB). Nothing extra to download. |
+| **Starting point** | That project open in QuPath, its four slides listed in the project pane. |
+| **OCR columns** | The keys you typed into the OCR dialog: `specimen` and `barcode` if you followed its Part C. Substitute your own names below if you chose others. |
 
 ### Part A: look around
 
 1. Open `Extensions > Project Metadata Browser > Browse Metadata...`. The **Entries** tab shows
    one row per image: Name, ID, URI, Description, Tags, then one column per metadata key.
-2. Click **Fit Columns**. Then open the **Columns** menu, click **Select None**, and tick
-   **Name** and your OCR columns. The table shrinks to just those.
-3. Type `TOMO` in the **Filter rows** box. Only the two brightfield slides remain: the filter
-   searches every visible column, so `TOMO` matches both their filenames and the case ID that
-   OCR read off their labels. Clear the box and all four rows come back.
-4. Click the header of one of your OCR columns to sort by it. With four images there is little
-   to see. On a project of hundreds this is the quickest check there is, because a misread value
+2. Click **Fit Columns**, then trim the table to the columns you care about. The **Columns**
+   menu closes after each click, so reopen it for each row:
+
+   | | Field | Set to |
+   |---|---|---|
+   | 1 | **Columns > Select None** | click it. Every column disappears. |
+   | 2 | **Columns > Name** | tick |
+   | 3 | **Columns > `specimen`**, then **Columns > `barcode`** | tick each |
+
+3. Find the two brightfield slides:
+
+   | | Field | Set to |
+   |---|---|---|
+   | 1 | **Filter rows** | `TOMO` |
+
+   Only the two `histology@lji_org_610 TOMO…` rows remain. The filter searches every visible
+   column, so `TOMO` matches their filenames and the case ID that OCR read off their labels.
+   Clear the box and all four rows come back.
+4. Click the **`specimen`** column header to sort by it. With four images there is little to
+   see. On a project of hundreds this is the quickest check there is, because a misread value
    sorts to the top or bottom, away from the real ones.
 
 ### Part B: edit, undo, redo
 
-1. Double-click a cell in one of your OCR columns, type a different value and press Enter. The
-   window title gains a `*` and a **1 unsaved change** marker appears.
-2. Press **Ctrl+Z**. The old value comes back. Press **Ctrl+Shift+Z** and your edit returns.
-   Leave it there, and **do not save yet**.
+1. Change one value:
+
+   | | Field | Set to |
+   |---|---|---|
+   | 1 | The **`specimen`** cell of `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` | double-click it, type `TEST`, press Enter |
+
+   The window title gains a `*` and **1 unsaved change** appears at the bottom of the window.
+2. Press **Ctrl+Z**. The cell reads `610 TOMO` again. Press **Ctrl+Shift+Z** and `TEST`
+   returns. Leave it there, and **do not save yet**.
 
 ### Part C: two new columns pulled out of the filenames
 
@@ -106,8 +122,9 @@ the pattern below, which was written for these four filenames.
    |---|---|---|
    | 1 | **Source column** | `Name` (already selected) |
    | 2 | **Regex pattern** | `_(?<stain>[^_]+)_(?<date>\d{4}-?\d{2}-?\d{2})-` |
-   | 3 | **If a group's column name already exists on entries** | *Skip -- keep current values, leave non-collisions alone* |
-   | 4 | **Skip non-matching entries** | leave ticked |
+   | 3 | **Detected groups** | leave `stain` and `date` as they are |
+   | 4 | **If a group's column name already exists on entries** | *Skip -- keep current values, leave non-collisions alone* |
+   | 5 | **Skip non-matching entries** | leave ticked |
 
    What the pattern says: `(?<stain>[^_]+)` is "the text between two underscores, into a
    column called `stain`", and `(?<date>\d{4}-?\d{2}-?\d{2})` is "four digits, two digits, two
@@ -118,8 +135,12 @@ the pattern below, which was written for these four filenames.
    groups detected.** The preview table lists each filename with its `stain` and `date` filled
    in as in the table above, and the line under it reads **Matched 4 of 4; 0 unmatched.** If a
    row shows *(no match)*, the pattern was not pasted exactly.
-4. Click **Apply**. Two new columns, `stain` and `date`, appear in the Entries table, filled in
-   for all four images. This is one undoable action: **Ctrl+Z** removes both columns at once.
+4. Click **Apply**. The status line at the bottom of the window reads **Regex extracted 8 cell
+   values, 2 new columns. Save to commit.** Open the **Metadata Keys** tab: `stain` and `date`
+   are listed, each **Used by** 4. In this version the Entries table does not show new columns
+   until you save and refresh, which is Part E.
+5. Press **Ctrl+Z** on the Metadata Keys tab: both keys disappear, because the extraction was
+   one action. Press **Ctrl+Shift+Z** to bring them back.
 
 > **For your own filenames.** Change the names inside `(?<...>)` and the text around them to
 > match how your files are named. [regex101.com](https://regex101.com/) with the *Java*
@@ -128,21 +149,35 @@ the pattern below, which was written for these four filenames.
 
 ### Part D: rename a key across the project
 
-1. Open the **Metadata Keys** tab. It lists every key with the number of images it is set on
-   (**Used by**) and a sample value. `date` shows *4*.
-2. Select `date` and click **Rename...**. The dialog header reads **Rename "date" (used by
-   4 entries)**. Type `scan_date` in **New key** and click **Rename**.
-3. Back on the **Entries** tab, the column header now reads `scan_date`. Press **Ctrl+Z**: it
-   reads `date` again on every image. Press **Ctrl+Shift+Z** to put the rename back.
+1. On the **Metadata Keys** tab, rename the `date` key on every image at once:
 
-### Part E: save, then export
+   | | Field | Set to |
+   |---|---|---|
+   | 1 | Key list | select `date` (**Used by** 4) |
+   | 2 | **Rename...** | click it. The dialog is headed **Rename "date" (used by 4 entries)** |
+   | 3 | **New key** | `scan_date` |
+   | 4 | **Rename** | click it |
 
-1. `File > Save` (**Ctrl+S**). The `*` and the unsaved-changes marker disappear. To confirm the
-   changes are on disk, click **Refresh**: it reloads the project from disk, and `stain` and
-   `scan_date` are still there with their values.
-2. Click **Export...** at the bottom of the window (or `File > Export > Export visible
-   columns...`), keep the *Comma-separated values* type and save. Open the file in a
-   spreadsheet: one row per image, one column per column you left visible.
+   The key list now shows `scan_date` and no `date`, and the status line reads **Renamed 'date'
+   to 'scan_date' across 4 entries. Save to commit.**
+2. Press **Ctrl+Z**: `date` is back in the list. Press **Ctrl+Shift+Z** to put the rename back.
+
+### Part E: save, refresh, export
+
+1. `File > Save` (**Ctrl+S**). The `*` and the unsaved-changes marker disappear, and the status
+   line reports how many changes were saved.
+2. Click **Refresh**. The table is rebuilt from the project on disk: `stain` and `scan_date` now
+   appear as columns, filled in for all four images, and the `specimen` cell you changed in
+   Part B still reads `TEST`. The columns you hid in Part A stay hidden.
+3. Export what you see:
+
+   | | Field | Set to |
+   |---|---|---|
+   | 1 | **Export...** (bottom right of the window) | click it |
+   | 2 | File type | *Comma-separated values (\*.csv)* |
+   | 3 | File name | `metadata.csv` |
+
+   Open the file in a spreadsheet: one row per image, one column per column you left visible.
 
 ### Why this matters for finding images again
 
