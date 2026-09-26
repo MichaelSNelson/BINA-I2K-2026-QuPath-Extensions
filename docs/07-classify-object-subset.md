@@ -184,15 +184,20 @@ in Part C you can watch that number move. The dialog is a measuring instrument b
 repair tool.
 
 1. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
-2. Set **Classifier** to `cell_type_classifier`. Set **Object source** to **Custom filter**.
-3. In the **Class filter** list, tick **`tumor`** only.
-4. Read the live count: it should say **"439 of 1,530 objects will be classified."**
+2. Set it up like this. The numbers match the badges in the picture below.
+
+    | # | Field | Set to |
+    |---|---|---|
+    | 1 | **Classifier** | `cell_type_classifier` |
+    | 2 | **Object source** | **Custom filter** |
+    | 3 | **Class filter** | Tick **`tumor`** and nothing else |
+    | 4 | Live count at the bottom | Should read **439 of 1,530 objects will be classified** |
+
+    <img src="../images/classify-object-subset/dialog-tumor-count-numbered.png" alt="The Classify Object Subset dialog with red numbered badges down the left edge. 1 beside Classifier, set to cell_type_classifier; 2 beside the Object source options, with Custom filter selected; 3 beside the tumor row in the class filter list, the only one ticked, with 1 of 6 checked at the right; 4 beside the line at the bottom reading 439 of 1,530 objects will be classified" width="640">
 
     **439 is the gate's tumor call. The truth is 412.** The extra 27 are the boundary cells
     from the matrix above. You have now measured the error with the same dialog you are about
     to fix it with.
-
-<img src="../images/classify-object-subset/dialog-tumor-count.png" alt="The Classify Object Subset dialog. Classifier is cell_type_classifier, Object source is Custom filter, and in the class filter only tumor is ticked, showing 1 of 6 checked. At the bottom the live count reads 439 of 1,530 objects will be classified" width="640">
 
 The dialog also tells you what the classifier can produce — *Classifies into: tumor,
 fibroblast, cd8_t, helper_t, b_cell, macrophage* — and **Show selection** highlights the
@@ -217,8 +222,8 @@ matching cells in the viewer, if you would rather see them than count them.
     CD8 T cells, 9 macrophages, 3 helper T cells and 1 B cell the gate had pushed into the
     tumor class. The other 412 it looked at were already right and were left alone.
 
-3. Now measure again. Reopen the dialog, set **Object source** to **Custom filter**, tick
-    **`tumor`** only, and read the live count.
+3. Now measure again. Reopen the dialog with the same settings as in Part B (**Custom filter**,
+    **`tumor`** only) and read the live count.
 
     <img src="../images/classify-object-subset/dialog-after-repair.png" alt="The filter panel after the repair, with only tumor ticked, and the live count now reading 412 of 1,530 objects will be classified" width="640">
 
