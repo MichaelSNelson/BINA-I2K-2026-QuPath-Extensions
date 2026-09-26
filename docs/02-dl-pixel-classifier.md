@@ -14,7 +14,7 @@ title: Deep Learning Pixel Classifier
 | **Repository** | [uw-loci/qupath-extension-dl-pixel-classifier](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier) |
 | **Extension version** | 0.9.5 |
 | **License** | Apache-2.0 |
-| **Requires** | QuPath 0.7.0+, Java 21+. **A CUDA GPU for training.** ~2–4 GB download for the Python environment on first use |
+| **Requires** | QuPath 0.7.0+, Java 21+. **A CUDA GPU to train**; inference also runs on Apple Silicon and on CPU. **Intel Macs are not supported.** ~2–4 GB download for the Python environment on first use |
 | **Where to find it** | `Extensions > DL Pixel Classifier` |
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on (training and inference); the large encoders are demonstrated rather than run |
@@ -34,7 +34,7 @@ title: Deep Learning Pixel Classifier
 ## What it does
 
 QuPath's built-in pixel classifier is a shallow model over hand-chosen features. It is fast,
-interpretable, and often enough. When it is not (subtle textures, tissue classes that differ
+interpretable, and often, enough. When it is not (subtle textures, tissue classes that differ
 by architecture rather than color, images where stain normalization keeps failing), this
 extension keeps the way you work — you still draw a few sparse annotations per class — and
 puts a deep segmentation network behind it.
@@ -106,20 +106,32 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 </details>
 
-> **Do this before the workshop.** The first run downloads an embedded Python environment, and it is a substantial download.
-
 ---
 
 ## Exercise
 
-What you can run depends on your hardware. **With an NVIDIA (CUDA) GPU**, the training exercise
-below runs end to end in about a minute. **Without one**, follow along as a demonstration —
-training on CPU or Apple Silicon is too slow for a workshop slot. The inference steps need a
-pre-trained model we have not published yet, so those are a demonstration for everyone until it
-is released.
+**Training and inference have different hardware floors**, so "can I follow along?" has two
+answers:
 
-> ⚠️ **Do this before the workshop.** Install the extension and open it once, so its Python
-> environment (**2–4 GB**) downloads at home rather than on conference wifi.
+| Your machine | Training | Inference |
+|---|---|---|
+| Windows or Linux with an **NVIDIA (CUDA) GPU** | Fast — the exercise below runs in about a minute | Fast |
+| **Apple Silicon** Mac (M1–M4) | Too slow for a workshop slot — watch this part | Usable |
+| Windows or Linux with **no GPU** | Too slow — watch this part | Slow, but it works |
+| **Intel Mac** | Not supported — the Python environment cannot be built at all |
+
+So most people in the room can run the inference half on their own laptop, and only the CUDA
+machines can train inside the session. Everything here also works afterwards on your own data,
+which is the other reason to have it installed.
+
+> ⚠️ **Install it before you travel** — unless you are on an Intel Mac, where it will not
+> install at all. The first run fetches a **2–4 GB** Python environment, and a room full of
+> people fetching it at once is not a good use of the hour. Open the extension once at home so
+> the download happens there.
+
+The inference steps additionally need a pre-trained model we have not published yet, so those
+are a demonstration for everyone until it is released. Training your own is the way to get a
+model to run them against today.
 
 **Data:** the CMU-1 H&E slide in
 [`Scripting Demo.zip`](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)
