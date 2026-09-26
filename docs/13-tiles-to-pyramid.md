@@ -154,28 +154,30 @@ tiles off disk and writes an image. Open QuPath, go to
 ### Exercise 1 — a MicroManager acquisition
 
 1. `Extensions > Tiles to Pyramid > Tiles-to-pyramid`.
-2. **Stitching Method:** `MicroManager metadata (MMStack or TIFF series)`.
-3. **Select Folder:** choose the `fluo-cells` folder.
+2. Set the dialog up like this. The numbers match the badges in the picture below.
 
-   You should now see **Pixel size, microns** fill in as `0.653`, read from the MicroManager
-   metadata, and a new checkbox appear reading **Merge the 4 channel stitches into one
-   multichannel image** — the extension has found four channels inside the files. Leave it
-   ticked; it is on by default, and the merged file in step 8 depends on it.
-4. Leave **Stitch sub-folders with text string** empty. It starts empty, but it remembers
-   whatever you last typed, so clear it if anything is there. The MicroManager method ignores it
-   either way.
-5. **Output format** `OME-TIFF (single file)`, **Compression type** `UNCOMPRESSED`,
-   **Downsample** `2`. These two are what keep the exercise to a couple of minutes on a laptop:
-   the shipped compression is `J2K`, which is over twice as slow overall and four times slower
-   on the merge, and downsampling by 2 quarters the pixels written. Both fields are remembered
-   between runs, so check them.
-6. Tick **Solve tile overlaps (content-based registration)**. The dialog grows a group of
-   registration options — leave every one of them alone. The defaults derive the overlap from
-   the tile grid and pick the reference channel for you.
-7. Under **Stage axes**, tick **both Invert X axis and Invert Y axis** — this is a scope A
-   acquisition, so its first tile belongs bottom right. The box below shows how you would work
-   that out for data whose scope you do not know.
-8. Click **Stitch**. The dialog closes and a notification says the stitch started in the
+   | # | Field | Set to |
+   |---|---|---|
+   | 1 | **Stitching Method** | `MicroManager metadata (MMStack or TIFF series)` |
+   | 2 | **Folder location** | **Select Folder**, choose `fluo-cells` |
+   | 3 | **Compression type** | `UNCOMPRESSED` |
+   | 4 | **Output format** | `OME-TIFF (single file)` |
+   | 5 | **Pixel size, microns** | Fills in as `0.653` on its own once the folder is chosen. Leave it |
+   | 6 | **Downsample** | `2` |
+   | 7 | **Stitch sub-folders with text string** | Empty. It remembers what you last typed, so clear it if anything is there |
+   | 8 | **Stage axes** | Tick **both** `Invert X axis` and `Invert Y axis` |
+   | 9 | **Merge the 4 channel stitches into one multichannel image** | Appears once the folder is chosen. Leave it ticked |
+   | 10 | **Solve tile overlaps (content-based registration)** | Tick. Leave the options it reveals alone |
+
+   <img src="../images/tiles-to-pyramid/interface-numbered.png" alt="The Tiles to Pyramid dialog filled in for exercise 1, with red numbered badges 1 to 10 down the left edge beside Stitching Method, Folder location, Compression type, Output format, Pixel size, Downsample, Stitch sub-folders, Stage axes, the merge checkbox and Solve tile overlaps. The method reads MicroManager metadata, the folder ends in fluo-cells, compression is UNCOMPRESSED, output is OME-TIFF single file, pixel size 0.653 from metadata, downsample 2, the sub-folder field is empty, both Invert boxes are ticked, and the merge and solve-overlaps boxes are ticked" width="660">
+
+   Three of those are why the exercise takes minutes rather than most of the session.
+   `UNCOMPRESSED` beats the shipped `J2K`, which is over twice as slow overall and four times
+   slower on the merge. Downsample `2` quarters the pixels written. Both fields are remembered
+   between runs, so check them. The two Invert boxes are there because this is a scope A
+   acquisition, whose first tile belongs bottom right; the box further down shows how you
+   would work that out for a scope you do not know.
+3. Click **Stitch**. The dialog closes and a notification says the stitch started in the
    background; QuPath stays usable. Two to three minutes later a window titled **Tiles to
    Pyramid - Result** appears, headed "Stitching complete" and listing every file it wrote.
    Do not click Stitch again while you wait — you will get "A stitch is already running."
@@ -183,11 +185,7 @@ tiles off disk and writes an image. Open QuPath, go to
    Five files appear beside the tiles: `385.ome.tif`, `475.ome.tif`, `550.ome.tif`,
    `621.ome.tif`, and `fluo-cells_merged.ome.tif` holding all four channels. Each gets a
    `.stitch-info.txt` recording how it was made, including which axes were negated.
-<img src="../images/tiles-to-pyramid/interface.png" alt="The Tiles to Pyramid dialog filled in for exercise 1: MicroManager method, the fluo-cells folder, UNCOMPRESSED, OME-TIFF, pixel size 0.653 from metadata, downsample 2, an empty sub-folder field, both Invert axis boxes ticked, and both the merge and solve-overlaps checkboxes ticked" width="620">
-
-*The dialog with everything above set.*
-
-9. Drag `fluo-cells_merged.ome.tif` onto the QuPath window to open it, then zoom in where two
+4. Drag `fluo-cells_merged.ome.tif` onto the QuPath window to open it, then zoom in where two
    tiles meet — the vertical join about a third of the way across. Cells straddling the join
    should look as sharp as cells in the middle of a tile.
 
@@ -232,48 +230,48 @@ following `Per-edge shifts used:` line.
 
 ### Exercise 2 — a QPSC acquisition, three channels at once
 
-1. Reopen the dialog. **Stitching Method:** `TileConfiguration.txt file`.
-2. **Select Folder:** `Fluorescence_10x_7/bounds`.
+Reopen the dialog and change these; everything else stays as it was.
 
-   > **It must be `bounds`, not `Fluorescence_10x_7`.** `bounds` is the folder that *contains*
-   > `DAPI`, `FITC` and `TRITC`. Selecting its parent finds no tiles, because this method reads
-   > only the folder you pick and the position files are one level further down. Selecting one of
-   > the three channel folders works too, but then you get that channel alone.
-3. **Pixel size:** tick **Manually edit pixel size** and enter `0.653`. A
-   `TileConfiguration.txt` records micrometers, so the stitcher needs the scale to convert them
-   to pixels, and there is no MicroManager sidecar here to read it from.
+| Field | Set to |
+|---|---|
+| **Stitching Method** | `TileConfiguration.txt file` |
+| **Folder location** | `Fluorescence_10x_7/bounds` |
+| **Pixel size** | Tick **Manually edit pixel size** and enter `0.653` |
+| **Sub-folders to stitch** | `*` |
+| **Stage axes** | Both Invert boxes ticked, as before |
+| **Solve tile overlaps** | Ticked, as before |
 
-   <details markdown="1">
-   <summary>What a wrong pixel size does</summary>
+Then **Stitch**. You get `DAPI.ome.tif`, `FITC.ome.tif`, `TRITC.ome.tif`, and
+`bounds_merged.ome.tif`.
 
-   Two things go wrong together. The tiles are laid out at the wrong spacing — too large a value
-   packs them, too small spreads them — and the output carries that wrong calibration, so every
-   later measurement in micrometers is off by the same ratio. Far enough out and there is no
-   overlap left for registration to work with.
+> **It must be `bounds`, not `Fluorescence_10x_7`.** `bounds` is the folder that *contains*
+> `DAPI`, `FITC` and `TRITC`. Selecting its parent finds no tiles, because this method reads
+> only the folder you pick and the position files are one level further down. Selecting one of
+> the three channel folders works too, but then you get that channel alone.
 
-   </details>
+> **Why the pixel size is typed this time.** A `TileConfiguration.txt` records micrometers, so
+> the stitcher needs the scale to convert them to pixels, and there is no MicroManager sidecar
+> here to read it from. The **Measure from tiles...** button next to the field estimates a pixel
+> size from the actual tile overlap, but it reads MicroManager metadata to find which tiles
+> neighbor which, so it works on `fluo-cells` and not here.
 
-   > The **Measure from tiles...** button next to the field estimates a pixel size from the
-   > actual tile overlap, which is the escape hatch when you do not know it. It reads
-   > MicroManager metadata to find which tiles neighbor which, so it works on the `fluo-cells`
-   > folder and **not** on this one — here it reports "Need at least two tiles with stage
-   > positions to estimate pixel size.
-4. **Sub-folders to stitch:** type `*`. That means every sub-folder, one image each — here, one
-   per channel. Once it matches all three, the merge checkbox appears.
+<details markdown="1">
+<summary>What a wrong pixel size does</summary>
 
-   > `*` needs **0.7.5 or newer**. On an older build the field is called "Stitch sub-folders with
-   > text string" and takes literal text only, so you would type `I` — the one letter `DAPI`,
-   > `FITC` and `TRITC` share. Update if you can; that trick does not survive a different set of
-   > channel names, which is why the wildcard exists.
+Two things go wrong together. The tiles are laid out at the wrong spacing — too large a value
+packs them, too small spreads them — and the output carries that wrong calibration, so every
+later measurement in micrometers is off by the same ratio. Far enough out and there is no
+overlap left for registration to work with.
 
-   > **Not empty, and not a letter they happen to share.** Empty means "stitch the folder I
-   > selected", and because the tile search recurses, `bounds` on its own finds all twelve files —
-   > the same four positions in three channels — and piles them into one image, whichever channel
-   > lands last at each position. It does not fail or warn. `*` is the way to say "all of them,
-   > separately".
-5. Tick **Solve tile overlaps**, and again tick **both Invert** boxes — same microscope as
-   exercise 1.
-6. **Stitch.** You get `DAPI.ome.tif`, `FITC.ome.tif`, `TRITC.ome.tif`, and `bounds_merged.ome.tif`.
+</details>
+
+> **Why `*` in the sub-folder field.** It means every sub-folder, one image each — here, one
+> per channel. Once it matches all three, the merge checkbox appears. Empty would mean "stitch
+> the folder I selected", and because the tile search recurses, `bounds` on its own finds all
+> twelve files and piles the three channels into one image, whichever lands last at each
+> position, without failing or warning. `*` needs **0.7.5 or newer**; on an older build the
+> field is called "Stitch sub-folders with text string", takes literal text only, and you would
+> type `I`, the one letter `DAPI`, `FITC` and `TRITC` share.
 
 The log reports which channel it measured on and reuses that one solve for the other two:
 
@@ -295,11 +293,12 @@ register *with each other* — worse than leaving all three on the same imperfec
 
 Twelve RGB tiles from a polarized-light acquisition. Four changes from exercise 2:
 
-1. **Select Folder:** `90.0`.
-2. **Sub-folders to stitch:** empty — the tiles are in that folder, and RGB is already three
-   channels, so no merge checkbox appears.
-3. **Pixel size:** `0.1732`, manually.
-4. **Untick both Invert boxes.** Upright scope; its stage runs the same way as its camera.
+| Field | Set to |
+|---|---|
+| **Folder location** | `90.0` |
+| **Sub-folders to stitch** | Empty. The tiles are in that folder, and RGB is already three channels, so no merge checkbox appears |
+| **Pixel size** | `0.1732`, typed with **Manually edit pixel size** ticked |
+| **Stage axes** | **Untick both** Invert boxes. Upright scope; its stage runs the same way as its camera |
 
 Expect `17 of 17 seams accepted` and one `90.0.ome.tif`. Color instead of 16-bit grayscale, a
 different objective and the opposite stage convention — and only the pixel size and two
