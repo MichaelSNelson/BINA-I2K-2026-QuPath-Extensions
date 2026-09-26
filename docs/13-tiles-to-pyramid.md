@@ -251,7 +251,7 @@ Then **Stitch**. You get `DAPI.ome.tif`, `FITC.ome.tif`, `TRITC.ome.tif`, and
 > only the folder you pick and the position files are one level further down. Selecting one of
 > the three channel folders works too, but then you get that channel alone.
 
-> **Why the pixel size is typed this time.** A `TileConfiguration.txt` records micrometers, so
+> **Why the pixel size is manually entered this time.** A `TileConfiguration.txt` records micrometers, so
 > the stitcher needs the scale to convert them to pixels, and there is no MicroManager sidecar
 > here to read it from. The **Measure from tiles...** button next to the field estimates a pixel
 > size from the actual tile overlap, but it reads MicroManager metadata to find which tiles
