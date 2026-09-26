@@ -452,12 +452,25 @@ Read Marker Fingerprints and compare against the ground truth as you did before,
 the question this route exists for: *did letting the data choose recover the CD8 / helper
 split that KMeans spent its spare cluster elsewhere?*
 
-**The middle panel is the honest cost of this route, and it is not a bug.** Clustering on
-three embedding columns means the marker rankings can only rank those three columns. If you
-need phenotypes, name the clusters from **Representative cells**, or cross-check against the
-marker-space run from step 2. Note also that with **Method: None** the results window has no
-2D embedding tab — nothing new was computed to plot. The **3D View** tab still works,
-because it reads the UMAP columns off the cells.
+**The middle panel is the honest cost of this route, and it is not a bug.** Clustering on three
+embedding columns means the marker rankings can only rank those three columns. A cluster that
+is high in `3DUMAP2` is not a phenotype.
+
+**So take the second step, which is where this route pays off.** The markers are still sitting
+on the cells; nothing has read them yet.
+**`Results & populations > Analyze current cell classifications...`** does that read. It takes
+the classes the cells now carry — the seven clusters you just made — and computes the whole
+marker surface over them: heatmap, Marker Rankings, fingerprints, composition. In its
+**Measurements** list pick the **markers** this time (`Select 'Mean' only`), not the UMAP
+columns. It writes nothing back: no classification is added, changed or removed.
+
+That is the pair worth remembering — **cluster in one space, characterise in another.** HDBSCAN
+on the UMAP decides *which cells group together*; analysing those groups over the markers
+decides *what to call them*. Neither run can do both.
+
+Note also that with **Method: None** the results window has no 2D embedding tab — nothing new
+was computed to plot. The **3D View** tab still works, because it reads the UMAP columns off
+the cells.
 
 > **Worth reading before you rely on this:**
 > [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html).
