@@ -203,6 +203,11 @@ different set.
 
 **4. Name it and press Start Training.**
 
+<img src="../images/dl-pixel-classifier/training-buttons.png" alt="The row of buttons along the bottom of the Train DL Pixel Classifier dialog: Copy as Groovy Script, Save profile, Load profile, Reset to defaults, Start Training and Cancel" width="700">
+
+*(These buttons run along the bottom of the dialog. `Copy as Groovy Script` reproduces the whole
+run as a script, which is the easiest way to repeat it on another project.)*
+
 <details markdown="1">
 <summary><b>Settings details — set it up yourself</b> — every panel, with the value the profile uses</summary>
 
@@ -347,8 +352,10 @@ You can use the model you just trained, or the provided one.
 
 1. **To use the provided model:** download
    [`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip), then
-   `Extensions > DL Pixel Classifier > Manage Classifiers` and press **Import...**. It appears
-   as **CMU-1 Tissue (ResNet-18)**.
+   `Extensions > DL Pixel Classifier > Manage Classifiers` and press **Import...** (bottom row,
+   beside Delete and the two Export buttons — see the
+   [Manage Classifiers window](#sharing-and-moving-a-model) below). It appears as
+   **CMU-1 Tissue (ResNet-18)**.
 2. Draw a rectangle over a small area of tissue, then choose
    `Extensions > DL Pixel Classifier > Apply DL Pixel Classifier...`. Set the output to
    **overlay** so the prediction is drawn on the slide.
