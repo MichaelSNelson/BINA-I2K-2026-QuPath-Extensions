@@ -93,7 +93,37 @@ workshop**: it is the largest download of the day, and conference wifi will be s
 people fetching it at once. Unzip it anywhere; you will point the extension at folders inside it,
 not open it as a project.
 
-Four tile folders, from two different microscopes:
+<details markdown="1">
+<summary><b>Why stitching needs more than the stage coordinates</b></summary>
+
+The microscope records where the stage was for each tile, so the obvious way to build a mosaic is
+to put every tile at its recorded position. It very nearly works. The stage is not precise to the
+pixel, though — backlash, encoder error and thermal drift each add a little — so neighboring tiles
+land a few pixels out of true and every join shows as a line through the picture.
+
+The fix is to stop trusting the coordinates and look at the pixels. Neighboring tiles are set to
+overlap, which means the strip where they meet is the same piece of sample photographed twice;
+slide one tile against the other until those two strips agree, and the shift that makes them agree
+is the error in the stage. Do that for every pair of neighbors, then solve the whole grid at once
+so no tile is dragged out of line by one bad pair. That is **Solve tile overlaps** in the dialog,
+and it is the same approach Fiji's Grid/Collection stitching takes — the method paper opens by
+noting that stage coordinates "are not precise enough to allow direct reconstruction"
+([Preibisch, Saalfeld &amp; Tomancak 2009](https://doi.org/10.1093/bioinformatics/btp184)).
+
+Here is one join out of `fluo-cells`, stitched both ways — at the stage's positions, then at
+measured ones. The stage was out by up to 12 px:
+
+<img src="../images/tiles-to-pyramid/join_nominal_vs_registered.png" alt="The same tile join stitched twice. At the stage's positions, cells are visibly cut and offset along a vertical line; at measured positions the same cells run continuously through the join" width="880">
+
+The break is a hard step rather than a blur because the shipped blend cuts at the tile boundary;
+blending is a QuPath preference (`Edit > Preferences > Tiles-to-pyramid > Stitching: overlap
+blending`), not a dialog field. The color is three channels merged for the figure; your own output
+opens as separate grayscale channels.
+
+</details>
+
+<details markdown="1">
+<summary><b>The data provided</b> &mdash; four folders, and which method each one needs</summary>
 
 | Folder | What is in it | Tiles | Scope | Method to choose |
 |---|---|---|---|---|
@@ -102,39 +132,22 @@ Four tile folders, from two different microscopes:
 | `7.0.biref/`, `90.0/` | One polarized-light acquisition at two analyzer angles. `90.0` is color (RGB), `7.0.biref` is 16-bit | 12 tiles each, 2064 × 1544, 0.1732 µm/px | B | TileConfiguration.txt file |
 
 Everything is 10% overlap, and nothing is pre-processed — these are the files as the microscopes
-wrote them.
+wrote them. The exercises use the first three dropdown methods' two useful cases; Vectra and
+Filename[x,y] read positions the same way from different places and are not covered here.
 
-Scopes **A** and **B** differ in one way that matters here: they disagree about which corner the
-first tile belongs in. On A, the stage position that the acquisition recorded first belongs at the
-bottom right of the finished image; on B it belongs at the top left. Get it backwards and every
-tile lands in the wrong cell:
+**Scopes A and B disagree about which corner the first tile belongs in.** On A, the position the
+acquisition recorded first belongs at the bottom right of the finished image; on B, the top left.
+Get it backwards and every tile lands in the wrong cell:
 
 <img src="../images/tiles-to-pyramid/axis_inversion.png" alt="Nine numbered tiles cut from a large letter R, shown twice. Placed as the scope recorded them they reassemble into a readable R; with both axes inverted, tile 1 moves from the top left to the bottom right and the letter is scrambled, although no individual tile has been flipped or rotated." width="820">
 
-Nothing in the files says which of the two you have — so you tell the extension, with the
-**Invert X axis** and **Invert Y axis** boxes. Exercise 1 is really about how you find out.
+Nothing in the files says which you have, so you tell the extension with the **Invert X axis** and
+**Invert Y axis** boxes. Exercise 1 is about how you find out.
 
-Exercises 1 and 2 below cover the two methods worth your time. The other two dropdown entries —
-Vectra and Filename[x,y] — read positions the same way from different places, and this workshop
-does not cover them.
+</details>
 
-### What registration is for
-
-One join out of `fluo-cells`, the folder you are about to stitch, done both ways. On the left the tiles sit where the stage said they were, and cells are
-cut and shunted sideways at the join. On the right they sit where the image content says they
-are, and the cells run straight through.
-
-<img src="../images/tiles-to-pyramid/join_nominal_vs_registered.png" alt="The same tile join stitched twice. At the stage's positions, cells are visibly cut and offset along a vertical line; at measured positions the same cells run continuously through the join" width="880">
-
-Both panels are cut from the same coordinates in the two mosaics and scaled identically, so the
-only thing that differs is where the tiles were put. The step is sharp rather than blurred
-because the shipped blend is a hard cut at the boundary; if you would rather it blended, that is
-a QuPath preference — `Edit > Preferences > Tiles-to-pyramid > Stitching: overlap blending` — not
-a field in the dialog. The color here is three channels merged for the figure; your own output
-opens as separate grayscale channels.
-
-**There is nothing to set up.** Unlike every other tool here, this one runs before you have a
-project — it reads tiles off disk and writes an image. Open QuPath, go to
+**No project required.** Unlike every other tool here, this one does not need one — it reads
+tiles off disk and writes an image. Open QuPath, go to
 `Extensions > Tiles to Pyramid > Tiles-to-pyramid`, and start at step 1. The stitched files land
 **in the folder you selected**, beside the tiles.
 
