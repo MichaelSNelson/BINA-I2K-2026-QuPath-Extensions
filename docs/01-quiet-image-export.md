@@ -122,22 +122,27 @@ The same zip serves the [Classify Object Subset](07-classify-object-subset.md) a
 3. **Step 1:** choose **Rendered Image** — the leftmost of the five categories (see below).
 
    <img src="../images/quiet/step1-categories.png" alt="The Select Export Category screen with five cards: Rendered Image, Label / Mask, Raw Image Data, Tiled Export, Object Crops" width="820">
-4. **Step 2:** set **Render Mode**. The dropdown starts on **None (no overlay source)**, with
-   a blue ring around it to draw your eye — that gives a clean image with no objects, which is
-   what the screenshot below happens to show. For this figure choose **Object Overlay**, which
-   draws the detected cells and their ground-truth points onto the image. Turn on a
-   **scale bar**. **Downsample** shrinks the exported image: **1** means full size, **4** means
-   a quarter as wide. You only need it when the image is far bigger than the figure you want.
-   These images are 2048 × 2048, so leave it at **1**. (On a whole-slide image tens of
-   thousands of pixels wide you would check the width in QuPath's **Image** tab — the wizard
-   does not block the main window, so you can do that with it open — and divide by roughly
-   2000 to get the number to enter.)
+4. **Step 2:** set the export up like this. The numbers match the badges in the picture below.
 
-   The panel down the right (see below) is general QUAREP-LiMi guidance for the kind of export
-   you picked, plus one line saying how many of your images it scanned and what type they are.
-   Read it now; the advice specific to *your* images comes at Step 3.
+   | # | Field | Set to |
+   |---|---|---|
+   | 1 | **Render Mode** | **Object Overlay**. The dropdown starts on **None (no overlay source)**, with a blue ring around it to draw your eye; that gives a clean image with no objects, which is what the picture below happens to show |
+   | 2 | **Downsample** | **1** |
+   | 3 | **Show scale bar** | Ticked |
 
-   <img src="../images/quiet/step2-settings.png" alt="The Configure Export screen: Render Mode, Export Region, Downsample, Output Format, a Show scale bar tickbox, and the QUAREP-LiMi guidelines panel down the right side" width="820">
+   <img src="../images/quiet/step2-settings-numbered.png" alt="The Configure Export screen with red numbered badges down the left edge: 1 beside Render Mode, 2 beside Downsample, 3 beside the Show scale bar tickbox. Export Region and Output Format sit between them, and the QUAREP-LiMi guidelines panel runs down the right side" width="820">
+
+   **Object Overlay** draws the detected cells and their ground-truth points onto the image.
+   **Downsample** shrinks the exported image: **1** means full size, **4** means a quarter as
+   wide. You only need it when the image is far bigger than the figure you want, and these
+   images are 2048 × 2048. (On a whole-slide image tens of thousands of pixels wide you would
+   check the width in QuPath's **Image** tab — the wizard does not block the main window, so
+   you can do that with it open — and divide by roughly 2000 to get the number to enter.)
+
+   The panel down the right is general QUAREP-LiMi guidance for the kind of export you picked,
+   plus one line saying how many of your images it scanned and what type they are. Read it
+   now; the advice specific to *your* images comes at Step 3.
+
 5. **Step 3:** **every image in the project starts ticked.** Click **Deselect All** and tick
    exactly one — Part B needs a second image that has *not* been exported yet. Choose an
    output folder.
