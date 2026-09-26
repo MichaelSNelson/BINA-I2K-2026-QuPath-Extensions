@@ -242,8 +242,6 @@ Reopen the Tiles to Pyramid dialog and change these settings; everything else st
 | **Folder location** | `Fluorescence_10x_7/bounds` |
 | **Pixel size** | Tick **Manually edit pixel size** and enter `0.653` |
 | **Sub-folders to stitch** | `*` |
-| **Stage axes** | Both Invert boxes ticked, as before |
-| **Solve tile overlaps** | Ticked, as before |
 
 Then **Stitch**. You get `DAPI.ome.tif`, `FITC.ome.tif`, `TRITC.ome.tif`, and
 `bounds_merged.ome.tif`.
