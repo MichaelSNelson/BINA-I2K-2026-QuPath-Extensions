@@ -12,7 +12,7 @@ title: Class Visibility
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-class-visibility](https://github.com/uw-loci/qupath-extension-class-visibility) |
-| **Extension version** | 0.3.3 |
+| **Extension version** | 0.4.0 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Class Visibility > Show panel` · toolbar button |
@@ -31,8 +31,9 @@ title: Class Visibility
 ## What it does
 
 A panel of check boxes that shows or hides detections by their class, or by part of a class
-name. Check the `CD3` **component** and every cell whose class contains CD3 appears, whether
-that class is `CD3`, `CD3: CD8` or `PanCK: CD3: CD8`. Check two components and choose whether
+name. Check the `CD3` **class** and only cells classed exactly `CD3` appear. Check the `CD3`
+**component** and every cell whose class contains CD3 appears, whether that class is `CD3`,
+`CD3: CD8` or `PanCK: CD3: CD8`. Check two components and choose whether
 you want cells with either one or with both. Combinations like these are hard to build from
 QuPath's built-in class list, which only checks whole classes one at a time.
 
@@ -193,28 +194,32 @@ In the components list — its header reads **Anything containing these componen
 **`CD3`**. Every object whose class contains `CD3` is now visible, and nothing else is. (If
 nothing changed, see [If something looks wrong](#if-something-looks-wrong).)
 
-<img src="../images/class-visibility/panel-cd3-checked-with-viewer.png" alt="QuPath with the Class visibility floating window over the lower left of the viewer, on tme_00, with CD3 checked in the components list. In the classes list the CD3 row shows a grayed-out tick and the rows CD3 colon CD8, PanCK colon CD3 colon CD8, aSMA colon CD3, CD3 colon CD8 colon CD68 and CD3 colon CD68 have a blue ring around their check box. Below the components list the options read Any CD3, selected, and All CD3. Active rules reads 1. In the viewer, most cells are plain white outlines and only the CD3-containing cells are drawn with teal and green outlines, scattered through the tissue" width="1000">
+<img src="../images/class-visibility/panel-cd3-checked-with-viewer.png" alt="QuPath with the Class visibility floating window over the lower left of the viewer, on tme_00, with CD3 checked in the components list. In the classes list the rows CD3, CD3 colon CD8, PanCK colon CD3 colon CD8, aSMA colon CD3, CD3 colon CD8 colon CD68 and CD3 colon CD68 each show a grayed-out tick with a blue ring around the check box. Below the components list the options read Any CD3, selected, and All CD3. Active rules reads 9. In the viewer, most cells are plain white outlines and only the CD3-containing cells are drawn with teal and green outlines, scattered through the tissue" width="1000">
 
-**Now look at the classes list.** The `CD3` row shows a grayed-out tick: the component rule set
-it, and hovering it says to change it in the components list. The other eight classes containing
-`CD3` (`CD3: CD8`, `PanCK: CD3: CD8`, `aSMA: CD3` and five more, some below the fold) have a
-**blue ring** around their check box. A ring means
-the component rule reaches that class. Uncheck `CD3` and the rings disappear; a tick you put there
-yourself would stay.
+**Now look at the classes list.** All nine classes containing `CD3` (`CD3`, `CD3: CD8`,
+`PanCK: CD3: CD8`, `aSMA: CD3` and five more, some below the fold) show a **grayed-out tick with
+a blue ring** around the check box. The ring means the component rule reaches that class, and
+hovering the row says to change it in the components list. `Active rules` reads 9: the component
+is written as one rule per class it covers. Uncheck `CD3` and the ticks and rings disappear; a
+tick you put there yourself would stay.
 
 Now compare two numbers. In the classes list, the `CD3` row's **`Count`** reads 184: cells whose
 class is exactly `CD3`. In the components list, the `CD3` row's **`Total`** reads 386: cells
 carrying `CD3` anywhere in their class.
 
-<img src="../images/class-visibility/count-vs-total.png" alt="A close-up of the tops of both lists. Left, the classes list: aSMA 396, PanCK 286, CD68 199, CD3 184 with a grayed tick and the row highlighted, CD3 colon CD8 167. Right, the components list: aSMA 416, CD20 103, CD3 386 checked and highlighted, CD68 221, CD8 189" width="900">
+<img src="../images/class-visibility/count-vs-total.png" alt="A close-up of the tops of both lists. Left, the classes list: aSMA 396, PanCK 286, CD68 199, CD3 184 with a grayed, ringed tick and the row highlighted, CD3 colon CD8 167 with a grayed, ringed tick. Right, the components list: aSMA 416, CD20 103, CD3 386 checked and highlighted, CD68 221, CD8 189" width="900">
 
-Checking the `CD3` *class* row would act on all 386, not 184, because QuPath matches supersets by
-default (hover the 184 and the tooltip says so). So on this dataset, checking that one class row
-does the same job as checking the component.
+**That is the difference between the two lists.** A class row is that class and nothing else:
+checking the `CD3` *class* row acts on the 184 cells in the `Count`, not on `CD3: CD8` or
+`PanCK: CD3: CD8`. A component is everything containing it: the 386 in its `Total`.
 
-> **That is worth seeing rather than glossing.** On a *real* panel there is usually no plain
-> `CD3` class to check, and then the component row is the only way to say it. Here there is one,
-> so the component list saves you nothing yet. The next step is where it stops being optional.
+Try it with `PanCK`. Uncheck the `CD3` component, then check the **`PanCK` class row**: 286
+cells, the tumor cells positive for PanCK alone. Uncheck it and check the **`PanCK`
+component** instead: 439 cells, now including `PanCK: Ki67`, `PanCK: CD68` and the rest. Uncheck
+it again before step 7.
+
+> **To keep the two meanings apart, the panel turns on QuPath's `Exact matches only` setting**
+> the first time you change something. Closing the panel puts your own setting back.
 
 ### 7. `Any` vs `All` — the part with no equivalent
 
@@ -228,7 +233,7 @@ of cells it would show:
 You can compare the two before choosing. Neither number appears on any single row: each
 component's `Total` is that component alone.
 
-<img src="../images/class-visibility/any-vs-all-boxed.png" alt="The Class visibility window with CD3 and CD8 both checked in the components list. Below that list, outlined in red, the section Checked components combine as shows two options: Any, CD3 or CD8 or both, 388 objects, which is selected, and All, CD3 and CD8 together, 187 objects. In the classes list the CD3 and CD8 rows show grayed-out ticks and eight other rows carry a blue ring. Active rules reads 2" width="900">
+<img src="../images/class-visibility/any-vs-all-boxed.png" alt="The Class visibility window with CD3 and CD8 both checked in the components list. Below that list, outlined in red, the section Checked components combine as shows two options: Any, CD3 or CD8 or both, 388 objects, which is selected, and All, CD3 and CD8 together, 187 objects. In the classes list ten rows show a grayed-out tick with a blue ring. Active rules reads 10" width="900">
 
 `Any` is selected by default, but the panel remembers whichever you last chose, so glance at
 which option is selected before you read any counts. On `Any`, this image barely changes: you go from
@@ -236,8 +241,8 @@ which option is selected before you read any counts. On `Any`, this image barely
 so CD8 sits almost entirely inside CD3.
 
 Now switch to `All`. 201 cells leave the screen, you are looking at the CD8 T cells, and **the
-rings in the classes list narrow from 10 rows to 4** — under `All`, only classes carrying every
-checked component are highlighted.
+ticked, ringed rows in the classes list narrow from 10 to 4** — under `All`, only classes
+carrying every checked component are covered.
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;margin:1em 0">
   <figure style="flex:1 1 300px;margin:0">
@@ -251,9 +256,9 @@ checked component are highlighted.
 </div>
 
 **There is no class row that does this.** QuPath evaluates its selected-class set as a logical <code>OR</code>,
-so the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across separate names. The
-panel builds a single composite rule to get the logical <code>AND</code> — and it survives onto the next image,
-where the class names may be different.
+so the built-in pane can express "CD3 or CD8" but never "CD3 and CD8" across separate names
+without you finding and ticking every class that carries both. The panel finds them for you, and
+a saved preset finds them again on the next image, where the class names may be different.
 
 ### 8. `Spread`, and what it is really for
 
@@ -301,7 +306,7 @@ dropdown: the same rule is rebuilt on the new image, with no clicking through th
 |---|---|
 | Every listed class visible again | The check box in the **classes list's header** |
 | The view you had *before* you opened the panel | **Close the panel.** That state is recorded automatically |
-| QuPath's own defaults — no rules, `Hide checked classes`, `Exact matches only` off | **`Reset all`**, on the status strip |
+| QuPath's own defaults — no rules, `Hide checked classes`, QuPath's `Exact matches only` off | **`Reset all`**, on the status strip |
 
 `Extensions > Class Visibility > Restore the state from when the panel opened` does the middle
 one from the menu, whether or not the panel is still open. It is grayed out and reads *(nothing
@@ -313,15 +318,15 @@ spelled **`Reset all visibility`**.
 | What you see | Why | What to do |
 |---|---|---|
 | `No cells in this image -- open an image from the synth multiplex project first.` | No image open, or one with no detections | Double-click `tme_00.tif` in the project list, then Run again |
-| You check a component and nothing happens | `Exact matches only` is on. It is a QuPath-wide, persistent setting, so it can arrive on from an earlier session | A warning under the `Find` row says so and offers a **`Turn off`** button beside it. It stays visible even when the panel's top rows are collapsed |
+| You check `PanCK` in the classes list and some PanCK cells stay hidden | A class row is that exact class only, so `PanCK: Ki67` and the other combinations are not included | Check `PanCK` in the **components** list instead |
 | The classes list shows `tumor`, `fibroblast`, `cd8_t`… | The **`List:`** selector is on `Annotations`, so you are looking at the ground-truth points | Set `List:` back to `Detections` |
 | `Active rules` shows a number you did not expect | The classes-list header check box adds every listed class as a rule | **Clear all rules** in the `Active rules` expander |
 | Everything is hidden and you cannot get back | `Show only checked classes` with the wrong rules | **`Reset all`** on the status strip, or `Extensions > Class Visibility > Reset all visibility` |
 
 ## What to notice
 
-- The component list and the class list overlap more than they look like they do, because
-  QuPath matches supersets by default. `All` is the operation that has no equivalent.
+- The two lists answer different questions: a class row is exactly that class, a component is
+  everything containing it. `All` is the operation that has no equivalent in QuPath's own list.
 - Naming schemes that append `positive` or `Cell` to every class name produce components that
   match everything, and they look exactly like real markers until you count — which is what
   `Spread` counts.
