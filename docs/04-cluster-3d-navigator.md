@@ -112,9 +112,16 @@ cells.
    recognized it takes the first three numeric measurements in alphabetical order, and `3DUMAP1`,
    `3DUMAP2` and `3DUMAP3` sort ahead of every `Cell:` and `Nucleus:` column — so the dropdowns
    already hold the right axes and the cloud is right, by luck. On your own data it will not be.
-3. Click **Change axes...**. In the picker check that **X** is `3DUMAP1`, **Y** is `3DUMAP2` and
-   **Z** is `3DUMAP3`, tick **Use these axes automatically next time you open this project.**,
-   then **Apply**. The tag goes away and stays away for this project.
+3. Click **Change axes...** (boxed in red below) and check the picker reads:
+
+   | Field | Set to |
+   |---|---|
+   | **X axis** | `3DUMAP1` |
+   | **Y axis** | `3DUMAP2` |
+   | **Z axis** | `3DUMAP3` |
+   | **Use these axes automatically next time you open this project.** | Ticked |
+
+   Then **Apply**. The tag goes away and stays away for this project.
 
 <img src="../images/cluster-3d-navigator/change-axes.png" alt="The Cluster 3D Navigator window on tme_00. The Axes row reads X 3DUMAP1, Y 3DUMAP2, Z 3DUMAP3 with the green tag no embedding detected, pick 3 axes beside it; the Change axes button is outlined in red. The counter reads Points: 1,530 shown / 1,530 total. Six separate colored blobs of points fill the middle and the CLASSES legend lists Cluster 0 to Cluster 5. In the lower right, a Choose axes dialog reads Pick three numeric measurements for X / Y / Z, with X axis 3DUMAP1, Y axis 3DUMAP2, Z axis 3DUMAP3, the box Use these axes automatically next time you open this project ticked, and Apply and Cancel buttons" width="1000">
 
@@ -208,9 +215,16 @@ opening, that edge is a staining-day effect, not a cell type.
 
 ### 8. A two-marker scatter in 2D
 
-**View** at the top switches between **3D** and **2D**. Switch to **2D**, then set **X** to
-`Cell: PanCK mean` and **Y** to `Cell: CD3 mean` (the Z dropdown grays out). You get an ordinary
-marker-versus-marker plot: Cluster 1 and Cluster 5, the two tumor clusters, run out along the
+**View** at the top switches between **3D** and **2D**. Set the top row like this (both boxed
+in red in the picture below):
+
+| Field | Set to |
+|---|---|
+| **View** | **2D** |
+| **X** | `Cell: PanCK mean` |
+| **Y** | `Cell: CD3 mean` (the Z dropdown grays out) |
+
+You get an ordinary marker-versus-marker plot: Cluster 1 and Cluster 5, the two tumor clusters, run out along the
 PanCK axis, Cluster 2 (T cells) up the CD3 axis, and the other three sit near the origin. There
 is nothing to rotate in 2D, so left-drag pans. Every point is still a click from its cell.
 
