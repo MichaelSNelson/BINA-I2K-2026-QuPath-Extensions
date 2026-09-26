@@ -12,7 +12,7 @@ title: Tiles to Pyramid
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-tiles-to-pyramid](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
-| **Extension version** | 0.7.4 |
+| **Extension version** | 0.7.5 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Tiles to Pyramid > Tiles-to-pyramid` |
@@ -252,6 +252,11 @@ following `Per-edge shifts used:` line.
    > positions to estimate pixel size.
 4. **Sub-folders to stitch:** type `*`. That means every sub-folder, one image each — here, one
    per channel. Once it matches all three, the merge checkbox appears.
+
+   > `*` needs **0.7.5 or newer**. On an older build the field is called "Stitch sub-folders with
+   > text string" and takes literal text only, so you would type `I` — the one letter `DAPI`,
+   > `FITC` and `TRITC` share. Update if you can; that trick does not survive a different set of
+   > channel names, which is why the wildcard exists.
 
    > **Not empty, and not a letter they happen to share.** Empty means "stitch the folder I
    > selected", and because the tile search recurses, `bounds` on its own finds all twelve files —
