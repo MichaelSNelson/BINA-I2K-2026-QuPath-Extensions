@@ -95,11 +95,14 @@ not open it as a project.
 
 Four tile folders, from two different microscopes:
 
-| Folder | Acquired with | Scope | Tiles | Method to choose |
+| Folder | What is in it | Tiles | Scope | Method to choose |
 |---|---|---|---|---|
-| `fluo-cells/` | MicroManager 2 MDA | A | 9 positions, 4 channels packed into each file | MicroManager metadata |
-| `Fluorescence_10x_7/bounds/` | QPSC | A | 4 positions × 3 channel folders | TileConfiguration.txt file |
-| `7.0.biref/`, `90.0/` | QPSC, polarized light | B | 12 tiles each, two analyzer angles | TileConfiguration.txt file |
+| `fluo-cells/` | Cultured cells, 4 fluorescence channels, from a MicroManager MDA. One file per position, channels stored as pages inside it | 9 positions, 2048 × 2048, 0.653 µm/px | A | MicroManager metadata |
+| `Fluorescence_10x_7/bounds/` | The same kind of sample from QPSC. One folder per channel — `DAPI`, `FITC`, `TRITC` — each holding the same positions | 4 positions, 2048 × 2048, 0.653 µm/px | A | TileConfiguration.txt file |
+| `7.0.biref/`, `90.0/` | One polarized-light acquisition at two analyzer angles. `90.0` is color (RGB), `7.0.biref` is 16-bit | 12 tiles each, 2064 × 1544, 0.1732 µm/px | B | TileConfiguration.txt file |
+
+Everything is 10% overlap, and nothing is pre-processed — these are the files as the microscopes
+wrote them.
 
 Scopes **A** and **B** differ in one way that matters here: they disagree about which corner the
 first tile belongs in. On A, the stage position that the acquisition recorded first belongs at the
@@ -115,23 +118,9 @@ Exercises 1 and 2 below cover the two methods worth your time. The other two dro
 Vectra and Filename[x,y] — read positions the same way from different places, and this workshop
 does not cover them.
 
-### What goes in
+### What registration is for
 
-Both fluorescence sets are cultured cells, 2048 × 2048 tiles at 0.653 µm/pixel with 10% overlap.
-The polarized set is 2064 × 1544 tiles at 0.1732 µm/pixel, also 10%. Nothing here is
-pre-processed; these are the files as the microscope wrote them.
-
-<img src="../images/tiles-to-pyramid/workshop_fluo_cells_tiles.png" alt="Nine MicroManager position files shown as a 3 by 3 grid of nuclear-stain tiles, beside the four channels of the center position: nine files holding thirty-six images" width="640">
-
-<img src="../images/tiles-to-pyramid/workshop_qpsc_tiles.png" alt="Three channel folders, DAPI, FITC and TRITC, each holding the same four tile positions" width="640">
-
-The two acquisitions store channels differently, though what you do in the dialog is the same.
-MicroManager writes **one file per position**, with the channels as pages inside it — nine files
-for thirty-six images. QPSC writes **one folder per channel**, each holding the same four
-positions. Either way you get one output image per channel.
-
-**What you are looking for.** This is one join out of `fluo-cells`, the folder you are about to
-stitch, done both ways. On the left the tiles sit where the stage said they were, and cells are
+One join out of `fluo-cells`, the folder you are about to stitch, done both ways. On the left the tiles sit where the stage said they were, and cells are
 cut and shunted sideways at the join. On the right they sit where the image content says they
 are, and the cells run straight through.
 
