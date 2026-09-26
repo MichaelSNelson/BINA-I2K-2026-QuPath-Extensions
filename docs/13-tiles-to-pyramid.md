@@ -101,9 +101,15 @@ Four tile folders, from two different microscopes:
 | `Fluorescence_10x_7/bounds/` | QPSC | A | 4 positions × 3 channel folders | TileConfiguration.txt file |
 | `7.0.biref/`, `90.0/` | QPSC, polarized light | B | 12 tiles each, two analyzer angles | TileConfiguration.txt file |
 
-Scope **A** and scope **B** differ in one way that matters here: A's stage runs opposite to its
-camera on both axes and B's does not. Nothing in the files says so, which is what exercise 1 is
-really about.
+Scopes **A** and **B** differ in one way that matters here: they disagree about which corner the
+first tile belongs in. On A, the stage position that the acquisition recorded first belongs at the
+bottom right of the finished image; on B it belongs at the top left. Get it backwards and every
+tile lands in the wrong cell:
+
+<img src="../images/tiles-to-pyramid/axis_inversion.png" alt="Nine numbered tiles cut from a large letter R, shown twice. Placed as the scope recorded them they reassemble into a readable R; with both axes inverted, tile 1 moves from the top left to the bottom right and the letter is scrambled, although no individual tile has been flipped or rotated." width="820">
+
+Nothing in the files says which of the two you have — so you tell the extension, with the
+**Invert X axis** and **Invert Y axis** boxes. Exercise 1 is really about how you find out.
 
 Exercises 1 and 2 below cover the two methods worth your time. The other two dropdown entries —
 Vectra and Filename[x,y] — read positions the same way from different places, and this workshop
@@ -164,9 +170,9 @@ project — it reads tiles off disk and writes an image. Open QuPath, go to
 6. Tick **Solve tile overlaps (content-based registration)**. The dialog grows a group of
    registration options — leave every one of them alone. The defaults derive the overlap from
    the tile grid and pick the reference channel for you.
-7. Under **Stage axes**, tick **both Invert X axis and Invert Y axis**. This acquisition came
-   from a scope whose stage runs opposite to its camera on both axes; the box below shows how you
-   would work that out for yourself.
+7. Under **Stage axes**, tick **both Invert X axis and Invert Y axis** — this is a scope A
+   acquisition, so its first tile belongs bottom right. The box below shows how you would work
+   that out for data whose scope you do not know.
 8. Click **Stitch**. The dialog closes and a notification says the stitch started in the
    background; QuPath stays usable. Two to three minutes later a window titled **Tiles to
    Pyramid - Result** appears, headed "Stitching complete" and listing every file it wrote.
