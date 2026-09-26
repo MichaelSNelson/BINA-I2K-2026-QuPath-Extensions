@@ -12,7 +12,7 @@ title: Class Visibility
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-class-visibility](https://github.com/uw-loci/qupath-extension-class-visibility) |
-| **Extension version** | 0.4.0 |
+| **Extension version** | 0.4.1 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Class Visibility > Show panel` · toolbar button |
@@ -184,9 +184,10 @@ looks like, and it is what a flat class list handles worst.
 > button in the panel's own header to park it in the analysis pane. **Undock to window** puts
 > it back, and the docked layout stacks the two lists instead of placing them side by side.
 >
-> **Short of room for the lists?** **`Collapse`**, at the left of the `Image:` row, hides the
-> `Preset`, `Visibility rule`, `List` and `Find` rows. Your rules keep working while they are
-> hidden. **`Expand`** brings them back, and so does **Ctrl+F** (**Cmd+F** on macOS).
+> **Short of room for the lists?** **`Hide options panel`**, at the left of the `Image:` row,
+> hides the `Preset`, `Visibility rule`, `List` and `Find` rows and the status line at the
+> bottom, leaving just the lists. Your rules keep working while they are hidden.
+> **`Expand options panel`** brings them back, and so does **Ctrl+F** (**Cmd+F** on macOS).
 
 ### 6. One component, many classes
 
