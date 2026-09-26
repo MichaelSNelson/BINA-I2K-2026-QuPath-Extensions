@@ -389,7 +389,17 @@ should detect close to 1,530 cells on `tme_00`.
    | Normalization | **None** |
    | Dimensionality Reduction | **Method: None** |
    | Batch correction (Harmony) | **Off** |
-   | Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0**, `min_cluster_size` **200** |
+   | Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0**, `min_cluster_size` **500** |
+
+<div class="shots" markdown="0">
+<figure>
+<img src="../images/qp-cat/HDBSCAN_interface.png" alt="The Clustering Algorithm section of the Run Clustering dialog: Algorithm set to HDBSCAN, min_cluster_size 500, min_samples 0, and Cluster selection set to Leaf (finest clusters).">
+<figcaption><b>The Clustering Algorithm section, set up.</b> <b>Cluster selection</b> is new in
+0.14.0 &mdash; if you do not see it, update first. These are the settings that produced every
+result below.</figcaption>
+</figure>
+</div>
+
 
    **The three settings in bold are the exercise.** Left on their defaults, this configuration
    returned a single cluster holding **97.0%** of 107,282 cells on a different, real dataset —
@@ -398,13 +408,14 @@ should detect close to 1,530 cells on `tme_00`.
    What it looks like when it goes wrong, and how to tell:
    [QP-CAT troubleshooting](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md#5-hdbscan-returns-one-giant-cluster-and-almost-no-noise).
 
-   **`min_cluster_size` is the one you will actually tune, and 200 is a starting point rather
-   than a tuned value.** It is the smallest group HDBSCAN is allowed to call a cluster, so it
-   has to be read against this dataset: 11,421 cells, and the smallest population you are trying
-   to recover is proliferating tumor at 790. The default of 15 is 0.1% of the cohort — fine for
-   finding something rare, but with **Leaf** selection, which deliberately cuts at the finest
-   level of the tree, a floor that low is an invitation to shatter each population into
-   fragments. 200 sits well under 790 so a real group can still clear it, and well above 15.
+   **`min_cluster_size` is the one you will actually tune, and 500 is the value that produced
+   the result below.** It is the smallest group HDBSCAN is allowed to call a cluster, so read it
+   against this dataset: 11,421 cells, and the smallest population you are trying to recover is
+   proliferating tumor at 790. The default of 15 is 0.1% of the cohort — fine for finding
+   something rare, but with **Leaf** selection, which deliberately cuts at the finest level of
+   the tree, a floor that low is an invitation to shatter each population into fragments. 500
+   sits under 790, so a real group still clears it, and far above 15. The seven clusters it
+   returned ran from 825 to 3,306 cells.
 
    **Changing it changes two things at once.** With `min_samples` on **0**, scikit-learn ties
    the density estimate to `min_cluster_size`, so raising the floor also widens the neighbourhood
