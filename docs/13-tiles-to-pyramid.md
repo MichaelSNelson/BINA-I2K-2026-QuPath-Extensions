@@ -214,29 +214,6 @@ corrections, applied to all of them.
 
 </details>
 
-> #### If you get the axes wrong
->
-> Untick the two Invert boxes and stitch again. Nothing is overwritten: the second run writes
-> `fluo-cells_merged_2.ome.tif` beside the first, and its per-channel images go into
-> `fluo-cells_channels/` alongside the first set, suffixed `_2`. The `_2` files are the mirrored
-> ones.
->
-> You get a 5734 × 5735 image — within twenty pixels on both axes of the 5754 × 5749 you got a
-> moment ago, and still a plausible-looking mosaic. But every tile is now in the mirrored slot of
-> the grid. The *layout* is mirrored, not the pixels: no tile's own image is flipped, they are
-> simply placed in the wrong cells. So no seam matches anything, and the result window says so:
->
-> ```
-> Tile registration: solve found no usable corrections; tiles at nominal stage positions.
-> ```
->
-> Stage coordinates do not say which way the camera faces, so the extension cannot work it out,
-> and a mirrored mosaic is not obviously wrong at a glance. Registration is what tells you: every
-> seam accepted means the axes are right, none accepted means try inverting one or both.
->
-> If you do not know, leave both boxes clear and turn registration on — clear is the common case,
-> and this scope is the exception.
-
 ### Exercise 2 — a QPSC acquisition, three channels at once
 
 Reopen the Tiles to Pyramid dialog and change these settings; everything else stays as it was.
