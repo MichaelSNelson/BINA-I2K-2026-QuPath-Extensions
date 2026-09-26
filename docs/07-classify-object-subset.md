@@ -111,10 +111,25 @@ cells**. Hold on to that number — you are going to measure it twice.
    the folder you unzipped, then **Apply changes**.
 3. In the project list on the left, double-click **`tme_00.tif`** to open it.
 
+<img src="../images/classify-object-subset/project-open-tme00.png" alt="tme_00 open in QuPath. A red rectangle annotation frames the whole image; every cell carries a red detection outline; and a small colored dot sits on each cell, colored by its true type" width="820">
+
+Three different things are drawn on this image. You need to know which is which, because the
+extension acts on only one of them:
+
+- **The rectangle around the whole image** is an *annotation*, drawn so that cell detection
+  had a region to run in. You will not touch it again.
+- **The cell outlines** are *detections*, one per cell, about 1,530 of them. They are all the
+  same color because no cell carries a class yet. These are what the extension classifies.
+- **The small colored dots**, one on each cell, are *point annotations*: the **ground truth**,
+  colored by each cell's true type. You never edit them and the classifier never reads them.
+
+The toolbar buttons for annotations and detections, or the **A** and **D** keys, hide and show
+each kind, which helps when the dots and the outlines get in each other's way.
+
 ### 3. Make a mistake worth fixing
 
-A classifier that is right about everything teaches you nothing. So first, classify the cells
-with a deliberately crude method that gets most of them right and a few of them wrong.
+First, classify the cells with a deliberately crude method that gets most of them right and a
+few of them wrong.
 
 1. Run the imperfect classifier: **`Automate > Project scripts > classify_with_marker_gate`**,
    then **Run**. It is bundled with the project, so there is nothing to download.
@@ -155,9 +170,8 @@ with a deliberately crude method that gets most of them right and a few of them 
 **Nothing has been fixed yet.** All you have done so far is run a deliberately poor classifier
 and find out *that* it is wrong and *which* cells it got wrong. The repair is step 5.
 
-What this part does is get the same error out of the extension as a **single number**, so that
-in step 5 you can watch that number move. The dialog is a measuring instrument before it is a
-repair tool.
+This step gets the same error out of the extension as a **single number**, so that in step 5
+you can watch that number move.
 
 1. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
 2. Set it up like this. The numbers match the badges in the picture below.
