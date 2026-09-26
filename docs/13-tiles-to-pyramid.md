@@ -325,7 +325,7 @@ opposite stage convention — and only the pixel size and two checkboxes changed
   `DAPI.ome.zarr/`, `FITC.ome.zarr/` and `TRITC.ome.zarr/` *directories* rather than files; drag
   the directory itself onto QuPath to open it, not something inside it. Compare how long each
   format takes to open.
-- **Batch both polarization angles in one run.** Point the dialog at the top-level unzipped
+- **Specify folders to stitch using string matching.** Point the dialog at the top-level unzipped
   folder, method `TileConfiguration.txt file`, and type `.` in **Sub-folders to stitch** — which
   matches `7.0.biref` and `90.0` and nothing else. (`*` would take all four folders, including the
   two fluorescence sets, which need different settings.) Both angles stitch in one go, each
