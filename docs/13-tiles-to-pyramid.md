@@ -181,15 +181,23 @@ tiles off disk and writes an image. Open QuPath, go to
    between runs, so check them. The two Invert boxes are there because this is a scope A
    acquisition, whose first tile belongs bottom right; the box further down shows how you
    would work that out for a scope you do not know.
-3. Click **Stitch**. The dialog closes and a notification says the stitch started in the
-   background; QuPath stays usable. Two to three minutes later a window titled **Tiles to
-   Pyramid - Result** appears, headed "Stitching complete" and listing every file it wrote.
-   Do not click Stitch again while you wait — you will get "A stitch is already running."
+3. Click **Stitch**. The dialog closes and a notification says it started in the background;
+   QuPath stays usable. Do not click Stitch again while you wait — you will get "A stitch is
+   already running."
+4. **Read the result window before you close it.** A couple of minutes later **Tiles to Pyramid -
+   Result** appears, headed "Stitching complete". It lists the files written and, on its own
+   line, what registration did:
 
-   Five files appear beside the tiles: `385.ome.tif`, `475.ome.tif`, `550.ome.tif`,
-   `621.ome.tif`, and `fluo-cells_merged.ome.tif` holding all four channels. Each gets a
-   `.stitch-info.txt` recording how it was made, including which axes were negated.
-4. Drag `fluo-cells_merged.ome.tif` onto the QuPath window to open it, then zoom in where two
+   ```
+   Tile registration: 12 of 12 seams accepted, aligned on 385, moved 36 of 36 tile placements.
+   ```
+
+   Everything went into the folder you selected. Click **Open output folder** to go straight
+   there: `fluo-cells_merged.ome.tif` holds all four channels, and the four single-channel images
+   it was built from are in `fluo-cells_channels/`. Every image has a `.stitch-info.txt` beside it
+   recording how it was made. Each later mention of a `Tile registration:` line in this guide
+   means that same window — you never need the log.
+5. Drag `fluo-cells_merged.ome.tif` onto the QuPath window to open it, then zoom in where two
    tiles meet — the vertical join about a third of the way across. Cells straddling the join
    should look as sharp as cells in the middle of a tile.
 
@@ -301,9 +309,14 @@ Twelve RGB tiles from a polarized-light acquisition. Four changes from exercise 
 | **Pixel size** | `0.1732`, typed with **Manually edit pixel size** ticked |
 | **Stage axes** | **Untick both** Invert boxes. Upright scope; its stage runs the same way as its camera |
 
-Expect `17 of 17 seams accepted` and one `90.0.ome.tif`. Color instead of 16-bit grayscale, a
-different objective and the opposite stage convention — and only the pixel size and two
-checkboxes changed.
+The result window should read:
+
+```
+Tile registration: 17 of 17 seams accepted, moved 12 of 12 tile placements.
+```
+
+and you get one `90.0.ome.tif`. Color instead of 16-bit grayscale, a different objective and the
+opposite stage convention — and only the pixel size and two checkboxes changed.
 
 ### If you have time
 
@@ -344,8 +357,8 @@ checkboxes changed.
 
 ### What to notice
 
-- The stage was wrong, and by more than you would guess: up to 12 px here, enough to break a
-  filament across a seam. It is wrong on every microscope; the only question is by how much.
+- The stage was out by up to 12 px on this data, enough to cut a cell in half at a seam. Every
+  stage is out by something; registration is how you find out by how much.
 - Stage axis direction is a property of the microscope, not of the data. Two of the folders in
   this zip need both axes inverted and two need neither, and nothing in the files says which.
 - Your channels are measured once, together. DAPI, FITC and TRITC in exercise 2 came off the
