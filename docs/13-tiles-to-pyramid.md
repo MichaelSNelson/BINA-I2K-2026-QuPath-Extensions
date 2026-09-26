@@ -282,9 +282,14 @@ errors. Measuring each separately would give each its own corrections and pull t
 another — worse than leaving all three on the same slightly imperfect grid.
 
 Which channel gets measured is decided from the data: **Reference subdirectory** defaults to
-`Auto (best match)`, which samples a few seams on each and picks the most decisive, so the name in
-that line can change between runs. Pin a channel there if you need the same geometry every time.
-The number that should not change is how many seams were accepted.
+`Auto (best match)`. It measures the same seams on every channel — up to 24 of them, so on this
+acquisition all four — and keeps the channel whose matches are least ambiguous, meaning the widest
+gap between the best alignment and the runner-up. Here it scores FITC 0.97, TRITC 0.96 and DAPI
+0.93, and solves on FITC.
+
+The choice is decided by the pixels, not by chance: stitch the same folder again and you get the
+same channel. Pin one in that dropdown if you want a particular channel regardless of what the
+data says. The number to watch is how many seams were accepted.
 
 </details>
 
