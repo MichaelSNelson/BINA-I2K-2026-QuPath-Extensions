@@ -12,7 +12,7 @@ title: Project Metadata Browser
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-project-metadata-browser](https://github.com/uw-loci/qupath-extension-project-metadata-browser) |
-| **Extension version** | 1.0.0 |
+| **Extension version** | 1.0.1. Installed it before September 26, 2026? Update from the catalog: 1.0.0 hides new columns until you save and refresh. |
 | **License** | GPL-3.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Project Metadata Browser > Browse Metadata...` |
@@ -135,12 +135,11 @@ the pattern below, which was written for these four filenames.
    groups detected.** The preview table lists each filename with its `stain` and `date` filled
    in as in the table above, and the line under it reads **Matched 4 of 4; 0 unmatched.** If a
    row shows *(no match)*, the pattern was not pasted exactly.
-4. Click **Apply**. The status line at the bottom of the window reads **Regex extracted 8 cell
-   values, 2 new columns. Save to commit.** Open the **Metadata Keys** tab: `stain` and `date`
-   are listed, each **Used by** 4. In this version the Entries table does not show new columns
-   until you save and refresh, which is Part E.
-5. Press **Ctrl+Z** on the Metadata Keys tab: both keys disappear, because the extraction was
-   one action. Press **Ctrl+Shift+Z** to bring them back.
+4. Click **Apply**. Two new columns, `stain` and `date`, appear at the right of the table,
+   filled in for all four images, and the status line at the bottom of the window reads
+   **Regex extracted 8 cell values, 2 new columns. Save to commit.**
+5. Press **Ctrl+Z**: both columns disappear, because the extraction was one action. Press
+   **Ctrl+Shift+Z** to bring them back.
 
 > **For your own filenames.** Change the names inside `(?<...>)` and the text around them to
 > match how your files are named. [regex101.com](https://regex101.com/) with the *Java*
@@ -159,15 +158,17 @@ the pattern below, which was written for these four filenames.
    | 4 | **Rename** | click it |
 
    The key list now shows `scan_date` and no `date`, and the status line reads **Renamed 'date'
-   to 'scan_date' across 4 entries. Save to commit.**
-2. Press **Ctrl+Z**: `date` is back in the list. Press **Ctrl+Shift+Z** to put the rename back.
+   to 'scan_date' across 4 entries. Save to commit.** On the **Entries** tab the column header
+   reads `scan_date`.
+2. Press **Ctrl+Z**: the key, and the column header, read `date` again. Press **Ctrl+Shift+Z**
+   to put the rename back.
 
 ### Part E: save, refresh, export
 
 1. `File > Save` (**Ctrl+S**). The `*` and the unsaved-changes marker disappear, and the status
    line reports how many changes were saved.
-2. Click **Refresh**. The table is rebuilt from the project on disk: `stain` and `scan_date` now
-   appear as columns, filled in for all four images, and the `specimen` cell you changed in
+2. Click **Refresh**. The table is reloaded from the project on disk: `stain` and `scan_date`
+   are still there, filled in for all four images, and the `specimen` cell you changed in
    Part B still reads `TEST`. The columns you hid in Part A stay hidden.
 3. Export what you see:
 
