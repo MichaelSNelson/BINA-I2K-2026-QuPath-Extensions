@@ -368,6 +368,15 @@ Each angle reports `17 of 17 seams accepted`, and you get two outputs from one c
 QuPath to look at it; `90.0.ome.tif` is the one you already stitched by hand in exercise 3, so
 you can check the two runs agree.
 
+Here is that folder after a run with the output format left on **OME-Zarr**, which is what you
+get if you did the exercise above and did not change it back:
+
+<img src="../images/tiles-to-pyramid/zarr-output-folders.png" alt="A Windows Explorer listing of the top-level folder. Six folders are listed: the four source folders 7.0.biref, 90.0, fluo-cells and Fluorescence_10x_7, plus two outputs, 7.0.biref.ome.zarr and 90.0.ome.zarr, each boxed in red. Below them are two text documents, 7.0.biref.stitch-info and 90.0.stitch-info, of 2 KB each" width="700">
+
+The two boxed entries are the stitched images, and both are folders — **drag one of those onto
+QuPath**, not the source folder of the same name sitting just above it. Note also the
+`.stitch-info` text file written beside each one, recording how that image was made.
+
 That is the point of this one. Everything up to now stitched a single acquisition per click;
 this stitches a *set*, one output each, without revisiting the dialog between them. Point it at
 a drive of acquisitions and the same one click does all of them.
