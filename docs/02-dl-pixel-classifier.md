@@ -53,7 +53,8 @@ puts a deep segmentation network behind it.
   vision transformer with multi-resolution feature fusion), or bring your own ONNX model.
 - Start from **histology-pretrained weights** (TCGA, Lunit, Kather100K) instead of ImageNet.
 - Or from **pathology foundation-model encoders** (h-optimus-0, virchow, hibou-l/b,
-  midnight, dinov2-large), downloaded on demand, all under permissive licenses.
+  midnight, dinov2-large), downloaded on demand. Each carries its own license — check the
+  model card before you publish results built on one.
 
 ### Adapt
 
@@ -69,9 +70,10 @@ puts a deep segmentation network behind it.
 - Full per-pixel **probability maps**, not just argmax labels.
 - Fast embedded Python inference via Appose with zero-copy tile transfer, with no conda
   environment to manage, no external server.
-- An **out-of-distribution check** warns before inference when the image's pixel statistics
-  differ markedly from the training data, catching stain, exposure and sensor shifts that
-  would silently degrade predictions.
+- An **out-of-distribution check** warns before inference when a channel's mean, 1st or 99th
+  percentile sits more than 3 standard deviations from the training statistics, or its
+  contrast differs by more than 2x. Both thresholds are preferences. This catches stain,
+  exposure and sensor shifts that would otherwise degrade predictions silently.
 
 ## Hardware reality check
 
@@ -87,8 +89,9 @@ puts a deep segmentation network behind it.
 > - Larger model + larger tiles + larger batch = more VRAM. Exceeding it can hang or crash
 >   QuPath, occasionally requiring a force-quit.
 > - **Start small:** Tiny U-Net if you have enough annotation to train from scratch, ResNet-18
->   or ResNet-34 if you want pretrained weights. 256 px tiles, batch size 2–4. Scale up only
->   if your hardware is comfortable.
+>   or ResNet-34 if you want pretrained weights. 256 px tiles, and a batch size your card can
+>   hold — 2–4 is a safe start on a small GPU, and the screenshots further down use 20 on a
+>   24 GB card. Scale up only if your hardware is comfortable.
 
 This is why the large encoders are a demonstration rather than a hands-on step: a workshop
 laptop will not fine-tune a 1.1B-parameter model in the time available. A **small pretrained
@@ -191,7 +194,7 @@ dialog.
 > panels below — Learning Rate & Optimizer, Loss Function, Performance and Data Augmentation.
 > The button is at the top right, and it reads **Show Basic View** once the full set is showing.
 
-The panels appear in this order. Two of them, **Channel Configuration** and **Annotation
+The panels appear in this order; every field in them is documented with its default and range in the [Parameter Reference](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/PARAMETERS.md). Two of them, **Channel Configuration** and **Annotation
 Classes**, stay empty until you press **Load Classes from Selected Images** in the first panel,
 so they are listed here without a screenshot.
 
@@ -355,6 +358,10 @@ trained with. Two export buttons, for two different purposes:
   take a descriptor. Size follows the encoder — a few megabytes for a Tiny U-Net, several
   hundred for a ResNet. The zip holds every file in the classifier folder, including the
   training checkpoints, which are usually the largest part of it.
+- **Running an exported model outside QuPath?** The preprocessing recorded in `metadata.json`
+  has to be reproduced exactly, including the pixel size the model trained at, which is
+  `training_pixel_size_um` multiplied by the downsample. A mismatch does not error; it can
+  drop a class silently. See [Normalization round-trip](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/NORMALIZATION_ROUNDTRIP.md).
 
 ---
 
@@ -370,6 +377,10 @@ trained with. Two export buttons, for two different purposes:
   tool for a different job: it evaluates **cell** classifiers by matching detected cells
   against ground-truth points or regions. Reach for it once you have turned predictions into
   classified objects, not for the pixel classification itself.
+
+- **Every dialog field**, with its type, default and range:
+  [Parameter Reference](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/PARAMETERS.md).
+- **Batch runs from Groovy**: [Scripting Guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/SCRIPTING.md).
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier#readme)
