@@ -303,6 +303,12 @@ Tile registration: 17 of 17 seams accepted, moved 12 of 12 tile placements.
 and you get one `90.0.ome.tif`. Color instead of 16-bit grayscale, a different objective and the
 opposite stage convention — and only the pixel size and two checkboxes changed.
 
+<img src="../images/tiles-to-pyramid/ppm-90-final.jpg" alt="The finished twelve-tile mosaic, showing pink and purple hematoxylin-and-eosin stained tissue: branching glands lined with dark epithelium, set in fibromuscular stroma. Glands and stroma run continuously across the field with no visible lines where tiles meet" width="720">
+
+Compare this with the exercise 1 mosaic: no banding. Measured across the joins, brightness steps
+by 1 to 4% here against 16 to 27% there. Same stitcher, same registration — the difference is
+that QPSC corrected each tile's illumination when it acquired them.
+
 ### If you have time
 
 **Stitch to OME-Zarr.** Repeat exercise 2 with one change:
