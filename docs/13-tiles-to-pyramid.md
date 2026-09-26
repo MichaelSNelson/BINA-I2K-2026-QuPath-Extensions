@@ -376,6 +376,15 @@ Each angle reports `17 of 17 seams accepted`.
   same four stage positions, so they get one set of corrections and stay lined up on top of each
   other. Correcting each channel on its own evidence would nudge them apart, and a red dot would
   stop sitting inside its blue nucleus.
+- **Seams you can still see in exercise 1 are brightness, not position.** Registration lines the
+  tiles up; it cannot make two tiles the same brightness. Measure one of those tiles on its own
+  and its background runs about 20% darker at the edges than in the middle, so at every join a
+  dim edge meets a bright center and you get a band. That slide has been bleached by repeated
+  use and sat at a slight tilt in a rushed acquisition, which deepens the falloff. **Overlap
+  blending** turns the hard step into a gradient and is worth trying, but the difference is in
+  the pixels and no blend removes it. The cure is flat-field correction before stitching --
+  BaSiC in Fiji, for instance -- and this extension does not do it. Exercise 3 looks cleaner
+  because QPSC applied a background correction when it acquired those tiles.
 - Every output carries a `.stitch-info.txt` beside it, recording the method, pixel size, axis
   negation, blending, compression, what registration actually did, and the QuPath, Java and
   extension versions. Copy a methods section from that file, not from memory.
