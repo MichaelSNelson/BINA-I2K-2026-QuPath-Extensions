@@ -234,7 +234,7 @@ following `Per-edge shifts used:` line.
 
 ### Exercise 2 — a QPSC acquisition, three channels at once
 
-Reopen the dialog and change these; everything else stays as it was.
+Reopen the Tiles to Pyramid dialog and change these settings; everything else stays as it was.
 
 | Field | Set to |
 |---|---|
