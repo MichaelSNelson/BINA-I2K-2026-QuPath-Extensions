@@ -281,15 +281,19 @@ The three channels were photographed at the same four stage positions, so they s
 errors. Measuring each separately would give each its own corrections and pull them apart from one
 another — worse than leaving all three on the same slightly imperfect grid.
 
-Which channel gets measured is decided from the data: **Reference subdirectory** defaults to
-`Auto (best match)`. It measures the same seams on every channel — up to 24 of them, so on this
-acquisition all four — and keeps the channel whose matches are least ambiguous, meaning the widest
-gap between the best alignment and the runner-up. Here it scores FITC 0.97, TRITC 0.96 and DAPI
-0.93, and solves on FITC.
+Which channel gets measured is decided from the data. **Reference subdirectory** defaults to
+`Auto (best match)`: it tries every channel at the same seams and keeps the one where the tiles
+fit together only one way.
 
-The choice is decided by the pixels, not by chance: stitch the same folder again and you get the
-same channel. Pin one in that dropdown if you want a particular channel regardless of what the
-data says. The number to watch is how many seams were accepted.
+That is worth a moment, because some channels are easy to fool. Nuclei are round and much of a
+size, so a strip of DAPI can sit on its neighbor in several positions that all look about equally
+good — and if the wrong one wins, every tile moves with it. The cytoskeleton in FITC is large and
+different everywhere, so one position fits and nothing else comes close. The scores follow: FITC
+0.97, TRITC 0.96, DAPI 0.93. It solves on FITC.
+
+Same folder, same answer every time — this is measured, not picked at random. Pin a channel in
+that dropdown if you want a particular one whatever the data says. The number to watch is how
+many seams were accepted.
 
 </details>
 
