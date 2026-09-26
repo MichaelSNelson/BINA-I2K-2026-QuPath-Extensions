@@ -331,16 +331,14 @@ opposite stage convention — and only the pixel size and two checkboxes changed
   two fluorescence sets, which need different settings.) Both angles stitch in one go, each
   reporting `17 of 17 seams accepted`.
 
-  Three things the dialog will have wrong when you get there, all of them left over from the
-  exercises above:
+  Two things the dialog will have wrong when you get there, both left over from the exercises
+  above:
 
   - **Pixel size.** Tick **Manually edit pixel size** and enter `0.1732` (micrometers per pixel).
     The field is read-only until you do, and it will already show `0.653` labeled *(from
     MicroManager metadata)* — the scan that fills it recurses into sub-folders and found
     `fluo-cells` one level down. That is a different acquisition on a different scope, and these
     tiles are 2064 x 1544 rather than 2048 square.
-  - **Invert X / Invert Y.** **Untick both.** They are still ticked from exercise 2, because the
-    setting belongs to the scope and is remembered — and this scope needs neither.
   - **Merge channels.** **Untick it.** It appears because two folders matched, but these are two
     analyzer angles, not two channels of one image; they are not even the same pixel type
     (16-bit gray and 8-bit RGB), so the merge throws and the run reports "Stitching did not fully
