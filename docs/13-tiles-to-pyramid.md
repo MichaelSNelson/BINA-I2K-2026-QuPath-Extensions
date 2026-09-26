@@ -64,11 +64,11 @@ all of them, so they stay aligned with each other and not just internally.
   image via a separate `ChannelMerger` step.
 
 **Memory stops growing.** The stitcher never holds the mosaic — it writes one output chunk at a
-time and reads only the tile overlaps beneath it — so past a certain size the heap it needs
-simply flattens. Measured as the smallest `-Xmx` in which the stitch completes: 87, 169 and 279
+time and reads only the tile overlaps beneath it — so past a certain size the amount of memory it
+needs stops growing. Measured as the smallest memory allowance in which the stitch completes: 87, 169 and 279
 megapixels all finish in the same 128 MB.
 
-<img src="../images/tiles-to-pyramid/memory_scaling.png" alt="Log-log plot of heap needed against tiles in the mosaic. The measured Tiles to Pyramid curve rises from 64 MB at 16 tiles to 128 MB at 100 tiles and then runs flat through 324 tiles, while a modelled load-everything-then-fuse line climbs steadily through the typical QuPath heap band." width="760">
+<img src="../images/tiles-to-pyramid/memory_scaling.png" alt="Log-log plot of memory needed against tiles in the mosaic. The measured Tiles to Pyramid curve rises from 64 MB at 16 tiles to 128 MB at 100 tiles and then runs flat through 324 tiles, while a modelled load-everything-then-fuse line climbs steadily through the range of memory QuPath is usually given." width="760">
 
 The orange line is what it costs to hold every tile plus one fused canvas — arithmetic, not a
 measurement of any particular program, and a generous lower bound at that. It is the shape that
