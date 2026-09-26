@@ -201,6 +201,12 @@ tiles off disk and writes an image. Open QuPath, go to
    tiles meet — the vertical join about a third of the way across. Cells straddling the join
    should look as sharp as cells in the middle of a tile.
 
+<img src="../images/tiles-to-pyramid/fluo-cells-final.jpg" alt="The finished nine-tile mosaic, square, showing cultured cells with green cytoskeleton, blue nuclei and magenta cytoplasmic speckle. Cells run continuously across the whole field with no breaks or offsets where tiles meet, though two faint horizontal bands are visible where rows of tiles join" width="720">
+
+This is what you should get. Cells run straight through every join. The two faint horizontal
+bands are a brightness difference between tile rows, not a placement error — [What to
+notice](#what-to-notice) explains where they come from.
+
 <details markdown="1">
 <summary>What that registration line means</summary>
 
