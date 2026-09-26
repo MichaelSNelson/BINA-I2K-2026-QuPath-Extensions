@@ -12,7 +12,7 @@ title: Tiles to Pyramid
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-tiles-to-pyramid](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
-| **Extension version** | 0.7.5 |
+| **Extension version** | 0.7.6 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Tiles to Pyramid > Tiles-to-pyramid` |
@@ -278,7 +278,9 @@ overlap left for registration to work with.
 > twelve files and piles the three channels into one image, whichever lands last at each
 > position, without failing or warning. `*` needs **0.7.5 or newer**; on an older build the
 > field is called "Stitch sub-folders with text string", takes literal text only, and you would
-> type `I`, the one letter `DAPI`, `FITC` and `TRITC` share.
+> type `I`, the one letter `DAPI`, `FITC` and `TRITC` share. **Downsample other than 1 needs
+> 0.7.6** — earlier versions place the tiles at the wrong spacing and the mosaic comes out
+> scrambled.
 
 The result window names the channel it measured on — `aligned on FITC`, or whichever it chose —
 and the corrections from that one channel are applied to all three. Open the merged image and the
