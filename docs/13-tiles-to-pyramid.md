@@ -12,7 +12,7 @@ title: Tiles to Pyramid
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-tiles-to-pyramid](https://github.com/uw-loci/qupath-extension-tiles-to-pyramid) |
-| **Extension version** | 0.7.6 |
+| **Extension version** | 0.7.7 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+ |
 | **Where to find it** | `Extensions > Tiles to Pyramid > Tiles-to-pyramid` |
@@ -166,7 +166,7 @@ tiles off disk and writes an image. Open QuPath, go to
    | 2 | **Folder location** | **Select Folder**, choose `fluo-cells` |
    | 3 | **Compression type** | `UNCOMPRESSED` |
    | 4 | **Output format** | `OME-TIFF (single file)` |
-   | 5 | **Pixel size, microns** | Fills in as `0.653` on its own once the folder is chosen. Leave it |
+   | 5 | **Pixel size, microns** | Fills in as `0.653` on its own once the folder is chosen. Leave it. If **Manually edit pixel size** is ticked, untick it -- the tick is remembered between runs, and while it is on nothing is read from the data |
    | 6 | **Downsample** | `2` |
    | 7 | **Stitch sub-folders with text string** | Empty. It remembers what you last typed, so clear it if anything is there |
    | 8 | **Stage axes** | Tick **both** `Invert X axis` and `Invert Y axis` |
@@ -347,10 +347,11 @@ Each angle reports `17 of 17 seams accepted`.
 > **Why `.`** It matches `7.0.biref` and `90.0` and nothing else. `*` would take all four folders,
 > including the two fluorescence sets, which need different settings.
 
-> **Why the pixel size needs re-entering.** The field will show `0.653` labeled *(from
-> MicroManager metadata)*: the scan that fills it recurses into sub-folders and found
-> `fluo-cells` one level down. That is a different acquisition on a different scope, and these
-> tiles are 2064 x 1544 rather than 2048 square.
+> **Why the pixel size needs changing.** The dialog remembers what you typed last time, so the
+> field will still hold the `0.653` from exercise 2. That is a different acquisition on a
+> different scope -- these tiles are 2064 x 1544 rather than 2048 square. Nothing fills the
+> field in for you here: a `TileConfiguration.txt` carries no pixel size, so the value is
+> whatever you last entered until you change it.
 
 > **Why the merge box must be unticked.** It appears because two folders matched, but these are
 > two analyzer angles, not two channels of one image; they are not even the same pixel type
