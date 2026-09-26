@@ -193,20 +193,18 @@ tiles off disk and writes an image. Open QuPath, go to
    tiles meet — the vertical join about a third of the way across. Cells straddling the join
    should look as sharp as cells in the middle of a tile.
 
-The result window tells you what registration did, on its own line:
+<details markdown="1">
+<summary>What that registration line means</summary>
 
-```
-Tile registration: 12 of 12 seams accepted, aligned on 385, moved 36 of 36 tile placements.
-```
+A *seam* is one pair of side-by-side tiles; a 3 × 3 grid has twelve of them, and here all twelve
+matched well enough to be believed. Fewer is normal on a sparse slide: a tile whose overlap has no
+texture takes the correction its neighbors imply, and if nothing matches at all the stitch still
+completes, at the stage's own positions.
 
-An *edge* is one pair of side-by-side tiles; a 3x3 grid has twelve such pairs, and here all
-twelve correlated well enough to be believed. Fewer than all is normal on a sparse slide — a
-tile whose overlap has no texture takes the correction its neighbors imply, and if nothing
-matches at all the stitch still completes at the stage's own positions.
+`moved 36 of 36 tile placements` counts every channel — nine tiles in four channels. One set of
+corrections, applied to all of them.
 
-The `max 12.45 px` is how far one tile ended up from where the stage put it, accumulated
-across the grid — not the error in a single stage step. The per-step figure is on the
-following `Per-edge shifts used:` line.
+</details>
 
 > #### If you get the axes wrong
 >
@@ -218,11 +216,10 @@ following `Per-edge shifts used:` line.
 > You get a 5734 × 5735 image — within twenty pixels on both axes of the 5754 × 5749 you got a
 > moment ago, and still a plausible-looking mosaic. But every tile is now in the mirrored slot of
 > the grid. The *layout* is mirrored, not the pixels: no tile's own image is flipped, they are
-> simply placed in the wrong cells. So no seam matches anything, and the log says so outright:
+> simply placed in the wrong cells. So no seam matches anything, and the result window says so:
 >
 > ```
-> Tile registration produced no corrections: no edge survived the confidence gates;
-> keeping nominal positions
+> Tile registration: solve found no usable corrections; tiles at nominal stage positions.
 > ```
 >
 > Stage coordinates do not say which way the camera faces, so the extension cannot work it out,
@@ -275,21 +272,23 @@ overlap left for registration to work with.
 > field is called "Stitch sub-folders with text string", takes literal text only, and you would
 > type `I`, the one letter `DAPI`, `FITC` and `TRITC` share.
 
-The log reports which channel it measured on and reuses that one solve for the other two:
+The result window names the channel it measured on — `aligned on FITC`, or whichever it chose —
+and the corrections from that one channel are applied to all three. Open the merged image and the
+three channels sit on top of each other; a red dot stays inside its blue nucleus.
 
-```
-Registration reference: 'FITC' (most decisive on sampled seams)
-Tile registration: 4/4 edges accepted, ... corrections mean 5.87 px / max 6.04 px
-```
+<details markdown="1">
+<summary>Why one channel decides for all three, and why the name changes between runs</summary>
 
-Which channel it picks, and the exact correction sizes, vary between runs: **Reference
-subdirectory** defaults to `Auto (best match)`, which samples seams and re-decides from the data
-each time. (The `TileRegistration.txt` already sitting in `bounds` was solved on `DAPI`.) Pin a
-named channel there if you need the same geometry across re-runs. What should not vary is
-`4/4 edges accepted`.
+The three channels were photographed at the same four stage positions, so they share one set of
+errors. Measuring each separately would give each its own corrections and pull them apart from one
+another — worse than leaving all three on the same slightly imperfect grid.
 
-Solving each channel separately would give each its own corrections and pull the channels out of
-register *with each other* — worse than leaving all three on the same imperfect grid.
+Which channel gets measured is decided from the data: **Reference subdirectory** defaults to
+`Auto (best match)`, which samples a few seams on each and picks the most decisive, so the name in
+that line can change between runs. Pin a channel there if you need the same geometry every time.
+The number that should not change is how many seams were accepted.
+
+</details>
 
 ### Exercise 3 — color tiles, upright scope
 
