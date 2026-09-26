@@ -320,29 +320,40 @@ opposite stage convention — and only the pixel size and two checkboxes changed
 
 ### If you have time
 
-- **Stitch to OME-Zarr** instead. Repeat exercise 2 with **Output format** set to
-  `OME-Zarr (NGFF 0.4, Zarr v2)` — the label carries the versions it writes. You get
-  `DAPI.ome.zarr/`, `FITC.ome.zarr/` and `TRITC.ome.zarr/` *directories* rather than files; drag
-  the directory itself onto QuPath to open it, not something inside it. Compare how long each
-  format takes to open.
-- **Specify folders to stitch using string matching.** Point the dialog at the top-level unzipped
-  folder, method `TileConfiguration.txt file`, and type `.` in **Sub-folders to stitch** — which
-  matches `7.0.biref` and `90.0` and nothing else. (`*` would take all four folders, including the
-  two fluorescence sets, which need different settings.) Both angles stitch in one go, each
-  reporting `17 of 17 seams accepted`.
+**Stitch to OME-Zarr.** Repeat exercise 2 with one change:
 
-  Two things the dialog will have wrong when you get there, both left over from the exercises
-  above:
+| Field | Set to |
+|---|---|
+| **Output format** | `OME-Zarr (NGFF 0.4, Zarr v2)` |
 
-  - **Pixel size.** Tick **Manually edit pixel size** and enter `0.1732` (micrometers per pixel).
-    The field is read-only until you do, and it will already show `0.653` labeled *(from
-    MicroManager metadata)* — the scan that fills it recurses into sub-folders and found
-    `fluo-cells` one level down. That is a different acquisition on a different scope, and these
-    tiles are 2064 x 1544 rather than 2048 square.
-  - **Merge channels.** **Untick it.** It appears because two folders matched, but these are two
-    analyzer angles, not two channels of one image; they are not even the same pixel type
-    (16-bit gray and 8-bit RGB), so the merge throws and the run reports "Stitching did not fully
-    succeed" even though both stitches worked.
+The label carries the versions it writes. You get `DAPI.ome.zarr/`, `FITC.ome.zarr/` and
+`TRITC.ome.zarr/` *directories* rather than files; drag the directory itself onto QuPath to open
+it, not something inside it. Compare how long each format takes to open.
+
+**Specify folders to stitch using string matching.** Both polarization angles stitch in one go:
+
+| Field | Set to |
+|---|---|
+| **Stitching Method** | `TileConfiguration.txt file` |
+| **Folder location** | The top-level unzipped folder |
+| **Sub-folders to stitch** | `.` |
+| **Pixel size** | Tick **Manually edit pixel size** and enter `0.1732` |
+| **Merge the 2 channel stitches into one multichannel image** | Untick |
+
+Each angle reports `17 of 17 seams accepted`.
+
+> **Why `.`** It matches `7.0.biref` and `90.0` and nothing else. `*` would take all four folders,
+> including the two fluorescence sets, which need different settings.
+
+> **Why the pixel size needs re-entering.** The field will show `0.653` labeled *(from
+> MicroManager metadata)*: the scan that fills it recurses into sub-folders and found
+> `fluo-cells` one level down. That is a different acquisition on a different scope, and these
+> tiles are 2064 x 1544 rather than 2048 square.
+
+> **Why the merge box must be unticked.** It appears because two folders matched, but these are
+> two analyzer angles, not two channels of one image; they are not even the same pixel type
+> (16-bit gray and 8-bit RGB), so the merge throws and the run reports "Stitching did not fully
+> succeed" even though both stitches worked.
 
 ### If something goes wrong
 
