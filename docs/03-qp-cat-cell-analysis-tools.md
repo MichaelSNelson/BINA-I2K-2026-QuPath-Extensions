@@ -192,13 +192,11 @@ This exercise uses the
 small, fully ground-truthed synthetic tumor microenvironment. It is **CC0**: public domain,
 no attribution required, yours to reuse in your own teaching.
 
-The hands-on exercise below hands you a **ready-made QuPath project** built from it — the
-eight images with cells already detected — so you do not need to run any detection yourself.
-It also carries the ground truth as classified **point annotations**, one per cell, so you can
-check an answer without leaving QuPath. Get the source zip (**~14 MB**, the
-[latest release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip))
-when you want that same truth as **CSVs** to open in a spreadsheet, the per-image generation
-parameters, or the raw images to build the project yourself.
+The hands-on exercise hands you a **ready-made QuPath project** built from it — the eight
+images with cells already detected, so you do not run any detection yourself — which also
+carries the ground truth as classified **point annotations**, one per cell, so you can check an
+answer without leaving QuPath. [Getting set up](#getting-set-up) has the downloads; there are
+two projects and you only need one.
 
 Why synthetic, for a workshop:
 
@@ -245,14 +243,43 @@ Thirty-four files, and QuPath only wants eight of them:
 
 ## Hands-on exercise
 
-**Download:** `multiplex-synthetic-data-demo-project-clustered.zip` —
-**[direct download](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** (23 MB). All eight synthetic images with cells already detected, plus
-a saved KMeans k = 6 clustering of all 11,421 of them. Unzip it and drag `project.qpproj` onto
-an open QuPath window; if the images come up red in an **Update URIs** dialog, click
-**Search...**, point it at the unzipped folder, and **Apply changes**.
+### Getting set up
 
-That saved result means **you can read every number in Part A without running anything** — useful
-if the environment build is slow, or if you would rather spend the hour on Parts B and C.
+**There are two QuPath projects. Download ONE.** They hold the same eight images with the same
+cells already detected, so either way you never run cell detection. The only difference is
+whether a clustering result is already in the box.
+
+| Download | Take this one if | Size |
+|---|---|---|
+| **[Demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** | You want to **do Part A yourself** — run the clustering and watch it happen. | 20 MB |
+| **[Demo project, clustered](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** | You want to **skip the run**: go straight to Parts B and C, or read Part A's numbers without waiting. It carries a saved KMeans k = 6 over all 11,421 cells. | 23 MB |
+
+If you are unsure, take the **clustered** one: you can still run Part A from it, and you are
+not stuck if the Python environment is still building.
+
+Then, whichever you took:
+
+1. **Unzip it** somewhere you can find again — step 3 may need that folder.
+2. **Drag `project.qpproj` onto an open QuPath window.**
+3. **Only if the image names come up red.** A QuPath project stores absolute image paths, so a
+   project built on someone else's machine has to be pointed at yours. Either:
+   - `Automate > Project scripts > fix_image_paths > Run` — the project ships this script; or
+   - in the **Update URIs** dialog QuPath offers, click **Search...**, point it at the folder
+     from step 1, and click **Apply changes**.
+
+<details markdown="1">
+<summary><b>A third download, optional</b> — the raw dataset, if you want the answer key in a spreadsheet</summary>
+
+**[multiplex-synthetic-data-v1.2.zip](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip)**
+(14 MB) is the dataset rather than a project: the eight images, the per-cell ground truth as
+**CSVs**, the same truth as QuPath-importable point annotations, and the per-image generation
+parameters.
+
+You do **not** need it for the exercise — both projects already carry the ground truth as
+classified point annotations, so you can check an answer without leaving QuPath. Take this one
+if you want to open the truth in a spreadsheet, or build the project yourself from the images.
+
+</details>
 
 > **The embedding columns in the download are named `3DUMAP1`, `3DUMAP2` and `3DUMAP3`** — the
 > dialog's **Name** field was `3D UMAP`, and the space is dropped when the columns are written. A
@@ -283,7 +310,7 @@ should detect close to 1,530 cells on `tme_00`.
 
 </details>
 
-### Part A: recover the cell types
+### Part A: find the cell types
 *Concept: cell identity from marker combinations, and what "resolution" costs you.*
 
 1. **Check the environment first.** Open `Extensions > QP-CAT`. Until the Python environment
@@ -312,8 +339,8 @@ should detect close to 1,530 cells on `tme_00`.
    **`Ripley L`** as well — Parts B and C need them, and computing them now saves a second
    run.
 
-   > **Short on time, or something went wrong?** Everything below is already computed in the
-   > **clustered project** download. Open it, then
+   > **Short on time, or something went wrong?** If you took the **clustered** project,
+   > everything below is already computed in it. Open
    > `Results & populations > View Past Results...` and pick `auto_20260924_135415_kmeans`.
    > The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
    > dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
