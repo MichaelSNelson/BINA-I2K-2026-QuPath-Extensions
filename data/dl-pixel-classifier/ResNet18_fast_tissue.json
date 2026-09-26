@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "name": "Classifier_20260926",
+  "name": "CMU-1 Tissue (ResNet-18)",
   "description": "",
   "model_type": "unet",
   "backbone": "resnet18",
@@ -32,7 +32,7 @@
     "ohem_adaptive_floor": true,
     "data_loader_workers": 0,
     "in_memory_dataset": "auto",
-    "early_stopping_metric": "mean_iou",
+    "early_stopping_metric": "disabled",
     "early_stopping_patience": 10,
     "mixed_precision": true,
     "augmentation_config": {

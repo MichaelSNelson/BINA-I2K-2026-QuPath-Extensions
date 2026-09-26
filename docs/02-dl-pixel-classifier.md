@@ -254,8 +254,13 @@ the slide's native one.
 
 <img src="../images/dl-pixel-classifier/4.png" alt="The Tiles and Resolution panel: Tile Size 256 with a recommended 512 note, a Resolution dropdown set to 4x Quarter resolution with a Preview button, a gray line giving the detail tile size in pixels and microns and the effective microns per pixel, a Surrounding context dropdown set to None single scale, and spinners for Tile Overlap percent, Line Stroke Width, Min Annotation Coverage percent and Min Tile Label Fraction percent" width="760">
 
-**5. Duration & Stopping** — **100 epochs**, validation split **20%**. The profile leaves early
-stopping on with patience 10; see the warning below the walkthrough before you trust it.
+**5. Duration & Stopping** — **100 epochs**, validation split **20%**, and **early stopping
+off**. Leaving it off is deliberate: the run takes seconds, so stopping early saves nothing, and
+early stopping here watches mean IoU — a metric that cannot move until predictions cross a
+decision boundary. A run that is improving steadily can show a completely flat mean IoU for ten
+epochs and be killed one epoch before it would have succeeded. That is not hypothetical; it
+turned a working recipe into an unusable model while building this guide. The best epoch is
+still saved either way, so nothing is lost by running all 100.
 
 <img src="../images/dl-pixel-classifier/5.png" alt="The Duration and Stopping panel: Epochs, Validation Split percent, an Enable early stopping checkbox, an Early Stop Metric dropdown set to Mean IoU, an Early Stop Patience spinner, a Focus Class dropdown set to None use Mean IoU, and a Random Seed spinner" width="760">
 
@@ -403,7 +408,14 @@ Then fix what it found. Expand **Annotation Adjustment**:
    you want.
 4. Click **Apply previewed adjustment** and confirm.
 
-Annotations outside the current tile are never touched.
+<img src="../images/dl-pixel-classifier/Issues-preview-then-apply.png" alt="The Training Area Issues window with a preview pending. On the left, the tile table sorted by loss and an Apply Annotation Adjustment confirmation dialog reading 2,290 pixels will be changed, this modifies annotations within this tile only, use Undo last adjustment to reverse. On the right, a confidence map of the tissue edge, the Model Confidence ramp labelled click or drag to set threshold with its marker near the high end, and the Annotation Adjustment panel showing Confidence 89 percent, a Preview changes before applying checkbox, Apply previewed adjustment and Cancel preview buttons, and a Transitions list with Ignore-star to Tissue checked" width="900">
+
+The green overlay in the viewer is the preview, not a change — nothing is edited until you
+confirm. Afterwards the annotation follows the boundary the model found:
+
+<img src="../images/dl-pixel-classifier/Issues-after-adjustment.png" alt="A close view of the slide after the adjustment: a large pale grey Ignore-star annotation covering empty slide, with a darker outlined Tissue annotation now running along the stained tissue edge where the adjustment extended it" width="420">
+
+Annotations outside the current tile are never touched, and **Undo last adjustment** reverses it.
 
 > **Do it before you close the dialog.** Training tiles are deleted when the progress dialog
 > closes. Save the session first if you want to reopen it later via
