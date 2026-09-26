@@ -319,15 +319,35 @@ a QPSC acquisition too and still bands, because it was acquired with the correct
 
 ### If you have time
 
-**Stitch to OME-Zarr.** Repeat exercise 2 with one change:
+**Stitch to OME-Zarr.** This is exercise 2 again in the other output format. You have been through
+exercise 3 since, so several fields need putting back:
 
 | Field | Set to |
 |---|---|
+| **Stitching Method** | `TileConfiguration.txt file` |
+| **Folder location** | `Fluorescence_10x_7/bounds` |
+| **Pixel size** | `0.653`, with **Manually edit pixel size** ticked |
+| **Sub-folders to stitch** | `*` |
+| **Stage axes** | Tick **both** Invert boxes again |
 | **Output format** | `OME-Zarr (NGFF 0.4, Zarr v2)` |
 
-The label carries the versions it writes. You get `DAPI.ome.zarr/`, `FITC.ome.zarr/` and
-`TRITC.ome.zarr/` *directories* rather than files; drag the directory itself onto QuPath to open
-it, not something inside it. Compare how long each format takes to open.
+The label carries the versions it writes. Registration reports `4 of 4 seams accepted`, the same
+as exercise 2 — the output format decides how pixels are stored, not where tiles go.
+
+**What you get is four folders, not four files.** `DAPI.ome.zarr`, `FITC.ome.zarr`,
+`TRITC.ome.zarr` and `bounds_merged.ome.zarr` are *directories*, each holding one `s0`, `s1`,
+`s2` ... sub-directory per pyramid level.
+
+**To see the result, drag the folder `bounds_merged.ome.zarr` onto the QuPath window** — the
+folder itself, not anything inside it, and not the folder that contains it. It opens as the same
+three-channel image you got in exercise 2. If you drop `s0` or the parent folder instead, QuPath
+will not recognize it.
+
+Look in one and the trade-off is plain: a single channel that was one `.ome.tif` file is 29 files
+spread through a directory tree, and the merged image is 54. That is the point of the format —
+many small chunks can be read in parallel and served from cloud storage, where one large file
+cannot. It is also the cost: copying, moving or sending a Zarr means keeping thousands of small
+files together, and a tool that expects a single file will not take it.
 
 **Specify folders to stitch using string matching.** Both polarization angles stitch in one go:
 
@@ -337,9 +357,20 @@ it, not something inside it. Compare how long each format takes to open.
 | **Folder location** | The top-level unzipped folder |
 | **Sub-folders to stitch** | `.` |
 | **Pixel size** | Tick **Manually edit pixel size** and enter `0.1732` |
+| **Stage axes** | **Untick both** Invert boxes. The Zarr exercise above had you tick them |
+| **Output format** | Back to `OME-TIFF (single file)`, or you get folders again |
 | **Merge the 2 channel stitches into one multichannel image** | Untick |
 
-Each angle reports `17 of 17 seams accepted`.
+All three of those carry over from the Zarr exercise, so check them before you click.
+
+Each angle reports `17 of 17 seams accepted`, and you get two outputs from one click:
+`7.0.biref.ome.tif` and `90.0.ome.tif`, side by side in the top-level folder. Drag either onto
+QuPath to look at it; `90.0.ome.tif` is the one you already stitched by hand in exercise 3, so
+you can check the two runs agree.
+
+That is the point of this one. Everything up to now stitched a single acquisition per click;
+this stitches a *set*, one output each, without revisiting the dialog between them. Point it at
+a drive of acquisitions and the same one click does all of them.
 
 > **Why `.`** It matches `7.0.biref` and `90.0` and nothing else. `*` would take all four folders,
 > including the two fluorescence sets, which need different settings.
