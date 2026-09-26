@@ -110,15 +110,19 @@ and it is the same approach Fiji's Grid/Collection stitching takes — the metho
 noting that stage coordinates "are not precise enough to allow direct reconstruction"
 ([Preibisch, Saalfeld &amp; Tomancak 2009](https://doi.org/10.1093/bioinformatics/btp184)).
 
-Here is one join out of `fluo-cells`, stitched both ways — at the stage's positions, then at
-measured ones. The stage was out by up to 12 px:
+Here are two tiles out of `fluo-cells` and the two mosaics they give, depending on where you put
+them. The stage was out by up to 12 px:
 
-<img src="../images/tiles-to-pyramid/join_nominal_vs_registered.png" alt="The same tile join stitched twice. At the stage's positions, cells are visibly cut and offset along a vertical line; at measured positions the same cells run continuously through the join" width="880">
+<img src="../images/tiles-to-pyramid/join_nominal_vs_registered.png" alt="Two neighboring tiles shown side by side with the 205-pixel strip they both photographed highlighted on their facing edges. An arrow splits to two versions of the same small region of the finished image: placed at the stage's coordinates, cells are cut and offset along a vertical line; placed where the overlap says they belong, the same cells run continuously." width="900">
 
-The break is a hard step rather than a blur because the shipped blend cuts at the tile boundary;
-blending is a QuPath preference (`Edit > Preferences > Tiles-to-pyramid > Stitching: overlap
-blending`), not a dialog field. The color is three channels merged for the figure; your own output
-opens as separate grayscale channels.
+> **About the figure.** By default no smoothing is done where overlapping tiles are merged, so a
+> misplaced tile shows up as a noticeable vertical line rather than as a blur. If you would rather
+> it blended, that is a QuPath preference — `Edit > Preferences > Tiles-to-pyramid > Stitching:
+> overlap blending` — not a field in the stitch dialog.
+>
+> Both lower panels are cut from the same coordinates in the two mosaics, with the same brightness
+> scaling, so the only thing that differs between them is where the tiles were placed. The color is
+> three channels merged for the figure; your own output opens as separate grayscale channels.
 
 </details>
 
