@@ -404,7 +404,7 @@ You can use the model you just trained, or the provided one.
    `Extensions > DL Pixel Classifier > Manage Classifiers` and press **Import...** (bottom row,
    beside Delete and the two Export buttons — see the
    [Manage Classifiers window](#sharing-and-moving-a-model) below). It appears as
-   **CMU-1 Tissue (ResNet-18)**.
+   **CMU-1_Tissue_ResNet-18**.
 2. Draw a rectangle over a small area of tissue, then choose
    `Extensions > DL Pixel Classifier > Apply DL Pixel Classifier...`. Set the output to
    **overlay** so the prediction is drawn on the slide.
@@ -425,7 +425,7 @@ You can use the model you just trained, or the provided one.
 Covered in [The training loop](#2-review-the-training-data-the-model-disagrees-with) below. If
 you imported the provided model rather than training your own, its saved session is already
 inside it: `Utilities > Load Saved Training Area Issues...`, then pick
-**CMU-1 Tissue (ResNet-18)**.
+**CMU-1_Tissue_ResNet-18**.
 
 ### If something looks wrong
 
