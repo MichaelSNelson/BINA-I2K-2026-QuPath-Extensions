@@ -421,11 +421,11 @@ cluster. If you want it gone, correct it in step 2 and recompute the UMAP; the
 
 > **One deliberate exception to a rule stated later.** The batch-effects exercise tells you to
 > press **`Deselect QPCAT`** before a second run, because QP-CAT's own output columns are
-> answers, not inputs. This step is the case where clustering on them is the point — which is
-> why you tick exactly three of them by hand rather than leaving the rest of the previous
-> run's output selected alongside.
+> answers, not inputs. Here you are clustering on them deliberately, which is why you
+> tick exactly three by hand rather than leaving the rest of the previous run's output
+> selected alongside.
 
-**The tell is the noise fraction**, and QP-CAT names it for you in the banner above the
+**Read the noise fraction first.** QP-CAT reports it in the banner above the
 results. HDBSCAN has two failure modes that look identical in the viewer and are opposites
 underneath: a lot of noise spread evenly means change the *algorithm*; almost no noise beside
 one dominant cluster means change the *cluster selection*.
@@ -461,7 +461,7 @@ is high in `3DUMAP2` is not a phenotype.
 
 **Now take the second step.** The markers are still sitting
 on the cells; nothing has read them yet.
-**`Results & populations > Analyze current cell classifications...`** does that read. It takes
+**`Results & populations > Analyze current cell classifications...`** reads them. It takes
 the classes the cells now carry and computes the whole marker surface over them: heatmap,
 Marker Rankings, fingerprints, composition. It writes nothing back: no classification is
 added, changed or removed.
@@ -488,11 +488,11 @@ this project, so check them even if you have been here before:
 | **Independent areas** | **blank** | It only shapes the spatial graph, and this run builds none |
 
 **Check the class list before you run.** It shows one row per class with its cell count, and
-it is where a mixed project gives itself away: if some images carry cluster labels and others
+it is where a mixed project shows itself: if some images carry cluster labels and others
 still carry an earlier labelling, you will see both sets listed together and the run will
 compare things that were never meant to be compared. One labelling system, all of its classes.
 
-That is the pair worth remembering — **cluster in one space, characterise in another.** HDBSCAN
+That is the pair: **cluster in one space, characterise in another.** HDBSCAN
 on the UMAP decides *which cells group together*; analysing those groups over the markers
 decides *what to call them*. Neither run can do both.
 
@@ -569,7 +569,7 @@ three **jointly** — about 4,200 cells, still fast.
 
 1. Open the new **Composition by area** tab. Each image is an independent area, so you get
     one row per image.
-2. The contrast is stark, and it is the point:
+2. The contrast is stark:
 
     | | `tme_00` | `tme_06` | `tme_07` |
     |---|---|---|---|
