@@ -467,6 +467,14 @@ results window: **Heatmap**, **Marker Rankings**, **Marker Fingerprints** and th
 **Composition** tabs. It writes nothing back: no classification is added, changed or
 removed.
 
+> **Heatmap colours may not match the screenshots here.** The Heatmap tab has a **Scale**
+> control, and a matching preference, that changes how values become colours. White is always
+> zero when the run was Z-scored; what Scale chooses is whether the colour reaches to each
+> marker's own strongest value (**Per marker**, the default) or to one value shared across the
+> whole map (**Shared across markers**). With **Normalization** set to None the values have no
+> meaningful zero, so the map switches to a sequential viridis scale and says so in its legend.
+> The reading does not change, only the colours.
+
 <div class="shots" markdown="0">
 <figure>
 <img src="../images/qp-cat/analyze-current.png" alt="The top of the Analyze current cell classifications dialog. A banner reads: analyse the classifications already on the cells, nothing is re-clustered and no classification is changed. Below it, Scope set to All project images (8); a Measurements list with Nucleus DAPI mean ticked and the other DAPI statistics unticked, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; Normalization set to Z-score; and a Dimensionality Reduction section with Method set to None, which greys out the Dimensions dropdown.">
