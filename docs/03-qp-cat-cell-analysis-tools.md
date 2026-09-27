@@ -375,8 +375,8 @@ the embedding you run again over those columns.
 | Measurements | **`Select none`**, then tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`** — three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
 | Normalization | **None** |
 | Dimensionality Reduction | **Method: None** |
-| Batch correction (Harmony) | **Off** |
 | Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0**, `min_cluster_size` **500** |
+| Batch correction (Harmony) | **Off** |
 
 <div class="shots" markdown="0">
 <figure style="max-width:642px">
@@ -479,13 +479,13 @@ Reduction still needs changing</b> &mdash; it defaults to UMAP, and this run wan
 Five settings to check before you run. The dialog reopens on whatever you last ran in
 this project, so check them even if you have been here before:
 
-| | Set it to | Why |
+| Section | Set it to | Why |
 |---|---|---|
-| **Classifications** | **every class ticked** | Each class is described by contrast with all the others, so unticking one silently changes what "the others" means for every class that is left |
-| **Measurements** | the **markers** (`Select 'Mean' only`) | The whole point of this run: markers, not the UMAP columns you clustered on |
-| **Method** | **None** | The UMAP you want is already on the cells. Leaving this on UMAP computes a *second*, different one |
-| **Spatial statistics** | all **unticked** | Nothing here is a spatial question, and step 3 already computed them |
-| **Independent areas** | **blank** | It only shapes the spatial graph, and this run builds none |
+| Measurements | the **markers** (`Select 'Mean' only`) | What this run is for: markers, not the UMAP columns you clustered on |
+| Dimensionality Reduction | **Method: None** | The UMAP you want is already on the cells. Left on UMAP this computes a *second*, different one |
+| Classifications to analyze | **every class ticked** | Each class is described by contrast with all the others, so unticking one silently changes what "the others" means for every class left |
+| Independent areas | **blank** | It only shapes the spatial graph, and this run builds none |
+| Spatial statistics | all **unticked** | Nothing here is a spatial question, and step 3 already computed them |
 
 **Check the class list before you run.** It shows one row per class with its cell count, and
 it is where a mixed project shows itself: if some images carry cluster labels and others
