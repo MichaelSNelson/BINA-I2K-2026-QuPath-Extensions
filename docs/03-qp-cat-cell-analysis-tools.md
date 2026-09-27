@@ -450,10 +450,10 @@ cluster 2 blue-ringed. Read the clusters by eye here, or re-run over markers to 
 </figure>
 </div>
 
-**What to look for.** Your run may split or merge differently.
-Read Marker Fingerprints and compare against the ground truth as you did before, then ask
-the question this route exists for: *did letting the data choose recover the CD8 / helper
-split — the one KMeans missed, having spent its spare cluster on proliferation instead?*
+**What to look for.** Seven clusters, and the question this route exists for: *did letting
+the data choose recover the CD8 / helper split — the one KMeans missed, having spent its spare
+cluster on proliferation instead?* You cannot answer it from these three panels, because
+nothing here has read a marker. That is the next step.
 
 **The middle panel is the cost of this route.** Clustering on three
 embedding columns means the marker rankings can only rank those three columns. A cluster that
@@ -489,7 +489,7 @@ this project, so check them even if you have been here before:
 
 | Section | Set it to | Why |
 |---|---|---|
-| Measurements | the **markers** (`Select 'Mean' only`) | What this run is for: markers, not the UMAP columns you clustered on |
+| Measurements | `Select 'Mean' only`, **then `Deselect QPCAT`** | What this run is for: markers, not the UMAP columns you clustered on. `Select 'Mean' only` also ticks QP-CAT's own `QPCAT component: mean:` columns, which are output from an earlier run, not measurements of the cell |
 | Dimensionality Reduction | **Method: None** | The UMAP you want is already on the cells. Left on UMAP this computes a *second*, different one |
 | Classifications to analyze | **every class ticked** | Each class is described by contrast with all the others, so unticking one silently changes what "the others" means for every class left |
 | Independent areas | **blank** | It only shapes the spatial graph, and this run builds none |
@@ -499,6 +499,37 @@ this project, so check them even if you have been here before:
 it is where a mixed project shows itself: if some images carry cluster labels and others
 still carry an earlier labelling, you will see both sets listed together and the run will
 compare things that were never meant to be compared. One labelling system, all of its classes.
+
+<div class="shots" markdown="0">
+<figure style="max-width:500px">
+<img src="../images/qp-cat/analyze-current4.png" alt="The Marker Fingerprints tab after the analyse run. Seven cluster cards, each led by marker names instead of UMAP columns: Cluster 0 by Ki67 and PanCK, Cluster 1 by aSMA, Cluster 2 by CD20, Cluster 3 by PanCK, Cluster 4 by CD68, Cluster 5 by CD8 and CD3, and Cluster 6 by CD3 with CD8 at minus 2.9.">
+<figcaption><b>The same seven clusters, described by markers.</b> Compare with the panel
+further up, where every card read <code>3DUMAP1/2/3</code>. Same cells, same groups, a
+description you can put a cell-type name to.</figcaption>
+</figure>
+</div>
+
+**And the answer to the question.** Every population lands on the ground truth, and the T
+cells come apart:
+
+| Cluster | Cells | Led by | Read it as | Ground truth |
+|---|---|---|---|---|
+| 1 | 3,306 (28.9%) | aSMA | fibroblast | 28.9% |
+| 3 | 1,868 (16.4%) | PanCK | tumor | 16.4% |
+| 4 | 1,554 (13.6%) | CD68 | macrophage | 13.6% |
+| 5 | 1,388 (12.2%) | **CD8** and CD3 | **CD8 T** | 24.3% between them |
+| 6 | 1,392 (12.2%) | CD3, **CD8 at -2.9** | **helper T** | |
+| 2 | 1,088 (9.5%) | CD20 | B cell | 9.5% |
+| 0 | 825 (7.2%) | Ki67 and PanCK | proliferating tumor | 7.2% |
+
+Clusters 5 and 6 are the point. Both are CD3-positive; cluster 5 is CD8-positive and cluster
+6 is CD8-*negative*, which is the whole difference between the two lineages in this dataset.
+KMeans at k = 6 merged them and spent its spare cluster on proliferation instead. Letting the
+data choose the number recovered both, and neither run could have told you which markers
+those clusters carry.
+
+Your own run may split or merge differently; the ground-truth column is how you check it
+rather than take the above on trust.
 
 That is the pair: **cluster in one space, characterise in another.** HDBSCAN
 on the UMAP decides *which cells group together*; analysing those groups over the markers
