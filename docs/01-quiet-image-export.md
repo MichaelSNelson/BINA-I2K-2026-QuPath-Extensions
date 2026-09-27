@@ -30,12 +30,10 @@ title: QuIET - QuPath Image Export Toolkit
 
 ## What it does
 
-Exporting an image out of QuPath is easy. Exporting *the right image, the same way, from
-forty slides, with a scale bar, at a stated resolution, with a record of how you did it* is
-not. That is normally a Groovy scripting job.
-
-QuIET is a three-step wizard over that job. You pick a category, configure it, pick your
-images, and export.
+Exporting one image from QuPath takes a menu click. Exporting *the right image, the same way,
+from forty slides, with a scale bar, at a stated resolution* normally means writing a Groovy
+script. QuIET does that export without the script: a three-step wizard where you pick a
+category, configure it, pick your images, and export.
 
 **Five export categories**, all sharing the same 3-step flow:
 
@@ -53,7 +51,9 @@ exported), and lay them out into one grid figure, with captions, spacing and bac
 QuPath renders every panel identically, so you do not assemble the figure by hand in
 another program.
 
-## Two things that make it worth your time
+## Two bonuses
+
+Neither is why you would install it, and neither comes with a hand-written script.
 
 **Every export records a Groovy script.** Whatever you clicked in the wizard is emitted as a
 self-contained script you can save, version-control, re-run next year, or send to a
