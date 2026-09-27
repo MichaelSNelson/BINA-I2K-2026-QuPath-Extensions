@@ -468,7 +468,7 @@ results window: **Heatmap**, **Marker Rankings**, **Marker Fingerprints** and th
 removed.
 
 <div class="shots" markdown="0">
-<figure>
+<figure style="max-width:430px">
 <img src="../images/qp-cat/analyze-current.png" alt="The Analyze current cell classifications dialog. A banner reads: analyse the classifications already on the cells, nothing is re-clustered and no classification is changed. Below it, Scope set to All project images (8), a Measurements list with Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons, Normalization set to Z-score, and a Dimensionality Reduction section with Method UMAP, Dimensions 3D and the name 3D UMAP.">
 <figcaption><b>The dialog as it opens.</b> Same scope, measurement and normalization controls
 as a clustering run; the banner at the top says what is different. <b>Dimensionality
