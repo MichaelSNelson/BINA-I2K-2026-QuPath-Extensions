@@ -94,7 +94,6 @@ and troubleshooting: [setup guide](docs/setup.md).
 
 | | |
 |---|---|
-| Tiles for the stitching exercise | Being prepared |
 | Presentation slides | %%DRIVE_SLIDES_URL%% |
 
 # Introducing: The Extensions
