@@ -12,7 +12,7 @@ title: QP-CAT - Cell Analysis Tools
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-cell-analysis-tools](https://github.com/uw-loci/qupath-extension-cell-analysis-tools) |
-| **Extension version** | 0.12.0 |
+| **Extension version** | 0.14.8 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+. ~1.5–2.5 GB download, ~2.5 GB on disk for the Python environment |
 | **Where to find it** | `Extensions > QP-CAT` |
@@ -177,7 +177,7 @@ The tonsil image is the one to start from: ten follicles in a single field, each
 distinct core and a surrounding zone, so clustering and neighborhood analysis have real
 structure to recover rather than a schematic one.
 
-**It does not replace the synthetic set below, and is not meant to.** The synthetic data
+**It does not replace the synthetic set below.** The synthetic data
 stays the one you learn the workflow on: it is small, it is quick to look at, and it has
 ground truth, so you can tell whether you got the right answer. Come here once you trust the
 workflow and want it on real tissue.
@@ -284,7 +284,7 @@ the answer you are trying to arrive at without being told.
    this exercise start from the first rather than from defaults. While a run is going, the
    progress checklist shows how long each step has taken — useful for deciding which spatial
    statistics are worth their time on your own data. Tick **`Neighborhood enrichment + Moran's I`** and, under Spatial statistics,
-   **`Ripley L`** as well — Parts C and D need them, and computing them now saves a second
+   **`Ripley L`** as well — step 5 needs both, and computing them now saves a second
    run.
 
    > **Short on time, or something went wrong?** If you took the **clustered** project,
@@ -357,11 +357,11 @@ the answer you are trying to arrive at without being told.
 *Concept: letting the data choose the number of clusters, and what that costs you.*
 
 **Project:** whatever you used for step 3, if you did it — that run wrote the 3D UMAP this
-Part needs. Starting here instead? Take the
+step needs. Starting here instead? Take the
 **[clustered demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)**,
 which ships that UMAP already on the cells. This is the main reason that download exists.
 
-Step 3 made you choose *k*. There is a way not to, and you already have what it needs: a 3D
+Step 3 made you choose *k*. You do not have to, and you already have what that takes: a 3D
 UMAP on every cell.
 
 In QP-CAT this is a **second run**, not a setting. Clustering normally fits in full marker
@@ -435,12 +435,12 @@ one dominant cluster means change the *cluster selection*.
 <div class="shots" markdown="0">
 <figure>
 <img src="../images/qp-cat/HDBSCAN_umap3d.png" alt="The 3D View tab showing seven cleanly separated point clouds in different colours, one per cluster, with the class list reporting 7 clusters over 11,421 cells and no noise.">
-<figcaption><b>Seven separated lobes, no noise.</b> HDBSCAN found the count itself. This is
-what Leaf selection buys you: the lobes, rather than their common parent.</figcaption>
+<figcaption><b>Seven separated lobes, no noise.</b> HDBSCAN found the count itself.
+Leaf selection is what cut at the lobes instead of returning their common parent.</figcaption>
 </figure>
 <figure>
 <img src="../images/qp-cat/HDBSCAN_markerfingerprints_useless.png" alt="The Marker Fingerprints tab. Every cluster card lists 3DUMAP1, 3DUMAP2 and 3DUMAP3 as its defining features, with no marker names anywhere.">
-<figcaption><b>And the bill for it.</b> Every card is described by <code>3DUMAP1/2/3</code>,
+<figcaption><b>No marker names.</b> Every card is described by <code>3DUMAP1/2/3</code>,
 because those are the only three columns the run saw. No marker names, so no phenotype.</figcaption>
 </figure>
 <figure>
@@ -450,22 +450,37 @@ cluster 2 blue-ringed. Read the clusters by eye here, or re-run over markers to 
 </figure>
 </div>
 
-**What to look for, rather than what to expect.** Your run may split or merge differently.
+**What to look for.** Your run may split or merge differently.
 Read Marker Fingerprints and compare against the ground truth as you did before, then ask
 the question this route exists for: *did letting the data choose recover the CD8 / helper
 split that KMeans spent its spare cluster elsewhere?*
 
-**The middle panel is the honest cost of this route, and it is not a bug.** Clustering on three
+**The middle panel is the cost of this route.** Clustering on three
 embedding columns means the marker rankings can only rank those three columns. A cluster that
 is high in `3DUMAP2` is not a phenotype.
 
-**So take the second step, which is where this route pays off.** The markers are still sitting
+**Now take the second step.** The markers are still sitting
 on the cells; nothing has read them yet.
 **`Results & populations > Analyze current cell classifications...`** does that read. It takes
 the classes the cells now carry — the seven clusters you just made — and computes the whole
 marker surface over them: heatmap, Marker Rankings, fingerprints, composition. In its
 **Measurements** list pick the **markers** this time (`Select 'Mean' only`), not the UMAP
 columns. It writes nothing back: no classification is added, changed or removed.
+
+<div class="shots" markdown="0">
+<figure>
+<img src="../images/qp-cat/analyze-existing-dialog.png" alt="The Analyze current cell classifications dialog: a Classifications list with one tickable row per class and its cell count, Select all and Select none buttons, the unclassified count beneath, and the usual Scope and Measurements sections.">
+<figcaption><b>The dialog.</b> The Classifications list is the algorithm section's
+replacement: one row per class the cells already carry, with its count. Nothing here
+recomputes a label.</figcaption>
+</figure>
+<figure>
+<img src="../images/qp-cat/HDBSCAN_markerfingerprints_named.png" alt="The Marker Fingerprints tab after analysing the same seven clusters over the markers: each cluster card now lists marker names such as PanCK, aSMA, CD3 and CD20 instead of 3DUMAP columns.">
+<figcaption><b>The same seven clusters, over the markers.</b> Compare with the panel above,
+where every card read <code>3DUMAP1/2/3</code>. Same cells, same groups, a description you can
+put a cell-type name to.</figcaption>
+</figure>
+</div>
 
 That is the pair worth remembering — **cluster in one space, characterise in another.** HDBSCAN
 on the UMAP decides *which cells group together*; analysing those groups over the markers
@@ -484,7 +499,7 @@ the cells.
 *Concept: immune infiltration at the invasive margin.*
 
 The tissue was built with four structures to find: **tumor nests**, an **immune-infiltrated
-nest boundary**, **B-cell follicles**, and **stroma**. This Part goes after the second one.
+nest boundary**, **B-cell follicles**, and **stroma**. This step goes after the second one.
 
 Cell types alone do not tell you much. **Where** they sit does. In this image, T cells are
 concentrated in a band just outside each tumor nest, the computational version of a
@@ -509,9 +524,22 @@ pathologist's read on whether an immune response has reached the tumor.
    this finding: the two
    T-cell populations would have been averaged into one indifferent number.
 4. Run **Ripley L** per type: tumor and B cells clustered, fibroblasts dispersed. It is one of
-   four tick-boxes under **Spatial statistics**, in the same two places as step 1 of this part. Read the
-   curve against the dashed diagonal: above it means clustered at that radius, below means
-   dispersed.
+   four tick-boxes under **Spatial statistics**, in the same two places as step 1 above.
+
+   The chart opens showing **one cluster**, with the rest unticked under **Show clusters** —
+   each cluster draws three lines (its curve plus both edges of its own random band), so a
+   whole run at once is unreadable. Tick them one or two at a time.
+
+   Read each curve against the **flat line at zero**, which is randomness: the curve is
+   plotted relative to that cluster's own simulated-random median. **Above the dashed band**
+   at some radius means clustered at that radius, **below** means dispersed, and **inside the
+   band** means indistinguishable from random. Untick **Relative to random** to see the raw
+   `L(r)` instead.
+
+   > **If you took the pre-clustered project and opened its saved run, you will see a
+   > different chart here:** a dashed diagonal, with the curves read above or below it. That
+   > run was computed before the simulated band existed, and a saved result keeps the numbers
+   > it was saved with. Re-run the statistics to get the chart described above.
 5. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
     statistic says.
 
