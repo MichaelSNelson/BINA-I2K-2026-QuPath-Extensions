@@ -209,6 +209,27 @@ different set.
 run as a script, which is the easiest way to repeat it on another project.)*
 
 <details markdown="1">
+<summary><b>Warning dialog: DL Pixel Classifier: please resolve before continuing</b> — settings that undermine each other, caught before the run starts</summary>
+
+Some settings are fine alone and wrong together. **Start Training** checks for those pairs and
+stops to show you the ones it found, each with a description of what it will do to the run.
+
+<img src="../images/dl-pixel-classifier/warning2.png" alt="A dialog titled DL Pixel Classifier: please resolve before continuing, with the header Tile overlap plus auto split would leak pixels across train slash val and a blue question mark icon. The body repeats the title prefixed with BLOCKING in square brackets, then explains that tile overlap is greater than zero but no image has a Train-only or Val-only role, that the stratified split operates on per-tile indices after overlapping patches are generated, so a training tile can overlap a validation tile from the same region and validation metrics become artificially high, and that the fix is to set overlap to 0 or assign at least one image an explicit Train-only or Val-only split role. A Learn more link sits below, with OK and Cancel buttons at the bottom right" width="700">
+
+The one above is the most common. With tile overlap on and every slide set to `Both`, the split
+is drawn over tiles that already overlap each other, so a validation tile can share pixels with
+a training tile from the same piece of tissue. Validation then scores partly on pixels the model
+trained on, and comes out high for a reason that has nothing to do with the model. Set **Tile
+Overlap** to 0, or give at least one image a Train-only or Val-only role.
+
+`[BLOCKING]` means the dialog stops and asks. **Cancel** returns you to the settings;
+**OK** trains anyway. Warnings that are not blocking offer **Start Training** and **Back to
+Settings** instead, and carry a **Don't show this warning again** checkbox. Blocking ones do
+not, so you will see this every time the setting combination is there.
+
+</details>
+
+<details markdown="1">
 <summary><b>Settings details — set it up yourself</b> — every panel, with the value the profile uses</summary>
 
 If you would rather set it by hand, or just want to see what the profile did, this is the whole
@@ -229,6 +250,24 @@ The **value to set** is given in each step.
 **1. Training Data Source** — tick `CMU-1.svs`, then press **Load Classes from Selected Images**.
 
 <img src="../images/dl-pixel-classifier/1.png" alt="The Train DL Pixel Classifier dialog at the top: a Configure Classifier Training header with a Show Basic View button at the right, then a Training Data Source panel listing CMU-1.svs with an annotation count and a Both dropdown, above Select All, Select None, Auto-Distribute and All Both buttons and a Load Classes from Selected Images button" width="720">
+
+<details markdown="1">
+<summary><b>Warning dialog: Auto-Distribute - Coverage Warnings</b> — what <b>Auto-Distribute</b> tells you when a class lives in only one slide</summary>
+
+**Auto-Distribute** tries to give each slide a Train-only or Val-only role, so that no tile from
+one region can land on both sides of the split. It can only do that for a class that appears in
+at least two slides. A class that is in one slide forces that slide to `Both`, and this dialog
+says which classes that happened to.
+
+<img src="../images/dl-pixel-classifier/warning1.png" alt="A dialog titled Auto-Distribute - Coverage Warnings. Green text explains that 2 slides defaulted to Both because they carry classes with too few source slides, naming Tumor, Tissue, Stroma and Ignore star, and notes that validation IoU for those classes will be optimistic because the model sees the training data. Below, a Class coverage warnings list gives one line each for Ignore star, Stroma, Tissue and Tumor, each saying the class is in only 1 selected image and that validation cannot measure it. An OK button sits at the bottom right" width="620">
+
+Read the consequence before you read any score. For those classes the model is validated on a
+slide it trained on, so their IoU is measured against pixels it has already seen. That number
+tells you training ran; it does not tell you the model will generalize. More slides fix it;
+no setting does. Expect this dialog in the workshop project, which holds two images with a
+different set of classes in each.
+
+</details>
 
 **2. Model Architecture** — `unet`, encoder **ResNet-18**. This is what makes the run fast.
 
@@ -304,6 +343,16 @@ on the same row reproduces the whole run as a script.
 
 **5. Watch the training log.** On a recent GPU this reaches a usable model within the first
 handful of epochs.
+
+<img src="../images/dl-pixel-classifier/training%20in%20progress.png" alt="The Training Classifier window partway through a run. A header reads Epoch 6 of 100, batch 2 of 2, with elapsed time, current loss and mean IoU, and an estimated finish time of about one second per epoch. Below are two charts: Training Progress plotting train loss and validation loss falling together over six epochs, and Per-Class IoU plotting Stroma and Tumor, where Tumor climbs steeply from zero after epoch 2 while Stroma dips and recovers. A scrolling Log pane underneath lists per-epoch loss, accuracy, mean IoU and per-class IoU. Pause and Cancel buttons sit at the bottom" width="640">
+
+The two charts answer different questions. **Training Progress** tells you whether the model is
+learning at all; **Per-Class IoU** tells you whether it is learning *both* classes. A class
+pinned near zero while the other climbs is the thing to watch for, and it is visible here in the
+first two epochs before Tumor takes off.
+
+**Pause** stops after the current epoch and saves a checkpoint, so you can resume rather than
+start over.
 
 <details markdown="1">
 <summary><b>Will everyone get the same result?</b> — what is repeatable and what is not</summary>

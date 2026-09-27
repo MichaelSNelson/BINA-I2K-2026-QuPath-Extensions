@@ -585,11 +585,6 @@ pathologist's read on whether an immune response has reached the tumor.
    band** means indistinguishable from random. Untick **Relative to random** to see the raw
    `L(r)` instead.
 
-   > **If you took the pre-clustered project and opened its saved run, you will see a
-   > different chart here:** a dashed diagonal, with the curves read above or below it. That
-   > run was computed before the simulated band existed, and a saved result keeps the numbers
-   > it was saved with. Re-run the statistics to get the chart described above.
-
    <div class="shots" markdown="0">
    <figure>
    <img src="../images/qp-cat/ripley-asma-panck.png" alt="The Ripley L tab plotted relative to random, with only Cluster 1 and Cluster 3 ticked in the Show clusters panel. Cluster 3, red, rises steeply to about plus 43 near a radius of 480 pixels, far above its dashed band, then falls and crosses below zero past about 1300 pixels. Cluster 1, orange, falls below its dashed band from about 200 pixels and flattens near minus 21. A black dashed line at zero is labelled Random (simulated).">
