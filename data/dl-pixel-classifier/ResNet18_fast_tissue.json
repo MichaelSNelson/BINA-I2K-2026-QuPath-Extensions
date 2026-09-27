@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "name": "CMU-1 Tissue (ResNet-18)",
-  "description": "",
+  "name": "CMU-1_Tissue_ResNet-18",
+  "description": "Two-class tissue vs background on CMU-1, ResNet-18 U-Net at downsample 4. Settings only: your classes come from the annotations you imported.",
   "model_type": "unet",
   "backbone": "resnet18",
   "input_width": 256,
@@ -11,7 +11,7 @@
   "training_epochs": 100,
   "training_settings": {
     "learning_rate": 0.001,
-    "batch_size": 20,
+    "batch_size": 8,
     "weight_decay": 0.01,
     "validation_split": 0.2,
     "overlap": 51,
