@@ -453,18 +453,19 @@ cluster 2 blue-ringed. Read the clusters by eye here, or re-run over markers to 
 **What to look for.** Your run may split or merge differently.
 Read Marker Fingerprints and compare against the ground truth as you did before, then ask
 the question this route exists for: *did letting the data choose recover the CD8 / helper
-split that KMeans spent its spare cluster elsewhere?*
+split — the one KMeans missed, having spent its spare cluster on proliferation instead?*
 
 **The middle panel is the cost of this route.** Clustering on three
 embedding columns means the marker rankings can only rank those three columns. A cluster that
 is high in `3DUMAP2` is not a phenotype.
 
-**Now take the second step.** The markers are still sitting
-on the cells; nothing has read them yet.
-**`Results & populations > Analyze current cell classifications...`** reads them. It takes
-the classes the cells now carry and computes the whole marker surface over them: heatmap,
-Marker Rankings, fingerprints, composition. It writes nothing back: no classification is
-added, changed or removed.
+**Now take the second step.** That run read three columns and nothing else. Every marker
+measurement — PanCK, CD3, CD20, all of them — is still on the cells, unused.
+**`Results & populations > Analyze current cell classifications...`** uses them. It takes the
+classes the cells now carry, computes each cluster's marker statistics, and opens the usual
+results window: **Heatmap**, **Marker Rankings**, **Marker Fingerprints** and the
+**Composition** tabs. It writes nothing back: no classification is added, changed or
+removed.
 
 <div class="shots" markdown="0">
 <figure>
@@ -509,7 +510,7 @@ the cells.
 *Concept: immune infiltration at the invasive margin.*
 
 The tissue was built with four structures to find: **tumor nests**, an **immune-infiltrated
-nest boundary**, **B-cell follicles**, and **stroma**. This step goes after the second one.
+nest boundary**, **B-cell follicles**, and **stroma**. This step is about the second one.
 
 Cell types alone do not tell you much. **Where** they sit does. In this image, T cells are
 concentrated in a band just outside each tumor nest, the computational version of a
