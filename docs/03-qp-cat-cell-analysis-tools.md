@@ -462,25 +462,35 @@ is high in `3DUMAP2` is not a phenotype.
 **Now take the second step.** The markers are still sitting
 on the cells; nothing has read them yet.
 **`Results & populations > Analyze current cell classifications...`** does that read. It takes
-the classes the cells now carry — the seven clusters you just made — and computes the whole
-marker surface over them: heatmap, Marker Rankings, fingerprints, composition. In its
-**Measurements** list pick the **markers** this time (`Select 'Mean' only`), not the UMAP
-columns. It writes nothing back: no classification is added, changed or removed.
+the classes the cells now carry and computes the whole marker surface over them: heatmap,
+Marker Rankings, fingerprints, composition. It writes nothing back: no classification is
+added, changed or removed.
 
 <div class="shots" markdown="0">
 <figure>
-<img src="../images/qp-cat/analyze-existing-dialog.png" alt="The Analyze current cell classifications dialog: a Classifications list with one tickable row per class and its cell count, Select all and Select none buttons, the unclassified count beneath, and the usual Scope and Measurements sections.">
-<figcaption><b>The dialog.</b> The Classifications list is the algorithm section's
-replacement: one row per class the cells already carry, with its count. Nothing here
-recomputes a label.</figcaption>
-</figure>
-<figure>
-<img src="../images/qp-cat/HDBSCAN_markerfingerprints_named.png" alt="The Marker Fingerprints tab after analysing the same seven clusters over the markers: each cluster card now lists marker names such as PanCK, aSMA, CD3 and CD20 instead of 3DUMAP columns.">
-<figcaption><b>The same seven clusters, over the markers.</b> Compare with the panel above,
-where every card read <code>3DUMAP1/2/3</code>. Same cells, same groups, a description you can
-put a cell-type name to.</figcaption>
+<img src="../images/qp-cat/analyze-current.png" alt="The Analyze current cell classifications dialog. A banner reads: analyse the classifications already on the cells, nothing is re-clustered and no classification is changed. Below it, Scope set to All project images (8), a Measurements list with Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons, Normalization set to Z-score, and a Dimensionality Reduction section with Method UMAP, Dimensions 3D and the name 3D UMAP.">
+<figcaption><b>The dialog as it opens.</b> Same scope, measurement and normalization controls
+as a clustering run; the banner at the top says what is different. <b>Dimensionality
+Reduction still needs changing</b> &mdash; it defaults to UMAP, and this run wants
+<b>Method: None</b>.</figcaption>
 </figure>
 </div>
+
+Five settings to check before you run. The dialog reopens on whatever you last ran in
+this project, so check them even if you have been here before:
+
+| | Set it to | Why |
+|---|---|---|
+| **Classifications** | **every class ticked** | Each class is described by contrast with all the others, so unticking one silently changes what "the others" means for every class that is left |
+| **Measurements** | the **markers** (`Select 'Mean' only`) | The whole point of this run: markers, not the UMAP columns you clustered on |
+| **Method** | **None** | The UMAP you want is already on the cells. Leaving this on UMAP computes a *second*, different one |
+| **Spatial statistics** | all **unticked** | Nothing here is a spatial question, and step 3 already computed them |
+| **Independent areas** | **blank** | It only shapes the spatial graph, and this run builds none |
+
+**Check the class list before you run.** It shows one row per class with its cell count, and
+it is where a mixed project gives itself away: if some images carry cluster labels and others
+still carry an earlier labelling, you will see both sets listed together and the run will
+compare things that were never meant to be compared. One labelling system, all of its classes.
 
 That is the pair worth remembering — **cluster in one space, characterise in another.** HDBSCAN
 on the UMAP decides *which cells group together*; analysing those groups over the markers
