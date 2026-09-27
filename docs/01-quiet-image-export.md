@@ -53,8 +53,6 @@ another program.
 
 ## Two bonuses
 
-Neither is why you would install it, and neither comes with a hand-written script.
-
 **Every export records a Groovy script.** Whatever you clicked in the wizard is emitted as a
 self-contained script you can save, version-control, re-run next year, or send to a
 collaborator who does not have QuIET installed. Save it from **Save Script...** on Step 3, or
