@@ -589,6 +589,21 @@ pathologist's read on whether an immune response has reached the tumor.
    > different chart here:** a dashed diagonal, with the curves read above or below it. That
    > run was computed before the simulated band existed, and a saved result keeps the numbers
    > it was saved with. Re-run the statistics to get the chart described above.
+
+   <div class="shots" markdown="0">
+   <figure>
+   <img src="../images/qp-cat/ripley-asma-panck.png" alt="The Ripley L tab plotted relative to random, with only Cluster 1 and Cluster 3 ticked in the Show clusters panel. Cluster 3, red, rises steeply to about plus 43 near a radius of 480 pixels, far above its dashed band, then falls and crosses below zero past about 1300 pixels. Cluster 1, orange, falls below its dashed band from about 200 pixels and flattens near minus 21. A black dashed line at zero is labelled Random (simulated).">
+   <figcaption><b>Two clusters, opposite answers.</b> Cluster 3 is the PanCK cluster (tumor)
+   and Cluster 1 is the aSMA cluster (fibroblast), from the marker table in step 4. Tumor sits
+   far <b>above</b> its band out to ~1,200 px: clustered, which is what a nest is. Fibroblast
+   sits <b>below</b> its band from ~200 px: dispersed, which is what the stroma was built to
+   be. Both are outside their own bands, so neither reading is noise.</figcaption>
+   </figure>
+   </div>
+
+   The tumor curve turning back down past ~1,300 px is not a contradiction. A nest has a
+   size; beyond it you run out of same-type neighbours, so the excess falls away. Where the
+   curve peaks is a rough read on the scale of the structure, which is the useful part.
 5. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
     statistic says.
 
