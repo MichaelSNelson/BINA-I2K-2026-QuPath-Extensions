@@ -96,7 +96,8 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 <details markdown="1">
 <summary><b>The markers, and how the names are built</b></summary>
 
-The markers are: `aSMA`, `CD20`, `CD3`, `CD68`, `CD8`, `Ki67`, `PanCK`. A cell positive for CD3
+The markers are: `aSMA`, `CD20`, `CD3`, `CD68`, `CD8`, `Ki67`, `PanCK` (in this synthetic
+dataset the aSMA distribution is not biologically meaningful). A cell positive for CD3
 and CD8 would be classified as `CD3: CD8`; a cell positive for only CD3 would be classified as
 `CD3`.
 
