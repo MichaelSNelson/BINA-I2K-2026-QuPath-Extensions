@@ -379,7 +379,7 @@ the embedding you run again over those columns.
 | Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0**, `min_cluster_size` **500** |
 
 <div class="shots" markdown="0">
-<figure>
+<figure style="max-width:642px">
 <img src="../images/qp-cat/HDBSCAN_interface.png" alt="The Clustering Algorithm section of the Run Clustering dialog: Algorithm set to HDBSCAN, min_cluster_size 500, min_samples 0, and Cluster selection set to Leaf (finest clusters).">
 <figcaption><b>The Clustering Algorithm section, set up.</b> <b>Cluster selection</b> is new in
 0.14.0 &mdash; if you do not see it, update first. These are the settings that produced every
