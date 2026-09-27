@@ -468,13 +468,19 @@ results window: **Heatmap**, **Marker Rankings**, **Marker Fingerprints** and th
 removed.
 
 <div class="shots" markdown="0">
-<figure style="max-width:430px">
-<img src="../images/qp-cat/analyze-current.png" alt="The Analyze current cell classifications dialog. A banner reads: analyse the classifications already on the cells, nothing is re-clustered and no classification is changed. Below it, Scope set to All project images (8); a Measurements list with Nucleus DAPI mean ticked and the other DAPI statistics unticked, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; Normalization set to Z-score; and a Dimensionality Reduction section with Method set to None, which greys out the Dimensions dropdown.">
-<figcaption><b>The dialog, set up.</b> Scope, Measurements and Normalization behave exactly as
-in a clustering run; the banner at the top says what is different. <b>Method</b> is on
-<b>None</b> here, which is what this run wants &mdash; it opens on UMAP, and left there it
-would compute a second embedding instead of using the one already on the cells. The
-Classifications list sits below the fold of this screenshot.</figcaption>
+<figure>
+<img src="../images/qp-cat/analyze-current.png" alt="The top of the Analyze current cell classifications dialog. A banner reads: analyse the classifications already on the cells, nothing is re-clustered and no classification is changed. Below it, Scope set to All project images (8); a Measurements list with Nucleus DAPI mean ticked and the other DAPI statistics unticked, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; Normalization set to Z-score; and a Dimensionality Reduction section with Method set to None, which greys out the Dimensions dropdown.">
+<figcaption><b>Top half, set up.</b> Scope, Measurements and Normalization behave exactly as in
+a clustering run; the banner says what is different. <b>Method</b> is on <b>None</b> here,
+which is what this run wants &mdash; it opens on UMAP, and left there it would compute a second
+embedding instead of using the one already on the cells.</figcaption>
+</figure>
+<figure>
+<img src="../images/qp-cat/analyze-current2.png" alt="The lower half of the same dialog. A Classifications to analyze section lists Cluster 0 through Cluster 6 with cell counts of 825, 3306, 1088, 1868, 1554, 1388 and 1392, every one ticked, with the line 7 classes found and Select all, Select none and Refresh list buttons. Below it, Generate analysis plots, Neighborhood enrichment, PCA and Batch correction are unticked, Spatial feature smoothing is greyed out, and Independent areas and Spatial statistics are collapsed. The Analyze and Close buttons sit at the bottom.">
+<figcaption><b>Lower half: the class list.</b> One row per class with its count, all ticked,
+and the class total underneath. <b>Spatial feature smoothing is greyed out</b> in this mode on
+purpose: it rewrites the measurements each class is then described by, so a class would report
+markers its <i>neighbours</i> carry.</figcaption>
 </figure>
 </div>
 
