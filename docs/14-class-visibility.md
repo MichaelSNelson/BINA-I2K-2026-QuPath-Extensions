@@ -41,6 +41,8 @@ This interface is most useful with large numbers of classes, where QuPath's stan
 becomes clunky. If you have never been frustrated trying to show specific objects from the
 Annotations panel, you can skip this one.
 
+<img src="../images/class-visibility/class-visibility-demo.gif" alt="An animation of the Class visibility window, with its options panel hidden, beside the tme_00 image. The PanCK component is checked and the seven classes containing PanCK become ticked and ringed in the classes list while the PanCK tumor cells appear in the viewer. CD3 is then checked as well: under Any the viewer adds the CD3 T cells, 808 objects; switching to All leaves only the 17 cells carrying both PanCK and CD3, then Any is selected again" width="900">
+
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
 
@@ -149,7 +151,7 @@ only the nuclei and fill the cells in.
 
 <img src="../images/class-visibility/brightness-boxed.png" alt="The QuPath toolbar. The Brightness/Contrast button, a half-filled circle, is outlined in red. Two buttons further along, Show detections and Fill detections, are outlined together in blue" width="900">
 
-<img src="../images/class-visibility/dapi-only.png" alt="The Brightness & contrast window. Its channel list reads DAPI, PanCK, Ki67, aSMA, CD3, CD8, CD20 and CD68; only the DAPI row has its Show check box ticked" width="420">
+<img src="../images/class-visibility/dapi-only.png" alt="The Brightness & contrast window. Its channel list reads DAPI, PanCK, Ki67, aSMA, CD3, CD8, CD20 and CD68; only the DAPI row has its Show check box ticked" width="210">
 
 Every cell is now a solid white shape on black, and a class rule shows as a change of color.
 
@@ -192,40 +194,54 @@ looks like, and it is what a flat class list handles worst.
 ### 6. One component, many classes
 
 In the components list — its header reads **Anything containing these components (7)** — check
-**`CD3`**. Every object whose class contains `CD3` is now visible, and nothing else is. (If
-nothing changed, see [If something looks wrong](#if-something-looks-wrong).)
+**`CD8`**. Every object whose class contains `CD8` is now visible, and nothing else is.
 
-<img src="../images/class-visibility/panel-cd3-checked-with-viewer.png" alt="QuPath with the Class visibility floating window over the lower left of the viewer, on tme_00, with CD3 checked in the components list. In the classes list the rows CD3, CD3 colon CD8, PanCK colon CD3 colon CD8, aSMA colon CD3, CD3 colon CD8 colon CD68 and CD3 colon CD68 each show a grayed-out tick with a blue ring around the check box. Below the components list the options read Any CD3, selected, and All CD3. Active rules reads 9. In the viewer, most cells are plain white outlines and only the CD3-containing cells are drawn with teal and green outlines, scattered through the tissue" width="1000">
+<img src="../images/class-visibility/panel-cd8-checked-with-viewer.png" alt="QuPath with the Class visibility floating window over the lower left of the viewer, on tme_00, with CD8 checked in the components list; the CD8 component row is outlined in red. In the classes list the rows CD3 colon CD8, PanCK colon CD3 colon CD8, CD3 colon CD8 colon CD68, CD8 and aSMA colon CD3 colon CD8 show a grayed-out tick with a blue ring. Active rules reads 5. Above the window, QuPath's own Class list in the Annotations tab is outlined in red: it is set to Hide by default and its eye icon is open only on the CD8-containing classes visible there, CD3 colon CD8 and CD3 colon CD8 colon CD68. In the viewer, most cells are plain white shapes and only the CD8-containing cells, mostly green, are outlined in color" width="1000">
 
-**Now look at the classes list.** All nine classes containing `CD3` (`CD3`, `CD3: CD8`,
-`PanCK: CD3: CD8`, `aSMA: CD3` and five more, some below the fold) show a **grayed-out tick with
-a blue ring** around the check box. The ring means the component rule reaches that class, and
-hovering the row says to change it in the components list. `Active rules` reads 9: the component
-is written as one rule per class it covers. Uncheck `CD3` and the ticks and rings disappear; a
-tick you put there yourself would stay.
+**Now look at the classes list.** The five classes containing `CD8` — `CD3: CD8`,
+`PanCK: CD3: CD8`, `CD3: CD8: CD68`, `CD8` and `aSMA: CD3: CD8`, some below the fold — show a
+**grayed-out tick with a blue ring** around the check box. The ring means the component rule
+reaches that class, and hovering the row says to change it in the components list.
+`Active rules` reads 5: the component is written as one rule per class it covers. Uncheck `CD8`
+and the ticks and rings disappear; a tick you put there yourself would stay.
 
-Now compare two numbers. In the classes list, the `CD3` row's **`Count`** reads 184: cells whose
-class is exactly `CD3`. In the components list, the `CD3` row's **`Total`** reads 386: cells
-carrying `CD3` anywhere in their class.
+**And look at QuPath's own class list**, boxed at the top of the picture on the Annotations
+tab. It has switched to `Hide by default`, and the eye is open on exactly the classes the
+component reached. The panel writes to the same setting as QuPath's own list; it just fills it
+in for you.
 
-<img src="../images/class-visibility/count-vs-total.png" alt="A close-up of the tops of both lists. Left, the classes list: aSMA 396, PanCK 286, CD68 199, CD3 184 with a grayed, ringed tick and the row highlighted, CD3 colon CD8 167 with a grayed, ringed tick. Right, the components list: aSMA 416, CD20 103, CD3 386 checked and highlighted, CD68 221, CD8 189" width="900">
+Now compare two numbers:
+
+<img src="../images/class-visibility/count-vs-total.png" alt="A close-up of the tops of both lists with CD8 checked. Left, the classes list: aSMA 396, PanCK 286, CD68 199, CD3 184, CD3 colon CD8 167 ticked and ringed, down to CD8 2, ticked and ringed and outlined in red. Right, the components list: aSMA 416, CD20 103, CD3 386, CD68 221, CD8 189 checked and outlined in red, Ki67 126, PanCK 439" width="800">
+
+In the classes list, the `CD8` row's **`Count`** reads **2**: cells whose class is exactly
+`CD8`. In the components list, the `CD8` row's **`Total`** reads **189**: cells carrying `CD8`
+anywhere in their class. Almost every CD8 cell in this image is also CD3-positive, so it lives
+in a class like `CD3: CD8`, not in `CD8`.
 
 **That is the difference between the two lists.** A class row is that class and nothing else:
-checking the `CD3` *class* row acts on the 184 cells in the `Count`, not on `CD3: CD8` or
-`PanCK: CD3: CD8`. A component is everything containing it: the 386 in its `Total`.
+checking the `CD8` *class* row would show 2 cells. A component is everything containing it: the
+189 in its `Total`.
 
-Try it with `PanCK`. Uncheck the `CD3` component, then check the **`PanCK` class row**: 286
+Try it with `PanCK`. Uncheck the `CD8` component, then check the **`PanCK` class row**: 286
 cells, the tumor cells positive for PanCK alone. Uncheck it and check the **`PanCK`
-component** instead: 439 cells, now including `PanCK: Ki67`, `PanCK: CD68` and the rest. Uncheck
-it again before step 7.
+component** instead: 439 cells, now including `PanCK: Ki67`, `PanCK: CD68` and the rest — seven
+classes ticked and ringed.
+
+<img src="../images/class-visibility/panel-docked-panck-component.png" alt="QuPath with the Class visibility panel docked as a tab in the analysis pane, its options panel hidden so only the Expand options panel button, the image name and the two stacked lists show. The PanCK component is checked, and in the classes list PanCK, PanCK colon Ki67, PanCK colon CD3 colon CD8, PanCK colon CD68, PanCK colon CD3, PanCK colon aSMA colon CD3 and PanCK colon CD20 each show a grayed-out, ringed tick. Active rules reads 7. The viewer shows the round tumor nests filled in teal and purple, with the stroma plain white" width="900">
+
+*This picture is the panel docked in the analysis pane (**Dock as tab**) with its options hidden
+(**Hide options panel**): the two lists stack, and nothing but the check boxes is left.*
+
+Uncheck `PanCK` again before step 7.
 
 > **To keep the two meanings apart, the panel turns on QuPath's `Exact matches only` setting**
 > the first time you change something. Closing the panel puts your own setting back.
 
 ### 7. `Any` vs `All` — the part with no equivalent
 
-Check a second component, **`CD8`**. Two options below the list now read, each with the number
-of cells it would show:
+Check **`CD3`** and **`CD8`** in the components list. Two options below the list now read, each
+with the number of cells it would show:
 
 - `Any -- CD3, or CD8, or both (388 objects)` — **10 classes**
 - `All -- CD3 and CD8 together (187 objects)` — **4 classes** (`CD3: CD8`, `PanCK: CD3: CD8`,
@@ -234,12 +250,12 @@ of cells it would show:
 You can compare the two before choosing. Neither number appears on any single row: each
 component's `Total` is that component alone.
 
-<img src="../images/class-visibility/any-vs-all-boxed.png" alt="The Class visibility window with CD3 and CD8 both checked in the components list. Below that list, outlined in red, the section Checked components combine as shows two options: Any, CD3 or CD8 or both, 388 objects, which is selected, and All, CD3 and CD8 together, 187 objects. In the classes list ten rows show a grayed-out tick with a blue ring. Active rules reads 10" width="900">
+<img src="../images/class-visibility/any-vs-all-boxed.png" alt="The Class visibility window with CD3 and CD8 both checked in the components list. Below that list, outlined in red, the section Checked components combine as shows two options: Any, CD3 or CD8 or both, 388 objects, which is selected, and All, CD3 and CD8 together, 187 objects. In the classes list ten rows show a grayed-out tick with a blue ring. Active rules reads 10" width="700">
 
 `Any` is selected by default, but the panel remembers whichever you last chose, so glance at
-which option is selected before you read any counts. On `Any`, this image barely changes: you go from
-386 cells to 388 — 187 of the 189 CD8-positive cells are also CD3-positive,
-so CD8 sits almost entirely inside CD3.
+which option is selected before you read any counts. On `Any`, 388 cells show — barely more
+than the 386 that `CD3` reaches on its own, because 187 of the 189 CD8-positive cells are also
+CD3-positive: CD8 sits almost entirely inside CD3.
 
 Now switch to `All`. 201 cells leave the screen, you are looking at the CD8 T cells, and **the
 ticked, ringed rows in the classes list narrow from 10 to 4** — under `All`, only classes
@@ -247,12 +263,12 @@ carrying every checked component are covered.
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;margin:1em 0">
   <figure style="flex:1 1 300px;margin:0">
-    <img src="../images/class-visibility/any-cd3-cd8.png" alt="The tme_00 image with CD3 and CD8 checked and Any selected. Most cells are plain white outlines on black; the visible cells, outlined in teal and green with a few in purple, are scattered along the edges of the round tumor nests and through the stroma" style="width:100%;height:auto">
+    <img src="../images/class-visibility/any-cd3-cd8.png" alt="The tme_00 image with CD3 and CD8 checked and Any selected. Most cells are plain white shapes on black; the visible cells, filled light teal (CD3) and green (CD3 and CD8) with a few blue and purple, are scattered along the edges of the round tumor nests and through the stroma" style="width:100%;height:auto">
     <figcaption><b>Any</b>: every cell carrying CD3 or CD8.</figcaption>
   </figure>
   <figure style="flex:1 1 300px;margin:0">
-    <img src="../images/class-visibility/all-cd3-cd8.png" alt="The same view with All selected instead. The teal outlines are gone; only the green-outlined cells and a few purple ones remain, in the same places along the tumor nests and through the stroma" style="width:100%;height:auto">
-    <figcaption><b>All</b>: only the cells carrying both. The teal CD3-only cells have gone.</figcaption>
+    <img src="../images/class-visibility/all-cd3-cd8.png" alt="The same view with All selected instead. The light teal cells are gone; only the green cells and a few blue and purple ones remain, in the same places along the tumor nests and through the stroma" style="width:100%;height:auto">
+    <figcaption><b>All</b>: only the cells carrying both. The light teal CD3-only cells have gone.</figcaption>
   </figure>
 </div>
 
