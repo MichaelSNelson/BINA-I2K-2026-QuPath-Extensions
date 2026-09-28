@@ -185,13 +185,16 @@ share its design.
     | **Brightfield** | the two `histology@lji_org_610 TOMO…` files | Case ID on line 2, barcode lower-left |
     | **IF** | the two `8443_51000000…` files | Two columns, QR top-right, date lower-right |
 
+    <img src="../images/ocr/label-layouts.png" alt="Two slide labels side by side: one with the case ID on the second line and a barcode lower left, the other in two columns with a QR code top right" width="640">
+
     You built your template on the brightfield H&E slide, so **run the batch over the two
     brightfield slides only** — the one you just did, plus its `MT3B` partner. Leave the two IF
     slides out:
 
-    1. **Extensions > OCR for Labels > Run OCR on Project...**, then **Load Template...** and
-       pick the template you just saved.
-    2. Click **Choose Images...**. Every slide with a label starts ticked, so click
+    1. **Extensions > OCR for Labels > Run OCR on Project...**, then **Load Template...**
+       (boxed in red in the picture below) and pick the template you just saved.
+    2. Click **Choose Images...** (boxed in blue), which opens the window on the right of the
+       picture. Every slide with a label starts ticked, so click
        **Select none** first, type `TOMO` in the name filter, and click **Select all**.
        (**Select all** and **Select none** only touch the slides the filter is showing, which
        is why the IF pair has to be unticked first.)
@@ -199,7 +202,7 @@ share its design.
        lists only the two brightfield slides. Click **Process Images**, check the two rows,
        and **Apply Metadata**.
 
-    <img src="../images/ocr/label-layouts.png" alt="Two slide labels side by side: one with the case ID on the second line and a barcode lower left, the other in two columns with a QR code top right" width="640">
+    <img src="../images/ocr/OCR_batch.png" alt="The Batch OCR Processing window. Load Template is boxed in red; the Field Mappings table below it holds the template's two rows, specimen read as text and barcode read as a barcode. Choose Images is boxed in blue, with blue lines leading to the Batch OCR - Choose Images window it opens. In that window the two histology at lji org 610 TOMO slides are ticked and the two 8443_51000000 IF slides are not, and the corner reads 2 of 4 selected. Process Images, Apply Metadata and Cancel are along the bottom of the main window" width="900">
 
     This is the real constraint on batch OCR, and it is why the tool saves templates rather than
     one global setting: **one template per label design**, applied to the slides that use it.
