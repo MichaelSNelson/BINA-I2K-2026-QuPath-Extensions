@@ -614,8 +614,11 @@ on the **Marker Fingerprints** tab.
 
 > **The same statistics can be computed while clustering.** The Run Clustering dialog has a
 > `Neighborhood enrichment + Moran's I` tick-box and the other statistics under **Spatial
-> statistics**. Ticking them there on a future run gives these results without a separate
-> step.
+> statistics**. Ticking them there on a future run gives these results without a separate step,
+> and over several images they come back per image too — the **Ripley L** and co-occurrence
+> tabs gain an **Area:** picker at the top. That is also the cheaper way round: Ripley's cost
+> grows with the square of the largest cluster, so eight images measured separately is far less
+> work than eight images measured as one.
 
 #### 5.2 Compare four pairs of clusters
 
@@ -646,12 +649,13 @@ one cluster, which would have averaged the two into a single number.
 
 #### 5.4 Read Ripley L
 
-Open the **Ripley L** tab. Expect tumor (PanCK, cluster 3) and B cells (CD20, cluster 2) to be
-clustered, and fibroblasts (aSMA, cluster 1) to be dispersed.
+1. Open the **Ripley L** tab. The chart opens showing one cluster, with the rest unticked under
+   **Show clusters**. Each cluster draws three lines, its curve plus both edges of its own
+   random band, so tick only one or two at a time.
+2. Under **Show clusters**, click **None**, then tick cluster 1, fibroblast (aSMA), and
+   cluster 5, CD8 T cell (CD3, CD8).
 
-The chart opens showing **one cluster**, with the rest unticked under **Show clusters** —
-each cluster draws three lines (its curve plus both edges of its own random band), so a
-whole run at once is unreadable. Tick them one or two at a time.
+<img src="../images/qp-cat/ripley-tme00-clusters-1-5.png" alt="The QP-CAT results window for tme_00, 7 clusters and 1530 cells, on the Ripley L tab. The chart, Ripley L(r) relative to random, plots radius from 0 to 750 micrometers. Cluster 5, brown, rises steeply to about 27 near 230 micrometers, far above its dashed band, and falls back to the band near 560 micrometers. Cluster 1, orange, dips to about minus 10 below 20 micrometers, rises above its band to about 14 near 150 micrometers, and is back inside the band from about 280 micrometers. Under Show clusters, only Cluster 1 and Cluster 5 are ticked, and Relative to random is ticked" width="820">
 
 Read each curve against the **flat line at zero**, which is randomness: the curve is
 plotted relative to that cluster's own simulated-random median. **Above the dashed band**
@@ -659,20 +663,19 @@ at some radius means clustered at that radius, **below** means dispersed, and **
 band** means indistinguishable from random. Untick **Relative to random** to see the raw
 `L(r)` instead.
 
-<div class="shots" markdown="0">
-<figure>
-<img src="../images/qp-cat/ripley-asma-panck.png" alt="The Ripley L tab plotted relative to random, with only Cluster 1 and Cluster 3 ticked in the Show clusters panel. Cluster 3, red, rises steeply to about plus 43 near a radius of 480 pixels, far above its dashed band, then falls and crosses below zero past about 1300 pixels. Cluster 1, orange, falls below its dashed band from about 200 pixels and flattens near minus 21. A black dashed line at zero is labelled Random (simulated).">
-<figcaption><b>Cluster 3, tumor (PanCK), and cluster 1, fibroblast (aSMA).</b> Tumor sits
-far <b>above</b> its band out to ~1,200 px: clustered, as a nest is. Fibroblast
-sits <b>below</b> its band from ~200 px: dispersed, as the stroma was built to
-be. Both are outside their own bands, so neither reading is noise. The axis in this picture is
-in pixels; your chart is in micrometers, at 0.5 µm per pixel.</figcaption>
-</figure>
-</div>
+| Cluster | Where its curve sits | Reading |
+|---|---|---|
+| 5, CD8 T cell (CD3, CD8) | far above its band from about 20 µm to about 550 µm, peaking near 230 µm | clustered over a wide range of distances |
+| 1, fibroblast (aSMA) | below its band under about 30 µm | dispersed at very short range: neighboring fibroblasts keep apart |
+| 1, fibroblast (aSMA) | above its band from about 60 µm to about 270 µm | clustered at that range |
+| 1, fibroblast (aSMA) | inside its band beyond about 280 µm | indistinguishable from random |
 
-The tumor (PanCK) curve turning back down past ~1,300 px is not a contradiction. A nest has a
-size; beyond it you run out of same-type neighbors, so the excess falls away. Where the
-curve peaks is a rough read on the scale of the structure.
+A curve that comes back down at large radii, as cluster 5 does past 550 µm, does not contradict
+the clustering. A group of cells has a size; beyond it you run out of same-type neighbors, so
+the excess falls away. Where the curve peaks is a rough read on the scale of the structure.
+
+Tick cluster 3, tumor (PanCK), and cluster 2, B cell (CD20), in the same way to read their
+curves.
 
 #### 5.5 Look at the cells
 
@@ -689,13 +692,50 @@ sits where the statistic says.
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
 
 **`tme_06`** is immune-rich and **`tme_07`** is immune-poor. Both are already in the project
-with cells detected, so this is a scope change rather than any new work: in **Scope** choose
-**`Specific images...`**, pick **`tme_00`**, **`tme_06`** and **`tme_07`**, and cluster the
-three **jointly** — about 4,200 cells, still fast.
+with cells detected, so there is no new setup — but this **is** a new clustering run, over a
+different set of images.
 
-1. Open the new **Composition by area** tab. Each image is an independent area, so you get
-    one row per image.
-2. The contrast is stark:
+> **Requires QP-CAT 0.17.0 or later.** Before that version a run over several images pooled
+> them into one coordinate frame, so the **Composition by area** tab this step uses did not
+> appear at all. `Extensions > QP-CAT > Setup & help > About` shows your version; update from
+> the catalog if it is older.
+
+> **This run replaces the cluster labels on `tme_00`, `tme_06` and `tme_07`.** Step 4's
+> labels stay on the other five images, and step 4's run is still saved — reopen it any time
+> with `Results & populations > View Past Results...`, or put its labels back on the cells with
+> `Apply saved result to detections...`. If you would rather start clean, re-download the
+> **[clustered demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)**
+> and unzip it to a **new folder**: a project you have already run on carries the
+> measurements and labels those runs wrote, so it is not the same starting point any more.
+
+#### 6.1 Run it
+
+Open `Extensions > QP-CAT > Find cell populations (clustering)...`. The dialog reopens with
+step 4's settings, so there are only two things to change:
+
+| # | Setting | Set to |
+|---|---|---|
+| 1 | Scope | **`Specific images...`**, then tick **`tme_00`**, **`tme_06`** and **`tme_07`** — three in total |
+| 2 | Independent areas | **leave it empty.** Empty means one area per image, which is what this step is about |
+
+Everything else stays as step 4 left it: measurements **`QPCAT 3D UMAP1/2/3`** only,
+Normalization **None**, Dimensionality Reduction **None**, **HDBSCAN** with
+min_cluster_size **500**, min_samples **0**, Cluster selection **Leaf**. If the dialog has
+been reset, set those again from the table in [4.1](#41-set-up-the-second-run). About 4,200
+cells, still fast.
+
+#### 6.2 Read the composition per image
+
+1. Open the **Composition by area** tab. Each image is an independent area, so you get one
+    row per image. (**Composition by image** beside it shows the same rows for this run,
+    because here the areas *are* the images. They part company as soon as you add a level —
+    TMA cores, annotations — under **Independent areas**.)
+2. **Your cluster numbers are not step 4's.** This is a fresh HDBSCAN run over a different
+    set of cells, so it numbers its clusters from scratch. Identify them the same way as
+    before: open **Marker Fingerprints** and read the marker leading each card — **CD20** is
+    the B cells, **CD3 with CD8** the cytotoxic T cells, **CD3 without CD8** the helper
+    T cells. The *lymphoid fraction* of an image is those three clusters' shares added up.
+3. The contrast is stark. From the reference run:
 
     | | `tme_00` | `tme_06` | `tme_07` |
     |---|---|---|---|
@@ -703,21 +743,35 @@ three **jointly** — about 4,200 cells, still fast.
     | Lymphoid fraction | 33% | **50%** | **6%** |
     | B-cell follicles | present | more | **none at all** |
 
+    Your percentages will not match to the point, because HDBSCAN may split or merge a
+    population differently on this smaller set of cells. The *ordering* is the result:
+    `tme_06` well above `tme_00`, `tme_07` far below it.
+
     `tme_06` and `tme_07` are the two ends of a distinction that matters clinically: an **immune-inflamed**
     tumor, with lymphocytes throughout and organized B-cell aggregates, versus an **immune
     desert**, where the tumor sits in fibroblast-rich stroma with almost no lymphoid presence.
     It is the same axis used to stratify patients for immunotherapy: inflamed tumors tend to
     respond; deserts tend not to.
-3. Note what `tme_07` is *missing*. Zero B cells, no follicles. An absent population is easy
+4. Note what `tme_07` is *missing*. Zero B cells, no follicles. An absent population is easy
     to overlook in a UMAP, where it simply is not drawn, and obvious in a composition table.
-4. **Why "independent areas" is not a technical detail.** These are three separate images. If
-    a spatial graph were allowed to join them, cells at the edge of one image would acquire
-    "neighbors" from another, a neighborhood relationship that exists only because of how
-    files were laid out. QP-CAT guarantees no graph edge crosses an area boundary. The same
-    applies to TMA cores on one slide, which is the case you are far more likely to meet.
-5. If your project has annotation classes (Tumor, Stroma, …), the **Composition by class** tab
-    pools clusters by class across every image and area, the way to compare compartments that
-    share a spatial graph.
+
+#### 6.3 Why "independent areas" is not a technical detail
+
+These are three separate images. Cell coordinates are per-image pixel positions, so pooling
+them stacks all three on top of each other: cells in `tme_00` acquire "neighbors" from
+`tme_07` that exist only because of how the files were laid out. QP-CAT builds one spatial
+graph per area and no edge crosses a boundary, so that cannot happen — and an image is an
+area whether or not you put anything in the **Independent areas** box. The same applies to
+TMA cores on one slide, which is the case you are far more likely to meet.
+
+You can see the consequence in this run: the **Ripley L** tab now has an **Area:** picker at
+the top and gives one set of curves per image, exactly as the per-image results did in step 5.
+There is deliberately no combined curve, because the combined point pattern would describe how
+the three files were arranged rather than anything in the tissue.
+
+If your project has annotation classes (Tumor, Stroma, …), the **Composition by class** tab
+pools clusters by class across every image and area, the way to compare compartments that
+share a spatial graph.
 
 ### 7. Optional, and slower: batch effects
 
