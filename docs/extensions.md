@@ -5,7 +5,7 @@ title: Extension index - install just what you need
 
 # Extension index
 
-**You do not have to install all of these.** If one or two extensions are the reason you are
+**You do not have to install every extension listed here.** If one or two extensions are the reason you are
 coming, install those and ignore the rest. Every one works on its own.
 
 Each row links to a full guide (what it does, and a step-by-step exercise) and to the source
@@ -21,7 +21,7 @@ after the workshop.
 
 ## Installing
 
-All of these install the same way: add the **LOCI QuPath Extensions** catalog once, tick the ones
+Every extension listed here installs the same way: add the **LOCI QuPath Extensions** catalog once, tick the ones
 you want, restart QuPath. The [setup guide](setup.md) has the catalog URL and the exact steps, and
 says what each hands-on track needs.
 
@@ -86,7 +86,7 @@ downloaded from inside the extension. See [its guide](08-ocr4labels.md#language-
 
 ## Demonstrated, but not installable today
 
-These three appear in the first hour but are not part of the hands-on session. Each page says
+The three extensions below appear in the first hour but are not part of the hands-on session. Each page says
 why.
 
 | Extension | What it is for | Why not hands-on |

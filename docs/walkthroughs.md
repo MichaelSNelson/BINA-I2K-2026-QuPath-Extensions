@@ -84,7 +84,7 @@ four tracks.
 
 ## Presented tools
 
-These are demonstrated on screen. **There is no walkthrough for any of them**, because you
+The three tools below are demonstrated on screen. **There is no walkthrough for any of them**, because you
 cannot set them up — each page links to the documentation, for afterwards, and will carry a
 video once it is recorded.
 

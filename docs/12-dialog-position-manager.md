@@ -19,7 +19,7 @@ title: Dialog Position Manager
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
-> Note the menu: this one lives under **Window**, not **Extensions**.
+> Note the menu: Dialog Position Manager lives under **Window**, not **Extensions**.
 
 > **Walkthrough video:** %Video not ready yet%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
@@ -49,11 +49,11 @@ session unless something remembers it.
 <img src="../images/dialog-manager/qpsc-workspace.png" alt="A two-part workspace: the QuPath main window showing an annotated H and E slide on the left, and the QPSC Live Viewer and Stage Map dialogs arranged down the right-hand side" width="820">
 
 
-This is the least glamorous extension in the suite. Undock a laptop, present on a projector, come back, and QuPath dutifully reopens a
+Dialog Position Manager is the least glamorous extension in the suite. Undock a laptop, present on a projector, come back, and QuPath dutifully reopens a
 dialog at coordinates that no longer exist on any attached display. Without a recovery path,
 the fix is editing preferences by hand or reinstalling.
 
-It is also an example from [how this suite was built](how-this-was-built.md): this
+The off-screen dialog is also an example from [how this suite was built](how-this-was-built.md): this
 class of bug is invisible to automated testing and to an AI agent. It only shows up when a
 human unplugs a monitor.
 
@@ -101,7 +101,7 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 
 ### 1. Get the data
 
-**Download:** nothing. This is the one tool here that does not care what is on screen. Have any
+**Download:** nothing. Dialog Position Manager is the one tool here that does not care what is on screen. Have any
 image open, though, since several QuPath dialogs will not open without one.
 
 **You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI

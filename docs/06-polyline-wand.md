@@ -5,7 +5,7 @@ title: Polyline Wand and Brush
 
 # Polyline Wand and Brush
 
-> QuPath's brush and wand work on areas. This adds the same fluid editing to **lines and
+> QuPath's brush and wand work on areas. The Polyline Wand adds the same fluid editing to **lines and
 > polylines**: push a section of a traced boundary outward, erase backwards from an
 > overshot endpoint, smooth a noisy trace, or cut a polyline in two.
 
@@ -152,7 +152,7 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 3. Repair a polyline
 
-Like the Wizard Wand this is a toolbar tool: with an image open, press **Shift+P**.
+Like the Wizard Wand, the Polyline Wand is a toolbar tool: with an image open, press **Shift+P**.
 
 
 1. Draw a long polyline along a tissue boundary with QuPath's normal polyline tool, then

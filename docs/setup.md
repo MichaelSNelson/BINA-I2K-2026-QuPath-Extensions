@@ -47,7 +47,7 @@ Background on what a catalog is and why we use them:
 **Adding the catalog installs nothing**; it just shows you a list. Now install what you
 actually want, and **only** what you actually want:
 
-**These eleven are small and install in seconds**, with nothing extra to download. Pick the ones
+**The eleven extensions below are small and install in seconds**, with nothing extra to download. Pick the ones
 you want; the [extension index](extensions.md) says which track each belongs to:
 
 - QuIET — Image Export Toolkit
@@ -131,11 +131,11 @@ Classifier and wand exercises are ready.
 > You will have to build the project and detect cells yourself, so the folder is the faster route.
 
 > ### ⚠️ The label-slide zip is 244 MB
-> It is four whole-slide CZI files — two brightfield, two IF — and the label image only exists
+> The zip holds four whole-slide CZI files — two brightfield, two IF — and the label image only exists
 > *inside* the slide file, which is why it cannot be a folder of small PNGs. **Download it at
 > home**, and only if you are doing the OCR / metadata track.
 
-> **These slides were provided by Sara McArdle and Zbigniew Mikulski**, La Jolla Institute for
+> **The label slides were provided by Sara McArdle and Zbigniew Mikulski**, La Jolla Institute for
 > Immunology. Please credit LJI if you use them in your own work. See
 > [acknowledgments](acknowledgements.md).
 
@@ -175,7 +175,7 @@ Open QuPath and confirm:
   you which state you are in:
 
   - **“Set up analysis environment (first run)…”** means the environment is *not* built.
-    Click it, and expect 1.5–2.5 GB and 5–15 minutes. Do this at home
+    Click it, and expect 1.5–2.5 GB and 5–15 minutes. Build the environment at home
   - **“Find cell populations (clustering)…”** means it is ready and you are done
 - [ ] The download for your track is unzipped and on disk (see the table above)
 
@@ -187,7 +187,7 @@ Open QuPath and confirm:
 - **`ClassNotFoundException`.** You downloaded a jar without `-all` in the name. Get the
   `-all` jar.
 - **Anything else.** Come find us at the start of the session. We will have people circulating
-  during the hands-on hour specifically for this.
+  during the hands-on hour to help with problems like these.
 
 ---
 

@@ -28,14 +28,14 @@ title: Channel Names Viewer
 
 ---
 
-> **Sara McArdle demonstrated this in her session on **Monday 28 September**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
+> **Sara McArdle demonstrated Channel Names Viewer in her session on Monday 28 September**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.
 > Both this extension and its sibling grew out of her Groovy scripts, so we point back to her
 > demo rather than repeating it. The walkthrough below is here for the hands-on hour.
 
 ## What it does
 
 Anyone who has presented a multiplex image has been asked "which one is the green one?" and
-had to go open brightness/contrast to find out. This is the fix.
+had to go open brightness/contrast to find out. Channel Names Viewer keeps the answer on screen.
 
 <img src="../images/channel-names-viewer/legend-over-multiplex.png" alt="A synthetic eight-channel tumor image with cell detections outlined, and the channel legend floating over the dark background at lower left: DAPI (C1) in white, PanCK (C2) in cyan, Ki67 (C3) in yellow, aSMA (C4) in tan, CD3 (C5) in green, CD8 (C6) in magenta, CD20 (C7) in blue, CD68 (C8) in red, each name drawn in its own display color" width="900">
 
@@ -61,12 +61,12 @@ default.
 
 ## Provenance
 
-This packages [Sara McArdle's `FluorescentChannelNames.groovy`](https://github.com/saramcardle/Image-Analysis-Scripts/blob/master/QuPath%20Groovy%20Scripts/FluorescentChannelNames.groovy)
+Channel Names Viewer packages [Sara McArdle's `FluorescentChannelNames.groovy`](https://github.com/saramcardle/Image-Analysis-Scripts/blob/master/QuPath%20Groovy%20Scripts/FluorescentChannelNames.groovy)
 (originally written by Pete Bankhead at the 2022 QuPath Hackathon) as a real extension, with a
 toolbar button, menu item and keyboard accelerator, plus handling for image switching, RGB
 images, and listener cleanup.
 
-**It does not replace the script.** Both can be installed at once, because they create independent
+**The extension does not replace the script.** Both can be installed at once, because they create independent
 JavaFX windows and do not conflict. Keep using the script if you have customized it or wired
 it into automation. The extension adds discoverability, resize-with-text scaling, clean
 rebinding, an RGB empty state, persisted state, and a right-click settings menu. The
@@ -135,7 +135,7 @@ Menu route: `Extensions > Channel Names Viewer > Channel Names Viewer...`.
 
 ### What to notice
 
-- This is a five-minute extension that solves a problem you have every time you present. Not
+- Channel Names Viewer is a five-minute extension that solves a problem you have every time you present. Not
   every useful tool needs to be large.
 - Lock font size exists specifically so a series of screenshots can be visually consistent
   across images with different channel counts.

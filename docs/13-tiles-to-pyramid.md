@@ -72,7 +72,7 @@ megapixels all finish in the same 128 MB.
 
 The orange line is what it costs to hold every tile plus one fused canvas — arithmetic, not a
 measurement of any particular program, and a generous lower bound at that. It is the shape that
-matters: that approach grows with your slide, and this one does not. Both exercises below are
+matters: holding every tile in memory grows with your slide, and Tiles to Pyramid does not. Both exercises below are
 well inside the flat part.
 
 <details markdown="1">
@@ -155,7 +155,7 @@ Nothing in the files says which you have, so you tell the extension with the **I
 
 </details>
 
-**No project to load.** Unlike every other tool here, this one does not need one — it reads
+**No project to load.** Unlike every other tool here, Tiles to Pyramid does not need a project — it reads
 tiles off disk and writes an image. Open QuPath, go to
 `Extensions > Tiles to Pyramid > Tiles-to-pyramid`, and carry on with step 2. The stitched files land
 **in the folder you selected**, beside the tiles.
@@ -178,7 +178,7 @@ tiles off disk and writes an image. Open QuPath, go to
    | 9 | **Merge the 4 channel stitches into one multichannel image** | Appears once the folder is chosen. Leave it ticked |
    | 10 | **Solve tile overlaps (content-based registration)** | Tick. Leave the options it reveals alone |
 
-   <img src="../images/tiles-to-pyramid/interface-numbered.png" alt="The Tiles to Pyramid dialog filled in for exercise 1, with red numbered badges 1 to 10 down the left edge beside Stitching Method, Folder location, Compression type, Output format, Pixel size, Downsample, Stitch sub-folders, Stage axes, the merge checkbox and Solve tile overlaps. The method reads MicroManager metadata, the folder ends in fluo-cells, compression is UNCOMPRESSED, output is OME-TIFF single file, pixel size 0.653 from metadata, downsample 2, the sub-folder field is empty, both Invert boxes are ticked, and the merge and solve-overlaps boxes are ticked" width="660">
+   <img src="../images/tiles-to-pyramid/interface-numbered.png" alt="The Tiles to Pyramid dialog filled in for step 2, with red numbered badges 1 to 10 down the left edge beside Stitching Method, Folder location, Compression type, Output format, Pixel size, Downsample, Stitch sub-folders, Stage axes, the merge checkbox and Solve tile overlaps. The method reads MicroManager metadata, the folder ends in fluo-cells, compression is UNCOMPRESSED, output is OME-TIFF single file, pixel size 0.653 from metadata, downsample 2, the sub-folder field is empty, both Invert boxes are ticked, and the merge and solve-overlaps boxes are ticked" width="660">
 
    Three of those are why the exercise takes minutes rather than most of the session.
    `UNCOMPRESSED` beats the shipped `J2K`, which is over twice as slow overall and four times
@@ -208,7 +208,7 @@ tiles off disk and writes an image. Open QuPath, go to
 
 <img src="../images/tiles-to-pyramid/fluo-cells-final.jpg" alt="The finished nine-tile mosaic, square, showing cultured cells with green cytoskeleton, blue nuclei and magenta cytoplasmic speckle. Cells run continuously across the whole field with no breaks or offsets where tiles meet, though two faint horizontal bands are visible where rows of tiles join" width="720">
 
-This is what you should get. Cells run straight through every join. The two faint horizontal
+The finished mosaic should look like the picture above. Cells run straight through every join. The two faint horizontal
 bands are a brightness difference between tile rows, not a placement error — [What to
 notice](#what-to-notice) explains where they come from.
 
@@ -239,7 +239,7 @@ Reopen the Tiles to Pyramid dialog and change these settings; everything else st
 Then **Stitch**. You get `DAPI.ome.tif`, `FITC.ome.tif`, `TRITC.ome.tif`, and
 `bounds_merged.ome.tif`.
 
-> **It must be `bounds`, not `Fluorescence_10x_7`.** `bounds` is the folder that *contains*
+> **Folder location must be `bounds`, not `Fluorescence_10x_7`.** `bounds` is the folder that *contains*
 > `DAPI`, `FITC` and `TRITC`. Selecting its parent finds no tiles, because this method reads
 > only the folder you pick and the position files are one level further down. Selecting one of
 > the three channel folders works too, but then you get that channel alone.
@@ -277,7 +277,7 @@ three channels sit on top of each other; a red dot stays inside its blue nucleus
 <img src="../images/tiles-to-pyramid/qpsc-fluo-final.jpg" alt="The finished four-tile mosaic, showing cultured cells with green cytoskeleton, blue nuclei and orange perinuclear speckle on a black background. Cells run continuously across the field, with one faint horizontal and one faint vertical band crossing near the middle where the four tiles meet" width="720">
 
 Cells run straight through both joins. The faint cross near the middle is the same banding as in
-exercise 1 — a brightness difference between tiles, not a placement error.
+step 2 — a brightness difference between tiles, not a placement error.
 
 <details markdown="1">
 <summary>Why one channel decides for all three, and why the name changes between runs</summary>
@@ -290,7 +290,7 @@ Which channel gets measured is decided from the data. **Reference subdirectory**
 `Auto (best match)`: it tries every channel at the same seams and keeps the one where the tiles
 fit together only one way.
 
-That is worth a moment, because some channels are easy to fool. Nuclei are round and much of a
+The automatic choice is worth a moment, because some channels are easy to fool. Nuclei are round and much of a
 size, so a strip of DAPI can sit on its neighbor in several positions that all look about equally
 good — and if the wrong one wins, every tile moves with it. The cytoskeleton in FITC is large and
 different everywhere, so one position fits and nothing else comes close. The scores follow: FITC
@@ -304,7 +304,7 @@ many seams were accepted.
 
 ### 4. Color tiles, upright scope
 
-Twelve RGB tiles from a polarized-light acquisition. Four changes from exercise 2:
+Twelve RGB tiles from a polarized-light acquisition. Four changes from step 3:
 
 | Field | Set to |
 |---|---|
@@ -325,7 +325,7 @@ opposite stage convention — and only the pixel size and two checkboxes changed
 <img src="../images/tiles-to-pyramid/ppm-90-final.jpg" alt="The finished twelve-tile mosaic, showing pink and purple hematoxylin-and-eosin stained tissue: branching glands lined with dark epithelium, set in fibromuscular stroma. Glands and stroma run continuously across the field with no visible lines where tiles meet" width="720">
 
 No banding, and this is the one mosaic of the three without it. Measured across the joins,
-brightness steps by 1 to 4% here, against 14 to 18% in exercise 2 and 16 to 27% in exercise 1.
+brightness steps by 1 to 4% here, against 14 to 18% in step 3 and 16 to 27% in step 2.
 Same stitcher and the same registration all three times, so the difference is not the stitch: it
 is that background correction was switched on when these tiles were acquired. Step 3 came off
 a QPSC acquisition too and still bands, because it was acquired with the correction off --
@@ -333,8 +333,8 @@ a QPSC acquisition too and still bands, because it was acquired with the correct
 
 ### 5. If you have time
 
-**Stitch to OME-Zarr.** This is exercise 2 again in the other output format. You have been through
-exercise 3 since, so several fields need putting back:
+**Stitch to OME-Zarr.** The OME-Zarr run is step 3 again in the other output format. You have been through
+step 4 since, so several fields need putting back:
 
 | Field | Set to |
 |---|---|
@@ -346,7 +346,7 @@ exercise 3 since, so several fields need putting back:
 | **Output format** | `OME-Zarr (NGFF 0.4, Zarr v2)` |
 
 The label carries the versions it writes. Registration reports `4 of 4 seams accepted`, the same
-as exercise 2 — the output format decides how pixels are stored, not where tiles go.
+as step 3 — the output format decides how pixels are stored, not where tiles go.
 
 **What you get is four folders, not four files.** `DAPI.ome.zarr`, `FITC.ome.zarr`,
 `TRITC.ome.zarr` and `bounds_merged.ome.zarr` are *directories*, each holding one `s0`, `s1`,
@@ -354,10 +354,10 @@ as exercise 2 — the output format decides how pixels are stored, not where til
 
 **To see the result, drag the folder `bounds_merged.ome.zarr` onto the QuPath window** — the
 folder itself, not anything inside it, and not the folder that contains it. It opens as the same
-three-channel image you got in exercise 2. If you drop `s0` or the parent folder instead, QuPath
+three-channel image you got in step 3. If you drop `s0` or the parent folder instead, QuPath
 will not recognize it.
 
-Look in one and the trade-off is plain: a single channel that was one `.ome.tif` file is 29 files
+Look inside the `.ome.zarr` folder and the trade-off is plain: a single channel that was one `.ome.tif` file is 29 files
 spread through a directory tree, and the merged image is 54. That is the point of the format —
 many small chunks can be read in parallel and served from cloud storage, where one large file
 cannot. It is also the cost: copying, moving or sending a Zarr means keeping thousands of small
@@ -379,7 +379,7 @@ All three of those carry over from the Zarr exercise, so check them before you c
 
 Each angle reports `17 of 17 seams accepted`, and you get two outputs from one click:
 `7.0.biref.ome.tif` and `90.0.ome.tif`, side by side in the top-level folder. Drag either onto
-QuPath to look at it; `90.0.ome.tif` is the one you already stitched by hand in exercise 3, so
+QuPath to look at it; `90.0.ome.tif` is the one you already stitched by hand in step 4, so
 you can check the two runs agree.
 
 Here is that folder after a run with the output format left on **OME-Zarr**, which is what you
@@ -391,15 +391,15 @@ The two boxed entries are the stitched images, and both are folders — **drag o
 QuPath**, not the source folder of the same name sitting just above it. Note also the
 `.stitch-info` text file written beside each one, recording how that image was made.
 
-That is the point of this one. Everything up to now stitched a single acquisition per click;
-this stitches a *set*, one output each, without revisiting the dialog between them. Point it at
+Stitching several folders in one run is the point of string matching. Everything up to now
+stitched a single acquisition per click; string matching stitches a *set*, one output each, without revisiting the dialog between them. Point it at
 a drive of acquisitions and the same one click does all of them.
 
 > **Why `.`** It matches `7.0.biref` and `90.0` and nothing else. `*` would take all four folders,
 > including the two fluorescence sets, which need different settings.
 
 > **Why the pixel size needs changing.** The dialog remembers what you typed last time, so the
-> field will still hold the `0.653` from exercise 2. That is a different acquisition on a
+> field will still hold the `0.653` from step 3. The polarization tiles are a different acquisition on a
 > different scope -- these tiles are 2064 x 1544 rather than 2048 square. Nothing fills the
 > field in for you here: a `TileConfiguration.txt` carries no pixel size, so the value is
 > whatever you last entered until you change it.
@@ -424,11 +424,11 @@ a drive of acquisitions and the same one click does all of them.
   stage is out by something; registration is how you find out by how much.
 - Stage axis direction is a property of the microscope, not of the data. Two of the folders in
   this zip need both axes inverted and two need neither, and nothing in the files says which.
-- Your channels are measured once, together. DAPI, FITC and TRITC in exercise 2 came off the
+- Your channels are measured once, together. DAPI, FITC and TRITC in step 3 came off the
   same four stage positions, so they get one set of corrections and stay lined up on top of each
   other. Correcting each channel on its own evidence would nudge them apart, and a red dot would
   stop sitting inside its blue nucleus.
-- **Seams you can still see in exercise 1 are brightness, not position.** Registration lines the
+- **Seams you can still see in step 2 are brightness, not position.** Registration lines the
   tiles up; it cannot make two tiles the same brightness. Measure one of those tiles on its own
   and its background runs about 20% darker at the edges than in the middle, so at every join a
   dim edge meets a bright center and you get a band. That slide has been bleached by repeated
@@ -437,8 +437,8 @@ a drive of acquisitions and the same one click does all of them.
   the pixels and no blend removes it. The cure is flat-field correction before stitching --
   BaSiC in Fiji, for instance -- and this extension does not do it. Step 4 is the one mosaic
   of the three without banding, because those tiles were acquired with background correction
-  switched on; exercise 2 came off the same microscope software with it switched off, and bands
-  like exercise 1. Correct at acquisition if you can, because by stitching time it is too late.
+  switched on; step 3 came off the same microscope software with it switched off, and bands
+  like step 2. Correct at acquisition if you can, because by stitching time it is too late.
 - Every output carries a `.stitch-info.txt` beside it, recording the method, pixel size, axis
   negation, blending, compression, what registration actually did, and the QuPath, Java and
   extension versions. Copy a methods section from that file, not from memory.

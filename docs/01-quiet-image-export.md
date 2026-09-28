@@ -104,7 +104,7 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 > **Already have the 14 MB `multiplex-synthetic-data-v1.2.zip` from Track B?** Those are the
 > same eight images as loose files, with the ground truth beside them as CSV and GeoJSON, but
-> with no project and no cells detected. It works for this exercise once you have added the
+> with no project and no cells detected. The 14 MB zip works for this exercise once you have added the
 > images to a project and run cell detection — the recipe is in the
 > [QP-CAT guide](03-qp-cat-cell-analysis-tools.md#hands-on-exercise). The demo project above
 > skips both steps.
@@ -175,7 +175,7 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 4. The reproducibility half
 
-*This is why section 3 asked you to export only one image.*
+*Section 3 had you export only one image so that an unexported image is left for this section.*
 
 1. Get the **Groovy script** for that export. QuIET does not write one into the output
    folder — on Step 3, click **Save Script...** and save it somewhere you can find. (It is also

@@ -46,7 +46,7 @@ export it in bulk.
 
 Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including the catalog URL, are in the [setup guide](setup.md).
 
-It is also listed in the QPSC microscope catalog, but it needs no microscope, so the main catalog is all you need. It does need its language data: see [the next section](#language-data).
+OCR for Labels is also listed in the QPSC microscope catalog, but it needs no microscope, so the main catalog is all you need. It does need its language data: see [the next section](#language-data).
 
 </details>
 
@@ -122,7 +122,7 @@ make one:
 ### 3. Read one label
 
 The viewer shows the tissue. The label is a separate small photograph stored inside the same
-file, and the extension pulls it out for you in step 1. This is what it will show:
+file, and the extension pulls it out for you in step 1. The label it shows looks like the picture below:
 
 <img src="../images/ocr/label-key.png" alt="Left, the photographed slide label: four lines of printed text, histology at lji dot org, 610 TOMO, 2020-11-14 and H and E, with a square 2D barcode below them, each marked with a numbered blue badge. Right, a key: 1 the lab's contact address, 2 the specimen identifier or case ID, 3 the date, 4 the stain, 5 the 2D barcode, read by the barcode scanner rather than OCR. A note says a full-image scan reads all of it and step 4 builds a template from items 2 and 5 only" width="900">
 
@@ -204,8 +204,8 @@ share its design.
 
     <img src="../images/ocr/OCR_batch.png" alt="The Batch OCR Processing window. Load Template is boxed in red; the Field Mappings table below it holds the template's two rows, specimen read as text and barcode read as a barcode. Choose Images is boxed in blue, with blue lines leading to the Batch OCR - Choose Images window it opens. In that window the two histology at lji org 610 TOMO slides are ticked and the two 8443_51000000 IF slides are not, and the corner reads 2 of 4 selected. Process Images, Apply Metadata and Cancel are along the bottom of the main window" width="900">
 
-    This is the real constraint on batch OCR, and it is why the tool saves templates rather than
-    one global setting: **one template per label design**, applied to the slides that use it.
+    **One template per label design**, applied to the slides that use it, is the real constraint
+    on batch OCR, and it is why the tool saves templates rather than one global setting.
 
     > **On your own: the IF pair.** The two `8443_51000000` slides are the other label design.
     > Nothing you have built so far applies to them — the template you saved knows where fields

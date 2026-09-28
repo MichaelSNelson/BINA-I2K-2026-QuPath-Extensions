@@ -67,7 +67,7 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 2. Load it into QuPath
 
-If that project is not still open, drag its `project.qpproj` onto an open QuPath window (menu
+If the OCR project is not still open, drag its `project.qpproj` onto an open QuPath window (menu
 route: `File > Project > Open project...`). It was made on this machine, so no **Update URIs**
 dialog appears. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` to open it.
 
@@ -213,7 +213,7 @@ image list groups under it, with a heading row per value. The pane's filter box 
 type only, so metadata is what gives you an axis worth sorting on. A project of four hundred files
 named by scanner ID becomes a list grouped by stain, by case, or by block.
 
-That is the payoff for filling metadata in at all, and it is why label recognition, this browser
+Sorting and grouping by metadata is the payoff for filling it in at all, and it is why label recognition, this browser
 and the project pane form a chain: recover the fields, check them here, then navigate the project
 by what is written on the slide.
 

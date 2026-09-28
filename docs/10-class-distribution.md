@@ -27,17 +27,25 @@ title: Class Distribution
 
 ---
 
-## The idea in one sentence
+## What it does
 
-It charts how your classes are distributed — across the project, the current image, or every
+Class Distribution charts how your classes are distributed — across the project, the current image, or every
 image side by side — so class imbalance, the most common and least visible reason a classifier
 underperforms, is something you can see at a glance.
+
+<details markdown="1">
+<summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
+
+Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full steps, including
+the catalog URL, are in the [setup guide](setup.md).
+
+</details>
 
 ---
 
 ## Hands-on exercise
 
-This one follows **after classification or labeling**: once your cells carry classes, it is how
+This exercise follows **after classification or labeling**: once your cells carry classes, it is how
 you check whether those classes are balanced enough to train on.
 
 ### 1. Get the data
@@ -67,7 +75,7 @@ The ground-truth points are classified **point** annotations, and they are what 
 cells. Open **`Extensions > Class Distribution > Show Detection Training Distribution...`** — it
 counts, for each class, how many detections those points label.
 
-It works on the **project**, not just the image in the viewer: the Project and All images tabs
+The dialog works on the **project**, not just the image in the viewer: the Project and All images tabs
 aggregate across all eight. Open a loose file instead of a project and there is nothing for it
 to read.
 
@@ -112,7 +120,8 @@ classes that are **absent** from it. Open `tme_07` and `b_cell` appears in the l
 **`0.0% [missing]`** rather than simply not being drawn. A class you cannot see is easy to
 forget; a class labeled *missing* is not.
 
-That is the check worth running before you train on a single slide.
+Looking for `[missing]` classes on the Current image tab is the check worth running before you
+train on a single slide.
 
 (The **Image type** filter is not on this tab; it is on **Project**, from step 4.)
 
@@ -167,7 +176,7 @@ area annotations and the chart updates immediately — the feedback arrives whil
 on it. That is the intended workflow for building balanced training data; try it by drawing a
 couple of classified rectangles on an image and watching the chart move.
 
-**It stores nothing in your project** — preferences live in QuPath's own settings.
+**Class Distribution stores nothing in your project** — preferences live in QuPath's own settings.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-class-distribution#readme).

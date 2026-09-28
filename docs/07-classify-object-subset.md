@@ -82,7 +82,7 @@ open it as a project. Inside:
 - **cells already detected** on every image, with measurements — you do **not** run cell
   detection yourself
 - **ground truth**: one classified point per cell, so you can check whether you got the right
-  answer. A training dataset with ground truth is unusual, and it is the whole reason this one
+  answer. A training dataset with ground truth is unusual, and it is the whole reason this dataset
   exists
 - a **trained object classifier**, `cell_type_classifier`, in `classifiers/object_classifiers/`
 - a `scripts/` folder of helper scripts (one is used below)
@@ -144,7 +144,7 @@ with the extension and leave every other cell as it is.
 
    <img src="../images/classify-object-subset/gate-errors-at-nest-boundary.png" alt="A tumor nest boundary at high zoom. Most cells are classified correctly, but arrows mark a green helper T cell and a magenta CD8 T cell sitting against the nest edge, and an orange macrophage, each outlined as the wrong class" width="820">
 
-3. Score it: **`Automate > Project scripts > check_against_ground_truth`**, then **Run**.
+3. Score the classification: **`Automate > Project scripts > check_against_ground_truth`**, then **Run**.
    It needs no extension.
 
    You get three things: a text confusion matrix, an **overall accuracy** line, and the
@@ -157,7 +157,7 @@ with the extension and leave every other cell as it is.
    > whichever panel you are looking at.
    >
    > If both are genuinely empty, the usual causes are: the script was opened but never
-   > **Run**; or the cells were not classified first, so the first item in step 3 needs doing before this one.
+   > **Run**; or the cells were not classified first, so run the first item in step 3 before scoring.
 
    Read down the `tumor` column of the printed matrix: **14 CD8 T cells, 9 macrophages, 3
    helper T cells and 1 B cell** were classified as tumor. That is **27 cells wrongly in the tumor
@@ -220,7 +220,7 @@ matching cells in the viewer, if you would rather see them than count them.
     any of the other five cell types: every fibroblast, macrophage and B cell the script
     classified correctly is exactly as it was.
 
-    > **Why it lands exactly on 412.** `cell_type_classifier` was trained on the ground-truth
+    > **Why the count lands exactly on 412.** `cell_type_classifier` was trained on the ground-truth
     > points of all eight images, this one included, with nothing held back. So recovering 412
     > is the model reproducing labels it was fitted on — it shows the repair worked, but it is
     > not an accuracy estimate. On your own data, train and score on different images.

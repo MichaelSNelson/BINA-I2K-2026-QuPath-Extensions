@@ -38,7 +38,7 @@ Tick **Show cell images** and the points carry thumbnails, so you can see what t
 region actually look like. Click a point to **select that cell and center it in the QuPath
 viewer** — a spot in cluster space becomes a real cell on the slide.
 
-It only reads your cells: looking changes no class and no measurement.
+The navigator only reads your cells: looking changes no class and no measurement.
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
@@ -92,7 +92,7 @@ cells.
 
 ### 2. Load it into QuPath
 
-1. Unzip it, then **drag `project.qpproj` onto an open QuPath window** — or the unzipped folder
+1. Unzip the download, then **drag `project.qpproj` onto an open QuPath window** — or the unzipped folder
    itself, either works. (Menu route: `File > Project > Open project...`.)
 2. The images should open straight away: the project remembers the paths from the machine it was
    built on, and QuPath repoints them to the `images/` folder beside `project.qpproj` on its own.

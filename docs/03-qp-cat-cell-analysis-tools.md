@@ -182,7 +182,7 @@ Why synthetic, for a workshop:
 - **You can check the answer.** Real multiplexed tissue has no ground truth, so you never
   actually know which cell is which type, or whether two populations really co-localize.
   Here every cell has a known type, known marker positivity, and a known place in the tissue.
-- **It is fast.** ~1,430 cells per image; 11,421 across all eight. Clustering one image is
+- **The dataset is fast to work with.** ~1,430 cells per image; 11,421 across all eight. Clustering one image is
   seconds, not coffee.
 - **Everything has something to recover.** Six cell types, tissue niches, a proliferation
   gradient, and deliberate per-image intensity offsets.
@@ -215,13 +215,13 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 2. Load it into QuPath
 
-1. **Unzip it** somewhere you can find again — step 3 may need that folder.
+1. **Unzip it** somewhere you can find again.
 2. **Drag `project.qpproj` onto an open QuPath window.**
 3. **Only if the image names come up red.** A QuPath project stores absolute image paths, so a
    project built on someone else's machine has to be pointed at yours. Either:
    - `Automate > Project scripts > fix_image_paths > Run` — the project ships this script; or
    - in the **Update URIs** dialog QuPath offers, click **Search...**, point it at the folder
-     from step 1, and click **Apply changes**.
+     you unzipped, and click **Apply changes**.
 
 > **The embedding columns in the download are named `3DUMAP1`, `3DUMAP2` and `3DUMAP3`** — the
 > dialog's **Name** field was `3D UMAP`, and the space is dropped when the columns are written. A
@@ -280,7 +280,7 @@ the answer you are trying to arrive at without being told.
    > It is not a shortcut for this step.
 
 3. **Read the Marker Fingerprints tab.** One card per cluster, showing each measurement's
-   enrichment as log2 fold-change against every other cell. This is where you name the clusters:
+   enrichment as log2 fold-change against every other cell. The Marker Fingerprints tab is where you name the clusters:
 
    <img src="../images/qp-cat/fingerprints-kmeans6.png" alt="The Marker Fingerprints tab showing six cluster cards. Cluster 0, 3306 cells, is led by Cytoplasm aSMA mean plus nucleus eccentricity and max caliper. Cluster 1, 1914 cells, by PanCK. Cluster 2, 2752 cells, by CD3 across three compartments and by CD8. Cluster 3, 1093 cells, by CD20. Cluster 4, 1566 cells, by CD68. Cluster 5, 790 cells, by Ki67 across three compartments together with PanCK" width="1000">
 
@@ -363,7 +363,7 @@ the embedding you run again over those columns.
 <figure style="max-width:642px">
 <img src="../images/qp-cat/HDBSCAN_interface.png" alt="The Clustering Algorithm section of the Run Clustering dialog: Algorithm set to HDBSCAN, min_cluster_size 500, min_samples 0, and Cluster selection set to Leaf (finest clusters).">
 <figcaption><b>The Clustering Algorithm section, set up as in rows 4 to 7 of the table.</b> <b>Cluster selection</b> is new in
-0.14.0 &mdash; if you do not see it, update first. These are the settings that produced every
+0.14.0 &mdash; if you do not see it, update first. The settings shown here produced every
 result below.</figcaption>
 </figure>
 </div>
@@ -385,7 +385,7 @@ the tree, a floor that low is an invitation to shatter each population into frag
 sits under 790, so a real group still clears it, and far above 15. The seven clusters it
 returned ran from 825 to 3,306 cells.
 
-**Changing it changes two things at once.** With `min_samples` on **0**, scikit-learn ties
+**Changing `min_cluster_size` changes two things at once.** With `min_samples` on **0**, scikit-learn ties
 the density estimate to `min_cluster_size`, so raising the floor also widens the neighbourhood
 the density is measured over. That is usually what you want — it is why 0 is the default —
 but it means a sweep of `min_cluster_size` is not a one-variable sweep.
@@ -394,11 +394,11 @@ but it means a sweep of `min_cluster_size` is not a one-variable sweep.
 so Harmony is selectable, but there is nothing here for it to correct: the input is three
 UMAP columns, and correcting those adjusts the *picture* rather than the measurements that
 produced it. Batch correction belongs in the run that computes the embedding. Note the
-consequence for this dataset — the step 2 UMAP was computed without it, over eight images
+consequence for this dataset — the step 3 UMAP was computed without it, over eight images
 three of which (`tme_02`, `tme_04`, `tme_05`) carry deliberate intensity offsets, so whatever
 batch structure that introduced is already baked into the coordinates you are about to
-cluster. If you want it gone, correct it in step 2 and recompute the UMAP; the
-[batch-effects exercise](#optional-and-slower-batch-effects) below is that run.
+cluster. If you want it gone, correct it in step 3 and recompute the UMAP; the
+[batch-effects exercise](#7-optional-and-slower-batch-effects) below is that run.
 
 > **One deliberate exception to a rule stated later.** The batch-effects exercise tells you to
 > press **`Deselect QPCAT`** before a second run, because QP-CAT's own output columns are
@@ -434,7 +434,7 @@ cluster 2 blue-ringed. Read the clusters by eye here, or re-run over markers to 
 **What to look for.** Seven clusters, and the question this route exists for: *did letting
 the data choose recover the CD8 / helper split — the one KMeans missed, having spent its spare
 cluster on proliferation instead?* You cannot answer it from these three panels, because
-nothing here has read a marker. That is the next step.
+nothing here has read a marker. Reading the markers is the next step.
 
 **The middle panel is the cost of this route.** Clustering on three
 embedding columns means the marker rankings can only rank those three columns. A cluster that
@@ -520,14 +520,14 @@ those clusters carry.
 Your own run may split or merge differently; the ground-truth column is how you check it
 rather than take the above on trust.
 
-That is the pair: **cluster in one space, characterise in another.** HDBSCAN
+The two runs are a pair: **cluster in one space, characterize in another.** HDBSCAN
 on the UMAP decides *which cells group together*; analysing those groups over the markers
 decides *what to call them*. Neither run can do both.
 
 > **Worth reading before you rely on this:**
 > [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html).
 > Cross-check against a full-marker-space run — which, conveniently, is the run you did in
-> step 2.
+> step 3.
 
 ### 5. Is the tumor infiltrated?
 *Concept: immune infiltration at the invasive margin.*
@@ -611,7 +611,7 @@ three **jointly** — about 4,200 cells, still fast.
     | Lymphoid fraction | 33% | **50%** | **6%** |
     | B-cell follicles | present | more | **none at all** |
 
-    Those are the two ends of a distinction that matters clinically: an **immune-inflamed**
+    `tme_06` and `tme_07` are the two ends of a distinction that matters clinically: an **immune-inflamed**
     tumor, with lymphocytes throughout and organized B-cell aggregates, versus an **immune
     desert**, where the tumor sits in fibroblast-rich stroma with almost no lymphoid presence.
     It is the same axis used to stratify patients for immunotherapy: inflamed tumors tend to

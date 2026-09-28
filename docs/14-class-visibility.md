@@ -104,10 +104,10 @@ and CD8 would be classified as `CD3: CD8`; a cell positive for only CD3 would be
 </details>
 
 <details markdown="1">
-<summary><b>This overwrites cell classifications</b> — and how to get the old ones back</summary>
+<summary><b>The script overwrites cell classifications</b> — and how to get the old ones back</summary>
 
 If you have already run a classifier on these cells — from the Classify Object Subset or Class
-Distribution walkthroughs — this replaces it. It does **not** touch the ground-truth point
+Distribution walkthroughs — the script replaces those classes. The script does **not** touch the ground-truth point
 annotations, because those are annotations rather than detections, so nothing the other
 walkthroughs need is lost.
 
@@ -131,7 +131,7 @@ dilute a nuclear marker.
 
 > **Three things to know before you trust the result.**
 >
-> 1. **These are not phenotype calls.** Each marker is gated on its own, so nothing forbids
+> 1. **The combined classes are not cell-type classifications.** Each marker is gated on its own, so nothing forbids
 >    `CD3: CD20` — a T cell and a B cell at once. The dataset's ground truth is clean by
 >    construction, one lineage marker per cell type, so **every multi-lineage combination here is
 >    an artifact** of the 5 µm cell expansion picking up signal from a neighbor.
@@ -220,7 +220,7 @@ In the classes list, the `CD8` row's **`Count`** reads **2**: cells whose class 
 anywhere in their class. Almost every CD8 cell in this image is also CD3-positive, so it lives
 in a class like `CD3: CD8`, not in `CD8`.
 
-**That is the difference between the two lists.** A class row is that class and nothing else:
+**Count against Total is the difference between the two lists.** A class row is that class and nothing else:
 checking the `CD8` *class* row would show 2 cells. A component is everything containing it: the
 189 in its `Total`.
 
@@ -285,7 +285,7 @@ Switch on the **`Spread`** column. In the component list, on the right side of t
 **column-header row** (the row reading `Component` and `Total`, not the caption above it; it is
 boxed in red in the picture below), then tick `Spread`.
 
-> That menu's first entry is blank and does nothing. It is the check-box column, which has no
+> The first entry in the **+** menu is blank and does nothing. That entry is the check-box column, which has no
 > name to show and is not allowed to hide. Ignore it.
 
 On `tme_00` the column should read:
@@ -320,7 +320,7 @@ dropdown: the same rule is rebuilt on the new image, with no clicking through th
 
 ### 10. Get your view back
 
-| You want | Do this |
+| You want | What to do |
 |---|---|
 | Every listed class visible again | The check box in the **classes list's header** |
 | The view you had *before* you opened the panel | **Close the panel.** That state is recorded automatically |

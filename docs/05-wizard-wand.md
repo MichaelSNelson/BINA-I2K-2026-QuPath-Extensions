@@ -5,7 +5,7 @@ title: Wizard Wand
 
 # Wizard Wand
 
-> **Drag it like a brush.** Hold the button down and sweep across a structure and it keeps
+> **Drag the Wizard Wand like a brush.** Hold the button down and sweep across a structure and the wand keeps
 > adding as you go, instead of one click, one region. Pause mid-drag and the selection keeps
 > growing on its own. Boundaries come out smoother and interior holes are filled for you.
 
@@ -53,7 +53,7 @@ corrections saves real hours.
 Wizard Wand installs as a **separate toolbar button**. QuPath's built-in wand is untouched:
 you can ignore this one entirely until you want it.
 
-Out of the box it differs from the built-in wand in four ways, all already on:
+Out of the box the Wizard Wand differs from the built-in wand in four ways, all already on:
 
 - **It works as a brush.** Hold the button down and sweep, and it keeps extending the same
   annotation instead of starting a new selection with every click. This is the one that
@@ -149,7 +149,7 @@ select it.
 
 
 1. Press **Shift+W**, then **hold the mouse button down and sweep** across a piece of tissue,
-   the way you would use a brush. It keeps extending the same annotation as you move, rather
+   the way you would use a brush. The wand keeps extending the same annotation as you move, rather
    than starting a new selection each click.
 2. Do the same region with QuPath's built-in wand and compare the two boundaries.
 3. **Mid-drag, stop moving and keep the button down.** The selection carries on growing
@@ -167,7 +167,7 @@ select it.
    the toolbar button and choose **Tune wand from selection...**, which tries to derive
    settings from your example.
 
-   > **Expect little from this one.** It tunes for a *single click* placed inside your
+   > **Expect little from Tune wand from selection.** The command tunes for a *single click* placed inside your
    > annotation, and almost nobody annotates with single clicks — so the settings it picks
    > often do not match how the wand behaves when you drag. It is worth knowing about, and
    > worth a try if presets are not getting you there, but reach for the presets first.
