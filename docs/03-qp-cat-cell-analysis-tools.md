@@ -595,7 +595,7 @@ on the **Marker Fingerprints** tab.
    |---|---|---|
    | 1 | **Label source** | *Current cell classifications* (already selected) |
    | 2 | Statistics to compute: **Ripley L** | ticked (already ticked) |
-   | 3 | Statistics to compute: **Neighborhood enrichment** | ticked (already ticked) |
+   | 3 | Statistics to compute: **Co-occurrence (pairwise)** | tick it |
 
 3. Click **Run spatial statistics**. A window titled **QP-CAT - Spatial statistics summary**
    opens with one row per image, headed **8 area(s), 8 analyzed.**
@@ -610,24 +610,32 @@ on the **Marker Fingerprints** tab.
 > statistics**. Ticking them there on a future run gives these results without a separate
 > step.
 
-#### 5.2 Read the matrix for four pairs
+#### 5.2 Compare four pairs of clusters
 
-Read the neighborhood enrichment matrix for four specific pairs, and predict each before you
-look:
+1. Open the **Co-occurrence (pairwise)** tab. It is a table of numbers with one row per radius
+   and one column per ordered pair of clusters. Each number is a ratio: above 1 means the second
+   cluster is found near the first more often than it is found near cells in general, below 1
+   means less often, and about 1 means no preference. The ratio is descriptive, with no
+   significance test behind it.
+2. Find the four pairs below and predict each before you look. The table is wide, so
+   **Save CSV...** under it, which writes one row per pair, is the easier way to find a pair.
 
-| Pair | Clusters | Expect | Because |
-|---|---|---|---|
-| tumor (PanCK) ↔ tumor (PanCK) | 3 ↔ 3 | strongly positive | tumor grows in nests, not as single cells |
-| B cell (CD20) ↔ B cell (CD20) | 2 ↔ 2 | strongly positive | follicles: dense aggregates, not scattered cells |
-| tumor (PanCK) ↔ fibroblast (aSMA) | 3 ↔ 1 | strongly **negative** | they occupy different compartments |
-| tumor (PanCK) ↔ CD8 T cell (CD3, CD8) | 3 ↔ 5 | positive | cytotoxic T cells sit at the nest boundary |
+   | Pair | Clusters | Expect at short radii | Because |
+   |---|---|---|---|
+   | tumor (PanCK) with tumor (PanCK) | 3 with 3 | above 1 | tumor grows in nests, not as single cells |
+   | B cell (CD20) with B cell (CD20) | 2 with 2 | above 1 | follicles: dense aggregates, not scattered cells |
+   | tumor (PanCK) with fibroblast (aSMA) | 3 with 1 | below 1 | they occupy different compartments |
+   | tumor (PanCK) with CD8 T cell (CD3, CD8) | 3 with 5 | above 1 | cytotoxic T cells sit at the nest boundary |
+
+The **Geary's C** tab does not answer this question: it reports one value per measurement, not
+per pair of clusters.
 
 #### 5.3 Check the control pair
 
-Check tumor (PanCK, cluster 3) ↔ helper T cell (CD3 without CD8, cluster 6). It should be
-markedly weaker than tumor ↔ CD8 T cell (cluster 5): the enrichment is specific to the
-cytotoxic subset. Step 3's k = 6 run put both T-cell lineages in one cluster, which would have
-averaged the two into a single number.
+In the same table, find tumor (PanCK, cluster 3) with helper T cell (CD3 without CD8,
+cluster 6). Its ratio should sit closer to 1 than tumor with CD8 T cell (cluster 5): the
+enrichment is specific to the cytotoxic subset. Step 3's k = 6 run put both T-cell lineages in
+one cluster, which would have averaged the two into a single number.
 
 #### 5.4 Read Ripley L
 
