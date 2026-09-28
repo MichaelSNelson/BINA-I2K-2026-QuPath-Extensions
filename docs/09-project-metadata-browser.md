@@ -132,8 +132,12 @@ the pattern below, which was written for these four filenames.
    | 1 | **Source column** | `Name` (already selected) |
    | 2 | **Regex pattern** | `_(?<stain>[^_]+)_(?<date>\d{4}-?\d{2}-?\d{2})-` |
    | 3 | **Detected groups** | leave `stain` and `date` as they are |
-   | 4 | **If a group's column name already exists on entries** | *Skip -- keep current values, leave non-collisions alone* |
+   | 4 | **If a group's column name already exists on entries** | *Overwrite -- replace any current value* |
    | 5 | **Skip non-matching entries** | leave ticked |
+
+   Overwrite means that if an OCR field already named `stain` or `date` exists on an image, its
+   value is replaced by the one read from the filename. That is what you want here: the date on
+   the IF slide labels is cut off, so OCR reads the year as `202`, and the filename has it right.
 
    What the pattern says: `(?<stain>[^_]+)` is "the text between two underscores, into a
    column called `stain`", and `(?<date>\d{4}-?\d{2}-?\d{2})` is "four digits, two digits, two
