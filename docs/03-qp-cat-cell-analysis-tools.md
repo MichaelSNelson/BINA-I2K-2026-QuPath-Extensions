@@ -598,9 +598,10 @@ on the **Marker Fingerprints** tab.
    | 3 | Statistics to compute: **Co-occurrence (pairwise)** | tick it |
 
    > **Ripley L can be slow on a lower-power laptop.** It simulates 99 random patterns for
-   > every cluster in every image. If the run takes more than a few minutes, cancel it, untick
-   > **Ripley L**, and run again: steps 5.2 and 5.3 do not need it, and the figure in 5.4 shows
-   > what the Ripley L result looks like.
+   > every cluster in every image. If the run takes more than a few minutes, cancel it, open
+   > `tme_00.tif`, set **Scope** to *Current image*, and run again: the summary then lists one
+   > image instead of eight. If that is still slow, untick **Ripley L**: steps 5.2 and 5.3 do not
+   > need it, and the figure in 5.4 shows what the Ripley L result looks like.
 
 3. Click **Run spatial statistics**. A window titled **QP-CAT - Spatial statistics summary**
    opens with one row per image, headed **8 area(s), 8 analyzed.**
