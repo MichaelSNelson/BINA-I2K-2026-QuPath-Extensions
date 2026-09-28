@@ -544,10 +544,6 @@ That is the pair: **cluster in one space, characterise in another.** HDBSCAN
 on the UMAP decides *which cells group together*; analysing those groups over the markers
 decides *what to call them*. Neither run can do both.
 
-Note also that with **Method: None** the results window has no 2D embedding tab — nothing new
-was computed to plot. The **3D View** tab still works, because it reads the UMAP columns off
-the cells.
-
 > **Worth reading before you rely on this:**
 > [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html).
 > Cross-check against a full-marker-space run — which, conveniently, is the run you did in
