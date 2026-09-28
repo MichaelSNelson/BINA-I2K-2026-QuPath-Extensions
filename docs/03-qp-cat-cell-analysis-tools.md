@@ -242,7 +242,7 @@ the answer you are trying to arrive at without being told.
 1. **Check the environment first.** Open `Extensions > QP-CAT`. Until the Python environment
    is installed, every group except **Setup & help** is hidden, so a fresh install shows a menu
    with one item on it — that is expected, not a broken install. Build it from
-   `Setup & help > Set up analysis environment (first run)...`. Once it is ready the menu fills
+   `Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`. Once it is ready the menu fills
    out:
 
    <img src="../images/qp-cat/menu.png" alt="The Extensions menu with QP-CAT expanded. Its first item is Find cell populations (clustering), followed by the submenus Classify cells, Explore and spatial, Results and populations, Export, and Setup and help. The extensions list behind it shows QuIET, Classify Object Subset, Project Metadata Browser, Channel Names Viewer, Class Distribution and Cluster 3D Navigator" width="586">
@@ -267,7 +267,7 @@ the answer you are trying to arrive at without being told.
 
    > **Short on time, or something went wrong?** If you took the **clustered** project,
    > everything below is already computed in it. Open
-   > `Results & populations > View Past Results...` and pick `auto_20260924_135415_kmeans`.
+   > `Extensions > QP-CAT > Results & populations > View Past Results...` and pick `auto_20260924_135415_kmeans`.
    > The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
    > dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
 
@@ -276,7 +276,7 @@ the answer you are trying to arrive at without being told.
    > information — fibroblasts have elongated spindle nuclei, tumor nuclei are large and round —
    > and you will see those features earn their place in the next step.
    >
-   > `Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6.
+   > `Extensions > QP-CAT > Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6.
    > It is not a shortcut for this step.
 
 3. **Read the Marker Fingerprints tab.** One card per cluster, showing each measurement's
@@ -346,7 +346,7 @@ In QP-CAT this is a **second run**, not a setting. Clustering normally fits in f
 space and the embedding is computed only so you have something to look at, so to cluster *on*
 the embedding you run again over those columns.
 
-**Open `Find cell populations (clustering)...` again** and change these settings:
+**Open `Extensions > QP-CAT > Find cell populations (clustering)...` again** and change these settings:
 
 | # | Setting | Set to |
 |---|---|---|
@@ -442,7 +442,7 @@ is high in `3DUMAP2` is not a phenotype.
 
 **Now take the second step.** That run read three columns and nothing else. Every marker
 measurement — PanCK, CD3, CD20, all of them — is still on the cells, unused.
-**`Results & populations > Analyze current cell classifications...`** uses them. It takes the
+**`Extensions > QP-CAT > Results & populations > Analyze current cell classifications...`** uses them. It takes the
 classes the cells now carry, computes each cluster's marker statistics, and opens the usual
 results window: **Heatmap**, **Marker Rankings**, **Marker Fingerprints** and the
 **Composition** tabs. It writes nothing back: no classification is added, changed or
@@ -542,7 +542,7 @@ pathologist's read on whether an immune response has reached the tumor.
 1. Run **neighborhood enrichment** on your classified cells. It is a tick-box —
    `Neighborhood enrichment + Moran's I` — in the Run Clustering dialog, so the easiest route is
    to turn it on before you cluster. After the fact, use
-   `Explore & spatial > Spatial statistics on existing clusters...` instead.
+   `Extensions > QP-CAT > Explore & spatial > Spatial statistics on existing clusters...` instead.
 2. Read the matrix for four specific pairs, and predict each before you look:
 
    | Pair | Expect | Because |
@@ -652,16 +652,16 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 
 <img src="../images/qp-cat/menu-savedresults.png" alt="The QP-CAT menu with Results and populations expanded, showing View Past Results, Manage Saved Results, then Modify cell populations (rename, merge, split, sub-cluster), Analyze current cell classifications, Apply saved result to detections, and Apply cluster color palette" width="1000">
 
-- **`Results & populations > View Past Results...`** reopens the whole results window — heatmap,
+- **`Extensions > QP-CAT > Results & populations > View Past Results...`** reopens the whole results window — heatmap,
   marker rankings, embedding, every tab — with no Python run and no re-clustering. This is the
   one to use if you want to go back to step 3's plots while working on step 5, or to look again
   after the session.
-- **`Apply saved result to detections...`** is the different one: it writes a saved run's labels
+- **`Extensions > QP-CAT > Results & populations > Apply saved result to detections...`** is the different one: it writes a saved run's labels
   back onto the cells. Reach for it when the labels are right in the saved result but are not on
   the image — most often after closing and reopening the project. It matches cells by source
   image id and centroid rather than by count, and shows a predicted match count before you
   commit, so cells it cannot match are reported rather than mislabeled.
-- **`Manage Saved Results...`** lists everything saved with its size, for deleting the runs you
+- **`Extensions > QP-CAT > Results & populations > Manage Saved Results...`** lists everything saved with its size, for deleting the runs you
   no longer want. Auto-saves are never removed for you.
 
 > Applied labels are namespaced by the result name — `<result>: Cluster N` — so results from

@@ -128,7 +128,7 @@ The extension can copy those into their own columns using a regular expression (
 pattern that describes the shape of the text you want. You do not need to write one. Paste
 the pattern below, which was written for these four filenames.
 
-1. Open `Edit > Extract columns from filenames (regex)...`.
+1. In the browser window's own menu bar, open `Edit > Extract columns from filenames (regex)...`.
 2. Set these, top to bottom. The numbers match the badges in the picture below.
 
    | # | Field | Set to |
@@ -191,7 +191,7 @@ the pattern below, which was written for these four filenames.
 
 ### 7. Save, refresh, export
 
-1. `File > Save` (**Ctrl+S**). The `*` and the unsaved-changes marker disappear, and the status
+1. In the browser window's own menu bar, `File > Save` (**Ctrl+S**). The `*` and the unsaved-changes marker disappear, and the status
    line reports how many changes were saved.
 2. Click **Refresh**. The table is reloaded from the project on disk: `stain` and `scan_date`
    are still there, filled in for all four images, and the `specimen` cell you changed in

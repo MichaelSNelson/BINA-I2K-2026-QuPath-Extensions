@@ -477,7 +477,7 @@ Five limits worth knowing before you commit to a layout:
   hard-codes it. Plane order and count come through correctly; the physical Z calibration does
   not, so any volume, 3D distance or orthogonal view measured afterwards is wrong by the ratio
   of the real spacing to 1.0 — silently. Fix it in QuPath after opening the result
-  (`Image > Set pixel size`), or stitch from a script, where `StitchingConfig` takes a real
+  (in the **Image** tab, double-click the **Pixel width** row to open **Set pixel size**), or stitch from a script, where `StitchingConfig` takes a real
   Z spacing in micrometers.
 
 Directory names must be a `z` or `t` followed by digits and nothing else — `z0`, `z00` and

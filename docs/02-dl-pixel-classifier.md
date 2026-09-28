@@ -424,7 +424,7 @@ You can use the model you just trained, or the provided one.
 
 Covered in [The training loop](#2-review-the-training-data-the-model-disagrees-with) below. If
 you imported the provided model rather than training your own, its saved session is already
-inside it: `Utilities > Load Saved Training Area Issues...`, then pick
+inside it: `Extensions > DL Pixel Classifier > Utilities > Load Saved Training Area Issues...`, then pick
 **CMU-1_Tissue_ResNet-18**.
 
 ### If something looks wrong
@@ -513,7 +513,7 @@ Annotations outside the current tile are never touched, and **Undo last adjustme
 > `Extensions > DL Pixel Classifier > Utilities > Load Saved Training Area Issues...`.
 >
 > The provided model already has a session saved inside it, so once you have imported it you can
-> reach this straight from `Utilities > Load Saved Training Area Issues...` without training
+> reach this straight from `Extensions > DL Pixel Classifier > Utilities > Load Saved Training Area Issues...` without training
 > anything. The menu asks which classifier's sessions to browse, not for a file path — a session
 > lives inside its model's folder and travels with it.
 

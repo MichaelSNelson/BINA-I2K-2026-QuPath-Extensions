@@ -329,7 +329,7 @@ dropdown: the same rule is rebuilt on the new image, with no clicking through th
 `Extensions > Class Visibility > Restore the state from when the panel opened` does the middle
 one from the menu, whether or not the panel is still open. It is grayed out and reads *(nothing
 recorded yet)* until the panel has changed something. The menu's own version of the last row is
-spelled **`Reset all visibility`**.
+spelled **`Extensions > Class Visibility > Reset all visibility`**.
 
 ### If something looks wrong
 

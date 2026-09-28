@@ -45,7 +45,8 @@ category, configure it, pick your images, and export.
 | **Tiled export (ML)** | Image + label tile pairs | Deep-learning frameworks |
 | **Object crops** | One small image per object | Cell-type classifier training |
 
-A sixth workflow, **Panel / Montage Export**, is a separate menu item with its own wizard:
+A sixth workflow, `Extensions > QuIET > Panel / Montage Export...`, is a separate menu item with
+its own wizard:
 select several project images, choose a *recipe* (saved settings for how a single image is
 exported), and lay them out into one grid figure, with captions, spacing and background color.
 QuPath renders every panel identically, so you do not assemble the figure by hand in
@@ -123,8 +124,8 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 3. A figure you could publish
 
-1. `Extensions > QuIET > Image Export...` (see below). The second entry,
-   **Panel / Montage Export...**, is section 5.
+1. `Extensions > QuIET > Image Export...` (see below). The second entry in that menu,
+   `Extensions > QuIET > Panel / Montage Export...`, is section 5.
 
    <img src="../images/quiet/menu.png" alt="QuPath's Extensions menu open on QuIET, showing Image Export and Panel / Montage Export" width="720">
 2. **Step 1:** choose **Rendered Image** — the leftmost of the five categories (see below).

@@ -129,7 +129,8 @@ train on a single slide.
 
 ### 7. The other dialog, and when to use it
 
-Everything so far used **Show Detection Training Distribution...**, which counts *detections*
+Everything so far used `Extensions > Class Distribution > Show Detection Training Distribution...`,
+which counts *detections*
 labeled by your annotations — the number that predicts classifier behavior.
 
 Now open **`Extensions > Class Distribution > Show Class Distribution...`**. Same tabs, same
@@ -161,9 +162,9 @@ count.
 
 ## What it does, in full
 
-**Two dialogs.** *Show Class Distribution...* charts **annotation** classes — closed annotations
-by pixel area, polylines by length × width (points contribute nothing). *Show Detection Training
-Distribution...* charts how many **detections** each class would label given your training
+**Two dialogs.** `Extensions > Class Distribution > Show Class Distribution...` charts **annotation** classes — closed annotations
+by pixel area, polylines by length × width (points contribute nothing).
+`Extensions > Class Distribution > Show Detection Training Distribution...` charts how many **detections** each class would label given your training
 annotations (area regions, or classified counting **points** like this dataset's ground truth).
 
 **Three tabs each** — Project (aggregate), Current image (live), and All images (a grid of one

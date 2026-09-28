@@ -155,7 +155,7 @@ Open QuPath and confirm:
       Subset**, **Cluster 3D Navigator**, **Project Metadata Browser**, **Channel Names Viewer**,
       **OCR for Labels**, **Tiles to Pyramid**. Missing entries you never installed are not a
       problem
-- [ ] `Window >` contains **Dialog Position Manager...**
+- [ ] `Window > Dialog Position Manager...` is in the menu
 - [ ] Two new wand buttons sit in the toolbar, to the right of QuPath's own wand:
 
   <img src="../images/wand-toolbar.png" alt="QuPath's wand and the two added wand buttons in the toolbar; the order of the two added buttons depends on install order" height="24">
