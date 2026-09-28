@@ -342,6 +342,7 @@ about clustering.
 
 Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
 true type is in the `cell_type` column.
+
 ### 4. Cluster on the UMAP instead of the markers
 *Concept: letting the data choose the number of clusters, and what that costs you.*
 
@@ -683,6 +684,7 @@ sits where the statistic says.
 > pairwise co-occurrence row names both clusters — easier to work with than the on-screen
 > table, which is one column per ordered pair and scrolls off the right on a run with many
 > clusters.
+
 ### 6. Inflamed versus desert
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
 

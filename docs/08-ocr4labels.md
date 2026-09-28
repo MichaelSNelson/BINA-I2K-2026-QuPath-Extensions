@@ -225,6 +225,7 @@ design. The tool saves templates, rather than one global setting, for that reaso
 > template, and batch it over the two, choosing them with the filter `8443`. The metadata
 > you applied to the brightfield pair stays put. That is the whole workflow in miniature, and it is
 > what you would do on arriving at a new set of slides from a different lab.
+
 ### 5. The two-minute experiment worth doing
 
 Go back to the `histology@lji.org` label. Tick **Enhance**, set **Scope** to *Drawn Regions*, and
