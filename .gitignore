@@ -35,3 +35,7 @@ images/tiles-to-pyramid/stitch_inputs.png
 images/tiles-to-pyramid/stitch_landscape.png
 images/tiles-to-pyramid/stitch_ppm_*.jpg
 images/tiles-to-pyramid/tile_*.jpg
+
+# Windows "downloaded from the internet" metadata, created beside any file
+# copied in from a browser. Never content.
+*:Zone.Identifier
