@@ -53,15 +53,14 @@ Install from the **LOCI QuPath Extensions** catalog, then restart QuPath. Full s
 > from the `.czi` files has nothing in it but image names, so every column here would be empty
 > and there would be nothing to sort, filter or export.
 >
-> Steps 1 to 3 of that exercise are enough: they leave you with a project carrying real
-> OCR fields.
+> Do steps 1 to 4 of that exercise, including the batch run at the end of step 4. They leave
+> both brightfield slides carrying the `specimen` and `barcode` fields this exercise uses.
 
 ### 1. Get the data
 
 **Download:** nothing new. This exercise runs on the project you built in the
-[OCR exercise](08-ocr4labels.md) from `OCR_Test_Images_LJI.zip` (244 MB), with the keys you
-typed into the OCR dialog: `specimen` and `barcode` if you followed its step 4. Those are the
-**OCR columns** referred to below; substitute your own names if you chose others.
+[OCR exercise](08-ocr4labels.md) from `OCR_Test_Images_LJI.zip` (244 MB), with the two keys
+you typed in its step 4, `specimen` and `barcode`. Those are the columns referred to below.
 
 **You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
 catalog (see the **Install** box above, or the [setup guide](setup.md)).
