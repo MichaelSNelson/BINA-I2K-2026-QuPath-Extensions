@@ -200,42 +200,43 @@ Why synthetic, for a workshop:
 
 ### 1. Get the data
 
-**There are two projects, one per starting point.** Same eight images, same cells already
-detected, same ground truth. Download the one for where you are starting.
+**Download:** one of the two projects below. Both hold the same eight images, with cells
+already detected and the same ground truth.
 
-| Download | Use it for | Why | Size |
+| # | Download | Size | Choose it if |
 |---|---|---|---|
-| **[Demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** | **step 3** | Cells detected, nothing clustered — step 3 is you doing the clustering. | 20 MB |
-| **[Demo project, clustered](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** | **step 4 onward** | Adds a saved KMeans k = 6 and the 3D UMAP it wrote onto every cell. step 4 clusters *on* that UMAP, so this is what you need if you are not doing step 3 first. | 23 MB |
+| 1 | **[`multiplex-synthetic-data-demo-project-v1.2.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** | 20 MB | you will run the clustering yourself. The run needs QP-CAT's Python environment |
+| 2 | **[`multiplex-synthetic-data-demo-project-clustered.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** | 23 MB | you are short on time, or the Python environment is not built. The clustering is already saved in the project |
 
-**Doing the whole workshop?** Take the plain **demo project** and start at step 3; the run you
-do there produces the UMAP that step 4 needs, so you will not need the second download.
-**Short on time, or the Python environment is still building?** Take the **clustered** one and
-start wherever you like.
+Whichever you take, work through the steps below in order. With the clustered project,
+"Find the cell types" opens the saved clustering instead of running one.
 
 **You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
 catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 2. Load it into QuPath
 
-1. **Unzip it** somewhere you can find again.
-2. **Drag `project.qpproj` onto an open QuPath window.**
-3. **Only if the image names come up red.** A QuPath project stores absolute image paths, so a
-   project built on someone else's machine has to be pointed at yours. Either:
-   - `Automate > Project scripts > fix_image_paths > Run` — the project ships this script; or
-   - in the **Update URIs** dialog QuPath offers, click **Search...**, point it at the folder
-     you unzipped, and click **Apply changes**.
+1. **Unzip the download** somewhere you can find again.
+2. **Drag `project.qpproj` onto an open QuPath window.** (Menu route:
+   `File > Project > Open project...`.)
+3. If QuPath opens an **Update URIs** dialog with the images listed in red, show it the folder
+   once:
+   - **Click Search...** (bottom-right) and choose the folder you unzipped.
+   - **Click Apply changes.**
+4. **Double-click `tme_00.tif`** in the project list to open it.
 
-> **The embedding columns in the download are named `3DUMAP1`, `3DUMAP2` and `3DUMAP3`** — the
-> dialog's **Name** field was `3D UMAP`, and the space is dropped when the columns are written. A
-> run you do with a newer QP-CAT build may write `QPCAT 3D UMAP1` instead. Nothing is broken
-> either way — the saved result knows which columns it wrote — but if you go on to the
-> [Cluster 3D Navigator](04-cluster-3d-navigator.md) exercise, those are the three names to pick.
+<details markdown="1">
+<summary><b>If the images still show as missing</b></summary>
+
+The project ships a script that points every image at the folder beside `project.qpproj`.
+
+1. **Open `Automate > Project scripts > fix_image_paths`.**
+2. **Click Run.**
+
+</details>
 
 ### 3. Find the cell types
 *Concept: cell identity from marker combinations, and what "resolution" costs you.*
-
-**Project:** the plain **[demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** — cells detected, nothing clustered yet.
 
 The eight channels you are about to cluster on are **DAPI** (used for detection), **PanCK**,
 **Ki67**, **aSMA**, **CD3**, **CD8**, **CD20** and **CD68**, at 0.5 um/pixel. They were built
@@ -244,17 +245,17 @@ the answer you are trying to arrive at without being told.
 
 #### 3.1 Check the Python environment
 
-**Check the environment first.** Open `Extensions > QP-CAT`. Until the Python environment
-is installed, every group except **Setup & help** is hidden, so a fresh install shows a menu
-with one item on it — that is expected, not a broken install. Build it from
-`Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`. Once it is ready the menu fills
-out:
+1. **Open the `Extensions > QP-CAT` menu.** Until the Python environment is installed, every
+   group except **Setup & help** is hidden, so a fresh install shows a menu with one item on it.
+2. **If the menu shows only Setup & help, open
+   `Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`** and let it
+   finish. Once the environment is ready the menu fills out:
 
 <img src="../images/qp-cat/menu.png" alt="The Extensions menu with QP-CAT expanded. Its first item is Find cell populations (clustering), followed by the submenus Classify cells, Explore and spatial, Results and populations, Export, and Setup and help. The extensions list behind it shows QuIET, Classify Object Subset, Project Metadata Browser, Channel Names Viewer, Class Distribution and Cluster 3D Navigator" width="586">
 
 #### 3.2 Set up the clustering run
 
-Open **`Extensions > QP-CAT > Find cell populations (clustering)...`**, and set it up like this:
+**Open `Extensions > QP-CAT > Find cell populations (clustering)...`** and set it up like this:
 
 | Section | Setting |
 |---|---|
@@ -270,8 +271,10 @@ this exercise start from the first rather than from defaults. While a run is goi
 progress checklist shows how long each step has taken — useful for deciding which spatial
 statistics are worth their time on your own data.
 
-> **Short on time, or something went wrong?** If you took the **clustered** project,
-> everything below is already computed in it.
+**Click Run Clustering.**
+
+> **Using the clustered project, or did the run fail?** The clustered project already holds
+> this run, so open the saved result instead of running:
 >
 > 1. **Open `Extensions > QP-CAT > Results & populations > View Past Results...`.**
 > 2. **Pick `auto_20260924_135415_kmeans`.**
@@ -350,10 +353,8 @@ true type is in the `cell_type` column.
 ### 4. Cluster on the UMAP instead of the markers
 *Concept: letting the data choose the number of clusters, and what that costs you.*
 
-**Project:** whatever you used for step 3, if you did it — that run wrote the 3D UMAP this
-step needs. Starting here instead? Take the
-**[clustered demo project](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)**,
-which ships that UMAP already on the cells. This is the main reason that download exists.
+This step needs the 3D UMAP that the clustering in "Find the cell types" wrote onto every
+cell. The clustered project already has it.
 
 Step 3 made you choose *k*. You do not have to, and you already have what that takes: a 3D
 UMAP on every cell.
@@ -377,6 +378,17 @@ settings:
 | 6 | Clustering Algorithm: **min_samples** | **0** |
 | 7 | Clustering Algorithm: **Cluster selection** | **Leaf (finest clusters)** |
 | 8 | Batch correction (Harmony) | **Off** |
+
+<details markdown="1">
+<summary><b>Why the UMAP columns have two possible names</b></summary>
+
+**The embedding columns in the download are named `3DUMAP1`, `3DUMAP2` and `3DUMAP3`** — the
+dialog's **Name** field was `3D UMAP`, and the space is dropped when the columns are written. A
+run you do with a newer QP-CAT build may write `QPCAT 3D UMAP1` instead. Nothing is broken
+either way — the saved result knows which columns it wrote — but if you go on to the
+[Cluster 3D Navigator](04-cluster-3d-navigator.md) exercise, those are the three names to pick.
+
+</details>
 
 <div class="shots" markdown="0">
 <figure style="max-width:642px">
