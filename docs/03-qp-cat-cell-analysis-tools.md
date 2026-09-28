@@ -155,38 +155,15 @@ Then run `Extensions > QP-CAT > Setup & help > Set up analysis environment (firs
 
 </details>
 
-> **Do this before the workshop.** It is a 1.5–2.5 GB download, and conference wifi will be slow with several people fetching it at once.
+> **Set up QP-CAT's Python environment before the workshop.** QP-CAT needs a Python environment
+> in addition to the extension itself. Once the extension is installed, run
+> `Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`. The
+> environment is a 1.5–2.5 GB download, and conference wifi will be slow with several people
+> fetching it at once.
 
 ---
 
 ## The data: a synthetic tumor microenvironment
-
-<details markdown="1">
-<summary><b>Coming: a real multiplexed Orion dataset</b> — seven images; not downloadable yet</summary>
-
-A second dataset is being prepared for QP-CAT specifically — a QuPath project
-(`multiplexTesting`) of **seven Orion images**, six numbered `Orion1`–`Orion6` plus
-`Orion_Tonsil_10follicles`. Real tissue, real markers, and **several GB**, which is why it is
-not the hands-on exercise. **It will appear in the walkthrough video**, once that is recorded
-after the workshop, showing what this
-workflow looks like on real data, and the download is there for exploring afterwards on a
-machine with room for it.
-
-<img src="../images/qp-cat/orion-tonsil-follicles.png" alt="A multiplexed tonsil image in green, magenta and yellow. Pale rounded follicles fill the field, several with a darker, more densely stained core, separated by magenta-rich bands of surrounding tissue" width="680">
-
-The tonsil image is the one to start from: ten follicles in a single field, each with a
-distinct core and a surrounding zone, so clustering and neighborhood analysis have real
-structure to recover rather than a schematic one.
-
-**It does not replace the synthetic set below.** The synthetic data
-stays the one you learn the workflow on: it is small, it is quick to look at, and it has
-ground truth, so you can tell whether you got the right answer. Come here once you trust the
-workflow and want it on real tissue.
-
-**Not downloadable yet.** The link will appear here and in the [setup guide](setup.md).
-
-</details>
-
 
 This exercise uses the
 **[multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data)**, a
