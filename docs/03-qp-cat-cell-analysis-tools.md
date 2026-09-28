@@ -69,13 +69,13 @@ CD206" as one rule. <a href="https://github.com/uw-loci/qupath-extension-cell-an
 <div class="card">
 <img src="../images/qp-cat/concepts/smoothing.svg" alt="A grid of randomly interleaved cyan and pink tiles on the left; an arrow; the same grid on the right resolved into one solid cyan region beside one solid pink region.">
 <b>Spatial feature smoothing</b>
-<p>Blend each cell with its neighbours before clustering, so niches come out as coherent
+<p>Blend each cell with its neighbors before clustering, so niches come out as coherent
 regions instead of salt-and-pepper.</p>
 </div>
 <div class="card">
 <img src="../images/qp-cat/concepts/autoencoder.svg" alt="Thirty cells, five of them coloured and labelled by hand and the rest empty outlines; an arrow; the same thirty cells on the right all coloured.">
 <b>Autoencoder cell classifier</b>
-<p>Label a small subset by hand and have the rest of the project labelled for you. Original to
+<p>Label a small subset by hand and have the rest of the project labeled for you. Original to
 QP-CAT and unpublished. <a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/autoencoder.md">Details</a>.</p>
 </div>
 <div class="card">
@@ -94,7 +94,7 @@ independent areas within one image.</p>
 <img src="../images/qp-cat/concepts/independent-areas.svg" alt="Two views of a slide carrying three tissue sections. On the left a single neighbour graph includes amber edges that jump the empty space between sections. On the right each section has its own graph and no edge crosses between them.">
 <b>Independent areas</b>
 <p>Cells in physically separate tissue — different TMA cores, sections, images — must never
-share a spatial graph. A neighbour relationship across two cores is an artifact of how the
+share a spatial graph. A neighbor relationship across two cores is an artifact of how the
 slide was laid out, not biology. QP-CAT resolves areas by geometry and guarantees no edge
 joins two of them. Left unconfigured, the graph is global.</p>
 </div>
@@ -239,98 +239,109 @@ The eight channels you are about to cluster on are **DAPI** (used for detection)
 from **six cell types** — tumor, fibroblast, CD8 T, helper T, B cell, macrophage — which is
 the answer you are trying to arrive at without being told.
 
-1. **Check the environment first.** Open `Extensions > QP-CAT`. Until the Python environment
-   is installed, every group except **Setup & help** is hidden, so a fresh install shows a menu
-   with one item on it — that is expected, not a broken install. Build it from
-   `Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`. Once it is ready the menu fills
-   out:
+#### 3.1 Check the Python environment
 
-   <img src="../images/qp-cat/menu.png" alt="The Extensions menu with QP-CAT expanded. Its first item is Find cell populations (clustering), followed by the submenus Classify cells, Explore and spatial, Results and populations, Export, and Setup and help. The extensions list behind it shows QuIET, Classify Object Subset, Project Metadata Browser, Channel Names Viewer, Class Distribution and Cluster 3D Navigator" width="586">
+**Check the environment first.** Open `Extensions > QP-CAT`. Until the Python environment
+is installed, every group except **Setup & help** is hidden, so a fresh install shows a menu
+with one item on it — that is expected, not a broken install. Build it from
+`Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`. Once it is ready the menu fills
+out:
 
-2. **`Extensions > QP-CAT > Find cell populations (clustering)...`**, and set it up like this:
+<img src="../images/qp-cat/menu.png" alt="The Extensions menu with QP-CAT expanded. Its first item is Find cell populations (clustering), followed by the submenus Classify cells, Explore and spatial, Results and populations, Export, and Setup and help. The extensions list behind it shows QuIET, Classify Object Subset, Project Metadata Browser, Channel Names Viewer, Class Distribution and Cluster 3D Navigator" width="586">
 
-   | Section | Setting |
-   |---|---|
-   | Scope | **All project images (8)** — 11,421 cells |
-   | Measurements | **`Select 'Mean' only`**, then also tick the six **`Nucleus:`** shape measurements (Area, Perimeter, Circularity, Max caliper, Min caliper, Eccentricity). **30 in total** |
-   | Normalization | **Z-score (standard)**, the default |
-   | Dimensionality Reduction | **UMAP**, **Dimensions: 3D** |
-   | Clustering Algorithm | **KMeans**, **k = 6** |
+#### 3.2 Set up the clustering run
 
-   Leave the random seed at 42. KMeans runs ten initializations and keeps the best, so the run
-   is repeatable. The dialog reopens with whatever you last ran, so the second and third runs in
-   this exercise start from the first rather than from defaults. While a run is going, the
-   progress checklist shows how long each step has taken — useful for deciding which spatial
-   statistics are worth their time on your own data. Tick **`Neighborhood enrichment + Moran's I`** and, under Spatial statistics,
-   **`Ripley L`** as well — step 5 needs both, and computing them now saves a second
-   run.
+Open **`Extensions > QP-CAT > Find cell populations (clustering)...`**, and set it up like this:
 
-   > **Short on time, or something went wrong?** If you took the **clustered** project,
-   > everything below is already computed in it. Open
-   > `Extensions > QP-CAT > Results & populations > View Past Results...` and pick `auto_20260924_135415_kmeans`.
-   > The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
-   > dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
+| Section | Setting |
+|---|---|
+| Scope | **All project images (8)** — 11,421 cells |
+| Measurements | **`Select 'Mean' only`**, then also tick the six **`Nucleus:`** shape measurements (Area, Perimeter, Circularity, Max caliper, Min caliper, Eccentricity). **30 in total** |
+| Normalization | **Z-score (standard)**, the default |
+| Dimensionality Reduction | **UMAP**, **Dimensions: 3D** |
+| Clustering Algorithm | **KMeans**, **k = 6** |
 
-   > **Why keep the shape measurements?** Marker intensities are the usual starting point, and
-   > it would be reasonable to stop there. This dataset is built so that shape carries real
-   > information — fibroblasts have elongated spindle nuclei, tumor nuclei are large and round —
-   > and you will see those features earn their place in the next step.
-   >
-   > `Extensions > QP-CAT > Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6.
-   > It is not a shortcut for this step.
+Leave the random seed at 42. KMeans runs ten initializations and keeps the best, so the run
+is repeatable. The dialog reopens with whatever you last ran, so the second and third runs in
+this exercise start from the first rather than from defaults. While a run is going, the
+progress checklist shows how long each step has taken — useful for deciding which spatial
+statistics are worth their time on your own data. Tick **`Neighborhood enrichment + Moran's I`** and, under Spatial statistics,
+**`Ripley L`** as well — step 5 needs both, and computing them now saves a second
+run.
 
-3. **Read the Marker Fingerprints tab.** One card per cluster, showing each measurement's
-   enrichment as log2 fold-change against every other cell. The Marker Fingerprints tab is where you name the clusters:
+> **Short on time, or something went wrong?** If you took the **clustered** project,
+> everything below is already computed in it. Open
+> `Extensions > QP-CAT > Results & populations > View Past Results...` and pick `auto_20260924_135415_kmeans`.
+> The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
+> dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
 
-   <img src="../images/qp-cat/fingerprints-kmeans6.png" alt="The Marker Fingerprints tab showing six cluster cards. Cluster 0, 3306 cells, is led by Cytoplasm aSMA mean plus nucleus eccentricity and max caliper. Cluster 1, 1914 cells, by PanCK. Cluster 2, 2752 cells, by CD3 across three compartments and by CD8. Cluster 3, 1093 cells, by CD20. Cluster 4, 1566 cells, by CD68. Cluster 5, 790 cells, by Ki67 across three compartments together with PanCK" width="1000">
+> **Why keep the shape measurements?** Marker intensities are the usual starting point, and
+> it would be reasonable to stop there. This dataset is built so that shape carries real
+> information — fibroblasts have elongated spindle nuclei, tumor nuclei are large and round —
+> and you will see those features earn their place in the next step.
+>
+> `Extensions > QP-CAT > Explore & spatial > Quick clustering presets > Quick KMeans (k=10)` is **k = 10**, not 6.
+> It is not a shortcut for this step.
 
-   | Cluster | Cells | Led by | Read it as |
-   |---|---|---|---|
-   | 0 | 3,306 | aSMA, **plus eccentric, long nuclei** | fibroblast |
-   | 1 | 1,914 | PanCK | tumor |
-   | 2 | 2,752 | CD3 **and** CD8 | T cells |
-   | 3 | 1,093 | CD20 | B cell |
-   | 4 | 1,566 | CD68 | macrophage |
-   | 5 | 790 | Ki67 **and** PanCK | proliferating tumor |
+#### 3.3 Read the Marker Fingerprints tab
 
-   Cluster 0 is the shape argument made concrete: `Nucleus: Eccentricity` and `Nucleus: Max
-   caliper` sit alongside aSMA, because a fibroblast is both aSMA-positive *and* spindle-shaped.
+**Read the Marker Fingerprints tab.** One card per cluster, showing each measurement's
+enrichment as log2 fold-change against every other cell. The Marker Fingerprints tab is where you name the clusters:
 
-4. **Now compare that against the ground truth, and notice it does not line up the way you
-   would expect.** Every cluster matches a real population to within about one percent —
-   but they are not the six types the dataset was built from:
+<img src="../images/qp-cat/fingerprints-kmeans6.png" alt="The Marker Fingerprints tab showing six cluster cards. Cluster 0, 3306 cells, is led by Cytoplasm aSMA mean plus nucleus eccentricity and max caliper. Cluster 1, 1914 cells, by PanCK. Cluster 2, 2752 cells, by CD3 across three compartments and by CD8. Cluster 3, 1093 cells, by CD20. Cluster 4, 1566 cells, by CD68. Cluster 5, 790 cells, by Ki67 across three compartments together with PanCK" width="1000">
 
-   | Cluster | % of cells | Ground-truth population | % |
-   |---|---|---|---|
-   | 0 fibroblast | 28.9 | `fibroblast` | 28.9 |
-   | 1 tumor | 16.8 | `tumor`, Ki67-negative | 16.4 |
-   | 5 proliferating tumor | 6.9 | `tumor`, Ki67-positive | 7.2 |
-   | 2 T cells | 24.1 | `cd8_t` **+** `helper_t` | 24.3 |
-   | 3 B cell | 9.6 | `b_cell` | 9.5 |
-   | 4 macrophage | 13.7 | `macrophage` | 13.6 |
+| Cluster | Cells | Led by | Read it as |
+|---|---|---|---|
+| 0 | 3,306 | aSMA, **plus eccentric, long nuclei** | fibroblast |
+| 1 | 1,914 | PanCK | tumor |
+| 2 | 2,752 | CD3 **and** CD8 | T cells |
+| 3 | 1,093 | CD20 | B cell |
+| 4 | 1,566 | CD68 | macrophage |
+| 5 | 790 | Ki67 **and** PanCK | proliferating tumor |
 
-   **KMeans spent one of its six clusters splitting the tumor by proliferation, and paid for it
-   by merging the two T-cell lineages.** Ki67 is a *state* — a cell cycling or not — while CD8
-   marks a *lineage*. Nothing in the algorithm knows the difference; both are just columns that
-   separate cells.
+Cluster 0 is the shape argument made concrete: `Nucleus: Eccentricity` and `Nucleus: Max
+caliper` sit alongside aSMA, because a fibroblast is both aSMA-positive *and* spindle-shaped.
 
-   The cost is not cosmetic. "T cells are present" and "*cytotoxic* T cells are present" are
-   different claims about a tumor, and only the second speaks to whether the immune response has
-   effector potential. You got the right *number* of clusters and the wrong *partition*, and the
-   only reason you can tell is that this dataset ships a ground truth. On real data you could not.
+#### 3.4 Compare against the ground truth
 
-5. **So what would you change?** Two honest routes, both worth trying:
-   - **k = 7**, which gives the algorithm room to keep the tumor split *and* separate the T cells.
-   - **Drop Ki67 from the measurements** and re-run at k = 6. If proliferation cannot define a
-     cluster, the spare cluster goes somewhere else.
+**Now compare that against the ground truth, and notice it does not line up the way you
+would expect.** Every cluster matches a real population to within about one percent —
+but they are not the six types the dataset was built from:
 
-   Neither is more correct in the abstract. Which you want depends on whether proliferation or
-   cytotoxic identity is the question you came with — and that is a decision about biology, not
-   about clustering.
+| Cluster | % of cells | Ground-truth population | % |
+|---|---|---|---|
+| 0 fibroblast | 28.9 | `fibroblast` | 28.9 |
+| 1 tumor | 16.8 | `tumor`, Ki67-negative | 16.4 |
+| 5 proliferating tumor | 6.9 | `tumor`, Ki67-positive | 7.2 |
+| 2 T cells | 24.1 | `cd8_t` **+** `helper_t` | 24.3 |
+| 3 B cell | 9.6 | `b_cell` | 9.5 |
+| 4 macrophage | 13.7 | `macrophage` | 13.6 |
 
-6. Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
-   true type is in the `cell_type` column.
+**KMeans spent one of its six clusters splitting the tumor by proliferation, and paid for it
+by merging the two T-cell lineages.** Ki67 is a *state* — a cell cycling or not — while CD8
+marks a *lineage*. Nothing in the algorithm knows the difference; both are just columns that
+separate cells.
 
+The cost is not cosmetic. "T cells are present" and "*cytotoxic* T cells are present" are
+different claims about a tumor, and only the second speaks to whether the immune response has
+effector potential. You got the right *number* of clusters and the wrong *partition*, and the
+only reason you can tell is that this dataset ships a ground truth. On real data you could not.
+
+#### 3.5 Decide what to change
+
+**So what would you change?** Two honest routes, both worth trying:
+- **k = 7**, which gives the algorithm room to keep the tumor split *and* separate the T cells.
+- **Drop Ki67 from the measurements** and re-run at k = 6. If proliferation cannot define a
+  cluster, the spare cluster goes somewhere else.
+
+Neither is more correct in the abstract. Which you want depends on whether proliferation or
+cytotoxic identity is the question you came with — and that is a decision about biology, not
+about clustering.
+
+#### 3.6 Check your numbers
+
+Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
+true type is in the `cell_type` column.
 ### 4. Cluster on the UMAP instead of the markers
 *Concept: letting the data choose the number of clusters, and what that costs you.*
 
@@ -346,7 +357,9 @@ In QP-CAT this is a **second run**, not a setting. Clustering normally fits in f
 space and the embedding is computed only so you have something to look at, so to cluster *on*
 the embedding you run again over those columns.
 
-**Open `Extensions > QP-CAT > Find cell populations (clustering)...` again** and change these settings:
+#### 4.1 Set up the second run
+
+Open `Extensions > QP-CAT > Find cell populations (clustering)...` again and change these settings:
 
 | # | Setting | Set to |
 |---|---|---|
@@ -368,16 +381,19 @@ result below.</figcaption>
 </figure>
 </div>
 
-
-**Rows 5 to 7 are the exercise.** Left on their defaults, this configuration
-returned a single cluster holding **97.0%** of 107,282 cells on a different, real dataset —
+**Change `min_cluster_size`, `min_samples` and Cluster selection (rows 5 to 7) from their
+defaults.** Left on the defaults, HDBSCAN returned a single cluster holding **97.0%** of 107,282 cells on a different, real dataset —
 from a space whose groups were plainly separated in the 3D view. What each setting does:
 [scikit-learn's `cluster_selection_method` and `min_samples`](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html).
 What it looks like when it goes wrong, and how to tell:
 [QP-CAT troubleshooting](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md#5-hdbscan-returns-one-giant-cluster-and-almost-no-noise).
 
-**`min_cluster_size` is the one you will actually tune, and 500 is the value that produced
-the result below.** It is the smallest group HDBSCAN is allowed to call a cluster, so read it
+Then click **Run Clustering**.
+
+<details markdown="1">
+<summary><b>Why these values</b> — 500, <code>min_samples</code> 0, and batch correction off</summary>
+
+**Tune `min_cluster_size` first. 500 produced the result below.** It is the smallest group HDBSCAN is allowed to call a cluster, so read it
 against this dataset: 11,421 cells, and the smallest population you are trying to recover is
 proliferating tumor at 790. The default of 15 is 0.1% of the cohort — fine for finding
 something rare, but with **Leaf** selection, which deliberately cuts at the finest level of
@@ -386,7 +402,7 @@ sits under 790, so a real group still clears it, and far above 15. The seven clu
 returned ran from 825 to 3,306 cells.
 
 **Changing `min_cluster_size` changes two things at once.** With `min_samples` on **0**, scikit-learn ties
-the density estimate to `min_cluster_size`, so raising the floor also widens the neighbourhood
+the density estimate to `min_cluster_size`, so raising the floor also widens the neighborhood
 the density is measured over. That is usually what you want — it is why 0 is the default —
 but it means a sweep of `min_cluster_size` is not a one-variable sweep.
 
@@ -405,6 +421,10 @@ cluster. If you want it gone, correct it in step 3 and recompute the UMAP; the
 > answers, not inputs. Here you are clustering on them deliberately, which is why you
 > tick exactly three by hand rather than leaving the rest of the previous run's output
 > selected alongside.
+
+</details>
+
+#### 4.2 Check the result
 
 **Read the noise fraction first.** QP-CAT reports it in the banner above the
 results. HDBSCAN has two failure modes that look identical in the viewer and are opposites
@@ -434,27 +454,45 @@ cluster 2 blue-ringed. Read the clusters by eye here, or re-run over markers to 
 **What to look for.** Seven clusters, and the question this route exists for: *did letting
 the data choose recover the CD8 / helper split — the one KMeans missed, having spent its spare
 cluster on proliferation instead?* You cannot answer it from these three panels, because
-nothing here has read a marker. Reading the markers is the next step.
+nothing here has read a marker.
 
-**The middle panel is the cost of this route.** Clustering on three
-embedding columns means the marker rankings can only rank those three columns. A cluster that
+**The middle panel ranks only the three embedding columns**, because those are all this run
+clustered on. A cluster that
 is high in `3DUMAP2` is not a phenotype.
 
-**Now take the second step.** That run read three columns and nothing else. Every marker
+#### 4.3 Describe the clusters by their markers
+
+That run read three columns and nothing else. Every marker
 measurement — PanCK, CD3, CD20, all of them — is still on the cells, unused.
-**`Extensions > QP-CAT > Results & populations > Analyze current cell classifications...`** uses them. It takes the
+Open **`Extensions > QP-CAT > Results & populations > Analyze current cell classifications...`**. It takes the
 classes the cells now carry, computes each cluster's marker statistics, and opens the usual
 results window: **Heatmap**, **Marker Rankings**, **Marker Fingerprints** and the
 **Composition** tabs. It writes nothing back: no classification is added, changed or
 removed.
 
-> **Heatmap colours may not match the screenshots here.** The Heatmap tab has a **Scale**
-> control, and a matching preference, that changes how values become colours. White is always
-> zero when the run was Z-scored; what Scale chooses is whether the colour reaches to each
-> marker's own strongest value (**Per marker**, the default) or to one value shared across the
-> whole map (**Shared across markers**). With **Normalization** set to None the values have no
-> meaningful zero, so the map switches to a sequential viridis scale and says so in its legend.
-> The reading does not change, only the colours.
+<details markdown="1">
+<summary><b>Heatmap colors may not match the screenshots here</b></summary>
+
+The Heatmap tab has a **Scale**
+control, and a matching preference, that changes how values become colors. White is always
+zero when the run was Z-scored; what Scale chooses is whether the color reaches to each
+marker's own strongest value (**Per marker**, the default) or to one value shared across the
+whole map (**Shared across markers**). With **Normalization** set to None the values have no
+meaningful zero, so the map switches to a sequential viridis scale and says so in its legend.
+The reading does not change, only the colors.
+
+</details>
+
+Check these five settings before you run. The dialog reopens on whatever you last ran in
+this project, so check them even if you have been here before:
+
+| Section | Set it to | Why |
+|---|---|---|
+| Measurements | `Select 'Mean' only`, **then `Deselect QPCAT`** | What this run is for: markers, not the UMAP columns you clustered on. `Select 'Mean' only` also ticks QP-CAT's own `QPCAT component: mean:` columns, which are output from an earlier run, not measurements of the cell |
+| Dimensionality Reduction | **Method: None** | The UMAP you want is already on the cells. Left on UMAP this computes a *second*, different one |
+| Classifications to analyze | **every class ticked** | Each class is described by contrast with all the others, so unticking one silently changes what "the others" means for every class left |
+| Independent areas | **blank** | It only shapes the spatial graph, and this run builds none |
+| Spatial statistics | all **unticked** | Nothing here is a spatial question, and step 3 already computed them |
 
 <div class="shots" markdown="0">
 <figure>
@@ -467,27 +505,20 @@ embedding instead of using the one already on the cells.</figcaption>
 <figure>
 <img src="../images/qp-cat/analyze-current2.png" alt="The lower half of the same dialog. A Classifications to analyze section lists Cluster 0 through Cluster 6 with cell counts of 825, 3306, 1088, 1868, 1554, 1388 and 1392, every one ticked, with the line 7 classes found and Select all, Select none and Refresh list buttons. Below it, Generate analysis plots, Neighborhood enrichment, PCA and Batch correction are unticked, Spatial feature smoothing is greyed out, and Independent areas and Spatial statistics are collapsed. The Analyze and Close buttons sit at the bottom.">
 <figcaption><b>Lower half: the class list.</b> One row per class with its count, all ticked,
-and the class total underneath. <b>Spatial feature smoothing is greyed out</b> in this mode on
+and the class total underneath. <b>Spatial feature smoothing is grayed out</b> in this mode on
 purpose: it rewrites the measurements each class is then described by, so a class would report
-markers its <i>neighbours</i> carry.</figcaption>
+markers its <i>neighbors</i> carry.</figcaption>
 </figure>
 </div>
 
-Five settings to check before you run. The dialog reopens on whatever you last ran in
-this project, so check them even if you have been here before:
-
-| Section | Set it to | Why |
-|---|---|---|
-| Measurements | `Select 'Mean' only`, **then `Deselect QPCAT`** | What this run is for: markers, not the UMAP columns you clustered on. `Select 'Mean' only` also ticks QP-CAT's own `QPCAT component: mean:` columns, which are output from an earlier run, not measurements of the cell |
-| Dimensionality Reduction | **Method: None** | The UMAP you want is already on the cells. Left on UMAP this computes a *second*, different one |
-| Classifications to analyze | **every class ticked** | Each class is described by contrast with all the others, so unticking one silently changes what "the others" means for every class left |
-| Independent areas | **blank** | It only shapes the spatial graph, and this run builds none |
-| Spatial statistics | all **unticked** | Nothing here is a spatial question, and step 3 already computed them |
-
 **Check the class list before you run.** It shows one row per class with its cell count, and
 it is where a mixed project shows itself: if some images carry cluster labels and others
-still carry an earlier labelling, you will see both sets listed together and the run will
-compare things that were never meant to be compared. One labelling system, all of its classes.
+still carry an earlier labeling, you will see both sets listed together and the run will
+compare things that were never meant to be compared. One labeling system, all of its classes.
+
+Then click **Analyze**.
+
+#### 4.4 Read the answer
 
 <div class="shots" markdown="0">
 <figure style="max-width:500px">
@@ -511,8 +542,8 @@ cells come apart:
 | 2 | 1,088 (9.5%) | CD20 | B cell | 9.5% |
 | 0 | 825 (7.2%) | Ki67 and PanCK | proliferating tumor | 7.2% |
 
-Clusters 5 and 6 are the point. Both are CD3-positive; cluster 5 is CD8-positive and cluster
-6 is CD8-*negative*, which is the whole difference between the two lineages in this dataset.
+Look at clusters 5 and 6. Both are CD3-positive; cluster 5 is CD8-positive and cluster
+6 is CD8-*negative*, which is what separates the two T-cell lineages in this dataset.
 KMeans at k = 6 merged them and spent its spare cluster on proliferation instead. Letting the
 data choose the number recovered both, and neither run could have told you which markers
 those clusters carry.
@@ -520,8 +551,8 @@ those clusters carry.
 Your own run may split or merge differently; the ground-truth column is how you check it
 rather than take the above on trust.
 
-The two runs are a pair: **cluster in one space, characterize in another.** HDBSCAN
-on the UMAP decides *which cells group together*; analysing those groups over the markers
+**Cluster in one space, characterize in another.** HDBSCAN
+on the UMAP decides *which cells group together*; analyzing those groups over the markers
 decides *what to call them*. Neither run can do both.
 
 > **Worth reading before you rely on this:**
@@ -539,60 +570,72 @@ Cell types alone do not tell you much. **Where** they sit does. In this image, T
 concentrated in a band just outside each tumor nest, the computational version of a
 pathologist's read on whether an immune response has reached the tumor.
 
-1. Run **neighborhood enrichment** on your classified cells. It is a tick-box —
-   `Neighborhood enrichment + Moran's I` — in the Run Clustering dialog, so the easiest route is
-   to turn it on before you cluster. After the fact, use
-   `Extensions > QP-CAT > Explore & spatial > Spatial statistics on existing clusters...` instead.
-2. Read the matrix for four specific pairs, and predict each before you look:
+#### 5.1 Run neighborhood enrichment
 
-   | Pair | Expect | Because |
-   |---|---|---|
-   | tumor ↔ tumor | strongly positive | tumor grows in nests, not as single cells |
-   | B ↔ B | strongly positive | follicles: dense aggregates, not scattered cells |
-   | tumor ↔ fibroblast | strongly **negative** | they occupy different compartments |
-   | tumor ↔ CD8 T | positive | cytotoxic T cells sit at the nest boundary |
+Run **neighborhood enrichment** on your classified cells. It is a tick-box —
+`Neighborhood enrichment + Moran's I` — in the Run Clustering dialog, so the easiest route is
+to turn it on before you cluster. After the fact, use
+`Extensions > QP-CAT > Explore & spatial > Spatial statistics on existing clusters...` instead.
 
-3. **Now the control that makes it a result.** Check tumor ↔ *helper* T. It should be
-   markedly weaker than tumor ↔ CD8 T. The enrichment is specific to the cytotoxic subset,
-   which is exactly why step 3's k = 6 merge of the two T-cell lineages would have destroyed
-   this finding: the two
-   T-cell populations would have been averaged into one indifferent number.
-4. Run **Ripley L** per type: tumor and B cells clustered, fibroblasts dispersed. It is one of
-   four tick-boxes under **Spatial statistics**, in the same two places as step 1 above.
+#### 5.2 Read the matrix for four pairs
 
-   The chart opens showing **one cluster**, with the rest unticked under **Show clusters** —
-   each cluster draws three lines (its curve plus both edges of its own random band), so a
-   whole run at once is unreadable. Tick them one or two at a time.
+Read the matrix for four specific pairs, and predict each before you look:
 
-   Read each curve against the **flat line at zero**, which is randomness: the curve is
-   plotted relative to that cluster's own simulated-random median. **Above the dashed band**
-   at some radius means clustered at that radius, **below** means dispersed, and **inside the
-   band** means indistinguishable from random. Untick **Relative to random** to see the raw
-   `L(r)` instead.
+| Pair | Expect | Because |
+|---|---|---|
+| tumor ↔ tumor | strongly positive | tumor grows in nests, not as single cells |
+| B ↔ B | strongly positive | follicles: dense aggregates, not scattered cells |
+| tumor ↔ fibroblast | strongly **negative** | they occupy different compartments |
+| tumor ↔ CD8 T | positive | cytotoxic T cells sit at the nest boundary |
 
-   <div class="shots" markdown="0">
-   <figure>
-   <img src="../images/qp-cat/ripley-asma-panck.png" alt="The Ripley L tab plotted relative to random, with only Cluster 1 and Cluster 3 ticked in the Show clusters panel. Cluster 3, red, rises steeply to about plus 43 near a radius of 480 pixels, far above its dashed band, then falls and crosses below zero past about 1300 pixels. Cluster 1, orange, falls below its dashed band from about 200 pixels and flattens near minus 21. A black dashed line at zero is labelled Random (simulated).">
-   <figcaption><b>Two clusters, opposite answers.</b> Cluster 3 is the PanCK cluster (tumor)
-   and Cluster 1 is the aSMA cluster (fibroblast), from the marker table in step 4. Tumor sits
-   far <b>above</b> its band out to ~1,200 px: clustered, which is what a nest is. Fibroblast
-   sits <b>below</b> its band from ~200 px: dispersed, which is what the stroma was built to
-   be. Both are outside their own bands, so neither reading is noise.</figcaption>
-   </figure>
-   </div>
+#### 5.3 Check the control pair
 
-   The tumor curve turning back down past ~1,300 px is not a contradiction. A nest has a
-   size; beyond it you run out of same-type neighbours, so the excess falls away. Where the
-   curve peaks is a rough read on the scale of the structure, which is the useful part.
-5. Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
-    statistic says.
+**Now the control that makes it a result.** Check tumor ↔ *helper* T. It should be
+markedly weaker than tumor ↔ CD8 T. The enrichment is specific to the cytotoxic subset,
+which is exactly why step 3's k = 6 merge of the two T-cell lineages would have destroyed
+this finding: the two
+T-cell populations would have been averaged into one indifferent number.
 
-    > **Taking the numbers with you.** The Geary's C, Ripley and co-occurrence tabs each have
-    > `Copy`, `Copy CSV` and `Save CSV...`. The CSV is written one row per observation, so a
-    > pairwise co-occurrence row names both clusters — easier to work with than the on-screen
-    > table, which is one column per ordered pair and scrolls off the right on a run with many
-    > clusters.
+#### 5.4 Run Ripley L
 
+Run **Ripley L** per type: tumor and B cells clustered, fibroblasts dispersed. It is one of
+four tick-boxes under **Spatial statistics**, in the same two places as in 5.1 above.
+
+The chart opens showing **one cluster**, with the rest unticked under **Show clusters** —
+each cluster draws three lines (its curve plus both edges of its own random band), so a
+whole run at once is unreadable. Tick them one or two at a time.
+
+Read each curve against the **flat line at zero**, which is randomness: the curve is
+plotted relative to that cluster's own simulated-random median. **Above the dashed band**
+at some radius means clustered at that radius, **below** means dispersed, and **inside the
+band** means indistinguishable from random. Untick **Relative to random** to see the raw
+`L(r)` instead.
+
+<div class="shots" markdown="0">
+<figure>
+<img src="../images/qp-cat/ripley-asma-panck.png" alt="The Ripley L tab plotted relative to random, with only Cluster 1 and Cluster 3 ticked in the Show clusters panel. Cluster 3, red, rises steeply to about plus 43 near a radius of 480 pixels, far above its dashed band, then falls and crosses below zero past about 1300 pixels. Cluster 1, orange, falls below its dashed band from about 200 pixels and flattens near minus 21. A black dashed line at zero is labelled Random (simulated).">
+<figcaption><b>Two clusters, opposite answers.</b> Cluster 3 is the PanCK cluster (tumor)
+and Cluster 1 is the aSMA cluster (fibroblast), from the marker table in step 4. Tumor sits
+far <b>above</b> its band out to ~1,200 px: clustered, which is what a nest is. Fibroblast
+sits <b>below</b> its band from ~200 px: dispersed, which is what the stroma was built to
+be. Both are outside their own bands, so neither reading is noise.</figcaption>
+</figure>
+</div>
+
+The tumor curve turning back down past ~1,300 px is not a contradiction. A nest has a
+size; beyond it you run out of same-type neighbors, so the excess falls away. Where the
+curve peaks is a rough read on the scale of the structure.
+
+#### 5.5 Look at the cells
+
+Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
+statistic says.
+
+> **Taking the numbers with you.** The Geary's C, Ripley and co-occurrence tabs each have
+> `Copy`, `Copy CSV` and `Save CSV...`. The CSV is written one row per observation, so a
+> pairwise co-occurrence row names both clusters — easier to work with than the on-screen
+> table, which is one column per ordered pair and scrolls off the right on a run with many
+> clusters.
 ### 6. Inflamed versus desert
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
 
@@ -653,10 +696,10 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 <img src="../images/qp-cat/menu-savedresults.png" alt="The QP-CAT menu with Results and populations expanded, showing View Past Results, Manage Saved Results, then Modify cell populations (rename, merge, split, sub-cluster), Analyze current cell classifications, Apply saved result to detections, and Apply cluster color palette" width="1000">
 
 - **`Extensions > QP-CAT > Results & populations > View Past Results...`** reopens the whole results window — heatmap,
-  marker rankings, embedding, every tab — with no Python run and no re-clustering. This is the
-  one to use if you want to go back to step 3's plots while working on step 5, or to look again
+  marker rankings, embedding, every tab — with no Python run and no re-clustering. Use it
+  to go back to step 3's plots while working on step 5, or to look again
   after the session.
-- **`Extensions > QP-CAT > Results & populations > Apply saved result to detections...`** is the different one: it writes a saved run's labels
+- **`Extensions > QP-CAT > Results & populations > Apply saved result to detections...`** writes a saved run's labels
   back onto the cells. Reach for it when the labels are right in the saved result but are not on
   the image — most often after closing and reopening the project. It matches cells by source
   image id and centroid rather than by count, and shows a predicted match count before you

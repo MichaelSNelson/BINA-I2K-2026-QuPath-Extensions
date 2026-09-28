@@ -120,8 +120,7 @@ classes that are **absent** from it. Open `tme_07` and `b_cell` appears in the l
 **`0.0% [missing]`** rather than simply not being drawn. A class you cannot see is easy to
 forget; a class labeled *missing* is not.
 
-Looking for `[missing]` classes on the Current image tab is the check worth running before you
-train on a single slide.
+Before you train on a single slide, open its Current image tab and look for `[missing]` classes.
 
 (The **Image type** filter is not on this tab; it is on **Project**, from step 4.)
 
@@ -139,7 +138,7 @@ drew a lot of it, not because it covers a lot of cells. On this project it is ne
 because the ground truth is **points** and points have no area.
 
 Use the area dialog while you are drawing regions, and the detection dialog once those regions
-are labeling cells. They disagree on purpose, and the disagreement is the point: ten large
+are labeling cells. The two dialogs can disagree: ten large
 stroma regions and forty small tumor ones can be 20:1 by area and the other way round by cell
 count.
 

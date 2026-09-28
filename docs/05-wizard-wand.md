@@ -174,8 +174,8 @@ select it.
 
 ### What to notice
 
-- **A wand you can sweep is a different tool from a wand you click.** One stroke covers what
-  would otherwise be a dozen clicks and a dozen boundaries to reconcile.
+- **One sweep covers what would otherwise be a dozen clicks**, and leaves one boundary instead
+  of a dozen to reconcile.
 - **Presets beat fiddling.** Four named presets cover most of what the sliders would, and you
   can save your own once you find settings that suit your slides.
 - **Hole filling and smoothing sound cosmetic but change your numbers.** Area measurements,

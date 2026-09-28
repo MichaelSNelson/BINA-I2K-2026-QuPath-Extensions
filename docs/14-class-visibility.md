@@ -220,9 +220,9 @@ In the classes list, the `CD8` row's **`Count`** reads **2**: cells whose class 
 anywhere in their class. Almost every CD8 cell in this image is also CD3-positive, so it lives
 in a class like `CD3: CD8`, not in `CD8`.
 
-**Count against Total is the difference between the two lists.** A class row is that class and nothing else:
-checking the `CD8` *class* row would show 2 cells. A component is everything containing it: the
-189 in its `Total`.
+**A class row counts that class and nothing else; a component row counts every class that
+contains it.** Checking the `CD8` *class* row would show 2 cells. Checking the `CD8` component
+shows the 189 in its `Total`.
 
 Try it with `PanCK`. Uncheck the `CD8` component, then check the **`PanCK` class row**: 286
 cells, the tumor cells positive for PanCK alone. Uncheck it and check the **`PanCK`

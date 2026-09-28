@@ -98,8 +98,8 @@ dialog appears. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.cz
 
    Clear the box and all four rows come back.
 4. Click the **`specimen`** column header to sort by it. With four images there is little to
-   see. On a project of hundreds this is the quickest check there is, because a misread value
-   sorts to the top or bottom, away from the real ones.
+   see. On a project of hundreds, sorting an OCR column puts a misread value at the top or
+   bottom, away from the real ones.
 
 ### 4. Edit, undo, redo
 
@@ -213,18 +213,14 @@ image list groups under it, with a heading row per value. The pane's filter box 
 type only, so metadata is what gives you an axis worth sorting on. A project of four hundred files
 named by scanner ID becomes a list grouped by stain, by case, or by block.
 
-Sorting and grouping by metadata is the payoff for filling it in at all, and it is why label recognition, this browser
-and the project pane form a chain: recover the fields, check them here, then navigate the project
+Label recognition, this browser and the project pane work in sequence: recover the fields, check them here, then navigate the project
 by what is written on the slide.
 
 ### What to notice
 
-- The buffered editor changes how you work: you can be aggressive, because nothing is real
-  until Save.
-- A project-wide key rename as a single undoable operation is not something you would attempt
-  with a script.
-- Sorting by an OCR column is the fastest QC pass available, because bad reads are almost always
-  outliers.
+- Nothing you type in the browser window reaches the project until you save, and every change
+  can be undone before that.
+- Renaming a key on every image is one action, and one Ctrl+Z reverses it.
 
 ---
 

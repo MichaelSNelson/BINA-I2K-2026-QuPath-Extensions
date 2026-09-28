@@ -347,8 +347,8 @@ handful of epochs.
 <img src="../images/dl-pixel-classifier/training%20in%20progress.png" alt="The Training Classifier window partway through a run. A header reads Epoch 6 of 100, batch 2 of 2, with elapsed time, current loss and mean IoU, and an estimated finish time of about one second per epoch. Below are two charts: Training Progress plotting train loss and validation loss falling together over six epochs, and Per-Class IoU plotting Stroma and Tumor, where Tumor climbs steeply from zero after epoch 2 while Stroma dips and recovers. A scrolling Log pane underneath lists per-epoch loss, accuracy, mean IoU and per-class IoU. Pause and Cancel buttons sit at the bottom" width="640">
 
 The two charts answer different questions. **Training Progress** tells you whether the model is
-learning at all; **Per-Class IoU** tells you whether it is learning *both* classes. A class
-pinned near zero while the other climbs is the thing to watch for, and it is visible here in the
+learning at all; **Per-Class IoU** tells you whether it is learning *both* classes. Watch for a class
+pinned near zero while the other climbs; it is visible here in the
 first two epochs before Tumor takes off.
 
 **Pause** stops after the current epoch and saves a checkpoint, so you can resume rather than

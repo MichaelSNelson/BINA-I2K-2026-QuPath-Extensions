@@ -152,68 +152,79 @@ and click **Clear All** underneath the table so step 3's rows do not end up in y
 You are manually building a template from this one label, then applying it to the slides that
 share its design.
 
-1. Click **Draw Region** in the toolbar, then drag a box over the case ID line, **`610 TOMO`**.
-    Right-click inside the box you drew and choose **Scan as Text**. No need to be precise:
-    leave a little room around the text, and the region shrinks to the text inside it.
+#### 4.1 Mark the text region
 
-    <img src="../images/ocr/draw-region-text.png" alt="The dialog with Draw Region boxed in red, a selection drawn around the line 610 TOMO, and the right-click menu open showing Scan (Try Both), Scan as Text, Scan as Barcode, Keep Selection and Clear Selection" width="820">
+Click **Draw Region** in the toolbar, then drag a box over the case ID line, **`610 TOMO`**.
+Right-click inside the box you drew and choose **Scan as Text**. No need to be precise:
+leave a little room around the text, and the region shrinks to the text inside it.
 
-2. Same again for the barcode: **Draw Region**, drag a box over the square 2D barcode, then
-    right-click and choose **Scan as Barcode**. It decodes immediately, and the row appears
-    underneath the one you just made.
+<img src="../images/ocr/draw-region-text.png" alt="The dialog with Draw Region boxed in red, a selection drawn around the line 610 TOMO, and the right-click menu open showing Scan (Try Both), Scan as Text, Scan as Barcode, Keep Selection and Clear Selection" width="820">
 
-3. Before saving anything, set **Scope** to *Drawn Regions* and scan again — the **Scan**
-    button renames itself to **Rescan Regions**. Every row is re-read in place, each using its
-    own **Decode As** value, so you find out what your template will actually produce while it
-    is still cheap to fix.
-4. Give each row a **Metadata Key** you will recognize later: double-click the cell and replace
-    `OCR_field_0` with something like `specimen`, and the barcode row with `barcode`. The
-    **Metadata Preview** at the bottom shows exactly what will be written. Then click
-    **Save Template...**, which stores the field positions, their types, and these key names.
+#### 4.2 Mark the barcode region
 
-    <img src="../images/ocr/save-template.png" alt="The dialog with Save Template boxed in red. The table holds two rows, 610 TOMO keyed as specimen and the decoded barcode keyed as barcode, and the Metadata Preview below shows both" width="820">
-5. Run **batch processing** with that template — but **only over slides whose labels share
-    the same layout**. A template is positional: it stores where each field sits on the label.
-    Point it at a differently laid-out label and it reads whatever happens to be at those
-    coordinates, which is usually nothing, and it will not warn you.
+Same again for the barcode: **Draw Region**, drag a box over the square 2D barcode, then
+right-click and choose **Scan as Barcode**. It decodes immediately, and the row appears
+underneath the one you just made.
 
-    The slides here fall into two sets, and they happen to split by modality — the brightfield
-    slides came off one labeling system, the IF ones off another (see below):
+#### 4.3 Rescan the regions
 
-    | Set | Slides | Label design |
-    |---|---|---|
-    | **Brightfield** | the two `histology@lji_org_610 TOMO…` files | Case ID on line 2, barcode lower-left |
-    | **IF** | the two `8443_51000000…` files | Two columns, QR top-right, date lower-right |
+Before saving anything, set **Scope** to *Drawn Regions* and scan again — the **Scan**
+button renames itself to **Rescan Regions**. Every row is re-read in place, each using its
+own **Decode As** value, so you find out what your template will actually produce while it
+is still cheap to fix.
 
-    <img src="../images/ocr/label-layouts.png" alt="Two slide labels side by side: one with the case ID on the second line and a barcode lower left, the other in two columns with a QR code top right" width="640">
+#### 4.4 Name the keys and save the template
 
-    You built your template on the brightfield H&E slide, so **run the batch over the two
-    brightfield slides only** — the one you just did, plus its `MT3B` partner. Leave the two IF
-    slides out:
+Give each row a **Metadata Key** you will recognize later: double-click the cell and replace
+`OCR_field_0` with something like `specimen`, and the barcode row with `barcode`. The
+**Metadata Preview** at the bottom shows exactly what will be written. Then click
+**Save Template...**, which stores the field positions, their types, and these key names.
 
-    1. **Extensions > OCR for Labels > Run OCR on Project...**, then **Load Template...**
-       (boxed in red in the picture below) and pick the template you just saved.
-    2. Click **Choose Images...** (boxed in blue), which opens the window on the right of the
-       picture. Every slide with a label starts ticked, so click
-       **Select none** first, type `TOMO` in the name filter, and click **Select all**.
-       (**Select all** and **Select none** only touch the slides the filter is showing, which
-       is why the IF pair has to be unticked first.)
-    3. Click **OK**. The dialog now reads **2 of 4 images with labels will be processed** and
-       lists only the two brightfield slides. Click **Process Images**, check the two rows,
-       and **Apply Metadata**.
+<img src="../images/ocr/save-template.png" alt="The dialog with Save Template boxed in red. The table holds two rows, 610 TOMO keyed as specimen and the decoded barcode keyed as barcode, and the Metadata Preview below shows both" width="820">
 
-    <img src="../images/ocr/OCR_batch.png" alt="The Batch OCR Processing window. Load Template is boxed in red; the Field Mappings table below it holds the template's two rows, specimen read as text and barcode read as a barcode. Choose Images is boxed in blue, with blue lines leading to the Batch OCR - Choose Images window it opens. In that window the two histology at lji org 610 TOMO slides are ticked and the two 8443_51000000 IF slides are not, and the corner reads 2 of 4 selected. Process Images, Apply Metadata and Cancel are along the bottom of the main window" width="900">
+#### 4.5 Batch the template over the matching slides
 
-    **One template per label design**, applied to the slides that use it, is the real constraint
-    on batch OCR, and it is why the tool saves templates rather than one global setting.
+Run **batch processing** with that template — but **only over slides whose labels share
+the same layout**. A template is positional: it stores where each field sits on the label.
+Point it at a differently laid-out label and it reads whatever happens to be at those
+coordinates, which is usually nothing, and it will not warn you.
 
-    > **On your own: the IF pair.** The two `8443_51000000` slides are the other label design.
-    > Nothing you have built so far applies to them — the template you saved knows where fields
-    > sit on the *brightfield* label. Start again from the top of step 4 on one of them, save a second
-    > template, and batch it over the two, choosing them with the filter `8443`. The metadata
-    > you applied to the brightfield pair stays put. That is the whole workflow in miniature, and it is
-    > what you would do on arriving at a new set of slides from a different lab.
+The slides here fall into two sets, and they happen to split by modality — the brightfield
+slides came off one labeling system, the IF ones off another (see below):
 
+| Set | Slides | Label design |
+|---|---|---|
+| **Brightfield** | the two `histology@lji_org_610 TOMO…` files | Case ID on line 2, barcode lower-left |
+| **IF** | the two `8443_51000000…` files | Two columns, QR top-right, date lower-right |
+
+<img src="../images/ocr/label-layouts.png" alt="Two slide labels side by side: one with the case ID on the second line and a barcode lower left, the other in two columns with a QR code top right" width="640">
+
+You built your template on the brightfield H&E slide, so **run the batch over the two
+brightfield slides only** — the one you just did, plus its `MT3B` partner. Leave the two IF
+slides out:
+
+1. **Extensions > OCR for Labels > Run OCR on Project...**, then **Load Template...**
+   (boxed in red in the picture below) and pick the template you just saved.
+2. Click **Choose Images...** (boxed in blue), which opens the window on the right of the
+   picture. Every slide with a label starts ticked, so click
+   **Select none** first, type `TOMO` in the name filter, and click **Select all**.
+   (**Select all** and **Select none** only touch the slides the filter is showing, which
+   is why the IF pair has to be unticked first.)
+3. Click **OK**. The dialog now reads **2 of 4 images with labels will be processed** and
+   lists only the two brightfield slides. Click **Process Images**, check the two rows,
+   and **Apply Metadata**.
+
+<img src="../images/ocr/OCR_batch.png" alt="The Batch OCR Processing window. Load Template is boxed in red; the Field Mappings table below it holds the template's two rows, specimen read as text and barcode read as a barcode. Choose Images is boxed in blue, with blue lines leading to the Batch OCR - Choose Images window it opens. In that window the two histology at lji org 610 TOMO slides are ticked and the two 8443_51000000 IF slides are not, and the corner reads 2 of 4 selected. Process Images, Apply Metadata and Cancel are along the bottom of the main window" width="900">
+
+Batch OCR needs **one template per label design**, applied only to the slides that use that
+design. The tool saves templates, rather than one global setting, for that reason.
+
+> **On your own: the IF pair.** The two `8443_51000000` slides are the other label design.
+> Nothing you have built so far applies to them — the template you saved knows where fields
+> sit on the *brightfield* label. Start again from the top of step 4 on one of them, save a second
+> template, and batch it over the two, choosing them with the filter `8443`. The metadata
+> you applied to the brightfield pair stays put. That is the whole workflow in miniature, and it is
+> what you would do on arriving at a new set of slides from a different lab.
 ### 5. The two-minute experiment worth doing
 
 Go back to the `histology@lji.org` label. Tick **Enhance**, set **Scope** to *Drawn Regions*, and

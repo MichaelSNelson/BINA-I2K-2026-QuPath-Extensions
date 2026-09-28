@@ -333,7 +333,9 @@ a QPSC acquisition too and still bands, because it was acquired with the correct
 
 ### 5. If you have time
 
-**Stitch to OME-Zarr.** The OME-Zarr run is step 3 again in the other output format. You have been through
+#### 5.1 Stitch to OME-Zarr
+
+The OME-Zarr run is step 3 again in the other output format. You have been through
 step 4 since, so several fields need putting back:
 
 | Field | Set to |
@@ -358,12 +360,13 @@ three-channel image you got in step 3. If you drop `s0` or the parent folder ins
 will not recognize it.
 
 Look inside the `.ome.zarr` folder and the trade-off is plain: a single channel that was one `.ome.tif` file is 29 files
-spread through a directory tree, and the merged image is 54. That is the point of the format —
-many small chunks can be read in parallel and served from cloud storage, where one large file
-cannot. It is also the cost: copying, moving or sending a Zarr means keeping thousands of small
+spread through a directory tree, and the merged image is 54. Many small chunks can be read in parallel and served from cloud
+storage, where one large file cannot. The cost is handling them: copying, moving or sending a Zarr means keeping thousands of small
 files together, and a tool that expects a single file will not take it.
 
-**Specify folders to stitch using string matching.** Both polarization angles stitch in one go:
+#### 5.2 Stitch several folders with string matching
+
+Both polarization angles stitch in one go:
 
 | Field | Set to |
 |---|---|
@@ -391,8 +394,8 @@ The two boxed entries are the stitched images, and both are folders — **drag o
 QuPath**, not the source folder of the same name sitting just above it. Note also the
 `.stitch-info` text file written beside each one, recording how that image was made.
 
-Stitching several folders in one run is the point of string matching. Everything up to now
-stitched a single acquisition per click; string matching stitches a *set*, one output each, without revisiting the dialog between them. Point it at
+Everything up to now stitched a single acquisition per click. String matching stitches a *set*
+of folders in one run, one output each, without revisiting the dialog between them. Point it at
 a drive of acquisitions and the same one click does all of them.
 
 > **Why `.`** It matches `7.0.biref` and `90.0` and nothing else. `*` would take all four folders,
