@@ -12,7 +12,7 @@ slide_label_credit: true
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-ocr4labels](https://github.com/uw-loci/qupath-extension-ocr4labels) |
-| **Extension version** | 0.4.3 |
+| **Extension version** | 0.4.5 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+, Tesseract language data (see Setup) |
 | **Where to find it** | `Extensions > OCR for Labels` |
@@ -153,7 +153,8 @@ You are manually building a template from this one label, then applying it to th
 share its design.
 
 1. Click **Draw Region** in the toolbar, then drag a box over the case ID line, **`610 TOMO`**.
-    Right-click inside the box you drew and choose **Scan as Text**.
+    Right-click inside the box you drew and choose **Scan as Text**. No need to be precise:
+    leave a little room around the text, and the region shrinks to the text inside it.
 
     <img src="../images/ocr/draw-region-text.png" alt="The dialog with Draw Region boxed in red, a selection drawn around the line 610 TOMO, and the right-click menu open showing Scan (Try Both), Scan as Text, Scan as Barcode, Keep Selection and Clear Selection" width="820">
 
@@ -186,7 +187,17 @@ share its design.
 
     You built your template on the brightfield H&E slide, so **run the batch over the two
     brightfield slides only** — the one you just did, plus its `MT3B` partner. Leave the two IF
-    slides out.
+    slides out:
+
+    1. **Extensions > OCR for Labels > Run OCR on Project...**, then **Load Template...** and
+       pick the template you just saved.
+    2. Click **Choose Images...**. Every slide with a label starts ticked, so click
+       **Select none** first, type `TOMO` in the name filter, and click **Select all**.
+       (**Select all** and **Select none** only touch the slides the filter is showing, which
+       is why the IF pair has to be unticked first.)
+    3. Click **OK**. The dialog now reads **2 of 4 images with labels will be processed** and
+       lists only the two brightfield slides. Click **Process Images**, check the two rows,
+       and **Apply Metadata**.
 
     <img src="../images/ocr/label-layouts.png" alt="Two slide labels side by side: one with the case ID on the second line and a barcode lower left, the other in two columns with a QR code top right" width="640">
 
@@ -196,7 +207,8 @@ share its design.
     > **On your own: the IF pair.** The two `8443_51000000` slides are the other label design.
     > Nothing you have built so far applies to them — the template you saved knows where fields
     > sit on the *brightfield* label. Start again from the top of step 4 on one of them, save a second
-    > template, and batch it over the two. That is the whole workflow in miniature, and it is
+    > template, and batch it over the two, choosing them with the filter `8443`. The metadata
+    > you applied to the brightfield pair stays put. That is the whole workflow in miniature, and it is
     > what you would do on arriving at a new set of slides from a different lab.
 
 ### 5. The two-minute experiment worth doing
