@@ -369,27 +369,30 @@ In QP-CAT this is a **second run**, not a setting. Clustering normally fits in f
 space and the embedding is computed only so you have something to look at, so to cluster *on*
 the embedding you run again over those columns.
 
-**Open `Find cell populations (clustering)...` again** and change five things:
+**Open `Find cell populations (clustering)...` again** and change these settings:
 
-| Section | Setting |
-|---|---|
-| Measurements | **`Select none`**, then tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`** — three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
-| Normalization | **None** |
-| Dimensionality Reduction | **Method: None** |
-| Clustering Algorithm | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)**, **Cluster selection: Leaf**, **min_samples: 0**, `min_cluster_size` **500** |
-| Batch correction (Harmony) | **Off** |
+| # | Setting | Set to |
+|---|---|---|
+| 1 | Measurements | **`Select none`**, then tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`** — three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
+| 2 | Normalization | **None** |
+| 3 | Dimensionality Reduction: **Method** | **None** |
+| 4 | Clustering Algorithm: **Algorithm** | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)** |
+| 5 | Clustering Algorithm: **min_cluster_size** | **500** |
+| 6 | Clustering Algorithm: **min_samples** | **0** |
+| 7 | Clustering Algorithm: **Cluster selection** | **Leaf (finest clusters)** |
+| 8 | Batch correction (Harmony) | **Off** |
 
 <div class="shots" markdown="0">
 <figure style="max-width:642px">
 <img src="../images/qp-cat/HDBSCAN_interface.png" alt="The Clustering Algorithm section of the Run Clustering dialog: Algorithm set to HDBSCAN, min_cluster_size 500, min_samples 0, and Cluster selection set to Leaf (finest clusters).">
-<figcaption><b>The Clustering Algorithm section, set up.</b> <b>Cluster selection</b> is new in
+<figcaption><b>The Clustering Algorithm section, set up as in rows 4 to 7 of the table.</b> <b>Cluster selection</b> is new in
 0.14.0 &mdash; if you do not see it, update first. These are the settings that produced every
 result below.</figcaption>
 </figure>
 </div>
 
 
-**The three settings in bold are the exercise.** Left on their defaults, this configuration
+**Rows 5 to 7 are the exercise.** Left on their defaults, this configuration
 returned a single cluster holding **97.0%** of 107,282 cells on a different, real dataset —
 from a space whose groups were plainly separated in the 3D view. What each setting does:
 [scikit-learn's `cluster_selection_method` and `min_samples`](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html).
