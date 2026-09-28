@@ -240,8 +240,9 @@ The project ships a script that points every image at the folder beside `project
 
 The eight channels you are about to cluster on are **DAPI** (used for detection), **PanCK**,
 **Ki67**, **aSMA**, **CD3**, **CD8**, **CD20** and **CD68**, at 0.5 um/pixel. They were built
-from **six cell types** — tumor, fibroblast, CD8 T, helper T, B cell, macrophage — which is
-the answer you are trying to arrive at without being told.
+from **six cell types** — tumor, fibroblast, CD8 T, helper T, B cell, macrophage. Recovering
+those six from the markers alone is the exercise;
+[3.4](#34-compare-against-the-ground-truth) checks what you got against them.
 
 #### 3.1 Check the Python environment
 
