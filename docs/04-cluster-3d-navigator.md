@@ -25,6 +25,9 @@ title: Cluster 3D Navigator
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Open the navigator and confirm the axes](#3-open-the-navigator-and-confirm-the-axes) · [4. Explore the cloud](#4-explore-the-cloud) · [5. Click a point, land on the cell](#5-click-a-point-land-on-the-cell) · [6. See the cells instead of the points](#6-see-the-cells-instead-of-the-points) · [7. The whole project at once](#7-the-whole-project-at-once) · [8. A two-marker scatter in 2D](#8-a-two-marker-scatter-in-2d)
+{: .toc}
+
 ---
 
 ## What it does
@@ -208,7 +211,7 @@ seven images' cells belong in the same cloud.
 Click any point. If its cell is on another image, QuPath opens that image first, then centers
 the cell; expect a short pause. **Select images...** next to the mode toggle reopens the picker if
 you want a subset. `tme_02` and `tme_04` were generated with a deliberate brightness shift, a
-simulated batch effect (see [batch effects](03-qp-cat-cell-analysis-tools.md#optional-and-slower-batch-effects)).
+simulated batch effect (see [batch effects](03-qp-cat-cell-analysis-tools.md#7-optional-and-slower-batch-effects)).
 The cloud does not mark which image a point came from, so the way to look for that shift is to
 click points along one edge of a blob and watch which image opens: if the same image keeps
 opening, that edge is a staining-day effect, not a cell type.
@@ -283,7 +286,7 @@ The controls in the top row that the walkthrough does not use:
 Cluster 3D Navigator is the standalone, in-QuPath, click-to-cell tool that works from the
 measurements alone, so it works on clusters from any source. The download also contains the
 saved QP-CAT run (`qpcat/cluster_results/auto_20260924_135415_kmeans`); the
-[QP-CAT guide](03-qp-cat-cell-analysis-tools.md#saved-results-reopen-a-run-instead-of-repeating-it)
+[QP-CAT guide](03-qp-cat-cell-analysis-tools.md#8-saved-results-reopen-a-run-instead-of-repeating-it)
 explains reopening it.
 
 > **Platform caveat:** the extension's own documentation lists Linux as the verified platform,

@@ -26,6 +26,9 @@ title: Polyline Wand and Brush
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Repair a polyline](#3-repair-a-polyline)
+{: .toc}
+
 ---
 
 ## Finding the button

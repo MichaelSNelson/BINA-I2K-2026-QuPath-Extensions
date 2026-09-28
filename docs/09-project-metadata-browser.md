@@ -26,6 +26,9 @@ title: Project Metadata Browser
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Look around](#3-look-around) · [4. Edit, undo, redo](#4-edit-undo-redo) · [5. Two new columns pulled out of the filenames](#5-two-new-columns-pulled-out-of-the-filenames) · [6. Rename a key across the project](#6-rename-a-key-across-the-project) · [7. Save, refresh, export](#7-save-refresh-export)
+{: .toc}
+
 ---
 
 ## What it does

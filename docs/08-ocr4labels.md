@@ -26,6 +26,9 @@ slide_label_credit: true
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Read one label](#3-read-one-label) · [4. A template, then the whole project](#4-a-template-then-the-whole-project) · [5. The two-minute experiment worth doing](#5-the-two-minute-experiment-worth-doing)
+{: .toc}
+
 ---
 
 ## What it does

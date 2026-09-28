@@ -30,6 +30,9 @@ title: Tiles to Pyramid
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. A MicroManager acquisition](#2-a-micromanager-acquisition) · [3. A QPSC acquisition, three channels at once](#3-a-qpsc-acquisition-three-channels-at-once) · [4. Color tiles, upright scope](#4-color-tiles-upright-scope) · [5. If you have time](#5-if-you-have-time)
+{: .toc}
+
 ---
 
 ## What it does

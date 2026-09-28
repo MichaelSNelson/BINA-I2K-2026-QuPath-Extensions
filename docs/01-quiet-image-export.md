@@ -26,6 +26,9 @@ title: QuIET - QuPath Image Export Toolkit
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. A figure you could publish](#3-a-figure-you-could-publish) · [4. The reproducibility half](#4-the-reproducibility-half) · [5. A multi-panel figure](#5-a-multi-panel-figure)
+{: .toc}
+
 ---
 
 ## What it does

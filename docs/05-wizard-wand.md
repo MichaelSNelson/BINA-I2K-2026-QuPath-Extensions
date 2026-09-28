@@ -26,6 +26,9 @@ title: Wizard Wand
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Sweep, then compare](#3-sweep-then-compare)
+{: .toc}
+
 ---
 
 ## Finding the button

@@ -29,6 +29,9 @@ title: Deep Learning Pixel Classifier
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Train your own classifier](#3-train-your-own-classifier) · [4. Apply a classifier to the slide](#4-apply-a-classifier-to-the-slide) · [5. Review what the model disagreed with](#5-review-what-the-model-disagreed-with)
+{: .toc}
+
 ---
 
 ## What it does

@@ -26,6 +26,9 @@ title: Channel Names Viewer
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Open the legend](#3-open-the-legend) · [4. Work through it](#4-work-through-it)
+{: .toc}
+
 ---
 
 > **Sara McArdle demonstrated Channel Names Viewer in her session on Monday 28 September**, in *Tips and tricks for maintaining sanity during hi-plex classification in QuPath*.

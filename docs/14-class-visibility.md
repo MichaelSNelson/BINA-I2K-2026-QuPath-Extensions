@@ -26,6 +26,9 @@ title: Class Visibility
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Re-label the cells by marker](#3-re-label-the-cells-by-marker) · [4. Simplify the view](#4-simplify-the-view) · [5. Open the panel](#5-open-the-panel) · [6. One component, many classes](#6-one-component-many-classes) · [7. Any vs All](#7-any-vs-all--the-part-with-no-equivalent) · [8. Spread, and what it is really for](#8-spread-and-what-it-is-really-for) · [9. Save a preset, and take it to another image](#9-save-a-preset-and-take-it-to-another-image) · [10. Get your view back](#10-get-your-view-back)
+{: .toc}
+
 ---
 
 ## What it does

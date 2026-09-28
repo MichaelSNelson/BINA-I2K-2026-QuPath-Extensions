@@ -26,6 +26,9 @@ title: Classify Object Subset
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Make a mistake worth fixing](#3-make-a-mistake-worth-fixing) · [4. Measure the error](#4-measure-the-error) · [5. Repair only the cells that are wrong](#5-repair-only-the-cells-that-are-wrong) · [6. The leftovers (optional)](#6-the-leftovers-optional) · [7. Turn it into a script](#7-turn-it-into-a-script)
+{: .toc}
+
 ---
 
 ## What it does

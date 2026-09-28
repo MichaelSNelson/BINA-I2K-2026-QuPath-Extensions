@@ -24,6 +24,9 @@ title: Dialog Position Manager
 > **Walkthrough video:** %Video not ready yet%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Move some dialogs around](#2-move-some-dialogs-around)
+{: .toc}
+
 ---
 
 ## What it does

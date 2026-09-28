@@ -31,6 +31,9 @@ title: QP-CAT - Cell Analysis Tools
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Find the cell types](#3-find-the-cell-types) · [4. Cluster on the UMAP instead of the markers](#4-cluster-on-the-umap-instead-of-the-markers) · [5. Is the tumor infiltrated?](#5-is-the-tumor-infiltrated) · [6. Inflamed versus desert](#6-inflamed-versus-desert) · [7. Optional, and slower](#7-optional-and-slower-batch-effects) · [8. Saved results](#8-saved-results-reopen-a-run-instead-of-repeating-it)
+{: .toc}
+
 ---
 
 ## What it does

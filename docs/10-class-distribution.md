@@ -25,6 +25,9 @@ title: Class Distribution
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Open the distribution that uses your labels](#3-open-the-distribution-that-uses-your-labels) · [4. The project as a whole](#4-the-project-as-a-whole) · [5. Every image at once](#5-every-image-at-once--where-the-imbalance-shows) · [6. One image, and what is missing from it](#6-one-image-and-what-is-missing-from-it) · [7. The other dialog, and when to use it](#7-the-other-dialog-and-when-to-use-it)
+{: .toc}
+
 ---
 
 ## What it does
