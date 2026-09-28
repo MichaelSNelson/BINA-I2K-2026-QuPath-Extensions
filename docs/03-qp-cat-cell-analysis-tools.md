@@ -563,43 +563,76 @@ decides *what to call them*. Neither run can do both.
 ### 5. Is the tumor infiltrated?
 *Concept: immune infiltration at the invasive margin.*
 
-The tissue was built with four structures to find: **tumor nests**, an **immune-infiltrated
-nest boundary**, **B-cell follicles**, and **stroma**. This step is about the second one.
+The tissue was built with four structures to find: **tumor nests** (PanCK), an
+**immune-infiltrated nest boundary** (CD3, CD8), **B-cell follicles** (CD20), and **stroma**
+(aSMA). This step is about the second one.
 
-Cell types alone do not tell you much. **Where** they sit does. In this image, T cells are
-concentrated in a band just outside each tumor nest, the computational version of a
-pathologist's read on whether an immune response has reached the tumor.
+Cell types alone do not tell you much. **Where** they sit does. In this image, T cells (CD3)
+are concentrated in a band just outside each tumor nest (PanCK), the computational version of
+a pathologist's read on whether an immune response has reached the tumor.
 
-#### 5.1 Run neighborhood enrichment
+Your cells carry cluster numbers, not cell-type names. These are the clusters from step 4:
 
-Run **neighborhood enrichment** on your classified cells. It is a tick-box —
-`Neighborhood enrichment + Moran's I` — in the Run Clustering dialog, so the easiest route is
-to turn it on before you cluster. After the fact, use
-`Extensions > QP-CAT > Explore & spatial > Spatial statistics on existing clusters...` instead.
+| Cluster | Led by | Likely cell type |
+|---|---|---|
+| 0 | Ki67 and PanCK | proliferating tumor |
+| 1 | aSMA | fibroblast |
+| 2 | CD20 | B cell |
+| 3 | PanCK | tumor |
+| 4 | CD68 | macrophage |
+| 5 | CD3 and CD8 | CD8 T cell |
+| 6 | CD3, no CD8 | helper T cell |
+
+If the numbers from your own run differ, match each cluster by the marker that leads its card
+on the **Marker Fingerprints** tab.
+
+#### 5.1 Run the spatial statistics
+
+1. Open `Extensions > QP-CAT > Explore & spatial > Spatial statistics on existing clusters...`.
+2. Check these settings:
+
+   | # | Setting | Set to |
+   |---|---|---|
+   | 1 | **Label source** | *Current cell classifications* (already selected) |
+   | 2 | Statistics to compute: **Ripley L** | ticked (already ticked) |
+   | 3 | Statistics to compute: **Neighborhood enrichment** | ticked (already ticked) |
+
+3. Click **Run spatial statistics**. A window titled **QP-CAT - Spatial statistics summary**
+   opens with one row per image, headed **8 area(s), 8 analyzed.**
+
+   <img src="../images/qp-cat/spatialstats-summary.png" alt="The QP-CAT Spatial statistics summary window. A table lists the eight images tme_00 to tme_07, each as a whole image, with its cell count, 7 classes (6 for tme_07), the unit um, the statistics computed, and an Open button at the end of the row. Save combined CSV and Close are at the bottom" width="820">
+
+4. Double-click the **`tme_00.tif`** row, or click its **Open** button, to open that image's
+   results.
+
+> **The same statistics can be computed while clustering.** The Run Clustering dialog has a
+> `Neighborhood enrichment + Moran's I` tick-box and the other statistics under **Spatial
+> statistics**. Ticking them there on a future run gives these results without a separate
+> step.
 
 #### 5.2 Read the matrix for four pairs
 
-Read the matrix for four specific pairs, and predict each before you look:
+Read the neighborhood enrichment matrix for four specific pairs, and predict each before you
+look:
 
-| Pair | Expect | Because |
-|---|---|---|
-| tumor ↔ tumor | strongly positive | tumor grows in nests, not as single cells |
-| B ↔ B | strongly positive | follicles: dense aggregates, not scattered cells |
-| tumor ↔ fibroblast | strongly **negative** | they occupy different compartments |
-| tumor ↔ CD8 T | positive | cytotoxic T cells sit at the nest boundary |
+| Pair | Clusters | Expect | Because |
+|---|---|---|---|
+| tumor (PanCK) ↔ tumor (PanCK) | 3 ↔ 3 | strongly positive | tumor grows in nests, not as single cells |
+| B cell (CD20) ↔ B cell (CD20) | 2 ↔ 2 | strongly positive | follicles: dense aggregates, not scattered cells |
+| tumor (PanCK) ↔ fibroblast (aSMA) | 3 ↔ 1 | strongly **negative** | they occupy different compartments |
+| tumor (PanCK) ↔ CD8 T cell (CD3, CD8) | 3 ↔ 5 | positive | cytotoxic T cells sit at the nest boundary |
 
 #### 5.3 Check the control pair
 
-**Now the control that makes it a result.** Check tumor ↔ *helper* T. It should be
-markedly weaker than tumor ↔ CD8 T. The enrichment is specific to the cytotoxic subset,
-which is exactly why step 3's k = 6 merge of the two T-cell lineages would have destroyed
-this finding: the two
-T-cell populations would have been averaged into one indifferent number.
+Check tumor (PanCK, cluster 3) ↔ helper T cell (CD3 without CD8, cluster 6). It should be
+markedly weaker than tumor ↔ CD8 T cell (cluster 5): the enrichment is specific to the
+cytotoxic subset. Step 3's k = 6 run put both T-cell lineages in one cluster, which would have
+averaged the two into a single number.
 
-#### 5.4 Run Ripley L
+#### 5.4 Read Ripley L
 
-Run **Ripley L** per type: tumor and B cells clustered, fibroblasts dispersed. It is one of
-four tick-boxes under **Spatial statistics**, in the same two places as in 5.1 above.
+Open the **Ripley L** tab. Expect tumor (PanCK, cluster 3) and B cells (CD20, cluster 2) to be
+clustered, and fibroblasts (aSMA, cluster 1) to be dispersed.
 
 The chart opens showing **one cluster**, with the rest unticked under **Show clusters** —
 each cluster draws three lines (its curve plus both edges of its own random band), so a
@@ -614,22 +647,22 @@ band** means indistinguishable from random. Untick **Relative to random** to see
 <div class="shots" markdown="0">
 <figure>
 <img src="../images/qp-cat/ripley-asma-panck.png" alt="The Ripley L tab plotted relative to random, with only Cluster 1 and Cluster 3 ticked in the Show clusters panel. Cluster 3, red, rises steeply to about plus 43 near a radius of 480 pixels, far above its dashed band, then falls and crosses below zero past about 1300 pixels. Cluster 1, orange, falls below its dashed band from about 200 pixels and flattens near minus 21. A black dashed line at zero is labelled Random (simulated).">
-<figcaption><b>Two clusters, opposite answers.</b> Cluster 3 is the PanCK cluster (tumor)
-and Cluster 1 is the aSMA cluster (fibroblast), from the marker table in step 4. Tumor sits
-far <b>above</b> its band out to ~1,200 px: clustered, which is what a nest is. Fibroblast
-sits <b>below</b> its band from ~200 px: dispersed, which is what the stroma was built to
-be. Both are outside their own bands, so neither reading is noise.</figcaption>
+<figcaption><b>Cluster 3, tumor (PanCK), and cluster 1, fibroblast (aSMA).</b> Tumor sits
+far <b>above</b> its band out to ~1,200 px: clustered, as a nest is. Fibroblast
+sits <b>below</b> its band from ~200 px: dispersed, as the stroma was built to
+be. Both are outside their own bands, so neither reading is noise. The axis in this picture is
+in pixels; your chart is in micrometers, at 0.5 µm per pixel.</figcaption>
 </figure>
 </div>
 
-The tumor curve turning back down past ~1,300 px is not a contradiction. A nest has a
+The tumor (PanCK) curve turning back down past ~1,300 px is not a contradiction. A nest has a
 size; beyond it you run out of same-type neighbors, so the excess falls away. Where the
 curve peaks is a rough read on the scale of the structure.
 
 #### 5.5 Look at the cells
 
-Go and look. Click a boundary CD8 T cell in the viewer and confirm it really is where the
-statistic says.
+Click a CD8 T cell (cluster 5) at the edge of a tumor nest in the viewer and confirm that it
+sits where the statistic says.
 
 > **Taking the numbers with you.** The Geary's C, Ripley and co-occurrence tabs each have
 > `Copy`, `Copy CSV` and `Save CSV...`. The CSV is written one row per observation, so a
