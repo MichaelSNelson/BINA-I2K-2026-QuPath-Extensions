@@ -116,9 +116,9 @@ The extension works on a QuPath **project**, not on a loose file — its dialog 
 images down the left side, and batch mode runs over the project. The zip is not a project, so
 make one:
 
-1. Unzip it somewhere you can find it.
+1. **Unzip it somewhere you can find it.**
 2. In QuPath, `File > Project > Create project...` and choose an **empty folder** for it.
-3. Drag the four `.czi` files onto the QuPath window, or use **Add images**, and confirm.
+3. **Drag the four `.czi` files onto the QuPath window, or use Add images, and confirm.**
 4. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` in the project list to
    open it.
 
@@ -129,8 +129,8 @@ file, and the extension pulls it out for you in step 1. The label it shows looks
 
 <img src="../images/ocr/label-key.png" alt="Left, the photographed slide label: four lines of printed text, histology at lji dot org, 610 TOMO, 2020-11-14 and H and E, with a square 2D barcode below them, each marked with a numbered blue badge. Right, a key: 1 the lab's contact address, 2 the specimen identifier or case ID, 3 the date, 4 the stain, 5 the 2D barcode, read by the barcode scanner rather than OCR. A note says a full-image scan reads all of it and step 4 builds a template from items 2 and 5 only" width="900">
 
-1. Run `Extensions > OCR for Labels > Run OCR on Label`.
-2. Set the controls on the strip along the top of the dialog (boxed in red):
+1. **Run `Extensions > OCR for Labels > Run OCR on Label`.**
+2. **Set the controls on the strip along the top of the dialog (boxed in red):**
 
    - **Mode:** *Auto (default)*. On an older build the dropdown may open on *Sparse Text*,
      which does not read these labels properly, so check it rather than assume it.
@@ -157,17 +157,19 @@ share its design.
 
 #### 4.1 Mark the text region
 
-Click **Draw Region** in the toolbar, then drag a box over the case ID line, **`610 TOMO`**.
-Right-click inside the box you drew and choose **Scan as Text**. No need to be precise:
-leave a little room around the text, and the region shrinks to the text inside it.
+1. **Click Draw Region** in the toolbar.
+2. **Drag a box over the case ID line, `610 TOMO`.** No need to be precise: leave a little room
+   around the text, and the region shrinks to the text inside it.
+3. **Right-click inside the box and choose Scan as Text.**
 
 <img src="../images/ocr/draw-region-text.png" alt="The dialog with Draw Region boxed in red, a selection drawn around the line 610 TOMO, and the right-click menu open showing Scan (Try Both), Scan as Text, Scan as Barcode, Keep Selection and Clear Selection" width="820">
 
 #### 4.2 Mark the barcode region
 
-Same again for the barcode: **Draw Region**, drag a box over the square 2D barcode, then
-right-click and choose **Scan as Barcode**. It decodes immediately, and the row appears
-underneath the one you just made.
+1. **Click Draw Region** again.
+2. **Drag a box over the square 2D barcode.**
+3. **Right-click inside the box and choose Scan as Barcode.** The barcode decodes immediately,
+   and its row appears underneath the one you just made.
 
 #### 4.3 Rescan the regions
 
@@ -187,8 +189,8 @@ Give each row a **Metadata Key** you will recognize later: double-click the cell
 
 #### 4.5 Batch the template over the matching slides
 
-Run **batch processing** with that template — but **only over slides whose labels share
-the same layout**. A template is positional: it stores where each field sits on the label.
+Batch processing applies the template to several slides at once. Use it **only over slides
+whose labels share the same layout**. A template is positional: it stores where each field sits on the label.
 Point it at a differently laid-out label and it reads whatever happens to be at those
 coordinates, which is usually nothing, and it will not warn you.
 
@@ -206,16 +208,19 @@ You built your template on the brightfield H&E slide, so **run the batch over th
 brightfield slides only** — the one you just did, plus its `MT3B` partner. Leave the two IF
 slides out:
 
-1. **Extensions > OCR for Labels > Run OCR on Project...**, then **Load Template...**
-   (boxed in red in the picture below) and pick the template you just saved.
-2. Click **Choose Images...** (boxed in blue), which opens the window on the right of the
-   picture. Every slide with a label starts ticked, so click
-   **Select none** first, type `TOMO` in the name filter, and click **Select all**.
-   (**Select all** and **Select none** only touch the slides the filter is showing, which
-   is why the IF pair has to be unticked first.)
-3. Click **OK**. The dialog now reads **2 of 4 images with labels will be processed** and
-   lists only the two brightfield slides. Click **Process Images**, check the two rows,
-   and **Apply Metadata**.
+1. **Open `Extensions > OCR for Labels > Run OCR on Project...`.**
+2. **Click Load Template...** (boxed in red in the picture below) and pick the template you just
+   saved.
+3. **Click Choose Images...** (boxed in blue), which opens the window on the right of the
+   picture. Every slide with a label starts ticked.
+4. **Click Select none.**
+5. **Type `TOMO` in the name filter.**
+6. **Click Select all.** **Select all** and **Select none** only touch the slides the filter is
+   showing, which is why the IF pair had to be unticked first.
+7. **Click OK.** The dialog now reads **2 of 4 images with labels will be processed** and lists
+   only the two brightfield slides.
+8. **Click Process Images**, then check the two rows it fills in.
+9. **Click Apply Metadata.**
 
 <img src="../images/ocr/OCR_batch.png" alt="The Batch OCR Processing window. Load Template is boxed in red; the Field Mappings table below it holds the template's two rows, specimen read as text and barcode read as a barcode. Choose Images is boxed in blue, with blue lines leading to the Batch OCR - Choose Images window it opens. In that window the two histology at lji org 610 TOMO slides are ticked and the two 8443_51000000 IF slides are not, and the corner reads 2 of 4 selected. Process Images, Apply Metadata and Cancel are along the bottom of the main window" width="900">
 
@@ -231,13 +236,17 @@ design. The tool saves templates, rather than one global setting, for that reaso
 
 ### 5. The two-minute experiment worth doing
 
-Go back to the `histology@lji.org` label. Tick **Enhance**, set **Scope** to *Drawn Regions*, and
-**Rescan Regions**. The address line, which read correctly before, now comes back as something
-like `histoloawalli.org`: the `@` is the densest glyph on the label, and Enhance's hard
-black-or-white threshold closes the gap between the `a` and its ring. Untick **Enhance** and
-rescan to get the correct read back. The option sounds helpful and was once recommended for
-faded labels, and it makes things worse. OCR is one of the few places you can check a setting
-like this, because you know what the right answer is.
+Go back to the `histology@lji.org` label.
+
+1. **Tick Enhance.**
+2. **Set Scope to Drawn Regions.**
+3. **Click Rescan Regions.** The address line, which read correctly before, now comes back as
+   something like `histoloawalli.org`: the `@` is the densest glyph on the label, and Enhance's
+   hard black-or-white threshold closes the gap between the `a` and its ring.
+4. **Untick Enhance and click Rescan Regions again** to get the correct read back.
+
+Enhance was once recommended for faded labels, and on this label it makes the read worse. OCR
+lets you check a setting like this because you know what the right answer is.
 
 ### What to notice
 

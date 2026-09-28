@@ -115,13 +115,13 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 2. Load it into QuPath
 
-1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either
-   works. (Menu route: `File > Project > Open project...`.)
-2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected.
-   The project ships with *relative* image paths so the zip is portable, and QuPath cannot
-   resolve those until you show it the folder once. Click **Search...** (bottom-right), choose
-   the folder you unzipped, then **Apply changes**.
-3. Double-click **`tme_00.tif`** to open it. You should see cell outlines (the detections) and a
+1. **Drag `project.qpproj` onto an open QuPath window.** The unzipped folder itself works too.
+   (Menu route: `File > Project > Open project...`.) QuPath opens an **Update URIs** dialog with
+   the images listed in red. This is expected: QuPath cannot find the images until you show it
+   the folder once.
+2. **Click Search...** (bottom-right) and choose the folder you unzipped.
+3. **Click Apply changes.**
+4. **Double-click `tme_00.tif`** to open it. You should see cell outlines (the detections) and a
    colored dot on each cell (the ground-truth points). Those are the objects section 3 draws
    onto the figure, so there is nothing to annotate by hand.
 
@@ -162,7 +162,7 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
    Now click **Publication Advice**. *This* is the part that looks at the images you actually
    selected and tells you what is missing — for example "No scale bar on calibrated images".
    Items are colored by how much they matter. Read it, then export.
-5. Open the result. Check that the scale bar is legible at the size you would print it.
+5. **Open the result.** Check that the scale bar is legible at the size you would print it.
 
    Your output folder should hold **one** image plus `export_info`, a small text file
    recording the settings used.
@@ -198,7 +198,7 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
     images; pick four and lay them out 2×2. `tme_06` (immune-rich) and `tme_07` (immune-poor)
     are the two most different, so include those. Add captions — the caption is the full
     image name, `tme_06.tif`, extension included, so you can tell versions of an image apart.
-3. Export and open the montage. The one below was made from four of these images, so yours
+3. **Export and open the montage.** The one below was made from four of these images, so yours
     should look similar, with as many panels as you selected. What matters is that every panel
     got the same recipe and its own scale bar.
 

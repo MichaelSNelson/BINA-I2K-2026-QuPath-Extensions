@@ -151,7 +151,7 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 1. Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it
    is already a project, and dropping it opens it. (Menu route: `File > Project > Open project...`.)
-2. Double-click the **CMU-1 H&E** slide in the project list to open it.
+2. **Double-click the CMU-1 H&E slide in the project list to open it.**
 
 ### 3. Repair a polyline
 
@@ -161,7 +161,7 @@ Like the Wizard Wand, the Polyline Wand is a toolbar tool: with an image open, p
 1. Draw a long polyline along a tissue boundary with QuPath's normal polyline tool, then
    **click it to select it** — everything below needs it selected. Deliberately
    overshoot the end.
-2. Press **Shift+P**. Start a stroke *near the overshot endpoint* and the line erases backwards.
+2. **Press Shift+P.** Start a stroke *near the overshot endpoint* and the line erases backwards.
 
    <img src="../images/polyline-wand/erase-from-end.gif" alt="Animation: a yellow polyline runs along a tissue edge and overshoots it into empty background. A red circular brush placed near the overshot endpoint drags back toward the tissue, and the line shortens from that end until it stops at the edge" width="526">
 
@@ -169,15 +169,15 @@ Like the Wizard Wand, the Polyline Wand is a toolbar tool: with an image open, p
 
    <img src="../images/polyline-wand/push.gif" alt="Animation: a red circular brush drags against the right edge of a yellow outline traced around a pink region of tissue. The outline bulges outward under the brush while the rest of it stays put" width="568">
 
-4. Right-click → **Engine** → *Displacement field*. Push the same kind of section. Notice that
+4. **Right-click → Engine → *Displacement field*.** Push the same kind of section. Notice that
    dragging **along** the line now does nothing, and only perpendicular motion moves it.
-5. Right-click → **Mode** → *Smooth*. Clean up a noisy stretch.
-6. Right-click → **Mode** → *Scissors (cut at click)*. Click on the polyline to split it in two. Check that
+5. **Right-click → Mode → *Smooth*.** Clean up a noisy stretch.
+6. **Right-click → Mode → *Scissors (cut at click)*.** Click on the polyline to split it in two. Check that
    both halves kept the class and color.
 
    <img src="../images/polyline-wand/cut.gif" alt="Animation of the whole QuPath window: the right-click menu opens on the polyline wand button, Mode is set to Scissors (cut at click), and a click on the long yellow polyline splits it in two. One half stays yellow and the other turns red, and the annotation list gains a second entry" width="1000">
 
-7. Press Ctrl+Z a few times and confirm each *stroke* is one undo step, not each frame.
+7. **Press Ctrl+Z a few times and confirm each *stroke* is one undo step, not each frame.**
 
 ### What to notice
 

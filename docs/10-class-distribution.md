@@ -65,18 +65,22 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 2. Load it into QuPath
 
-1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either works. (Menu route: `File > Project > Open project...`.)
-2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected.
-   The project ships with *relative* image paths so the zip is portable,
-   and QuPath cannot resolve those until you show it the folder once. Click **Search...** (bottom-right),
-   choose the folder you unzipped, then **Apply changes**.
-3. Double-click any image (e.g. `tme_00.tif`) so the viewer has something open.
+1. **Drag `project.qpproj` onto an open QuPath window.** The unzipped folder itself works too.
+   (Menu route: `File > Project > Open project...`.) QuPath opens an **Update URIs** dialog with
+   the images listed in red. This is expected: QuPath cannot find the images until you show it
+   the folder once.
+2. **Click Search...** (bottom-right) and choose the folder you unzipped.
+3. **Click Apply changes.**
+4. **Double-click `tme_00.tif`** so the viewer has an image open.
 
 ### 3. Open the distribution that uses your labels
 
 The ground-truth points are classified **point** annotations, and they are what labels the
-cells. Open **`Extensions > Class Distribution > Show Detection Training Distribution...`** — it
-counts, for each class, how many detections those points label.
+cells.
+
+**Open `Extensions > Class Distribution > Show Detection Training Distribution...`.**
+
+The dialog counts, for each class, how many detections those points label.
 
 The dialog works on the **project**, not just the image in the viewer: the Project and All images tabs
 aggregate across all eight. Open a loose file instead of a project and there is nothing for it
@@ -104,7 +108,9 @@ matters when a project mixes stains or magnifications. It lives on this tab only
 
 ### 5. Every image at once — where the imbalance shows
 
-Switch to the **All images** tab: one mini-chart per image, shared legend. `tme_06`'s chart is
+**Click the All images tab.**
+
+It shows one mini-chart per image with a shared legend. `tme_06`'s chart is
 visibly heavier on the immune classes, and **`tme_07` has no B-cell slice at all**.
 
 **The `[over]` / `[under]` markers are deliberately left off this tab.** A mini-chart is
@@ -119,8 +125,11 @@ as `fibroblast 28.9% [over]`.
 ### 6. One image, and what is missing from it
 
 The **Current image** tab charts just the open image, and — more usefully — surfaces project
-classes that are **absent** from it. Open `tme_07` and `b_cell` appears in the legend as
-**`0.0% [missing]`** rather than simply not being drawn. A class you cannot see is easy to
+classes that are **absent** from it.
+
+**Double-click `tme_07.tif` in the project list.**
+
+`b_cell` appears in the legend as **`0.0% [missing]`** rather than simply not being drawn. A class you cannot see is easy to
 forget; a class labeled *missing* is not.
 
 Before you train on a single slide, open its Current image tab and look for `[missing]` classes.

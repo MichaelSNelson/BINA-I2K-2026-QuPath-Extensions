@@ -70,21 +70,21 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 2. Load it into QuPath
 
-1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either
-   works. (Menu route: `File > Project > Open project...`.)
-2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected.
-   The project ships with *relative* image paths so the zip is portable, and QuPath cannot
-   resolve those until you show it the folder once. Click **Search...** (bottom-right), choose
-   the folder you unzipped, then **Apply changes**.
-3. Double-click **`tme_00.tif`** to open it.
+1. **Drag `project.qpproj` onto an open QuPath window.** The unzipped folder itself works too.
+   (Menu route: `File > Project > Open project...`.) QuPath opens an **Update URIs** dialog with
+   the images listed in red. This is expected: QuPath cannot find the images until you show it
+   the folder once.
+2. **Click Search...** (bottom-right) and choose the folder you unzipped.
+3. **Click Apply changes.**
+4. **Double-click `tme_00.tif`** to open it.
 
 > **Use `tme_00`, not whichever image opens first.** The eight images are different, and the
 > numbers in this guide will not match on the other images.
 
 ### 3. Re-label the cells by marker
 
-1. Open the Script Editor: `Automate > Script editor`.
-2. Open this script in a browser tab (it opens as plain text, not a download):
+1. **Open the Script Editor: `Automate > Script editor`.**
+2. **Open this script in a browser tab (it opens as plain text, not a download):**
    [`composite_marker_classes.groovy`](https://raw.githubusercontent.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/main/scripts/composite_marker_classes.groovy)
 3. **Select all of that page and copy it** — you want the file's contents, several dozen lines
    of Groovy, not the link itself.
@@ -114,8 +114,12 @@ Distribution walkthroughs — the script replaces those classes. The script does
 annotations, because those are annotations rather than detections, so nothing the other
 walkthroughs need is lost.
 
-**To get the six type classes back:** `Automate > Project scripts > apply_trained_classifier`,
-then **Run**. For the deliberately imperfect version used by Classify Object Subset, run
+**To get the six type classes back:**
+
+1. **Open `Automate > Project scripts > apply_trained_classifier`.**
+2. **Click Run.**
+
+For the deliberately imperfect version used by Classify Object Subset, run
 `classify_with_marker_gate` instead. To discard the change entirely, close the image and answer
 **No** when QuPath asks whether to save changes to `tme_00.tif`.
 
@@ -206,8 +210,10 @@ In the components list — its header reads **Anything containing these componen
 `PanCK: CD3: CD8`, `CD3: CD8: CD68`, `CD8` and `aSMA: CD3: CD8`, some below the fold — show a
 **grayed-out tick with a blue ring** around the check box. The ring means the component rule
 reaches that class, and hovering the row says to change it in the components list.
-`Active rules` reads 5: the component is written as one rule per class it covers. Uncheck `CD8`
-and the ticks and rings disappear; a tick you put there yourself would stay.
+`Active rules` reads 5: the component is written as one rule per class it covers.
+
+**Uncheck the `CD8` component.** The ticks and rings disappear; a tick you put there yourself
+would stay.
 
 **And look at QuPath's own class list**, boxed at the top of the picture on the Annotations
 tab. It has switched to `Hide by default`, and the eye is open on exactly the classes the
@@ -227,10 +233,12 @@ in a class like `CD3: CD8`, not in `CD8`.
 contains it.** Checking the `CD8` *class* row would show 2 cells. Checking the `CD8` component
 shows the 189 in its `Total`.
 
-Try it with `PanCK`. Uncheck the `CD8` component, then check the **`PanCK` class row**: 286
-cells, the tumor cells positive for PanCK alone. Uncheck it and check the **`PanCK`
-component** instead: 439 cells, now including `PanCK: Ki67`, `PanCK: CD68` and the rest — seven
-classes ticked and ringed.
+Try it with `PanCK`:
+
+1. **Uncheck the `CD8` component**, if it is still checked.
+2. **Check the `PanCK` class row.** 286 cells show: the tumor cells positive for PanCK alone.
+3. **Uncheck the `PanCK` class row and check the `PanCK` component.** 439 cells show, now
+   including `PanCK: Ki67`, `PanCK: CD68` and the rest, with seven classes ticked and ringed.
 
 <img src="../images/class-visibility/panel-docked-panck-component.png" alt="QuPath with the Class visibility panel docked as a tab in the analysis pane, its options panel hidden so only the Expand options panel button, the image name and the two stacked lists show. The PanCK component is checked, and in the classes list PanCK, PanCK colon Ki67, PanCK colon CD3 colon CD8, PanCK colon CD68, PanCK colon CD3, PanCK colon aSMA colon CD3 and PanCK colon CD20 each show a grayed-out, ringed tick. Active rules reads 7. The viewer shows the round tumor nests filled in teal and purple, with the stroma plain white" width="900">
 

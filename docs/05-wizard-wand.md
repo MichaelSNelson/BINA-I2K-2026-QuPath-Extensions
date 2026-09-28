@@ -143,7 +143,7 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 1. Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it
    is already a project, and dropping it opens it. (Menu route: `File > Project > Open project...`.)
-2. Double-click the **CMU-1 H&E** slide in the project list to open it.
+2. **Double-click the CMU-1 H&E slide in the project list to open it.**
 
 ### 3. Sweep, then compare
 
@@ -158,17 +158,19 @@ select it.
 3. **Mid-drag, stop moving and keep the button down.** The selection carries on growing
    outward until you move again. Use this when a structure has a clean outer edge but a messy
    middle — start inside and let it find the edge.
-4. Now try a preset. **Right-click the wand button in the toolbar** — not the image, not your
-   annotation — and pick **Presets > Broad (sensitivity 2.00)**, then wand the same structure.
-   Then **Fine (sensitivity 0.30)**. The menu shows each preset's value beside its name.
-   Broad for large uniform areas, Fine when you keep spilling into neighboring tissue.
-5. Change the color-space mode in `Edit > Preferences > Wizard Wand` and re-try somewhere RGB
+4. **Right-click the wand button in the toolbar**, not the image and not your annotation.
+5. **Choose Presets > Broad (sensitivity 2.00)**, then wand the same structure. Broad suits
+   large uniform areas.
+6. **Choose Presets > Fine (sensitivity 0.30)** from the same menu and wand it again. Fine suits
+   the case where you keep spilling into neighboring tissue. The menu shows each preset's value
+   beside its name.
+7. **Change the color-space mode in `Edit > Preferences > Wizard Wand`** and re-try somewhere RGB
    struggled: **GRAY** when color is irrelevant and only intensity matters, **LAB_DISTANCE**
    for two stains that are close in color, **HSV** to catch every blue nucleus including the
    dark ones.
-6. Optional: draw an annotation the way you want it, **leave it selected**, then right-click
-   the toolbar button and choose **Tune wand from selection...**, which tries to derive
-   settings from your example.
+8. Optional: draw an annotation the way you want it and **leave it selected**.
+9. **Right-click the toolbar button and choose Tune wand from selection...**, which tries to
+   derive settings from your example.
 
    > **Expect little from Tune wand from selection.** The command tunes for a *single click* placed inside your
    > annotation, and almost nobody annotates with single clicks — so the settings it picks

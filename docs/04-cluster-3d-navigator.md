@@ -102,7 +102,7 @@ cells.
    If instead an **Update URIs** dialog appears with rows marked missing, click **Search...**
    (bottom-right), choose the folder you unzipped, and QuPath fills the **Replacement URI**
    column; then **Apply changes**.
-3. Double-click **`tme_00.tif`** to open it. The cells should already be colored, six colors in
+3. **Double-click `tme_00.tif` to open it.** The cells should already be colored, six colors in
    all. If they are one flat color, see [If something looks wrong](#if-something-looks-wrong).
 
 ### 3. Open the navigator and confirm the axes
@@ -115,7 +115,7 @@ cells.
    recognized it takes the first three numeric measurements in alphabetical order, and `3DUMAP1`,
    `3DUMAP2` and `3DUMAP3` sort ahead of every `Cell:` and `Nucleus:` column — so the dropdowns
    already hold the right axes and the cloud is right, by luck. On your own data it will not be.
-3. Click **Change axes...** (boxed in red below) and check the picker reads:
+3. **Click Change axes... (boxed in red below) and check the picker reads:**
 
    | Field | Set to |
    |---|---|
@@ -138,9 +138,9 @@ Cluster 1 (294), Cluster 2 (389), Cluster 3 (106), Cluster 4 (217) and Cluster 5
   pan**. **Reset view** puts everything back in frame. The same hints are written along the
   bottom of the window.
 - **Hover** a point and a tooltip names its class and shows its values on the three axes.
-- The **CLASSES** legend lists each cluster with its color and how many cells it holds (that
-  number does not change when you uncheck the cluster; only the Points counter does).
-  **Uncheck a cluster** to hide it. **All** shows every cluster again; **None** hides them all.
+- **Uncheck a cluster in the CLASSES legend** to hide it. **All** shows every cluster again;
+  **None** hides them all. The legend lists each cluster with its color and how many cells it
+  holds; that number does not change when you uncheck the cluster, only the Points counter does.
 - **Colors come from QuPath.** To recolor a cluster, right-click the class list in the
   **Annotations** tab and populate it from the existing objects (the `Cluster` classes are not
   in the project's list until you do), change the color there, then change an axis or reopen the
@@ -184,7 +184,9 @@ yellow; the preview shows its crop with the segmentation outlines on.*
 
 ### 6. See the cells instead of the points
 
-Tick **Show cell images** in the top row. Three cells per cluster turn into crops straight away,
+**Tick Show cell images** in the top row.
+
+Three cells per cluster turn into crops straight away,
 at any zoom; those are representatives (**Representative cells per cluster** under Display
 options). Zoom in and the points near the front fill in as crops too, each with a thin border in
 its cluster color, up to a few hundred non-overlapping cells at a time. Clicking a crop still
@@ -199,8 +201,8 @@ jumps to the cell. Zoom back out and all but the representatives collapse to poi
 The clustering ran over all eight images together, so the embedding is shared and the other
 seven images' cells belong in the same cloud.
 
-1. Switch **Mode** to **Project images...**. A picker titled **Select project images** opens.
-2. Click **Select all**, then **OK**. A busy indicator reads *Read image 1 of 8...* and counts
+1. **Switch Mode to Project images....** A picker titled **Select project images** opens.
+2. **Click Select all, then OK.** A busy indicator reads *Read image 1 of 8...* and counts
    up; wait for it. (Changing an axis in this mode re-reads all eight images, so expect the same
    pause each time.)
 3. The counter reads `Points: 11,421 shown / 11,421 total`, and the legend counts now match the

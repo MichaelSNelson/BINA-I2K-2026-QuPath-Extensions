@@ -105,17 +105,24 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 2. Load it into QuPath
 
-**If you took the project:** unzip it, then **drag `project.qpproj` onto an open QuPath
-window** — or the unzipped folder itself, either works. (Menu route:
-`File > Project > Open project...`.) QuPath pops up an **Update URIs** dialog with the images
-listed in red. This is expected: the project ships with *relative* image paths so the zip is
-portable, and QuPath cannot resolve those until you show it the folder once. Click
-**Search...** (bottom-right), choose the folder you unzipped, then **Apply changes**.
-Double-click `tme_00.tif` to open it.
+**If you took the project:**
 
-**If you took the images:** unzip them, then `File > Project > Create project...`, choose an
-empty folder, and drag in **`tme_00.tif`** (any of the eight will do). Set the image type to
-**Fluorescence** if prompted, and double-click it to open it.
+1. **Unzip it.**
+2. **Drag `project.qpproj` onto an open QuPath window.** The unzipped folder itself works too.
+   (Menu route: `File > Project > Open project...`.) QuPath opens an **Update URIs** dialog with
+   the images listed in red. This is expected: QuPath cannot find the images until you show it
+   the folder once.
+3. **Click Search...** (bottom-right) and choose the folder you unzipped.
+4. **Click Apply changes.**
+5. **Double-click `tme_00.tif`** to open it.
+
+**If you took the images:**
+
+1. **Unzip them.**
+2. **Choose `File > Project > Create project...`** and pick an empty folder.
+3. **Drag `tme_00.tif` onto the QuPath window** (any of the eight will do) and click **Import**.
+4. **Set the image type to Fluorescence** if QuPath asks.
+5. **Double-click `tme_00.tif`** to open it.
 
 ### 3. Open the legend
 
@@ -130,11 +137,11 @@ Menu route: `Extensions > Channel Names Viewer > Channel Names Viewer...`.
 ### 4. Work through it
 
 1. Toggle channels on and off in brightness/contrast. Watch the legend track live.
-2. Drag a corner to resize, and note that the text scales with the window.
-3. Right-click the body: reduce **background opacity** so the legend floats over the image.
+2. **Drag a corner to resize, and note that the text scales with the window.**
+3. **Right-click the body: reduce background opacity so the legend floats over the image.**
 4. Turn on **Lock font size** and resize again. Decide which behavior you prefer.
-5. Open an RGB/brightfield image and confirm the empty-state placeholder rather than an error.
-6. Switch back and confirm the legend rebinds to the new image's channels.
+5. **Open an RGB/brightfield image and confirm the empty-state placeholder rather than an error.**
+6. **Switch back and confirm the legend rebinds to the new image's channels.**
 
 ### What to notice
 

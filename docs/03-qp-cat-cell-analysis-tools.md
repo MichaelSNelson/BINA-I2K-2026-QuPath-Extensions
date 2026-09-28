@@ -268,13 +268,14 @@ Leave the random seed at 42. KMeans runs ten initializations and keeps the best,
 is repeatable. The dialog reopens with whatever you last ran, so the second and third runs in
 this exercise start from the first rather than from defaults. While a run is going, the
 progress checklist shows how long each step has taken — useful for deciding which spatial
-statistics are worth their time on your own data. Tick **`Neighborhood enrichment + Moran's I`** and, under Spatial statistics,
-**`Ripley L`** as well — step 5 needs both, and computing them now saves a second
-run.
+statistics are worth their time on your own data.
 
 > **Short on time, or something went wrong?** If you took the **clustered** project,
-> everything below is already computed in it. Open
-> `Extensions > QP-CAT > Results & populations > View Past Results...` and pick `auto_20260924_135415_kmeans`.
+> everything below is already computed in it.
+>
+> 1. **Open `Extensions > QP-CAT > Results & populations > View Past Results...`.**
+> 2. **Pick `auto_20260924_135415_kmeans`.**
+>
 > The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
 > dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
 
@@ -363,7 +364,8 @@ the embedding you run again over those columns.
 
 #### 4.1 Set up the second run
 
-Open `Extensions > QP-CAT > Find cell populations (clustering)...` again and change these settings:
+**Open `Extensions > QP-CAT > Find cell populations (clustering)...`** again and change these
+settings:
 
 | # | Setting | Set to |
 |---|---|---|
@@ -392,7 +394,7 @@ from a space whose groups were plainly separated in the 3D view. What each setti
 What it looks like when it goes wrong, and how to tell:
 [QP-CAT troubleshooting](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md#5-hdbscan-returns-one-giant-cluster-and-almost-no-noise).
 
-Then click **Run Clustering**.
+**Click Run Clustering.**
 
 <details markdown="1">
 <summary><b>Why these values</b> — 500, <code>min_samples</code> 0, and batch correction off</summary>
@@ -468,7 +470,10 @@ is high in `3DUMAP2` is not a phenotype.
 
 That run read three columns and nothing else. Every marker
 measurement — PanCK, CD3, CD20, all of them — is still on the cells, unused.
-Open **`Extensions > QP-CAT > Results & populations > Analyze current cell classifications...`**. It takes the
+
+**Open `Extensions > QP-CAT > Results & populations > Analyze current cell classifications...`.**
+
+The dialog takes the
 classes the cells now carry, computes each cluster's marker statistics, and opens the usual
 results window: **Heatmap**, **Marker Rankings**, **Marker Fingerprints** and the
 **Composition** tabs. It writes nothing back: no classification is added, changed or
@@ -520,7 +525,7 @@ it is where a mixed project shows itself: if some images carry cluster labels an
 still carry an earlier labeling, you will see both sets listed together and the run will
 compare things that were never meant to be compared. One labeling system, all of its classes.
 
-Then click **Analyze**.
+**Click Analyze.**
 
 #### 4.4 Read the answer
 
@@ -592,8 +597,8 @@ on the **Marker Fingerprints** tab.
 
 #### 5.1 Run the spatial statistics
 
-1. Open `Extensions > QP-CAT > Explore & spatial > Spatial statistics on existing clusters...`.
-2. Check these settings:
+1. **Open `Extensions > QP-CAT > Explore & spatial > Spatial statistics on existing clusters...`.**
+2. **Check these settings:**
 
    | # | Setting | Set to |
    |---|---|---|
@@ -607,7 +612,7 @@ on the **Marker Fingerprints** tab.
    > image instead of eight. If that is still slow, untick **Ripley L**: steps 5.2 and 5.3 do not
    > need it, and the figure in 5.4 shows what the Ripley L result looks like.
 
-3. Click **Run spatial statistics**. A window titled **QP-CAT - Spatial statistics summary**
+3. **Click Run spatial statistics.** A window titled **QP-CAT - Spatial statistics summary**
    opens with one row per image, headed **8 area(s), 8 analyzed.**
 
    <img src="../images/qp-cat/spatialstats-summary.png" alt="The QP-CAT Spatial statistics summary window. A table lists the eight images tme_00 to tme_07, each as a whole image, with its cell count, 7 classes (6 for tme_07), the unit um, the statistics computed, and an Open button at the end of the row. Save combined CSV and Close are at the bottom" width="820">
@@ -625,7 +630,7 @@ on the **Marker Fingerprints** tab.
 
 #### 5.2 Compare four pairs of clusters
 
-1. Open the **Co-occurrence (pairwise)** tab. It is a table of numbers with one row per radius
+1. **Open the Co-occurrence (pairwise) tab.** It is a table of numbers with one row per radius
    and one column per ordered pair of clusters. Each number is a ratio: above 1 means the second
    cluster is found near the first more often than it is found near cells in general, below 1
    means less often, and about 1 means no preference. The ratio is descriptive, with no
@@ -652,7 +657,7 @@ one cluster, which would have averaged the two into a single number.
 
 #### 5.4 Read Ripley L
 
-1. Open the **Ripley L** tab. The chart opens showing one cluster, with the rest unticked under
+1. **Open the Ripley L tab.** The chart opens showing one cluster, with the rest unticked under
    **Show clusters**. Each cluster draws three lines, its curve plus both edges of its own
    random band, so tick only one or two at a time.
 2. Under **Show clusters**, click **None**, then tick cluster 1, fibroblast (aSMA), and
@@ -663,8 +668,9 @@ one cluster, which would have averaged the two into a single number.
 Read each curve against the **flat line at zero**, which is randomness: the curve is
 plotted relative to that cluster's own simulated-random median. **Above the dashed band**
 at some radius means clustered at that radius, **below** means dispersed, and **inside the
-band** means indistinguishable from random. Untick **Relative to random** to see the raw
-`L(r)` instead.
+band** means indistinguishable from random.
+
+**Untick Relative to random** to see the raw `L(r)` instead.
 
 | Cluster | Where its curve sits | Reading |
 |---|---|---|
@@ -713,7 +719,7 @@ different set of images.
 
 #### 6.1 Run it
 
-Open `Extensions > QP-CAT > Find cell populations (clustering)...`. The dialog reopens with
+**Open `Extensions > QP-CAT > Find cell populations (clustering)...`.** The dialog reopens with
 step 4's settings, so there are only two things to change:
 
 | # | Setting | Set to |
@@ -729,7 +735,7 @@ cells, still fast.
 
 #### 6.2 Read the composition per image
 
-1. Open the **Composition by area** tab. Each image is an independent area, so you get one
+1. **Open the Composition by area tab.** Each image is an independent area, so you get one
     row per image. (**Composition by image** beside it shows the same rows for this run,
     because here the areas *are* the images. They part company as soon as you add a level —
     TMA cores, annotations — under **Independent areas**.)

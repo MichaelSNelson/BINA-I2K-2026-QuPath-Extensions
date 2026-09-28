@@ -70,15 +70,16 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 ### 2. Load it into QuPath
 
-If the OCR project is not still open, drag its `project.qpproj` onto an open QuPath window (menu
-route: `File > Project > Open project...`). It was made on this machine, so no **Update URIs**
-dialog appears. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` to open it.
+1. **Drag the OCR project's `project.qpproj` onto an open QuPath window**, if that project is not
+   still open. (Menu route: `File > Project > Open project...`.) The project was made on this
+   machine, so no **Update URIs** dialog appears.
+2. **Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi`** to open it.
 
 ### 3. Look around
 
-1. Open `Extensions > Project Metadata Browser > Browse Metadata...`. The **Entries** tab shows
+1. **Open `Extensions > Project Metadata Browser > Browse Metadata...`.** The **Entries** tab shows
    one row per image: Name, ID, URI, Description, Tags, then one column per metadata key.
-2. Click **Fit Columns**, then trim the table to the columns you care about. The **Columns**
+2. **Click Fit Columns, then trim the table to the columns you care about.** The **Columns**
    menu (boxed in red in the picture below) closes after each click, so reopen it for each row:
 
    | # | Field | Set to |
@@ -100,7 +101,7 @@ dialog appears. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.cz
    <img src="../images/project-metadata-browser/metadata_TOMOfilter.png" alt="The browser window after steps 2 and 3. The Columns menu is boxed in red. The Filter rows box holds TOMO, the table shows only the Name, barcode and specimen columns, and only the two histology at lji org 610 TOMO rows are listed, each with specimen 610 TOMO. The bottom line reads Entries: 2 shown / 4 total" width="720">
 
    Clear the box and all four rows come back.
-4. Click the **`specimen`** column header to sort by it. With four images there is little to
+4. **Click the `specimen` column header to sort by it.** With four images there is little to
    see. On a project of hundreds, sorting an OCR column puts a misread value at the top or
    bottom, away from the real ones.
 
@@ -113,8 +114,8 @@ dialog appears. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.cz
    | 1 | The **`specimen`** cell of `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` | double-click it, type `TEST`, press Enter |
 
    The window title gains a `*` and **1 unsaved change** appears at the bottom of the window.
-2. Press **Ctrl+Z**. The cell reads `610 TOMO` again. Press **Ctrl+Shift+Z** and `TEST`
-   returns. Leave it there, and **do not save yet**.
+2. **Press Ctrl+Z.** The cell reads `610 TOMO` again.
+3. **Press Ctrl+Shift+Z.** `TEST` returns. Leave it there, and **do not save yet**.
 
 ### 5. Two new columns pulled out of the filenames
 
@@ -132,7 +133,7 @@ pattern that describes the shape of the text you want. You do not need to write 
 the pattern below, which was written for these four filenames.
 
 1. In the browser window's own menu bar, open `Edit > Extract columns from filenames (regex)...`.
-2. Set these, top to bottom. The numbers match the badges in the picture below.
+2. **Set these, top to bottom.** The numbers match the badges in the picture below.
 
    | # | Field | Set to |
    |---|---|---|
@@ -153,15 +154,15 @@ the pattern below, which was written for these four filenames.
    digits, with or without dashes between them, into a column called `date`". The `_` and `-`
    around them pin it to the one place in each filename where a stain sits just before a date.
 
-3. Check the preview before you apply. Under the pattern box it says **Valid regex. 2 named
+3. **Check the preview before you apply.** Under the pattern box it says **Valid regex. 2 named
    groups detected.** The preview table lists each filename with its `stain` and `date` filled
    in as in the table above, and the line under it reads **Matched 4 of 4; 0 unmatched.** If a
    row shows *(no match)*, the pattern was not pasted exactly.
-4. Click **Apply**. Two new columns, `stain` and `date`, appear at the right of the table,
+4. **Click Apply.** Two new columns, `stain` and `date`, appear at the right of the table,
    filled in for all four images, and the status line at the bottom of the window reads
    **Regex extracted 8 cell values, 2 new columns. Save to commit.**
-5. Press **Ctrl+Z**: both columns disappear, because the extraction was one action. Press
-   **Ctrl+Shift+Z** to bring them back.
+5. **Press Ctrl+Z.** Both columns disappear, because the extraction was one action.
+6. **Press Ctrl+Shift+Z** to bring them back.
 
 > **For your own filenames.** Change the names inside `(?<...>)` and the text around them to
 > match how your files are named. [regex101.com](https://regex101.com/) with the *Java*
@@ -189,17 +190,17 @@ the pattern below, which was written for these four filenames.
    The key list now shows `scan_date` and no `date`, and the status line reads **Renamed 'date'
    to 'scan_date' across 4 entries. Save to commit.** On the **Entries** tab the column header
    reads `scan_date`.
-2. Press **Ctrl+Z**: the key, and the column header, read `date` again. Press **Ctrl+Shift+Z**
-   to put the rename back.
+2. **Press Ctrl+Z.** The key, and the column header, read `date` again.
+3. **Press Ctrl+Shift+Z** to put the rename back.
 
 ### 7. Save, refresh, export
 
 1. In the browser window's own menu bar, `File > Save` (**Ctrl+S**). The `*` and the unsaved-changes marker disappear, and the status
    line reports how many changes were saved.
-2. Click **Refresh**. The table is reloaded from the project on disk: `stain` and `scan_date`
+2. **Click Refresh.** The table is reloaded from the project on disk: `stain` and `scan_date`
    are still there, filled in for all four images, and the `specimen` cell you changed in
    step 4 still reads `TEST`. The columns you hid in step 3 stay hidden.
-3. Export what you see:
+3. **Export what you see:**
 
    | # | Field | Set to |
    |---|---|---|

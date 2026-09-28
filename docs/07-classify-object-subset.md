@@ -106,13 +106,13 @@ cells**. Hold on to that number — you are going to measure it twice.
 
 ### 2. Load it into QuPath
 
-1. **Drag `project.qpproj` onto an open QuPath window** — or the unzipped folder itself, either
-   works. (Menu route: `File > Project > Open project...`.)
-2. QuPath pops up an **Update URIs** dialog with the images listed in red. This is expected.
-   The project ships with *relative* image paths so the zip is portable, and QuPath cannot
-   resolve those until you show it the folder once. Click **Search...** (bottom-right), choose
-   the folder you unzipped, then **Apply changes**.
-3. In the project list on the left, double-click **`tme_00.tif`** to open it.
+1. **Drag `project.qpproj` onto an open QuPath window.** The unzipped folder itself works too.
+   (Menu route: `File > Project > Open project...`.) QuPath opens an **Update URIs** dialog with
+   the images listed in red. This is expected: QuPath cannot find the images until you show it
+   the folder once.
+2. **Click Search...** (bottom-right) and choose the folder you unzipped.
+3. **Click Apply changes.**
+4. **Double-click `tme_00.tif`** in the project list on the left to open it.
 
 <img src="../images/classify-object-subset/project-open-tme00.png" alt="tme_00 open in QuPath. A red rectangle annotation frames the whole image; every cell carries a red detection outline; and a small colored dot sits on each cell, colored by its true type" width="820">
 
@@ -138,7 +138,7 @@ tumor nest that expansion picks up PanCK signal from the tumor cell next door, s
 touching a tumor nest are classified as `tumor`**. In step 5 you will correct only those cells
 with the extension and leave every other cell as it is.
 
-1. Run the script: **`Automate > Project scripts > classify_with_marker_gate`**, then **Run**.
+1. **Run the script: `Automate > Project scripts > classify_with_marker_gate`, then Run.**
    It is bundled with the project, so there is nothing to download.
 
 2. The cells are now colored by predicted class. Zoom into the boundary of a tumor nest and
@@ -176,7 +176,7 @@ This step gets the same error out of the extension as a **single number**, so th
 you can watch that number move.
 
 1. `Extensions > Classify Object Subset > Apply Classification to Subset...`. A dialog opens.
-2. Set it up like this. The numbers match the badges in the picture below.
+2. **Set it up like this.** The numbers match the badges in the picture below.
 
     | # | Field | Set to |
     |---|---|---|
@@ -206,7 +206,7 @@ matching cells in the viewer, if you would rather see them than count them.
 
 1. Leave the filter set to **`tumor`**. You are now targeting exactly the cells the script
     classified as tumor, the 412 correct ones and the 27 wrong ones together, and nothing else.
-2. Click **Apply**. The confirmation reads **"439 objects classified, 27 changed."**
+2. **Click Apply.** The confirmation reads **"439 objects classified, 27 changed."**
 
     <img src="../images/classify-object-subset/apply-notification.png" alt="A QuPath notification headed Subset classification complete, reading: 439 objects classified, 27 changed. Open the Workflow tab to copy this operation as a script" width="700">
 
@@ -214,8 +214,8 @@ matching cells in the viewer, if you would rather see them than count them.
     CD8 T cells, 9 macrophages, 3 helper T cells and 1 B cell the script had classified as
     tumor. The other 412 it looked at were already right and were left alone.
 
-3. Now measure again. Reopen the dialog with the same settings as in step 4 (**Custom filter**,
-    **`tumor`** only) and read the live count.
+3. **Read the live count in the dialog again.** The dialog is still open with **`tumor`**
+    ticked, and its count updates on its own after Apply.
 
     <img src="../images/classify-object-subset/dialog-after-repair.png" alt="The filter panel after the repair, with only tumor ticked, and the live count now reading 412 of 1,530 objects will be classified" width="640">
 
@@ -247,7 +247,7 @@ The script leaves 19 cells that match none of its marker rules, and those stay u
 
 Every Apply is recorded so the same operation can be re-run across a whole project.
 
-1. Open `Automate > Show workflow command history`. Look for the step named
+1. **Open `Automate > Show workflow command history`.** Look for the step named
     **`Apply classify object subset`** — one for each time you clicked Apply.
 2. Get it into Groovy, one of two ways:
 

@@ -159,14 +159,15 @@ Nothing in the files says which you have, so you tell the extension with the **I
 </details>
 
 **No project to load.** Unlike every other tool here, Tiles to Pyramid does not need a project — it reads
-tiles off disk and writes an image. Open QuPath, go to
-`Extensions > Tiles to Pyramid > Tiles-to-pyramid`, and carry on with step 2. The stitched files land
-**in the folder you selected**, beside the tiles.
+tiles off disk and writes an image. The stitched files land **in the folder you selected**,
+beside the tiles.
+
+**Open `Extensions > Tiles to Pyramid > Tiles-to-pyramid`** and carry on with step 2.
 
 ### 2. A MicroManager acquisition
 
 1. `Extensions > Tiles to Pyramid > Tiles-to-pyramid`.
-2. Set the dialog up like this. The numbers match the badges in the picture below.
+2. **Set the dialog up like this.** The numbers match the badges in the picture below.
 
    | # | Field | Set to |
    |---|---|---|
@@ -189,7 +190,7 @@ tiles off disk and writes an image. Open QuPath, go to
    between runs, so check them. The two Invert boxes are there because this is a scope A
    acquisition, whose first tile belongs bottom right; the box further down shows how you
    would work that out for a scope you do not know.
-3. Click **Stitch**. The dialog closes and a notification says it started in the background;
+3. **Click Stitch.** The dialog closes and a notification says it started in the background;
    QuPath stays usable. Do not click Stitch again while you wait — you will get "A stitch is
    already running."
 4. **Read the result window before you close it.** A couple of minutes later **Tiles to Pyramid -
@@ -200,8 +201,9 @@ tiles off disk and writes an image. Open QuPath, go to
    Tile registration: 12 of 12 seams accepted, aligned on 385, moved 36 of 36 tile placements.
    ```
 
-   Everything went into the folder you selected. Click **Open output folder** to go straight
-   there: `fluo-cells_merged.ome.tif` holds all four channels, and the four single-channel images
+   Everything went into the folder you selected.
+
+   **Click Open output folder** to go straight there: `fluo-cells_merged.ome.tif` holds all four channels, and the four single-channel images
    it was built from are in `fluo-cells_channels/`. Every image has a `.stitch-info.txt` beside it
    recording how it was made. Each later mention of a `Tile registration:` line in this guide
    means that same window — you never need the log.
@@ -384,8 +386,9 @@ Both polarization angles stitch in one go:
 All three of those carry over from the Zarr exercise, so check them before you click.
 
 Each angle reports `17 of 17 seams accepted`, and you get two outputs from one click:
-`7.0.biref.ome.tif` and `90.0.ome.tif`, side by side in the top-level folder. Drag either onto
-QuPath to look at it; `90.0.ome.tif` is the one you already stitched by hand in step 4, so
+`7.0.biref.ome.tif` and `90.0.ome.tif`, side by side in the top-level folder.
+
+**Drag either file onto the QuPath window** to look at it. `90.0.ome.tif` is the one you already stitched by hand in step 4, so
 you can check the two runs agree.
 
 Here is that folder after a run with the output format left on **OME-Zarr**, which is what you

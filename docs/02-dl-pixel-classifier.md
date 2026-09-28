@@ -155,7 +155,7 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 1. Unzip `Scripting Demo.zip`, then **drag the unzipped folder onto an open QuPath window** — it
    is already a project, and dropping it opens it. (Menu route: `File > Project > Open project...`.)
-2. Double-click the **CMU-1 H&E** slide in the project list to open it.
+2. **Double-click the CMU-1 H&E slide in the project list to open it.**
 
 The extension is at `Extensions > DL Pixel Classifier`.
 
@@ -195,8 +195,10 @@ Without it you would get a detection object covering every piece of empty slide.
 
 </details>
 
-**2. Open `Extensions > DL Pixel Classifier > Train DL Pixel Classifier...`**, tick the CMU-1
-slide, and press **Load Classes from Selected Images**. Nothing downstream fills in until you do.
+**2. Open `Extensions > DL Pixel Classifier > Train DL Pixel Classifier...`.**
+
+- **Tick the CMU-1 slide.**
+- **Click Load Classes from Selected Images.** Nothing downstream fills in until you do.
 
 **3. Load the settings.** Click **Load profile...** and choose
 `ResNet18_fast_tissue.json`. That sets the architecture, the encoder, the tile geometry and
@@ -222,8 +224,9 @@ stops to show you the ones it found, each with a description of what it will do 
 The one above is the most common. With tile overlap on and every slide set to `Both`, the split
 is drawn over tiles that already overlap each other, so a validation tile can share pixels with
 a training tile from the same piece of tissue. Validation then scores partly on pixels the model
-trained on, and comes out high for a reason that has nothing to do with the model. Set **Tile
-Overlap** to 0, or give at least one image a Train-only or Val-only role.
+trained on, and comes out high for a reason that has nothing to do with the model.
+
+**Set Tile Overlap to 0**, or give at least one image a Train-only or Val-only role.
 
 `[BLOCKING]` means the dialog stops and asks. **Cancel** returns you to the settings;
 **OK** trains anyway. Warnings that are not blocking offer **Start Training** and **Back to
@@ -408,20 +411,20 @@ You can use the model you just trained, or the provided one.
    beside Delete and the two Export buttons — see the
    [Manage Classifiers window](#sharing-and-moving-a-model) below). It appears as
    **CMU-1_Tissue_ResNet-18**.
-2. Draw a rectangle over a small area of tissue, then choose
-   `Extensions > DL Pixel Classifier > Apply DL Pixel Classifier...`. Set the output to
-   **overlay** so the prediction is drawn on the slide.
-3. Look at the **probability map**, not just the class assignment. Find a region where the model
+2. **Draw a rectangle over a small area of tissue.**
+3. **Open `Extensions > DL Pixel Classifier > Apply DL Pixel Classifier...`.**
+4. **Set the output to overlay** so the prediction is drawn on the slide.
+5. Look at the **probability map**, not just the class assignment. Find a region where the model
    is genuinely uncertain. Uncertainty is usually highest at class boundaries; that is expected,
    and a model that looks confident everywhere is the one to distrust.
-4. Run it again with **detection objects** as the output, so the result becomes QuPath objects
+6. **Run it again with detection objects as the output**, so the result becomes QuPath objects
    you can measure and classify downstream.
-5. Open a slide with a visibly different stain and run inference again, watching for the
+7. **Open a slide with a visibly different stain** and run inference again, watching for the
    **out-of-distribution warning**. The workshop project does not contain a second H&E slide,
    so use one of your own if you have one — otherwise this step is a demonstration.
-6. On that second slide, try
-   `Extensions > DL Pixel Classifier > Utilities > Calibrate model to current image...`
-   (AdaBN), run inference again, and compare.
+8. **On that second slide, open
+   `Extensions > DL Pixel Classifier > Utilities > Calibrate model to current image...`** (AdaBN).
+9. **Run inference again** and compare.
 
 ### 5. Review what the model disagreed with
 

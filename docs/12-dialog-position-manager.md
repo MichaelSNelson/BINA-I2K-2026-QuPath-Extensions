@@ -116,11 +116,11 @@ The manager is at `Window > Dialog Position Manager...`, not under `Extensions`.
 
 1. Open two or three QuPath dialogs (brightness/contrast, the script editor, and one of
    today's extension dialogs). Arrange them where you like.
-2. Close and reopen them. Confirm they came back where you put them.
+2. **Close and reopen them.** Confirm they came back where you put them.
 3. `Window > Dialog Position Manager...` and look at the tracked list — the ones currently
    open are green and marked **[OPEN]**.
-4. Drag a dialog mostly off the edge of the screen, then use **Recover Off-Screen Dialogs**.
-5. Pick a dialog and **Reset Position**; reopen it and see QuPath's default placement.
+4. **Drag a dialog mostly off the edge of the screen, then use Recover Off-Screen Dialogs.**
+5. **Pick a dialog and Reset Position; reopen it and see QuPath's default placement.**
 6. Size the QuPath main window the way you like it, then click **Save Current Position** and
    leave **Restore on startup** ticked. It comes back that way next launch.
 7. If you have a second display: move a dialog to it, disconnect, and recover.
