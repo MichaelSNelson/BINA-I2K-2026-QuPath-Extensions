@@ -12,7 +12,8 @@ If you can only do one thing: **install QuPath 0.7 and add the one catalog.**
 
 > **Want to vote on what we demonstrate live?** See
 > [walkthroughs and videos](walkthroughs.md). We will not get through all sixteen tools, so the
-> live time follows the room's interest. Every tool has a walkthrough and a video regardless.
+> live time follows the room's interest. Every tool has a walkthrough
+> regardless, and videos will be added after the workshop.
 
 > **Only interested in one or two extensions?** You do not need any of the tracks. Go to the
 > **[extension index](extensions.md)**, find the ones you care about, and install just those.

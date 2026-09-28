@@ -7,7 +7,7 @@ title: Extensions and catalogs in five minutes
 
 Everything in this workshop is a QuPath **extension**: a separate piece of software that
 QuPath loads when it starts. This page is the whole background you need. Each tool then has
-its own page and video.
+its own page.
 
 ## Installing an extension
 
@@ -42,7 +42,7 @@ for jars again. One catalog covers every hands-on tool in this workshop, and add
 ## Where to go next
 
 - **[Setup guide](setup.md)**: do this before the workshop.
-- **[Extension index](extensions.md)**: every tool, with its guide and video.
+- **[Extension index](extensions.md)**: every tool, with its guide.
 - **[Schedule](schedule.md)**: time, room, and what the two hours are.
 - [How this suite was built](how-this-was-built.md), including where AI-assisted development
   helped and where it did not. Background to the talk; not needed to use the tools.

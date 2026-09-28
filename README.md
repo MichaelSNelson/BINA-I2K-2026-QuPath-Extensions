@@ -33,9 +33,9 @@ suite of open-source QuPath extensions developed at
 > ### ⚠️ This site is still being built
 >
 > Setup, guides and exercises are current and usable now, and **every dataset is linked and ready
-> to download**. Still to come: the slides and the walkthrough videos. Anywhere you see a
-> `%%PLACEHOLDER%%` instead of a link, that is why.
-> It will all be in place before 29 September.
+> to download**. Still to come: the slides, which will be in place before 29 September. The
+> walkthrough videos will not be ready for the workshop: I ran out of time, and will add them
+> afterwards so this site can keep being used as training material.
 
 ## Setup: do this before you travel
 
@@ -86,7 +86,7 @@ and troubleshooting: [setup guide](docs/setup.md).
 |---|---|
 | **[Extensions and catalogs in five minutes](docs/00-extensions-catalogs-and-ai.md)** | The whole background you need: installing an extension, and adding the one catalog |
 | **[Acknowledgments](docs/acknowledgements.md)** | Data providers, the QuPath team, and the methods these tools build on |
-| **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough and a video for every tool, plus the vote for what we demo live |
+| **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough for every tool, with videos to follow after the workshop, plus the vote for what we demo live |
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide, for picking just the ones you want |
 | **[Schedule](docs/schedule.md)** | Time, room, and what the two hours are |
 

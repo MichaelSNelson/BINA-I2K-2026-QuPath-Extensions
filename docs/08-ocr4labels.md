@@ -19,7 +19,7 @@ slide_label_credit: true
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
-> **Walkthrough video:** %%VIDEO_OCR4LABELS%%
+> **Walkthrough video:** %Video not ready yet%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
 
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and

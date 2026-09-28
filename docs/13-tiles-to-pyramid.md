@@ -23,7 +23,7 @@ title: Tiles to Pyramid
 > no microscope, no Python server, and no acquisition running. If you have a folder of tiles,
 > this stitches them.
 
-> **Walkthrough video:** %%VIDEO_TILES_TO_PYRAMID%%
+> **Walkthrough video:** %Video not ready yet%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on your own afterwards.
 
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and

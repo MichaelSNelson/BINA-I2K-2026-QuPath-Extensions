@@ -12,7 +12,7 @@ Validates an object classifier against ground-truth annotations: an interactive 
 matrix you can click into, plus per-class precision, recall, F1 and specificity with bootstrap
 confidence intervals.
 
-> **Walkthrough video:** %%VIDEO_CONFUSION_MATRIX%%
+> **Walkthrough video:** %Video not ready yet%
 
 ---
 

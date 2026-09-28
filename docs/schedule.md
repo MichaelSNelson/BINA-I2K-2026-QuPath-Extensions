@@ -45,7 +45,7 @@ yours to spend as you like.
 - **Which extension to spend your time on:** the [extension index](extensions.md), grouped by
   track.
 - **Working through something on your own:** every tool has a
-  [walkthrough and a video](walkthroughs.md).
+  [walkthrough](walkthroughs.md). Videos will be added after the workshop.
 
 You are also very welcome to bring your own data for the second hour. Working on a problem you
 actually have beats working on ours.

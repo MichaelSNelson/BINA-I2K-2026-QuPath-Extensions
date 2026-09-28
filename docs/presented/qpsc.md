@@ -11,7 +11,7 @@ title: QPSC - QuPath Scope Control (presented only)
 QPSC lets you control a microscope from QuPath: pick a region on a slide overview, and it
 acquires that region at high resolution and brings the result back into the project.
 
-> **Walkthrough video:** %%VIDEO_QPSC%%
+> **Walkthrough video:** %Video not ready yet%
 
 ---
 

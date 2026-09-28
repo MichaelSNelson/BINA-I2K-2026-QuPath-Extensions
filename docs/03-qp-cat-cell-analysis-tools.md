@@ -23,7 +23,7 @@ title: QP-CAT - Cell Analysis Tools
 > other people's software into QuPath (CytoMAP, QuBaLab). Many features are **lightly tested or
 > entirely untested**. Treat results as a starting point for investigation, not as findings.
 
-> **Walkthrough video:** %%VIDEO_QP_CAT_CELL_ANALYSIS_TOOLS%%
+> **Walkthrough video:** %Video not ready yet%
 > The walkthrough below is self-contained. You can work through it during the workshop, or on
 > your own afterwards.
 
@@ -162,12 +162,13 @@ Then run `Extensions > QP-CAT > Setup & help > Set up analysis environment (firs
 ## The data: a synthetic tumor microenvironment
 
 <details markdown="1">
-<summary><b>Coming: a real multiplexed Orion dataset</b> — seven images, shown in the walkthrough video; not downloadable yet</summary>
+<summary><b>Coming: a real multiplexed Orion dataset</b> — seven images; not downloadable yet</summary>
 
 A second dataset is being prepared for QP-CAT specifically — a QuPath project
 (`multiplexTesting`) of **seven Orion images**, six numbered `Orion1`–`Orion6` plus
 `Orion_Tonsil_10follicles`. Real tissue, real markers, and **several GB**, which is why it is
-not the hands-on exercise. **You will see it in the walkthrough video**, showing what this
+not the hands-on exercise. **It will appear in the walkthrough video**, once that is recorded
+after the workshop, showing what this
 workflow looks like on real data, and the download is there for exploring afterwards on a
 machine with room for it.
 

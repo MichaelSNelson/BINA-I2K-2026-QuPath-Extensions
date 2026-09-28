@@ -19,7 +19,7 @@ title: Channel Names Viewer
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Mentioned; presented in Sara McArdle’s Monday session |
 
-> **Walkthrough video:** %%VIDEO_CHANNEL_NAMES_VIEWER%%
+> **Walkthrough video:** %Video not ready yet%
 > The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
 
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and

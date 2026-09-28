@@ -14,7 +14,8 @@ repository. Two of them, Channel Names Viewer and Classify Object Subset, are de
 her scripts are where both extensions came from. They are still fully installable, we simply do
 not demo them twice in one morning. If you would rather be told exactly what to install for a particular hands-on
 track, use the [setup guide](setup.md) instead. Every tool also has a
-[written walkthrough and a video](walkthroughs.md), whether or not we reach it live.
+[written walkthrough](walkthroughs.md), whether or not we reach it live. Videos will be added
+after the workshop.
 
 ---
 

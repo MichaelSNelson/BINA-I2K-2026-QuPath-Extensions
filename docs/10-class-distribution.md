@@ -19,7 +19,7 @@ title: Class Distribution
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
-> **Walkthrough video:** %%VIDEO_CLASS_DISTRIBUTION%%
+> **Walkthrough video:** %Video not ready yet%
 
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the

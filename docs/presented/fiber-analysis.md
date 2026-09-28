@@ -12,7 +12,7 @@ title: Collagen fiber and texture analysis (presented only)
 Two tools for quantifying collagen architecture — not whether collagen is present, but how it is
 arranged, which is what carries the biology in tumor stroma and fibrosis.
 
-> **Walkthrough video:** %%VIDEO_FIBER_ANALYSIS%%
+> **Walkthrough video:** %Video not ready yet%
 
 ---
 

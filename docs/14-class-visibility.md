@@ -19,7 +19,7 @@ title: Class Visibility
 | **Catalog** | LOCI QuPath Extensions |
 | **Session** | Hands-on |
 
-> **Walkthrough video:** %%VIDEO_CLASS_VISIBILITY%%
+> **Walkthrough video:** %Video not ready yet%
 > The walkthrough below is self-contained. You can work through it in the hands-on hour, or on your own afterwards.
 
 > **New to QuPath?** Words like *project*, *annotation*, *detection*, *class* and
