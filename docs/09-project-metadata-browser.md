@@ -168,7 +168,12 @@ the pattern below, which was written for these four filenames.
    | 1 | Key list | select `date` (**Used by** 4) |
    | 2 | **Rename...** | click it. The dialog is headed **Rename "date" (used by 4 entries)** |
    | 3 | **New key** | `scan_date` |
-   | 4 | **Rename** | click it |
+   | 4 | **If the new key already exists on an entry** | *Overwrite -- replace the existing value* |
+   | 5 | **Rename** | click it |
+
+   The dialog opens with that option on *Cancel*, and while it stays there the Rename button is
+   greyed out and the line under the key field reads **Choose Overwrite or Skip to enable
+   Rename.** No image has a `scan_date` key yet, so nothing is actually overwritten here.
 
    The key list now shows `scan_date` and no `date`, and the status line reads **Renamed 'date'
    to 'scan_date' across 4 entries. Save to commit.** On the **Entries** tab the column header
