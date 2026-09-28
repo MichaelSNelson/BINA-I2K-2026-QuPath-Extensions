@@ -35,7 +35,7 @@ You can **view** it (filter, sort, hide columns), **edit** it (type into cells, 
 nothing written to disk until you save), and run **bulk workflows** that add, fill or remove
 metadata on many images at once, from a spreadsheet, a filename pattern or a fill-in template.
 
-<img src="../images/project-metadata-browser/window.png" alt="The Project Metadata Browser window: a Filter rows box and Refresh and Fit Columns buttons above a table with Name, ID, URI, Description, Tags and OCR metadata columns, one row per image, with an entry count, Max column width, Export and Close controls along the bottom" width="820">
+<img src="../images/project-metadata-browser/window.png" alt="The Project Metadata Browser window on the OCR project: menus File, Edit and Columns; a Filter rows box holding TOMO, with Refresh and Fit Columns beside it; tabs Entries and Metadata Keys; a table with Name, barcode and specimen columns showing the two brightfield slides; and along the bottom Entries: 2 shown / 4 total, Max column width, Export and Close" width="720">
 
 <details markdown="1">
 <summary><b>Install</b> — from the LOCI catalog, then restart QuPath</summary>
@@ -76,9 +76,9 @@ dialog appears. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.cz
 1. Open `Extensions > Project Metadata Browser > Browse Metadata...`. The **Entries** tab shows
    one row per image: Name, ID, URI, Description, Tags, then one column per metadata key.
 2. Click **Fit Columns**, then trim the table to the columns you care about. The **Columns**
-   menu closes after each click, so reopen it for each row:
+   menu (boxed in red in the picture below) closes after each click, so reopen it for each row:
 
-   | | Field | Set to |
+   | # | Field | Set to |
    |---|---|---|
    | 1 | **Columns > Select None** | click it. Every column disappears. |
    | 2 | **Columns > Name** | tick |
@@ -86,12 +86,16 @@ dialog appears. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.cz
 
 3. Find the two brightfield slides:
 
-   | | Field | Set to |
+   | # | Field | Set to |
    |---|---|---|
    | 1 | **Filter rows** | `TOMO` |
 
-   Only the two `histology@lji_org_610 TOMO…` rows remain. The filter searches every visible
-   column, so `TOMO` matches their filenames and the case ID that OCR read off their labels.
+   Only the two `histology@lji_org_610 TOMO…` rows remain, and the line at the bottom reads
+   **Entries: 2 shown / 4 total**. The filter searches every visible column, so `TOMO` matches
+   their filenames and the values OCR read off their labels.
+
+   <img src="../images/project-metadata-browser/metadata_TOMOfilter.png" alt="The browser window after steps 2 and 3. The Columns menu is boxed in red. The Filter rows box holds TOMO, the table shows only the Name, barcode and specimen columns, and only the two histology at lji org 610 TOMO rows are listed, each with specimen 610 TOMO. The bottom line reads Entries: 2 shown / 4 total" width="720">
+
    Clear the box and all four rows come back.
 4. Click the **`specimen`** column header to sort by it. With four images there is little to
    see. On a project of hundreds this is the quickest check there is, because a misread value
@@ -101,7 +105,7 @@ dialog appears. Double-click `histology@lji_org_610 TOMO___H&E_20201119-1-mip.cz
 
 1. Change one value:
 
-   | | Field | Set to |
+   | # | Field | Set to |
    |---|---|---|
    | 1 | The **`specimen`** cell of `histology@lji_org_610 TOMO___H&E_20201119-1-mip.czi` | double-click it, type `TEST`, press Enter |
 
@@ -125,15 +129,17 @@ pattern that describes the shape of the text you want. You do not need to write 
 the pattern below, which was written for these four filenames.
 
 1. Open `Edit > Extract columns from filenames (regex)...`.
-2. Set these, top to bottom:
+2. Set these, top to bottom. The numbers match the badges in the picture below.
 
-   | | Field | Set to |
+   | # | Field | Set to |
    |---|---|---|
    | 1 | **Source column** | `Name` (already selected) |
    | 2 | **Regex pattern** | `_(?<stain>[^_]+)_(?<date>\d{4}-?\d{2}-?\d{2})-` |
    | 3 | **Detected groups** | leave `stain` and `date` as they are |
    | 4 | **If a group's column name already exists on entries** | *Overwrite -- replace any current value* |
    | 5 | **Skip non-matching entries** | leave ticked |
+
+   <img src="../images/project-metadata-browser/extract-columns-numbered.png" alt="The Extract columns from filenames dialog with red numbered badges down the left edge. 1 beside Source column, set to Name; 2 beside Regex pattern, holding the pattern from the table, with Valid regex. 2 named groups detected. under it; 3 beside Detected groups, listing stain and date; 4 beside the option Overwrite -- replace any current value, which is selected; 5 beside the ticked box Skip non-matching entries. Below, the Preview table lists the four filenames with stain H and E, MT3B, IF, IF and their dates. Apply and Cancel are at the bottom right" width="820">
 
    Overwrite means that if an OCR field already named `stain` or `date` exists on an image, its
    value is replaced by the one read from the filename. That is what you want here: the date on
@@ -163,13 +169,15 @@ the pattern below, which was written for these four filenames.
 
 1. On the **Metadata Keys** tab, rename the `date` key on every image at once:
 
-   | | Field | Set to |
+   | # | Field | Set to |
    |---|---|---|
    | 1 | Key list | select `date` (**Used by** 4) |
    | 2 | **Rename...** | click it. The dialog is headed **Rename "date" (used by 4 entries)** |
    | 3 | **New key** | `scan_date` |
    | 4 | **If the new key already exists on an entry** | *Overwrite -- replace the existing value* |
    | 5 | **Rename** | click it |
+
+   <img src="../images/project-metadata-browser/rename-key-numbered.png" alt="The Rename metadata key dialog, headed Rename date (used by 4 entries), with red numbered badges down the left edge. 3 beside the New key field, holding scan_date; 4 beside the selected option Overwrite -- replace the existing value; 5 beside the Rename button. A gray line reads No entries have both keys; the collision policy will not be exercised" width="520">
 
    The dialog opens with that option on *Cancel*, and while it stays there the Rename button is
    greyed out and the line under the key field reads **Choose Overwrite or Skip to enable
@@ -190,7 +198,7 @@ the pattern below, which was written for these four filenames.
    step 4 still reads `TEST`. The columns you hid in step 3 stay hidden.
 3. Export what you see:
 
-   | | Field | Set to |
+   | # | Field | Set to |
    |---|---|---|
    | 1 | **Export...** (bottom right of the window) | click it |
    | 2 | File type | *Comma-separated values (\*.csv)* |
