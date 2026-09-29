@@ -627,6 +627,13 @@ Cell types alone do not tell you much. **Where** they sit does. In this image, T
 are concentrated in a band just outside each tumor nest (PanCK), the computational version of
 a pathologist's read on whether an immune response has reached the tumor.
 
+There are two halves to that question, and this step does the first one. **Ripley's L** asks
+whether a population is clumped or spread **in its own right**, at what distance, and whether
+that is more than chance would give — so it tells you a band of T cells exists, and roughly how
+big it is. It does not tell you what the band sits *next to*; that is the pairwise question,
+and it lives in the **Co-occurrence (pairwise)** tab you are about to compute. This guide stops
+at the first half because the second needs a CSV export to read on a seven-cluster run.
+
 Your cells carry cluster numbers, not cell-type names. These are the clusters from step 4:
 
 | Cluster | Led by | Likely cell type |
@@ -651,8 +658,17 @@ on the **Marker Fingerprints** tab.
    |---|---|---|
    | 1 | **Label source** | *Current cell classifications* (already selected) |
    | 2 | Statistics to compute: **Ripley L** | ticked (already ticked) |
-   | 3 | Statistics to compute: **Co-occurrence (pairwise)** | tick it |
+   | 3 | Statistics to compute: **Co-occurrence (pairwise)** | tick it (see below) |
    | 4 | Statistics to compute: **Neighborhood enrichment** | **untick it** |
+
+   > **Co-occurrence is ticked but not walked through.** It gives you a
+   > **Co-occurrence (pairwise)** tab: for each ordered pair of clusters, the ratio of
+   > *P(neighbor is B | centre is A)* to *P(neighbor is B)* against radius, above 1 meaning
+   > enriched and below 1 depleted. It is descriptive, with no permutation test behind it, so
+   > unlike Ripley it costs almost nothing to compute &mdash; worth having, and worth a look.
+   > This guide does not step through it because the on-screen table is one column per ordered
+   > pair and scrolls off the right on a seven-cluster run, and reading it properly means
+   > exporting the CSV. **Save CSV...** under the tab writes one row per pair if you want to.
 
    > **Why untick Neighborhood enrichment.** It is on by default and it is a real statistic,
    > but nothing in step 5 reads it, and in *this* dialog it has nowhere to appear: the
@@ -672,9 +688,9 @@ on the **Marker Fingerprints** tab.
    > *Current image*, so the summary lists one image instead of eight; or set
    > **Permutations (0 = adaptive)** in the dialog to something small like 99.
    >
-   > **Or just skip it.** Untick **Ripley L** and go on: steps 5.2 and 5.3 do not use it, and
-   > 5.4 is written to be read from its figure, so you lose nothing but your own copy of the
-   > chart.
+   > **Or just skip it.** Untick **Ripley L** and read 5.2 from its figure instead: the
+   > readings there are all in the picture and the table under it, so you lose nothing but your
+   > own copy of the chart.
 
    <div class="shots" markdown="0">
    <figure>
@@ -708,31 +724,7 @@ on the **Marker Fingerprints** tab.
 > grows with the square of the largest cluster, so eight images measured separately is far less
 > work than eight images measured as one.
 
-#### 5.2 Compare four pairs of clusters
-
-1. **Open the Co-occurrence (pairwise) tab.** It is a table of numbers with one row per radius
-   and one column per ordered pair of clusters. Each number is a ratio: above 1 means the second
-   cluster is found near the first more often than it is found near cells in general, below 1
-   means less often, and about 1 means no preference. The ratio is descriptive, with no
-   significance test behind it.
-2. Find the four pairs below and predict each before you look. The table is wide, so
-   **Save CSV...** under it, which writes one row per pair, is the easier way to find a pair.
-
-   | Pair | Clusters | Expect at short radii | Because |
-   |---|---|---|---|
-   | tumor (PanCK) with tumor (PanCK) | 2 with 2 | above 1 | tumor grows in nests, not as single cells |
-   | B cell (CD20) with B cell (CD20) | 4 with 4 | above 1 | follicles: dense aggregates, not scattered cells |
-   | tumor (PanCK) with fibroblast (aSMA) | 2 with 0 | below 1 | they occupy different compartments |
-   | tumor (PanCK) with CD8 T cell (CD3, CD8) | 2 with 5 | above 1 | cytotoxic T cells sit at the nest boundary |
-
-#### 5.3 Check the control pair
-
-In the same table, find tumor (PanCK, cluster 2) with helper T cell (CD3 without CD8,
-cluster 6). Its ratio should sit closer to 1 than tumor with CD8 T cell (cluster 5): the
-enrichment is specific to the cytotoxic subset. Step 3's k = 6 run put both T-cell lineages in
-one cluster, which would have averaged the two into a single number.
-
-#### 5.4 Read Ripley L
+#### 5.2 Read Ripley L
 
 1. **Open the Ripley L tab.** The chart opens showing one cluster, with the rest unticked under
    **Show clusters**. Each cluster draws three lines, its curve plus both edges of its own
@@ -764,16 +756,15 @@ structure.
 Tick cluster 2, tumor (PanCK), and cluster 4, B cell (CD20), in the same way to read their
 curves.
 
-#### 5.5 Look at the cells
+#### 5.3 Look at the cells
 
 Click a CD8 T cell (cluster 5) at the edge of a tumor nest in the viewer and confirm that it
 sits where the statistic says.
 
 > **Taking the numbers with you.** Both tabs have `Copy CSV` and `Save CSV...` under them, and
 > the co-occurrence table has `Copy text` as well for a copy of it exactly as shown. The CSV is
-> written one row per observation, so a pairwise co-occurrence row names both clusters — easier
-> to work with than the on-screen table, which is one column per ordered pair and scrolls off
-> the right on a run with many clusters.
+> written one row per observation, so a pairwise co-occurrence row names both clusters — which
+> is the only practical way to read that tab on a seven-cluster run.
 
 ### 6. Inflamed versus desert
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
