@@ -134,9 +134,15 @@ which is the other reason to have it installed.
 
 ### 1. Get the data
 
+**Download:** `Brightfield demo.zip` — **[direct download](https://drive.google.com/uc?export=download&id=1ghskMkToAP6DoQSfGxrdQiOKjIMpHtI0)** (90 MB). A ready-made
+QuPath project of brightfield tiles. **This is what you train on in step 3.** Unzip it and open
+`project.qpproj` in QuPath. Google shows a scan-warning page for a file this size — click
+through it.
+
 **Download:** `Scripting Demo.zip` — **[direct download](https://drive.google.com/uc?export=download&id=1bWZtjZEtgqZnJOVBc91_Wk_HPgw8dmNY)** (229 MB). It holds the
 CMU-1 H&E slide (`DATA-01_HE_WSI` in the [setup guide](setup.md#5-download-the-workshop-data))
-inside a ready-made QuPath project, the same one the two wand exercises use.
+inside a ready-made QuPath project, the same one the two wand exercises use. The inference
+section (step 4) runs against this slide.
 
 **Download:** `CMU1-tissue-resnet18.zip` — **[direct download](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip)** (70 MB). The trained
 tissue-vs-background model, so you can run inference without training first. It also carries a
