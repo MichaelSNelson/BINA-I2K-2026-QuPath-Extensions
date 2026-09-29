@@ -99,9 +99,9 @@ why.
 
 ## Files to download
 
-Sample datasets and the presentation slides are linked from the
-**[setup guide](setup.md)**, which also says which dataset each exercise uses, so you only need
-to download what you will actually use.
+Sample datasets are linked from the **[setup guide](setup.md)**, which also says which dataset
+each exercise uses, so you only need to download what you will actually use. The presentation
+slides are a [210 MB PowerPoint file](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/slides-v1/I2K_2026_QuPath_Extensions.pptx).
 
 The multiplexed-imaging exercises use the
 [TME-QUANT synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip), ~14 MB, public domain, fully ground-truthed, and

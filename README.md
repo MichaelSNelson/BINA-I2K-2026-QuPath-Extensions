@@ -33,7 +33,7 @@ suite of open-source QuPath extensions developed at
 > ### ⚠️ This site is still being built
 >
 > Setup, guides and exercises are current and usable now, and **every dataset is linked and ready
-> to download**. Still to come: the slides, which will be in place before 29 September. The
+> to download**, and the slides are posted below. The
 > walkthrough videos will not be ready for the workshop: I ran out of time, and will add them
 > afterwards so this site can keep being used as training material.
 
@@ -89,12 +89,7 @@ and troubleshooting: [setup guide](docs/setup.md).
 | **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough for every tool, with videos to follow after the workshop, plus the vote for what we demo live |
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide, for picking just the ones you want |
 | **[Schedule](docs/schedule.md)** | Time, room, and what the two hours are |
-
-## Still to come
-
-| | |
-|---|---|
-| Presentation slides | %%DRIVE_SLIDES_URL%% |
+| **[Presentation slides](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/slides-v1/I2K_2026_QuPath_Extensions.pptx)** | The hour-1 deck. PowerPoint file, 210 MB, with one embedded video |
 
 # Introducing: The Extensions
 
@@ -148,14 +143,9 @@ The site is plain Jekyll on GitHub Pages, served from the root of `main`.
   the published site.
 - `images/` and `assets/` hold screenshots and any media.
 
-**Drive links are placeholders.** Fill them in everywhere with:
-
-```bash
-grep -rl '%%DRIVE_' . --exclude-dir=.git
-sed -i 's|%%DRIVE_FOLDER_URL%%|https://…|g' $(grep -rl '%%DRIVE_FOLDER_URL%%' . --exclude-dir=.git)
-```
-
-Repeat for `%%DRIVE_SLIDES_URL%%`. (`%%DRIVE_DATA_URL%%` is retired: datasets now link directly to where they are hosted.)
+**Large files are GitHub release assets, not tracked files.** The slides are the `slides-v1`
+release and the stitching tiles are `data-v1`. To replace the slides, upload the new file to
+`slides-v1` under the same name and the links keep working.
 
 ## Acknowledgments
 
