@@ -12,7 +12,7 @@ title: Deep Learning Pixel Classifier
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-dl-pixel-classifier](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier) |
-| **Extension version** | 0.9.5 |
+| **Extension version** | 0.9.17 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+. **A CUDA GPU to train**; inference also runs on Apple Silicon and on CPU. **Intel Macs are not supported.** ~2–4 GB download for the Python environment on first use |
 | **Where to find it** | `Extensions > DL Pixel Classifier` |
@@ -167,8 +167,12 @@ reports as ready.
 
 ### 3. Train your own classifier
 
-This part you *can* run today. It trains tissue-vs-background on CMU-1 and finishes in seconds
-on a workstation GPU.
+**Follow along only if you have a CUDA GPU** — see the hardware table above. On Apple Silicon
+or without a GPU this is the part to watch; on an Intel Mac the environment will not build at
+all. The inference section below is the one most laptops in the room can run, and it does not
+need you to have trained anything.
+
+It trains tissue-vs-background on CMU-1 and takes about a minute on a workstation GPU.
 
 **1. Load the annotations.** Download
 [`CMU-1_NanoTissueTrainingData.geojson`](../data/dl-pixel-classifier/CMU-1_NanoTissueTrainingData.geojson),
@@ -403,7 +407,7 @@ annotate next, and *Review Training Areas* (below) is how you find them systemat
 
 ### 4. Apply a classifier to the slide
 
-You can use the model you just trained, or the provided one.
+You can use the model you just trained, or the provided one — which is the route to take if you could not train in step 3.
 
 1. **To use the provided model:** download
    [`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip), then
