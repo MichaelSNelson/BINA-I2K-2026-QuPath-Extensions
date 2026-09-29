@@ -773,6 +773,16 @@ sits where the statistic says.
 with cells detected, so there is no new setup — but this **is** a new clustering run, over a
 different set of images.
 
+> **Nobody has walked this step through yet.** Steps 1 to 5 were done start to finish on the
+> build this guide describes; this one was not. It was last attempted *before* QP-CAT 0.17.0,
+> where it failed for a reason that release fixed — a multi-image run pooled the images, so the
+> **Composition by area** tab it turns on never appeared — and it has not been re-run since the
+> fix. So treat the instructions below as written from the software rather than from doing it:
+> the sequence should be right, but expect to be the first to find out. The percentages in 6.2
+> come from an earlier run and are marked as such. If something here does not match what you
+> see, that is worth [telling us](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/issues)
+> rather than working around.
+
 > **Requires QP-CAT 0.17.0 or later.** Before that version a run over several images pooled
 > them into one coordinate frame, so the **Composition by area** tab this step uses did not
 > appear at all. `Extensions > QP-CAT > Setup & help > About` shows your version; update from
