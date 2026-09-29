@@ -482,19 +482,21 @@ one dominant cluster means change the *cluster selection*.
 
 <div class="shots" markdown="0">
 <figure>
-<img src="../images/qp-cat/HDBSCAN_umap3d.png" alt="The 3D View tab showing seven cleanly separated point clouds in different colours, one per cluster, with the class list reporting 7 clusters over 11,421 cells and no noise.">
+<img src="../images/qp-cat/qpcat_4-2_3D.png" alt="The QP-CAT results window titled 7 clusters, 11421 cells, on the 3D View tab. Seven cleanly separated point clouds in different colours float in the plot, the axes are set to QPCAT 3D UMAP1, 2 and 3, the counter reads Points 11,421 shown of 11,421 total, and the CLASSES list on the right ticks Cluster 0 through Cluster 6 with no noise row.">
 <figcaption><b>Seven separated lobes, no noise.</b> HDBSCAN found the count itself.
 Leaf selection is what cut at the lobes instead of returning their common parent.</figcaption>
 </figure>
 <figure>
-<img src="../images/qp-cat/HDBSCAN_markerfingerprints_useless.png" alt="The Marker Fingerprints tab. Every cluster card lists 3DUMAP1, 3DUMAP2 and 3DUMAP3 as its defining features, with no marker names anywhere.">
-<figcaption><b>No marker names.</b> Every card is described by <code>3DUMAP1/2/3</code>,
-because those are the only three columns the run saw. No marker names, so no phenotype.</figcaption>
+<img src="../images/qp-cat/qpcat_4-2_fingerprints.png" alt="The Marker Fingerprints tab. Seven cluster cards, Cluster 0 at 3,306 cells down to Cluster 3 at 825, and every card lists QPCAT 3D UMAP1, QPCAT 3D UMAP2 and QPCAT 3D UMAP3 as its defining features. No marker names appear anywhere.">
+<figcaption><b>No marker names.</b> Every card is described by
+<code>QPCAT 3D UMAP1/2/3</code>, because those are the only three columns the run saw. No
+marker names, so no phenotype.</figcaption>
 </figure>
 <figure>
-<img src="../images/qp-cat/HDBSCAN_RepresentativeCells.png" alt="The Representative cells tab, five image patches per cluster. Cluster 1's cells are brown elongated spindles; clusters 0 and 3 are cyan-ringed round cells of different sizes; cluster 2 is blue-ringed.">
-<figcaption><b>The clusters are real anyway.</b> Cluster 1 is unmistakably spindle-shaped,
-cluster 2 blue-ringed. Read the clusters by eye here, or re-run over markers to name them.</figcaption>
+<img src="../images/qp-cat/qpcat_4-2_cells.png" alt="The Representative cells tab, a medoid and four example cells per cluster. Cluster 0, 3306 cells, is brown elongated spindles; Cluster 1, 1554 cells, is dominated by red rings; Cluster 2, 1868 cells, is cyan-ringed round cells; Cluster 3, 825 cells, mixes cyan rings with pale and pink nuclei.">
+<figcaption><b>The clusters are real anyway.</b> Cluster 0 is unmistakably spindle-shaped and
+cluster 2 is cyan-ringed, so you can read these by eye here &mdash; or re-run over the markers
+to name them, which is the next step.</figcaption>
 </figure>
 </div>
 
@@ -553,7 +555,7 @@ which is what this run wants &mdash; it opens on UMAP, and left there it would c
 embedding instead of using the one already on the cells.</figcaption>
 </figure>
 <figure>
-<img src="../images/qp-cat/analyze-current2.png" alt="The lower half of the same dialog. A Classifications to analyze section lists Cluster 0 through Cluster 6 with cell counts of 825, 3306, 1088, 1868, 1554, 1388 and 1392, every one ticked, with the line 7 classes found and Select all, Select none and Refresh list buttons. Below it, Generate analysis plots, Neighborhood enrichment, PCA and Batch correction are unticked, Spatial feature smoothing is greyed out, and Independent areas and Spatial statistics are collapsed. The Analyze and Close buttons sit at the bottom.">
+<img src="../images/qp-cat/qpcat_4-3_settings_low.png" alt="The lower half of the same dialog. A Classifications to analyze section lists Cluster 0 through Cluster 6 with cell counts of 3306, 1554, 1868, 825, 1088, 1392 and 1388, every one ticked, with the line 7 classes found and Select all, Select none and Refresh list buttons. Below it, Generate analysis plots is ticked; Cluster connectivity graph (PAGA) and Spatial feature smoothing are greyed out; Neighborhood enrichment plus Moran's I, PCA and Batch correction (Harmony) are unticked; and Independent areas and Spatial statistics are collapsed. A line reads: this run is repeatable and comparable to other default runs. The Analyze and Close buttons sit at the bottom.">
 <figcaption><b>Lower half: the class list.</b> One row per class with its count, all ticked,
 and the class total underneath. <b>Spatial feature smoothing is grayed out</b> in this mode on
 purpose: it rewrites the measurements each class is then described by, so a class would report
@@ -572,7 +574,7 @@ compare things that were never meant to be compared. One labeling system, all of
 
 <div class="shots" markdown="0">
 <figure style="max-width:500px">
-<img src="../images/qp-cat/analyze-current4.png" alt="The Marker Fingerprints tab after the analyse run. Seven cluster cards, each led by marker names instead of UMAP columns: Cluster 0 by Ki67 and PanCK, Cluster 1 by aSMA, Cluster 2 by CD20, Cluster 3 by PanCK, Cluster 4 by CD68, Cluster 5 by CD8 and CD3, and Cluster 6 by CD3 with CD8 at minus 2.9.">
+<img src="../images/qp-cat/qpcat_4-4_fingerprints.png" alt="The Marker Fingerprints tab after the analyse run. Seven cluster cards, each led by marker names instead of UMAP columns: Cluster 0 by aSMA, Cluster 1 by CD68, Cluster 2 by PanCK, Cluster 3 by Ki67 at plus 37.0 and PanCK, Cluster 4 by CD20, Cluster 5 by CD8 and CD3, and Cluster 6 by CD3 with CD8 at minus 3.0.">
 <figcaption><b>The same seven clusters, described by markers.</b> Compare with the panel
 further up, where every card read <code>3DUMAP1/2/3</code>. Same cells, same groups, a
 description you can put a cell-type name to.</figcaption>
@@ -584,13 +586,13 @@ cells come apart:
 
 | Cluster | Cells | Led by | Read it as | Ground truth |
 |---|---|---|---|---|
-| 1 | 3,306 (28.9%) | aSMA | fibroblast | 28.9% |
-| 3 | 1,868 (16.4%) | PanCK | tumor | 16.4% |
-| 4 | 1,554 (13.6%) | CD68 | macrophage | 13.6% |
-| 5 | 1,388 (12.2%) | **CD8** and CD3 | **CD8 T** | 24.3% between them |
-| 6 | 1,392 (12.2%) | CD3, **CD8 at -2.9** | **helper T** | |
-| 2 | 1,088 (9.5%) | CD20 | B cell | 9.5% |
-| 0 | 825 (7.2%) | Ki67 and PanCK | proliferating tumor | 7.2% |
+| 0 | 3,306 (28.9%) | aSMA | fibroblast | 28.9% |
+| 2 | 1,868 (16.4%) | PanCK | tumor | 16.4% |
+| 1 | 1,554 (13.6%) | CD68 | macrophage | 13.6% |
+| 5 | 1,392 (12.2%) | **CD8** and CD3 | **CD8 T** | 24.3% between them |
+| 6 | 1,388 (12.2%) | CD3, **CD8 at -3.0** | **helper T** | |
+| 4 | 1,088 (9.5%) | CD20 | B cell | 9.5% |
+| 3 | 825 (7.2%) | Ki67 and PanCK | proliferating tumor | 7.2% |
 
 Look at clusters 5 and 6. Both are CD3-positive; cluster 5 is CD8-positive and cluster
 6 is CD8-*negative*, which is what separates the two T-cell lineages in this dataset.
@@ -598,8 +600,12 @@ KMeans at k = 6 merged them and spent its spare cluster on proliferation instead
 data choose the number recovered both, and neither run could have told you which markers
 those clusters carry.
 
-Your own run may split or merge differently; the ground-truth column is how you check it
-rather than take the above on trust.
+**The cluster numbers here are not stable, and nothing downstream should rely on them.**
+HDBSCAN numbers its clusters from scratch each run, so a rerun can find the same seven
+populations under different numbers &mdash; it did while this guide was being written. The
+numbers used from here on are the ones in the table above. If yours differ, read your own
+Marker Fingerprints cards and substitute; the ground-truth column is how you check the
+populations themselves rather than take any of it on trust.
 
 **Cluster in one space, characterize in another.** HDBSCAN
 on the UMAP decides *which cells group together*; analyzing those groups over the markers
@@ -625,11 +631,11 @@ Your cells carry cluster numbers, not cell-type names. These are the clusters fr
 
 | Cluster | Led by | Likely cell type |
 |---|---|---|
-| 0 | Ki67 and PanCK | proliferating tumor |
-| 1 | aSMA | fibroblast |
-| 2 | CD20 | B cell |
-| 3 | PanCK | tumor |
-| 4 | CD68 | macrophage |
+| 0 | aSMA | fibroblast |
+| 1 | CD68 | macrophage |
+| 2 | PanCK | tumor |
+| 3 | Ki67 and PanCK | proliferating tumor |
+| 4 | CD20 | B cell |
 | 5 | CD3 and CD8 | CD8 T cell |
 | 6 | CD3, no CD8 | helper T cell |
 
@@ -670,10 +676,26 @@ on the **Marker Fingerprints** tab.
    > 5.4 is written to be read from its figure, so you lose nothing but your own copy of the
    > chart.
 
+   <div class="shots" markdown="0">
+   <figure>
+   <img src="../images/qp-cat/qpcat_5-1_settings_top.png" alt="The top of the Spatial statistics on existing clusters dialog. Label source is Current cell classifications; Scope is All project images (8), with Current image greyed out and a note that it needs an image open; If no areas are configured is Whole image; Independent areas lists one level, Images (always separate); and an Exclude cells inside annotation classes box lists Tumor, Stroma, Immune cells, Necrosis, Other, Region, Ignore, Positive and Negative, with only Ignore ticked.">
+   <figcaption><b>Top half.</b> <b>Ignore</b> is pre-ticked as a convenience, and the note
+   above the class list says why the names are greyed: with no image open, QP-CAT cannot check
+   which of the project's classes are actually on annotations.</figcaption>
+   </figure>
+   <figure>
+   <img src="../images/qp-cat/qpcat_5-1_settings_low.png" alt="The lower half of the same dialog. Spatial neighbor graph: Graph type knn, kNN neighbors 15, Radius and Delaunay max edge greyed out, Permutations 0 for adaptive. Under Statistics to compute, Ripley L and Co-occurrence (pairwise) are ticked; Co-occurrence (one vs rest), Neighborhood enrichment, Geary's C and Moran's I are unticked. A Run spatial statistics button sits at the bottom.">
+   <figcaption><b>Lower half, set up as the table above says.</b> <b>Ripley L</b> and
+   <b>Co-occurrence (pairwise)</b> ticked, <b>Neighborhood enrichment</b> unticked from its
+   default. <b>Permutations</b> left at 0, which is the adaptive default &mdash; 1,000 for a
+   dataset this size.</figcaption>
+   </figure>
+   </div>
+
 3. **Click Run spatial statistics.** A window titled **QP-CAT - Spatial statistics summary**
    opens with one row per image, headed **8 area(s), 8 analyzed.**
 
-   <img src="../images/qp-cat/spatialstats-summary.png" alt="The QP-CAT Spatial statistics summary window. A table lists the eight images tme_00 to tme_07, each as a whole image, with its cell count, 7 classes (6 for tme_07), the unit um, the statistics computed, and an Open button at the end of the row. Save combined CSV and Close are at the bottom" width="820">
+   <img src="../images/qp-cat/qpcat_5-1_summary.png" alt="The QP-CAT Spatial statistics summary window, headed 8 areas, 8 analyzed, double-click a row or use Open to see its full result. A table lists the eight images tme_00.tif to tme_07.tif, each as a whole image, with cell counts of 1530, 1568, 1430, 1269, 1487, 1470, 1722 and 945, seven classes each except six for tme_07, the unit um, the statistics Ripley and Cooc-pair, and an Open button at the end of every row. Save combined CSV and Close are at the bottom." width="834">
 
 4. Double-click the **`tme_00.tif`** row, or click its **Open** button, to open that image's
    results.
@@ -698,14 +720,14 @@ on the **Marker Fingerprints** tab.
 
    | Pair | Clusters | Expect at short radii | Because |
    |---|---|---|---|
-   | tumor (PanCK) with tumor (PanCK) | 3 with 3 | above 1 | tumor grows in nests, not as single cells |
-   | B cell (CD20) with B cell (CD20) | 2 with 2 | above 1 | follicles: dense aggregates, not scattered cells |
-   | tumor (PanCK) with fibroblast (aSMA) | 3 with 1 | below 1 | they occupy different compartments |
-   | tumor (PanCK) with CD8 T cell (CD3, CD8) | 3 with 5 | above 1 | cytotoxic T cells sit at the nest boundary |
+   | tumor (PanCK) with tumor (PanCK) | 2 with 2 | above 1 | tumor grows in nests, not as single cells |
+   | B cell (CD20) with B cell (CD20) | 4 with 4 | above 1 | follicles: dense aggregates, not scattered cells |
+   | tumor (PanCK) with fibroblast (aSMA) | 2 with 0 | below 1 | they occupy different compartments |
+   | tumor (PanCK) with CD8 T cell (CD3, CD8) | 2 with 5 | above 1 | cytotoxic T cells sit at the nest boundary |
 
 #### 5.3 Check the control pair
 
-In the same table, find tumor (PanCK, cluster 3) with helper T cell (CD3 without CD8,
+In the same table, find tumor (PanCK, cluster 2) with helper T cell (CD3 without CD8,
 cluster 6). Its ratio should sit closer to 1 than tumor with CD8 T cell (cluster 5): the
 enrichment is specific to the cytotoxic subset. Step 3's k = 6 run put both T-cell lineages in
 one cluster, which would have averaged the two into a single number.
@@ -715,10 +737,10 @@ one cluster, which would have averaged the two into a single number.
 1. **Open the Ripley L tab.** The chart opens showing one cluster, with the rest unticked under
    **Show clusters**. Each cluster draws three lines, its curve plus both edges of its own
    random band, so tick only one or two at a time.
-2. Under **Show clusters**, click **None**, then tick cluster 1, fibroblast (aSMA), and
-   cluster 5, CD8 T cell (CD3, CD8).
+2. Under **Show clusters**, click **None**, then tick cluster 0, fibroblast (aSMA), and
+   cluster 6, helper T cell (CD3 without CD8).
 
-<img src="../images/qp-cat/ripley-tme00-clusters-1-5.png" alt="The QP-CAT results window for tme_00, 7 clusters and 1530 cells, on the Ripley L tab. The chart, Ripley L(r) relative to random, plots radius from 0 to 750 micrometers. Cluster 5, brown, rises steeply to about 27 near 230 micrometers, far above its dashed band, and falls back to the band near 560 micrometers. Cluster 1, orange, dips to about minus 10 below 20 micrometers, rises above its band to about 14 near 150 micrometers, and is back inside the band from about 280 micrometers. Under Show clusters, only Cluster 1 and Cluster 5 are ticked, and Relative to random is ticked" width="820">
+<img src="../images/qp-cat/qpcat_5-4_ripleyL.png" alt="The QP-CAT results window headed 7 clusters, 1530 cells, tme_00.tif whole image, on the Ripley L tab. The chart, Ripley L(r) relative to random, plots radius from 0 to 750 micrometers with a dashed band per cluster and a flat dashed line at zero labelled Random (simulated). Cluster 6, pink, rises steeply above its band by about 40 micrometers, peaks near plus 18 around 250 micrometers, and stays above the band before converging with it near the right edge. Cluster 0, blue, dips to about minus 10 below 25 micrometers, rises above its band to about plus 13 near 225 micrometers, then settles around plus 5 and sits inside its band from roughly 300 micrometers. Under Show clusters, headed Recommend 1 at a time, only Cluster 0 and Cluster 6 are ticked, and Relative to random is ticked." width="772">
 
 Read each curve against the **flat line at zero**, which is randomness: the curve is
 plotted relative to that cluster's own simulated-random median. **Above the dashed band**
@@ -729,16 +751,17 @@ band** means indistinguishable from random.
 
 | Cluster | Where its curve sits | Reading |
 |---|---|---|
-| 5, CD8 T cell (CD3, CD8) | far above its band from about 20 µm to about 550 µm, peaking near 230 µm | clustered over a wide range of distances |
-| 1, fibroblast (aSMA) | below its band under about 30 µm | dispersed at very short range: neighboring fibroblasts keep apart |
-| 1, fibroblast (aSMA) | above its band from about 60 µm to about 270 µm | clustered at that range |
-| 1, fibroblast (aSMA) | inside its band beyond about 280 µm | indistinguishable from random |
+| 6, helper T cell (CD3, no CD8) | above its band from about 40 µm, peaking near +18 around 250 µm, and still above it until the band catches up near the right edge | clustered over a wide range of distances |
+| 0, fibroblast (aSMA) | below its band under about 25 µm | dispersed at very short range: neighboring fibroblasts keep apart |
+| 0, fibroblast (aSMA) | above its band from about 60 µm to about 270 µm | clustered at that range |
+| 0, fibroblast (aSMA) | inside its band beyond about 300 µm | indistinguishable from random |
 
-A curve that comes back down at large radii, as cluster 5 does past 550 µm, does not contradict
-the clustering. A group of cells has a size; beyond it you run out of same-type neighbors, so
-the excess falls away. Where the curve peaks is a rough read on the scale of the structure.
+A curve that comes back down at large radii, as both of these do past their peaks, does not
+contradict the clustering. A group of cells has a size; beyond it you run out of same-type
+neighbors, so the excess falls away. Where the curve peaks is a rough read on the scale of the
+structure.
 
-Tick cluster 3, tumor (PanCK), and cluster 2, B cell (CD20), in the same way to read their
+Tick cluster 2, tumor (PanCK), and cluster 4, B cell (CD20), in the same way to read their
 curves.
 
 #### 5.5 Look at the cells
