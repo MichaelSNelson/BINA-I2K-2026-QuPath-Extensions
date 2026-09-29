@@ -269,14 +269,9 @@ those six from the markers alone is the exercise;
 The dialog spells that parameter `n_clusters`. The rest of this page calls it *k*, which is
 the usual name for it.
 
-You do not have to touch the random seed, but it is worth knowing where it lives, because it
-is not on the front of the dialog: **Dimensionality Reduction > Advanced >
-`random seed (embedding + clustering)`**, in a pane that starts collapsed. It defaults to 42
-and drives the UMAP layout and KMeans alike, so leaving it alone is what makes your run match
-the figures here. KMeans also runs ten initializations and keeps the best.
-
-The dialog reopens with whatever you last ran, so the second and third runs in this exercise
-start from the first rather than from defaults. While a run is going, the progress checklist
+These settings are deterministic: run them twice and you get the same clusters. The dialog
+also reopens with whatever you last ran, so the second and third runs in this exercise start
+from the first rather than from defaults. While a run is going, the progress checklist
 shows how long each step has taken — useful for deciding which spatial statistics are worth
 their time on your own data.
 
