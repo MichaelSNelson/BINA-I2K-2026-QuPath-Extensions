@@ -180,6 +180,11 @@ open the CMU-1 slide, then **drag the `.geojson` file onto the open slide** — 
 objects directly. (The menu route is `File > Import objects from file...`.) You get
 **17 annotations**: 10 `Tissue` and 7 `Ignore*`.
 
+> ⚠️ **Now save the image data** — `File > Save` (Ctrl+S / Cmd+S). The training dialog reads
+> annotations from what the **project** has stored for each image, not from what is on screen,
+> so until you save, it will list no classes and find nothing to train on. This catches people
+> out because the annotations are plainly visible in the viewer the whole time.
+
 That is the whole training set. Here it is on the slide, and again with the slide hidden:
 
 <img src="../images/dl-pixel-classifier/CMU-1%20full.png" alt="The CMU-1 H&E slide at low magnification: four tissue fragments stained pink and purple on a white background, with a scattering of small outlined annotation shapes. Dark-outlined shapes sit on the tissue; pale gray shapes sit on the empty background between fragments" width="760">
