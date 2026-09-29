@@ -5,7 +5,10 @@ title: Workshop schedule
 
 # Workshop schedule
 
-**Tuesday 29 September 2026, 10:30 – 12:30. Morgridge Hall, 7th floor, WARF Centennial Seminar Hub.** The first hour is presentation
+**Tuesday 29 September 2026, 10:30 – 12:30. Morgridge Hall, 7th floor, WARF Centennial Seminar Hub.**
+Presented by Michael Nelson (LOCI, University of Wisconsin–Madison).
+
+The first hour is presentation
 and live demos; the second is optional, self-directed hands-on exploration. You are welcome to leave after the first hour, and equally welcome to
 spend the second hour on your own data instead of ours.
 

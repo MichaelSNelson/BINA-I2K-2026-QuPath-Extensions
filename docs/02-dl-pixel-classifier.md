@@ -168,17 +168,18 @@ reports as ready.
 ### 3. Train your own classifier
 
 **Follow along only if you have a CUDA GPU** — see the hardware table above. On Apple Silicon
-or without a GPU this is the part to watch; on an Intel Mac the environment will not build at
-all. The inference section below is the one most laptops in the room can run, and it does not
+or without a GPU, watch this step rather than running it; on an Intel Mac the environment will
+not build at all. The inference section below is the one most laptops in the room can run, and it does not
 need you to have trained anything.
 
 It trains tissue-vs-background on CMU-1 and takes about a minute on a workstation GPU.
 
-**1. Load the annotations.** Download
-[`CMU-1_NanoTissueTrainingData.geojson`](../data/dl-pixel-classifier/CMU-1_NanoTissueTrainingData.geojson),
-open the CMU-1 slide, then **drag the `.geojson` file onto the open slide** — QuPath imports the
-objects directly. (The menu route is `File > Import objects from file...`.) You get
-**17 annotations**: 10 `Tissue` and 7 `Ignore*`.
+#### 3.1 Load the annotations
+
+1. **Download [`CMU-1_NanoTissueTrainingData.geojson`](../data/dl-pixel-classifier/CMU-1_NanoTissueTrainingData.geojson).**
+2. **Drag the `.geojson` file onto the open CMU-1 slide.** QuPath imports the objects directly.
+   (Menu route: `File > Import objects from file...`.) You get **17 annotations**: 10 `Tissue`
+   and 7 `Ignore*`.
 
 > ⚠️ **Now save the image data** — `File > Save` (Ctrl+S / Cmd+S). The training dialog reads
 > annotations from what the **project** has stored for each image, not from what is on screen,
@@ -204,18 +205,25 @@ Without it you would get a detection object covering every piece of empty slide.
 
 </details>
 
-**2. Open `Extensions > DL Pixel Classifier > Train DL Pixel Classifier...`.**
+#### 3.2 Open the training dialog
 
-- **Tick the CMU-1 slide.**
-- **Click Load Classes from Selected Images.** Nothing downstream fills in until you do.
+1. **Open `Extensions > DL Pixel Classifier > Train DL Pixel Classifier...`.**
+2. **Tick the CMU-1 slide.**
+3. **Click Load Classes from Selected Images.** Nothing downstream fills in until you do.
 
-**3. Load the settings.** Click **Load profile...** and choose
-`ResNet18_fast_tissue.json`. That sets the architecture, the encoder, the tile geometry and
+#### 3.3 Load the settings
+
+**Click Load profile... and choose `ResNet18_fast_tissue.json`.**
+
+That sets the architecture, the encoder, the tile geometry and
 everything else in one step. A profile carries *settings only* — your classes still come from
 the annotations you just imported, so it does not matter that the profile was saved against a
 different set.
 
-**4. Name it and press Start Training.**
+#### 3.4 Name the classifier and start training
+
+1. **Type a name for the classifier.**
+2. **Click Start Training.**
 
 <img src="../images/dl-pixel-classifier/training-buttons.png" alt="The row of buttons along the bottom of the Train DL Pixel Classifier dialog: Copy as Groovy Script, Save profile, Load profile, Reset to defaults, Start Training and Cancel" width="700">
 
@@ -262,7 +270,7 @@ from Selected Images**, so they have no screenshot here.
 Screenshots are from a run of this recipe, so a number or two may differ from the profile.
 The **value to set** is given in each step.
 
-**1. Training Data Source** — tick `CMU-1.svs`, then press **Load Classes from Selected Images**.
+**Panel 1: Training Data Source** — tick `CMU-1.svs`, then press **Load Classes from Selected Images**.
 
 <img src="../images/dl-pixel-classifier/1.png" alt="The Train DL Pixel Classifier dialog at the top: a Configure Classifier Training header with a Show Basic View button at the right, then a Training Data Source panel listing CMU-1.svs with an annotation count and a Both dropdown, above Select All, Select None, Auto-Distribute and All Both buttons and a Load Classes from Selected Images button" width="720">
 
@@ -284,23 +292,23 @@ different set of classes in each.
 
 </details>
 
-**2. Model Architecture** — `unet`, encoder **ResNet-18**. This is what makes the run fast.
+**Panel 2: Model Architecture** — `unet`, encoder **ResNet-18**. This is what makes the run fast.
 
 <img src="../images/dl-pixel-classifier/2.png" alt="The Model Architecture panel with two dropdowns: Architecture set to unet, Encoder set to ResNet-18" width="560">
 
-**3. Weight Initialization** — **Use pretrained backbone weights**. The profile freezes
+**Panel 3: Weight Initialization** — **Use pretrained backbone weights**. The profile freezes
 `encoder.layer1` and `encoder.layer2`. Pretrained features mean the model starts knowing what an
 edge is, which is why it converges in a handful of epochs instead of eighty.
 
 <img src="../images/dl-pixel-classifier/3.png" alt="The Weight Initialization panel: radio buttons for Train from scratch, Use pretrained backbone weights (selected), Use MAE pretrained encoder, Use SSL pretrained encoder and Continue training from saved model, followed by a Transfer Learning Configuration section with a Retraining dropdown and a scrollable list of encoder blocks with freeze checkboxes and parameter counts" width="760">
 
-**4. Tiles & Resolution** — tile size **256**, resolution **4x**. The gray line underneath
+**Panel 4: Tiles & Resolution** — tile size **256**, resolution **4x**. The gray line underneath
 reports the effective pixel size the model will train at; that is the number that matters, not
 the slide's native one.
 
 <img src="../images/dl-pixel-classifier/4.png" alt="The Tiles and Resolution panel: Tile Size 256 with a recommended 512 note, a Resolution dropdown set to 4x Quarter resolution with a Preview button, a gray line giving the detail tile size in pixels and microns and the effective microns per pixel, a Surrounding context dropdown set to None single scale, and spinners for Tile Overlap percent, Line Stroke Width, Min Annotation Coverage percent and Min Tile Label Fraction percent" width="760">
 
-**5. Duration & Stopping** — **100 epochs**, validation split **20%**, and **early stopping
+**Panel 5: Duration & Stopping** — **100 epochs**, validation split **20%**, and **early stopping
 off**. Leaving it off is deliberate: the run takes seconds, so stopping early saves nothing, and
 early stopping here watches mean IoU — a metric that cannot move until predictions cross a
 decision boundary. A run that is improving steadily can show a completely flat mean IoU for ten
@@ -310,7 +318,7 @@ still saved either way, so nothing is lost by running all 100.
 
 <img src="../images/dl-pixel-classifier/5.png" alt="The Duration and Stopping panel: Epochs, Validation Split percent, an Enable early stopping checkbox, an Early Stop Metric dropdown set to Mean IoU, an Early Stop Patience spinner, a Focus Class dropdown set to None use Mean IoU, and a Random Seed spinner" width="760">
 
-**6. Batch Size & Memory** — batch **20**, accumulation **1**.
+**Panel 6: Batch Size & Memory** — batch **20**, accumulation **1**.
 
 <img src="../images/dl-pixel-classifier/6.png" alt="The Batch Size and Memory panel: Batch Size 20, Gradient Accumulation 1, then a line of green text reading Est. VRAM colon approximately 4600 MB of 24,575 MB, 19 percent, 358px with context padding, rough colon not yet calibrated for this architecture, above a checked Enable mixed precision AMP box" width="820">
 
@@ -325,18 +333,18 @@ still saved either way, so nothing is lost by running all 100.
 > - **`[rough: not yet calibrated for this architecture]`** — the estimate is a formula rather
 >   than a measurement for this architecture. Treat it as a guide and leave headroom.
 
-**7. Learning Rate & Optimizer** — learning rate **0.001**, encoder LR factor **0.10**, weight
+**Panel 7: Learning Rate & Optimizer** — learning rate **0.001**, encoder LR factor **0.10**, weight
 decay **0.01**, scheduler **Reduce on Plateau**. The gray text spells out the resulting
 per-group rates.
 
 <img src="../images/dl-pixel-classifier/7.png" alt="The Learning Rate and Optimizer panel: Learning Rate, Encoder LR Factor, a gray line giving the resulting encoder, decoder and head learning rates, Weight Decay, and an LR Scheduler dropdown set to Reduce on Plateau with a paragraph describing how it behaves, above a greyed-out Auto-find learning rate checkbox" width="760">
 
-**8. Loss Function** — **Cross Entropy + Dice**, hard-pixel mining annealing from 100% to
+**Panel 8: Loss Function** — **Cross Entropy + Dice**, hard-pixel mining annealing from 100% to
 **30%**, adaptive per-class floor on.
 
 <img src="../images/dl-pixel-classifier/8.png" alt="The Loss Function panel: a Loss Function dropdown set to Cross Entropy plus Dice marked recommended, Hard Pixel End percent, Hard Pixel Start percent, and a checked Adaptive per-class floor box" width="620">
 
-**9. Performance** — leave as-is. **DataLoader workers 0** unless you know otherwise.
+**Panel 9: Performance** — leave as-is. **DataLoader workers 0** unless you know otherwise.
 
 <img src="../images/dl-pixel-classifier/9.png" alt="The Performance panel: checkboxes for Fused optimizer CUDA only, Progressive resizing, GPU augmentation experimental CUDA only and a greyed-out torch.compile Linux-only option, an In-memory dataset dropdown set to auto, and a DataLoader workers spinner set to 0" width="560">
 
@@ -344,19 +352,21 @@ per-group rates.
 Channels are RGB with **percentile_99** normalization; the classes are whatever your annotations
 contain, with per-class weights.
 
-**10. Data Augmentation** — flips, 90-degree rotation, brightfield color jitter, elastic
+**Panel 10: Data Augmentation** — flips, 90-degree rotation, brightfield color jitter, elastic
 deformation.
 
 <img src="../images/dl-pixel-classifier/10.png" alt="The Data Augmentation panel: checked boxes for Horizontal flip, Vertical flip and Random rotation 90 degrees, an Intensity augmentation dropdown set to Brightfield color jitter, a checked Elastic deformation box, and an Advanced augmentation settings button" width="620">
 
-**11. Name Your Classifier** — name it and press **Start Training**. `Copy as Groovy Script`
+**Panel 11: Name Your Classifier** — name it and press **Start Training**. `Copy as Groovy Script`
 on the same row reproduces the whole run as a script.
 
 <img src="../images/dl-pixel-classifier/11.png" alt="The Name Your Classifier panel with a Classifier Name field and an optional Description field, above a row of buttons: Copy as Groovy Script, Save profile, Load profile, Reset to defaults, Start Training and Cancel" width="820">
 
 </details>
 
-**5. Watch the training log.** On a recent GPU this reaches a usable model within the first
+#### 3.5 Watch the training log
+
+On a recent GPU the run reaches a usable model within the first
 handful of epochs.
 
 <img src="../images/dl-pixel-classifier/training%20in%20progress.png" alt="The Training Classifier window partway through a run. A header reads Epoch 6 of 100, batch 2 of 2, with elapsed time, current loss and mean IoU, and an estimated finish time of about one second per epoch. Below are two charts: Training Progress plotting train loss and validation loss falling together over six epochs, and Per-Class IoU plotting Stroma and Tumor, where Tumor climbs steeply from zero after epoch 2 while Stroma dips and recovers. A scrolling Log pane underneath lists per-epoch loss, accuracy, mean IoU and per-class IoU. Pause and Cancel buttons sit at the bottom" width="640">
@@ -405,7 +415,9 @@ the numbers here.
 
 </details>
 
-**6. Apply it, and expect the edges to be wrong.** A model trained on 17 sparse annotations
+#### 3.6 Apply it, and expect the edges to be wrong
+
+A model trained on 17 sparse annotations
 learns the places you showed it. Run it over the whole slide and look for where it fails —
 usually the tissue boundary and anything you never annotated. Those failing regions are what you
 annotate next, and *Review Training Areas* (below) is how you find them systematically.
@@ -437,7 +449,7 @@ You can use the model you just trained, or the provided one — which is the rou
 
 ### 5. Review what the model disagreed with
 
-Covered in [The training loop](#2-review-the-training-data-the-model-disagrees-with) below. If
+Covered in [The training loop](#review-the-training-data-the-model-disagrees-with) below. If
 you imported the provided model rather than training your own, its saved session is already
 inside it: `Extensions > DL Pixel Classifier > Utilities > Load Saved Training Area Issues...`, then pick
 **CMU-1_Tissue_ResNet-18**.
@@ -477,7 +489,7 @@ Training is a demonstration today rather than a hands-on step — see the hardwa
 These are the four stages worth watching. What is *specific to this extension* is
 described here; the method behind it is linked rather than explained.
 
-### 1. Create a classifier
+### Create a classifier
 
 `Extensions > DL Pixel Classifier > Train DL Pixel Classifier...`
 
@@ -491,7 +503,7 @@ can train across **several project images** at once.
 
 → [Training Guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/TRAINING_GUIDE.md)
 
-### 2. Review the training data the model disagrees with
+### Review the training data the model disagrees with
 
 **Review Training Areas...**, in the training progress dialog when a run finishes.
 
@@ -536,7 +548,7 @@ Correcting annotations here typically improves results more than moving to a lar
 
 → [Training Guide, Step 9](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/TRAINING_GUIDE.md#step-9-review-training-areas-optional)
 
-### 3. Pretrain on your own images
+### Pretrain on your own images
 
 `Extensions > DL Pixel Classifier > Utilities > MAE Pretrain Encoder...`
 
@@ -550,7 +562,7 @@ links onward.
 
 → [Domain Adaptation Guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/DOMAIN_ADAPTATION_GUIDE.md)
 
-### 4. Adapt a model to a domain shift
+### Adapt a model to a domain shift
 
 *Described only — we have no second-batch data to demonstrate this on today.*
 
