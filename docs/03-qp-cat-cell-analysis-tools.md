@@ -657,11 +657,18 @@ on the **Marker Fingerprints** tab.
    > `Neighborhood enrichment + Moran's I` during a **clustering** run instead — that route
    > writes a **Neighborhood Enrichment** heatmap tab.
 
-   > **Ripley L can be slow on a lower-power laptop.** It simulates 99 random patterns for
-   > every cluster in every image. If the run takes more than a few minutes, cancel it, open
-   > `tme_00.tif`, set **Scope** to *Current image*, and run again: the summary then lists one
-   > image instead of eight. If that is still slow, untick **Ripley L**: steps 5.2 and 5.3 do not
-   > need it, and the figure in 5.4 shows what the Ripley L result looks like.
+   > **Ripley L is slow, and we do not recommend running it on a lower-powered laptop.** By
+   > default it draws **1,000** simulated random patterns per image to build the band each
+   > curve is read against, and on top of that it materializes every pairwise distance within
+   > each cluster. Eight images is a lot of arithmetic.
+   >
+   > Two ways to keep going if you want it anyway: open `tme_00.tif` and set **Scope** to
+   > *Current image*, so the summary lists one image instead of eight; or set
+   > **Permutations (0 = adaptive)** in the dialog to something small like 99.
+   >
+   > **Or just skip it.** Untick **Ripley L** and go on: steps 5.2 and 5.3 do not use it, and
+   > 5.4 is written to be read from its figure, so you lose nothing but your own copy of the
+   > chart.
 
 3. **Click Run spatial statistics.** A window titled **QP-CAT - Spatial statistics summary**
    opens with one row per image, headed **8 area(s), 8 analyzed.**
