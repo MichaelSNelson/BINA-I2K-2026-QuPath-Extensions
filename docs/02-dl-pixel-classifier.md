@@ -314,13 +314,13 @@ the slide's native one.
 
 <img src="../images/dl-pixel-classifier/4.png" alt="The Tiles and Resolution panel: Tile Size 256 with a recommended 512 note, a Resolution dropdown set to 4x Quarter resolution with a Preview button, a gray line giving the detail tile size in pixels and microns and the effective microns per pixel, a Surrounding context dropdown set to None single scale, and spinners for Tile Overlap percent, Line Stroke Width, Min Annotation Coverage percent and Min Tile Label Fraction percent" width="760">
 
-**Panel 5: Duration & Stopping** — **100 epochs**, validation split **20%**, and **early stopping
+**Panel 5: Duration & Stopping** — **40 epochs**, validation split **20%**, and **early stopping
 off**. Leaving it off is deliberate: the run takes seconds, so stopping early saves nothing, and
 early stopping here watches mean IoU — a metric that cannot move until predictions cross a
 decision boundary. A run that is improving steadily can show a completely flat mean IoU for ten
 epochs and be killed one epoch before it would have succeeded. That is not hypothetical; it
 turned a working recipe into an unusable model while building this guide. The best epoch is
-still saved either way, so nothing is lost by running all 100.
+still saved either way, so nothing is lost by running all 40.
 
 <img src="../images/dl-pixel-classifier/5.png" alt="The Duration and Stopping panel: Epochs, Validation Split percent, an Enable early stopping checkbox, an Early Stop Metric dropdown set to Mean IoU, an Early Stop Patience spinner, a Focus Class dropdown set to None use Mean IoU, and a Random Seed spinner" width="760">
 
@@ -375,12 +375,13 @@ on the same row reproduces the whole run as a script.
 On a recent GPU the run reaches a usable model within the first
 handful of epochs.
 
-<img src="../images/dl-pixel-classifier/training%20in%20progress.png" alt="The Training Classifier window partway through a run. A header reads Epoch 6 of 100, batch 2 of 2, with elapsed time, current loss and mean IoU, and an estimated finish time of about one second per epoch. Below are two charts: Training Progress plotting train loss and validation loss falling together over six epochs, and Per-Class IoU plotting Stroma and Tumor, where Tumor climbs steeply from zero after epoch 2 while Stroma dips and recovers. A scrolling Log pane underneath lists per-epoch loss, accuracy, mean IoU and per-class IoU. Pause and Cancel buttons sit at the bottom" width="640">
+<img src="../images/dl-pixel-classifier/training%20in%20progress.png" alt="The Training Classifier window partway through a run. A header reads Epoch 16 of 40, batch 2 of 6, with forty seconds elapsed, the current batch loss, and a line reading 2 seconds per epoch with about a minute remaining. Below are two charts: Training Progress, where train loss and validation loss both fall steeply over the first three epochs and then run flat near zero, and Per-Class IoU, legended for Ignore* and Other, sitting at about 1.0 from epoch 3 onward. A collapsed Log pane sits underneath, and Pause and Cancel buttons sit at the bottom" width="640">
 
 The two charts answer different questions. **Training Progress** tells you whether the model is
 learning at all; **Per-Class IoU** tells you whether it is learning *both* classes. Watch for a class
-pinned near zero while the other climbs; it is visible here in the
-first two epochs before Tumor takes off.
+pinned near zero while the other climbs -- that is a model that has found the easy class and is
+ignoring the other one. Here both classes reach about 1.0 within three epochs, and the loss curves
+flatten at the same point, which is what a cleanly separable problem looks like.
 
 **Pause** stops after the current epoch and saves a checkpoint, so you can resume rather than
 start over.

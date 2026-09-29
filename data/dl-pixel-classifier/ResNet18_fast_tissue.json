@@ -8,7 +8,7 @@
   "input_height": 256,
   "downsample": 8.0,
   "context_scale": 1,
-  "training_epochs": 100,
+  "training_epochs": 40,
   "training_settings": {
     "learning_rate": 0.001,
     "batch_size": 4,
@@ -32,7 +32,7 @@
     "ohem_adaptive_floor": true,
     "data_loader_workers": 0,
     "in_memory_dataset": "auto",
-    "early_stopping_metric": "val_loss",
+    "early_stopping_metric": "disabled",
     "early_stopping_patience": 8,
     "mixed_precision": true,
     "augmentation_config": {
