@@ -646,6 +646,16 @@ on the **Marker Fingerprints** tab.
    | 1 | **Label source** | *Current cell classifications* (already selected) |
    | 2 | Statistics to compute: **Ripley L** | ticked (already ticked) |
    | 3 | Statistics to compute: **Co-occurrence (pairwise)** | tick it |
+   | 4 | Statistics to compute: **Neighborhood enrichment** | **untick it** |
+
+   > **Why untick Neighborhood enrichment.** It is on by default and it is a real statistic,
+   > but nothing in step 5 reads it, and in *this* dialog it has nowhere to appear: the
+   > per-image results window has no tab for it, so the numbers reach only **Save combined
+   > CSV...** on the summary and the word *Nhood* in the summary's **Statistics** column. It is
+   > a permutation test, so on eight images you would be waiting for a result you never see.
+   > Leave it on if you want that CSV column. You do see it drawn when you tick
+   > `Neighborhood enrichment + Moran's I` during a **clustering** run instead — that route
+   > writes a **Neighborhood Enrichment** heatmap tab.
 
    > **Ripley L can be slow on a lower-power laptop.** It simulates 99 random patterns for
    > every cluster in every image. If the run takes more than a few minutes, cancel it, open
