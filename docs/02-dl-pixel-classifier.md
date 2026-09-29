@@ -144,15 +144,17 @@ CMU-1 H&E slide (`DATA-01_HE_WSI` in the [setup guide](setup.md#5-download-the-w
 inside a ready-made QuPath project, the same one the two wand exercises use. The inference
 section (step 4) runs against this slide.
 
-**Download:** `CMU1-tissue-resnet18.zip` — **[direct download](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip)** (70 MB). The trained
-tissue-vs-background model, so you can run inference without training first. It also carries a
-saved **Training Area Issues** session, so step 5 works without retraining.
+**Download:** `Brightfield-tissue-resnet18.zip` — **[direct download](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/Brightfield-tissue-resnet18.zip)** (130 MB). The
+trained tissue-vs-background model, so you can run inference without training first. It also
+carries a saved **Training Area Issues** session, so step 5 works without retraining.
 
-**Download:** `CMU-1_NanoTissueTrainingData.geojson`
-(**[direct download](../data/dl-pixel-classifier/CMU-1_NanoTissueTrainingData.geojson)**, 110 KB)
-and `ResNet18_fast_tissue.json`
-(**[direct download](../data/dl-pixel-classifier/ResNet18_fast_tissue.json)**, 2 KB) — the
-annotations and the matching settings, for training your own in step 3.
+**Download:** the training annotations
+(**[`Brightfield_Tile1_training.geojson`](../data/dl-pixel-classifier/Brightfield_Tile1_training.geojson)**, 140 KB),
+the validation annotations
+(**[`Brightfield_Tile4_validation.geojson`](../data/dl-pixel-classifier/Brightfield_Tile4_validation.geojson)**),
+and the matching settings
+(**[`Brightfield_TissueDetection_Resnet18.json`](../data/dl-pixel-classifier/Brightfield_TissueDetection_Resnet18.json)**, 2 KB)
+— for training your own in step 3.
 
 **You will also need:** QuPath **0.7.0 or later**, and this extension installed from the LOCI
 catalog (see the **Install** box above, or the [setup guide](setup.md)).
@@ -182,10 +184,13 @@ It trains tissue-vs-background on CMU-1 and takes about a minute on a workstatio
 
 #### 3.1 Load the annotations
 
-1. **Download [`CMU-1_NanoTissueTrainingData.geojson`](../data/dl-pixel-classifier/CMU-1_NanoTissueTrainingData.geojson).**
-2. **Drag the `.geojson` file onto the open CMU-1 slide.** QuPath imports the objects directly.
-   (Menu route: `File > Import objects from file...`.) You get **17 annotations**: 10 `Tissue`
-   and 7 `Ignore*`.
+1. **Download [`Brightfield_Tile1_training.geojson`](../data/dl-pixel-classifier/Brightfield_Tile1_training.geojson)
+   and [`Brightfield_Tile4_validation.geojson`](../data/dl-pixel-classifier/Brightfield_Tile4_validation.geojson).**
+2. **Open `Tile 1.ome.tif` and drag its `.geojson` onto it; do the same for `Tile 4.ome.tif`.**
+   QuPath imports the objects directly. (Menu route: `File > Import objects from file...`.)
+   Tile 1 carries **6 annotations** of `Other` and `Ignore*`; Tile 4 carries the validation set.
+   One image trains and the other validates, which is what the **Training Data Source** panel
+   sets up in step 3.2.
 
 > ⚠️ **Now save the image data** — `File > Save` (Ctrl+S / Cmd+S). The training dialog reads
 > annotations from what the **project** has stored for each image, not from what is on screen,
@@ -219,7 +224,7 @@ Without it you would get a detection object covering every piece of empty slide.
 
 #### 3.3 Load the settings
 
-**Click Load profile... and choose `ResNet18_fast_tissue.json`.**
+**Click Load profile... and choose `Brightfield_TissueDetection_Resnet18.json`.**
 
 That sets the architecture, the encoder, the tile geometry and
 everything else in one step. A profile carries *settings only* — your classes still come from
@@ -276,7 +281,13 @@ from Selected Images**, so they have no screenshot here.
 Screenshots are from a run of this recipe, so a number or two may differ from the profile.
 The **value to set** is given in each step.
 
-**Panel 1: Training Data Source** — tick `CMU-1.svs`, then press **Load Classes from Selected Images**.
+**Panel 1: Training Data Source** — tick `Tile 1.ome.tif` and set it to **Train**, tick
+`Tile 4.ome.tif` and set it to **Val**, then press **Load Classes from Selected Images**.
+Holding one image back for validation is what makes the reported score mean anything: the
+model is graded on tissue it never trained on. **Auto-Distribute** will make that split for
+you when there are more images.
+
+<img src="../images/dl-pixel-classifier/brightfield%20training%20Data%20Source.png" alt="The Train DL Pixel Classifier dialog beside the slide. The Training Data Source panel lists five project images with a checkbox and a role dropdown each; Tile 4.ome.tif with 7 annotations is ticked and set to Val, Tile 1.ome.tif with 6 annotations is ticked and set to Train, and the remaining three are unticked. Below are Select All, Select None, Auto-Distribute and All Both buttons, a Load Classes from Selected Images button, and a note that the tile count appears after loading classes. A yellow bar reads: Load classes from the section above to unlock the rest of the dialog. On the left the slide shows tissue with yellow annotation outlines" width="820">
 
 <img src="../images/dl-pixel-classifier/1.png" alt="The Train DL Pixel Classifier dialog at the top: a Configure Classifier Training header with a Show Basic View button at the right, then a Training Data Source panel listing CMU-1.svs with an annotation count and a Both dropdown, above Select All, Select None, Auto-Distribute and All Both buttons and a Load Classes from Selected Images button" width="720">
 
@@ -434,7 +445,7 @@ annotate next, and *Review Training Areas* (below) is how you find them systemat
 You can use the model you just trained, or the provided one — which is the route to take if you could not train in step 3.
 
 1. **To use the provided model:** download
-   [`CMU1-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/CMU1-tissue-resnet18.zip), then
+   [`Brightfield-tissue-resnet18.zip`](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/data-v1/Brightfield-tissue-resnet18.zip), then
    `Extensions > DL Pixel Classifier > Manage Classifiers` and press **Import...** (bottom row,
    beside Delete and the two Export buttons — see the
    [Manage Classifiers window](#sharing-and-moving-a-model) below). It appears as
@@ -521,7 +532,7 @@ The **Confusion Matrix** tab aggregates labelled pixels across the tiles, so you
 class is being mistaken for which instead of guessing from individual tiles. Click any
 off-diagonal cell and the Tiles tab filters to exactly those confusions.
 
-<img src="../images/dl-pixel-classifier/Issues-confusion.png" alt="The Training Area Issues window on the Confusion Matrix tab. A red banner shows the view is filtered to tiles with the confusion Ignore-star to Tissue, with a Clear link beside it. Below is a two-by-two matrix with ground truth as rows and prediction as columns: the diagonal cells are grey, and the off-diagonal cells are shaded pink and red in proportion to how much of that class's pixels went to the wrong column" width="640">
+<img src="../images/dl-pixel-classifier/training-area-issues-confusion-matrix.png" alt="The Training Area Issues window on the Confusion Matrix tab, headed 118 tiles evaluated, 0 with loss greater than 1.0. A blue note says to focus on results near the centre of each tile because a centre crop is applied when objects or overlays are created. Below, a two-by-two matrix with ground truth as rows and prediction as columns: Ignore* is 99.3% correct with 0.7% going to Other, and Other is 99.9% correct with under 0.1% going to Ignore*. The diagonal cells are grey and the off-diagonal cells are shaded in proportion to the error" width="720">
 
 Then fix what it found. Expand **Annotation Adjustment**:
 
