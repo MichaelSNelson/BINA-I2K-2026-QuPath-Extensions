@@ -703,9 +703,6 @@ on the **Marker Fingerprints** tab.
    | tumor (PanCK) with fibroblast (aSMA) | 3 with 1 | below 1 | they occupy different compartments |
    | tumor (PanCK) with CD8 T cell (CD3, CD8) | 3 with 5 | above 1 | cytotoxic T cells sit at the nest boundary |
 
-The **Geary's C** tab does not answer this question: it reports one value per measurement, not
-per pair of clusters.
-
 #### 5.3 Check the control pair
 
 In the same table, find tumor (PanCK, cluster 3) with helper T cell (CD3 without CD8,
@@ -749,11 +746,11 @@ curves.
 Click a CD8 T cell (cluster 5) at the edge of a tumor nest in the viewer and confirm that it
 sits where the statistic says.
 
-> **Taking the numbers with you.** The Geary's C, Ripley and co-occurrence tabs each have
-> `Copy`, `Copy CSV` and `Save CSV...`. The CSV is written one row per observation, so a
-> pairwise co-occurrence row names both clusters — easier to work with than the on-screen
-> table, which is one column per ordered pair and scrolls off the right on a run with many
-> clusters.
+> **Taking the numbers with you.** Both tabs have `Copy CSV` and `Save CSV...` under them, and
+> the co-occurrence table has `Copy text` as well for a copy of it exactly as shown. The CSV is
+> written one row per observation, so a pairwise co-occurrence row names both clusters — easier
+> to work with than the on-screen table, which is one column per ordered pair and scrolls off
+> the right on a run with many clusters.
 
 ### 6. Inflamed versus desert
 *Concept: immune phenotypes of the tumor microenvironment, and comparing separate tissue.*
