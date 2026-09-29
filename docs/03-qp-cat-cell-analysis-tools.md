@@ -349,7 +349,14 @@ only reason you can tell is that this dataset ships a ground truth. On real data
 
 #### 3.5 Decide what to change
 
-**So what would you change?** Two honest routes, both worth trying:
+> **Read this, but do not run it if you are carrying on with the walkthrough.** Both routes
+> below mean re-running step 3 with different settings, and that overwrites the clusters and
+> the 3D UMAP you just made — which are what step 4 clusters *on*, and what the cluster table
+> in step 5 refers to. Come back to this at the end, or on your own data.
+
+<details markdown="1">
+<summary><b>So what would you change?</b> — two honest routes, for when you are not continuing</summary>
+
 - **k = 7**, which gives the algorithm room to keep the tumor split *and* separate the T cells.
 - **Drop Ki67 from the measurements** and re-run at k = 6. If proliferation cannot define a
   cluster, the spare cluster goes somewhere else.
@@ -357,6 +364,15 @@ only reason you can tell is that this dataset ships a ground truth. On real data
 Neither is more correct in the abstract. Which you want depends on whether proliferation or
 cytotoxic identity is the question you came with — and that is a decision about biology, not
 about clustering.
+
+If you do run one and then want to carry on after all, your step 3 run is still saved:
+**View Past Results...** reopens its window, and
+`Results & populations > Apply saved result to detections...` puts its labels back on the
+cells. One catch worth knowing before you rely on it — an applied result's embedding columns
+come back **prefixed**, as `<result name>: QPCAT 3D UMAP1`, so those are the three to tick in
+step 4 rather than the unprefixed ones, which by then belong to whichever run you did last.
+
+</details>
 
 #### 3.6 Check your numbers
 
