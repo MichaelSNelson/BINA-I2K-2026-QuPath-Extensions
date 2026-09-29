@@ -261,13 +261,22 @@ those six from the markers alone is the exercise;
 | Section | Setting |
 |---|---|
 | Scope | **All project images (8)** — 11,421 cells |
-| Measurements | **`Select 'Mean' only`**, then also tick the six **`Nucleus:`** shape measurements (Area, Perimeter, Circularity, Max caliper, Min caliper, Eccentricity). **30 in total** |
+| Measurements | **`Select 'Mean' only`**, then **`Deselect QPCAT`**, then tick the six **`Nucleus:`** shape measurements (Area, Perimeter, Circularity, Max caliper, Min caliper, Eccentricity). **30 in total** |
 | Normalization | **Z-score (standard)**, the default |
 | Dimensionality Reduction | **UMAP**, **Dimensions: 3D** |
 | Clustering Algorithm | **KMeans**, **`n_clusters` = 6** |
 
 The dialog spells that parameter `n_clusters`. The rest of this page calls it *k*, which is
 the usual name for it.
+
+**Why `Deselect QPCAT`, and why in that order.** On an untouched project it does nothing. But
+a QP-CAT run writes its own measurements back onto the cells, and several of them have *Mean*
+in the name — `QPCAT spatial: Mean distance`, `QPCAT spatial: Mean triangle area`, and a
+`QPCAT component: mean: <X>` for every numeric measurement already there. So `Select 'Mean'
+only` **picks those up too**, and clustering on them is clustering on a previous run's answer.
+It has to be the second click, not the first: `Select 'Mean' only` sets the whole visible list,
+so it would undo a `Deselect QPCAT` done before it. **The count is the check** — if the total
+is not 30, something came along that should not have.
 
 These settings are deterministic: run them twice and you get the same clusters. The dialog
 also reopens with whatever you last ran, so the second and third runs in this exercise start
