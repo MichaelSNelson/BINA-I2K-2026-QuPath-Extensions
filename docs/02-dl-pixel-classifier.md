@@ -188,7 +188,10 @@ It trains tissue-vs-background on CMU-1 and takes about a minute on a workstatio
    and [`Brightfield_Tile4_validation.geojson`](../data/dl-pixel-classifier/Brightfield_Tile4_validation.geojson).**
 2. **Open `Tile 1.ome.tif` and drag its `.geojson` onto it; do the same for `Tile 4.ome.tif`.**
    QuPath imports the objects directly. (Menu route: `File > Import objects from file...`.)
-   Tile 1 carries **6 annotations** of `Other` and `Ignore*`; Tile 4 carries the validation set.
+   Tile 1 carries **6 annotations** (3 `Other`, 3 `Ignore*`) and Tile 4 carries **7**
+   (2 `Other`, 5 `Ignore*`). Both classes appear in both images, which is what lets the
+   validation score mean anything -- a validation image holding only one class cannot
+   measure the other.
    One image trains and the other validates, which is what the **Training Data Source** panel
    sets up in step 3.2.
 
