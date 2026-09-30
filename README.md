@@ -89,7 +89,7 @@ and troubleshooting: [setup guide](docs/setup.md).
 | **[Walkthroughs & videos](docs/walkthroughs.md)** | A written walkthrough for every tool, with videos to follow after the workshop, plus the vote for what we demo live |
 | **[Extension index](docs/extensions.md)** | Every extension with its install source and guide, for picking just the ones you want |
 | **[Schedule](docs/schedule.md)** | Time, room, and what the two hours are |
-| **[Presentation slides](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/slides-v1/I2K_2026_QuPath_Extensions.pptx)** | The hour-1 deck. PowerPoint file, 210 MB, with one embedded video |
+| **[Presentation slides](https://github.com/MichaelSNelson/BINA-I2K-2026-QuPath-Extensions/releases/download/slides-v1/I2K_2026_QuPath_Extensions.pptx)** | The hour-1 deck. PowerPoint file, about 90 MB |
 
 # Introducing: The Extensions
 
