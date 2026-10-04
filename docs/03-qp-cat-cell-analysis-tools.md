@@ -482,20 +482,20 @@ one dominant cluster means change the *cluster selection*.
 
 <div class="shots" markdown="0">
 <figure>
-<img src="../images/qp-cat/qpcat_4-2_3D.png" alt="The QP-CAT results window titled 7 clusters, 11421 cells, on the 3D View tab. Seven cleanly separated point clouds in different colours float in the plot, the axes are set to QPCAT 3D UMAP1, 2 and 3, the counter reads Points 11,421 shown of 11,421 total, and the CLASSES list on the right ticks Cluster 0 through Cluster 6 with no noise row.">
+<img src="../images/qp-cat/qpcat_4-2_3D.png" alt="The QP-CAT results window titled 7 cluster(s), 11421 cells, on the 3D View tab. Seven separated point clouds in different colours float in the plot, the axes are set to 3DUMAP1, 3DUMAP2 and 3DUMAP3, the counter reads Points 11,421 shown of 11,421 total, and the CLASSES list on the right ticks Cluster 0 through Cluster 6 with their counts, from 825 to 3306, and no noise row.">
 <figcaption><b>Seven separated lobes, no noise.</b> HDBSCAN found the count itself.
 Leaf selection is what cut at the lobes instead of returning their common parent.</figcaption>
 </figure>
 <figure>
-<img src="../images/qp-cat/qpcat_4-2_fingerprints.png" alt="The Marker Fingerprints tab. Seven cluster cards, Cluster 0 at 3,306 cells down to Cluster 3 at 825, and every card lists QPCAT 3D UMAP1, QPCAT 3D UMAP2 and QPCAT 3D UMAP3 as its defining features. No marker names appear anywhere.">
+<img src="../images/qp-cat/qpcat_4-2_fingerprints.png" alt="The Marker Fingerprints tab. Seven cluster cards -- Cluster 0 at 825 cells, Cluster 1 at 3,306, Cluster 2 at 1,088, Cluster 3 at 1,868, Cluster 4 at 1,554, Cluster 5 at 1,388 and Cluster 6 at 1,392 -- and every card lists 3DUMAP1, 3DUMAP2 and 3DUMAP3 as its defining features. No marker names appear anywhere.">
 <figcaption><b>No marker names.</b> Every card is described by
-<code>QPCAT 3D UMAP1/2/3</code>, because those are the only three columns the run saw. No
+<code>3DUMAP1/2/3</code>, because those are the only three columns the run saw. No
 marker names, so no phenotype.</figcaption>
 </figure>
 <figure>
-<img src="../images/qp-cat/qpcat_4-2_cells.png" alt="The Representative cells tab, a medoid and four example cells per cluster. Cluster 0, 3306 cells, is brown elongated spindles; Cluster 1, 1554 cells, is dominated by red rings; Cluster 2, 1868 cells, is cyan-ringed round cells; Cluster 3, 825 cells, mixes cyan rings with pale and pink nuclei.">
-<figcaption><b>The clusters are real anyway.</b> Cluster 0 is unmistakably spindle-shaped and
-cluster 2 is cyan-ringed, so you can read these by eye here &mdash; or re-run over the markers
+<img src="../images/qp-cat/qpcat_4-2_cells.png" alt="The Representative cells tab, a medoid and four example cells per cluster, for all seven clusters. Cluster 0, 825 cells, and Cluster 3, 1,868 cells, are cyan-ringed round cells; Cluster 1, 3,306 cells, is brown elongated spindles; Cluster 2, 1,088 cells, is blue-ringed; Cluster 4, 1,554 cells, is dominated by red rings; Cluster 5, 1,388 cells, mixes cyan and red rings around pale nuclei; Cluster 6, 1,392 cells, mixes green and blue rings.">
+<figcaption><b>The clusters are real anyway.</b> Cluster 1 is unmistakably spindle-shaped and
+cluster 3 is cyan-ringed, so you can read these by eye here &mdash; or re-run over the markers
 to name them, which is the next step.</figcaption>
 </figure>
 </div>
@@ -574,7 +574,7 @@ compare things that were never meant to be compared. One labeling system, all of
 
 <div class="shots" markdown="0">
 <figure style="max-width:500px">
-<img src="../images/qp-cat/qpcat_4-4_fingerprints.png" alt="The Marker Fingerprints tab after the analyse run. Seven cluster cards, each led by marker names instead of UMAP columns: Cluster 0 by aSMA, Cluster 1 by CD68, Cluster 2 by PanCK, Cluster 3 by Ki67 at plus 37.0 and PanCK, Cluster 4 by CD20, Cluster 5 by CD8 and CD3, and Cluster 6 by CD3 with CD8 at minus 3.0.">
+<img src="../images/qp-cat/qpcat_4-4_fingerprints.png" alt="The Marker Fingerprints tab after the analyse run. Seven cluster cards, each led by marker names instead of UMAP columns: Cluster 0 by Ki67 at plus 37.0 and PanCK, Cluster 1 by aSMA, Cluster 2 by CD20, Cluster 3 by PanCK, Cluster 4 by CD68, Cluster 5 by CD8 and CD3, and Cluster 6 by CD3 with CD8 at minus 2.9.">
 <figcaption><b>The same seven clusters, described by markers.</b> Compare with the panel
 further up, where every card read <code>3DUMAP1/2/3</code>. Same cells, same groups, a
 description you can put a cell-type name to.</figcaption>
@@ -586,13 +586,13 @@ cells come apart:
 
 | Cluster | Cells | Led by | Read it as | Ground truth |
 |---|---|---|---|---|
-| 0 | 3,306 (28.9%) | aSMA | fibroblast | 28.9% |
-| 2 | 1,868 (16.4%) | PanCK | tumor | 16.4% |
-| 1 | 1,554 (13.6%) | CD68 | macrophage | 13.6% |
-| 5 | 1,392 (12.2%) | **CD8** and CD3 | **CD8 T** | 24.3% between them |
-| 6 | 1,388 (12.2%) | CD3, **CD8 at -3.0** | **helper T** | |
-| 4 | 1,088 (9.5%) | CD20 | B cell | 9.5% |
-| 3 | 825 (7.2%) | Ki67 and PanCK | proliferating tumor | 7.2% |
+| 1 | 3,306 (28.9%) | aSMA | fibroblast | 28.9% |
+| 3 | 1,868 (16.4%) | PanCK | tumor | 16.4% |
+| 4 | 1,554 (13.6%) | CD68 | macrophage | 13.6% |
+| 5 | 1,388 (12.2%) | **CD8** and CD3 | **CD8 T** | 24.3% between them |
+| 6 | 1,392 (12.2%) | CD3, **CD8 at -2.9** | **helper T** | |
+| 2 | 1,088 (9.5%) | CD20 | B cell | 9.5% |
+| 0 | 825 (7.2%) | Ki67 and PanCK | proliferating tumor | 7.2% |
 
 Look at clusters 5 and 6. Both are CD3-positive; cluster 5 is CD8-positive and cluster
 6 is CD8-*negative*, which is what separates the two T-cell lineages in this dataset.
@@ -729,10 +729,10 @@ on the **Marker Fingerprints** tab.
 1. **Open the Ripley L tab.** The chart opens showing one cluster, with the rest unticked under
    **Show clusters**. Each cluster draws three lines, its curve plus both edges of its own
    random band, so tick only one or two at a time.
-2. Under **Show clusters**, click **None**, then tick cluster 0, fibroblast (aSMA), and
+2. Under **Show clusters**, click **None**, then tick cluster 1, fibroblast (aSMA), and
    cluster 6, helper T cell (CD3 without CD8).
 
-<img src="../images/qp-cat/qpcat_5-4_ripleyL.png" alt="The QP-CAT results window headed 7 clusters, 1530 cells, tme_00.tif whole image, on the Ripley L tab. The chart, Ripley L(r) relative to random, plots radius from 0 to 750 micrometers with a dashed band per cluster and a flat dashed line at zero labelled Random (simulated). Cluster 6, pink, rises steeply above its band by about 40 micrometers, peaks near plus 18 around 250 micrometers, and stays above the band before converging with it near the right edge. Cluster 0, blue, dips to about minus 10 below 25 micrometers, rises above its band to about plus 13 near 225 micrometers, then settles around plus 5 and sits inside its band from roughly 300 micrometers. Under Show clusters, headed Recommend 1 at a time, only Cluster 0 and Cluster 6 are ticked, and Relative to random is ticked." width="772">
+<img src="../images/qp-cat/qpcat_5-4_ripleyL.png" alt="The QP-CAT results window headed 7 cluster(s), 1530 cells, tme_00.tif whole image, on the Ripley L tab. The chart, Ripley L(r) relative to random, plots radius from 0 to 750 micrometers with a dashed band per cluster and a flat dashed line at zero labelled Random (simulated). Cluster 6, pink, rises steeply above its band, peaks near plus 19 at about 50 micrometers, dips to about plus 10 near 200 micrometers, rises again to about plus 17 between 250 and 320 micrometers, and stays above the band until it converges near the right edge. Cluster 1, orange, dips to about minus 10 below 25 micrometers, rises above its band to about plus 13 near 150 micrometers, then falls back inside its band from roughly 330 micrometers on. Under Show clusters, headed Recommend 1 at a time, only Cluster 1 and Cluster 6 are ticked, and Relative to random is ticked." width="772">
 
 Read each curve against the **flat line at zero**, which is randomness: the curve is
 plotted relative to that cluster's own simulated-random median. **Above the dashed band**
@@ -743,17 +743,17 @@ band** means indistinguishable from random.
 
 | Cluster | Where its curve sits | Reading |
 |---|---|---|
-| 6, helper T cell (CD3, no CD8) | above its band from about 40 µm, peaking near +18 around 250 µm, and still above it until the band catches up near the right edge | clustered over a wide range of distances |
-| 0, fibroblast (aSMA) | below its band under about 25 µm | dispersed at very short range: neighboring fibroblasts keep apart |
-| 0, fibroblast (aSMA) | above its band from about 60 µm to about 270 µm | clustered at that range |
-| 0, fibroblast (aSMA) | inside its band beyond about 300 µm | indistinguishable from random |
+| 6, helper T cell (CD3, no CD8) | above its band throughout, peaking near +19 at about 50 µm and again near +17 between 250 and 320 µm, with the band catching up only near the right edge | clustered over a wide range of distances |
+| 1, fibroblast (aSMA) | below its band under about 25 µm | dispersed at very short range: neighboring fibroblasts keep apart |
+| 1, fibroblast (aSMA) | above its band from about 60 µm to about 300 µm, peaking near +13 around 150 µm | clustered at that range |
+| 1, fibroblast (aSMA) | inside its band beyond about 330 µm | indistinguishable from random |
 
 A curve that comes back down at large radii, as both of these do past their peaks, does not
 contradict the clustering. A group of cells has a size; beyond it you run out of same-type
 neighbors, so the excess falls away. Where the curve peaks is a rough read on the scale of the
 structure.
 
-Tick cluster 2, tumor (PanCK), and cluster 4, B cell (CD20), in the same way to read their
+Tick cluster 3, tumor (PanCK), and cluster 2, B cell (CD20), in the same way to read their
 curves.
 
 #### 5.3 Look at the cells

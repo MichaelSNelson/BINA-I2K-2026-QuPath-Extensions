@@ -1,13 +1,37 @@
 # QP-CAT figures: where each one comes from, and which can be regenerated
 
 Audited 2026-10-04 against `docs/03-qp-cat-cell-analysis-tools.md` and
-`tools/qp-harness`.
+`tools/qp-harness`. **Eight figures were regenerated from a real QuPath on
+2026-10-04** and are no longer hand captures.
 
-**26 figures are referenced by the guide. 54 image files sit in this folder**, so
-28 are leftovers from earlier versions of the walkthrough. Nothing references
-them; nothing has deleted them either.
+**26 figures are referenced by the guide. 43 PNGs sit in this folder** alongside
+12 concept SVGs, so some are leftovers from earlier versions of the walkthrough.
+Nothing references them; nothing has deleted them either.
 
 ---
+
+## The project these figures come from
+
+`F:\BINA2026\multiplex-synthetic-data-demo-project-clustered` -- the 8-image
+synthetic TME demo project, with **four saved clustering results and one spatial
+run already in it**. That is what makes the results-tab figures reproducible: a
+saved result reopens without recomputing, so the figure and the numbers in the
+text come from the same run rather than from a fresh one that would cluster
+differently.
+
+A QuPath project stores absolute image URIs, so working on it from WSL needs one
+step first:
+
+```bash
+cp -r /mnt/f/BINA2026/multiplex-synthetic-data-demo-project-clustered ~/qph/bina-clustered
+tools/qp-harness/bin/qp-script tools/qp-harness/groovy/fix_image_paths.groovy ~/qph/bina-clustered
+```
+
+Work on the copy. The project's **live classifications have drifted** -- four
+images carry `Cluster N` labels from a later run and four still carry the
+ground-truth cell types -- so only the saved results are trustworthy, and any
+figure whose tab reads the project rather than the result has to apply a result
+first.
 
 ## 1. Hand-authored concept diagrams -- 12, not regenerable by design
 
@@ -18,71 +42,79 @@ them; nothing has deleted them either.
 These are drawings of an idea, not pictures of the software, which is why they
 are SVG and why they do not go stale when a dialog moves. Edit the SVG.
 
-## 2. Reproducible from `tools/qp-harness` -- the dialog screenshots
-
-A QP-CAT dialog is JavaFX, so a hidden `QuPathGUI` can open it against the real
-synthetic project and snapshot it. `harness/QpcatDialogShotScenario.java` in the
-QP-CAT repo does exactly that:
+## 2. Regenerated from `tools/qp-harness` -- 8
 
 ```bash
 cd ~/QPSC_Project
-tools/qp-harness/bin/qp-dataset synthetic-tme /tmp/qph/project 3
 tools/qp-harness/bin/qp-gui \
     qupath-extension-cell-analysis-tools/harness/QpcatDialogShotScenario.java \
-    qupath-extension-cell-analysis-tools /tmp/qph/project /tmp/qph/shots
+    qupath-extension-cell-analysis-tools \
+    ~/qph/bina-clustered ~/qph/shots \
+    "apply:auto_20260927_015057_hdbscan" \
+    "fingerprints-kmeans6=auto_20260924_135415_kmeans=Marker Fingerprints=1600x790" \
+    "qpcat_4-2_fingerprints=auto_20260927_015057_hdbscan=Marker Fingerprints=1600x790" \
+    "qpcat_4-2_cells=auto_20260927_015057_hdbscan=Representative cells=1600x1560" \
+    "qpcat_4-2_3D=auto_20260927_015057_hdbscan=3D View=1400x1000" \
+    "qpcat_4-4_fingerprints=auto_20260927_015958_existingclassifications=Marker Fingerprints=1600x960"
+
+tools/qp-harness/bin/qp-gui \
+    qupath-extension-cell-analysis-tools/harness/QpcatSpatialShotScenario.java \
+    qupath-extension-cell-analysis-tools \
+    ~/qph/bina-clustered ~/qph/shots \
+    auto_20260927_015057_hdbscan "Cluster 1,Cluster 6" tme_00.tif \
+    qpcat_5-1_summary qpcat_5-4_ripleyL
 ```
+
+| Figure | Run behind it |
+|---|---|
+| `crop-table-export-dialog.png` | no run; the dialog on the synthetic project |
+| `fingerprints-kmeans6.png` | `auto_20260924_135415_kmeans` -- 6 clusters |
+| `qpcat_4-2_fingerprints.png`, `qpcat_4-2_cells.png`, `qpcat_4-2_3D.png` | `auto_20260927_015057_hdbscan` -- 7 clusters over 3 UMAP columns |
+| `qpcat_4-4_fingerprints.png` | `auto_20260927_015958_existingclassifications` |
+| `qpcat_5-1_summary.png`, `qpcat_5-4_ripleyL.png` | a fresh post-hoc spatial run over all 8 images, labelled from the HDBSCAN result |
+
+**The alt text was rewritten with them, and most of it had been wrong.** The
+cluster NUMBERS in sections 4.2, 4.4 and 5 did not match the saved results --
+the counts were right and the numbers against them were permuted, which is what
+happens when a guide is written against one run and the figures come from
+another. The guide already warned that HDBSCAN renumbers between runs; it just
+had not been applied to its own text. Section 3.3's table needed no change.
+
+**The spatial figures cannot be reopened, only re-run.**
+`qpcat/spatial_stats/` records what was run, not a session, so those two are
+only ever as current as a real run. The re-run reproduced the original exactly:
+8 areas, 1530 / 1568 / 1430 / 1269 / 1487 / 1470 / 1722 / 945 cells, 7 classes
+each except 6 for `tme_07`.
+
+## 3. Still hand-captured -- reachable, not yet done
 
 | Figure | Status |
 |---|---|
-| `crop-table-export-dialog.png` | **regenerated this way, 2026-10-04** |
 | `analyze-current.png` | reachable -- `ClusteringDialog.forExistingClassifications` |
 | `HDBSCAN_interface.png` | reachable -- it is a crop of the clustering dialog |
 | `qpcat_5-1_settings_top.png`, `qpcat_5-1_settings_low.png` | reachable -- `SpatialStatsDialog` |
 | `menu.png`, `menu-savedresults.png` | reachable in principle, awkward: a cascading menu has to be shown and posted before it has a layout to snapshot |
 
-Each needs a `case` added to the scenario's dispatch, plus whatever project
-state that dialog reads. The two already in the guide were captured by hand and
-have not been re-checked against the current build.
+Each needs a `case` in `QpcatDialogShotScenario`'s dispatch, plus whatever
+project state that dialog reads.
 
-## 3. Needs a real analysis run first -- the results-tab screenshots
+## 4. A correction
 
-`fingerprints-kmeans6.png`, `qpcat_4-2_fingerprints.png`, `qpcat_4-2_cells.png`,
-`qpcat_4-4_fingerprints.png`, `qpcat_5-1_summary.png`, `qpcat_5-4_ripleyL.png`.
+An earlier version of this file said the 3D View tab was "a GL point cloud" and
+that snapshotting it would need a GL surface to render under WSLg. **That was
+wrong.** `cluster3d-core` projects the points in software and draws them on a
+JavaFX `Canvas` -- there is no OpenGL anywhere in it -- so `scene.snapshot()`
+captures it like any other node, and `qpcat_4-2_3D.png` is now rendered that
+way.
 
-The dialog is reachable, but it is empty without a completed run. The Appose
-environment is installed (`~/.local/share/appose/qupath-qpcat`) and
-`tools/cell-phantom-creation/qp_smoke_qpcat.sh` already runs a full clustering
-batch headlessly, so the path exists: run the batch, then open the results
-window on the saved result and snapshot the tab.
+## 5. Captured on Windows -- 2 left
 
-**The blocker is not technical, it is the alt text.** Each of these figures is
-described in the guide down to individual cell counts -- "Cluster 0, 3306 cells,
-is led by Cytoplasm aSMA mean". Regenerating the image means re-running the
-analysis and then rewriting every number in the alt text to match. Do the two
-together or not at all; a new picture under the old description is worse than a
-stale picture.
-
-## 4. Not reachable here -- 1
-
-`qpcat_4-2_3D.png` -- the 3D View tab is a GL point cloud from `cluster3d-core`.
-Snapshotting it would need the GL surface to render under WSLg, which has not
-been tried.
-
-## 5. Captured on Windows -- 7
-
-These carry a `:Zone.Identifier` alternate-data-stream file beside them, which
-is how Windows marks a downloaded or transferred file:
-
-`qpcat_4-2_3D.png`, `qpcat_4-2_cells.png`, `qpcat_4-2_fingerprints.png`,
-`qpcat_4-3_settings_low.png`, `qpcat_4-4_fingerprints.png`,
-`qpcat_5-1_summary.png`, `qpcat_5-4_ripleyL.png`.
-
-Nothing is wrong with them. It records that they came from a Windows QuPath, so
-a Linux-rendered replacement will differ in window chrome, fonts and
-scrollbars. Mixing the two in one guide looks like a mistake even when the
-content is right, so replace a whole section at a time rather than one figure.
-
-The `:Zone.Identifier` files themselves are junk and can be deleted.
+`qpcat_4-3_settings_low.png` and `qpcat_5-1_settings.png` still carry a
+`:Zone.Identifier` alternate-data-stream file, which is how Windows marks a
+transferred file. Nothing is wrong with them; it records that they came from a
+Windows QuPath, so a Linux-rendered replacement differs in window chrome, fonts
+and scrollbars. Replace a whole section at a time rather than one figure. The
+`:Zone.Identifier` files themselves are junk and can be deleted.
 
 ---
 
@@ -98,6 +130,6 @@ cell counts the guide quotes:
 | tme_00 | 1530 | 1530 |
 | tme_01 | 1568 | 1568 |
 | tme_02 | 1430 | 1430 |
-| tme_03 .. tme_07 | 1269, 1487, 1470, 1722, 945 | not re-run (3-image project) |
+| tme_03 .. tme_07 | 1269, 1487, 1470, 1722, 945 | all eight confirmed from the demo project |
 
 **If a harness run ever disagrees, the guide is stale, not the harness.**
