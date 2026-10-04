@@ -905,6 +905,63 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 > tells the view which columns it wrote; the standalone Cluster 3D Navigator reads the columns
 > generically and may still need the three axes picked by hand.
 
+### 9. Keep the gate, and take the cells somewhere else
+
+Two things you can do once you have populations you believe in. Both are new since the
+workshop deck was built.
+
+**A gate is a decision, so save it.** Lasso a population on any 2D plot — the clustering
+results **Embedding** tab, or **Explore & spatial > Plot & gate cells (2D)** — and the gate
+bar now has **Save gates... / Load gates...**. Separately, **every Assign class... writes
+its own polygon** to `<project>/qpcat/gates/` without being asked, because a classification
+on a few thousand cells ought to be traceable to the geometry that chose them.
+
+The reload is the interesting part, and the two kinds of plot behave differently:
+
+- **Two markers (biaxial).** The axes are raw measurements, which belong to the cell. Load
+  the gate onto other cells, other images, next month: it asks the same question. QP-CAT
+  says so and gets on with it.
+- **On an embedding.** UMAP and t-SNE coordinates belong to the *run*, not the cell.
+  Reproducing a layout takes the same cells, measurements, parameters **and** seed. Change
+  any one and the picture is free to rotate and flip without a single cell changing its
+  neighbours — so the same polygon lands in the same place on screen and holds a **different
+  population**, with a perfectly plausible count. Measured on three clean blobs: a gate
+  holding ~200 cells kept **0 of them** after a reflect-and-rotate, five times out of five.
+
+So QP-CAT fingerprints the coordinates and never loads a gate silently. It tells you whether
+these are the coordinates the gate was drawn on, warns loudly when they are not, refuses
+outright when the axes are different measurements, and lists each gate's cell count **here**
+against its count **when saved**. Try it: gate on CD3 vs CD8, save, then re-plot over a
+different image and load it back.
+
+**Take the cells to another tool.** `Extensions > QP-CAT > Export > Export cell crops +
+feature table (TraitHorizon / CSV)...` writes one small PNG per cell plus a table whose first
+column names that PNG.
+
+<img src="../images/qp-cat/crop-table-export-dialog.png" alt="The Export Cell Crops and Feature Table dialog. A What this does panel explains that it writes one PNG per cell plus a table in TraitHorizon's input format, and states that QP-CAT uses none of TraitHorizon's code and does not support it. Below: Scope set to Current image with All project images (3) and Specific images as alternatives; a filterable measurement list with Nucleus Area, Perimeter, Circularity, Max caliper, Min caliper and Eccentricity all ticked, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; a Write section with TSV, Write one PNG crop per cell, Add a classification column and Add an image column ticked, and CSV and Only cells that have a classification unticked; and a Total cells budget spinner set to 2000." width="702">
+
+That is the input format of [TraitHorizon](https://github.com/choosehappy/TraitHorizon), which
+draws a parallel-coordinates plot over every column at once with each cell's image beside its
+feature vector. It answers a question the **Representative cells** tab does not: that tab shows
+medoids, which is what a cluster *typically* looks like, and this shows what is *broken* in it.
+Untick the crops and tick CSV instead and it is simply a per-cell measurement table for Excel,
+R or pandas.
+
+Two things the dialog will tell you before you run it:
+
+- **Coverage.** TraitHorizon allows no missing values, so a cell missing any chosen
+  measurement is dropped. A measurement present on 3% of cells would quietly delete 97% of
+  your export, so the dialog measures coverage first and says, in cells, what each incomplete
+  measurement costs. Deselect those rather than lose the cells.
+- **The budget.** One file per cell means the filesystem carries the export, so it takes a
+  total cell budget spread across classifications with a floor, seeded. It is a *sample*:
+  counts read off the table are counts of the sample, and `README.txt` says exactly what was
+  left out and why — along with the `traithorizon ...` command to run, already filled in.
+
+> QP-CAT writes TraitHorizon's file format and uses none of its code. TraitHorizon is a
+> separate project by a different group, it is not supported here, and at the time of writing
+> its paper is still under review rather than published.
+
 ### What to notice
 
 - Every result stays clickable back to the tissue. The value here is the round trip.
