@@ -23,8 +23,10 @@ A QuPath project stores absolute image URIs, so working on it from WSL needs one
 step first:
 
 ```bash
-cp -r /mnt/f/BINA2026/multiplex-synthetic-data-demo-project-clustered ~/qph/bina-clustered
-tools/qp-harness/bin/qp-script tools/qp-harness/groovy/fix_image_paths.groovy ~/qph/bina-clustered
+cp -r /mnt/f/BINA2026/multiplex-synthetic-data-demo-project-clustered \
+      ~/QPSC_Project/qupath-work/bina-clustered
+tools/qp-harness/bin/qp-script tools/qp-harness/groovy/fix_image_paths.groovy \
+    qupath-work/bina-clustered
 ```
 
 Work on the copy. The project's **live classifications have drifted** -- four
@@ -49,7 +51,7 @@ cd ~/QPSC_Project
 tools/qp-harness/bin/qp-gui \
     qupath-extension-cell-analysis-tools/harness/QpcatDialogShotScenario.java \
     qupath-extension-cell-analysis-tools \
-    ~/qph/bina-clustered ~/qph/shots \
+    qupath-work/bina-clustered qupath-work/shots \
     "apply:auto_20260927_015057_hdbscan" \
     "fingerprints-kmeans6=auto_20260924_135415_kmeans=Marker Fingerprints=1600x790" \
     "qpcat_4-2_fingerprints=auto_20260927_015057_hdbscan=Marker Fingerprints=1600x790" \
@@ -60,7 +62,7 @@ tools/qp-harness/bin/qp-gui \
 tools/qp-harness/bin/qp-gui \
     qupath-extension-cell-analysis-tools/harness/QpcatSpatialShotScenario.java \
     qupath-extension-cell-analysis-tools \
-    ~/qph/bina-clustered ~/qph/shots \
+    qupath-work/bina-clustered qupath-work/shots \
     auto_20260927_015057_hdbscan "Cluster 1,Cluster 6" tme_00.tif \
     qpcat_5-1_summary qpcat_5-4_ripleyL
 ```
