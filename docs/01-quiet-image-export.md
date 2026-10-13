@@ -96,7 +96,7 @@ Both menu items stay grayed out until a project with at least one image is open.
 (20 MB). The same project used by Classify Object Subset and Class Distribution, so if you
 already have it, you are done here. It is a ready-made QuPath project of eight synthetic
 8-channel multiplexed images, `tme_00.tif` … `tme_07.tif`, from the CC0
-[multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data). Cells are
+[multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/tree/v1.2). Cells are
 already detected on every image, and every cell carries a classified ground-truth point, so
 there are objects to draw in section 3 and a known answer to check mask and tile exports against.
 

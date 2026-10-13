@@ -169,14 +169,14 @@ Then run `Extensions > QP-CAT > Setup & help > Set up analysis environment (firs
 ## The data: a synthetic tumor microenvironment
 
 This exercise uses the
-**[multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data)**, a
+**[multiplex synthetic dataset](https://github.com/uw-loci/multiplex-synthetic-data/tree/v1.2)**, a
 small, fully ground-truthed synthetic tumor microenvironment. It is **CC0**: public domain,
 no attribution required, yours to reuse in your own teaching.
 
 You do not build anything from it. **[Get the data](#1-get-the-data) hands you a ready-made
 QuPath project** — eight images, cells already detected, and the ground truth as classified
 point annotations so you can check an answer without leaving QuPath. The
-[dataset repository](https://github.com/uw-loci/multiplex-synthetic-data) has the raw images,
+[v1.2 dataset release](https://github.com/uw-loci/multiplex-synthetic-data/releases/tag/v1.2) has the raw images,
 per-cell ground-truth CSVs and generation parameters if you want to do something else with the
 data afterwards.
 
@@ -984,7 +984,7 @@ Two things the dialog will tell you before you run it:
 - **[Clustering](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/clustering.md)**: measurement selection, normalization and algorithm choice.
 - **[Scripting (Groovy)](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/scripting.md)** and the **[YAML headless-batch runner](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/yaml-reference.md)**: for running this across a whole cohort, including `area_levels` for TMA cores.
 - **[References](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/references.md)**: papers and DOIs for every algorithm used.
-- **[Dataset instructions](https://github.com/uw-loci/multiplex-synthetic-data/blob/master/INSTRUCTIONS.md)**: channel tables, the full detection recipe, what every analysis should recover, and the ground-truth CSV reference.
+- **[Dataset instructions](https://github.com/uw-loci/multiplex-synthetic-data/blob/v1.2/INSTRUCTIONS.md)**: channel tables, the full detection recipe, what every analysis should recover, and the ground-truth CSV reference.
 - Once you have clusters, [Cluster 3D Navigator](04-cluster-3d-navigator.md) gives you a
   rotatable 3D point cloud with click-to-navigate.
 
