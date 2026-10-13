@@ -218,9 +218,10 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
 
 - Object Crops is the fastest route from "I have classified cells" to "I have a labeled
   image dataset for a cell-type classifier."
-- Tiled export writes image/label pairs in the layout deep-learning frameworks expect. This
-  is the natural handoff to the [DL Pixel Classifier](02-dl-pixel-classifier.md) or to
-  training outside QuPath.
+- Tiled export writes image and label-mask tile pairs at a fixed tile size, for training a
+  model outside QuPath (StarDist, Cellpose and similar tools). The
+  [DL Pixel Classifier](02-dl-pixel-classifier.md) does not need it: it trains directly from
+  the annotations in your QuPath project.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-image-export-toolkit#readme).
