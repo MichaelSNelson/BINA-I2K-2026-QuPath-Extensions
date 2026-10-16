@@ -212,11 +212,14 @@ seven images' cells belong in the same cloud.
 
 Click any point. If its cell is on another image, QuPath opens that image first, then centers
 the cell; expect a short pause. **Select images...** next to the mode toggle reopens the picker if
-you want a subset. `tme_02` and `tme_04` were generated with a deliberate brightness shift, a
-simulated batch effect (see [batch effects](03-qp-cat-cell-analysis-tools.md#7-optional-and-slower-batch-effects)).
-The cloud does not mark which image a point came from, so the way to look for that shift is to
-click points along one edge of a blob and watch which image opens: if the same image keeps
-opening, that edge is a staining-day effect, not a cell type.
+you want a subset. `tme_02`, `tme_04` and `tme_05` were generated with deliberate intensity
+offsets (×0.8, ×1.2 and ×0.85), a simulated batch effect (see
+[batch effects](03-qp-cat-cell-analysis-tools.md#7-optional-batch-effects)). On this dataset
+the offsets do not pull a cell type apart: in the step 3 run, each cluster took 36% to 41% of
+its cells from those three images, which hold 38% of all cells, so expect every blob to mix
+the images. On your own data the cloud does not mark which image a point came from, so the way to
+look for a batch effect is to click points along one edge of a blob and watch which image
+opens: if the same image keeps opening, that edge is a staining-day effect, not a cell type.
 
 ### 8. A two-marker scatter in 2D
 

@@ -12,7 +12,7 @@ title: QP-CAT - Cell Analysis Tools
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-cell-analysis-tools](https://github.com/uw-loci/qupath-extension-cell-analysis-tools) |
-| **Extension version** | 0.14.8 |
+| **Extension version** | 0.21.0 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+. ~1.5–2.5 GB download, ~2.5 GB on disk for the Python environment |
 | **Where to find it** | `Extensions > QP-CAT` |
@@ -31,7 +31,7 @@ title: QP-CAT - Cell Analysis Tools
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
-**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Find the cell types](#3-find-the-cell-types) · [4. Cluster on the UMAP instead of the markers](#4-cluster-on-the-umap-instead-of-the-markers) · [5. Is the tumor infiltrated?](#5-is-the-tumor-infiltrated) · [6. Inflamed versus desert](#6-inflamed-versus-desert) · [7. Optional, and slower](#7-optional-and-slower-batch-effects) · [8. Saved results](#8-saved-results-reopen-a-run-instead-of-repeating-it)
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Find the cell types](#3-find-the-cell-types) · [4. Cluster on the UMAP instead of the markers](#4-cluster-on-the-umap-instead-of-the-markers) · [5. Is the tumor infiltrated?](#5-is-the-tumor-infiltrated) · [6. Inflamed versus desert](#6-inflamed-versus-desert) · [7. Optional: batch effects](#7-optional-batch-effects) · [8. Saved results](#8-saved-results-reopen-a-run-instead-of-repeating-it)
 {: .toc}
 
 ---
@@ -225,12 +225,24 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
    - **Click Apply changes.**
 4. **Double-click `tme_00.tif`** in the project list to open it.
 
+> **On QP-CAT 0.21.0, close the image before a run over several images.** In 0.21.0 such a
+> run saves its labels into every image file, but the image open in the viewer keeps the copy
+> it loaded before the run: it goes on showing the old labels, and QuPath counts it as
+> changed. Switch images and QuPath asks *Save changes to tme_00.tif?* &mdash; and **Yes**
+> writes the old copy back over the new labels. We lost step 3's labels on `tme_00` that way
+> while re-walking this guide, and a later spatial run read the stale copy. If you did have an
+> image open during a run, afterwards use `File > Reload data` and click **OK**: that loads the
+> labels the run saved. And if QuPath asks that question, click **No**. The fix is in QP-CAT's
+> development code and will ship in 0.22.0, which has not been released yet; from that version
+> it does not matter what is open.
+
 <details markdown="1">
 <summary><b>If the images still show as missing</b></summary>
 
 The project ships a script that points every image at the folder beside `project.qpproj`.
 
-1. **Open `Automate > Project scripts > fix_image_paths`.**
+1. **Open `Automate > Project scripts... > fix image paths`.** (QuPath lists the script
+   `fix_image_paths.groovy` under that name, with spaces.)
 2. **Click Run.**
 
 </details>
@@ -276,7 +288,13 @@ in the name — `QPCAT spatial: Mean distance`, `QPCAT spatial: Mean triangle ar
 only` **picks those up too**, and clustering on them is clustering on a previous run's answer.
 It has to be the second click, not the first: `Select 'Mean' only` sets the whole visible list,
 so it would undo a `Deselect QPCAT` done before it. **The count is the check** — if the total
-is not 30, something came along that should not have.
+is not 30, something came along that should not have. The dialog does not print the count;
+click **Expand...** above the list and the button at the bottom of that window reads
+**Accept 30 measurements**.
+
+A **Heads up** note appears under the settings once these are ticked, saying 8 of the 14
+markers are selected in more than one compartment. It is a general caution; on this dataset
+these 30 measurements still recover each population (see 3.4), so leave the selection as it is.
 
 These settings are deterministic: run them twice and you get the same clusters. The dialog
 also reopens with whatever you last ran, so the second and third runs in this exercise start
@@ -284,7 +302,9 @@ from the first rather than from defaults. While a run is going, the progress che
 shows how long each step has taken — useful for deciding which spatial statistics are worth
 their time on your own data.
 
-**Click Run Clustering.**
+**Click Run Clustering**, then **OK** in **QPCAT - replace classifications?**, which warns that
+the cluster labels replace any classification already on the cells. The run takes under a
+minute on the eight images.
 
 > **Using the clustered project, or did the run fail?** The clustered project already holds
 > this run, so open the saved result instead of running:
@@ -368,8 +388,9 @@ about clustering.
 If you do run one and then want to carry on after all, your step 3 run is still saved:
 **View Past Results...** reopens its window, and
 `Results & populations > Apply saved result to detections...` puts its labels back on the
-cells. One catch worth knowing before you rely on it — an applied result's embedding columns
-come back **prefixed**, as `<result name>: QPCAT 3D UMAP1`, so those are the three to tick in
+cells (tick **Also write the saved embedding coordinates** to bring the UMAP back too). One
+catch worth knowing before you rely on it — an applied result's embedding columns come back
+**prefixed**, as `<result name>: QPCAT 3D UMAP1`, so those are the three to tick in
 step 4 rather than the unprefixed ones, which by then belong to whichever run you did last.
 
 </details>
@@ -400,7 +421,7 @@ settings:
 | # | Setting | Set to |
 |---|---|---|
 | 1 | Measurements | **`Select none`**, then tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`** — three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
-| 2 | Normalization | **None** |
+| 2 | Normalization | **None (raw values)** |
 | 3 | Dimensionality Reduction: **Method** | **None** |
 | 4 | Clustering Algorithm: **Algorithm** | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)** |
 | 5 | Clustering Algorithm: **min_cluster_size** | **500** |
@@ -442,10 +463,12 @@ What it looks like when it goes wrong, and how to tell:
 
 **Tune `min_cluster_size` first. 500 produced the result below.** It is the smallest group HDBSCAN is allowed to call a cluster, so read it
 against this dataset: 11,421 cells, and the smallest population you are trying to recover is
-proliferating tumor at 790. The default of 15 is 0.1% of the cohort — fine for finding
-something rare, but with **Leaf** selection, which deliberately cuts at the finest level of
-the tree, a floor that low is an invitation to shatter each population into fragments. 500
-sits under 790, so a real group still clears it, and far above 15. The seven clusters it
+proliferating tumor at 825 (the ground truth; KMeans in step 3 put 790 cells there). The
+default of 15 is 0.1% of the cohort — fine for finding something rare, but with **Leaf**
+selection, which deliberately cuts at the finest level of the tree, a floor that low is an
+invitation to shatter each population into fragments. 500 sits under 825, so a real group
+still clears it, and far above 15. Step 6 clusters only three images, where the smallest
+population is far smaller, and needs a lower floor for exactly this reason. The seven clusters it
 returned ran from 825 to 3,306 cells.
 
 **Changing `min_cluster_size` changes two things at once.** With `min_samples` on **0**, scikit-learn ties
@@ -461,7 +484,7 @@ consequence for this dataset — the step 3 UMAP was computed without it, over e
 three of which (`tme_02`, `tme_04`, `tme_05`) carry deliberate intensity offsets, so whatever
 batch structure that introduced is already baked into the coordinates you are about to
 cluster. If you want it gone, correct it in step 3 and recompute the UMAP; the
-[batch-effects exercise](#7-optional-and-slower-batch-effects) below is that run.
+[batch-effects exercise](#7-optional-batch-effects) below is that run.
 
 > **One deliberate exception to a rule stated later.** The batch-effects exercise tells you to
 > press **`Deselect QPCAT`** before a second run, because QP-CAT's own output columns are
@@ -473,8 +496,9 @@ cluster. If you want it gone, correct it in step 3 and recompute the UMAP; the
 
 #### 4.2 Check the result
 
-**Read the noise fraction first.** QP-CAT reports it in the banner above the
-results. HDBSCAN has two failure modes that look identical in the viewer and are opposites
+**Read the noise fraction first.** When HDBSCAN leaves cells unclustered, the window title
+says so (`(+606 noise)`, for example) and a **This result may not be usable** banner above the
+tabs gives the fraction. This run leaves none, so there is no banner. HDBSCAN has two failure modes that look identical in the viewer and are opposites
 underneath: a lot of noise spread evenly means change the *algorithm*; almost no noise beside
 one dominant cluster means change the *cluster selection*.
 
@@ -544,7 +568,7 @@ this project, so check them even if you have been here before:
 | Dimensionality Reduction | **Method: None** | The UMAP you want is already on the cells. Left on UMAP this computes a *second*, different one |
 | Classifications to analyze | **every class ticked** | Each class is described by contrast with all the others, so unticking one silently changes what "the others" means for every class left |
 | Independent areas | **blank** | It only shapes the spatial graph, and this run builds none |
-| Spatial statistics | all **unticked** | Nothing here is a spatial question, and step 3 already computed them |
+| Spatial statistics | all **unticked** | Nothing here is a spatial question; step 5 computes them |
 
 <div class="shots" markdown="0">
 <figure>
@@ -555,7 +579,7 @@ which is what this run wants &mdash; it opens on UMAP, and left there it would c
 embedding instead of using the one already on the cells.</figcaption>
 </figure>
 <figure>
-<img src="../images/qp-cat/qpcat_4-3_settings_low.png" alt="The lower half of the same dialog. A Classifications to analyze section lists Cluster 0 through Cluster 6 with cell counts of 3306, 1554, 1868, 825, 1088, 1392 and 1388, every one ticked, with the line 7 classes found and Select all, Select none and Refresh list buttons. Below it, Generate analysis plots is ticked; Cluster connectivity graph (PAGA) and Spatial feature smoothing are greyed out; Neighborhood enrichment plus Moran's I, PCA and Batch correction (Harmony) are unticked; and Independent areas and Spatial statistics are collapsed. A line reads: this run is repeatable and comparable to other default runs. The Analyze and Close buttons sit at the bottom.">
+<img src="../images/qp-cat/qpcat_4-3_settings_low.png" alt="The lower half of the same dialog. A Classifications to analyze section lists Cluster 0 through Cluster 6 with cell counts of 3306, 1554, 1868, 825, 1088, 1392 and 1388, every one ticked, with the line 7 classes found and Select all, Select none and Refresh list buttons. Below it, Generate analysis plots is unticked, which greys out Cluster connectivity graph (PAGA); Spatial feature smoothing is greyed out; Neighborhood enrichment plus Moran's I, PCA and Batch correction (Harmony) are unticked; and Independent areas and Spatial statistics are collapsed. A line reads: this run is repeatable and comparable to other default runs. The Analyze and Close buttons sit at the bottom.">
 <figcaption><b>Lower half: the class list.</b> One row per class with its count, all ticked,
 and the class total underneath. <b>Spatial feature smoothing is grayed out</b> in this mode on
 purpose: it rewrites the measurements each class is then described by, so a class would report
@@ -616,6 +640,58 @@ decides *what to call them*. Neither run can do both.
 > Cross-check against a full-marker-space run — which, conveniently, is the run you did in
 > step 3.
 
+<details markdown="1">
+<summary><b>Optional: ask an LLM to suggest the names</b> — from the marker table, with the chatbot you already use and no API key</summary>
+
+> **Requires QP-CAT 0.22.0 or later, which has not been released yet.** The **Any chatbot**
+> provider and the MCP server below are in QP-CAT's development code but not in 0.21.0, the
+> version the catalog installs today. `Extensions > QP-CAT > Setup & help > System Info...`
+> shows your version.
+
+You named the clusters above by reading their marker cards. The results window can draft
+those names for you, from the same numbers.
+
+**What it sends.** A fixed instruction plus, for each cluster, its top marker measurements
+(five by default), each with its Wilcoxon score and log2 fold-change. No image, no cell, no
+image or project name. For this run the prompt is 3,369 characters, and you can read all of it
+before it goes anywhere. The instruction tells the model that the scores describe the clusters
+rather than test them, and to answer null rather than guess.
+
+1. **Open the `Cluster Explainer (LLM) [Experimental]` tab** of the 4.3 results window. (Closed
+   it? `Results & populations > View Past Results...` reopens it: it is the run whose name ends
+   in `_existingclassifications`.)
+2. **Set Provider to `Any chatbot (copy prompt, paste reply) -- no key`**, and **Model** to the
+   chatbot you will use. The model name is saved with the suggestions as their source.
+3. **Click `1. Copy prompt to clipboard`** and paste it into the chatbot.
+4. **Paste the whole reply into the box under step 2, then click `3. Read pasted reply`.**
+
+The **Suggestions** table fills with one row per cluster, a confidence and the markers the
+model relied on; click a row for its reasoning. The suggestions are saved into the result and
+come back when you reopen it.
+
+**What came back here.** We gave the copied prompt, and nothing else, to a fresh Claude Code
+session (Opus 5.5) with no tools and no project files. All seven suggestions agree with the
+ground truth: aSMA+ stroma, proliferating PanCK+ tumor, B cells, macrophages, non-proliferating
+PanCK+ tumor and CD8+ cytotoxic T cells, five at high confidence and one at medium. The
+CD3+ CD8− cluster came back as "likely CD4+ helper/regulatory T cells", also at medium, with the
+note that CD4 is not in the panel, so "helper" is inferred, not measured. That is one run of one
+model on a dataset built to be easy; other chatbots, and real tissue, will differ.
+
+Treat each row as a suggestion to check against the **Marker Fingerprints** cards. **Use as
+cluster names...** carries shortened versions into **Modify cell populations**, where nothing
+is written until you press **Apply**, and Apply saves a renamed copy of the result.
+
+> **Pasting into a web chatbot sends that text to whoever runs the chatbot.** Here it is marker
+> names and numbers from synthetic data. On your own data, check your institution's rules first.
+
+The same prompt has three other routes. **Ollama** runs a model on your own machine (the tab
+says no one has run that route yet). **Anthropic** sends it with your API key. And if you
+already work with an AI agent such as Claude Code, the opt-in
+[MCP server](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/mcp-server.md)
+lets the agent read the table and write the names itself.
+
+</details>
+
 ### 5. Is the tumor infiltrated?
 *Concept: immune infiltration at the invasive margin.*
 
@@ -638,11 +714,11 @@ Your cells carry cluster numbers, not cell-type names. These are the clusters fr
 
 | Cluster | Led by | Likely cell type |
 |---|---|---|
-| 0 | aSMA | fibroblast |
-| 1 | CD68 | macrophage |
-| 2 | PanCK | tumor |
-| 3 | Ki67 and PanCK | proliferating tumor |
-| 4 | CD20 | B cell |
+| 0 | Ki67 and PanCK | proliferating tumor |
+| 1 | aSMA | fibroblast |
+| 2 | CD20 | B cell |
+| 3 | PanCK | tumor |
+| 4 | CD68 | macrophage |
 | 5 | CD3 and CD8 | CD8 T cell |
 | 6 | CD3, no CD8 | helper T cell |
 
@@ -657,9 +733,10 @@ on the **Marker Fingerprints** tab.
    | # | Setting | Set to |
    |---|---|---|
    | 1 | **Label source** | *Current cell classifications* (already selected) |
-   | 2 | Statistics to compute: **Ripley L** | ticked (already ticked) |
-   | 3 | Statistics to compute: **Co-occurrence (pairwise)** | tick it (see below) |
-   | 4 | Statistics to compute: **Neighborhood enrichment** | **untick it** |
+   | 2 | **Scope** | **All project images (8)** (already selected when no image is open; with one open, the dialog starts on *Current image*) |
+   | 3 | Statistics to compute: **Ripley L** | ticked (already ticked) |
+   | 4 | Statistics to compute: **Co-occurrence (pairwise)** | tick it (see below) |
+   | 5 | Statistics to compute: **Neighborhood enrichment** | **untick it** |
 
    > **Co-occurrence is ticked but not walked through.** It gives you a
    > **Co-occurrence (pairwise)** tab: for each ordered pair of clusters, the ratio of
@@ -680,9 +757,10 @@ on the **Marker Fingerprints** tab.
    > writes a **Neighborhood Enrichment** heatmap tab.
 
    > **Ripley L is slow, and we do not recommend running it on a lower-powered laptop.** By
-   > default it draws **1,000** simulated random patterns per image to build the band each
-   > curve is read against, and on top of that it materializes every pairwise distance within
-   > each cluster. Eight images is a lot of arithmetic.
+   > default squidpy draws **1,000** simulated random patterns per image, QP-CAT draws another
+   > 99 per cluster for the band each curve is read against, and both materialize every
+   > pairwise distance within each cluster. On the machine this guide was re-walked on, the
+   > eight images took 3 to 4 minutes (200 and 257 seconds in two runs).
    >
    > Two ways to keep going if you want it anyway: open `tme_00.tif` and set **Scope** to
    > *Current image*, so the summary lists one image instead of eight; or set
@@ -758,8 +836,9 @@ curves.
 
 #### 5.3 Look at the cells
 
-Click a CD8 T cell (cluster 5) at the edge of a tumor nest in the viewer and confirm that it
-sits where the statistic says.
+In `tme_00.tif` (double-click it in the project list if you closed it), click a CD8 T cell
+(cluster 5) at the edge of a tumor nest in the viewer and confirm that it sits where the
+statistic says.
 
 > **Taking the numbers with you.** Both tabs have `Copy CSV` and `Save CSV...` under them, and
 > the co-occurrence table has `Copy text` as well for a copy of it exactly as shown. The CSV is
@@ -773,20 +852,15 @@ sits where the statistic says.
 with cells detected, so there is no new setup — but this **is** a new clustering run, over a
 different set of images.
 
-> **Nobody has walked this step through yet.** Steps 1 to 5 were done start to finish on the
-> build this guide describes; this one was not. It was last attempted *before* QP-CAT 0.17.0,
-> where it failed for a reason that release fixed — a multi-image run pooled the images, so the
-> **Composition by area** tab it turns on never appeared — and it has not been re-run since the
-> fix. So treat the instructions below as written from the software rather than from doing it:
-> the sequence should be right, but expect to be the first to find out. The percentages in 6.2
-> come from an earlier run and are marked as such. If something here does not match what you
-> see, that is worth [telling us](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/issues)
-> rather than working around.
-
 > **Requires QP-CAT 0.17.0 or later.** Before that version a run over several images pooled
 > them into one coordinate frame, so the **Composition by area** tab this step uses did not
-> appear at all. `Extensions > QP-CAT > Setup & help > About` shows your version; update from
-> the catalog if it is older.
+> appear at all. `Extensions > QP-CAT > Setup & help > System Info...` shows your version;
+> update from the catalog if it is older. This step was walked through on 0.21.0 on
+> 2026-10-15, and the numbers in 6.2 come from that run.
+
+> **On QP-CAT 0.21.0 only:** if `tme_00` is open, use `File > Reload data` and click **OK**
+> after the run, so the viewer shows this run's labels (see the note under
+> [step 2](#2-load-it-into-qupath)).
 
 > **This run replaces the cluster labels on `tme_00`, `tme_06` and `tme_07`.** Step 4's
 > labels stay on the other five images, and step 4's run is still saved — reopen it any time
@@ -799,18 +873,25 @@ different set of images.
 #### 6.1 Run it
 
 **Open `Extensions > QP-CAT > Find cell populations (clustering)...`.** The dialog reopens with
-step 4's settings, so there are only two things to change:
+most of step 4's settings, so there are three things to change and one to leave alone:
 
 | # | Setting | Set to |
 |---|---|---|
 | 1 | Scope | **`Specific images...`**, then tick **`tme_00`**, **`tme_06`** and **`tme_07`** — three in total |
-| 2 | Independent areas | **leave it empty.** Empty means one area per image, which is what this step is about |
+| 2 | Measurements | tick **`QPCAT 3D UMAP1`**, **`2`** and **`3`** again (`3DUMAP1/2/3` in the pre-built clustered project). The dialog restores everything else from step 4 but comes back with no measurement ticked |
+| 3 | Clustering Algorithm: **min_cluster_size** | **200** |
+| 4 | Independent areas | **leave it as `1. Images (always separate)`**, which means one area per image: what this step is about |
 
-Everything else stays as step 4 left it: measurements **`QPCAT 3D UMAP1/2/3`** only,
-Normalization **None**, Dimensionality Reduction **None**, **HDBSCAN** with
-min_cluster_size **500**, min_samples **0**, Cluster selection **Leaf**. If the dialog has
-been reset, set those again from the table in [4.1](#41-set-up-the-second-run). About 4,200
-cells, still fast.
+Everything else stays as step 4 left it: Normalization **None (raw values)**, Dimensionality
+Reduction **None**, **HDBSCAN** with min_samples **0** and Cluster selection **Leaf**. If the
+dialog has been reset, set those again from the table in [4.1](#41-set-up-the-second-run).
+4,197 cells; the run takes seconds.
+
+**Why 200 and not step 4's 500.** `min_cluster_size` is the smallest group HDBSCAN may call a
+cluster, so it has to sit under the smallest population *in the cells you are clustering*. These
+three images hold 285 B cells and 321 proliferating tumor cells. At 500, both went to noise:
+606 cells, every B cell and every proliferating tumor cell, and the B-cell column this step
+reads was gone. At 200 the run returns seven clusters and no noise.
 
 #### 6.2 Read the composition per image
 
@@ -819,21 +900,27 @@ cells, still fast.
     because here the areas *are* the images. They part company as soon as you add a level —
     TMA cores, annotations — under **Independent areas**.)
 2. **Your cluster numbers are not step 4's.** This is a fresh HDBSCAN run over a different
-    set of cells, so it numbers its clusters from scratch. Identify them the same way as
-    before: open **Marker Fingerprints** and read the marker leading each card — **CD20** is
-    the B cells, **CD3 with CD8** the cytotoxic T cells, **CD3 without CD8** the helper
-    T cells. The *lymphoid fraction* of an image is those three clusters' shares added up.
-3. The contrast is stark. From the reference run:
+    set of cells, so it numbers its clusters from scratch, and its **Marker Fingerprints** cards
+    show only the three UMAP columns it clustered on, as in 4.2. Name them the way you did in
+    4.3: open `Results & populations > Analyze current cell classifications...`, set **Scope** to
+    **`Specific images...`** with the same three images (the dialog reopens on all eight, and
+    the other five still carry step 4's labels under the same `Cluster N` names), then
+    **`Select 'Mean' only`**, **`Deselect QPCAT`**, **Method: None**, and **Analyze**. On its
+    **Marker Fingerprints** tab, **CD20** leads the B cells, **CD8 with CD3** the cytotoxic T
+    cells, and **CD3 with CD8 below the rest** the helper T cells. The *lymphoid fraction* of an
+    image is those three clusters' shares added up.
+3. The contrast is stark. From the run made while re-walking this guide:
 
     | | `tme_00` | `tme_06` | `tme_07` |
     |---|---|---|---|
     | Cells | 1,530 | 1,722 | 945 |
-    | Lymphoid fraction | 33% | **50%** | **6%** |
-    | B-cell follicles | present | more | **none at all** |
+    | B cells | 106 | 179 | **0** |
+    | Lymphoid fraction | 32.7% | **50.1%** | **5.9%** |
 
-    Your percentages will not match to the point, because HDBSCAN may split or merge a
-    population differently on this smaller set of cells. The *ordering* is the result:
-    `tme_06` well above `tme_00`, `tme_07` far below it.
+    All but one of the 4,197 cells landed in the cluster of its true type (one helper T cell
+    went to the CD8 cluster), so these equal the ground truth. A rerun
+    with other settings can split or merge a population differently; the *ordering* is the
+    result: `tme_06` well above `tme_00`, `tme_07` far below it.
 
     `tme_06` and `tme_07` are the two ends of a distinction that matters clinically: an **immune-inflamed**
     tumor, with lymphocytes throughout and organized B-cell aggregates, versus an **immune
@@ -852,31 +939,39 @@ graph per area and no edge crosses a boundary, so that cannot happen — and an 
 area whether or not you put anything in the **Independent areas** box. The same applies to
 TMA cores on one slide, which is the case you are far more likely to meet.
 
-You can see the consequence in this run: the **Ripley L** tab now has an **Area:** picker at
-the top and gives one set of curves per image, exactly as the per-image results did in step 5.
-There is deliberately no combined curve, because the combined point pattern would describe how
+You can see the consequence if you tick **Ripley L** under **Spatial statistics** before
+running: the run then has a **Ripley L** tab with an **Area:** picker at the top
+(`tme_00.tif`, `tme_06.tif`, `tme_07.tif`) and one set of curves per image, exactly as the
+per-image results did in step 5. It adds about a minute, and QuPath first asks whether to draw
+the spatial graph over the images (**QP-CAT - spatial graph overlay**; **No** is fine). There is
+deliberately no combined curve, because the combined point pattern would describe how
 the three files were arranged rather than anything in the tissue.
 
 If your project has annotation classes (Tumor, Stroma, …), the **Composition by class** tab
 pools clusters by class across every image and area, the way to compare compartments that
 share a spatial graph.
 
-### 7. Optional, and slower: batch effects
+### 7. Optional: batch effects
 
-Best done at home; clustering all eight images is ~11,400 cells.
+`tme_02`, `tme_04` and `tme_05` carry deliberate intensity offsets (×0.8, ×1.2, ×0.85), a
+synthetic staining-day effect. The usual test is to cluster all eight images without
+correction, look for cells of one type from the offset images splitting off into their own
+clusters, then re-run with **Batch correction (Harmony)** ticked.
 
-1. `tme_02`, `tme_04` and `tme_05` carry deliberate intensity offsets (×0.8, ×1.2, ×0.85),
-    a synthetic staining-day effect.
-2. Cluster all eight jointly, **without** correction. Cells of one type from the offset images
-    split off into their own clusters: you have discovered your slide scanner, not biology.
-3. Re-run **with Harmony**. The same cell type should now cluster together across all eight
-    images.
+> **On this dataset there was nothing to correct.** We ran it while re-walking this guide: all
+> eight images, step 3's 30 measurements, Z-score, a 2D UMAP and **Leiden** on its defaults.
+> Leiden returned 14 clusters, and every one of them drew 32% to 52% of its cells from the
+> three offset images, which hold 38% of all cells. No type split off by image. With Harmony
+> ticked (**Batch key: Images**) the run converged and returned 16 clusters with the same
+> picture. Each run took under 30 seconds. So run it to learn where the switch is and what it
+> costs, and expect it to change nothing here; whether a ×0.8 offset matters on your own data
+> is a question for your own data.
 
-    > **Before any second run, click `Deselect QPCAT` in the Measurements list.** The first run
-    > wrote its own columns onto the cells — embedding coordinates, spatial and component
-    > measurements — all named with a leading `QPCAT`. They are output, not input: clustering on
-    > them clusters on the previous run's answer. One button clears every one of them and leaves
-    > your own measurements ticked.
+> **Before any second run, click `Deselect QPCAT` in the Measurements list.** The first run
+> wrote its own columns onto the cells — embedding coordinates, spatial and component
+> measurements — all named with a leading `QPCAT`. They are output, not input: clustering on
+> them clusters on the previous run's answer. One button clears every one of them and leaves
+> your own measurements ticked.
 
 ### 8. Saved results: reopen a run instead of repeating it
 
@@ -900,8 +995,8 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 
 > Applied labels are namespaced by the result name — `<result>: Cluster N` — so results from
 > different runs can coexist on the same detections without colliding. Handy, with one
-> consequence worth knowing: any embedding measurements come back prefixed too
-> (`<result>: QPCAT 3D UMAP1`). QP-CAT's own **3D View** tab is unaffected, because the result
+> consequence worth knowing: tick **Also write the saved embedding coordinates** in that dialog
+> and the embedding measurements come back prefixed too (`<result>: QPCAT 3D UMAP1`). QP-CAT's own **3D View** tab is unaffected, because the result
 > tells the view which columns it wrote; the standalone Cluster 3D Navigator reads the columns
 > generically and may still need the three axes picked by hand.
 
