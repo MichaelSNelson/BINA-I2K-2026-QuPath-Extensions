@@ -165,7 +165,7 @@ Open QuPath and confirm:
 |---|---|---|
 | <img src="../images/icon-wand-builtin.png" alt="" class="icon-lg"> | QuPath's own wand | Outline only, no fill |
 | <img src="../images/icon-wizard-wand.png" alt="" class="icon-lg"> | **Wizard Wand** (Shift+W) | Solid wand, sparkles, no arrow |
-| <img src="../images/icon-polyline-wand.png" alt="" class="icon-lg"> | **Polyline Wand** (Shift+P) | Crosses a line, and has a small gray arrow in the corner |
+| <img src="../images/icon-polyline-wand.png" alt="" class="icon-lg"> | **Polyline Wand** (Shift+P) | A line runs from the tip, and a small gray arrow sits in the corner |
 
   **QuPath's own wand** is the leftmost and was already there. The two new ones sit to its
   right: **Wizard Wand** (**Shift+W**) and **Polyline Wand** (**Shift+P**). Their order
