@@ -12,7 +12,7 @@ title: QuIET - QuPath Image Export Toolkit
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-image-export-toolkit](https://github.com/uw-loci/qupath-extension-image-export-toolkit) |
-| **Extension version** | 1.2.14 |
+| **Extension version** | 1.2.15 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+ |
 | **Where to find it** | `Extensions > QuIET > Image Export...` and `Extensions > QuIET > Panel / Montage Export...` |
@@ -157,9 +157,11 @@ The **Object Overlays** and **Scale Bar** sections may be collapsed when you arr
 **Click a section's title** to open it.
 
 **Click Preview Current Image.** A window opens with the image as it will be exported: cell
-outlines, a colored dot on each cell, and a `200 um` scale bar in the lower right.
+outlines, a colored dot on each cell, and a `200 µm` scale bar in the lower right. The window
+stays up to date: change a setting in the wizard and the preview redraws within a second or
+so, as the line under the image says.
 
-<img src="../images/quiet/export-preview.jpg" alt="The Export Preview window: the synthetic tissue image tme_00 with every cell outlined and a colored ground-truth dot on each cell, and a white 200 um scale bar in the lower-right corner" width="560">
+<img src="../images/quiet/export-preview.jpg" alt="The Export Preview window: the synthetic tissue image tme_00 with every cell outlined and a colored ground-truth dot on each cell, and a white 200 µm scale bar in the lower-right corner. A line under the image reads Updates as you change the export settings" width="560">
 
 **Close the preview window**, then **click Next >**.
 
@@ -316,7 +318,7 @@ order.
 **Open `panel_figure.png`.** It looks like this: four panels drawn with the same recipe,
 lettered A to D, each with its own scale bar and its filename underneath.
 
-<img src="../images/quiet/panel-figure.jpg" alt="A 2 by 2 montage of four synthetic multiplex images with cell outlines and ground-truth dots, lettered A to D in white in the upper-left corners, each with a white 200 um scale bar at the lower right and its filename, tme_00.tif, tme_01.tif, tme_06.tif and tme_07.tif, in black underneath" width="640">
+<img src="../images/quiet/panel-figure.jpg" alt="A 2 by 2 montage of four synthetic multiplex images with cell outlines and ground-truth dots, lettered A to D in white in the upper-left corners, each with a white 200 µm scale bar at the lower right and its filename, tme_00.tif, tme_01.tif, tme_06.tif and tme_07.tif, in black underneath" width="640">
 
 ### What to notice
 
