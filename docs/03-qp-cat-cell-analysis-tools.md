@@ -12,7 +12,7 @@ title: QP-CAT - Cell Analysis Tools
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-cell-analysis-tools](https://github.com/uw-loci/qupath-extension-cell-analysis-tools) |
-| **Extension version** | 0.21.0 |
+| **Extension version** | 0.22.0 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+. ~1.5–2.5 GB download, ~2.5 GB on disk for the Python environment |
 | **Where to find it** | `Extensions > QP-CAT` |
@@ -225,16 +225,11 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
    - **Click Apply changes.**
 4. **Double-click `tme_00.tif`** in the project list to open it.
 
-> **On QP-CAT 0.21.0, close the image before a run over several images.** In 0.21.0 such a
-> run saves its labels into every image file, but the image open in the viewer keeps the copy
-> it loaded before the run: it goes on showing the old labels, and QuPath counts it as
-> changed. Switch images and QuPath asks *Save changes to tme_00.tif?* &mdash; and **Yes**
-> writes the old copy back over the new labels. We lost step 3's labels on `tme_00` that way
-> while re-walking this guide, and a later spatial run read the stale copy. If you did have an
-> image open during a run, afterwards use `File > Reload data` and click **OK**: that loads the
-> labels the run saved. And if QuPath asks that question, click **No**. The fix is in QP-CAT's
-> development code and will ship in 0.22.0, which has not been released yet; from that version
-> it does not matter what is open.
+> **Still on QP-CAT 0.21.0? Update, or close the image before a run over several images.**
+> In 0.21.0 such a run can lose the labels of the image open in the viewer: answering **Yes**
+> to *Save changes to tme_00.tif?* afterwards writes the old labels back. If that happens, use
+> `File > Reload data` and click **OK**. QP-CAT 0.22.0 fixes it; `Extensions > QP-CAT >
+> Setup & help > System Info...` shows your version.
 
 <details markdown="1">
 <summary><b>If the images still show as missing</b></summary>
@@ -643,10 +638,9 @@ decides *what to call them*. Neither run can do both.
 <details markdown="1">
 <summary><b>Optional: ask an LLM to suggest the names</b> — from the marker table, with the chatbot you already use and no API key</summary>
 
-> **Requires QP-CAT 0.22.0 or later, which has not been released yet.** The **Any chatbot**
-> provider and the MCP server below are in QP-CAT's development code but not in 0.21.0, the
-> version the catalog installs today. `Extensions > QP-CAT > Setup & help > System Info...`
-> shows your version.
+> **Requires QP-CAT 0.22.0 or later.** The **Any chatbot** provider and the MCP server below
+> are not in 0.21.0. `Extensions > QP-CAT > Setup & help > System Info...` shows your version;
+> update from the catalog if it is older.
 
 You named the clusters above by reading their marker cards. The results window can draft
 those names for you, from the same numbers.
@@ -859,8 +853,7 @@ different set of images.
 > 2026-10-15, and the numbers in 6.2 come from that run.
 
 > **On QP-CAT 0.21.0 only:** if `tme_00` is open, use `File > Reload data` and click **OK**
-> after the run, so the viewer shows this run's labels (see the note under
-> [step 2](#2-load-it-into-qupath)).
+> after the run (see the note under [step 2](#2-load-it-into-qupath)).
 
 > **This run replaces the cluster labels on `tme_00`, `tme_06` and `tme_07`.** Step 4's
 > labels stay on the other five images, and step 4's run is still saved — reopen it any time
@@ -932,7 +925,7 @@ reads was gone. At 200 the run returns seven clusters and no noise.
 
 #### 6.3 Why "independent areas" is not a technical detail
 
-These are three separate images. Cell coordinates are per-image pixel positions, so pooling
+These are three separate images. Each cell's position is measured from its own image's corner, so pooling
 them stacks all three on top of each other: cells in `tme_00` acquire "neighbors" from
 `tme_07` that exist only because of how the files were laid out. QP-CAT builds one spatial
 graph per area and no edge crosses a boundary, so that cannot happen — and an image is an
