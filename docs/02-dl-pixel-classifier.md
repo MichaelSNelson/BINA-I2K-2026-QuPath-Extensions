@@ -434,6 +434,15 @@ the numbers here.
   single slide it is optimistic for a second reason too: the validation tiles are near
   neighbors of the training tiles, so a high score partly measures memorization of one slide.
 
+Open the **Log** pane at the bottom of the training window to see them. On this recipe the
+block reads like this — 59 training patches at batch 30 buy two optimizer steps per epoch, so
+the extension says so before the configuration summary:
+
+<img src="../images/dl-pixel-classifier/training-log-step-budget.png" alt="The Training Classifier window after a finished run. A green Complete header and full progress bar sit above a summary reading Classifier trained successfully, best model epoch 7, loss 0.0747, accuracy 99.89 percent, mIoU 0.9978. The Training Progress chart shows train and validation loss falling steeply over the first five epochs and running flat near zero out to epoch 40. The Log pane is open and shows a line reading Step budget: 59 train / 81 val patches, batch 30, accumulation 1 -> 2 optimizer step(s) per epoch, 80 over 40 epochs, followed by a block headed three asterisks Step budget three asterisks that says only 2 optimizer steps per epoch, so early stopping and the learning-rate schedule both act on very little evidence. Continue Training, Review Training Areas and Close buttons sit at the bottom" width="620">
+
+It is a caution, not a failure: this run still found its best model at epoch 7. On your own data,
+if the block appears, lower the batch size or add annotation before trusting the epoch count.
+
 </details>
 
 #### 3.6 Apply it, and expect the edges to be wrong
@@ -453,20 +462,30 @@ You can use the model you just trained, or the provided one — which is the rou
    beside Delete and the two Export buttons — see the
    [Manage Classifiers window](#sharing-and-moving-a-model) below). It appears as
    **CMU-1_Tissue_ResNet-18**.
-2. **Draw a rectangle over a small area of tissue.**
-3. **Open `Extensions > DL Pixel Classifier > Apply DL Pixel Classifier...`.**
-4. **Set the output to overlay** so the prediction is drawn on the slide.
-5. Look at the **probability map**, not just the class assignment. Find a region where the model
-   is genuinely uncertain. Uncertainty is usually highest at class boundaries; that is expected,
-   and a model that looks confident everywhere is the one to distrust.
-6. **Run it again with detection objects as the output**, so the result becomes QuPath objects
-   you can measure and classify downstream.
-7. **Open a slide with a visibly different stain** and run inference again, watching for the
+2. **Draw the prediction over the slide:** `Extensions > DL Pixel Classifier > Select Overlay Model...`,
+   choose **CMU-1_Tissue_ResNet-18** and press **OK**. The first time, a note explains that the
+   overlay fills in tile by tile as you pan and zoom; press **OK**. If a window titled
+   *option interactions detected* says the tile overlap was raised for CENTER_CROP, press
+   **Show Overlay**. `Toggle Prediction Overlay` turns it off and on again, and the opacity
+   slider in QuPath's toolbar lets the tissue show through.
+
+   <img src="../images/dl-pixel-classifier/overlay-after-apply.png" alt="One tissue fragment of the CMU-1 slide with the prediction overlay at about half opacity. The whole fragment is tinted orange as tissue, including the darker epidermis along its edge and the pale fat spaces inside it, while the empty slide around it stays grey as background. A thin band of tissue color runs just outside the tissue edge, and loose purple fibres lying on the glass beyond it are left grey. A scale bar reads 400 micrometres" width="760">
+
+3. **Look at the edges.** The interior is right; the tissue boundary is where this model goes
+   wrong. The thin band of tissue color just outside the edge above is the model reading context
+   from the tile around it: more annotation along the boundary fixes it, a tiling change does
+   not. *Review Training Areas* (step 5) shows the model's confidence tile by tile.
+4. **Draw a rectangle over a small area of tissue** and open
+   `Extensions > DL Pixel Classifier > Apply DL Pixel Classifier...`.
+5. **Leave the output on `OBJECTS`** and press **Apply**, so the result becomes QuPath objects
+   you can measure and classify downstream. `MEASUREMENTS` instead adds per-class measurements to
+   the rectangle, for percent-area style quantification.
+6. **Open a slide with a visibly different stain** and run inference again, watching for the
    **out-of-distribution warning**. The workshop project does not contain a second H&E slide,
    so use one of your own if you have one — otherwise this step is a demonstration.
-8. **On that second slide, open
+7. **On that second slide, open
    `Extensions > DL Pixel Classifier > Utilities > Calibrate model to current image...`** (AdaBN).
-9. **Run inference again** and compare.
+8. **Run inference again** and compare.
 
 ### 5. Review what the model disagreed with
 
@@ -497,8 +516,8 @@ inside it: `Extensions > DL Pixel Classifier > Utilities > Load Saved Training A
 
 - Where you put a stroke decides which tiles the model trains on, so covering the *variety* in
   your slide matters more than the total area you label.
-- The OOD warning and the probability map are the two things that tell you when *not* to
-  trust the output.
+- The OOD warning and the confidence map in *Review Training Areas* are the two things that
+  tell you when *not* to trust the output.
 - AdaBN often recovers most of the loss from a domain shift in seconds. Try it before you
   consider retraining.
 
