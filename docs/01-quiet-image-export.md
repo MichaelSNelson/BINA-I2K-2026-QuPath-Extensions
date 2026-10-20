@@ -12,7 +12,7 @@ title: QuIET - QuPath Image Export Toolkit
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-image-export-toolkit](https://github.com/uw-loci/qupath-extension-image-export-toolkit) |
-| **Extension version** | 1.2.15 |
+| **Extension version** | 1.3.0 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+ |
 | **Where to find it** | `Extensions > QuIET > Image Export...` and `Extensions > QuIET > Panel / Montage Export...` |
@@ -146,7 +146,7 @@ The numbers match the badges in the picture below the table.
 |---|---|---|
 | 1 | **Render Mode** | **Object Overlay**. It starts on **None (no overlay source)**, which exports a clean image with no objects drawn |
 | 2 | **Downsample** | **1** |
-| 3 | **Output Format** | Leave it. Choosing Object Overlay switches it from **PNG** to **SVG** by itself, so the outlines stay sharp at any zoom |
+| 3 | **Output Format** | Leave it. Ticking an overlay in the next step switches it from **PNG** to **SVG** by itself, so the outlines stay sharp at any zoom |
 | 4 | **Include annotations** | Ticked. The ground-truth points are annotations, and this box starts unticked. **Include detections**, the cell outlines, is already ticked |
 | 5 | **Show scale bar** | Ticked |
 | 6 | **Preview Current Image** | Click it to check the result before exporting |
@@ -339,6 +339,11 @@ lettered A to D, each with its own scale bar and its filename underneath.
   model outside QuPath (StarDist, Cellpose and similar tools). The
   [DL Pixel Classifier](02-dl-pixel-classifier.md) does not need it: it trains directly from
   the annotations in your QuPath project.
+- **Heatmaps on one scale.** Render Mode **Density / Map Overlay** draws a map over each
+  image: a QuPath density map, or a map file another tool wrote for each image (for example
+  Fiber Analysis's collagen density maps). Set **Color Range** to **Shared** or **Fixed** so
+  that one color means the same value in every image; the default stretches each image to
+  its own range, which makes images look alike when they are not.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-image-export-toolkit#readme).
