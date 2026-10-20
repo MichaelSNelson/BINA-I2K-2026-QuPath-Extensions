@@ -105,7 +105,6 @@ each except 6 for `tme_07`.
 
 | Figure | Status |
 |---|---|
-| `qpcat_5-1_settings_top.png`, `qpcat_5-1_settings_low.png` | reachable -- `SpatialStatsDialog`. Not stale on 2026-10-20: that dialog changed only a saved-result label |
 | `menu.png`, `menu-savedresults.png` | reachable in principle, awkward: a cascading menu has to be shown and posted before it has a layout to snapshot. Not stale on 2026-10-20: no menu label changed after 0.22.0 |
 
 Each needs a `case` in `QpcatDialogShotScenario`'s dispatch, plus whatever
@@ -189,20 +188,82 @@ which does. A user who unticks the statistics last sees the stale line
 ("Spatial statistics are usually the slowest part of a run ...") until they
 change anything else.
 
-**Kept, checked against the build:** `qpcat_4-2_cells.png` (the Representative
-cells tab rendered with the same crops and controls), `qpcat_5-1_summary.png` and
-`qpcat_5-4_ripleyL.png` (no change to the summary window or the Ripley L chart), `menu.png`,
-`menu-savedresults.png`, `qpcat_5-1_settings_top.png`,
-`qpcat_5-1_settings_low.png`.
+**Kept, checked against the build:** `menu.png` and `menu-savedresults.png`. (The other
+figures this paragraph used to list were re-rendered later the same day; see
+[the re-renders from the guide's own steps](#2026-10-20-re-renders-from-the-guides-own-steps).)
 
 **What a per-image spatial window shows now.** A scratch run
 (`BinaSpatialProbeScenario.java`, same folder) with Co-occurrence (pairwise) and
 Neighborhood enrichment over all eight images took 4 s and gave `tme_00.tif` the
 tabs *3D View, Co-occurrence (pairwise), Neighborhood Enrichment, Neighborhood
-Enrichment (plot)*. On 0.22.0 that window had no enrichment tab, which is what
-the guide's step 5.1 box used to say.
+Enrichment (plot)*. On 0.22.0 that window has only the heatmap, as a tab named
+*Neighborhood Enrichment* (CHANGELOG `[0.22.0]`, commit f5b9240), with no table and no edge
+counts. An earlier version of this paragraph said 0.22.0 had no enrichment tab at all; that was
+0.21.0, and the guide carried the error until the 2026-10-20 review.
 
 ---
+
+## 2026-10-20 re-renders from the guide's own steps
+
+After a doc review found that `qpcat_4-4_fingerprints.png` came from a run made against the
+guide's step 4.3 (25 measurements, including `QPCAT spatial: Mean distance`, with Ripley on),
+nine figures were rendered again from runs made **exactly as the guide's steps say**, through
+the real dialogs, on the development build. These replace the saved-result renders above for
+those nine figures.
+
+- **Jar:** QP-CAT `origin/main` `9b2120e`, built in a temporary detached worktree (removed
+  afterwards); `md5 529c50c4...`.
+- **Project:** a fresh unzip of the **released**
+  `multiplex-synthetic-data-demo-project-clustered.zip` (v1.2 asset, sha256 `330dde5f...`),
+  paths fixed with `fix_image_paths.groovy`, at `qupath-work/bina-review-fix` (and a second
+  copy, `bina-review-fix-kmeans`, for the step 3 run).
+- **Scenario:** `/mnt/f/claude/bina-guide-update/scenarios/BinaGuideRunScenario.java`. It opens
+  each dialog, sets the controls the guide's table names, presses Run or Analyze, answers
+  **QPCAT - replace classifications?**, and snapshots the window that opens. No image is open,
+  so every Scope is **All project images (8)** unless the step says otherwise.
+
+```bash
+cd ~/QPSC_Project
+QP_HARNESS_WORK=qupath-work/bina-review-fix-work-a tools/qp-harness/bin/qp-gui \
+    /mnt/f/claude/bina-guide-update/scenarios/BinaGuideRunScenario.java <qpcat-worktree> \
+    qupath-work/bina-review-fix qupath-work/bina-review-fix-shots/<step> <step> [ticks]
+# <step>, in order: hdbscan, analyze, spatial "Cluster 1,Cluster 6", step6, analyze6
+# kmeans runs on the second copy, bina-review-fix-kmeans
+```
+
+| Figure | Step | Run |
+|---|---|---|
+| `fingerprints-kmeans6.png` | 3.2 | KMeans k=6, 30 measurements, UMAP 3D; 40 s |
+| `qpcat_4-2_fingerprints.png`, `qpcat_4-2_cells.png`, `qpcat_4-2_3D.png` | 4.1 | HDBSCAN 500 / 0 / Leaf on `3DUMAP1-3`; 31 s |
+| `qpcat_4-4_fingerprints.png` | 4.3 | Analyze, 24 measurements, Method None, every spatial statistic unticked |
+| `qpcat_5-1_settings_top.png`, `qpcat_5-1_settings_low.png` | 5.1 | the dialog set up as the table says, snapshotted at 2x and cropped (rows 120-1150 and 1165-2120) |
+| `qpcat_5-1_summary.png`, `qpcat_5-4_ripleyL.png` | 5.1-5.2 | Ripley L + Co-occurrence (pairwise), Neighborhood enrichment unticked, knn 15, permutations 0; 210 s; tme_00's **Open**, then **None** and Cluster 1 + 6 ticked |
+
+**What the runs showed:**
+
+- **Every count reproduces.** The step 3 run gave the saved KMeans result's labels cell for
+  cell (3,306 / 1,914 / 2,752 / 1,093 / 1,566 / 790), and the step 4 run gave the saved
+  HDBSCAN result's labels cell for cell, under the same cluster numbers (825 / 3,306 / 1,088 /
+  1,868 / 1,554 / 1,388 / 1,392). The saved results were made with 0.12.2 and 0.14.8.
+- **The released clustered project holds only the KMeans result.** The HDBSCAN and
+  `_existingclassifications` results in `bina-guide-update` were never in the zip, so a reader's
+  4.3 run is their own. Its prompt for the Cluster Explainer is **3,369** characters (the shipped
+  `build_prompt`, top 5 per cluster); the 25-measurement run gave 3,391.
+- **The saved KMeans result's window** has **Ripley L**, **Neighborhood Enrichment** and
+  **Neighborhood Enrichment (plot)** tabs, because those were ticked when it was made; a run
+  with the 3.2 settings has none of them. The guide says so under the 3.3 figure.
+- **The tabs now match a reader's run:** no Ripley K, no Neighborhood Enrichment, no Geary's C
+  or one-vs-rest co-occurrence on figures whose step does not compute them.
+- **No personal path.** `qpcat_4-2_cells.png` showed `Loaded from: /home/...`; every figure now
+  shows the relative `qupath-work/bina-review-fix/...`, because the scenario is given a relative
+  project path.
+- **The 5.1 dialog shots are no longer Windows dark theme.** The class list in them is the
+  released project's own (CD20, CD3, ... `b_cell`, `cd8_t`, ...), where the Windows shots came
+  from another project.
+- **Step 6 (not a figure):** min_cluster_size 200 over `tme_00`, `tme_06`, `tme_07` gave seven
+  clusters, 4,197 cells, no noise, in 7 s. The analyze run over the same images gave B cells 106
+  / 179 / 0 and lymphoid fractions 32.7% / 50.1% / 5.9%, the numbers in 6.2, and every cluster's
+  total equals the ground truth for its type.
 
 ## The numbers in the guide are checkable
 
