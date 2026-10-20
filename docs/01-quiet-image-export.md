@@ -12,7 +12,7 @@ title: QuIET - QuPath Image Export Toolkit
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-image-export-toolkit](https://github.com/uw-loci/qupath-extension-image-export-toolkit) |
-| **Extension version** | 1.3.0 |
+| **Extension version** | 1.3.1 |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+, Java 21+ |
 | **Where to find it** | `Extensions > QuIET > Image Export...` and `Extensions > QuIET > Panel / Montage Export...` |
@@ -44,33 +44,42 @@ category, configure it, pick your images, and export.
 |---|---|---|
 | **Rendered** | The image as displayed, with overlays, scale bar, panel labels | Figures and collaborator review |
 | **Label / Mask** | Per-class segmentation masks | ML training targets, QC |
-| **Raw image data** | Pixel data at any downsample | Handing data to another tool |
-| **Tiled export (ML)** | Image + label tile pairs | Deep-learning frameworks |
-| **Object crops** | One small image per object | Cell-type classifier training |
+| **Raw Image Data** | Pixel data at any downsample | Handing data to another tool |
+| **Tiled Export (ML)** | Image + label tile pairs | Deep-learning frameworks |
+| **Object Crops (Classification)** | One small image per object | Cell-type classifier training |
 
 A sixth workflow, `Extensions > QuIET > Panel / Montage Export...`, is a separate menu item with
 its own wizard:
 select several project images, choose a *recipe* (saved settings for how a single image is
 exported), and lay them out into one grid figure, with captions, spacing and background color.
-QuPath renders every panel identically, so you do not assemble the figure by hand in
-another program.
+QuIET renders every panel with the same settings, so you do not assemble the figure by hand
+in another program.
 
 ## Two bonuses
 
-**Every export records a Groovy script.** Whatever you clicked in the wizard is emitted as a
-self-contained script you can save, version-control, re-run next year, or send to a
-collaborator who does not have QuIET installed. Save it from **Save Script...** on the wizard's last screen
-(in **Advanced** mode), or find it afterwards in `Automate > Show workflow command history`.
+**Every single-image export records a Groovy script.** Whatever you clicked in the wizard is
+emitted as a self-contained script you can save, version-control, re-run next year, or send to
+a collaborator who does not have QuIET installed. Save it from **Copy Script** or **Save
+Script...** on the wizard's last screen (in **Advanced** mode). While **Add to Workflow** on that
+screen is ticked (it is by default), the export is also recorded in
+`Automate > Show workflow command history`.
 
-The two exceptions: exports using the **active overlay**, which cannot be reproduced from a
-script because the classifier is ephemeral, and the case where you have turned script recording
-off in Preferences.
+Three exceptions:
+
+- A Panel / Montage export (step 5) records only its settings. To make the figure again, run the
+  export from the wizard.
+- A classifier chosen as **(Active Overlay)** is the viewer's live classifier, not one saved in
+  the project, so a script cannot load it.
+- Unticking **Add to Workflow** leaves the export out of the workflow history; **Copy Script**
+  and **Save Script...** still work.
 
 **QUAREP-LiMi guidance is in the dialog.** [QUAREP-LiMi](https://quarep.org/) is the
 community effort to define minimum reporting standards for light microscopy. The settings screen
 shows a guidance panel driven by your project's actual images, and the last screen has
-**Publication Advice** for the images you selected, before you export. The point is to catch "what magnification was that,
-and is there a scale bar?" *before* the figure goes into a manuscript, not during review.
+**Publication Advice** for the images you selected, before you export. It flags problems such
+as a missing scale bar or a missing pixel size before the figure goes into a manuscript. The
+checklist codes it shows (`IC-5`, `IA-1` ...) are the item numbers of the QUAREP-LiMi image
+publishing checklists ([Schmied et al., *Nature Methods*, 2024](https://doi.org/10.1038/s41592-023-01987-9)).
 
 > **Simple vs Advanced.** The navigation bar has a Simple/Advanced toggle; Simple is the
 > default and hides rarely-used controls. If a setting described here seems to be missing,
@@ -146,15 +155,16 @@ The numbers match the badges in the picture below the table.
 |---|---|---|
 | 1 | **Render Mode** | **Object Overlay**. It starts on **None (no overlay source)**, which exports a clean image with no objects drawn |
 | 2 | **Downsample** | **1** |
-| 3 | **Output Format** | Leave it. Ticking an overlay in the next step switches it from **PNG** to **SVG** by itself, so the outlines stay sharp at any zoom |
+| 3 | **Output Format** | Leave it. It reads **PNG** until you tick row 4, then changes to **SVG** by itself. If it shows another format, choose **SVG** |
 | 4 | **Include annotations** | Ticked. The ground-truth points are annotations, and this box starts unticked. **Include detections**, the cell outlines, is already ticked |
 | 5 | **Show scale bar** | Ticked |
 | 6 | **Preview Current Image** | Click it to check the result before exporting |
 
 <img src="../images/quiet/step2-settings-numbered.png" alt="The Configure Export screen with red numbered badges down the left edge: 1 Render Mode set to Object Overlay, 2 Downsample set to 1, 3 Output Format showing SVG, 4 Include annotations ticked with Include detections ticked below it, 5 Show scale bar ticked, 6 the Preview Current Image button. The QUAREP-LiMi Publication Guidelines panel runs down the right side" width="820">
 
-The **Object Overlays** and **Scale Bar** sections may be collapsed when you arrive.
-**Click a section's title** to open it.
+SVG keeps the scale bar and the ground-truth points as sharp vector shapes; the collapsed box
+below explains what happens to the cell outlines. The **Object Overlays** and **Scale Bar**
+sections may be collapsed when you arrive. **Click a section's title** to open it.
 
 **Click Preview Current Image.** A window opens with the image as it will be exported: cell
 outlines, a colored dot on each cell, and a `200 µm` scale bar in the lower right. The window
@@ -178,20 +188,23 @@ The panel down the right is general QUAREP-LiMi guidance for the kind of export 
 plus one line saying how many of your images it scanned and what type they are. Advice about
 the images you select comes at the next screen, under **Publication Advice**.
 
-SVG keeps outlines and the scale bar as vector shapes, but only up to 1000 objects. These
-images have about 1500 cells each, so QuIET draws the cells into the picture itself and keeps
-the scale bar as a vector.
+SVG keeps annotations and the scale bar as vector shapes, but keeps detections as vectors only
+up to 1000 of them. These images have about 1500 cells each, so QuIET draws the cell outlines
+into the picture itself; the ground-truth points (annotations) and the scale bar stay vector.
+
+The exported pixel size is the image's pixel size times the downsample: these images are
+0.5 µm per pixel, so downsample 4 would give 2 µm per pixel. `export_info.txt` records it.
 
 </details>
 
 #### 3.3 Choose one image and read the advice
 
-The wizard opens in **Simple** mode. **Save Script...**, which step 4 needs, only shows in
-**Advanced** mode.
+The wizard opens in **Simple** mode the first time. **Copy Script** and **Save Script...**,
+which step 4 needs, only show in **Advanced** mode.
 
 | # | Control | Do this |
 |---|---|---|
-| 1 | **Simple** / **Advanced** toggle | Click it so it reads **Advanced** |
+| 1 | **Simple** / **Advanced** toggle | If it reads **Simple**, click it so it reads **Advanced** |
 | 2 | **Deselect All** | Click it. Every image in the project starts ticked |
 | 3 | `tme_00.tif` | Tick it, and only it. The count beside **Deselect All** reads `1 images selected` |
 | 4 | **Copy Script** / **Save Script...** | Leave for step 4 |
@@ -204,19 +217,22 @@ The wizard opens in **Simple** mode. **Save Script...**, which step 4 needs, onl
 folder. Leave it.
 
 **Click Publication Advice [i].** A window lists what QuIET found in the images you
-selected, each item tagged with its QUAREP-LiMi checklist code. With the settings above you
-get two suggestions and no warnings. Remove the scale bar and an item about the missing scale
-bar appears.
+selected, each item tagged with its QUAREP-LiMi checklist code. With the settings above and
+one image ticked you get one suggestion and no warnings. Had **Show scale bar** been off, the
+list would also hold an item about the missing scale bar. With a second image ticked, a
+suggestion about per-image display settings (`IC-3`) joins it, because the advice follows your
+selection.
 
-<img src="../images/quiet/publication-advice.png" alt="The Publication Advice window: 0 issues, 0 warnings, 2 suggestions. The first, IC-3, is about per-image display settings and suggests Global Matched. The second, IC-5, is about a multi-channel image exported without split channels and suggests enabling Split channels" width="450">
+<img src="../images/quiet/publication-advice.png" alt="The Publication Advice window: 0 issues, 0 warnings, 1 suggestions. The suggestion, IC-5, Multi-channel image without split channels, says individual grayscale channel panels help readers see detail hidden in the merged composite, and its action is to enable Split channels in the Split Channel Export section" width="450">
 
 **Close the advice window**, then **click Export.** In a few seconds the bottom of the wizard
-reads `Exported 1 images.`, and **Open Result Folder** and **Close** appear beside **Export**.
-Leave the wizard open for step 4.
+reads `Exported 1 images.`, the result folder opens in your file browser, and **Open Result
+Folder** and **Close** appear beside **Export**. Leave the wizard open for step 4.
 
 #### 3.4 Check the result
 
-**Click Open Result Folder.** It holds two files:
+**Look in the folder that opened** (or click **Open Result Folder** if none did). It holds two
+files:
 
 ```
 export_info.txt
@@ -226,8 +242,11 @@ tme_00.svg
 **Open `tme_00.svg`** in a web browser. It matches the preview. Check that the scale bar is
 legible at the size you would print it.
 
-`export_info.txt` records the settings: category, downsample, pixel size (0.5 µm per pixel)
-and every channel's name and display color, ready for a figure legend.
+**Open `export_info.txt`.** It names the QuIET and QuPath versions, then lists the export
+category, the downsample, every channel's name and color, and the pixel size
+(`Pixel Size: 0.5 um/px (downsample 1x from 0.5 um/px)`), ready for a figure legend. It does not
+hold the brightness and contrast used: with the default display settings it says
+`Per-image (varies -- see QuPath project)`.
 
 ### 4. The reproducibility half
 
@@ -254,11 +273,16 @@ The output pane at the bottom lists each image as it goes, then
 **Open the `exports/rendered` folder again.** Beside `tme_00.svg` there are now eight PNGs,
 `tme_00.png` to `tme_07.png`, all rendered with the settings you chose in step 3.
 
-The script differs from the wizard in two ways, both written at the top of the script:
+The script differs from the wizard in three ways; the first two are written at the top of the
+script:
 
 - **It runs on every image in the project**, not only the ones you ticked.
 - **It writes PNG, not SVG.** SVG export needs QuIET installed; the script runs on any
   QuPath 0.7 without it, so you can send it to a collaborator.
+- **It reads each image's saved brightness and contrast when it runs.** If you change an
+  image's display and save it, a re-run uses the new settings. To pin them, choose
+  **Global Matched** or **Current Viewer Settings** under **Display Settings** (Advanced mode)
+  before copying the script.
 
 The **CONFIGURATION** block at the top holds every setting as a line you can edit, for
 example `def downsample = 1.0`, before running it again.
@@ -311,9 +335,9 @@ drag one panel onto another to swap them.
 
 #### 5.4 Open the figure
 
-**Click Open Result Folder.** `exports/panels` holds `panel_figure.png` and
-`panel_figure_info.txt`, which lists the layout, the recipe and the four source images in
-order.
+**Look in the folder that opened** (or click **Open Result Folder**). `exports/panels` holds
+`panel_figure.png` and `panel_figure_info.txt`, which lists the QuIET version, the layout, the
+recipe and the four source images in order.
 
 **Open `panel_figure.png`.** It looks like this: four panels drawn with the same recipe,
 lettered A to D, each with its own scale bar and its filename underneath.
@@ -322,8 +346,10 @@ lettered A to D, each with its own scale bar and its filename underneath.
 
 ### What to notice
 
-- Every panel in the montage got the same rendering, downsample and overlays, so differences
-  between panels come from the images and not from how each one was exported.
+- Every panel in the montage got the same recipe: the same downsample, overlays and scale bar.
+  Brightness and contrast are each image's own saved settings unless **Display Settings** is
+  **Global Matched** (Advanced mode); use Global Matched for a figure where readers compare
+  brightness between panels.
 - Publication Advice never blocks an export. It lists what a reviewer may ask about.
 - **Label / Mask** (the second category on the wizard's first screen) exports masks from the
   same annotations, for training a model, with no extra annotation work. Try it if you have
@@ -333,17 +359,23 @@ lettered A to D, each with its own scale bar and its filename underneath.
 
 ## Going further
 
-- Object Crops is the fastest route from "I have classified cells" to "I have a labeled
-  image dataset for a cell-type classifier."
+- Object Crops writes one small image per object, in a folder per class, ready for training a
+  cell-type classifier.
 - Tiled export writes image and label-mask tile pairs at a fixed tile size, for training a
   model outside QuPath (StarDist, Cellpose and similar tools). The
   [DL Pixel Classifier](02-dl-pixel-classifier.md) does not need it: it trains directly from
   the annotations in your QuPath project.
-- **Heatmaps on one scale.** Render Mode **Density / Map Overlay** draws a map over each
-  image: a QuPath density map, or a map file another tool wrote for each image (for example
-  Fiber Analysis's collagen density maps). Set **Color Range** to **Shared** or **Fixed** so
-  that one color means the same value in every image; the default stretches each image to
-  its own range, which makes images look alike when they are not.
+- **Maps on one color scale.** Render Mode **Density / Map Overlay** colors a map over each
+  image. In the **Overlay Source** section, **Map Source** chooses a density map saved in the
+  project (made with `Analyze > Density maps > Create density map...`) or a map file per image
+  written by another program, such as a probability map. The default **Color Range**, **Each
+  image: its own min to max**, stretches every image to its own range, so the same color means
+  different values in different images. Choose **Shared: percentiles of all exported images**
+  or **Fixed: the same values for every image** to put every image on one scale, and set
+  **Overlay Opacity** to 1 so the colors match the color scale bar. The range used is written
+  to `export_info.txt`. The
+  [repository README](https://github.com/uw-loci/qupath-extension-image-export-toolkit#readme) explains
+  the details, including how to find each image's map file.
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-image-export-toolkit#readme).
