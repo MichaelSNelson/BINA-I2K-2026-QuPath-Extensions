@@ -12,7 +12,7 @@ title: QP-CAT - Cell Analysis Tools
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-cell-analysis-tools](https://github.com/uw-loci/qupath-extension-cell-analysis-tools) |
-| **Extension version** | 0.22.0 in the catalog. Screens and numbers are from the development build after it |
+| **Extension version** | 0.22.0, which the catalog installs. The screenshots come from the development build after it; where 0.22.0 looks different, a short note says so |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+. ~1.5–2.5 GB download, ~2.5 GB on disk for the Python environment |
 | **Where to find it** | `Extensions > QP-CAT` |
@@ -31,7 +31,7 @@ title: QP-CAT - Cell Analysis Tools
 > *measurement* are explained in the [glossary](glossary.md). For QuPath itself, the
 > [official documentation](https://qupath.readthedocs.io/en/stable/) is the place to go.
 
-**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Find the cell types](#3-find-the-cell-types) · [4. Cluster on the UMAP instead of the markers](#4-cluster-on-the-umap-instead-of-the-markers) · [5. Is the tumor infiltrated?](#5-is-the-tumor-infiltrated) · [6. Inflamed versus desert](#6-inflamed-versus-desert) · [7. Optional: batch effects](#7-optional-batch-effects) · [8. Saved results](#8-saved-results-reopen-a-run-instead-of-repeating-it)
+**Steps:** [1. Get the data](#1-get-the-data) · [2. Load it into QuPath](#2-load-it-into-qupath) · [3. Find the cell types](#3-find-the-cell-types) · [4. Cluster on the UMAP instead of the markers](#4-cluster-on-the-umap-instead-of-the-markers) · [5. Is the tumor infiltrated?](#5-is-the-tumor-infiltrated) · [6. Inflamed versus desert](#6-inflamed-versus-desert) · [7. Optional: batch effects](#7-optional-batch-effects) · [8. Saved results](#8-saved-results-reopen-a-run-instead-of-repeating-it) · [9. Keep the gate](#9-keep-the-gate-and-take-the-cells-somewhere-else)
 {: .toc}
 
 ---
@@ -57,13 +57,13 @@ the name.
 
 <div class="cards">
 <div class="card">
-<img src="../images/qp-cat/concepts/clustering.svg" alt="One undifferentiated cloud of grey cells on the left; an arrow; the same cells on the right separated into three coloured groups.">
+<img src="../images/qp-cat/concepts/clustering.svg" alt="One undifferentiated cloud of gray cells on the left; an arrow; the same cells on the right separated into three colored groups.">
 <b>Unsupervised clustering</b>
 <p>Leiden or KMeans to start, HDBSCAN for rare populations, BANKSY when tissue architecture
 matters, plus several others. <a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/clustering.md">Choosing one</a>.</p>
 </div>
 <div class="card">
-<img src="../images/qp-cat/concepts/phenotyping.svg" alt="A biaxial plot of CD3 against CD8 with two dashed threshold lines forming a gate; cells in the upper-right quadrant are highlighted and labelled CD3 positive CD8 positive.">
+<img src="../images/qp-cat/concepts/phenotyping.svg" alt="A biaxial plot of CD3 against CD8 with two dashed threshold lines forming a gate; cells in the upper-right quadrant are highlighted and labeled CD3 positive CD8 positive.">
 <b>Rule-based phenotyping</b>
 <p>Flow-cytometry-style marker gating, with a threshold <em>suggested</em> per marker.
 <code>anypos</code> / <code>anyneg</code> express "Macrophage = CD68 <b>or</b> CD163 <b>or</b>
@@ -76,7 +76,7 @@ CD206" as one rule. <a href="https://github.com/uw-loci/qupath-extension-cell-an
 regions instead of salt-and-pepper.</p>
 </div>
 <div class="card">
-<img src="../images/qp-cat/concepts/autoencoder.svg" alt="Thirty cells, five of them coloured and labelled by hand and the rest empty outlines; an arrow; the same thirty cells on the right all coloured.">
+<img src="../images/qp-cat/concepts/autoencoder.svg" alt="Thirty cells, five of them colored and labeled by hand and the rest empty outlines; an arrow; the same thirty cells on the right all colored.">
 <b>Autoencoder cell classifier</b>
 <p>Label a small subset by hand and have the rest of the project labeled for you. Original to
 QP-CAT and unpublished. <a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/autoencoder.md">Details</a>.</p>
@@ -94,7 +94,7 @@ independent areas within one image.</p>
 
 <div class="cards">
 <div class="card">
-<img src="../images/qp-cat/concepts/independent-areas.svg" alt="Two views of a slide carrying three tissue sections. On the left a single neighbour graph includes amber edges that jump the empty space between sections. On the right each section has its own graph and no edge crosses between them.">
+<img src="../images/qp-cat/concepts/independent-areas.svg" alt="Two views of a slide carrying three tissue sections. On the left a single neighbor graph includes amber edges that jump the empty space between sections. On the right each section has its own graph and no edge crosses between them.">
 <b>Independent areas</b>
 <p>Cells in physically separate tissue — different TMA cores, sections, images — must never
 share a spatial graph. A neighbor relationship across two cores is an artifact of how the
@@ -102,7 +102,7 @@ slide was laid out, not biology. QP-CAT resolves areas by geometry and guarantee
 joins two of them. Left unconfigured, the graph is global.</p>
 </div>
 <div class="card">
-<img src="../images/qp-cat/concepts/spatial-stats.svg" alt="Two point patterns side by side: on the left cyan and pink cells intermixed and labelled co-localized; on the right the two colours occupying separate regions and labelled avoiding.">
+<img src="../images/qp-cat/concepts/spatial-stats.svg" alt="Two point patterns side by side: on the left cyan and pink cells intermixed and labeled co-localized; on the right the two colors occupying separate regions and labeled avoiding.">
 <b>Spatial statistics</b>
 <p>Neighborhood enrichment, Ripley's L, Geary's C, Moran's I and co-occurrence over kNN,
 radius or Delaunay graphs — via <a href="https://squidpy.readthedocs.io/">squidpy</a>. Do two
@@ -110,7 +110,7 @@ phenotypes co-localize or avoid each other, and at what distance?
 <a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/spatial-statistics.md">Details</a>.</p>
 </div>
 <div class="card">
-<img src="../images/qp-cat/concepts/neighborhoods.svg" alt="A tissue region tiled into windows, each window coloured by the mix of cell types inside it, so recurring niches show as repeated colours.">
+<img src="../images/qp-cat/concepts/neighborhoods.svg" alt="A tissue region tiled into windows, each window colored by the mix of cell types inside it, so recurring niches show as repeated colors.">
 <b>Cellular neighborhoods</b>
 <p>Recurring tissue niches derived from the cell-type composition around each cell.
 <a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/spatial-neighborhoods.md">Details</a>.</p>
@@ -140,7 +140,7 @@ the slide; double-click to jump to one.</p>
 in the current image.</p>
 </div>
 <div class="card">
-<img src="../images/qp-cat/concepts/marker-ranking.svg" alt="A dotplot grid: clusters down the side, markers across the top, dot size and colour showing enrichment.">
+<img src="../images/qp-cat/concepts/marker-ranking.svg" alt="A dotplot grid: clusters down the side, markers across the top, dot size and color showing enrichment.">
 <b>Cluster-defining markers</b>
 <p>Wilcoxon ranking, plotted as dotplot, matrix plot, violin or PAGA, without leaving QuPath.
 <a href="https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/results.md">Reading the tabs</a>.</p>
@@ -206,7 +206,7 @@ already detected and the same ground truth.
 | # | Download | Size | Choose it if |
 |---|---|---|---|
 | 1 | **[`multiplex-synthetic-data-demo-project-v1.2.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-v1.2.zip)** | 20 MB | you will run the clustering yourself. The run needs QP-CAT's Python environment |
-| 2 | **[`multiplex-synthetic-data-demo-project-clustered.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** | 23 MB | you are short on time, or the Python environment is not built. The clustering is already saved in the project |
+| 2 | **[`multiplex-synthetic-data-demo-project-clustered.zip`](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-demo-project-clustered.zip)** | 23 MB | you are short on time. Step 3's clustering is already saved in the project, so you skip one run. You still need QP-CAT's Python environment, to open that result and for steps 4 to 6 |
 
 Whichever you take, work through the steps below in order. With the clustered project,
 "Find the cell types" opens the saved clustering instead of running one.
@@ -225,12 +225,6 @@ catalog (see the **Install** box above, or the [setup guide](setup.md)).
    - **Click Apply changes.**
 4. **Double-click `tme_00.tif`** in the project list to open it.
 
-> **Still on QP-CAT 0.21.0? Update, or close the image before a run over several images.**
-> In 0.21.0 such a run can lose the labels of the image open in the viewer: answering **Yes**
-> to *Save changes to tme_00.tif?* afterwards writes the old labels back. If that happens, use
-> `File > Reload data` and click **OK**. QP-CAT 0.22.0 fixes it; `Extensions > QP-CAT >
-> Setup & help > System Info...` shows your version.
-
 <details markdown="1">
 <summary><b>If the images still show as missing</b></summary>
 
@@ -247,9 +241,9 @@ The project ships a script that points every image at the folder beside `project
 
 The eight channels you are about to cluster on are **DAPI** (used for detection), **PanCK**,
 **Ki67**, **aSMA**, **CD3**, **CD8**, **CD20** and **CD68**, at 0.5 um/pixel. They were built
-from **six cell types** — tumor, fibroblast, CD8 T, helper T, B cell, macrophage. Recovering
-those six from the markers alone is the exercise;
-[3.4](#34-compare-against-the-ground-truth) checks what you got against them.
+from **six cell types** — tumor, fibroblast, CD8 T, helper T, B cell, macrophage. In
+[3.4](#34-compare-against-the-ground-truth) you check how many of those six the markers alone
+recover.
 
 #### 3.1 Check the Python environment
 
@@ -259,22 +253,49 @@ those six from the markers alone is the exercise;
    `Extensions > QP-CAT > Setup & help > Set up analysis environment (first run)...`** and let it
    finish. Once the environment is ready the menu fills out:
 
-<img src="../images/qp-cat/menu.png" alt="The Extensions menu with QP-CAT expanded. Its first item is Find cell populations (clustering), followed by the submenus Classify cells, Explore and spatial, Results and populations, Export, and Setup and help. The extensions list behind it shows QuIET, Classify Object Subset, Project Metadata Browser, Channel Names Viewer, Class Distribution and Cluster 3D Navigator" width="586">
+<img src="../images/qp-cat/menu.png" alt="The Extensions menu with QP-CAT expanded. Its first item is Find cell populations (clustering), followed by the submenus Classify cells, Explore and spatial, Results and populations, Export, and Setup and help." width="586">
+
+**Check your version before you go on.** `Extensions > QP-CAT > Setup & help > System Info...`
+shows it. If it is older than 0.22.0, update QP-CAT from the catalog and restart QuPath.
 
 #### 3.2 Set up the clustering run
 
-**Open `Extensions > QP-CAT > Find cell populations (clustering)...`** and set it up like this:
+> **Downloaded the clustered project?** It already holds this run, so open it instead of
+> running it:
+>
+> 1. **Open `Extensions > QP-CAT > Results & populations > View Past Results...`.**
+> 2. **Pick `auto_20260924_135415_kmeans`** and click **OK**, then go on to
+>    [3.3](#33-read-the-marker-fingerprints-tab).
+>
+> The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
+> dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
 
-| Section | Setting |
-|---|---|
-| Scope | **All project images (8)** — 11,421 cells |
-| Measurements | **`Select 'Mean' only`**, then **`Deselect QPCAT`**, then tick the six **`Nucleus:`** shape measurements (Area, Perimeter, Circularity, Max caliper, Min caliper, Eccentricity). **30 in total** |
-| Normalization | **Z-score (standard)**, the default |
-| Dimensionality Reduction | **UMAP**, **Dimensions: 3D** |
-| Clustering Algorithm | **KMeans**, **`n_clusters` = 6** |
+1. **Open `Extensions > QP-CAT > Find cell populations (clustering)...`** and set it up like
+   this:
 
-The dialog spells that parameter `n_clusters`. The rest of this page calls it *k*, which is
-the usual name for it.
+   | # | Setting | Set to |
+   |---|---|---|
+   | 1 | Scope | **All project images (8)**, 11,421 cells |
+   | 2 | Measurements | **`Select 'Mean' only`**, then **`Deselect QPCAT`**. Then type `Nucleus:` in **Filter measurements...**, tick the six shape measurements (**Area**, **Perimeter**, **Circularity**, **Max caliper**, **Min caliper**, **Eccentricity**), and clear the filter. **30 in total** |
+   | 3 | Normalization | **Z-score (standard)**, the default |
+   | 4 | Dimensionality Reduction | **UMAP**, **Dimensions: 3D** |
+   | 5 | Clustering Algorithm | **KMeans**, **`n_clusters` = 6** |
+
+   The dialog spells that parameter `n_clusters`. The rest of this page calls it *k*, which is
+   the usual name for it.
+2. **Click Expand...** above the measurement list. The button at the bottom of the window that
+   opens reads **Accept 30 measurements**; click it to close the window. Any other number means
+   the list holds something it should not (see *Why `Deselect QPCAT`* below).
+3. **Click Run Clustering**, then **OK** in **QPCAT - replace classifications?**, which warns
+   that the cluster labels replace any classification already on the cells. The run takes under
+   a minute on the eight images. When it finishes, a window titled
+   **QPCAT - Results -- 6 cluster(s), 11421 cells** opens.
+
+If the run fails, the clustered project holds the same run: download it and open the saved
+result as the box above describes.
+
+<details markdown="1">
+<summary><b>Why these settings</b>: <code>Deselect QPCAT</code>, the Heads up note, the seed, and the Validation section</summary>
 
 **Why `Deselect QPCAT`, and why in that order.** On an untouched project it does nothing. But
 a QP-CAT run writes its own measurements back onto the cells, and several of them have *Mean*
@@ -282,38 +303,24 @@ in the name — `QPCAT spatial: Mean distance`, `QPCAT spatial: Mean triangle ar
 `QPCAT component: mean: <X>` for every numeric measurement already there. So `Select 'Mean'
 only` **picks those up too**, and clustering on them is clustering on a previous run's answer.
 It has to be the second click, not the first: `Select 'Mean' only` sets the whole visible list,
-so it would undo a `Deselect QPCAT` done before it. **The count is the check** — if the total
-is not 30, something came along that should not have. The dialog does not print the count;
-click **Expand...** above the list and the button at the bottom of that window reads
-**Accept 30 measurements**.
+so it would undo a `Deselect QPCAT` done before it. That is why the count is worth checking.
 
 A **Heads up** note appears under the settings once these are ticked, saying 8 of the 14
 markers are selected in more than one compartment. It is a general caution; on this dataset
 these 30 measurements still recover each population (see 3.4), so leave the selection as it is.
 
-These settings are deterministic: run them twice and you get the same clusters. The dialog
-also reopens with whatever you last ran, so the second and third runs in this exercise start
-from the first rather than from defaults. While a run is going, the progress checklist
-shows how long each step has taken — useful for deciding which spatial statistics are worth
-their time on your own data.
+These settings are deterministic because **Random seed (clustering + embedding)** stays on its
+default of 42: run them twice and you get the same clusters. Change the seed and both the UMAP
+and the KMeans clusters can move. The dialog also reopens with whatever you last ran, so the
+second and third runs in this exercise start from the first rather than from defaults. While a
+run is going, the progress checklist shows how long each step has taken — useful for deciding
+which spatial statistics are worth their time on your own data.
 
-Leave the collapsed **Validation** section near the bottom of the dialog as it opens, with
-both checks off. Its *Stability across seeds* check re-runs the clustering with other seeds
-and reports in a **Validation** results tab how much the clusters move. *Not in QP-CAT
-0.22.0; it arrives with the next release.*
+Leave the collapsed **Validation** section near the bottom of the dialog closed, with both
+checks off. Its *Stability across seeds* check re-runs the clustering with other seeds and
+reports in a **Validation** results tab how much the clusters move. *Not in QP-CAT 0.22.0.*
 
-**Click Run Clustering**, then **OK** in **QPCAT - replace classifications?**, which warns that
-the cluster labels replace any classification already on the cells. The run takes under a
-minute on the eight images.
-
-> **Using the clustered project, or did the run fail?** The clustered project already holds
-> this run, so open the saved result instead of running:
->
-> 1. **Open `Extensions > QP-CAT > Results & populations > View Past Results...`.**
-> 2. **Pick `auto_20260924_135415_kmeans`.**
->
-> The run's settings are also saved as `K-Means-6.json`, loadable from the Run Clustering
-> dialog's **`Load Config from file...`**, if you would rather reproduce it than read it.
+</details>
 
 > **Why keep the shape measurements?** Marker intensities are the usual starting point, and
 > it would be reasonable to stop there. This dataset is built so that shape carries real
@@ -325,10 +332,15 @@ minute on the eight images.
 
 #### 3.3 Read the Marker Fingerprints tab
 
-**Read the Marker Fingerprints tab.** One card per cluster, showing each measurement's
-enrichment as log2 fold-change against every other cell. The Marker Fingerprints tab is where you name the clusters:
+**Click the Marker Fingerprints tab** in the results window. It shows one card per cluster,
+with each measurement's enrichment as a log2 fold-change against every other cell, and it is
+where you name the clusters:
 
 <img src="../images/qp-cat/fingerprints-kmeans6.png" alt="The Marker Fingerprints tab showing six cluster cards. Cluster 0, 3306 cells, is led by Cytoplasm aSMA mean plus nucleus eccentricity and max caliper. Cluster 1, 1914 cells, by PanCK. Cluster 2, 2752 cells, by CD3 across three compartments and by CD8. Cluster 3, 1093 cells, by CD20. Cluster 4, 1566 cells, by CD68. Cluster 5, 790 cells, by Ki67 across three compartments together with PanCK. The marker part of each measurement name is in bold" width="1000">
+
+The saved run in the clustered project gives the same cards. Its window also has **Ripley L**
+and **Neighborhood Enrichment** tabs, because those statistics were ticked when it was made; a
+run with the settings above does not compute them.
 
 | Cluster | Cells | Led by | Read it as |
 |---|---|---|---|
@@ -362,7 +374,7 @@ by merging the two T-cell lineages.** Ki67 is a *state* — a cell cycling or no
 marks a *lineage*. Nothing in the algorithm knows the difference; both are just columns that
 separate cells.
 
-The cost is not cosmetic. "T cells are present" and "*cytotoxic* T cells are present" are
+"T cells are present" and "*cytotoxic* T cells are present" are
 different claims about a tumor, and only the second speaks to whether the immune response has
 effector potential. You got the right *number* of clusters and the wrong *partition*, and the
 only reason you can tell is that this dataset ships a ground truth. On real data you could not.
@@ -397,8 +409,12 @@ step 4 rather than the unprefixed ones, which by then belong to whichever run yo
 
 #### 3.6 Check your numbers
 
-Check your own numbers against `all_groundtruth.csv` in the dataset download; every cell's
-true type is in the `cell_type` column.
+Each Marker Fingerprints card shows its cluster's share of the cells, for example
+**3,306 (28.9%)**. Compare those with the **%** column of the table in 3.4. If you want to check
+cell by cell, every cell's true type is in the `cell_type` column of `all_groundtruth.csv`,
+which is in the
+[dataset release](https://github.com/uw-loci/multiplex-synthetic-data/releases/download/v1.2/multiplex-synthetic-data-v1.2.zip)
+(14 MB) rather than in the project you downloaded.
 
 ### 4. Cluster on the UMAP instead of the markers
 *Concept: letting the data choose the number of clusters, and what that costs you.*
@@ -420,7 +436,7 @@ settings:
 
 | # | Setting | Set to |
 |---|---|---|
-| 1 | Measurements | **`Select none`**, then tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`** — three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
+| 1 | Measurements | **`Select None`**, then type `UMAP` in **Filter measurements...** and tick only **`QPCAT 3D UMAP1`**, **`2`** and **`3`**, three in total. (In the pre-built clustered project these are named `3DUMAP1/2/3`.) |
 | 2 | Normalization | **None (raw values)** |
 | 3 | Dimensionality Reduction: **Method** | **None** |
 | 4 | Clustering Algorithm: **Algorithm** | **[HDBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html)** |
@@ -434,7 +450,7 @@ settings:
 
 **The embedding columns in the download are named `3DUMAP1`, `3DUMAP2` and `3DUMAP3`** — the
 dialog's **Name** field was `3D UMAP`, and the space is dropped when the columns are written. A
-run you do with a newer QP-CAT build may write `QPCAT 3D UMAP1` instead. Nothing is broken
+run you do yourself writes `QPCAT 3D UMAP1` instead. Nothing is broken
 either way — the saved result knows which columns it wrote — but if you go on to the
 [Cluster 3D Navigator](04-cluster-3d-navigator.md) exercise, those are the three names to pick.
 
@@ -443,15 +459,15 @@ either way — the saved result knows which columns it wrote — but if you go o
 <div class="shots" markdown="0">
 <figure style="max-width:642px">
 <img src="../images/qp-cat/HDBSCAN_interface.png" alt="The Clustering Algorithm section of the Run Clustering dialog. A yellow note says a cluster label is a hypothesis, not a measured cell type. Below it, Algorithm set to HDBSCAN; Random seed (clustering + embedding) 42, with the note that it fixes the embedding layout and this algorithm is deterministic; min_cluster_size 500, min_samples 0; and Cluster selection set to Leaf (finest clusters), above a description of what HDBSCAN does.">
-<figcaption><b>The Clustering Algorithm section, set up as in rows 4 to 7 of the table.</b> <b>Cluster selection</b> is new in
-0.14.0 &mdash; if you do not see it, update first. The settings shown here produced every
-result below.</figcaption>
+<figcaption><b>The Clustering Algorithm section, set up as in rows 4 to 7 of the table.</b> The
+settings shown here produced every result below.</figcaption>
 </figure>
 </div>
 
-**Change `min_cluster_size`, `min_samples` and Cluster selection (rows 5 to 7) from their
-defaults.** Left on the defaults, HDBSCAN returned a single cluster holding **97.0%** of 107,282 cells on a different, real dataset —
-from a space whose groups were plainly separated in the 3D view. What each setting does:
+**Change `min_cluster_size` and Cluster selection (rows 5 and 7) from their defaults, and check
+`min_samples` is on its default of 0.** Left on the defaults, HDBSCAN returned four clusters on a
+different, real dataset of 107,282 cells, one of them holding **97.0%** of the cells with only
+0.9% left as noise, from a space whose groups were plainly separated in the 3D view. What each setting does:
 [scikit-learn's `cluster_selection_method` and `min_samples`](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html).
 What it looks like when it goes wrong, and how to tell:
 [QP-CAT troubleshooting](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/troubleshooting.md#5-hdbscan-returns-one-giant-cluster-and-almost-no-noise).
@@ -486,27 +502,29 @@ batch structure that introduced is already baked into the coordinates you are ab
 cluster. If you want it gone, correct it in step 3 and recompute the UMAP; the
 [batch-effects exercise](#7-optional-batch-effects) below is that run.
 
-> **One deliberate exception to a rule stated later.** The batch-effects exercise tells you to
-> press **`Deselect QPCAT`** before a second run, because QP-CAT's own output columns are
-> answers, not inputs. Here you are clustering on them deliberately, which is why you
-> tick exactly three by hand rather than leaving the rest of the previous run's output
-> selected alongside.
+> **Why the QP-CAT columns are ticked this time.** Step 3 had you press **`Deselect QPCAT`**,
+> because QP-CAT's own output columns are a previous run's answer. Here you are clustering on
+> three of them deliberately, which is why you tick exactly those three by hand rather than
+> leaving the rest of the previous run's output selected alongside.
 
 </details>
 
 #### 4.2 Check the result
 
 **Read the noise fraction first.** When HDBSCAN leaves cells unclustered, the window title
-says so (`(+606 noise)`, for example) and a **This result may not be usable** banner above the
-tabs gives the fraction. This run leaves none, so there is no banner. HDBSCAN has two failure modes that look identical in the viewer and are opposites
+says so (`(+606 noise)`, for example), and when a tenth or more of the cells are noise a
+**This result may not be usable** banner above the tabs gives the fraction. This run leaves
+none: the title reads **QPCAT - Results -- 7 cluster(s), 11421 cells** and there is no banner. HDBSCAN has two failure modes that look identical in the viewer and are opposites
 underneath: a lot of noise spread evenly means change the *algorithm*; almost no noise beside
 one dominant cluster means change the *cluster selection*.
 
-**What it looks like when it works** — click any panel for full size:
+**What it looks like when it works** — click any panel for full size. In this project's
+display, PanCK is cyan, aSMA brown, CD3 green, CD8 magenta, CD20 blue, CD68 red, Ki67 yellow and
+DAPI white:
 
 <div class="shots" markdown="0">
 <figure>
-<img src="../images/qp-cat/qpcat_4-2_3D.png" alt="The QP-CAT results window titled 7 cluster(s), 11421 cells, on the 3D View tab. A guide line at the top says each point is one cell, placed by the run's 3D embedding, beside a Documentation link. Seven separated point clouds in different colors float in the plot, the axes are set to 3DUMAP1, 3DUMAP2 and 3DUMAP3, the counter reads Points 11,421 shown of 11,421 total, and the CLASSES list on the right ticks Cluster 0 through Cluster 6 with their counts, from 825 to 3306, and no noise row.">
+<img src="../images/qp-cat/qpcat_4-2_3D.png" alt="The 3D View tab of the results window. A guide line at the top says each point is one cell, placed by the run's 3D embedding, beside a Documentation link. Seven separated point clouds in different colors float in the plot, the axes are set to 3DUMAP1, 3DUMAP2 and 3DUMAP3, the counter reads Points 11,421 shown of 11,421 total, and the CLASSES list on the right lists all seven clusters, ticked, with counts from 825 to 3306, and no noise row.">
 <figcaption><b>Seven separated lobes, no noise.</b> HDBSCAN found the count itself.
 Leaf selection is what cut at the lobes instead of returning their common parent.</figcaption>
 </figure>
@@ -518,9 +536,9 @@ marker names, so no phenotype.</figcaption>
 </figure>
 <figure>
 <img src="../images/qp-cat/qpcat_4-2_cells.png" alt="The Representative cells tab, a medoid and four example cells per cluster, for all seven clusters. Cluster 0, 825 cells, and Cluster 3, 1,868 cells, are cyan-ringed round cells; Cluster 1, 3,306 cells, is brown elongated spindles; Cluster 2, 1,088 cells, is blue-ringed; Cluster 4, 1,554 cells, is dominated by red rings; Cluster 5, 1,388 cells, mixes cyan and red rings around pale nuclei; Cluster 6, 1,392 cells, mixes green and blue rings.">
-<figcaption><b>The clusters are real anyway.</b> Cluster 1 is unmistakably spindle-shaped and
-cluster 3 is cyan-ringed, so you can read these by eye here &mdash; or re-run over the markers
-to name them, which is the next step.</figcaption>
+<figcaption><b>The clusters are real anyway.</b> Cluster 1 is spindle-shaped and brown (aSMA),
+and cluster 2 is blue (CD20). The others are harder to tell apart by eye, because each crop also
+shows the cell's neighbors; 4.3 describes them by their markers instead.</figcaption>
 </figure>
 </div>
 
@@ -530,8 +548,8 @@ cluster on proliferation instead?* You cannot answer it from these three panels,
 nothing here has read a marker.
 
 **The middle panel ranks only the three embedding columns**, because those are all this run
-clustered on. A cluster that
-is high in `3DUMAP2` is not a phenotype.
+clustered on. A cluster that is high in `3DUMAP2` (`QPCAT 3D UMAP2` if you ran step 3
+yourself) is not a phenotype.
 
 #### 4.3 Describe the clusters by their markers
 
@@ -546,30 +564,17 @@ results window: **Heatmap**, **Marker Rankings**, **Marker Fingerprints** and th
 **Composition** tabs. It writes nothing back: no classification is added, changed or
 removed.
 
-<details markdown="1">
-<summary><b>Heatmap colors may not match the screenshots here</b></summary>
-
-The Heatmap tab has a **Scale**
-control, and a matching preference, that changes how values become colors. White is always
-zero when the run was Z-scored; what Scale chooses is whether the color reaches to each
-marker's own strongest value (**Per marker**, the default) or to one value shared across the
-whole map (**Shared across markers**). With **Normalization** set to None the values have no
-meaningful zero, so the map switches to a sequential viridis scale and says so in its legend.
-From the next release, the caption under the color bar also names the units, for example
-*cluster mean (z-score)*. The reading does not change, only the colors.
-
-</details>
-
-Check these five settings before you run. The dialog reopens on whatever you last ran in
+Check these six settings before you run. The dialog reopens on whatever you last ran in
 this project, so check them even if you have been here before:
 
-| Section | Set it to | Why |
-|---|---|---|
-| Measurements | `Select 'Mean' only`, **then `Deselect QPCAT`** | What this run is for: markers, not the UMAP columns you clustered on. `Select 'Mean' only` also ticks QP-CAT's own `QPCAT component: mean:` columns, which are output from an earlier run, not measurements of the cell |
-| Dimensionality Reduction | **Method: None** | The UMAP you want is already on the cells. Left on UMAP this computes a *second*, different one |
-| Classifications to analyze | **every class ticked** | Each class is described by contrast with all the others, so unticking one silently changes what "the others" means for every class left |
-| Independent areas | **blank** | It only shapes the spatial graph, and this run builds none |
-| Spatial statistics | all **unticked** | Nothing here is a spatial question; step 5 computes them |
+| # | Setting | Set it to | Why |
+|---|---|---|---|
+| 1 | Scope | **All project images (8)** | The same cells step 4 clustered |
+| 2 | Measurements | `Select 'Mean' only`, **then `Deselect QPCAT`** | What this run is for: markers, not the UMAP columns you clustered on. `Select 'Mean' only` also ticks QP-CAT's own `QPCAT component: mean:` columns, which are output from an earlier run, not measurements of the cell |
+| 3 | Dimensionality Reduction | **Method: None** | The UMAP you want is already on the cells. Left on UMAP this computes a *second*, different one |
+| 4 | Classifications to analyze | **every class ticked** | Each class is described by contrast with all the others, so unticking one silently changes what "the others" means for every class left |
+| 5 | Independent areas | **blank** | It only shapes the spatial graph, and this run builds none |
+| 6 | Spatial statistics | all **unticked** | Nothing here is a spatial question; step 5 computes them |
 
 <div class="shots" markdown="0">
 <figure>
@@ -585,14 +590,14 @@ embedding instead of using the one already on the cells.</figcaption>
 and the class total underneath. <b>Spatial feature smoothing is grayed out</b> in this mode on
 purpose: it rewrites the measurements each class is then described by, so a class would report
 markers its <i>neighbors</i> carry. Leave <b>Validation</b> closed: nothing is re-clustered
-here, so both its checks are grayed out (it is not in QP-CAT 0.22.0).</figcaption>
+here, so both its checks are grayed out. (The Validation section is not in QP-CAT 0.22.0.)</figcaption>
 </figure>
 </div>
 
 **Check the class list before you run.** It shows one row per class with its cell count, and
 it is where a mixed project shows itself: if some images carry cluster labels and others
 still carry an earlier labeling, you will see both sets listed together and the run will
-compare things that were never meant to be compared. One labeling system, all of its classes.
+compare things that were never meant to be compared.
 
 **Click Analyze.**
 
@@ -620,6 +625,12 @@ cells come apart:
 | 2 | 1,088 (9.5%) | CD20 | B cell | 9.5% |
 | 0 | 825 (7.2%) | Ki67 and PanCK | proliferating tumor | 7.2% |
 
+**About the +37.0 on cluster 0's card.** The fold-change compares a measurement's mean raw
+intensity in the cluster with its mean over all other cells. When that second mean is zero, as
+nuclear Ki67 is outside the proliferating tumor in this synthetic data, a tiny guard value
+against dividing by zero sets the size of the number, not the data. Read anything far beyond
+±10 as "present here, absent elsewhere", not as a ratio.
+
 Look at clusters 5 and 6. Both are CD3-positive; cluster 5 is CD8-positive and cluster
 6 is CD8-*negative*, which is what separates the two T-cell lineages in this dataset.
 KMeans at k = 6 merged them and spent its spare cluster on proliferation instead. Letting the
@@ -637,6 +648,20 @@ populations themselves rather than take any of it on trust.
 on the UMAP decides *which cells group together*; analyzing those groups over the markers
 decides *what to call them*. Neither run can do both.
 
+<details markdown="1">
+<summary><b>If you open the Heatmap tab</b>: what its colors mean</summary>
+
+The Heatmap tab has a **Scale**
+control, and a matching preference, that changes how values become colors. White is always
+zero when the run was Z-scored; what Scale chooses is whether the color reaches to each
+marker's own strongest value (**Per marker**, the default) or to one value shared across the
+whole map (**Shared across markers**). With **Normalization** set to None the values have no
+meaningful zero, so the map switches to a sequential viridis scale and says so in its legend.
+In builds after QP-CAT 0.22.0 the caption under the color bar also names the units, for
+example *cluster mean (z-score)*. The reading does not change, only the colors.
+
+</details>
+
 > **Worth reading before you rely on this:**
 > [Using UMAP for Clustering](https://umap-learn.readthedocs.io/en/latest/clustering.html).
 > Cross-check against a full-marker-space run — which, conveniently, is the run you did in
@@ -652,28 +677,38 @@ decides *what to call them*. Neither run can do both.
 You named the clusters above by reading their marker cards. The results window can draft
 those names for you, from the same numbers.
 
-**What it sends.** A fixed instruction plus, for each cluster, its top marker measurements
-(five by default), each with its Wilcoxon score and log2 fold-change. No image, no cell, no
-image or project name. For this run the prompt is 3,369 characters, and you can read all of it
-before it goes anywhere. The instruction tells the model that the scores describe the clusters
-rather than test them, and to answer null rather than guess.
+**What it sends.** A fixed instruction plus, for each cluster, its top marker measurements, each
+with its Wilcoxon score and log2 fold-change: up to **Top markers sent per cluster** (10 by
+default), and never more than the run ranked, which is five here. No image, no cell, no image or
+project name. For a 4.3 run made as the table says, the prompt is 3,369 characters, and you
+can read all of it before it goes anywhere. The instruction tells the model that the scores
+describe the clusters rather than test them, and to answer null rather than guess.
 
 1. **Reopen the 4.3 run with `Results & populations > View Past Results...`**: it is the run
    whose name ends in `_existingclassifications`. Then **open its
    `Cluster Explainer (LLM) [Experimental]` tab.** The window the 4.3 run opened has the same
-   tab, but it has no saved result to keep the suggestions in.
+   tab, but it is not linked to the saved copy of the run, so suggestions made there are not
+   kept.
 2. **Set Provider to `Any chatbot (copy prompt, paste reply) -- no key`**, and pick or type
    the chatbot you will use in **Model**. It starts empty and is only a label for the record:
    it is saved with the suggestions as their source, and left empty the record says the chatbot
-   was not named. (On QP-CAT 0.22.0 it starts on `claude.ai`, which is saved unless you change
-   it.)
+   was not named. (On QP-CAT 0.22.0 it starts on `claude.ai`, or on the last name you typed, and
+   that is saved unless you change it.)
 3. **Click `1. Copy prompt to clipboard`** and paste it into the chatbot.
-4. **Paste the whole reply into the box under step 2, then click `3. Read pasted reply`.**
+4. **Paste the chatbot's whole reply into the box labeled `2. Paste the chatbot's whole reply
+   here`**, then **click `3. Read pasted reply`.** The JSON list can arrive with code fences and
+   chat around it; the box takes the reply as it is.
 
-The **Suggestions** table fills with one row per cluster, a confidence and the markers the
-model relied on; click a row for its reasoning. The suggestions are saved into the result and
-come back when you reopen it, with a line naming who wrote them, for example *written by
-ChatGPT, as you named it (reply pasted in)*.
+   The **Suggestions** table fills with one row per cluster, a confidence and the markers the
+   model relied on; click a row for its reasoning. Each row is a suggestion to weigh against
+   the **Marker Fingerprints** cards. The suggestions are saved into the result and come back when you
+   reopen it, with a line naming who wrote them, for example *written by ChatGPT, as you named
+   it (reply pasted in)*. (On QP-CAT 0.22.0 it reads *written by ChatGPT via CHATBOT*.)
+5. **Optional: click `Use as cluster names...`.** The **QPCAT - Modify Clusters** window opens
+   with shortened versions of the names filled in, each beside the cluster it would rename.
+6. **Click Apply** once the names read right. Apply saves a renamed copy of the result and
+   leaves the original alone; nothing is written before it. Close the window without applying
+   and it asks before discarding the names (on QP-CAT 0.22.0 they are lost without asking).
 
 **What came back here.** We gave the copied prompt, and nothing else, to a fresh Claude Code
 session (Opus 5.5) with no tools and no project files. All seven suggestions agree with the
@@ -682,12 +717,6 @@ PanCK+ tumor and CD8+ cytotoxic T cells, five at high confidence and one at medi
 CD3+ CD8− cluster came back as "likely CD4+ helper/regulatory T cells", also at medium, with the
 note that CD4 is not in the panel, so "helper" is inferred, not measured. That is one run of one
 model on a dataset built to be easy; other chatbots, and real tissue, will differ.
-
-Treat each row as a suggestion to check against the **Marker Fingerprints** cards. **Use as
-cluster names...** carries shortened versions into **Modify cell populations**, where nothing
-is written until you press **Apply**, and Apply saves a renamed copy of the result. Close that
-window before Apply and it asks before discarding the names (on QP-CAT 0.22.0 they are lost
-without asking).
 
 > **Pasting into a web chatbot sends that text to whoever runs the chatbot.** Here it is marker
 > names and numbers from synthetic data. On your own data, check your institution's rules first.
@@ -749,21 +778,19 @@ on the **Marker Fingerprints** tab.
 
    > **Co-occurrence is ticked but not walked through.** It gives you a
    > **Co-occurrence (pairwise)** tab: for each ordered pair of clusters, the ratio of
-   > *P(neighbor is B | centre is A)* to *P(neighbor is B)* against radius, above 1 meaning
+   > *P(neighbor is B | center is A)* to *P(neighbor is B)* against radius, above 1 meaning
    > enriched and below 1 depleted. It is descriptive, with no permutation test behind it, so
    > unlike Ripley it costs almost nothing to compute &mdash; worth having, and worth a look.
    > This guide does not step through it because the on-screen table is one column per ordered
    > pair and scrolls off the right on a seven-cluster run, and reading it properly means
    > exporting the CSV. **Save CSV...** under the tab writes one row per pair if you want to.
 
-   > **Why untick Neighborhood enrichment.** It is on by default and it is a real statistic,
-   > but nothing in step 5 reads it. Leave it on if you want it; on the eight images it took
-   > seconds here. Each image's results window then gains a **Neighborhood Enrichment** tab, a
-   > table giving each pair of clusters a z-score and, in brackets, the number of graph edges
-   > behind it, and a **Neighborhood Enrichment (plot)** heatmap beside it.
-   >
-   > *On QP-CAT 0.22.0 the per-image window has no tab for it*: the numbers reach only
-   > **Save combined CSV...** on the summary, so leave it unticked there.
+   > **Why untick Neighborhood enrichment.** Nothing in step 5 reads it. Leave it on if you
+   > want the numbers; on the eight images it took seconds here. Each image's window then gains
+   > a **Neighborhood Enrichment** table, a z-score per pair of clusters with the number of graph
+   > edges behind it, and a **Neighborhood Enrichment (plot)** heatmap. (On QP-CAT 0.22.0 the
+   > window has only the heatmap, under the name **Neighborhood Enrichment**, with no table and
+   > no edge counts.)
 
    > **Ripley L is slow, and we do not recommend running it on a lower-powered laptop.** By
    > default squidpy draws **1,000** simulated random patterns per image, QP-CAT draws another
@@ -781,13 +808,13 @@ on the **Marker Fingerprints** tab.
 
    <div class="shots" markdown="0">
    <figure>
-   <img src="../images/qp-cat/qpcat_5-1_settings_top.png" alt="The top of the Spatial statistics on existing clusters dialog. Label source is Current cell classifications; Scope is All project images (8), with Current image greyed out and a note that it needs an image open; If no areas are configured is Whole image; Independent areas lists one level, Images (always separate); and an Exclude cells inside annotation classes box lists Tumor, Stroma, Immune cells, Necrosis, Other, Region, Ignore, Positive and Negative, with only Ignore ticked.">
-   <figcaption><b>Top half.</b> <b>Ignore</b> is pre-ticked as a convenience, and the note
-   above the class list says why the names are greyed: with no image open, QP-CAT cannot check
-   which of the project's classes are actually on annotations.</figcaption>
+   <img src="../images/qp-cat/qpcat_5-1_settings_top.png" alt="The top of the Spatial statistics on existing clusters dialog. Label source is Current cell classifications; Scope is All project images (8), with Current image grayed out and a note that it needs an image open; If no areas are configured is Whole image; Independent areas lists one level, Images (always separate); and an expanded Exclude cells inside annotation classes box, with a note that no image is open so it cannot check which classes mark annotations, lists the project's classes, from CD20 and CD3 through b_cell, cd8_t, fibroblast, helper_t, macrophage and tumor, with only Ignore ticked.">
+   <figcaption><b>Top half.</b> <b>Ignore</b> is pre-ticked as a convenience. The class list
+   is every class in the project, and the note above it says why: with no image open, QP-CAT
+   cannot check which of them are actually on annotations.</figcaption>
    </figure>
    <figure>
-   <img src="../images/qp-cat/qpcat_5-1_settings_low.png" alt="The lower half of the same dialog. Spatial neighbor graph: Graph type knn, kNN neighbors 15, Radius and Delaunay max edge greyed out, Permutations 0 for adaptive. Under Statistics to compute, Ripley L and Co-occurrence (pairwise) are ticked; Co-occurrence (one vs rest), Neighborhood enrichment, Geary's C and Moran's I are unticked. A Run spatial statistics button sits at the bottom.">
+   <img src="../images/qp-cat/qpcat_5-1_settings_low.png" alt="The lower half of the same dialog. Spatial neighbor graph: Graph type knn, kNN neighbors 15, Radius and Delaunay max edge grayed out, Permutations 0 for adaptive. Under Statistics to compute, Ripley L and Co-occurrence (pairwise) are ticked; Co-occurrence (one vs rest), Neighborhood enrichment, Geary's C and Moran's I are unticked. A Run spatial statistics button sits at the bottom.">
    <figcaption><b>Lower half, set up as the table above says.</b> <b>Ripley L</b> and
    <b>Co-occurrence (pairwise)</b> ticked, <b>Neighborhood enrichment</b> unticked from its
    default. <b>Permutations</b> left at 0, which is the adaptive default &mdash; 1,000 for a
@@ -798,7 +825,7 @@ on the **Marker Fingerprints** tab.
 3. **Click Run spatial statistics.** A window titled **QP-CAT - Spatial statistics summary**
    opens with one row per image, headed **8 area(s), 8 analyzed.**
 
-   <img src="../images/qp-cat/qpcat_5-1_summary.png" alt="The QP-CAT Spatial statistics summary window, headed 8 areas, 8 analyzed, double-click a row or use Open to see its full result. A table lists the eight images tme_00.tif to tme_07.tif, each as a whole image, with cell counts of 1530, 1568, 1430, 1269, 1487, 1470, 1722 and 945, seven classes each except six for tme_07, the unit um, a Statistics column beginning Ripley, Cooc-pair, and an Open button at the end of every row. Save combined CSV and Close are at the bottom." width="834">
+   <img src="../images/qp-cat/qpcat_5-1_summary.png" alt="The QP-CAT Spatial statistics summary window, headed 8 areas, 8 analyzed, double-click a row or use Open to see its full result. A table lists the eight images tme_00.tif to tme_07.tif, each as a whole image, with cell counts of 1530, 1568, 1430, 1269, 1487, 1470, 1722 and 945, seven classes each except six for tme_07, the unit um, a Statistics column that reads Ripley, Cooc- before it is cut off, and an Open button at the end of every row. Save combined CSV and Close are at the bottom." width="834">
 
 4. Double-click the **`tme_00.tif`** row, or click its **Open** button, to open that image's
    results.
@@ -819,7 +846,7 @@ on the **Marker Fingerprints** tab.
 2. Under **Show clusters**, click **None**, then tick cluster 1, fibroblast (aSMA), and
    cluster 6, helper T cell (CD3 without CD8).
 
-<img src="../images/qp-cat/qpcat_5-4_ripleyL.png" alt="The QP-CAT results window headed 7 cluster(s), 1530 cells, tme_00.tif whole image, on the Ripley L tab. The chart, Ripley L(r) relative to random, plots radius from 0 to 750 micrometers with a dashed band per cluster and a flat dashed line at zero labelled Random (simulated). Cluster 6, pink, rises steeply above its band, peaks near plus 19 at about 50 micrometers, dips to about plus 10 near 200 micrometers, rises again to about plus 17 between 250 and 320 micrometers, and stays above the band until it converges near the right edge. Cluster 1, orange, dips to about minus 10 below 25 micrometers, rises above its band to about plus 13 near 150 micrometers, then falls back inside its band from roughly 330 micrometers on. Under Show clusters, headed Recommend 1 at a time, only Cluster 1 and Cluster 6 are ticked, and Relative to random is ticked." width="772">
+<img src="../images/qp-cat/qpcat_5-4_ripleyL.png" alt="The Ripley L tab of tme_00.tif's results, one of three tabs beside 3D View and Co-occurrence (pairwise). The chart, Ripley L(r) relative to random, plots radius from 0 to 750 micrometers with a dashed band per cluster and a flat dashed line at zero labeled Random (simulated). Cluster 6, pink, rises steeply above its band, peaks near plus 19 at about 50 micrometers, dips to about plus 10 near 200 micrometers, rises again to about plus 17 between 250 and 320 micrometers, and stays above the band until it converges near the right edge. Cluster 1, orange, dips to about minus 10 below 25 micrometers, rises above its band to about plus 13 near 150 micrometers, then falls back inside its band from roughly 330 micrometers on. Under Show clusters, headed Recommend 1 at a time, only Cluster 1 and Cluster 6 are ticked, and Relative to random is ticked." width="772">
 
 Read each curve against the **flat line at zero**, which is randomness: the curve is
 plotted relative to that cluster's own simulated-random median. **Above the dashed band**
@@ -845,9 +872,9 @@ curves.
 
 #### 5.3 Look at the cells
 
-In `tme_00.tif` (double-click it in the project list if you closed it), click a CD8 T cell
-(cluster 5) at the edge of a tumor nest in the viewer and confirm that it sits where the
-statistic says.
+In `tme_00.tif` (double-click it in the project list if you closed it), look at the cells
+colored as **Cluster 6**, pink, the same color as its Ripley curve. They sit in clumps, as the
+curve says; its first peak, near 50 µm, is a rough read on how big those clumps are.
 
 > **Taking the numbers with you.** Both tabs have `Copy CSV` and `Save CSV...` under them, and
 > the co-occurrence table has `Copy text` as well for a copy of it exactly as shown. The CSV is
@@ -861,15 +888,6 @@ statistic says.
 with cells detected, so there is no new setup — but this **is** a new clustering run, over a
 different set of images.
 
-> **Requires QP-CAT 0.17.0 or later.** Before that version a run over several images pooled
-> them into one coordinate frame, so the **Composition by area** tab this step uses did not
-> appear at all. `Extensions > QP-CAT > Setup & help > System Info...` shows your version;
-> update from the catalog if it is older. This step was walked through on 0.21.0 on
-> 2026-10-15, and the numbers in 6.2 come from that run.
-
-> **On QP-CAT 0.21.0 only:** if `tme_00` is open, use `File > Reload data` and click **OK**
-> after the run (see the note under [step 2](#2-load-it-into-qupath)).
-
 > **This run replaces the cluster labels on `tme_00`, `tme_06` and `tme_07`.** Step 4's
 > labels stay on the other five images, and step 4's run is still saved — reopen it any time
 > with `Results & populations > View Past Results...`, or put its labels back on the cells with
@@ -880,20 +898,23 @@ different set of images.
 
 #### 6.1 Run it
 
-**Open `Extensions > QP-CAT > Find cell populations (clustering)...`.** The dialog reopens with
-step 4's settings, so there are two things to change, one to check and one to leave alone:
+1. **Open `Extensions > QP-CAT > Find cell populations (clustering)...`.** The dialog reopens
+   with step 4's settings. Change rows 1 and 3, check row 2, and leave row 4 as it is (on
+   QP-CAT 0.22.0, row 2 needs changing too):
 
-| # | Setting | Set to |
-|---|---|---|
-| 1 | Scope | **`Specific images...`**, then tick **`tme_00`**, **`tme_06`** and **`tme_07`** — three in total |
-| 2 | Measurements | **`QPCAT 3D UMAP1`**, **`2`** and **`3`** ticked, and nothing else (`3DUMAP1/2/3` in the pre-built clustered project). The dialog reopens with step 4's ticks; on QP-CAT 0.22.0 it comes back with none ticked, so tick the three again |
-| 3 | Clustering Algorithm: **min_cluster_size** | **200** |
-| 4 | Independent areas | **leave it as `1. Images (always separate)`**, which means one area per image: what this step is about |
+   | # | Setting | Set to |
+   |---|---|---|
+   | 1 | Scope | **`Specific images...`**, then tick **`tme_00`**, **`tme_06`** and **`tme_07`**, three in total |
+   | 2 | Measurements | **`QPCAT 3D UMAP1`**, **`2`** and **`3`** ticked, and nothing else (`3DUMAP1/2/3` in the pre-built clustered project). The dialog reopens with step 4's ticks; on QP-CAT 0.22.0 it comes back with none ticked, so tick the three again |
+   | 3 | Clustering Algorithm: **min_cluster_size** | **200** |
+   | 4 | Independent areas | **leave it as `1. Images (always separate)`**, which means one area per image: what this step is about |
 
-Everything else stays as step 4 left it: Normalization **None (raw values)**, Dimensionality
-Reduction **None**, **HDBSCAN** with min_samples **0** and Cluster selection **Leaf**. If the
-dialog has been reset, set those again from the table in [4.1](#41-set-up-the-second-run).
-4,197 cells; the run takes seconds.
+   Everything else stays as step 4 left it: Normalization **None (raw values)**,
+   Dimensionality Reduction **None**, **HDBSCAN** with min_samples **0** and Cluster selection
+   **Leaf**. If the dialog has been reset, set those again from the table in
+   [4.1](#41-set-up-the-second-run).
+2. **Click Run Clustering**, then **OK** in **QPCAT - replace classifications?**. The run
+   covers 4,197 cells and takes seconds.
 
 **Why 200 and not step 4's 500.** `min_cluster_size` is the smallest group HDBSCAN may call a
 cluster, so it has to sit under the smallest population *in the cells you are clustering*. These
@@ -903,40 +924,49 @@ reads was gone. At 200 the run returns seven clusters and no noise.
 
 #### 6.2 Read the composition per image
 
-1. **Open the Composition by area tab.** Each image is an independent area, so you get one
-    row per image. (**Composition by image** beside it shows the same rows for this run,
-    because here the areas *are* the images. They part company as soon as you add a level —
-    TMA cores, annotations — under **Independent areas**.)
-2. **Your cluster numbers are not step 4's.** This is a fresh HDBSCAN run over a different
-    set of cells, so it numbers its clusters from scratch, and its **Marker Fingerprints** cards
-    show only the three UMAP columns it clustered on, as in 4.2. Name them the way you did in
-    4.3: open `Results & populations > Analyze current cell classifications...`, set **Scope** to
-    **`Specific images...`** with the same three images (the dialog reopens on all eight, and
-    the other five still carry step 4's labels under the same `Cluster N` names), then
-    **`Select 'Mean' only`**, **`Deselect QPCAT`**, **Method: None**, and **Analyze**. On its
-    **Marker Fingerprints** tab, **CD20** leads the B cells, **CD8 with CD3** the cytotoxic T
-    cells, and **CD3 with CD8 below the rest** the helper T cells. The *lymphoid fraction* of an
-    image is those three clusters' shares added up.
-3. The contrast is stark. From the run made while re-walking this guide:
+This run's **Marker Fingerprints** cards show only the three UMAP columns it clustered on, as in
+4.2, and it numbered its clusters from scratch, so they can differ from step 4's. Name them the
+way you did in 4.3, over these three images only:
 
-    | | `tme_00` | `tme_06` | `tme_07` |
-    |---|---|---|---|
-    | Cells | 1,530 | 1,722 | 945 |
-    | B cells | 106 | 179 | **0** |
-    | Lymphoid fraction | 32.7% | **50.1%** | **5.9%** |
+1. **Open `Extensions > QP-CAT > Results & populations > Analyze current cell classifications...`**
+   and set it up like this:
 
-    All but one of the 4,197 cells landed in the cluster of its true type (one helper T cell
-    went to the CD8 cluster), so these equal the ground truth. A rerun
-    with other settings can split or merge a population differently; the *ordering* is the
-    result: `tme_06` well above `tme_00`, `tme_07` far below it.
+   | # | Setting | Set to |
+   |---|---|---|
+   | 1 | Scope | **`Specific images...`**, then tick **`tme_00`**, **`tme_06`** and **`tme_07`**. The dialog reopens on all eight, and the other five still carry step 4's labels under the same `Cluster N` names |
+   | 2 | Measurements | **`Select 'Mean' only`**, then **`Deselect QPCAT`** |
+   | 3 | Dimensionality Reduction: **Method** | **None** |
 
-    `tme_06` and `tme_07` are the two ends of a distinction that matters clinically: an **immune-inflamed**
-    tumor, with lymphocytes throughout and organized B-cell aggregates, versus an **immune
-    desert**, where the tumor sits in fibroblast-rich stroma with almost no lymphoid presence.
-    It is the same axis used to stratify patients for immunotherapy: inflamed tumors tend to
-    respond; deserts tend not to.
-4. Note what `tme_07` is *missing*. Zero B cells, no follicles. An absent population is easy
-    to overlook in a UMAP, where it simply is not drawn, and obvious in a composition table.
+2. **Click Analyze.**
+3. **Click the Marker Fingerprints tab** in the window that opens. **CD20** leads the B cells,
+   **CD8 with CD3** the cytotoxic T cells, and **CD3 with CD8 below the rest** the helper T
+   cells. The *lymphoid fraction* of an image is those three clusters' shares added up.
+4. **Click the Composition by area tab.** Each image is an independent area, so you get one
+   row per image. (**Composition by image** beside it shows the same rows for this run,
+   because here the areas *are* the images. They part company as soon as you add a level —
+   TMA cores, annotations — under **Independent areas**.)
+
+From a run on the development build, made as above:
+
+| | `tme_00` | `tme_06` | `tme_07` |
+|---|---|---|---|
+| Cells | 1,530 | 1,722 | 945 |
+| B cells | 106 | 179 | **0** |
+| Lymphoid fraction | 32.7% | **50.1%** | **5.9%** |
+
+Every cluster in that run held as many cells as the ground truth has of its type (285 B cells,
+574 CD8 T, 560 helper T across the three images), so these numbers match the ground truth. A
+rerun with other settings can split or merge a population differently; the *ordering* is the
+result: `tme_06` well above `tme_00`, `tme_07` far below it.
+
+`tme_06` and `tme_07` are the two ends of a distinction that matters clinically: an
+**immune-inflamed** tumor, with lymphocytes throughout and organized B-cell aggregates, versus an
+**immune desert**, where the tumor sits in fibroblast-rich stroma with almost no lymphoid
+presence. It is the same axis used to stratify patients for immunotherapy: inflamed tumors tend
+to respond; deserts tend not to.
+
+Note what `tme_07` is *missing*. Zero B cells, no follicles. An absent population is easy to
+overlook in a UMAP, where it simply is not drawn, and obvious in a composition table.
 
 #### 6.3 Why "independent areas" is not a technical detail
 
@@ -966,20 +996,35 @@ synthetic staining-day effect. The usual test is to cluster all eight images wit
 correction, look for cells of one type from the offset images splitting off into their own
 clusters, then re-run with **Batch correction (Harmony)** ticked.
 
-> **On this dataset there was nothing to correct.** We ran it while re-walking this guide: all
-> eight images, step 3's 30 measurements, Z-score, a 2D UMAP and **Leiden** on its defaults.
-> Leiden returned 14 clusters, and every one of them drew 32% to 52% of its cells from the
-> three offset images, which hold 38% of all cells. No type split off by image. With Harmony
-> ticked (**Batch key: Images**) the run converged and returned 16 clusters with the same
-> picture. Each run took under 30 seconds. So run it to learn where the switch is and what it
-> costs, and expect it to change nothing here; whether a ×0.8 offset matters on your own data
-> is a question for your own data.
+1. **Open `Extensions > QP-CAT > Find cell populations (clustering)...`** and set it up like
+   this. The dialog reopens with step 6's settings, so most rows change:
 
-> **Before any second run, click `Deselect QPCAT` in the Measurements list.** The first run
-> wrote its own columns onto the cells — embedding coordinates, spatial and component
-> measurements — all named with a leading `QPCAT`. They are output, not input: clustering on
-> them clusters on the previous run's answer. One button clears every one of them and leaves
-> your own measurements ticked.
+   | # | Setting | Set to |
+   |---|---|---|
+   | 1 | Scope | **All project images (8)** |
+   | 2 | Measurements | step 3's 30: **`Select 'Mean' only`**, then **`Deselect QPCAT`**, then the six `Nucleus:` shape measurements, as in [3.2](#32-set-up-the-clustering-run) |
+   | 3 | Normalization | **Z-score (standard)** |
+   | 4 | Dimensionality Reduction | **UMAP**, **Dimensions: 2D** |
+   | 5 | Clustering Algorithm | **Leiden (graph-based)**, on its defaults |
+   | 6 | Batch correction (Harmony) | unticked for the first run, ticked for the second |
+   | 7 | **Batch key:** (shown once row 6 is ticked) | **Images**, the default |
+
+   Row 2's `Deselect QPCAT` matters more now than in step 3. The earlier runs wrote their own
+   columns onto the cells, embedding coordinates and spatial and component measurements, all
+   named with a leading `QPCAT`, and clustering on them clusters on a previous run's answer.
+2. **Click Run Clustering**, then **OK** in **QPCAT - replace classifications?**. On the
+   **Composition by image** tab, check whether any cluster draws most of its cells from
+   `tme_02`, `tme_04` and `tme_05`.
+3. **Tick row 6 and click Run Clustering again.** Compare the two runs' **Composition by
+   image** tabs.
+
+> **On this dataset there was nothing to correct.** In one run while re-walking this guide,
+> Leiden returned 14 clusters, and every one of them drew 32% to 52% of its cells from the three
+> offset images, which hold 38% of all cells. No type split off by image. With
+> Harmony ticked the run converged and returned 16 clusters with the same picture. Each run took
+> under 30 seconds. So run it to learn where the switch is and what it costs, and expect it to
+> change nothing here; whether a ×0.8 offset matters on your own data is a question for your
+> own data.
 
 ### 8. Saved results: reopen a run instead of repeating it
 
@@ -1010,16 +1055,18 @@ successful run auto-saves** to `<project>/qpcat/cluster_results/` under a timest
 
 ### 9. Keep the gate, and take the cells somewhere else
 
-Two things you can do once you have populations you believe in. Both are new since the
-workshop deck was built.
+Two things you can do once you have populations you believe in.
 
-**A gate is a decision, so save it.** Lasso a population on any 2D plot — the clustering
-results **Embedding** tab, or **Explore & spatial > Plot & gate cells (2D)** — and the gate
-bar now has **Save gates... / Load gates...**. Separately, **every Assign class... writes
-its own polygon** to `<project>/qpcat/gates/` without being asked, because a classification
-on a few thousand cells ought to be traceable to the geometry that chose them.
+#### 9.1 Save a gate, and load it back
 
-The reload is the interesting part, and the two kinds of plot behave differently:
+**Save a gate to reuse it.** A gate is the polygon you draw around a population on a plot.
+Every 2D plot you can draw one on (the clustering results window's **UMAP 2D** tab, named after
+the embedding, or `Explore & spatial > Plot & gate cells (2D)...`) has a gate bar with
+**Save gates...** and **Load gates...**. Separately, **every Assign class... writes its own
+polygon** to `<project>/qpcat/gates/` without being asked, because a classification on a few
+thousand cells ought to be traceable to the geometry that chose them.
+
+Reloading a gate behaves differently on the two kinds of plot:
 
 - **Two markers (biaxial).** The axes are raw measurements, which belong to the cell. Load
   the gate onto other cells, other images, next month: it asks the same question. QP-CAT
@@ -1027,21 +1074,42 @@ The reload is the interesting part, and the two kinds of plot behave differently
 - **On an embedding.** UMAP and t-SNE coordinates belong to the *run*, not the cell.
   Reproducing a layout takes the same cells, measurements, parameters **and** seed. Change
   any one and the picture is free to rotate and flip without a single cell changing its
-  neighbours — so the same polygon lands in the same place on screen and holds a **different
+  neighbors — so the same polygon lands in the same place on screen and holds a **different
   population**, with a perfectly plausible count. Measured on three clean blobs: a gate
   holding ~200 cells kept **0 of them** after a reflect-and-rotate, five times out of five.
 
 So QP-CAT fingerprints the coordinates and never loads a gate silently. It tells you whether
 these are the coordinates the gate was drawn on, warns loudly when they are not, refuses
 outright when the axes are different measurements, and lists each gate's cell count **here**
-against its count **when saved**. Try it: gate on CD3 vs CD8, save, then re-plot over a
-different image and load it back.
+against its count **when saved**. To try it on a biaxial plot:
 
-**Take the cells to another tool.** `Extensions > QP-CAT > Export > Export cell crops +
-feature table (TraitHorizon / CSV)...` writes one small PNG per cell plus a table whose first
-column names that PNG.
+1. **Open `Extensions > QP-CAT > Explore & spatial > Plot & gate cells (2D)...`** and set it up
+   like this:
 
-<img src="../images/qp-cat/crop-table-export-dialog.png" alt="The Export Cell Crops and Feature Table dialog. A What this does panel explains that it writes one PNG per cell plus a table in TraitHorizon's input format, and states that QP-CAT uses none of TraitHorizon's code and does not support it. Below: Scope set to Current image with All project images (8) and Specific images as alternatives; a filterable measurement list with Nucleus Area, Perimeter, Circularity, Max caliper, Min caliper and Eccentricity all ticked, the measured part of each name in bold, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; a Write section with TSV, Write one PNG crop per cell, Add a classification column and Add an image column ticked, and CSV and Only cells that have a classification unticked; and a Total cells budget spinner set to 2000." width="702">
+   | # | Setting | Set to |
+   |---|---|---|
+   | 1 | Scope | **`Specific images...`**, then pick **`tme_00`** |
+   | 2 | Axes | **Two markers (biaxial)** |
+   | 3 | **X:** | `Cell: CD3 mean` |
+   | 4 | **Y:** | `Cell: CD8 mean` |
+
+2. **Click Plot.**
+3. **Click Gate**, then click around the cells that are high on both axes. Double-click to close
+   the polygon.
+4. **Click Save gates...** and save the file.
+5. **Change row 1 to `tme_06` and click Plot again.**
+6. **Click Load gates...** and choose the file. QP-CAT lists the gate's cell count on this image
+   against its count when saved.
+
+#### 9.2 Export cell crops and a table
+
+1. **Open `Extensions > QP-CAT > Export > Export cell crops + feature table (TraitHorizon /
+   CSV)...`.** It writes one small PNG per cell plus a table whose first column names that
+   PNG, into the **Output folder:** it shows (`<project>/qpcat/crop_tables` unless you choose
+   another): an `images` folder, `features.tsv`, and a `README.txt`.
+2. **Click Export** once the coverage and budget notes described below look right.
+
+<img src="../images/qp-cat/crop-table-export-dialog.png" alt="The export dialog, headed One image per cell plus a table of its measurements. A What this does panel explains that it writes one PNG per cell plus a table in TraitHorizon's input format, and states that QP-CAT uses none of TraitHorizon's code and does not support it. Below: Scope set to Current image with All project images (8) and Specific images as alternatives; a filterable measurement list with Nucleus Area, Perimeter, Circularity, Max caliper, Min caliper and Eccentricity all ticked, the measured part of each name in bold, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; a Write section with TSV, Write one PNG crop per cell, Add a classification column and Add an image column ticked, and CSV and Only cells that have a classification unticked; a Total cells budget spinner set to 2000; and Cancel and Export buttons at the bottom." width="702">
 
 That is the input format of [TraitHorizon](https://github.com/choosehappy/TraitHorizon), which
 draws a parallel-coordinates plot over every column at once with each cell's image beside its
@@ -1067,7 +1135,7 @@ Two things the dialog will tell you before you run it:
 
 ### What to notice
 
-- Every result stays clickable back to the tissue. The value here is the round trip.
+- Every result links back to its cells: double-click a point to jump to it on the slide.
 - Changing the *measurement selection* usually changes the answer more than changing the
   algorithm. Try it.
 - A statistical test that says two populations co-localize, over a slide where they visibly do
@@ -1075,7 +1143,7 @@ Two things the dialog will tell you before you run it:
 - **A single cluster is a result about your settings, not about the tissue.** Read the noise
   fraction before you conclude anything: *a lot* of noise means the algorithm found no density
   gap — try KMeans or Leiden on the same measurements; *almost none* means it found no
-  boundary at all — that is step 4.
+  boundary at all: change **Cluster selection**, as in step 4.
 - Ground truth is a luxury you will not have again. Use this dataset to learn what a *correct*
   result looks like, so you can recognize a wrong one on data where nobody can tell you.
 
@@ -1087,6 +1155,11 @@ Two things the dialog will tell you before you run it:
 - **[Clustering](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/clustering.md)**: measurement selection, normalization and algorithm choice.
 - **[Scripting (Groovy)](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/scripting.md)** and the **[YAML headless-batch runner](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/yaml-reference.md)**: for running this across a whole cohort, including `area_levels` for TMA cores.
 - **[References](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/references.md)**: papers and DOIs for every algorithm used.
+- **Publishing with it?** Cite the QP-CAT repository and the version you ran (`Setup & help >
+  System Info...` shows it), plus the methods you used, from the
+  [References](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/references.md).
+  Each saved result's `_RUN_INFO.txt`, in `<project>/qpcat/cluster_results/`, lists the
+  settings a Methods section needs.
 - **[Dataset instructions](https://github.com/uw-loci/multiplex-synthetic-data/blob/v1.2/INSTRUCTIONS.md)**: channel tables, the full detection recipe, what every analysis should recover, and the ground-truth CSV reference.
 - Once you have clusters, [Cluster 3D Navigator](04-cluster-3d-navigator.md) gives you a
   rotatable 3D point cloud with click-to-navigate.
