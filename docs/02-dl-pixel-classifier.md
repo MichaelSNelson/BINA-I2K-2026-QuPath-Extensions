@@ -234,6 +234,13 @@ everything else in one step. A profile carries *settings only* — your classes 
 the annotations you just imported, so it does not matter that the profile was saved against a
 different set.
 
+> **Want to see what that profile costs, and what a different one would?** From the release
+> after 0.9.26, the dialog's **Training HUD** button opens a live panel that shows what each
+> change does to speed, memory and how much the model learns. The
+> [Training HUD walkthrough](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/TRAINING_HUD_WALKTHROUGH.md)
+> runs exactly this data through two settings and two presets: this profile, and a slower,
+> more detailed one.
+
 #### 3.4 Name the classifier and start training
 
 1. **Type a name for the classifier.**
@@ -666,6 +673,9 @@ trained with. Two export buttons, for two different purposes:
 - **Every dialog field**, with its type, default and range:
   [Parameter Reference](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/PARAMETERS.md).
 - **Batch runs from Groovy**: [Scripting Guide](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/SCRIPTING.md).
+- **What each training setting costs, on this workshop's data**:
+  [Training HUD walkthrough](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier/blob/main/docs/TRAINING_HUD_WALKTHROUGH.md)
+  (the release after 0.9.26).
 
 **Full documentation:** the
 [repository README](https://github.com/uw-loci/qupath-extension-dl-pixel-classifier#readme)
