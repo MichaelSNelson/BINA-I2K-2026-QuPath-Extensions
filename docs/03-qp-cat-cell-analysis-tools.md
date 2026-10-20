@@ -12,7 +12,7 @@ title: QP-CAT - Cell Analysis Tools
 | | |
 |---|---|
 | **Repository** | [uw-loci/qupath-extension-cell-analysis-tools](https://github.com/uw-loci/qupath-extension-cell-analysis-tools) |
-| **Extension version** | 0.22.0 |
+| **Extension version** | 0.22.0 in the catalog. Screens and numbers are from the development build after it |
 | **License** | Apache-2.0 |
 | **Requires** | QuPath 0.7.0+. ~1.5–2.5 GB download, ~2.5 GB on disk for the Python environment |
 | **Where to find it** | `Extensions > QP-CAT` |
@@ -297,6 +297,11 @@ from the first rather than from defaults. While a run is going, the progress che
 shows how long each step has taken — useful for deciding which spatial statistics are worth
 their time on your own data.
 
+Leave the collapsed **Validation** section near the bottom of the dialog as it opens, with
+both checks off. Its *Stability across seeds* check re-runs the clustering with other seeds
+and reports in a **Validation** results tab how much the clusters move. *Not in QP-CAT
+0.22.0; it arrives with the next release.*
+
 **Click Run Clustering**, then **OK** in **QPCAT - replace classifications?**, which warns that
 the cluster labels replace any classification already on the cells. The run takes under a
 minute on the eight images.
@@ -323,7 +328,7 @@ minute on the eight images.
 **Read the Marker Fingerprints tab.** One card per cluster, showing each measurement's
 enrichment as log2 fold-change against every other cell. The Marker Fingerprints tab is where you name the clusters:
 
-<img src="../images/qp-cat/fingerprints-kmeans6.png" alt="The Marker Fingerprints tab showing six cluster cards. Cluster 0, 3306 cells, is led by Cytoplasm aSMA mean plus nucleus eccentricity and max caliper. Cluster 1, 1914 cells, by PanCK. Cluster 2, 2752 cells, by CD3 across three compartments and by CD8. Cluster 3, 1093 cells, by CD20. Cluster 4, 1566 cells, by CD68. Cluster 5, 790 cells, by Ki67 across three compartments together with PanCK" width="1000">
+<img src="../images/qp-cat/fingerprints-kmeans6.png" alt="The Marker Fingerprints tab showing six cluster cards. Cluster 0, 3306 cells, is led by Cytoplasm aSMA mean plus nucleus eccentricity and max caliper. Cluster 1, 1914 cells, by PanCK. Cluster 2, 2752 cells, by CD3 across three compartments and by CD8. Cluster 3, 1093 cells, by CD20. Cluster 4, 1566 cells, by CD68. Cluster 5, 790 cells, by Ki67 across three compartments together with PanCK. The marker part of each measurement name is in bold" width="1000">
 
 | Cluster | Cells | Led by | Read it as |
 |---|---|---|---|
@@ -437,7 +442,7 @@ either way — the saved result knows which columns it wrote — but if you go o
 
 <div class="shots" markdown="0">
 <figure style="max-width:642px">
-<img src="../images/qp-cat/HDBSCAN_interface.png" alt="The Clustering Algorithm section of the Run Clustering dialog: Algorithm set to HDBSCAN, min_cluster_size 500, min_samples 0, and Cluster selection set to Leaf (finest clusters).">
+<img src="../images/qp-cat/HDBSCAN_interface.png" alt="The Clustering Algorithm section of the Run Clustering dialog. A yellow note says a cluster label is a hypothesis, not a measured cell type. Below it, Algorithm set to HDBSCAN; Random seed (clustering + embedding) 42, with the note that it fixes the embedding layout and this algorithm is deterministic; min_cluster_size 500, min_samples 0; and Cluster selection set to Leaf (finest clusters), above a description of what HDBSCAN does.">
 <figcaption><b>The Clustering Algorithm section, set up as in rows 4 to 7 of the table.</b> <b>Cluster selection</b> is new in
 0.14.0 &mdash; if you do not see it, update first. The settings shown here produced every
 result below.</figcaption>
@@ -501,12 +506,12 @@ one dominant cluster means change the *cluster selection*.
 
 <div class="shots" markdown="0">
 <figure>
-<img src="../images/qp-cat/qpcat_4-2_3D.png" alt="The QP-CAT results window titled 7 cluster(s), 11421 cells, on the 3D View tab. Seven separated point clouds in different colours float in the plot, the axes are set to 3DUMAP1, 3DUMAP2 and 3DUMAP3, the counter reads Points 11,421 shown of 11,421 total, and the CLASSES list on the right ticks Cluster 0 through Cluster 6 with their counts, from 825 to 3306, and no noise row.">
+<img src="../images/qp-cat/qpcat_4-2_3D.png" alt="The QP-CAT results window titled 7 cluster(s), 11421 cells, on the 3D View tab. A guide line at the top says each point is one cell, placed by the run's 3D embedding, beside a Documentation link. Seven separated point clouds in different colors float in the plot, the axes are set to 3DUMAP1, 3DUMAP2 and 3DUMAP3, the counter reads Points 11,421 shown of 11,421 total, and the CLASSES list on the right ticks Cluster 0 through Cluster 6 with their counts, from 825 to 3306, and no noise row.">
 <figcaption><b>Seven separated lobes, no noise.</b> HDBSCAN found the count itself.
 Leaf selection is what cut at the lobes instead of returning their common parent.</figcaption>
 </figure>
 <figure>
-<img src="../images/qp-cat/qpcat_4-2_fingerprints.png" alt="The Marker Fingerprints tab. Seven cluster cards -- Cluster 0 at 825 cells, Cluster 1 at 3,306, Cluster 2 at 1,088, Cluster 3 at 1,868, Cluster 4 at 1,554, Cluster 5 at 1,388 and Cluster 6 at 1,392 -- and every card lists 3DUMAP1, 3DUMAP2 and 3DUMAP3 as its defining features. No marker names appear anywhere.">
+<img src="../images/qp-cat/qpcat_4-2_fingerprints.png" alt="The Marker Fingerprints tab. Seven cluster cards -- Cluster 0 at 825 cells, Cluster 1 at 3,306, Cluster 2 at 1,088, Cluster 3 at 1,868, Cluster 4 at 1,554, Cluster 5 at 1,388 and Cluster 6 at 1,392 -- and every card lists 3DUMAP1, 3DUMAP2 and 3DUMAP3 as its defining features. Markers per cluster reads 3, because three columns are all the run ranked. No marker names appear anywhere.">
 <figcaption><b>No marker names.</b> Every card is described by
 <code>3DUMAP1/2/3</code>, because those are the only three columns the run saw. No
 marker names, so no phenotype.</figcaption>
@@ -550,7 +555,8 @@ zero when the run was Z-scored; what Scale chooses is whether the color reaches 
 marker's own strongest value (**Per marker**, the default) or to one value shared across the
 whole map (**Shared across markers**). With **Normalization** set to None the values have no
 meaningful zero, so the map switches to a sequential viridis scale and says so in its legend.
-The reading does not change, only the colors.
+From the next release, the caption under the color bar also names the units, for example
+*cluster mean (z-score)*. The reading does not change, only the colors.
 
 </details>
 
@@ -567,18 +573,19 @@ this project, so check them even if you have been here before:
 
 <div class="shots" markdown="0">
 <figure>
-<img src="../images/qp-cat/analyze-current.png" alt="The top of the Analyze current cell classifications dialog. A banner reads: analyse the classifications already on the cells, nothing is re-clustered and no classification is changed. Below it, Scope set to All project images (8); a Measurements list with Nucleus DAPI mean ticked and the other DAPI statistics unticked, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; Normalization set to Z-score; and a Dimensionality Reduction section with Method set to None, which greys out the Dimensions dropdown.">
+<img src="../images/qp-cat/analyze-current.png" alt="The top of the Analyze current cell classifications dialog. A banner reads: analyse the classifications already on the cells, nothing is re-clustered and no classification is changed. Below it, Scope set to All project images (8), with Current image grayed out because no image is open; a Measurements list with Nucleus DAPI mean ticked and the other DAPI statistics unticked, the marker name DAPI in bold in every row, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; Normalization set to Z-score; and a Dimensionality Reduction section with Method set to None, which grays out the Dimensions dropdown.">
 <figcaption><b>Top half, set up.</b> Scope, Measurements and Normalization behave exactly as in
 a clustering run; the banner says what is different. <b>Method</b> is on <b>None</b> here,
 which is what this run wants &mdash; it opens on UMAP, and left there it would compute a second
 embedding instead of using the one already on the cells.</figcaption>
 </figure>
 <figure>
-<img src="../images/qp-cat/qpcat_4-3_settings_low.png" alt="The lower half of the same dialog. A Classifications to analyze section lists Cluster 0 through Cluster 6 with cell counts of 3306, 1554, 1868, 825, 1088, 1392 and 1388, every one ticked, with the line 7 classes found and Select all, Select none and Refresh list buttons. Below it, Generate analysis plots is unticked, which greys out Cluster connectivity graph (PAGA); Spatial feature smoothing is greyed out; Neighborhood enrichment plus Moran's I, PCA and Batch correction (Harmony) are unticked; and Independent areas and Spatial statistics are collapsed. A line reads: this run is repeatable and comparable to other default runs. The Analyze and Close buttons sit at the bottom.">
+<img src="../images/qp-cat/qpcat_4-3_settings_low.png" alt="The lower half of the same dialog. A Classifications to analyze section lists Cluster 0 through Cluster 6 with cell counts of 825, 3306, 1088, 1868, 1554, 1388 and 1392, every one ticked, with the line 7 classes found and Select all, Select none and Refresh list buttons. Below it, Generate analysis plots is unticked, which grays out Cluster connectivity graph (PAGA); Spatial feature smoothing is grayed out; Neighborhood enrichment plus Moran's I, PCA and Batch correction (Harmony) are unticked; and Validation, Independent areas and Spatial statistics are collapsed. A line reads: this run is repeatable and comparable to other default runs. The Close and Analyze buttons sit at the bottom.">
 <figcaption><b>Lower half: the class list.</b> One row per class with its count, all ticked,
 and the class total underneath. <b>Spatial feature smoothing is grayed out</b> in this mode on
 purpose: it rewrites the measurements each class is then described by, so a class would report
-markers its <i>neighbors</i> carry.</figcaption>
+markers its <i>neighbors</i> carry. Leave <b>Validation</b> closed: nothing is re-clustered
+here, so both its checks are grayed out (it is not in QP-CAT 0.22.0).</figcaption>
 </figure>
 </div>
 
@@ -593,7 +600,7 @@ compare things that were never meant to be compared. One labeling system, all of
 
 <div class="shots" markdown="0">
 <figure style="max-width:500px">
-<img src="../images/qp-cat/qpcat_4-4_fingerprints.png" alt="The Marker Fingerprints tab after the analyse run. Seven cluster cards, each led by marker names instead of UMAP columns: Cluster 0 by Ki67 at plus 37.0 and PanCK, Cluster 1 by aSMA, Cluster 2 by CD20, Cluster 3 by PanCK, Cluster 4 by CD68, Cluster 5 by CD8 and CD3, and Cluster 6 by CD3 with CD8 at minus 2.9.">
+<img src="../images/qp-cat/qpcat_4-4_fingerprints.png" alt="The Marker Fingerprints tab after the analyze run. Seven cluster cards, each led by marker names instead of UMAP columns: Cluster 0 by Ki67 at plus 37.0 and PanCK, Cluster 1 by aSMA, Cluster 2 by CD20, Cluster 3 by PanCK, Cluster 4 by CD68, Cluster 5 by CD8 and CD3, and Cluster 6 by CD3 with CD8 at minus 2.9.">
 <figcaption><b>The same seven clusters, described by markers.</b> Compare with the panel
 further up, where every card read <code>3DUMAP1/2/3</code>. Same cells, same groups, a
 description you can put a cell-type name to.</figcaption>
@@ -651,17 +658,22 @@ image or project name. For this run the prompt is 3,369 characters, and you can 
 before it goes anywhere. The instruction tells the model that the scores describe the clusters
 rather than test them, and to answer null rather than guess.
 
-1. **Open the `Cluster Explainer (LLM) [Experimental]` tab** of the 4.3 results window. (Closed
-   it? `Results & populations > View Past Results...` reopens it: it is the run whose name ends
-   in `_existingclassifications`.)
-2. **Set Provider to `Any chatbot (copy prompt, paste reply) -- no key`**, and **Model** to the
-   chatbot you will use. The model name is saved with the suggestions as their source.
+1. **Reopen the 4.3 run with `Results & populations > View Past Results...`**: it is the run
+   whose name ends in `_existingclassifications`. Then **open its
+   `Cluster Explainer (LLM) [Experimental]` tab.** The window the 4.3 run opened has the same
+   tab, but it has no saved result to keep the suggestions in.
+2. **Set Provider to `Any chatbot (copy prompt, paste reply) -- no key`**, and pick or type
+   the chatbot you will use in **Model**. It starts empty and is only a label for the record:
+   it is saved with the suggestions as their source, and left empty the record says the chatbot
+   was not named. (On QP-CAT 0.22.0 it starts on `claude.ai`, which is saved unless you change
+   it.)
 3. **Click `1. Copy prompt to clipboard`** and paste it into the chatbot.
 4. **Paste the whole reply into the box under step 2, then click `3. Read pasted reply`.**
 
 The **Suggestions** table fills with one row per cluster, a confidence and the markers the
 model relied on; click a row for its reasoning. The suggestions are saved into the result and
-come back when you reopen it.
+come back when you reopen it, with a line naming who wrote them, for example *written by
+ChatGPT, as you named it (reply pasted in)*.
 
 **What came back here.** We gave the copied prompt, and nothing else, to a fresh Claude Code
 session (Opus 5.5) with no tools and no project files. All seven suggestions agree with the
@@ -673,13 +685,16 @@ model on a dataset built to be easy; other chatbots, and real tissue, will diffe
 
 Treat each row as a suggestion to check against the **Marker Fingerprints** cards. **Use as
 cluster names...** carries shortened versions into **Modify cell populations**, where nothing
-is written until you press **Apply**, and Apply saves a renamed copy of the result.
+is written until you press **Apply**, and Apply saves a renamed copy of the result. Close that
+window before Apply and it asks before discarding the names (on QP-CAT 0.22.0 they are lost
+without asking).
 
 > **Pasting into a web chatbot sends that text to whoever runs the chatbot.** Here it is marker
 > names and numbers from synthetic data. On your own data, check your institution's rules first.
 
-The same prompt has three other routes. **Ollama** runs a model on your own machine (the tab
-says no one has run that route yet). **Anthropic** sends it with your API key. And if you
+The same prompt has three other routes. **`Ollama (local) -- never run`** runs a model on your
+own machine; as the label says, no one has run that route yet. **`Anthropic (Claude API)`**
+sends it with your API key. And if you
 already work with an AI agent such as Claude Code, the opt-in
 [MCP server](https://github.com/uw-loci/qupath-extension-cell-analysis-tools/blob/main/documentation/mcp-server.md)
 lets the agent read the table and write the names itself.
@@ -742,13 +757,13 @@ on the **Marker Fingerprints** tab.
    > exporting the CSV. **Save CSV...** under the tab writes one row per pair if you want to.
 
    > **Why untick Neighborhood enrichment.** It is on by default and it is a real statistic,
-   > but nothing in step 5 reads it, and in *this* dialog it has nowhere to appear: the
-   > per-image results window has no tab for it, so the numbers reach only **Save combined
-   > CSV...** on the summary and the word *Nhood* in the summary's **Statistics** column. It is
-   > a permutation test, so on eight images you would be waiting for a result you never see.
-   > Leave it on if you want that CSV column. You do see it drawn when you tick
-   > `Neighborhood enrichment + Moran's I` during a **clustering** run instead — that route
-   > writes a **Neighborhood Enrichment** heatmap tab.
+   > but nothing in step 5 reads it. Leave it on if you want it; on the eight images it took
+   > seconds here. Each image's results window then gains a **Neighborhood Enrichment** tab, a
+   > table giving each pair of clusters a z-score and, in brackets, the number of graph edges
+   > behind it, and a **Neighborhood Enrichment (plot)** heatmap beside it.
+   >
+   > *On QP-CAT 0.22.0 the per-image window has no tab for it*: the numbers reach only
+   > **Save combined CSV...** on the summary, so leave it unticked there.
 
    > **Ripley L is slow, and we do not recommend running it on a lower-powered laptop.** By
    > default squidpy draws **1,000** simulated random patterns per image, QP-CAT draws another
@@ -783,7 +798,7 @@ on the **Marker Fingerprints** tab.
 3. **Click Run spatial statistics.** A window titled **QP-CAT - Spatial statistics summary**
    opens with one row per image, headed **8 area(s), 8 analyzed.**
 
-   <img src="../images/qp-cat/qpcat_5-1_summary.png" alt="The QP-CAT Spatial statistics summary window, headed 8 areas, 8 analyzed, double-click a row or use Open to see its full result. A table lists the eight images tme_00.tif to tme_07.tif, each as a whole image, with cell counts of 1530, 1568, 1430, 1269, 1487, 1470, 1722 and 945, seven classes each except six for tme_07, the unit um, the statistics Ripley and Cooc-pair, and an Open button at the end of every row. Save combined CSV and Close are at the bottom." width="834">
+   <img src="../images/qp-cat/qpcat_5-1_summary.png" alt="The QP-CAT Spatial statistics summary window, headed 8 areas, 8 analyzed, double-click a row or use Open to see its full result. A table lists the eight images tme_00.tif to tme_07.tif, each as a whole image, with cell counts of 1530, 1568, 1430, 1269, 1487, 1470, 1722 and 945, seven classes each except six for tme_07, the unit um, a Statistics column beginning Ripley, Cooc-pair, and an Open button at the end of every row. Save combined CSV and Close are at the bottom." width="834">
 
 4. Double-click the **`tme_00.tif`** row, or click its **Open** button, to open that image's
    results.
@@ -866,12 +881,12 @@ different set of images.
 #### 6.1 Run it
 
 **Open `Extensions > QP-CAT > Find cell populations (clustering)...`.** The dialog reopens with
-most of step 4's settings, so there are three things to change and one to leave alone:
+step 4's settings, so there are two things to change, one to check and one to leave alone:
 
 | # | Setting | Set to |
 |---|---|---|
 | 1 | Scope | **`Specific images...`**, then tick **`tme_00`**, **`tme_06`** and **`tme_07`** — three in total |
-| 2 | Measurements | tick **`QPCAT 3D UMAP1`**, **`2`** and **`3`** again (`3DUMAP1/2/3` in the pre-built clustered project). The dialog restores everything else from step 4 but comes back with no measurement ticked |
+| 2 | Measurements | **`QPCAT 3D UMAP1`**, **`2`** and **`3`** ticked, and nothing else (`3DUMAP1/2/3` in the pre-built clustered project). The dialog reopens with step 4's ticks; on QP-CAT 0.22.0 it comes back with none ticked, so tick the three again |
 | 3 | Clustering Algorithm: **min_cluster_size** | **200** |
 | 4 | Independent areas | **leave it as `1. Images (always separate)`**, which means one area per image: what this step is about |
 
@@ -1026,7 +1041,7 @@ different image and load it back.
 feature table (TraitHorizon / CSV)...` writes one small PNG per cell plus a table whose first
 column names that PNG.
 
-<img src="../images/qp-cat/crop-table-export-dialog.png" alt="The Export Cell Crops and Feature Table dialog. A What this does panel explains that it writes one PNG per cell plus a table in TraitHorizon's input format, and states that QP-CAT uses none of TraitHorizon's code and does not support it. Below: Scope set to Current image with All project images (3) and Specific images as alternatives; a filterable measurement list with Nucleus Area, Perimeter, Circularity, Max caliper, Min caliper and Eccentricity all ticked, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; a Write section with TSV, Write one PNG crop per cell, Add a classification column and Add an image column ticked, and CSV and Only cells that have a classification unticked; and a Total cells budget spinner set to 2000." width="702">
+<img src="../images/qp-cat/crop-table-export-dialog.png" alt="The Export Cell Crops and Feature Table dialog. A What this does panel explains that it writes one PNG per cell plus a table in TraitHorizon's input format, and states that QP-CAT uses none of TraitHorizon's code and does not support it. Below: Scope set to Current image with All project images (8) and Specific images as alternatives; a filterable measurement list with Nucleus Area, Perimeter, Circularity, Max caliper, Min caliper and Eccentricity all ticked, the measured part of each name in bold, above Select All, Select None, Select Mean only, Select Median only and Deselect QPCAT buttons; a Write section with TSV, Write one PNG crop per cell, Add a classification column and Add an image column ticked, and CSV and Only cells that have a classification unticked; and a Total cells budget spinner set to 2000." width="702">
 
 That is the input format of [TraitHorizon](https://github.com/choosehappy/TraitHorizon), which
 draws a parallel-coordinates plot over every column at once with each cell's image beside its
